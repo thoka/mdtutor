@@ -1,5 +1,5 @@
 {
-  "name": "mdtutor2",
+  "name": "mdtutor",
   "version": "0.1.0",
   "description": "Markdown-based learning platform for Makerspace tutorials",
   "type": "module",
@@ -14,8 +14,8 @@
   "scripts": {
     "test": "node --test",
     "test:data": "node test/get-test-data.js",
-    "api": "npm run dev --workspace=@mdtutor2/api-server",
-    "web": "npm run dev --workspace=@mdtutor2/web",
+    "api": "npm run dev --workspace=@mdtutor/api-server",
+    "web": "npm run dev --workspace=@mdtutor/web",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

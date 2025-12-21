@@ -1,4 +1,4 @@
-# MDTutor2
+# MDTutor
 
 Markdown-based learning platform for Makerspace tutorials, compatible with Raspberry Pi Learning content.
 
@@ -21,7 +21,7 @@ Build a local, intranet-compatible learning environment with:
 ## Project Structure
 
 ```
-mdtutor2/
+mdtutor/
 ├── packages/              # Modular components (monorepo)
 │   ├── parser/           # Markdown → JSON parser
 │   └── api-server/       # Express API server

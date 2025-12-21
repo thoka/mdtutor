@@ -1,5 +1,5 @@
 {
-  "name": "@mdtutor2/api-server",
+  "name": "@mdtutor/api-server",
   "version": "0.1.0",
   "description": "API server for tutorial content (mock initially)",
   "type": "module",
