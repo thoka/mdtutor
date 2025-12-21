@@ -78,14 +78,6 @@
   }
 </script>
 
-<div class="step-content" bind:this={contentDiv}>
+<div class="c-project__step-content" bind:this={contentDiv}>
   {@html content}
 </div>
-
-<style>
-  .step-content {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-</style>

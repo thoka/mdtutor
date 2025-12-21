@@ -23,7 +23,8 @@ const LANGUAGES = ['en'];
 const TEST_TUTORIALS = [
   'silly-eyes',
   'scratchpc-interactive-book',
-  'getting-started-with-minecraft-pi'
+  'getting-started-with-minecraft-pi',
+  'cats-vs-dogs'
 ];
 
 /**

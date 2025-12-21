@@ -88,6 +88,34 @@ Reference tutorial data is fetched from raspberrypilearning repositories and off
 
 **Script:** `test/get-test-data.js`
 
+### Development Environment Configuration
+
+**Port Configuration**: Both API server and web dev server support environment variable-based port configuration to enable multiple development environments running simultaneously.
+
+- **API Server Port**: Configured via `API_PORT` environment variable (default: 3001)
+- **Web Dev Server Port**: Configured via `WEB_PORT` environment variable (default: 5173)
+- **Fallback**: Both services also respect generic `PORT` environment variable if specific port variables are not set
+
+**Background Development Tasks**:
+- `npm run dev`: Runs both API server and web dev server concurrently with colored output
+- `npm run dev:bg`: Same as `dev` but with kill-on-exit behavior (stops all processes on Ctrl+C)
+
+**Usage Examples**:
+```bash
+# Default ports (3001 for API, 5173 for web)
+npm run dev:bg
+
+# Custom ports for multiple environments
+API_PORT=3002 WEB_PORT=5174 npm run dev:bg
+
+# Using .env file (not committed to git)
+echo "API_PORT=3002" > .env
+echo "WEB_PORT=5174" >> .env
+npm run dev:bg
+```
+
+The Vite dev server automatically configures its proxy to match the API server port when `API_PORT` is set.
+
 ## Development Approach
 
 ### Iteration Strategy

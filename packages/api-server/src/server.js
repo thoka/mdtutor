@@ -5,6 +5,7 @@
  * Mimics Raspberry Pi Learning API structure
  */
 
+import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { readFile } from 'fs/promises';
@@ -15,7 +16,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.API_PORT || process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());

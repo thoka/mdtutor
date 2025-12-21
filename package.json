@@ -18,6 +18,9 @@
     "web": "npm run dev --workspace=@mdtutor/web",
     "dev": "concurrently -n api,web -c blue,green \"npm run api\" \"npm run web\"",
     "dev:bg": "dotenv -- concurrently -k -n api,web -c blue,green \"npm run api\" \"npm run web\"",
+    "compare:structure": "node tools/compare-structure.js",
+    "extract:structure": "node tools/extract-structure.js",
+    "extract:css": "node tools/extract-css.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -34,7 +37,9 @@
     "concurrently": "^9.1.0",
     "dotenv": "^17.2.3",
     "dotenv-cli": "^11.0.0",
-    "eslint": "^9.0.0"
+    "eslint": "^9.0.0",
+    "node-html-parser": "^7.0.1",
+    "puppeteer": "^24.34.0"
   },
   "repository": {
     "type": "git",
