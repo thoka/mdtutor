@@ -196,10 +196,6 @@
     font-weight: 600;
   }
   
-  .c-project__step-content {
-    /* Content styles from rpl.css */
-  }
-  
   .c-project__navigation {
     display: flex;
     justify-content: space-between;
