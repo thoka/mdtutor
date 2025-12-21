@@ -73,8 +73,7 @@
 {:else if errorMsg}
   <div class="error">Error: {errorMsg}</div>
 {:else if tutorialData}
-  <main class="c-layout">
-    <div class="c-project theme-blue">
+  <div class="c-project theme-blue">
       <div class="no-print">
         <header>
           <div class="c-project-header">
@@ -82,6 +81,11 @@
               <div class="c-project-header__text">
                 <h1 class="c-project-header__title">{tutorialData.data.attributes.content.title}</h1>
               </div>
+              {#if tutorialData.data.attributes.content.heroImage}
+                <figure>
+                  <img alt="" class="c-project-header__image" src={tutorialData.data.attributes.content.heroImage} />
+                </figure>
+              {/if}
             </div>
           </div>
         </header>
@@ -117,22 +121,30 @@
                       </div>
                     </div>
                     
-                    <nav class="c-project-step-navigation">
-                      <button 
-                        class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
-                        onclick={handlePrevious}
-                        disabled={step === 0}
-                      >
-                        <span class="text">← Previous</span>
-                      </button>
+                    <nav class="c-project-step-navigation" dir="ltr">
+                      {#if step > 0}
+                        {@const prevStepData = tutorialData.data.attributes.content.steps[step - 1]}
+                        <a 
+                          class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
+                          href="#"
+                          onclick={(e) => { e.preventDefault(); handlePrevious(); }}
+                        >
+                          <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_left">chevron_left</span>
+                          <span class="text">{prevStepData.title}</span>
+                        </a>
+                      {/if}
                       
-                      <button 
-                        class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
-                        onclick={handleNext}
-                        disabled={step === tutorialData.data.attributes.content.steps.length - 1}
-                      >
-                        <span class="text">Next →</span>
-                      </button>
+                      {#if step < tutorialData.data.attributes.content.steps.length - 1}
+                        {@const nextStepData = tutorialData.data.attributes.content.steps[step + 1]}
+                        <a 
+                          class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
+                          href="#"
+                          onclick={(e) => { e.preventDefault(); handleNext(); }}
+                        >
+                          <span class="text">{nextStepData.title}</span>
+                          <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_right">chevron_right</span>
+                        </a>
+                      {/if}
                     </nav>
                   </div>
                 </div>
@@ -151,8 +163,7 @@
           <defs>
             <!-- SVG filters for Scratch blocks -->
           </defs>
-        </svg>
-      </div>
+      </svg>
     </div>
-  </main>
+  </div>
 {/if}
