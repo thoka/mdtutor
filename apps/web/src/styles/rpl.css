@@ -98,15 +98,15 @@ img {
   display: flex;
   flex-direction: row-reverse;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: flex-end;
 }
 
 .c-project-task__checkbox {
-  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   cursor: pointer;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
   flex-shrink: 0;
 }
 
