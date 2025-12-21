@@ -186,17 +186,30 @@ img {
   font-size: 0.8em;
 }
 
+.c-project-panel__content:not(.u-hidden) ~ .c-project-panel__heading::after,
+.c-project-panel:has(.c-project-panel__content:not(.u-hidden)) .c-project-panel__heading::after {
+  transform: rotate(180deg);
+}
+
 .c-project-panel__heading:hover {
   background: #ebebeb;
 }
 
 .c-project-panel__content {
   padding: 1rem;
-  transition: all 0.3s ease;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.c-project-panel__content:not(.u-hidden) {
+  max-height: 2000px;
+  padding: 1rem;
 }
 
 .c-project-panel__content.u-hidden {
-  display: none;
+  max-height: 0;
+  padding: 0 1rem;
 }
 
 .c-project-panel__content.u-hidden ~ .c-project-panel__heading::after {
