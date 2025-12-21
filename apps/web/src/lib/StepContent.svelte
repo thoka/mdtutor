@@ -2,6 +2,13 @@
   import { onMount } from 'svelte';
   import { derived } from 'svelte/store';
   import { createTaskStore } from './stores';
+  import Prism from 'prismjs';
+  import 'prismjs/themes/prism-tomorrow.css';
+  import 'prismjs/components/prism-python.js';
+  import 'prismjs/components/prism-bash.js';
+  import 'prismjs/components/prism-javascript.js';
+  import 'prismjs/components/prism-json.js';
+  import 'prismjs/components/prism-markdown.js';
   
   let {
     content = '',
@@ -20,12 +27,34 @@
     if (!contentDiv) return;
     
     contentDiv.addEventListener('click', handleClick);
+    highlightCode();
     
     return () => {
       if (contentDiv) {
         contentDiv.removeEventListener('click', handleClick);
       }
     };
+  });
+  
+  function highlightCode() {
+    if (!contentDiv) return;
+    // Find all code blocks within the content div and highlight them
+    const codeBlocks = contentDiv.querySelectorAll('pre code[class*="language-"]');
+    codeBlocks.forEach((block) => {
+      Prism.highlightElement(block as HTMLElement);
+    });
+  }
+  
+  $effect(() => {
+    // Re-highlight when content changes
+    content;
+    step;
+    if (contentDiv) {
+      // Use setTimeout to ensure DOM is updated
+      setTimeout(() => {
+        highlightCode();
+      }, 0);
+    }
   });
   
   function handleClick(e: MouseEvent) {

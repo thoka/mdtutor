@@ -11,6 +11,7 @@ import rehypeStringify from 'rehype-stringify';
 import remarkBlockDelimiters from './plugins/remark-block-delimiters.js';
 import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 import remarkTransclusion from './plugins/remark-transclusion.js';
+import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
 
 /**
  * Parse markdown content to HTML
@@ -32,6 +33,7 @@ export async function parseTutorial(markdown, options = {}) {
       cache: options.transclusionCache
     })
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeCodePreClass)
     .use(rehypeStringify, { allowDangerousHtml: true });
   
   const vfile = await processor.process(markdown);
