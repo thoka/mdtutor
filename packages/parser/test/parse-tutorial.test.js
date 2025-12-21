@@ -58,3 +58,18 @@ Hidden content.
   assert.ok(html.includes('<div class="u-no-print">'));
   assert.strictEqual(html.match(/<\/div>/g).length, 2);
 });
+
+test('parseTutorial - link attributes', async () => {
+  const markdown = `
+[See inside](https://scratch.mit.edu){:target="_blank"}
+
+![Character](images/char.png){:width="300px"}
+
+[Button](link){.button .primary}
+`;
+
+  const html = await parseTutorial(markdown);
+  assert.ok(html.includes('target="_blank"'));
+  assert.ok(html.includes('width="300px"'));
+  assert.ok(html.includes('class="button primary"'));
+});

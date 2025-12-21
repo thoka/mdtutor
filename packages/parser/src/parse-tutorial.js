@@ -9,6 +9,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import remarkBlockDelimiters from './plugins/remark-block-delimiters.js';
+import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 
 /**
  * Parse markdown content to HTML
@@ -22,6 +23,7 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkBlockDelimiters)
+    .use(remarkLinkAttributes)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeStringify, { allowDangerousHtml: true });
   
