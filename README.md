@@ -61,7 +61,7 @@ npm install
 npm run test:data
 ```
 
-This downloads reference tutorials and API responses from raspberrypilearning.org.
+This downloads reference tutorials and API responses from raspberrypilearning.org for all configured languages (currently English and German).
 
 ### 3. Development
 
