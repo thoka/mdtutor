@@ -1,44 +1,129 @@
 #!/usr/bin/env node
 /**
- * HTML Structure Comparison Tool
+ * HTML Structure Comparison Tool (Improved)
  * 
  * Compares the HTML structure between the reference RPL site and local renderer
- * to identify differences in div structure and class names.
+ * by:
+ * 1. Getting both rendered HTMLs via Puppeteer
+ * 2. Removing all content (keeping only structure)
+ * 3. Removing all Svelte scoped classes (s-*)
+ * 4. Comparing with hierarchical information
+ * 
+ * This tool helps identify structural differences that affect CSS matching,
+ * such as nested <main> tags, incorrect class names, or missing containers.
  */
 
-import https from 'https';
-import http from 'http';
 import { parse } from 'node-html-parser';
 import puppeteer from 'puppeteer';
 
-// Extract structure focusing on project-related elements
-function extractStructure(html, source) {
+/**
+ * Normalize HTML by removing content and Svelte classes
+ */
+function normalizeHTML(html) {
+  const root = parse(html);
+  
+  // Remove script and style tags
+  root.querySelectorAll('script, style').forEach(el => el.remove());
+  
+  // Remove all text content (keep structure only)
+  function removeTextNodes(node) {
+    if (!node) return;
+    
+    // Remove text nodes
+    if (node.nodeType === 3) {
+      node.remove();
+      return;
+    }
+    
+    // Remove Svelte scoped classes (s-*)
+    if (node.getAttribute) {
+      const classes = node.getAttribute('class');
+      if (classes) {
+        const filteredClasses = classes
+          .split(' ')
+          .filter(c => c.trim() && !c.startsWith('s-'))
+          .join(' ');
+        
+        if (filteredClasses) {
+          node.setAttribute('class', filteredClasses);
+        } else {
+          node.removeAttribute('class');
+        }
+      }
+    }
+    
+    // Remove attributes that are content-related
+    const contentAttrs = ['alt', 'title', 'aria-label', 'data-testid', 'href', 'src'];
+    contentAttrs.forEach(attr => {
+      if (node.getAttribute(attr)) {
+        // Keep structure but remove content
+        if (attr === 'href' || attr === 'src') {
+          node.setAttribute(attr, '');
+        } else {
+          node.removeAttribute(attr);
+        }
+      }
+    });
+    
+    // Recursively process children
+    const children = [...(node.childNodes || [])];
+    children.forEach(child => removeTextNodes(child));
+  }
+  
+  // Process the entire tree
+  removeTextNodes(root);
+  
+  return root.toString();
+}
+
+/**
+ * Extract hierarchical structure from normalized HTML
+ */
+function extractHierarchicalStructure(html) {
   const root = parse(html);
   const structure = [];
   
-  // Find the main project container
-  const projectContainer = root.querySelector('.c-project') || root.querySelector('body');
+  // Find root container (#root or body)
+  let startNode = root.querySelector('#root') || root.querySelector('body');
+  if (!startNode) {
+    startNode = root;
+  }
   
-  function traverse(node, depth = 0, path = []) {
+  function traverse(node, depth = 0, parentPath = []) {
     if (!node) return;
     
-    // Skip text nodes, comments, and script/style tags
+    // Skip text nodes, comments, script/style
     if (node.nodeType === 3 || node.nodeType === 8) return;
     if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') return;
     
     const tagName = (node.tagName || '').toLowerCase();
     if (!tagName) return;
     
-    const classes = (node.getAttribute('class') || '').split(' ').filter(c => c.trim());
+    // Skip cookie dialogs and other non-content
+    const classes = (node.getAttribute('class') || '').toLowerCase();
+    if (classes.includes('cookie') || classes.includes('cookiebot') || classes.includes('cybot')) {
+      return;
+    }
+    
+    const classList = (node.getAttribute('class') || '').split(' ').filter(c => c.trim());
     const id = node.getAttribute('id') || '';
+    
+    // Build hierarchical path
+    const currentPath = [...parentPath, {
+      tag: tagName,
+      id: id,
+      classes: classList,
+      index: 0 // Will be set during comparison
+    }];
     
     const nodeInfo = {
       tag: tagName,
-      classes: classes,
+      classes: classList,
       id: id,
       depth: depth,
-      path: [...path, tagName],
-      selector: tagName + (id ? `#${id}` : '') + (classes.length > 0 ? `.${classes.join('.')}` : '')
+      path: currentPath,
+      selector: tagName + (id ? `#${id}` : '') + (classList.length > 0 ? `.${classList.join('.')}` : ''),
+      children: []
     };
     
     structure.push(nodeInfo);
@@ -46,201 +131,198 @@ function extractStructure(html, source) {
     // Traverse children
     const children = node.childNodes || [];
     children.forEach((child) => {
-      traverse(child, depth + 1, [...path, tagName]);
+      const childInfo = traverse(child, depth + 1, currentPath);
+      if (childInfo) {
+        nodeInfo.children.push(childInfo);
+      }
     });
+    
+    return nodeInfo;
   }
   
-  if (projectContainer) {
-    traverse(projectContainer, 0, ['.c-project']);
-  } else {
-    // Fallback: traverse body
-    const body = root.querySelector('body');
-    if (body) {
-      traverse(body, 0, ['body']);
-    }
+  if (startNode) {
+    traverse(startNode, 0, []);
   }
   
   return structure;
 }
 
-async function fetchHTML(url, usePuppeteer = false) {
-  if (usePuppeteer) {
-    const browser = await puppeteer.launch({ headless: true });
-    try {
-      const page = await browser.newPage();
-      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
-      
-      // Wait for main content to load
-      try {
-        await page.waitForSelector('.c-project, main, article, [role="main"]', { timeout: 5000 });
-      } catch (e) {
-        // Continue even if selector not found
-      }
-      
-      // Wait a bit more for dynamic content
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      const html = await page.content();
-      await browser.close();
-      return html;
-    } catch (error) {
-      await browser.close();
-      throw error;
+/**
+ * Compare two hierarchical structures
+ */
+function compareStructures(refStructure, localStructure) {
+  const differences = [];
+  
+  function compareNodes(refNode, localNode, path = []) {
+    if (!refNode && !localNode) return;
+    
+    const currentPath = [...path, refNode?.tag || localNode?.tag || 'unknown'];
+    
+    if (!refNode && localNode) {
+      differences.push({
+        type: 'extra',
+        path: currentPath,
+        depth: localNode.depth,
+        local: {
+          tag: localNode.tag,
+          classes: localNode.classes,
+          id: localNode.id,
+          selector: localNode.selector
+        },
+        message: `Extra element: <${localNode.tag}${localNode.id ? `#${localNode.id}` : ''}${localNode.classes.length > 0 ? `.${localNode.classes.join('.')}` : ''}>`
+      });
+      return;
+    }
+    
+    if (refNode && !localNode) {
+      differences.push({
+        type: 'missing',
+        path: currentPath,
+        depth: refNode.depth,
+        ref: {
+          tag: refNode.tag,
+          classes: refNode.classes,
+          id: refNode.id,
+          selector: refNode.selector
+        },
+        message: `Missing element: <${refNode.tag}${refNode.id ? `#${refNode.id}` : ''}${refNode.classes.length > 0 ? `.${refNode.classes.join('.')}` : ''}>`
+      });
+      return;
+    }
+    
+    // Compare tags
+    if (refNode.tag !== localNode.tag) {
+      differences.push({
+        type: 'tag_mismatch',
+        path: currentPath,
+        depth: refNode.depth,
+        ref: { tag: refNode.tag, classes: refNode.classes, id: refNode.id },
+        local: { tag: localNode.tag, classes: localNode.classes, id: localNode.id },
+        message: `Tag mismatch: expected <${refNode.tag}>, found <${localNode.tag}>`
+      });
+    }
+    
+    // Compare classes
+    const refClasses = new Set(refNode.classes);
+    const localClasses = new Set(localNode.classes);
+    const missingClasses = [...refClasses].filter(c => !localClasses.has(c));
+    const extraClasses = [...localClasses].filter(c => !refClasses.has(c));
+    
+    if (missingClasses.length > 0 || extraClasses.length > 0) {
+      differences.push({
+        type: 'class_mismatch',
+        path: currentPath,
+        depth: refNode.depth,
+        tag: refNode.tag,
+        missingClasses,
+        extraClasses,
+        refClasses: refNode.classes,
+        localClasses: localNode.classes,
+        message: `Class mismatch on <${refNode.tag}>: missing [${missingClasses.join(', ')}], extra [${extraClasses.join(', ')}]`
+      });
+    }
+    
+    // Compare IDs
+    if (refNode.id !== localNode.id) {
+      differences.push({
+        type: 'id_mismatch',
+        path: currentPath,
+        depth: refNode.depth,
+        ref: { id: refNode.id },
+        local: { id: localNode.id },
+        message: `ID mismatch: expected #${refNode.id || '(none)'}, found #${localNode.id || '(none)'}`
+      });
+    }
+    
+    // Compare children (match by position and tag)
+    const maxChildren = Math.max(refNode.children.length, localNode.children.length);
+    for (let i = 0; i < maxChildren; i++) {
+      const refChild = refNode.children[i];
+      const localChild = localNode.children[i];
+      compareNodes(refChild, localChild, currentPath);
     }
   }
   
-  return new Promise((resolve, reject) => {
-    const client = url.startsWith('https') ? https : http;
-    
-    client.get(url, (res) => {
-      let data = '';
-      
-      res.on('data', (chunk) => {
-        data += chunk;
-      });
-      
-      res.on('end', () => {
-        resolve(data);
-      });
-    }).on('error', (err) => {
-      reject(err);
-    });
-  });
-}
-
-function compareStructures(refStructure, localStructure) {
-  const differences = [];
-  const maxDepth = Math.max(
-    ...refStructure.map(s => s.depth),
-    ...localStructure.map(s => s.depth)
-  );
-  
-  // Compare by depth and position
-  for (let depth = 0; depth <= maxDepth; depth++) {
-    const refAtDepth = refStructure.filter(s => s.depth === depth);
-    const localAtDepth = localStructure.filter(s => s.depth === depth);
-    
-    // Compare structure at each depth
-    const maxCount = Math.max(refAtDepth.length, localAtDepth.length);
-    
-    for (let i = 0; i < maxCount; i++) {
-      const ref = refAtDepth[i];
-      const local = localAtDepth[i];
-      
-      if (!ref && local) {
-        differences.push({
-          type: 'extra',
-          depth,
-          position: i,
-          local: {
-            tag: local.tag,
-            classes: local.classes,
-            id: local.id,
-            path: local.path
-          }
-        });
-      } else if (ref && !local) {
-        differences.push({
-          type: 'missing',
-          depth,
-          position: i,
-          ref: {
-            tag: ref.tag,
-            classes: ref.classes,
-            id: ref.id,
-            path: ref.path
-          }
-        });
-      } else if (ref && local) {
-        // Compare tags
-        if (ref.tag !== local.tag) {
-          differences.push({
-            type: 'tag_mismatch',
-            depth,
-            position: i,
-            ref: { tag: ref.tag, classes: ref.classes, id: ref.id },
-            local: { tag: local.tag, classes: local.classes, id: local.id },
-            path: ref.path
-          });
-        }
-        
-        // Compare classes
-        const refClasses = new Set(ref.classes);
-        const localClasses = new Set(local.classes);
-        const missingClasses = [...refClasses].filter(c => !localClasses.has(c));
-        const extraClasses = [...localClasses].filter(c => !refClasses.has(c));
-        
-        if (missingClasses.length > 0 || extraClasses.length > 0) {
-          differences.push({
-            type: 'class_mismatch',
-            depth,
-            position: i,
-            tag: ref.tag,
-            missingClasses,
-            extraClasses,
-            refClasses: ref.classes,
-            localClasses: local.classes,
-            path: ref.path
-          });
-        }
-      }
-    }
+  // Start comparison from root
+  if (refStructure.length > 0 && localStructure.length > 0) {
+    compareNodes(refStructure[0], localStructure[0], []);
   }
   
   return differences;
 }
 
-function printStructure(structure, label, maxDepth = 10) {
-  console.log(`\n${'='.repeat(60)}`);
-  console.log(`${label} Structure (showing first ${maxDepth} levels):`);
-  console.log('='.repeat(60));
-  
-  const filtered = structure.filter(s => s.depth <= maxDepth);
-  filtered.forEach(node => {
-    const indent = '  '.repeat(node.depth);
-    const classStr = node.classes.length > 0 ? `.${node.classes.join('.')}` : '';
-    const idStr = node.id ? `#${node.id}` : '';
-    console.log(`${indent}<${node.tag}${classStr}${idStr}>`);
-  });
-  
-  if (structure.length > filtered.length) {
-    console.log(`  ... (${structure.length - filtered.length} more nodes at deeper levels)`);
+async function fetchHTML(url) {
+  const browser = await puppeteer.launch({ headless: true });
+  try {
+    const page = await browser.newPage();
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+    
+    // Wait for main content
+    try {
+      await page.waitForSelector('#root, .c-project, main, [role="main"]', { timeout: 5000 });
+    } catch (e) {
+      // Continue
+    }
+    
+    // Wait for dynamic content
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    const html = await page.content();
+    await browser.close();
+    return html;
+  } catch (error) {
+    await browser.close();
+    throw error;
   }
 }
 
 function printDifferences(differences) {
-  console.log(`\n${'='.repeat(60)}`);
-  console.log('Differences Found:');
-  console.log('='.repeat(60));
+  console.log(`\n${'='.repeat(80)}`);
+  console.log('Structural Differences Found:');
+  console.log('='.repeat(80));
   
   if (differences.length === 0) {
-    console.log('✓ No differences found!');
+    console.log('✓ No structural differences found!');
     return;
   }
   
-  differences.forEach((diff, index) => {
-    console.log(`\n[${index + 1}] ${diff.type.toUpperCase()}`);
-    console.log(`   Depth: ${diff.depth}, Position: ${diff.position}`);
-    
-    if (diff.path) {
-      console.log(`   Path: ${diff.path.join(' > ')}`);
+  // Group by type
+  const byType = {};
+  differences.forEach(diff => {
+    if (!byType[diff.type]) {
+      byType[diff.type] = [];
     }
+    byType[diff.type].push(diff);
+  });
+  
+  Object.entries(byType).forEach(([type, diffs]) => {
+    console.log(`\n[${type.toUpperCase()}] (${diffs.length} found)`);
+    console.log('-'.repeat(80));
     
-    if (diff.type === 'missing') {
-      console.log(`   Missing: <${diff.ref.tag} class="${diff.ref.classes.join(' ')}">`);
-    } else if (diff.type === 'extra') {
-      console.log(`   Extra: <${diff.local.tag} class="${diff.local.classes.join(' ')}">`);
-    } else if (diff.type === 'tag_mismatch') {
-      console.log(`   Expected: <${diff.ref.tag}>`);
-      console.log(`   Found: <${diff.local.tag}>`);
-    } else if (diff.type === 'class_mismatch') {
-      console.log(`   Tag: <${diff.tag}>`);
-      if (diff.missingClasses.length > 0) {
-        console.log(`   Missing classes: ${diff.missingClasses.join(', ')}`);
+    diffs.slice(0, 20).forEach((diff, index) => {
+      console.log(`\n  ${index + 1}. ${diff.message}`);
+      console.log(`     Path: ${diff.path.map(p => typeof p === 'object' ? p.tag : p).join(' > ')}`);
+      console.log(`     Depth: ${diff.depth}`);
+      
+      if (diff.type === 'tag_mismatch') {
+        console.log(`     Expected: <${diff.ref.tag}>`);
+        console.log(`     Found: <${diff.local.tag}>`);
+      } else if (diff.type === 'class_mismatch') {
+        if (diff.missingClasses.length > 0) {
+          console.log(`     Missing classes: ${diff.missingClasses.join(', ')}`);
+        }
+        if (diff.extraClasses.length > 0) {
+          console.log(`     Extra classes: ${diff.extraClasses.join(', ')}`);
+        }
+      } else if (diff.type === 'missing') {
+        console.log(`     Missing: ${diff.ref.selector}`);
+      } else if (diff.type === 'extra') {
+        console.log(`     Extra: ${diff.local.selector}`);
       }
-      if (diff.extraClasses.length > 0) {
-        console.log(`   Extra classes: ${diff.extraClasses.join(', ')}`);
-      }
+    });
+    
+    if (diffs.length > 20) {
+      console.log(`\n  ... and ${diffs.length - 20} more`);
     }
   });
 }
@@ -256,41 +338,40 @@ async function main() {
   
   const [refUrl, localUrl] = args;
   
-  console.log('Fetching reference HTML...');
-  console.log(`  URL: ${refUrl}`);
-  console.log('  (Using Puppeteer for client-side rendering)');
+  console.log('HTML Structure Comparison Tool (Improved)');
+  console.log('='.repeat(80));
+  console.log('\nStep 1: Fetching rendered HTML...');
+  console.log(`  Reference: ${refUrl}`);
+  console.log(`  Local: ${localUrl}`);
   
   try {
-    // Use puppeteer for both - reference site also uses client-side rendering
-    const refHTML = await fetchHTML(refUrl, true);
-    console.log(`  ✓ Fetched ${refHTML.length} bytes`);
+    const [refHTML, localHTML] = await Promise.all([
+      fetchHTML(refUrl),
+      fetchHTML(localUrl)
+    ]);
     
-    console.log('\nFetching local HTML...');
-    console.log(`  URL: ${localUrl}`);
-    console.log('  (Using Puppeteer for client-side rendering)');
+    console.log(`  ✓ Reference: ${refHTML.length} bytes`);
+    console.log(`  ✓ Local: ${localHTML.length} bytes`);
     
-    const localHTML = await fetchHTML(localUrl, true);
-    console.log(`  ✓ Fetched ${localHTML.length} bytes`);
+    console.log('\nStep 2: Normalizing HTML (removing content, Svelte classes)...');
+    const refNormalized = normalizeHTML(refHTML);
+    const localNormalized = normalizeHTML(localHTML);
+    console.log(`  ✓ Normalized reference: ${refNormalized.length} bytes`);
+    console.log(`  ✓ Normalized local: ${localNormalized.length} bytes`);
     
-    console.log('\nExtracting structures...');
-    const refStructure = extractStructure(refHTML, 'reference');
-    const localStructure = extractStructure(localHTML, 'local');
+    console.log('\nStep 3: Extracting hierarchical structure...');
+    const refStructure = extractHierarchicalStructure(refNormalized);
+    const localStructure = extractHierarchicalStructure(localNormalized);
+    console.log(`  ✓ Reference: ${refStructure.length} nodes`);
+    console.log(`  ✓ Local: ${localStructure.length} nodes`);
     
-    console.log(`  Reference: ${refStructure.length} nodes`);
-    console.log(`  Local: ${localStructure.length} nodes`);
-    
-    // Print structures
-    printStructure(refStructure, 'Reference');
-    printStructure(localStructure, 'Local');
-    
-    // Compare
-    console.log('\nComparing structures...');
+    console.log('\nStep 4: Comparing structures...');
     const differences = compareStructures(refStructure, localStructure);
     
     printDifferences(differences);
     
     // Summary
-    console.log(`\n${'='.repeat(60)}`);
+    console.log(`\n${'='.repeat(80)}`);
     console.log('Summary:');
     console.log(`  Total differences: ${differences.length}`);
     const byType = differences.reduce((acc, d) => {
@@ -301,11 +382,18 @@ async function main() {
       console.log(`  ${type}: ${count}`);
     });
     
+    // Exit with error code if differences found
+    if (differences.length > 0) {
+      process.exit(1);
+    }
+    
   } catch (error) {
     console.error('Error:', error.message);
+    if (error.stack) {
+      console.error(error.stack);
+    }
     process.exit(1);
   }
 }
 
 main();
-
