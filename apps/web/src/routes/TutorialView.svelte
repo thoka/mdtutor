@@ -73,11 +73,13 @@
 {:else if errorMsg}
   <div class="error">Error: {errorMsg}</div>
 {:else if tutorialData}
-  <div class="tutorial-view">
-    <header class="header">
-      <h1>{tutorialData.data.attributes.content.title}</h1>
-      <p class="description">{tutorialData.data.attributes.content.description}</p>
-    </header>
+  <div class="c-project">
+    <div class="c-project__header">
+      <div class="c-project__header-content">
+        <h1 class="c-project__title">{tutorialData.data.attributes.content.title}</h1>
+        <p class="c-project__description">{tutorialData.data.attributes.content.description}</p>
+      </div>
+    </div>
     
     <Sidebar 
       steps={tutorialData.data.attributes.content.steps}
@@ -86,38 +88,42 @@
       onNavigate={handleNavigate}
     />
     
-    <div class="content-wrapper">
-      {#if tutorialData.data.attributes.content.steps[step]}
-        {@const currentStepData = tutorialData.data.attributes.content.steps[step]}
-        
-        <StepContent 
-          content={currentStepData.content}
-          {slug}
-          {step}
-        />
-        
-        <nav class="step-navigation">
-          <button 
-            class="nav-btn prev" 
-            onclick={handlePrevious}
-            disabled={step === 0}
-          >
-            ← Previous
-          </button>
+    <div class="c-project__main">
+      <div class="c-project__content">
+        {#if tutorialData.data.attributes.content.steps[step]}
+          {@const currentStepData = tutorialData.data.attributes.content.steps[step]}
           
-          <span class="step-indicator">
-            Step {step + 1} of {tutorialData.data.attributes.content.steps.length}
-          </span>
+          <article class="c-project__step">
+            <h2 class="c-project__step-title">{currentStepData.title}</h2>
+            
+            <div class="c-project__step-content">
+              {@html currentStepData.content}
+            </div>
+          </article>
           
-          <button 
-            class="nav-btn next"
-            onclick={handleNext}
-            disabled={step === tutorialData.data.attributes.content.steps.length - 1}
-          >
-            Next →
-          </button>
-        </nav>
-      {/if}
+          <nav class="c-project__navigation">
+            <button 
+              class="c-button c-button--secondary" 
+              onclick={handlePrevious}
+              disabled={step === 0}
+            >
+              ← Previous
+            </button>
+            
+            <span class="c-project__step-indicator">
+              Step {step + 1} of {tutorialData.data.attributes.content.steps.length}
+            </span>
+            
+            <button 
+              class="c-button c-button--primary"
+              onclick={handleNext}
+              disabled={step === tutorialData.data.attributes.content.steps.length - 1}
+            >
+              Next →
+            </button>
+          </nav>
+        {/if}
+      </div>
     </div>
   </div>
 {/if}
@@ -133,11 +139,13 @@
     color: #c41e3a;
   }
   
-  .tutorial-view {
+  .c-project {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
   
-  .header {
+  .c-project__header {
     background: white;
     border-bottom: 1px solid #e0e0e0;
     padding: 1.5rem 2rem;
@@ -146,59 +154,93 @@
     left: 0;
     right: 0;
     z-index: 100;
-    height: 60px;
+    height: 80px;
   }
   
-  .header h1 {
+  .c-project__title {
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     color: #0faeb0;
+    font-weight: 600;
   }
   
-  .description {
-    display: none;
+  .c-project__description {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 0.95rem;
   }
   
-  .content-wrapper {
-    margin-left: 250px;
-    margin-top: 60px;
-    min-height: calc(100vh - 60px);
+  .c-project__main {
+    margin-left: 280px;
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
     background: white;
+    padding: 2rem;
   }
   
-  .step-navigation {
+  .c-project__content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .c-project__step {
+    margin-bottom: 3rem;
+  }
+  
+  .c-project__step-title {
+    color: #0faeb0;
+    font-size: 2rem;
+    margin: 0 0 2rem;
+    font-weight: 600;
+  }
+  
+  .c-project__step-content {
+    /* Content styles from rpl.css */
+  }
+  
+  .c-project__navigation {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 800px;
-    margin: 3rem auto 2rem;
-    padding: 0 2rem 2rem;
-    border-top: 1px solid #e0e0e0;
+    margin-top: 3rem;
     padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
   }
   
-  .nav-btn {
+  .c-button {
     padding: 0.75rem 1.5rem;
-    background: #0faeb0;
-    color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
-    transition: background 0.2s;
+    transition: all 0.2s;
   }
   
-  .nav-btn:hover:not(:disabled) {
+  .c-button--primary {
+    background: #0faeb0;
+    color: white;
+  }
+  
+  .c-button--primary:hover:not(:disabled) {
     background: #0d8d8f;
   }
   
-  .nav-btn:disabled {
-    background: #ccc;
+  .c-button--secondary {
+    background: #f5f5f5;
+    color: #333;
+  }
+  
+  .c-button--secondary:hover:not(:disabled) {
+    background: #e0e0e0;
+  }
+  
+  .c-button:disabled {
+    opacity: 0.5;
     cursor: not-allowed;
   }
   
-  .step-indicator {
+  .c-project__step-indicator {
     font-weight: 600;
     color: #555;
   }

@@ -34,93 +34,97 @@
   }
 </script>
 
-<aside class="sidebar">
-  <div class="step-list">
+<aside class="c-project__sidebar">
+  <nav class="c-project__steps">
     {#each steps as step}
       <button
-        class="step-item"
-        class:active={step.position === currentStep}
-        class:completed={completed.has(step.position)}
+        class="c-project__step-link"
+        class:c-project__step-link--active={step.position === currentStep}
+        class:c-project__step-link--completed={completed.has(step.position)}
         onclick={() => handleStepClick(step.position)}
       >
-        <span class="step-number">{step.position + 1}</span>
-        <span class="step-title">{step.title}</span>
+        <span class="c-project__step-number">{step.position + 1}</span>
+        <span class="c-project__step-name">{step.title}</span>
         {#if completed.has(step.position)}
-          <span class="checkmark">✓</span>
+          <span class="c-project__step-check">✓</span>
         {/if}
       </button>
     {/each}
-  </div>
+  </nav>
 </aside>
 
 <style>
-  .sidebar {
+  .c-project__sidebar {
     position: fixed;
     left: 0;
-    top: 60px;
-    width: 250px;
-    height: calc(100vh - 60px);
+    top: 80px;
+    width: 280px;
+    height: calc(100vh - 80px);
     background: #fff;
     border-right: 1px solid #e0e0e0;
     overflow-y: auto;
   }
   
-  .step-list {
+  .c-project__steps {
     padding: 1rem 0;
   }
   
-  .step-item {
+  .c-project__step-link {
     width: 100%;
-    padding: 0.75rem 1rem;
+    padding: 1rem 1.5rem;
     border: none;
     background: none;
     text-align: left;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     transition: background 0.2s;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    border-left: 3px solid transparent;
   }
   
-  .step-item:hover {
+  .c-project__step-link:hover {
     background: #f5f5f5;
   }
   
-  .step-item.active {
+  .c-project__step-link--active {
     background: #e3f2fd;
-    border-left: 3px solid #0faeb0;
+    border-left-color: #0faeb0;
   }
   
-  .step-number {
-    min-width: 1.5rem;
-    height: 1.5rem;
+  .c-project__step-number {
+    min-width: 2rem;
+    height: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background: #e0e0e0;
     border-radius: 50%;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    flex-shrink: 0;
   }
   
-  .step-item.completed .step-number {
+  .c-project__step-link--completed .c-project__step-number {
     background: #0faeb0;
     color: white;
   }
   
-  .step-item.active .step-number {
+  .c-project__step-link--active .c-project__step-number {
     background: #0faeb0;
     color: white;
   }
   
-  .step-title {
+  .c-project__step-name {
     flex: 1;
     color: #333;
+    line-height: 1.3;
   }
   
-  .checkmark {
+  .c-project__step-check {
     color: #0faeb0;
     font-weight: bold;
+    font-size: 1.2rem;
   }
 </style>
