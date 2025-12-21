@@ -55,53 +55,68 @@ export async function parseQuiz(quizPath) {
 
 /**
  * Generate HTML for quiz questions
+ * Uses knowledge-quiz structure matching the reference site
  * @param {Array<Object>} questions - Array of parsed question objects
  * @returns {Promise<string>} HTML string
  */
 async function generateQuizHtml(questions) {
-  let html = '<div class="c-project-quiz__content">\n';
+  let html = '';
 
   for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
-    const questionId = `quiz-question-${i + 1}`;
+    const questionId = `question-${i + 1}`;
+    const questionName = `quiz-question-${i + 1}`;
 
-    html += `  <div class="c-project-quiz__question" data-question="${i + 1}">\n`;
+    html += `<div class="knowledge-quiz knowledge-quiz-question" data-question="${i + 1}">\n`;
+    html += '  <fieldset>\n';
     
     // Question legend
     if (question.legend) {
-      html += `    <div class="c-project-quiz__legend">${question.legend}</div>\n`;
+      html += `    <legend>${question.legend}</legend>\n`;
     }
 
-    // Question text
-    html += `    <div class="c-project-quiz__question-text">${question.html}</div>\n`;
+    // Question text (blurb)
+    html += '    <div class="knowledge-quiz-question__blurb">\n';
+    html += `      ${question.html}\n`;
+    html += '    </div>\n';
 
-    // Choices
-    html += '    <div class="c-project-quiz__choices">\n';
+    // Answers container
+    html += '    <div class="knowledge-quiz-question__answers">\n';
     
     for (let j = 0; j < question.choices.length; j++) {
       const choice = question.choices[j];
-      // Input IDs should be choice-1, choice-2, etc. (CSS expects this format)
-      const inputId = `choice-${j + 1}`;
+      const answerId = `${questionName}-answer-${j + 1}`;
+      const feedbackId = `${questionName}-feedback-${j + 1}`;
 
-      html += `      <input type="radio" id="${inputId}" name="${questionId}" class="c-project-quiz__input" value="${j}" />\n`;
-      html += `      <label for="${inputId}" class="c-project-quiz__label${choice.correct ? ' c-project-quiz__label--correct' : ''}">\n`;
-      html += `        ${choice.text}\n`;
-      html += `      </label>\n`;
+      html += '      <div class="knowledge-quiz-question__answer">\n';
+      html += `        <input type="radio" id="${answerId}" name="${questionName}" value="${j}" data-correct="${choice.correct}" />\n`;
+      html += `        <label for="${answerId}">\n`;
+      html += `          ${choice.text}\n`;
+      html += '        </label>\n';
+      html += '      </div>\n';
       
-      // Feedback
+      // Feedback (initially hidden, shown when answer is selected)
       if (choice.feedback) {
         const feedbackHtml = await parseFeedback(choice.feedback);
-        html += `      <div class="c-project-quiz__thank-you-box" data-choice="${j}">\n`;
-        html += `        ${feedbackHtml}\n`;
-        html += `      </div>\n`;
+        html += `      <div class="knowledge-quiz-question__feedback" id="${feedbackId}" data-answer="${j}">\n`;
+        html += `        <ul class="knowledge-quiz-question__feedback-list">\n`;
+        html += `          <li class="knowledge-quiz-question__feedback-item${choice.correct ? ' knowledge-quiz-question__feedback-item--correct' : ''}">\n`;
+        html += `            ${feedbackHtml}\n`;
+        html += `          </li>\n`;
+        html += `        </ul>\n`;
+        html += '      </div>\n';
       }
     }
 
     html += '    </div>\n';
-    html += '  </div>\n';
+    
+    // Add "Check my answer" button
+    html += '    <input type="button" value="Check my answer" data-question="' + (i + 1) + '" />\n';
+    
+    html += '  </fieldset>\n';
+    html += '</div>\n';
   }
 
-  html += '</div>\n';
   return html;
 }
 

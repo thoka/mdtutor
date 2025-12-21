@@ -130,6 +130,9 @@ From the root directory:
 - Task and ingredient panel extraction
 - Language class propagation from `<code>` to `<pre>` tags
 - Knowledge quiz parsing from separate quiz directories
+  - Interactive quiz rendering with radio buttons and feedback
+  - "Check my answer" button functionality
+  - Comprehensive test suite (46+ tests) including API comparison tests
 
 ### API Server
 - Express server serving cached tutorial data

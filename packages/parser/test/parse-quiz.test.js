@@ -145,7 +145,7 @@ test('parseQuiz - generates HTML content', async () => {
   assert.ok(result.html.length > 0, 'HTML should not be empty');
   
   // Check for quiz container class
-  assert.ok(result.html.includes('c-project-quiz'), 'HTML should contain quiz CSS class');
+  assert.ok(result.html.includes('knowledge-quiz'), 'HTML should contain knowledge-quiz CSS class');
   
   // Check all questions are in HTML
   result.questions.forEach((q, index) => {

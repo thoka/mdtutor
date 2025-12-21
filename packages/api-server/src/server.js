@@ -8,9 +8,11 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { readFile } from 'fs/promises';
+import { readFile, existsSync } from 'fs';
+import { readFile as readFileAsync } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { parseProject } from '../../parser/src/parse-project.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
@@ -35,10 +37,27 @@ async function getProjectData(slug, requestedLang) {
   // Unique languages only
   const uniqueLangs = [...new Set(languages)];
 
+  // First try to parse from repository (for quiz support)
+  for (const lang of uniqueLangs) {
+    try {
+      const repoPath = join(SNAPSHOTS_DIR, slug, 'repo', lang);
+      if (existsSync(repoPath) && existsSync(join(repoPath, 'meta.yml'))) {
+        const parsed = await parseProject(repoPath, { languages: [lang] });
+        if (parsed && parsed.data) {
+          return parsed;
+        }
+      }
+    } catch (error) {
+      // Continue to try static JSON files
+      console.warn(`Failed to parse ${slug} from repo (${lang}):`, error.message);
+    }
+  }
+
+  // Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
       const filePath = join(SNAPSHOTS_DIR, slug, `api-project-${lang}.json`);
-      const data = await readFile(filePath, 'utf-8');
+      const data = await readFileAsync(filePath, 'utf-8');
       return JSON.parse(data);
     } catch {
       // Continue to next language

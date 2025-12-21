@@ -137,9 +137,114 @@
       setTimeout(() => {
         highlightCode();
         renderScratchBlocks();
+        initializeQuiz();
       }, 0);
     }
   });
+  
+  function initializeQuiz() {
+    if (!contentDiv) return;
+    
+    // Find all quiz questions
+    const quizQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
+    
+    quizQuestions.forEach((question, index) => {
+      // Mark as unanswered initially
+      question.classList.add('knowledge-quiz-question--unanswered');
+      
+      const inputs = question.querySelectorAll('input[type="radio"]');
+      const feedbacks = question.querySelectorAll('.knowledge-quiz-question__feedback');
+      const checkButton = question.querySelector('input[type="button"]') as HTMLInputElement;
+      
+      // Hide all feedback items initially (CSS handles this via --unanswered class)
+      const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
+      allFeedbackItems.forEach((item) => {
+        item.classList.remove('knowledge-quiz-question__feedback-item--show');
+      });
+      
+      // Initially disable check button
+      if (checkButton) {
+        checkButton.disabled = true;
+      }
+      
+      // Add change listeners to radio inputs (allow changing selection)
+      inputs.forEach((input) => {
+        const radioInput = input as HTMLInputElement;
+        
+        // Remove old listener if exists
+        const oldListener = (radioInput as any)._quizChangeListener;
+        if (oldListener) {
+          radioInput.removeEventListener('change', oldListener);
+        }
+        
+        // Add new listener - just enable check button, don't show feedback yet
+        const newListener = () => {
+          // Enable check button when an answer is selected
+          if (checkButton) {
+            checkButton.disabled = false;
+          }
+          // Don't disable inputs yet - allow changing selection
+        };
+        (radioInput as any)._quizChangeListener = newListener;
+        radioInput.addEventListener('change', newListener);
+      });
+      
+      // Add click listener to check button
+      if (checkButton) {
+        const oldButtonListener = (checkButton as any)._quizButtonListener;
+        if (oldButtonListener) {
+          checkButton.removeEventListener('click', oldButtonListener);
+        }
+        
+        const newButtonListener = () => {
+          handleQuizCheck(question, inputs, feedbacks, checkButton);
+        };
+        (checkButton as any)._quizButtonListener = newButtonListener;
+        checkButton.addEventListener('click', newButtonListener);
+      }
+    });
+  }
+  
+  function handleQuizCheck(question: Element, inputs: NodeListOf<Element>, feedbacks: NodeListOf<Element>, checkButton: HTMLInputElement) {
+    // Find selected input
+    const selectedInput = Array.from(inputs).find((input) => {
+      return (input as HTMLInputElement).checked;
+    }) as HTMLInputElement;
+    
+    if (!selectedInput) {
+      return; // No answer selected
+    }
+    
+    // Hide all feedback items first
+    const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
+    allFeedbackItems.forEach((item) => {
+      item.classList.remove('knowledge-quiz-question__feedback-item--show');
+    });
+    
+    // Disable all inputs in this question (after check)
+    inputs.forEach((input) => {
+      (input as HTMLInputElement).disabled = true;
+    });
+    
+    // Disable check button
+    checkButton.disabled = true;
+    
+    // Show feedback for selected answer
+    const answerIndex = parseInt(selectedInput.value);
+    const feedback = Array.from(feedbacks).find((f) => {
+      return parseInt(f.getAttribute('data-answer') || '-1') === answerIndex;
+    });
+    
+    if (feedback) {
+      const feedbackItem = feedback.querySelector('.knowledge-quiz-question__feedback-item');
+      if (feedbackItem) {
+        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
+      }
+    }
+    
+    // Mark question as answered (remove unanswered class)
+    question.classList.remove('knowledge-quiz-question--unanswered');
+  }
   
   function handleClick(e: MouseEvent) {
     const target = e.target as HTMLElement;

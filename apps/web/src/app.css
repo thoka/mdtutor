@@ -138,3 +138,11 @@ div.scratch-preview iframe,
   top: auto !important;
   left: auto !important;
 }
+
+/* Quiz feedback is handled by CSS in computed.css */
+/* The --unanswered class hides feedback, and --show class on feedback-item shows it */
+
+/* Quiz check button styling - matches computed.css */
+/* The button styles are already in computed.css for .knowledge-quiz input[type="button"] */
+/* We just need to ensure the button is inside a .knowledge-quiz container */
+/* The parser already generates the button inside .knowledge-quiz-question, so we need to add .knowledge-quiz class */
