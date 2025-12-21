@@ -2606,9 +2606,8 @@ ul.CybotCookiebotDialogDetailBodyContentCookieTabContent { list-style-type: none
 div.CybotCookiebotFader { background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); }
 /* Inline style 14 on div.CybotCookiebotFader */
 div.CybotCookiebotFader { background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)); }
-/* Inline style 17 on iframe */
-iframe { display: none; position: absolute; width: 1px; height: 1px; top: -9999px; }
-/* Inline style 18 on iframe */
-iframe { position: absolute; width: 1px; height: 1px; top: -9999px; }
+/* Removed inline styles 17-18 on iframe - these were from Cookiebot and were hiding all iframes */
+/* Removed: iframe { display: none; position: absolute; width: 1px; height: 1px; top: -9999px; } */
+/* Removed: iframe { position: absolute; width: 1px; height: 1px; top: -9999px; } */
 /* Inline style 19 on img#CookiebotSessionPixel */
 img#CookiebotSessionPixel { display: none; }
