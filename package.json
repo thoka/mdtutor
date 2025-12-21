@@ -1,0 +1,36 @@
+{
+  "name": "mdtutor2",
+  "version": "0.1.0",
+  "description": "Markdown-based learning platform for Makerspace tutorials",
+  "type": "module",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:data": "node test/get-test-data.js",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "markdown",
+    "learning",
+    "education",
+    "raspberry-pi",
+    "tutorials"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

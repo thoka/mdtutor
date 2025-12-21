@@ -1,0 +1,19 @@
+{
+  "name": "@mdtutor2/api-server",
+  "version": "0.1.0",
+  "description": "API server for tutorial content (mock initially)",
+  "type": "module",
+  "main": "./src/index.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "api",
+    "server",
+    "mock"
+  ]
+}
