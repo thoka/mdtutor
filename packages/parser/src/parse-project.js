@@ -2,7 +2,7 @@
  * Parse complete project directory
  */
 
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync, readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { parseMeta } from './utils/parse-meta.js';
 import { parseTutorial } from './parse-tutorial.js';
@@ -11,16 +11,39 @@ import { parseTutorial } from './parse-tutorial.js';
  * Parse complete project directory
  * Reads meta.yml and all step files
  * 
- * @param {string} projectPath - Path to tutorial directory (e.g., silly-eyes/repo/en/)
+ * @param {string} projectPath - Path to tutorial directory (e.g., silly-eyes/repo/en/ or silly-eyes/repo/)
+ * @param {Object} options - Parser options
+ * @param {string[]} options.languages - Preferred languages (e.g., ['de-DE', 'en'])
  * @returns {Promise<Object>} JSON structure matching RPL API format
  */
-export async function parseProject(projectPath) {
+export async function parseProject(projectPath, options = {}) {
+  const preferredLanguages = options.languages || ['en'];
+  
+  // Determine actual project path (handle language fallback)
+  let actualPath = projectPath;
+  let currentLanguage = 'en';
+
+  if (!existsSync(join(projectPath, 'meta.yml'))) {
+    for (const lang of preferredLanguages) {
+      const langPath = join(projectPath, lang);
+      if (existsSync(join(langPath, 'meta.yml'))) {
+        actualPath = langPath;
+        currentLanguage = lang;
+        break;
+      }
+    }
+  } else {
+    // If meta.yml exists directly, try to infer language from path
+    const parts = projectPath.split('/');
+    currentLanguage = parts[parts.length - 1] || parts[parts.length - 2] || 'en';
+  }
+
   // Read meta.yml
-  const metaPath = join(projectPath, 'meta.yml');
+  const metaPath = join(actualPath, 'meta.yml');
   const meta = parseMeta(metaPath);
   
   // Determine base path for transclusions (go up to snapshots directory)
-  const parts = projectPath.split('/');
+  const parts = actualPath.split('/');
   const snapshotsIndex = parts.indexOf('snapshots');
   const basePath = snapshotsIndex !== -1 
     ? parts.slice(0, snapshotsIndex + 1).join('/')
@@ -33,11 +56,12 @@ export async function parseProject(projectPath) {
   const steps = await Promise.all(
     meta.steps.map(async (metaStep, index) => {
       const file = `step_${index + 1}.md`;
-      const filePath = join(projectPath, file);
+      const filePath = join(actualPath, file);
       const markdown = readFileSync(filePath, 'utf-8');
       const content = await parseTutorial(markdown, {
         basePath,
-        transclusionCache
+        transclusionCache,
+        languages: preferredLanguages
       });
       
       return {

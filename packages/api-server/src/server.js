@@ -20,23 +20,43 @@ const PORT = 3001;
 app.use(cors());
 app.use(express.json());
 
+/**
+ * Helper to find project data with language fallback
+ * @param {string} slug 
+ * @param {string} requestedLang 
+ * @returns {Promise<Object|null>}
+ */
+async function getProjectData(slug, requestedLang) {
+  const languages = requestedLang === 'de' || requestedLang === 'de-DE' 
+    ? ['de-DE', 'en'] 
+    : [requestedLang, 'de-DE', 'en'];
+  
+  // Unique languages only
+  const uniqueLangs = [...new Set(languages)];
+
+  for (const lang of uniqueLangs) {
+    try {
+      const filePath = join(SNAPSHOTS_DIR, slug, `api-project-${lang}.json`);
+      const data = await readFile(filePath, 'utf-8');
+      return JSON.parse(data);
+    } catch {
+      // Continue to next language
+    }
+  }
+  return null;
+}
+
 // GET /api/projects/:slug
 // Returns cached API project data
 app.get('/api/projects/:slug', async (req, res) => {
   const { slug } = req.params;
-  const lang = req.query.lang || 'en';
+  const lang = req.query.lang || 'de-DE'; // Default to German as requested
   
-  try {
-    const filePath = join(SNAPSHOTS_DIR, slug, `api-project-${lang}.json`);
-    const data = await readFile(filePath, 'utf-8');
-    res.json(JSON.parse(data));
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      res.status(404).json({ error: 'Project not found' });
-    } else {
-      console.error('Error reading project:', error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
+  const projectData = await getProjectData(slug, lang);
+  if (projectData) {
+    res.json(projectData);
+  } else {
+    res.status(404).json({ error: 'Project not found' });
   }
 });
 
@@ -51,21 +71,14 @@ app.get('/api/projects', async (req, res) => {
     // summary.json uses "results" array with "tutorial" as slug
     const projects = await Promise.all((summary.results || []).map(async r => {
       const slug = r.tutorial;
-      let heroImage = null;
-      let description = null;
-      let title = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
       
-      try {
-        const projectPath = join(SNAPSHOTS_DIR, slug, 'api-project-en.json');
-        const projectData = JSON.parse(await readFile(projectPath, 'utf-8'));
-        heroImage = projectData.data?.attributes?.content?.heroImage || null;
-        description = projectData.data?.attributes?.content?.description || null;
-        if (projectData.data?.attributes?.content?.title) {
-          title = projectData.data.attributes.content.title;
-        }
-      } catch (e) {
-        // Ignore if file not found
-      }
+      // Try to get German data first for the overview
+      const projectData = await getProjectData(slug, 'de-DE');
+      
+      let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
+      let description = projectData?.data?.attributes?.content?.description || null;
+      let title = projectData?.data?.attributes?.content?.title || 
+                  slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
       return {
         slug,

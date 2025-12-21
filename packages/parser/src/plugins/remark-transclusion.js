@@ -13,9 +13,11 @@ import { join } from 'path';
  * Options:
  * - basePath: Base directory containing projects (default: auto-detect from current project)
  * - cache: Cache parsed projects to avoid re-parsing (default: new Map())
+ * - languages: Preferred languages for transclusions (default: ['en'])
  */
 export default function remarkTransclusion(options = {}) {
   const cache = options.cache || new Map();
+  const preferredLanguages = options.languages || ['en'];
   
   return async (tree, file) => {
     const promises = [];
@@ -52,15 +54,17 @@ export default function remarkTransclusion(options = {}) {
             return;
           }
           
-          // Load project (with caching)
-          const projectPath = join(basePath, projectName, 'repo', 'en');
+          // Load project (with caching and language fallback)
+          const repoPath = join(basePath, projectName, 'repo');
           
           let projectData;
-          if (cache.has(projectName)) {
-            projectData = cache.get(projectName);
+          const cacheKey = `${projectName}:${preferredLanguages.join(',')}`;
+          
+          if (cache.has(cacheKey)) {
+            projectData = cache.get(cacheKey);
           } else {
-            projectData = await parseProject(projectPath);
-            cache.set(projectName, projectData);
+            projectData = await parseProject(repoPath, { languages: preferredLanguages });
+            cache.set(cacheKey, projectData);
           }
           
           // Extract content (use first step's content)

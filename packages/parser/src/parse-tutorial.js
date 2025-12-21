@@ -18,6 +18,7 @@ import remarkTransclusion from './plugins/remark-transclusion.js';
  * @param {Object} options - Parser options
  * @param {string} options.basePath - Base path for transclusion resolution
  * @param {Map} options.transclusionCache - Cache for transclusion content
+ * @param {string[]} options.languages - Preferred languages for transclusions
  * @returns {Promise<string>} HTML content
  */
 export async function parseTutorial(markdown, options = {}) {
@@ -29,7 +30,8 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,
-      cache: options.transclusionCache
+      cache: options.transclusionCache,
+      languages: options.languages
     })
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeStringify, { allowDangerousHtml: true });
