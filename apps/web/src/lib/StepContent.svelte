@@ -65,8 +65,21 @@
       e.preventDefault();
       const panel = toggle.closest('.c-project-panel');
       const content = panel?.querySelector('.c-project-panel__content');
+      const heading = toggle as HTMLElement;
+      
       if (content) {
+        const isHidden = content.classList.contains('u-hidden');
         content.classList.toggle('u-hidden');
+        
+        // Toggle the close icon class on the heading
+        // When panel is open (not hidden), show minus (-), otherwise show plus (+)
+        if (isHidden) {
+          // Opening: add the close icon class to show minus
+          heading.classList.add('c-project-panel__heading--has-close-icon');
+        } else {
+          // Closing: remove the close icon class to show plus
+          heading.classList.remove('c-project-panel__heading--has-close-icon');
+        }
       }
     }
   }
@@ -76,7 +89,29 @@
     content;
     step;
     attachTaskHandlers();
+    initializePanelStates();
   });
+  
+  function initializePanelStates() {
+    if (!contentDiv) return;
+    
+    // Initialize panel heading states based on content visibility
+    const panels = contentDiv.querySelectorAll('.c-project-panel');
+    panels.forEach((panel) => {
+      const heading = panel.querySelector('.c-project-panel__heading.js-project-panel__toggle') as HTMLElement;
+      const content = panel.querySelector('.c-project-panel__content');
+      
+      if (heading && content) {
+        const isHidden = content.classList.contains('u-hidden');
+        // If panel is open (not hidden), add the close icon class
+        if (!isHidden) {
+          heading.classList.add('c-project-panel__heading--has-close-icon');
+        } else {
+          heading.classList.remove('c-project-panel__heading--has-close-icon');
+        }
+      }
+    });
+  }
   
   function attachTaskHandlers() {
     if (!contentDiv) return;
