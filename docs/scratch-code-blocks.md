@@ -1,14 +1,66 @@
-# Scratch Code Block Styling
+# Scratch Code Block Rendering
 
-## Anforderung
+## Overview
 
-Tutorial-Inhalte enthalten Scratch-Code-Referenzen mit speziellen Klassen, z.B.:
+Tutorial content can contain Scratch code blocks that need to be rendered as visual Scratch blocks. This is implemented using the `scratchblocks` library (npm package `scratchblocks`).
+
+## Implementation
+
+### Markdown Syntax
+
+Scratch blocks are written in markdown using code blocks with the `blocks3` language:
+
+````markdown
+```blocks3
+when this sprite clicked
+change [color v] effect by (25)
+```
+````
+
+### Rendering Process
+
+The rendering is handled in `apps/web/src/lib/StepContent.svelte`:
+
+1. **Detection**: Finds all `<pre class="language-blocks3">` elements (or `<pre><code class="language-blocks3">`)
+2. **Parsing**: Uses `scratchblocks.parse()` to parse the text into a Document object
+3. **Rendering**: Uses `scratchblocks.render()` to generate SVG elements
+4. **Insertion**: Appends the SVG to the pre element
+
+### Technical Details
+
+- **Library**: `scratchblocks` (v3.6.4)
+- **Style**: Scratch 3.0 (`scratch3`)
+- **Scale**: 0.675 (67.5% of original size)
+- **Language**: English (`en`)
+
+### Whitespace Preservation
+
+The implementation preserves whitespace and newlines in the source text, which is critical for proper block rendering. The text content is read directly using `textContent` to avoid HTML normalization.
+
+### Class Name Sanitization
+
+A patch is applied to `DOMTokenList.prototype.add` to sanitize class names before adding them. This prevents errors when scratchblocks tries to add classes with whitespace (which can occur with certain block categories).
+
+### CSS Styling
+
+Scratch blocks use the `.scratchblocks` class and have:
+- Transparent background
+- No padding
+- Proper SVG display styling
+
+The CSS is defined in:
+- `apps/web/src/app.css` - Base styles for scratchblocks
+- `apps/web/src/styles/rpl-cloned/computed.css` - Cloned styles from reference site
+
+## Legacy: Inline Code Block Styling
+
+For inline Scratch code references (not full block rendering), the following classes were used:
 - `<code class="block3events">when this sprite clicked</code>`
 - `<code class="block3motion">point towards</code>`
 - `<code class="block3looks">change color effect</code>`
 - `<code class="block3control">forever</code>`
 
-Diese sollen farblich kodiert werden, um Scratch-Blöcke visuell zu repräsentieren.
+These are still supported for backward compatibility but full block rendering is preferred.
 
 ## HTML-Beispiele aus Tutorials
 

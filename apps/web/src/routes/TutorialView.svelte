@@ -73,173 +73,97 @@
 {:else if errorMsg}
   <div class="error">Error: {errorMsg}</div>
 {:else if tutorialData}
-  <div class="c-project">
-    <div class="c-project__header">
-      <div class="c-project__header-content">
-        <h1 class="c-project__title">{tutorialData.data.attributes.content.title}</h1>
-        <p class="c-project__description">{tutorialData.data.attributes.content.description}</p>
+  <div class="c-project theme-blue">
+      <div class="no-print">
+        <header>
+          <div class="c-project-header">
+            <div class="c-project-header__content">
+              <div class="c-project-header__text">
+                <h1 class="c-project-header__title">{tutorialData.data.attributes.content.title}</h1>
+              </div>
+              {#if tutorialData.data.attributes.content.heroImage}
+                <figure>
+                  <img alt="" class="c-project-header__image" src={tutorialData.data.attributes.content.heroImage} />
+                </figure>
+              {/if}
+            </div>
+          </div>
+        </header>
       </div>
-    </div>
-    
-    <Sidebar 
-      steps={tutorialData.data.attributes.content.steps}
-      currentStep={step}
-      {slug}
-      onNavigate={handleNavigate}
-    />
-    
-    <div class="c-project__main">
-      <div class="c-project__content">
-        {#if tutorialData.data.attributes.content.steps[step]}
-          {@const currentStepData = tutorialData.data.attributes.content.steps[step]}
-          
-          <article class="c-project__step">
-            <h2 class="c-project__step-title">{currentStepData.title}</h2>
-            
-            <StepContent
-              content={currentStepData.content}
+      
+      <div class="no-print">
+        <main class="c-project__layout u-clearfix" id="c-project__layout">
+          <div class="c-project__container">
+            <Sidebar 
+              steps={tutorialData.data.attributes.content.steps}
+              currentStep={step}
               {slug}
-              {step}
+              onNavigate={handleNavigate}
             />
-          </article>
-          
-          <nav class="c-project__navigation">
-            <button 
-              class="c-button c-button--secondary" 
-              onclick={handlePrevious}
-              disabled={step === 0}
-            >
-              ← Previous
-            </button>
             
-            <span class="c-project__step-indicator">
-              Step {step + 1} of {tutorialData.data.attributes.content.steps.length}
-            </span>
-            
-            <button 
-              class="c-button c-button--primary"
-              onclick={handleNext}
-              disabled={step === tutorialData.data.attributes.content.steps.length - 1}
-            >
-              Next →
-            </button>
-          </nav>
-        {/if}
+            <section class="c-project__content">
+              <div class="c-project-steps">
+                <div>
+                  <div>
+                    <div class="c-project-steps__wrapper" id="skiptocontent">
+                      <div class="c-wysiwyg-new">
+                        <div class="c-project-steps__content">
+                          {#if tutorialData.data.attributes.content.steps[step]}
+                            {@const currentStepData = tutorialData.data.attributes.content.steps[step]}
+                            
+                            <StepContent
+                              content={currentStepData.content}
+                              {slug}
+                              {step}
+                            />
+                          {/if}
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <nav class="c-project-step-navigation" dir="ltr">
+                      {#if step > 0}
+                        {@const prevStepData = tutorialData.data.attributes.content.steps[step - 1]}
+                        <a 
+                          class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
+                          href="#"
+                          onclick={(e) => { e.preventDefault(); handlePrevious(); }}
+                        >
+                          <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_left">chevron_left</span>
+                          <span class="text">{prevStepData.title}</span>
+                        </a>
+                      {/if}
+                      
+                      {#if step < tutorialData.data.attributes.content.steps.length - 1}
+                        {@const nextStepData = tutorialData.data.attributes.content.steps[step + 1]}
+                        <a 
+                          class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
+                          href="#"
+                          onclick={(e) => { e.preventDefault(); handleNext(); }}
+                        >
+                          <span class="text">{nextStepData.title}</span>
+                          <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_right">chevron_right</span>
+                        </a>
+                      {/if}
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </main>
       </div>
+      
+      <div class="c-printout-images-preloader">
+        <!-- Preloaded images for print -->
+      </div>
+      <div class="print-only">
+        <!-- Print-only content (hidden on screen) -->
+        <svg class="c-scratchblock-svg-filters">
+          <defs>
+            <!-- SVG filters for Scratch blocks -->
+          </defs>
+      </svg>
     </div>
   </div>
 {/if}
-
-<style>
-  .loading, .error {
-    text-align: center;
-    padding: 3rem 2rem;
-    font-size: 1.2rem;
-  }
-  
-  .error {
-    color: #c41e3a;
-  }
-  
-  .c-project {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .c-project__header {
-    background: white;
-    border-bottom: 1px solid #e0e0e0;
-    padding: 1.5rem 2rem;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    height: 80px;
-  }
-  
-  .c-project__title {
-    margin: 0;
-    font-size: 1.75rem;
-    color: #0faeb0;
-    font-weight: 600;
-  }
-  
-  .c-project__description {
-    margin: 0.5rem 0 0;
-    color: #666;
-    font-size: 0.95rem;
-  }
-  
-  .c-project__main {
-    margin-left: 280px;
-    margin-top: 80px;
-    min-height: calc(100vh - 80px);
-    background: white;
-    padding: 2rem;
-  }
-  
-  .c-project__content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .c-project__step {
-    margin-bottom: 3rem;
-  }
-  
-  .c-project__step-title {
-    color: #0faeb0;
-    font-size: 2rem;
-    margin: 0 0 2rem;
-    font-weight: 600;
-  }
-  
-  .c-project__navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e0e0e0;
-  }
-  
-  .c-button {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all 0.2s;
-  }
-  
-  .c-button--primary {
-    background: #0faeb0;
-    color: white;
-  }
-  
-  .c-button--primary:hover:not(:disabled) {
-    background: #0d8d8f;
-  }
-  
-  .c-button--secondary {
-    background: #f5f5f5;
-    color: #333;
-  }
-  
-  .c-button--secondary:hover:not(:disabled) {
-    background: #e0e0e0;
-  }
-  
-  .c-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .c-project__step-indicator {
-    font-weight: 600;
-    color: #555;
-  }
-</style>
