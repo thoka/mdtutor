@@ -41,7 +41,7 @@ body {
 }
 
 /* Code block dark background - override light background from computed.css */
-pre[class*="language-"] {
+pre[class*="language-"]:not(.scratchblocks) {
   background: #2d2d2d !important;
   color: #f8f8f2 !important;
   border-radius: 0.3em;
@@ -50,8 +50,21 @@ pre[class*="language-"] {
   overflow: auto;
 }
 
+/* Scratch blocks should have transparent/white background */
+pre.scratchblocks,
+pre.language-blocks3 {
+  background: transparent !important;
+  padding: 0 !important;
+  color: inherit !important;
+}
+
+/* Ensure scratchblocks SVG containers have proper styling */
+.scratchblocks svg {
+  display: block;
+}
+
 /* Ensure code inside pre also has dark background */
-pre[class*="language-"] code {
+pre[class*="language-"]:not(.scratchblocks) code {
   background: transparent !important;
   color: inherit !important;
 }

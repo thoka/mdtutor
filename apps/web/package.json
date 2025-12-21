@@ -12,6 +12,7 @@
   "dependencies": {
     "@mdtutor/parser": "*",
     "prismjs": "^1.30.0",
+    "scratchblocks": "^3.6.4",
     "svelte-spa-router": "^4.0.1"
   },
   "devDependencies": {
