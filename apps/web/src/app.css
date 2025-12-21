@@ -74,3 +74,67 @@ pre[class*="language-"]:not(.scratchblocks) code {
   background: rgb(245, 242, 240) !important;
   color: inherit;
 }
+
+/* Ensure sidebar stays sticky and doesn't scroll out of view */
+@media (width > 62.5rem) {
+  .c-sidebar {
+    position: sticky !important;
+    top: 0 !important;
+    align-self: flex-start !important;
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+/* Ensure iframes are visible - override general iframe { display: none; } rule */
+/* 
+ * Note: The cookie consent CSS rules (lines 2610-2612 in computed.css) that were hiding
+ * all iframes have been removed. The original site only applies those rules to specific
+ * cookie consent tracking iframes via JavaScript, not globally.
+ * 
+ * We still need these overrides for:
+ * - Line 1303: iframe { display: none; } - inside @media print (only applies when printing)
+ * - Ensuring content iframes are visible with proper positioning
+ */
+.c-project-steps__content iframe,
+.c-project__step-content iframe,
+.scratch-preview iframe,
+.c-wysiwyg-new iframe,
+div.scratch-preview iframe,
+.c-project-steps__content .scratch-preview iframe,
+.c-project__step-content .scratch-preview iframe,
+.c-wysiwyg-new .scratch-preview iframe {
+  display: block !important;
+  visibility: visible !important;
+  position: static !important;
+  /* Don't override width/height - let HTML attributes work */
+  /* But override min/max constraints that might interfere */
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-width: 100% !important;
+  max-height: none !important;
+  top: auto !important;
+  left: auto !important;
+  margin: 0 auto var(--space-3) !important;
+}
+
+/* Also ensure scratch-preview container is visible */
+.scratch-preview,
+.c-project-steps__content .scratch-preview,
+.c-project__step-content .scratch-preview,
+.c-wysiwyg-new .scratch-preview {
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Nuclear option: override ALL iframe rules in content areas */
+/* Note: Don't override width/height so iframe attributes are respected */
+.c-project__content iframe,
+.c-project-steps iframe,
+#skiptocontent iframe {
+  display: block !important;
+  visibility: visible !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+}

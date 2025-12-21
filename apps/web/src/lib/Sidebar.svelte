@@ -31,6 +31,29 @@
   
   function handleStepClick(step: number) {
     onNavigate(step);
+    // Scroll to top of content area (after header) when step is clicked
+    // Use setTimeout to ensure DOM is updated after navigation
+    setTimeout(() => {
+      // Find the main layout element which is after the header
+      const layout = document.getElementById('c-project__layout');
+      if (layout) {
+        // Scroll the layout into view, which will push the header out of view
+        layout.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // Fallback: find the first element after header and scroll to it
+        const header = document.querySelector('.c-project-header');
+        if (header && header.parentElement) {
+          const nextElement = header.parentElement.nextElementSibling;
+          if (nextElement) {
+            nextElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }, 100);
   }
 </script>
 
