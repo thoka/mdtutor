@@ -348,7 +348,7 @@ test('compare-quiz-api-exact - answer correctness matches', async () => {
     // Find correct answer in original (has checked attribute)
     const originalCorrectIndex = originalStruct.answers.findIndex(a => a.checked);
     
-    // Find correct answer in ours (has data-correct="true")
+    // Find correct answer in ours (now also uses checked attribute, matching original API)
     const ourHtml = ourResult.html;
     const ourParsed = parse(ourHtml);
     const ourQuestions = ourParsed.querySelectorAll('.knowledge-quiz-question');
@@ -359,14 +359,13 @@ test('compare-quiz-api-exact - answer correctness matches', async () => {
     }
     const ourInputs = ourQuestionElement.querySelectorAll('input[type="radio"]');
     const ourCorrectIndex = Array.from(ourInputs).findIndex(input => 
-      input.getAttribute('data-correct') === 'true'
+      input.hasAttribute('checked')
     );
     
-    // Note: Original uses 1-based indexing (value="1"), we use 0-based (value="0")
-    // So we need to adjust
+    // Both use 1-based indexing now (value="1", value="2", etc.)
+    // Convert to 0-based for comparison
     const ourCorrectValue = ourCorrectIndex >= 0 ? ourCorrectIndex : -1;
-    const originalCorrectValue = originalCorrectIndex >= 0 ? 
-      parseInt(originalStruct.answers[originalCorrectIndex].value) - 1 : -1;
+    const originalCorrectValue = originalCorrectIndex >= 0 ? originalCorrectIndex : -1;
     
     assert.strictEqual(ourCorrectValue, originalCorrectValue, 
       `Question ${qIndex + 1} correct answer index should match`);

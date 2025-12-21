@@ -43,13 +43,19 @@ function extractQuizStructure(html) {
     const answers = q.querySelectorAll('.knowledge-quiz-question__answer').map((answer, ansIndex) => {
       const input = answer.querySelector('input[type="radio"]');
       const label = answer.querySelector('label');
-      const feedback = q.querySelector(`.knowledge-quiz-question__feedback[data-answer="${ansIndex}"]`);
+      // Original API structure: feedback items have IDs feedback-for-choice-X
+      // Match feedback by ID based on input ID (choice-1 -> feedback-for-choice-1)
+      const inputId = input?.getAttribute('id') || '';
+      const choiceMatch = inputId.match(/choice-(\d+)/);
+      const feedbackId = choiceMatch ? `feedback-for-choice-${choiceMatch[1]}` : null;
+      const feedback = feedbackId ? q.querySelector(`#${feedbackId}`) : null;
       
       return {
         id: input?.getAttribute('id') || '',
         name: input?.getAttribute('name') || '',
         value: input?.getAttribute('value') || '',
-        correct: input?.getAttribute('data-correct') === 'true',
+        // Original API uses checked attribute
+        correct: input?.hasAttribute('checked'),
         labelText: label?.textContent?.trim() || '',
         labelHtml: label?.innerHTML || '',
         hasFeedback: !!feedback
@@ -60,7 +66,8 @@ function extractQuizStructure(html) {
     
     return {
       index: index + 1,
-      dataQuestion: q.getAttribute('data-question') || '',
+      // Original API doesn't use data-question attribute
+      dataQuestion: q.getAttribute('data-question') || null,
       legend,
       blurbLength: blurb.length,
       answersCount: answers.length,
@@ -124,7 +131,8 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
     assert.ok(q.legend, `Question ${index + 1} should have legend`);
     assert.ok(q.answersCount > 0, `Question ${index + 1} should have answers`);
     assert.strictEqual(q.hasCheckButton, true, `Question ${index + 1} should have check button`);
-    assert.strictEqual(q.checkButtonValue, 'Check my answer', `Question ${index + 1} check button should have correct value`);
+    // Original API uses "submit" button value
+    assert.strictEqual(q.checkButtonValue, 'submit', `Question ${index + 1} check button should have value "submit"`);
     
     // Check answer structure
     q.answers.forEach((answer, ansIndex) => {
@@ -153,13 +161,13 @@ test('compare-quiz - HTML structure matches reference', async () => {
   
   // Check for required CSS classes
   const requiredClasses = [
-    'knowledge-quiz',
+    // Original API doesn't use knowledge-quiz class (only knowledge-quiz-question)
     'knowledge-quiz-question',
     'knowledge-quiz-question__blurb',
     'knowledge-quiz-question__answers',
     'knowledge-quiz-question__answer',
     'knowledge-quiz-question__feedback',
-    'knowledge-quiz-question__feedback-list',
+    // Original API structure: direct <ul> with <li> items (no feedback-list wrapper)
     'knowledge-quiz-question__feedback-item'
   ];
   
@@ -192,15 +200,16 @@ test('compare-quiz - HTML structure matches reference', async () => {
   assert.strictEqual(checkButtons.length, 3, 'Should have 3 check buttons');
   
   checkButtons.forEach((button, index) => {
-    assert.strictEqual(button.getAttribute('value'), 'Check my answer', `Button ${index} should have correct value`);
+    // Original API uses "submit" button value
+    assert.strictEqual(button.getAttribute('value'), 'submit', `Button ${index} should have value "submit"`);
   });
   
   // Check for feedback items
   const feedbackItems = parsed.querySelectorAll('.knowledge-quiz-question__feedback-item');
   assert.ok(feedbackItems.length > 0, 'Should have feedback items');
   
-  // Check that correct answers have --correct class
-  const correctFeedbackItems = parsed.querySelectorAll('.knowledge-quiz-question__feedback-item--correct');
+  // Original API doesn't use --correct class on feedback items
+  // Correct answers are identified by checked attribute on radio inputs
   assert.ok(correctFeedbackItems.length > 0, 'Should have correct feedback items');
 });
 
@@ -243,17 +252,19 @@ test('compare-quiz - feedback structure is correct', async () => {
     
     radioInputs.forEach((input, ansIndex) => {
       const value = input.getAttribute('value');
-      const feedback = question.querySelector(`.knowledge-quiz-question__feedback[data-answer="${value}"]`);
+      // Original API structure: feedback items have IDs feedback-for-choice-X
+      const feedbackId = `feedback-for-choice-${value}`;
+      const feedbackItem = question.querySelector(`#${feedbackId}`);
       
-      assert.ok(feedback, `Question ${qIndex + 1} answer ${ansIndex} should have feedback with data-answer="${value}"`);
+      assert.ok(feedbackItem, `Question ${qIndex + 1} answer ${ansIndex} should have feedback with id="${feedbackId}"`);
       
-      const feedbackItem = feedback.querySelector('.knowledge-quiz-question__feedback-item');
-      assert.ok(feedbackItem, `Question ${qIndex + 1} answer ${ansIndex} feedback should have feedback-item`);
-      
-      const isCorrect = input.getAttribute('data-correct') === 'true';
+      // Original API uses checked attribute, not data-correct
+      const isCorrect = input.hasAttribute('checked');
+      // Original API doesn't use --correct class on feedback items
       if (isCorrect) {
-        assert.ok(feedbackItem.classList.contains('knowledge-quiz-question__feedback-item--correct'),
-          `Question ${qIndex + 1} correct answer feedback should have --correct class`);
+        // Just verify that the feedback item exists for correct answers
+        assert.ok(feedbackItem !== null,
+          `Question ${qIndex + 1} correct answer should have feedback item`);
       }
     });
   });
@@ -298,7 +309,8 @@ test('compare-quiz - rendered HTML structure vs original website', async () => {
     const fullPageHtml = await page.evaluate(() => document.body.innerHTML);
     const allQuizQuestions = await page.evaluate(() => {
       return Array.from(document.querySelectorAll('.knowledge-quiz-question')).map(q => ({
-        dataQuestion: q.getAttribute('data-question'),
+        // Original API doesn't use data-question attribute
+        dataQuestion: q.getAttribute('data-question') || null,
         legend: q.querySelector('legend')?.textContent?.trim(),
         answersCount: q.querySelectorAll('.knowledge-quiz-question__answer').length
       }));

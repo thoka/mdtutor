@@ -192,16 +192,15 @@ test('parseQuiz - HTML contains correct answer structure', async () => {
         `Question ${qIndex + 1} answer ${ansIndex} should have name`);
       assert.ok(input.getAttribute('value') !== null, 
         `Question ${qIndex + 1} answer ${ansIndex} should have value`);
-      assert.ok(input.getAttribute('data-correct') !== null, 
-        `Question ${qIndex + 1} answer ${ansIndex} should have data-correct`);
+      // Original API uses checked attribute, not data-correct
     });
     
-    // Check that at least one answer is marked as correct
+    // Check that at least one answer is marked as correct (has checked attribute)
     const correctAnswers = Array.from(radioInputs).filter(input => 
-      input.getAttribute('data-correct') === 'true'
+      input.hasAttribute('checked')
     );
     assert.ok(correctAnswers.length > 0, 
-      `Question ${qIndex + 1} should have at least one correct answer`);
+      `Question ${qIndex + 1} should have at least one correct answer (checked)`);
   });
 });
 
@@ -218,21 +217,24 @@ test('parseQuiz - HTML contains feedback structure', async () => {
   const questions = parsed.querySelectorAll('.knowledge-quiz-question');
   
   questions.forEach((question, qIndex) => {
-    const feedbacks = question.querySelectorAll('.knowledge-quiz-question__feedback');
+    // Original API structure: direct <ul> with <li> items
+    const feedbackList = question.querySelector('ul.knowledge-quiz-question__feedback');
+    const feedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
     const radioInputs = question.querySelectorAll('input[type="radio"]');
     
+    // Should have feedback list
+    assert.ok(feedbackList !== null, 
+      `Question ${qIndex + 1} should have feedback <ul>`);
+    
     // Should have feedback for each answer
-    assert.strictEqual(feedbacks.length, radioInputs.length, 
+    assert.strictEqual(feedbackItems.length, radioInputs.length, 
       `Question ${qIndex + 1} should have feedback for each answer`);
     
-    // Check feedback structure
-    feedbacks.forEach((feedback, ansIndex) => {
-      assert.ok(feedback.getAttribute('data-answer') !== null, 
-        `Question ${qIndex + 1} feedback ${ansIndex} should have data-answer`);
-      assert.ok(feedback.querySelector('.knowledge-quiz-question__feedback-list'), 
-        `Question ${qIndex + 1} feedback ${ansIndex} should have feedback-list`);
-      assert.ok(feedback.querySelector('.knowledge-quiz-question__feedback-item'), 
-        `Question ${qIndex + 1} feedback ${ansIndex} should have feedback-item`);
+    // Check feedback structure - each item should have ID feedback-for-choice-X
+    feedbackItems.forEach((item, ansIndex) => {
+      const itemId = item.getAttribute('id');
+      assert.ok(itemId !== null && itemId.startsWith('feedback-for-choice-'), 
+        `Question ${qIndex + 1} feedback ${ansIndex} should have id="feedback-for-choice-X"`);
     });
   });
 });
@@ -348,10 +350,11 @@ test('parseQuiz - check button has correct value', async () => {
   assert.strictEqual(checkButtons.length, 3, 'Should have 3 check buttons');
   
   checkButtons.forEach((button, index) => {
-    assert.strictEqual(button.getAttribute('value'), 'Check my answer', 
-      `Button ${index + 1} should have correct value`);
-    assert.ok(button.getAttribute('data-question'), 
-      `Button ${index + 1} should have data-question attribute`);
+    // Original API uses "submit" button value
+    assert.strictEqual(button.getAttribute('value'), 'submit', 
+      `Button ${index + 1} should have value "submit"`);
+    assert.strictEqual(button.getAttribute('name'), 'Submit', 
+      `Button ${index + 1} should have name "Submit"`);
   });
 });
 
@@ -364,9 +367,10 @@ test('parseQuiz - HTML uses knowledge-quiz class', async () => {
 
   const result = await parseQuiz(quizPath);
   
-  assert.ok(result.html.includes('knowledge-quiz'), 
-    'HTML should contain knowledge-quiz class');
+  // Original API uses <form> container with knowledge-quiz-question class
   assert.ok(result.html.includes('knowledge-quiz-question'), 
     'HTML should contain knowledge-quiz-question class');
+  assert.ok(result.html.includes('<form'), 
+    'HTML should contain <form> container');
 });
 

@@ -63,7 +63,8 @@ test('parseProject - quiz HTML contains all questions', async () => {
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
   
   const parsed = parse(quizStep.content);
-  const questions = parsed.querySelectorAll('.knowledge-quiz-question');
+  // Original API uses <form> container
+  const questions = parsed.querySelectorAll('form.knowledge-quiz-question');
   
   assert.strictEqual(questions.length, 3, 'Should have 3 questions in HTML');
 });
@@ -78,14 +79,13 @@ test('parseProject - quiz HTML structure matches spec', async () => {
   const parsed = parse(quizStep.content);
   
   // Check for required CSS classes from spec
+  // Original API structure: <form> container, direct <ul> with <li> items (no nested div)
   const requiredClasses = [
-    'knowledge-quiz',
     'knowledge-quiz-question',
     'knowledge-quiz-question__blurb',
     'knowledge-quiz-question__answers',
     'knowledge-quiz-question__answer',
     'knowledge-quiz-question__feedback',
-    'knowledge-quiz-question__feedback-list',
     'knowledge-quiz-question__feedback-item'
   ];
   
@@ -139,8 +139,11 @@ test('parseProject - quiz step content includes check buttons', async () => {
   assert.strictEqual(checkButtons.length, 3, 'Should have 3 check buttons');
   
   checkButtons.forEach((button, index) => {
-    assert.strictEqual(button.getAttribute('value'), 'Check my answer', 
-      `Button ${index + 1} should have correct value`);
+    // Original API uses "submit" button value
+    assert.strictEqual(button.getAttribute('value'), 'submit', 
+      `Button ${index + 1} should have value "submit"`);
+    assert.strictEqual(button.getAttribute('name'), 'Submit', 
+      `Button ${index + 1} should have name "Submit"`);
   });
 });
 

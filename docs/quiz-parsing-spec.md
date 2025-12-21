@@ -175,20 +175,34 @@ For each question file:
 
 2. **Parse question text**
    - Content between `--- question ---` and `--- choices ---`
-   - Process as standard Markdown
+   - Process as standard Markdown using `parseTutorial`
    - Support Scratch blocks (`blocks3` language)
    - Support images, formatting, etc.
+   - **Markdown parsing**: Full markdown support including:
+     - Images (with `basePath` for relative paths)
+     - Code blocks with syntax highlighting
+     - Inline code with `{:class="..."}` attributes
+     - Transclusions (if `basePath` is provided)
+     - All standard markdown features
 
 3. **Parse choices**
    - Extract all list items from choices block
    - Identify correct answer: `(x)` marker
    - Identify incorrect answers: `( )` marker
    - Extract choice text (can include images, code)
+   - **Parse choice text as Markdown**: Each choice text is parsed using `parseTutorial` to support:
+     - Inline code with `{:class="block3looks"}` attributes (e.g., for Scratch block styling)
+     - Images, formatting, and other markdown features
    - Extract feedback for each choice
+   - **Parse feedback as Markdown**: Each feedback text is also parsed using `parseTutorial`
 
 4. **Generate HTML structure**
-   - Use appropriate CSS classes from RPL design system
-   - Structure: question → choices → feedback
+   - Use exact API structure: `<form class="knowledge-quiz-question">`
+   - Radio buttons: `name="answer"`, `id="choice-X"`, `value="X"` (1-based)
+   - Correct answer: `checked` attribute
+   - Button: `name="Submit"`, `value="submit"`
+   - Feedback: Direct `<ul>` with `<li>` items, IDs `feedback-for-choice-X`
+   - All choice and feedback text is fully parsed Markdown (HTML)
 
 ### 4. Content Integration
 
@@ -196,16 +210,36 @@ For each question file:
 - Maintain question order (1, 2, 3, ...)
 - Preserve all formatting and media
 
-## CSS Classes (from RPL Design System)
+## HTML Structure (Exact API Match)
+
+The generated HTML structure **exactly matches** the original Quiz API structure:
+
+### Container
+- `<form class="knowledge-quiz-question">` - Main quiz container (one per question)
+
+### Radio Buttons
+- `name="answer"` - All radio buttons in a question share the same name
+- `id="choice-1"`, `id="choice-2"`, etc. - Sequential IDs (1-based)
+- `value="1"`, `value="2"`, etc. - Sequential values (1-based)
+- `checked` attribute - Present on the correct answer
+
+### Button
+- `<input type="button" name="Submit" value="submit" />` - Submit button
+
+### Feedback Structure
+- `<ul class="knowledge-quiz-question__feedback">` - Direct list container
+- `<li class="knowledge-quiz-question__feedback-item" id="feedback-for-choice-1">` - Feedback items with IDs matching choice numbers
+
+### CSS Classes (from RPL Design System)
 
 Based on `computed.css` analysis:
 
-- `.c-project-quiz__content` - Quiz container
-- `.c-project-quiz__input` - Radio button input (hidden)
-- `.c-project-quiz__label` - Choice label/button
-- `.c-project-quiz__label--active` - Selected choice
-- `.c-project-quiz__label--disabled` - Disabled state
-- `.c-project-quiz__thank-you-box` - Feedback display
+- `.knowledge-quiz-question` - Quiz container (form element)
+- `.knowledge-quiz-question__blurb` - Question text container
+- `.knowledge-quiz-question__answers` - Answers container
+- `.knowledge-quiz-question__answer` - Individual answer wrapper
+- `.knowledge-quiz-question__feedback` - Feedback list container
+- `.knowledge-quiz-question__feedback-item` - Individual feedback item
 
 ## Example
 
@@ -276,6 +310,10 @@ How could you fix the problem?
    - Handle `--- feedback ---` blocks
    - Process choice markers `(x)` and `( )`
    - Support nested blocks (feedback inside choices)
+   - **Full Markdown parsing** for question text, choice text, and feedback:
+     - Uses `parseTutorial` with `basePath`, `transclusionCache`, and `languages` options
+     - Supports `{:class="..."}` attributes on inline code (via `remark-link-attributes` plugin)
+     - Supports images, Scratch blocks, and all markdown features
 
 3. **HTML Generation:**
    - Generate quiz container structure
@@ -311,36 +349,33 @@ How could you fix the problem?
    - `parse-question.js`: Parses individual question markdown files
    - `parse-quiz.js`: Parses quiz directories and generates HTML
    - `parse-project.js`: Integrates quiz parsing into project parsing
+   - **Markdown parsing**: Full markdown support for question text, choice text, and feedback
+   - **Options forwarding**: `basePath`, `transclusionCache`, and `languages` are passed through the entire parsing chain
 
 2. **HTML Generation:**
-   - Generates quiz structure with correct CSS classes
-   - Includes check buttons for each question
-   - Properly structures feedback elements
-   - Uses `knowledge-quiz` and `knowledge-quiz-question` classes
+   - **Exact API structure**: Generates HTML that exactly matches the original Quiz API
+   - Container: `<form class="knowledge-quiz-question">`
+   - Radio buttons: `name="answer"`, `id="choice-X"`, `value="X"` (1-based), `checked` attribute for correct answer
+   - Button: `name="Submit"`, `value="submit"`
+   - Feedback: Direct `<ul>` with `<li>` items, IDs `feedback-for-choice-X`
+   - All text content is fully parsed Markdown (HTML)
 
-3. **Renderer Implementation:**
+3. **Markdown Plugin Extensions:**
+   - `remark-link-attributes`: Extended to support `{:class="..."}` attributes on inline code blocks
+   - Enables Scratch block styling (e.g., `{:class="block3looks"}`) in choice text
+
+4. **Renderer Implementation:**
    - Quiz interaction handling in `StepContent.svelte`
    - Radio button selection and feedback display
-   - Check button functionality
+   - Check button functionality (supports both `value="submit"` and `value="Check my answer"`)
    - Answer disabling after check
+   - Feedback lookup: Supports both API structures (ID-based and data-answer-based)
 
-4. **Testing:**
+5. **Testing:**
    - Comprehensive test suite (46+ tests)
    - API comparison tests
+   - Exact API structure tests
    - Edge case handling tests
-
-### 📝 Known Differences from Original API
-
-The implementation intentionally differs from the original API in several ways:
-
-1. **Container Element**: API uses `<form>`, we use `<div>` (both work with CSS)
-2. **Radio Button Names**: API uses generic `"answer"`, we use unique `"quiz-question-X"`
-3. **Radio Button IDs**: API uses `"choice-X"`, we use descriptive `"quiz-question-X-answer-Y"`
-4. **Radio Button Values**: API uses 1-based (`"1"`, `"2"`), we use 0-based (`"0"`, `"1"`) for array indices
-5. **Button Value**: API uses `"submit"`, we use `"Check my answer"` (user requirement)
-6. **Feedback Structure**: Different nesting, but same CSS classes
-
-These differences are documented in `compare-quiz-api-exact.test.js` and are intentional design decisions.
 
 ## References
 

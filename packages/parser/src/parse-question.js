@@ -7,9 +7,13 @@ import { parseTutorial } from './parse-tutorial.js';
 /**
  * Parse a question markdown file
  * @param {string} markdown - Question markdown content
+ * @param {Object} options - Parser options
+ * @param {string} options.basePath - Base path for transclusion resolution
+ * @param {Map} options.transclusionCache - Cache for transclusion content
+ * @param {string[]} options.languages - Preferred languages for transclusions
  * @returns {Promise<Object>} Parsed question object
  */
-export async function parseQuestion(markdown) {
+export async function parseQuestion(markdown, options = {}) {
   // Extract question block
   const questionMatch = markdown.match(/--- question ---\s*(.*?)\s*--- \/question ---/s);
   if (!questionMatch) {
@@ -43,7 +47,11 @@ export async function parseQuestion(markdown) {
   const questionText = questionBody.substring(0, questionBody.indexOf('--- choices ---')).trim();
 
   // Parse question text to HTML
-  const questionHtml = await parseTutorial(questionText);
+  const questionHtml = await parseTutorial(questionText, {
+    basePath: options.basePath,
+    transclusionCache: options.transclusionCache,
+    languages: options.languages
+  });
 
   // Parse choices
   const choices = parseChoices(choicesText);
@@ -98,7 +106,9 @@ function parseChoices(choicesText) {
     }
 
     // Remove the marker (x) or ( ) from start
-    choiceText = choiceText.replace(/^[x ]\)\s*/, '').trim();
+    // After split, the block starts with "x)" or " )" (space + closing paren)
+    // But it might also just be ")" if the split didn't work as expected
+    choiceText = choiceText.replace(/^[x ]?\)\s*/, '').trim();
 
     choices.push({
       correct: isCorrect,

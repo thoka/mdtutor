@@ -70,7 +70,11 @@ export async function parseProject(projectPath, options = {}) {
       if (metaStep.quiz && metaStep.knowledgeQuiz) {
         const quizPath = join(actualPath, metaStep.knowledgeQuiz);
         try {
-          const quizData = await parseQuiz(quizPath);
+          const quizData = await parseQuiz(quizPath, {
+            basePath,
+            transclusionCache,
+            languages: preferredLanguages
+          });
           // Embed quiz HTML into step content
           // Find where to insert (usually after the main content)
           // For now, append at the end

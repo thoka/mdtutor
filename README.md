@@ -131,6 +131,9 @@ From the root directory:
 - Language class propagation from `<code>` to `<pre>` tags
 - Knowledge quiz parsing from separate quiz directories
   - Interactive quiz rendering with radio buttons and feedback
+  - Full Markdown parsing for question text, choice text, and feedback
+  - Support for `{:class="..."}` attributes on inline code (Scratch block styling)
+  - Exact API structure matching (form containers, 1-based IDs/values, checked attributes)
   - "Check my answer" button functionality
   - Comprehensive test suite (46+ tests) including API comparison tests
 

@@ -180,6 +180,7 @@
         // Add new listener - just enable check button, don't show feedback yet
         const newListener = () => {
           // Enable check button when an answer is selected
+          // Support both button values: "Check my answer" (ours) and "submit" (original API)
           if (checkButton) {
             checkButton.disabled = false;
           }
@@ -230,20 +231,44 @@
     checkButton.disabled = true;
     
     // Show feedback for selected answer
-    const answerIndex = parseInt(selectedInput.value);
-    const feedback = Array.from(feedbacks).find((f) => {
-      return parseInt(f.getAttribute('data-answer') || '-1') === answerIndex;
-    });
+    // Original API structure: feedback-for-choice-X ID on feedback item
+    // The value is 1-based (matches choice number)
+    const selectedValue = selectedInput.value;
+    const selectedId = selectedInput.id;
     
-    if (feedback) {
-      const feedbackItem = feedback.querySelector('.knowledge-quiz-question__feedback-item');
-      if (feedbackItem) {
-        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
+    let feedbackItem: Element | null = null;
+    
+    // Extract choice number from ID (e.g., "choice-1" -> "1")
+    // The value should match the choice number (1-based)
+    const choiceMatch = selectedId.match(/choice-(\d+)/);
+    if (choiceMatch) {
+      const choiceNum = choiceMatch[1];
+      const feedbackId = `feedback-for-choice-${choiceNum}`;
+      feedbackItem = question.querySelector(`#${feedbackId}`);
+    }
+    
+    // Fallback: try to find by value if ID matching fails
+    if (!feedbackItem) {
+      const feedbackId = `feedback-for-choice-${selectedValue}`;
+      feedbackItem = question.querySelector(`#${feedbackId}`);
+    }
+    
+    if (feedbackItem) {
+      feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
+      
+      // Add correct/incorrect styling based on checked attribute (original API)
+      // In original API, correct answer has checked attribute
+      const isCorrect = selectedInput.hasAttribute('checked');
+      if (isCorrect) {
+        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
+      } else {
+        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
       }
     }
     
     // Mark question as answered (remove unanswered class)
     question.classList.remove('knowledge-quiz-question--unanswered');
+    question.classList.add('knowledge-quiz-question--answered');
   }
   
   function handleClick(e: MouseEvent) {

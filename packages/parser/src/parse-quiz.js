@@ -9,9 +9,13 @@ import { parseQuestion } from './parse-question.js';
 /**
  * Parse a quiz directory
  * @param {string} quizPath - Path to quiz directory (e.g., en/quiz1/)
+ * @param {Object} options - Parser options
+ * @param {string} options.basePath - Base path for transclusion resolution
+ * @param {Map} options.transclusionCache - Cache for transclusion content
+ * @param {string[]} options.languages - Preferred languages for transclusions
  * @returns {Promise<Object>} Parsed quiz object with questions and HTML
  */
-export async function parseQuiz(quizPath) {
+export async function parseQuiz(quizPath, options = {}) {
   if (!existsSync(quizPath)) {
     return {
       questions: [],
@@ -32,20 +36,20 @@ export async function parseQuiz(quizPath) {
   const questions = [];
 
   // Parse each question file
-  for (const file of files) {
-    try {
-      const filePath = join(quizPath, file);
-      const markdown = readFileSync(filePath, 'utf-8');
-      const question = await parseQuestion(markdown);
-      questions.push(question);
-    } catch (error) {
-      console.warn(`Failed to parse question file ${file}:`, error.message);
-      // Continue with other questions
-    }
-  }
+        for (const file of files) {
+          try {
+            const filePath = join(quizPath, file);
+            const markdown = readFileSync(filePath, 'utf-8');
+            const question = await parseQuestion(markdown, options);
+            questions.push(question);
+          } catch (error) {
+            console.warn(`Failed to parse question file ${file}:`, error.message);
+            // Continue with other questions
+          }
+        }
 
-  // Generate HTML for all questions
-  const html = await generateQuizHtml(questions);
+        // Generate HTML for all questions
+        const html = await generateQuizHtml(questions, options);
 
   return {
     questions,
@@ -59,15 +63,14 @@ export async function parseQuiz(quizPath) {
  * @param {Array<Object>} questions - Array of parsed question objects
  * @returns {Promise<string>} HTML string
  */
-async function generateQuizHtml(questions) {
+async function generateQuizHtml(questions, options = {}) {
   let html = '';
 
   for (let i = 0; i < questions.length; i++) {
     const question = questions[i];
-    const questionId = `question-${i + 1}`;
-    const questionName = `quiz-question-${i + 1}`;
 
-    html += `<div class="knowledge-quiz knowledge-quiz-question" data-question="${i + 1}">\n`;
+    // Use <form> container like original API
+    html += `<form class="knowledge-quiz-question">\n`;
     html += '  <fieldset>\n';
     
     // Question legend
@@ -83,38 +86,52 @@ async function generateQuizHtml(questions) {
     // Answers container
     html += '    <div class="knowledge-quiz-question__answers">\n';
     
+    // Find correct answer index (1-based for API structure)
+    const correctIndex = question.choices.findIndex(c => c.correct);
+    
     for (let j = 0; j < question.choices.length; j++) {
       const choice = question.choices[j];
-      const answerId = `${questionName}-answer-${j + 1}`;
-      const feedbackId = `${questionName}-feedback-${j + 1}`;
+      // Use 1-based IDs and values like original API
+      const choiceNum = j + 1;
+      const answerId = `choice-${choiceNum}`;
+      const isChecked = j === correctIndex;
 
-      html += '      <div class="knowledge-quiz-question__answer">\n';
-      html += `        <input type="radio" id="${answerId}" name="${questionName}" value="${j}" data-correct="${choice.correct}" />\n`;
-      html += `        <label for="${answerId}">\n`;
-      html += `          ${choice.text}\n`;
-      html += '        </label>\n';
-      html += '      </div>\n';
-      
-      // Feedback (initially hidden, shown when answer is selected)
-      if (choice.feedback) {
-        const feedbackHtml = await parseFeedback(choice.feedback);
-        html += `      <div class="knowledge-quiz-question__feedback" id="${feedbackId}" data-answer="${j}">\n`;
-        html += `        <ul class="knowledge-quiz-question__feedback-list">\n`;
-        html += `          <li class="knowledge-quiz-question__feedback-item${choice.correct ? ' knowledge-quiz-question__feedback-item--correct' : ''}">\n`;
-        html += `            ${feedbackHtml}\n`;
-        html += `          </li>\n`;
-        html += `        </ul>\n`;
-        html += '      </div>\n';
-      }
+      html += '    <div class="knowledge-quiz-question__answer">\n';
+      // Use generic "answer" name and 1-based value, add checked attribute for correct answer
+      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}"${isChecked ? ' checked' : ''} />\n`;
+      html += `      <label for="${answerId}">\n`;
+      // Parse choice text (markdown) to HTML
+      const choiceHtml = await parseFeedback(choice.text, options);
+      html += `        ${choiceHtml}\n`;
+      html += '      </label>\n';
+      html += '    </div>\n';
     }
 
     html += '    </div>\n';
-    
-    // Add "Check my answer" button
-    html += '    <input type="button" value="Check my answer" data-question="' + (i + 1) + '" />\n';
-    
     html += '  </fieldset>\n';
-    html += '</div>\n';
+    
+    // Feedback structure: direct <ul> with <li> items, like original API
+    html += '  <ul class="knowledge-quiz-question__feedback">\n';
+    
+    for (let j = 0; j < question.choices.length; j++) {
+      const choice = question.choices[j];
+      if (choice.feedback) {
+        const choiceNum = j + 1;
+        const feedbackId = `feedback-for-choice-${choiceNum}`;
+        const feedbackHtml = await parseFeedback(choice.feedback, options);
+        
+        html += `  <li class="knowledge-quiz-question__feedback-item" id="${feedbackId}">\n`;
+        html += `    ${feedbackHtml}\n`;
+        html += '  </li>\n';
+      }
+    }
+    
+    html += '  </ul>\n';
+    
+    // Add submit button like original API
+    html += '  <input type="button" name="Submit" value="submit" />\n';
+    
+    html += '</form>\n\n';
   }
 
   return html;
@@ -126,10 +143,14 @@ async function generateQuizHtml(questions) {
  * @param {string} feedbackText - Feedback markdown
  * @returns {string} HTML string
  */
-async function parseFeedback(feedbackText) {
-  // For now, use parseTutorial to convert markdown to HTML
-  // This handles Scratch blocks, formatting, etc.
+async function parseFeedback(feedbackText, options = {}) {
+  // Use parseTutorial to convert markdown to HTML
+  // This handles Scratch blocks, formatting, images, etc.
   const { parseTutorial } = await import('./parse-tutorial.js');
-  return await parseTutorial(feedbackText);
+  return await parseTutorial(feedbackText, {
+    basePath: options.basePath,
+    transclusionCache: options.transclusionCache,
+    languages: options.languages
+  });
 }
 
