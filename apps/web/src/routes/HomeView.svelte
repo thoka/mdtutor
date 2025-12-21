@@ -22,40 +22,47 @@
   });
 </script>
 
-<div class="home-view">
-  <header class="home-header">
-    <div class="container">
-      <h1>MDTutor - Tutorial Library</h1>
-      <p>Select a tutorial to start learning.</p>
+<div class="c-projects-list">
+  {#if isLoading}
+    <div class="c-projects-list__projects__no-results">
+      <p>Loading tutorials...</p>
     </div>
-  </header>
-
-  <main class="container">
-    {#if isLoading}
-      <div class="loading">Loading tutorials...</div>
-    {:else if errorMsg}
-      <div class="error">Error: {errorMsg}</div>
-    {:else}
-      <div class="project-grid">
-        {#each projects as project}
-          <a href="/{project.slug}" use:link class="project-card">
-            {#if project.heroImage}
-              <div class="project-card__image" style="background-image: url({project.heroImage})"></div>
-            {:else}
-              <div class="project-card__image project-card__image--placeholder"></div>
-            {/if}
-            <div class="project-card__content">
-              <h3>{project.title || project.slug}</h3>
+  {:else if errorMsg}
+    <div class="c-projects-list__projects__no-results">
+      <p>Error: {errorMsg}</p>
+    </div>
+  {:else if projects.length === 0}
+    <div class="c-projects-list__projects__no-results">
+      <p>No tutorials found.</p>
+    </div>
+  {:else}
+    <div class="c-projects-list__projects">
+      {#each projects as project}
+        <a href="/{project.slug}" use:link class="c-project-card">
+          {#if project.heroImage}
+            <img 
+              class="c-project-card__image" 
+              src={project.heroImage} 
+              alt={project.title || project.slug}
+            />
+          {/if}
+          <div class="c-project-card__content">
+            <div class="c-project-card__text">
+              <h3 class="c-project-card__heading">{project.title || project.slug}</h3>
               {#if project.description}
-                <p class="project-card__description">{project.description}</p>
+                <p class="c-project-card__description">{project.description}</p>
               {/if}
-              <div class="project-card__meta">
-                <span class="badge">{project.languages?.join(', ') || 'en'}</span>
-              </div>
             </div>
-          </a>
-        {/each}
-      </div>
-    {/if}
-  </main>
+            {#if project.languages && project.languages.length > 0}
+              <div class="c-project-card__tags">
+                {#each project.languages as lang}
+                  <span class="rpf-tag">{lang}</span>
+                {/each}
+              </div>
+            {/if}
+          </div>
+        </a>
+      {/each}
+    </div>
+  {/if}
 </div>
