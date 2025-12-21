@@ -1,5 +1,5 @@
 {
-  "name": "@mdtutor2/web",
+  "name": "@mdtutor/web",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json"
   },
   "dependencies": {
-    "@mdtutor2/parser": "*",
+    "@mdtutor/parser": "*",
     "svelte-spa-router": "^4.0.1"
   },
   "devDependencies": {

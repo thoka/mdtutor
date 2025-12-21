@@ -1,5 +1,5 @@
 {
-  "name": "@mdtutor2/parser",
+  "name": "@mdtutor/parser",
   "version": "0.1.0",
   "description": "Markdown to JSON parser for Raspberry Pi Learning tutorials",
   "type": "module",

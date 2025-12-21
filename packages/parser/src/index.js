@@ -1,5 +1,5 @@
 /**
- * @mdtutor2/parser
+ * @mdtutor/parser
  * 
  * Main export for Markdown to JSON parser
  * Compatible with Raspberry Pi Learning tutorial structure
