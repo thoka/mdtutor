@@ -184,7 +184,7 @@ img {
 }
 
 .u-no-print {
-  /* Visible on screen */
+  /* Visible on screen, hidden in print - see @media print */
 }
 
 .u-print-only {
