@@ -30,13 +30,18 @@
   function attachEventHandlers() {
     if (!contentDiv) return;
     
+    // Remove old event listeners by cloning and replacing the contentDiv
+    const newContentDiv = contentDiv.cloneNode(true) as HTMLDivElement;
+    contentDiv.parentNode?.replaceChild(newContentDiv, contentDiv);
+    contentDiv = newContentDiv;
+    
     // Handle task checkboxes
     const checkboxes = contentDiv.querySelectorAll('.c-project-task__checkbox');
     checkboxes.forEach((checkbox, index) => {
       const input = checkbox as HTMLInputElement;
       
       // Restore state
-      taskStore.subscribe(tasks => {
+      const unsubscribe = taskStore.subscribe(tasks => {
         input.checked = tasks.has(index);
       });
       
@@ -50,6 +55,8 @@
     const panelToggles = contentDiv.querySelectorAll('.js-project-panel__toggle');
     panelToggles.forEach(toggle => {
       toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         const panel = (e.target as HTMLElement).closest('.c-project-panel');
         const content = panel?.querySelector('.c-project-panel__content');
         if (content) {
