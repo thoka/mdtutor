@@ -1,6 +1,6 @@
 {
   "tutorial": "silly-eyes",
-  "timestamp": "2025-12-21T14:40:16.495Z",
+  "timestamp": "2025-12-21T15:02:58.615Z",
   "languages": [
     "en"
   ],
@@ -19,7 +19,9 @@
   "pathways": [
     {
       "slug": "scratch-intro",
-      "detected_from": "en/step_8.md or en/step_9.md",
+      "id": "134",
+      "title": "Introduction to Scratch",
+      "source": "projects API included field",
       "available": true
     }
   ]

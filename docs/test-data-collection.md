@@ -45,8 +45,10 @@ For each tutorial and each configured language, the following endpoints are fetc
 **Status:** **Optional** - only fetch if pathway detected in tutorial
 
 **Pathway Detection:**
-- Parse `en/step_8.md` and `en/step_9.md` for URLs matching pattern `projects.raspberrypi.org/*/pathways/{pathway-slug}`
-- Multi-pathway Support: Collect **all** pathway references found (tutorials may belong to multiple pathways)
+- Pathways are automatically extracted from the Projects API response
+- Located in the `included` array with `type === 'pathways'`
+- No markdown parsing required - pathways are part of the API data structure
+- Multi-pathway Support: All pathways in the `included` array are fetched
 
 ## File Naming Conventions
 
@@ -88,7 +90,9 @@ test/snapshots/{tutorial-slug}/
   "pathways": [
     {
       "slug": "scratch-intro",
-      "detected_from": "en/step_8.md or en/step_9.md",
+      "id": "134",
+      "title": "Introduction to Scratch",
+      "source": "projects API included field",
       "available": true
     }
   ]
@@ -119,7 +123,7 @@ node test/get-test-data.js
 
 The script will:
 1. Clone each tutorial repository from GitHub
-2. Detect pathway references in markdown files
+2. Fetch Projects API and extract pathway information from response
 3. Fetch all three API endpoints for each configured language
 4. Save responses with proper naming conventions
 5. Create metadata file with all paths and pathway information

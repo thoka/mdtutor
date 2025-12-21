@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-21T14:40:20.116Z",
+  "timestamp": "2025-12-21T15:02:59.600Z",
   "languages": [
     "en"
   ],
@@ -28,7 +28,9 @@
       "languages": [
         "en"
       ],
-      "pathways": []
+      "pathways": [
+        "physical-computing-with-scratch-and-the-raspberry-pi"
+      ]
     },
     {
       "tutorial": "getting-started-with-minecraft-pi",

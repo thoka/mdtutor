@@ -54,50 +54,35 @@ async function cloneRepository(tutorialSlug) {
 }
 
 /**
- * Detect pathway slugs from tutorial markdown files
- * Parses step_8.md and step_9.md for pathway references
- * Returns array of unique pathway slugs
+ * Extract pathway information from projects API response
+ * Pathways are in the 'included' array with type='pathways'
+ * Returns array of pathway objects {slug, id, title}
  */
-function detectPathwaySlugs(tutorialSlug) {
-  const pathways = new Set();
-  const repoDir = join(SNAPSHOTS_DIR, tutorialSlug, 'repo', 'en');
-  const stepFiles = ['step_8.md', 'step_9.md'];
-  
-  // Regex to match: projects.raspberrypi.org/*/pathways/{pathway-slug}
-  const pathwayRegex = /projects\.raspberrypi\.org\/[^/]+\/pathways\/([a-z0-9-]+)/g;
-  
-  for (const stepFile of stepFiles) {
-    const filePath = join(repoDir, stepFile);
-    
-    if (!existsSync(filePath)) {
-      continue;
-    }
-    
-    try {
-      const content = readFileSync(filePath, 'utf-8');
-      let match;
-      
-      while ((match = pathwayRegex.exec(content)) !== null) {
-        pathways.add(match[1]);
-      }
-    } catch (error) {
-      console.warn(`  ⚠ Could not read ${stepFile}: ${error.message}`);
-    }
+function extractPathwaysFromProject(projectData) {
+  if (!projectData || !projectData.included) {
+    return [];
   }
   
-  const result = Array.from(pathways);
+  const pathways = projectData.included
+    .filter(item => item.type === 'pathways')
+    .map(pathway => ({
+      slug: pathway.attributes.slug,
+      id: pathway.id,
+      title: pathway.attributes.title
+    }));
   
-  if (result.length > 0) {
-    console.log(`  ✓ Detected pathways: ${result.join(', ')}`);
+  if (pathways.length > 0) {
+    console.log(`  ✓ Found pathways: ${pathways.map(p => p.slug).join(', ')}`);
   } else {
-    console.log(`  ℹ No pathways detected`);
+    console.log(`  ℹ No pathways in project`);
   }
   
-  return result;
+  return pathways;
 }
 
 /**
  * Fetch Projects API response
+ * Returns both the file path and the parsed data
  */
 async function fetchProjectApi(tutorialSlug, language = 'en') {
   const apiUrl = `${API_BASE}/${language}/projects/${tutorialSlug}`;
@@ -105,9 +90,15 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
   
   console.log(`  Fetching Projects API (${language})...`);
   
+  // Check if already exists
   if (existsSync(targetFile)) {
-    console.log(`    → Already exists, skipping`);
-    return targetFile;
+    console.log(`    → Already exists, reading from cache`);
+    try {
+      const data = JSON.parse(readFileSync(targetFile, 'utf-8'));
+      return { file: targetFile, data };
+    } catch (error) {
+      console.warn(`    ⚠ Cache read failed, re-fetching: ${error.message}`);
+    }
   }
   
   try {
@@ -123,7 +114,7 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
     console.log(`    ✓ Saved`);
-    return targetFile;
+    return { file: targetFile, data };
   } catch (error) {
     console.error(`    ✗ Failed: ${error.message}`);
     return null;
@@ -244,8 +235,8 @@ async function runMetaTest() {
       continue;
     }
     
-    // Step 2: Detect pathways from markdown
-    const pathwaySlugs = detectPathwaySlugs(tutorial);
+    // Step 2: Fetch project data and extract pathways
+    let pathways = [];
     
     // Step 3: Fetch API data for all languages
     const apiPaths = {};
@@ -256,30 +247,37 @@ async function runMetaTest() {
       console.log(`\nFetching API data for language: ${language}`);
       
       // Required: Projects API
-      const projectPath = await fetchProjectApi(tutorial, language);
-      if (!projectPath) {
+      const projectResult = await fetchProjectApi(tutorial, language);
+      if (!projectResult) {
         console.error(`  ✗ Projects API failed (required) - skipping ${language}`);
         continue;
       }
       
       hasRequiredData = true;
       
+      // Extract pathways from project data (only once from first language)
+      if (language === LANGUAGES[0]) {
+        pathways = extractPathwaysFromProject(projectResult.data);
+      }
+      
       // Optional: Progress API
       const progressPath = await fetchProgressApi(tutorial, language);
       
-      // Optional: Pathways API (for each detected pathway)
-      const pathways = {};
-      for (const pathwaySlug of pathwaySlugs) {
-        const pathwayResult = await fetchPathwayApi(pathwaySlug, tutorial, language);
+      // Optional: Pathways API (for each pathway from project data)
+      const pathwayFiles = {};
+      for (const pathway of pathways) {
+        const pathwayResult = await fetchPathwayApi(pathway.slug, tutorial, language);
         if (pathwayResult.file) {
-          pathways[pathwaySlug] = pathwayResult.file;
+          pathwayFiles[pathway.slug] = pathwayResult.file;
         }
         
         // Add to pathwayInfo only once (from first language)
         if (language === LANGUAGES[0]) {
           pathwayInfo.push({
-            slug: pathwaySlug,
-            detected_from: 'en/step_8.md or en/step_9.md',
+            slug: pathway.slug,
+            id: pathway.id,
+            title: pathway.title,
+            source: 'projects API included field',
             available: pathwayResult.available
           });
         }
@@ -287,9 +285,9 @@ async function runMetaTest() {
       
       // Store paths for this language
       apiPaths[language] = {
-        project: projectPath,
+        project: projectResult.file,
         progress: progressPath,
-        pathways: pathways
+        pathways: pathwayFiles
       };
     }
     
@@ -311,7 +309,7 @@ async function runMetaTest() {
       success: true,
       paths: { repo: repoPath, meta: metaPath },
       languages: LANGUAGES,
-      pathways: pathwaySlugs
+      pathways: pathways.map(p => p.slug)
     });
     
     console.log(`\n✓ Snapshot complete for ${tutorial}`);
@@ -345,4 +343,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     });
 }
 
-export { runMetaTest, cloneRepository, fetchProjectApi, fetchProgressApi, fetchPathwayApi, detectPathwaySlugs };
+export { runMetaTest, cloneRepository, fetchProjectApi, fetchProgressApi, fetchPathwayApi, extractPathwaysFromProject };
