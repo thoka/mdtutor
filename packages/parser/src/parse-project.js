@@ -19,13 +19,26 @@ export async function parseProject(projectPath) {
   const metaPath = join(projectPath, 'meta.yml');
   const meta = parseMeta(metaPath);
   
+  // Determine base path for transclusions (go up to snapshots directory)
+  const parts = projectPath.split('/');
+  const snapshotsIndex = parts.indexOf('snapshots');
+  const basePath = snapshotsIndex !== -1 
+    ? parts.slice(0, snapshotsIndex + 1).join('/')
+    : null;
+  
+  // Shared transclusion cache for all steps
+  const transclusionCache = new Map();
+  
   // Parse steps defined in meta.yml
   const steps = await Promise.all(
     meta.steps.map(async (metaStep, index) => {
       const file = `step_${index + 1}.md`;
       const filePath = join(projectPath, file);
       const markdown = readFileSync(filePath, 'utf-8');
-      const content = await parseTutorial(markdown);
+      const content = await parseTutorial(markdown, {
+        basePath,
+        transclusionCache
+      });
       
       return {
         title: metaStep.title || extractTitle(markdown),
