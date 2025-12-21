@@ -17,23 +17,38 @@
   let taskStore = $derived(createTaskStore(slug, step));
   
   onMount(() => {
-    attachEventHandlers();
+    // Use event delegation for panel toggles
+    contentDiv.addEventListener('click', handleClick);
+    
+    return () => {
+      contentDiv.removeEventListener('click', handleClick);
+    };
   });
+  
+  function handleClick(e: MouseEvent) {
+    const target = e.target as HTMLElement;
+    
+    // Check if clicked element or its parent has the toggle class
+    const toggle = target.closest('.js-project-panel__toggle');
+    if (toggle) {
+      e.preventDefault();
+      const panel = toggle.closest('.c-project-panel');
+      const content = panel?.querySelector('.c-project-panel__content');
+      if (content) {
+        content.classList.toggle('u-hidden');
+      }
+    }
+  }
   
   $effect(() => {
-    // Re-attach handlers when content or step changes
+    // Re-attach task checkbox handlers when content or step changes
     content;
     step;
-    attachEventHandlers();
+    attachTaskHandlers();
   });
   
-  function attachEventHandlers() {
+  function attachTaskHandlers() {
     if (!contentDiv) return;
-    
-    // Remove old event listeners by cloning and replacing the contentDiv
-    const newContentDiv = contentDiv.cloneNode(true) as HTMLDivElement;
-    contentDiv.parentNode?.replaceChild(newContentDiv, contentDiv);
-    contentDiv = newContentDiv;
     
     // Handle task checkboxes
     const checkboxes = contentDiv.querySelectorAll('.c-project-task__checkbox');
@@ -41,28 +56,22 @@
       const input = checkbox as HTMLInputElement;
       
       // Restore state
-      const unsubscribe = taskStore.subscribe(tasks => {
+      taskStore.subscribe(tasks => {
         input.checked = tasks.has(index);
       });
       
-      // Save on change
-      input.addEventListener('change', () => {
+      // Remove old listener if exists
+      const oldListener = (input as any)._changeListener;
+      if (oldListener) {
+        input.removeEventListener('change', oldListener);
+      }
+      
+      // Add new listener
+      const newListener = () => {
         taskStore.toggle(index);
-      });
-    });
-    
-    // Handle collapsible panels
-    const panelToggles = contentDiv.querySelectorAll('.js-project-panel__toggle');
-    panelToggles.forEach(toggle => {
-      toggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const panel = (e.target as HTMLElement).closest('.c-project-panel');
-        const content = panel?.querySelector('.c-project-panel__content');
-        if (content) {
-          content.classList.toggle('u-hidden');
-        }
-      });
+      };
+      (input as any)._changeListener = newListener;
+      input.addEventListener('change', newListener);
     });
   }
 </script>
