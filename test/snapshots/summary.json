@@ -1,0 +1,48 @@
+{
+  "timestamp": "2025-12-21T15:02:59.600Z",
+  "languages": [
+    "en"
+  ],
+  "results": [
+    {
+      "tutorial": "silly-eyes",
+      "success": true,
+      "paths": {
+        "repo": "test/snapshots/silly-eyes/repo",
+        "meta": "test/snapshots/silly-eyes/snapshot-meta.json"
+      },
+      "languages": [
+        "en"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "scratchpc-interactive-book",
+      "success": true,
+      "paths": {
+        "repo": "test/snapshots/scratchpc-interactive-book/repo",
+        "meta": "test/snapshots/scratchpc-interactive-book/snapshot-meta.json"
+      },
+      "languages": [
+        "en"
+      ],
+      "pathways": [
+        "physical-computing-with-scratch-and-the-raspberry-pi"
+      ]
+    },
+    {
+      "tutorial": "getting-started-with-minecraft-pi",
+      "success": true,
+      "paths": {
+        "repo": "test/snapshots/getting-started-with-minecraft-pi/repo",
+        "meta": "test/snapshots/getting-started-with-minecraft-pi/snapshot-meta.json"
+      },
+      "languages": [
+        "en"
+      ],
+      "pathways": []
+    }
+  ]
+}
