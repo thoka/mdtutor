@@ -17,13 +17,27 @@
   let taskStore = $derived(createTaskStore(slug, step));
   
   onMount(() => {
-    console.log('[StepContent] onMount - attaching event delegation');
-    // Use event delegation for panel toggles
+    console.log('[StepContent] onMount called');
+    console.log('[StepContent] contentDiv exists:', !!contentDiv);
+    console.log('[StepContent] contentDiv:', contentDiv);
+    
+    if (!contentDiv) {
+      console.error('[StepContent] contentDiv is null/undefined!');
+      return;
+    }
+    
+    console.log('[StepContent] attaching event delegation');
     contentDiv.addEventListener('click', handleClick);
+    
+    // Test: check for panel toggles
+    const toggles = contentDiv.querySelectorAll('.js-project-panel__toggle');
+    console.log('[StepContent] found', toggles.length, 'panel toggles');
     
     return () => {
       console.log('[StepContent] cleanup - removing event listener');
-      contentDiv.removeEventListener('click', handleClick);
+      if (contentDiv) {
+        contentDiv.removeEventListener('click', handleClick);
+      }
     };
   });
   
