@@ -1,0 +1,18 @@
+{
+  "tutorial": "scratchpc-interactive-book",
+  "timestamp": "2025-12-21T14:40:18.415Z",
+  "languages": [
+    "en"
+  ],
+  "paths": {
+    "repository": "test/snapshots/scratchpc-interactive-book/repo",
+    "api": {
+      "en": {
+        "project": "test/snapshots/scratchpc-interactive-book/api-project-en.json",
+        "progress": null,
+        "pathways": {}
+      }
+    }
+  },
+  "pathways": []
+}

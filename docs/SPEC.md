@@ -80,6 +80,14 @@ Each module:
 - Importable as library
 - Clear interface definitions
 
+### Test Data Collection
+
+Reference tutorial data is fetched from raspberrypilearning repositories and official API for parser development and testing.
+
+**Details:** See [test-data-collection.md](test-data-collection.md)
+
+**Script:** `test/get-test-data.js`
+
 ## Development Approach
 
 ### Iteration Strategy
@@ -100,6 +108,7 @@ Each module:
 ### Git Workflow Rules
 - **Feature Branches**: Each feature in own branch (`feature/name`)
 - **Subtask Commits**: Each completed subtask committed immediately to feature branch (no large "WIP" commits)
+- **Iteration Commits**: After each iteration (implementation cycle), create a commit in the feature branch
 - **Merging**: Only after complete verification merge to `main`
 - **Tests first**: Write and commit tests first!
 

@@ -1,0 +1,18 @@
+{
+  "tutorial": "getting-started-with-minecraft-pi",
+  "timestamp": "2025-12-21T14:40:20.116Z",
+  "languages": [
+    "en"
+  ],
+  "paths": {
+    "repository": "test/snapshots/getting-started-with-minecraft-pi/repo",
+    "api": {
+      "en": {
+        "project": "test/snapshots/getting-started-with-minecraft-pi/api-project-en.json",
+        "progress": null,
+        "pathways": {}
+      }
+    }
+  },
+  "pathways": []
+}

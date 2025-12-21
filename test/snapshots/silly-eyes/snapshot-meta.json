@@ -1,0 +1,26 @@
+{
+  "tutorial": "silly-eyes",
+  "timestamp": "2025-12-21T14:40:16.495Z",
+  "languages": [
+    "en"
+  ],
+  "paths": {
+    "repository": "test/snapshots/silly-eyes/repo",
+    "api": {
+      "en": {
+        "project": "test/snapshots/silly-eyes/api-project-en.json",
+        "progress": null,
+        "pathways": {
+          "scratch-intro": "test/snapshots/silly-eyes/api-pathway-scratch-intro-en.json"
+        }
+      }
+    }
+  },
+  "pathways": [
+    {
+      "slug": "scratch-intro",
+      "detected_from": "en/step_8.md or en/step_9.md",
+      "available": true
+    }
+  ]
+}
