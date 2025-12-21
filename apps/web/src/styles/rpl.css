@@ -108,6 +108,34 @@ img {
   width: 1.5rem;
   height: 1.5rem;
   flex-shrink: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 3px;
+  background: #f5f5f5;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.c-project-task__checkbox:hover {
+  border-color: #999;
+  background: #eee;
+}
+
+.c-project-task__checkbox:checked {
+  background: #0faeb0;
+  border-color: #0faeb0;
+}
+
+.c-project-task__checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 .c-project-task__body {
