@@ -26,6 +26,23 @@ const TEST_TUTORIALS = [
   'getting-started-with-minecraft-pi'
 ];
 
+// Transclusion projects needed by test tutorials
+const TRANSCLUSION_PROJECTS = [
+  'working-offline',
+  'scratch3-duplicate-sprite'
+  // TODO: Add remaining 10 after testing
+  // 'generic-scratch3-sprite-from-library',
+  // 'generic-scratch3-backdrop-from-library',
+  // 'scratch3-backdrops-and-sprites-using-shapes',
+  // 'scratch3-copy-code',
+  // 'scratch3-graphic-effects',
+  // 'scratch3-add-costumes-to-a-sprite',
+  // 'scratch3-full-screen',
+  // 'scratch-crosshair',
+  // 'share-scratch',
+  // 'comments-feedback-scratch'
+];
+
 /**
  * Fetch tutorial from GitHub
  */
@@ -315,10 +332,51 @@ async function runMetaTest() {
     console.log(`\n✓ Snapshot complete for ${tutorial}`);
   }
   
+  // Fetch transclusion projects (simpler - no pathways)
+  console.log('\n\n=== Fetching Transclusion Projects ===\n');
+  for (const project of TRANSCLUSION_PROJECTS) {
+    console.log(`\n>>> Processing: ${project}`);
+    
+    try {
+      // Clone repository
+      const repoPath = await cloneRepository(project);
+      
+      // Fetch API data (only project endpoint needed)
+      const apiPaths = {};
+      for (const lang of LANGUAGES) {
+        const projectData = await fetchProjectApi(project, lang);
+        apiPaths[lang] = { projects: projectData };
+      }
+      
+      // Create simple metadata
+      const metaPath = createSnapshotMetadata(project, repoPath, apiPaths, null);
+      
+      results.push({
+        tutorial: project,
+        success: true,
+        paths: { repo: repoPath, meta: metaPath },
+        languages: LANGUAGES,
+        pathways: []
+      });
+      
+      console.log(`✓ Transclusion project fetched: ${project}`);
+    } catch (error) {
+      console.error(`✗ Failed to fetch ${project}:`, error.message);
+      results.push({
+        tutorial: project,
+        success: false,
+        error: error.message
+      });
+    }
+  }
+  
   // Summary
   console.log('\n=== Summary ===');
   const successful = results.filter(r => r.success).length;
-  console.log(`${successful}/${TEST_TUTORIALS.length} tutorials fetched successfully`);
+  const total = TEST_TUTORIALS.length + TRANSCLUSION_PROJECTS.length;
+  console.log(`${successful}/${total} projects fetched successfully`);
+  console.log(`  - Main tutorials: ${results.filter(r => TEST_TUTORIALS.includes(r.tutorial) && r.success).length}/${TEST_TUTORIALS.length}`);
+  console.log(`  - Transclusions: ${results.filter(r => TRANSCLUSION_PROJECTS.includes(r.tutorial) && r.success).length}/${TRANSCLUSION_PROJECTS.length}`);
   
   // Write summary file
   const summaryFile = join(SNAPSHOTS_DIR, 'summary.json');

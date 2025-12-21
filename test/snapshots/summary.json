@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-12-21T15:21:21.268Z",
+  "timestamp": "2025-12-21T15:44:02.794Z",
   "languages": [
     "en"
   ],
@@ -38,6 +38,30 @@
       "paths": {
         "repo": "test/snapshots/getting-started-with-minecraft-pi/repo",
         "meta": "test/snapshots/getting-started-with-minecraft-pi/snapshot-meta.json"
+      },
+      "languages": [
+        "en"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "working-offline",
+      "success": true,
+      "paths": {
+        "repo": "test/snapshots/working-offline/repo",
+        "meta": "test/snapshots/working-offline/snapshot-meta.json"
+      },
+      "languages": [
+        "en"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-duplicate-sprite",
+      "success": true,
+      "paths": {
+        "repo": "test/snapshots/scratch3-duplicate-sprite/repo",
+        "meta": "test/snapshots/scratch3-duplicate-sprite/snapshot-meta.json"
       },
       "languages": [
         "en"
