@@ -14,6 +14,8 @@
   "scripts": {
     "test": "node --test",
     "test:data": "node test/get-test-data.js",
+    "api": "npm run dev --workspace=@mdtutor2/api-server",
+    "web": "npm run dev --workspace=@mdtutor2/web",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
