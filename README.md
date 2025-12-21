@@ -65,6 +65,11 @@ This downloads reference tutorials and API responses from raspberrypilearning.or
 
 ### 3. Development
 
+**Multi-Language Support:**
+- The platform defaults to German (`de-DE`) and falls back to English (`en`) if German content is not available
+- The API server automatically handles language fallback
+- Test data collection fetches data for all configured languages
+
 **Run API Server:**
 ```bash
 npm run api
