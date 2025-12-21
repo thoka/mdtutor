@@ -49,10 +49,31 @@ app.get('/api/projects', async (req, res) => {
     const summary = JSON.parse(data);
     
     // summary.json uses "results" array with "tutorial" as slug
-    const projects = (summary.results || []).map(r => ({
-      slug: r.tutorial,
-      title: r.tutorial.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
-      languages: r.languages
+    const projects = await Promise.all((summary.results || []).map(async r => {
+      const slug = r.tutorial;
+      let heroImage = null;
+      let description = null;
+      let title = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+      
+      try {
+        const projectPath = join(SNAPSHOTS_DIR, slug, 'api-project-en.json');
+        const projectData = JSON.parse(await readFile(projectPath, 'utf-8'));
+        heroImage = projectData.data?.attributes?.content?.heroImage || null;
+        description = projectData.data?.attributes?.content?.description || null;
+        if (projectData.data?.attributes?.content?.title) {
+          title = projectData.data.attributes.content.title;
+        }
+      } catch (e) {
+        // Ignore if file not found
+      }
+
+      return {
+        slug,
+        title,
+        description,
+        languages: r.languages,
+        heroImage
+      };
     }));
     
     res.json({ projects });

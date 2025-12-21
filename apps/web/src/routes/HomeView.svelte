@@ -39,8 +39,16 @@
       <div class="project-grid">
         {#each projects as project}
           <a href="/{project.slug}" use:link class="project-card">
+            {#if project.heroImage}
+              <div class="project-card__image" style="background-image: url({project.heroImage})"></div>
+            {:else}
+              <div class="project-card__image project-card__image--placeholder"></div>
+            {/if}
             <div class="project-card__content">
               <h3>{project.title || project.slug}</h3>
+              {#if project.description}
+                <p class="project-card__description">{project.description}</p>
+              {/if}
               <div class="project-card__meta">
                 <span class="badge">{project.languages?.join(', ') || 'en'}</span>
               </div>
@@ -54,16 +62,21 @@
 
 <style>
   .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 2rem;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 3rem;
+    width: 100%;
   }
 
   .home-header {
     background: #fff;
     border-bottom: 1px solid #e0e0e0;
-    padding: 3rem 0;
+    padding: 4rem 3rem;
     margin-bottom: 3rem;
+  }
+
+  .home-header .container {
+    padding: 0;
   }
 
   .home-header h1 {
@@ -80,38 +93,68 @@
 
   .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
     padding-bottom: 4rem;
   }
 
   .project-card {
     background: #fff;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
     text-decoration: none;
     color: inherit;
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    height: 100%;
   }
 
   .project-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-    border-color: #0faeb0;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+  }
+
+  .project-card__image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #eee;
+  }
+
+  .project-card__image--placeholder {
+    background-color: #f5f5f5;
+    background-image: linear-gradient(45deg, #f5f5f5 25%, #fafafa 25%, #fafafa 50%, #f5f5f5 50%, #f5f5f5 75%, #fafafa 75%, #fafafa 100%);
+    background-size: 40px 40px;
   }
 
   .project-card__content {
-    padding: 2rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   .project-card__content h3 {
-    margin: 0 0 1rem;
-    font-size: 1.4rem;
+    margin: 0 0 0.75rem;
+    font-size: 1.25rem;
     color: #333;
-    line-height: 1.3;
+    line-height: 1.4;
+    font-weight: 700;
+  }
+
+  .project-card__description {
+    margin: 0 0 1.5rem;
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.5;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .project-card__meta {
