@@ -1,6 +1,8 @@
 /* Stylesheet 1: https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;700;900&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@24,400,0,0&display=swap */
 /* Could not access rules (cross-origin) */
 /* Stylesheet 2: https://projects.raspberrypi.org/stylesheets/makecode.css */
+/* Import must be at the top - moved from line 253 */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 .pxt-renderer.classic-theme .blocklyText, .pxt-renderer.classic-theme .blocklyFlyoutLabelText { font: 600 12pt Consolas, Monaco, Menlo, "Ubuntu Mono", source-code-pro, monospace; }
 .pxt-renderer.classic-theme .blocklyTextInputBubble textarea { font-weight: normal; }
 .pxt-renderer.classic-theme .blocklyText { fill: rgb(255, 255, 255); }
@@ -250,7 +252,7 @@ input[type="range"].blocklyFieldSlider:focus-visible::-webkit-slider-thumb { out
 .shortcut-container { font-size: 0.95em; overflow: auto; padding: 0.5em; }
 .shortcut-combo { display: inline-block; padding: 0.25em 0px; text-wrap: nowrap; }
 /* Stylesheet 3: https://projects.raspberrypi.org/assets/index-BhjGrcCy.css */
-@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
+/* @import moved to top of file (line 4) */
 .rpf-button { --rpf-button-border-radius: var(--space-5) !important; }
 .rpf-button--primary, .rpf-button--secondary { --rpf-button-background-color: var(--rpf-black) !important; --rpf-button-background-color-hover: var(--rpf-grey-800) !important; --rpf-button-background-color-active: var(--rpf-grey-800) !important; }
 .rpf-button--tertiary { --rpf-button-background-color-hover: var(--rpf-grey-800) !important; --rpf-button-background-color-active: var(--rpf-grey-800) !important; }
