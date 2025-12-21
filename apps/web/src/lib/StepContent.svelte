@@ -17,24 +17,11 @@
   let taskStore = $derived(createTaskStore(slug, step));
   
   onMount(() => {
-    console.log('[StepContent] onMount called');
-    console.log('[StepContent] contentDiv exists:', !!contentDiv);
-    console.log('[StepContent] contentDiv:', contentDiv);
+    if (!contentDiv) return;
     
-    if (!contentDiv) {
-      console.error('[StepContent] contentDiv is null/undefined!');
-      return;
-    }
-    
-    console.log('[StepContent] attaching event delegation');
     contentDiv.addEventListener('click', handleClick);
     
-    // Test: check for panel toggles
-    const toggles = contentDiv.querySelectorAll('.js-project-panel__toggle');
-    console.log('[StepContent] found', toggles.length, 'panel toggles');
-    
     return () => {
-      console.log('[StepContent] cleanup - removing event listener');
       if (contentDiv) {
         contentDiv.removeEventListener('click', handleClick);
       }
@@ -43,22 +30,14 @@
   
   function handleClick(e: MouseEvent) {
     const target = e.target as HTMLElement;
-    console.log('[StepContent] click detected on:', target.tagName, target.className);
-    
-    // Check if clicked element or its parent has the toggle class
     const toggle = target.closest('.js-project-panel__toggle');
-    console.log('[StepContent] closest toggle element:', toggle);
     
     if (toggle) {
-      console.log('[StepContent] panel toggle clicked!');
       e.preventDefault();
       const panel = toggle.closest('.c-project-panel');
       const content = panel?.querySelector('.c-project-panel__content');
-      console.log('[StepContent] panel:', panel, 'content:', content);
       if (content) {
-        const wasHidden = content.classList.contains('u-hidden');
         content.classList.toggle('u-hidden');
-        console.log('[StepContent] toggled u-hidden:', wasHidden, '->', !wasHidden);
       }
     }
   }
