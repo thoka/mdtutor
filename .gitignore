@@ -1,0 +1,17 @@
+# Test snapshots - cloned repositories and API responses
+test/snapshots/
+
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
