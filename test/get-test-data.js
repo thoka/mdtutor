@@ -17,7 +17,7 @@ const SNAPSHOTS_DIR = 'test/snapshots';
 const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
 
 // Configurable languages (extend with 'de' etc. as needed)
-const LANGUAGES = ['en'];
+const LANGUAGES = ['en', 'de-DE'];
 
 // Test tutorials to fetch
 const TEST_TUTORIALS = [

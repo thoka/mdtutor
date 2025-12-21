@@ -12,15 +12,16 @@
   let errorMsg = $state<string | null>(null);
   let step = $state(0);
   let slug = $state('silly-eyes');
+  // Default to German (de-DE) to match API server default
+  // Language can be changed via URL parameter or state in the future
+  let lang = $state('de-DE');
   
   $effect(() => {
     slug = params.slug || 'silly-eyes';
     step = params.step ? parseInt(params.step) : 0;
     currentStep.set(step);
-  });
-  
-  onMount(async () => {
-    await loadTutorial();
+    // Reload tutorial when slug or step changes
+    loadTutorial();
   });
   
   async function loadTutorial() {
@@ -28,7 +29,7 @@
     errorMsg = null;
     
     try {
-      const response = await fetch(`/api/projects/${slug}?lang=en`);
+      const response = await fetch(`/api/projects/${slug}?lang=${lang}`);
       if (!response.ok) {
         throw new Error(`Failed to load tutorial: ${response.statusText}`);
       }
