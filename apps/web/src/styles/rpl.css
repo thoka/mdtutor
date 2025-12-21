@@ -67,6 +67,59 @@ code {
   font-size: 0.9em;
 }
 
+/* Scratch 3.0 code blocks */
+code.block3motion,
+code.block3looks,
+code.block3sound,
+code.block3events,
+code.block3control,
+code.block3sensing,
+code.block3operators,
+code.block3variables,
+code.block3myblocks {
+  color: white;
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+code.block3motion {
+  background-color: #4C97FF; /* Blau - Motion */
+}
+
+code.block3looks {
+  background-color: #9966FF; /* Lila - Looks */
+}
+
+code.block3sound {
+  background-color: #CF63CF; /* Pink - Sound */
+}
+
+code.block3events {
+  background-color: #FFBF00; /* Gold - Events */
+  color: #333; /* Dunkler Text für besseren Kontrast */
+}
+
+code.block3control {
+  background-color: #FFAB19; /* Orange - Control */
+}
+
+code.block3sensing {
+  background-color: #5CB1D6; /* Türkis - Sensing */
+}
+
+code.block3operators {
+  background-color: #59C059; /* Grün - Operators */
+}
+
+code.block3variables {
+  background-color: #FF8C1A; /* Orange - Variables */
+}
+
+code.block3myblocks {
+  background-color: #FF6680; /* Rosa - My Blocks */
+}
+
 pre {
   background: #f4f4f4;
   padding: 1rem;
