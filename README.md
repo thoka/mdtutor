@@ -9,6 +9,8 @@ Build a local, intranet-compatible learning environment with:
 - ✅ Markdown → JSON parser (unified.js pipeline)
 - ✅ API server (Express)
 - ✅ Web renderer (Svelte 5 + Vite)
+- ✅ Tutorial Library (Home View)
+- ✅ RPL Design System & Scratch 3.0 Styling
 - 🚧 Achievements & Badges
 - 🚧 Learning Paths
 - 🚧 Help Desk system
@@ -147,6 +149,8 @@ MIT
 ✅ **Parser** - Complete with transclusion support  
 ✅ **API Server** - Serving cached tutorial data  
 ✅ **Renderer** - Interactive tutorial viewer with progress tracking  
+✅ **Library View** - Overview of all available tutorials  
+✅ **Design System** - RPL-compatible styling and Scratch 3.0 colors  
 🚧 **Backend Integration** - Planned  
 🚧 **User Management** - Planned  
 🚧 **Achievements** - Planned

@@ -48,10 +48,11 @@ app.get('/api/projects', async (req, res) => {
     const data = await readFile(summaryPath, 'utf-8');
     const summary = JSON.parse(data);
     
-    const projects = summary.projects.map(p => ({
-      slug: p.slug,
-      title: p.title,
-      languages: p.languages
+    // summary.json uses "results" array with "tutorial" as slug
+    const projects = (summary.results || []).map(r => ({
+      slug: r.tutorial,
+      title: r.tutorial.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+      languages: r.languages
     }));
     
     res.json({ projects });

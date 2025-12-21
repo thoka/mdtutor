@@ -1,13 +1,15 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import Router from 'svelte-spa-router';
+  import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
   import './styles/rpl.css';
   
   const routes = {
+    '/': HomeView,
     '/:slug': TutorialView,
     '/:slug/:step': TutorialView,
-    '*': TutorialView  // Fallback
+    '*': HomeView  // Fallback to home
   };
 </script>
 
