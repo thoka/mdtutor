@@ -96,9 +96,11 @@
           <article class="c-project__step">
             <h2 class="c-project__step-title">{currentStepData.title}</h2>
             
-            <div class="c-project__step-content">
-              {@html currentStepData.content}
-            </div>
+            <StepContent
+              content={currentStepData.content}
+              {slug}
+              {step}
+            />
           </article>
           
           <nav class="c-project__navigation">
