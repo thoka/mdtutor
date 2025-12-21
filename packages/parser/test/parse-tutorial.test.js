@@ -36,3 +36,25 @@ Content
   assert.ok(html.includes('<div class="custom">'));
   assert.ok(html.includes('Content'));
 });
+
+test('parseTutorial - block delimiters', async () => {
+  const markdown = `
+--- task ---
+
+This is a task.
+
+--- /task ---
+
+--- no-print ---
+
+Hidden content.
+
+--- /no-print ---
+`;
+
+  const html = await parseTutorial(markdown);
+  assert.ok(html.includes('<div class="c-project-task">'));
+  assert.ok(html.includes('checkbox'));
+  assert.ok(html.includes('<div class="u-no-print">'));
+  assert.strictEqual(html.match(/<\/div>/g).length, 2);
+});

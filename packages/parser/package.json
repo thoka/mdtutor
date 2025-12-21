@@ -11,15 +11,15 @@
     "test": "node --test"
   },
   "dependencies": {
-    "unified": "^11.0.4",
-    "remark-parse": "^11.0.0",
+    "js-yaml": "^4.1.0",
+    "rehype-stringify": "^10.0.0",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.0",
+    "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.0",
-    "rehype-stringify": "^10.0.0",
-    "js-yaml": "^4.1.0"
+    "unified": "^11.0.4",
+    "unist-util-visit": "^5.0.0"
   },
-  "devDependencies": {},
   "keywords": [
     "markdown",
     "parser",
