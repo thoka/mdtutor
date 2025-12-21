@@ -33,6 +33,8 @@ test('parseProject - silly-eyes structure', async () => {
   
   // Check quiz step (step 5)
   const quizStep = content.steps[4];
+  // Note: Original API has quiz: false but knowledgeQuiz: "quiz1" (string)
+  // We set quiz: true when knowledge_quiz exists in meta.yml
   assert.strictEqual(quizStep.quiz, true);
-  assert.strictEqual(quizStep.knowledgeQuiz.path, 'quiz1');
+  assert.strictEqual(quizStep.knowledgeQuiz, 'quiz1');
 });

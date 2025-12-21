@@ -33,7 +33,7 @@ export function parseMeta(filePath) {
       challenge: false, // Will be determined from markdown content
       completion: step.completion || [],
       ingredients: step.ingredients || [],
-      knowledgeQuiz: step.knowledge_quiz || {}
+      knowledgeQuiz: step.knowledge_quiz?.path || (step.knowledge_quiz ? step.knowledge_quiz.path || 'quiz1' : null)
     }))
   };
 }

@@ -129,6 +129,7 @@ From the root directory:
 - Code block processing (Scratch, Python, etc.)
 - Task and ingredient panel extraction
 - Language class propagation from `<code>` to `<pre>` tags
+- Knowledge quiz parsing from separate quiz directories
 
 ### API Server
 - Express server serving cached tutorial data
