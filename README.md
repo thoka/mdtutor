@@ -39,6 +39,11 @@ mdtutor/
 ├── test/                # Integration tests & test data
 │   ├── get-test-data.js # Fetch reference data from RPL API
 │   └── snapshots/       # Test data snapshots
+├── tools/               # Development tools
+│   ├── compare-structure.js  # Compare HTML structure with reference
+│   ├── extract-css.js        # Extract CSS from reference site
+│   ├── extract-structure.js  # Extract HTML structure
+│   └── save-html.js          # Save rendered HTML for inspection
 └── package.json         # Workspace root
 ```
 
@@ -92,8 +97,17 @@ From the root directory:
 - `npm run test:data` - Fetch test data from Raspberry Pi Learning
 - `npm run api` - Start API server (port 3001)
 - `npm run web` - Start web dev server (port 5173)
+- `npm run dev` - Run both API and web servers concurrently
+- `npm run dev:bg` - Run both servers in background (uses .env for ports)
 - `npm run lint` - Lint all files
 - `npm run lint:fix` - Auto-fix linting issues
+
+### Development Tools
+
+- `npm run compare:structure` - Compare HTML structure with reference site
+- `npm run extract:css` - Extract CSS from reference site
+- `npm run extract:structure` - Extract HTML structure from a URL
+- `npm run save:html` - Save rendered HTML to file for inspection
 
 ## Architecture Principles
 
@@ -109,6 +123,7 @@ From the root directory:
 - Transclusion support for nested content
 - Code block processing (Scratch, Python, etc.)
 - Task and ingredient panel extraction
+- Language class propagation from `<code>` to `<pre>` tags
 
 ### API Server
 - Express server serving cached tutorial data
@@ -119,10 +134,15 @@ From the root directory:
 - Svelte 5 with runes mode
 - Hash-based routing (/:slug/:step)
 - Interactive task checkboxes with LocalStorage persistence
-- Collapsible ingredient panels
+- Collapsible ingredient panels with toggle icons
 - Progress tracking across steps
-- RPL-compatible CSS styling
-- Scratch code block color coding
+- RPL-compatible CSS styling (cloned from reference site)
+- Scratch code block rendering via `scratchblocks` library
+  - Renders `<pre class="language-blocks3">` as visual Scratch blocks (SVG)
+  - Preserves whitespace and formatting
+  - Supports Scratch 3.0 style
+- Syntax highlighting for code blocks (Prism.js)
+- Material Symbols icons for navigation
 
 ## Documentation
 
@@ -146,11 +166,15 @@ MIT
 
 ## Status
 
-✅ **Parser** - Complete with transclusion support  
+✅ **Parser** - Complete with transclusion support and code block processing  
 ✅ **API Server** - Serving cached tutorial data  
 ✅ **Renderer** - Interactive tutorial viewer with progress tracking  
-✅ **Library View** - Overview of all available tutorials  
-✅ **Design System** - RPL-compatible styling and Scratch 3.0 colors  
+✅ **Library View** - Overview of all available tutorials with card-based layout  
+✅ **Design System** - RPL-compatible styling cloned from reference site  
+✅ **Scratch Blocks** - Visual rendering of Scratch code blocks via scratchblocks library  
+✅ **Syntax Highlighting** - Code block syntax highlighting with Prism.js  
+✅ **Navigation** - Previous/Next buttons with step titles and icons  
+✅ **Collapsible Panels** - Interactive panels with toggle icons (+/-)  
 🚧 **Backend Integration** - Planned  
 🚧 **User Management** - Planned  
 🚧 **Achievements** - Planned
