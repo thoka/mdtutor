@@ -50,6 +50,22 @@ For each tutorial and each configured language, the following endpoints are fetc
 - No markdown parsing required - pathways are part of the API data structure
 - Multi-pathway Support: All pathways in the `included` array are fetched
 
+### 4. Quiz API (Optional)
+
+**Endpoint:** `https://learning-admin.raspberrypi.org/api/v1/{language}/projects/{slug}/quizzes/{quizPath}`
+
+**Contains:** Quiz questions as HTML strings, quiz metadata
+
+**Example:** `/api/v1/en/projects/silly-eyes/quizzes/quiz1`
+
+**Status:** **Optional** - only fetch if quiz detected in project steps
+
+**Quiz Detection:**
+- Quizzes are automatically extracted from the Projects API response
+- Located in step data with `knowledgeQuiz` field (string value like `"quiz1"`)
+- Each unique quiz path is fetched once per language
+- Stored as: `api-quiz-{quizPath}-{language}.json`
+
 ## File Naming Conventions
 
 ```
@@ -58,6 +74,7 @@ test/snapshots/{tutorial-slug}/
 ├── api-project-{language}.json                 # Projects API response
 ├── api-progress-{language}.json                # Progress API response (if available)
 ├── api-pathway-{pathway-slug}-{language}.json  # Pathways API (one file per pathway)
+├── api-quiz-{quizPath}-{language}.json         # Quiz API (one file per quiz)
 └── snapshot-meta.json                          # Metadata with all paths and pathway info
 ```
 
@@ -105,7 +122,9 @@ test/snapshots/{tutorial-slug}/
 - **Projects API fails:** Mark tutorial as failed (required endpoint)
 - **Progress API fails:** Log warning, continue (optional endpoint)
 - **Pathways API fails:** Log warning for that pathway, continue (optional endpoint)
+- **Quiz API fails:** Log warning for that quiz, continue (optional endpoint)
 - **No pathway detected:** Skip pathway fetch, note in metadata with empty pathways array
+- **No quiz detected:** Skip quiz fetch (quizzes are optional)
 
 ## Rate Limiting
 
@@ -123,10 +142,10 @@ node test/get-test-data.js
 
 The script will:
 1. Clone each tutorial repository from GitHub
-2. Fetch Projects API and extract pathway information from response
-3. Fetch all three API endpoints for each configured language
+2. Fetch Projects API and extract pathway and quiz information from response
+3. Fetch all four API endpoints (Projects, Progress, Pathways, Quiz) for each configured language
 4. Save responses with proper naming conventions
-5. Create metadata file with all paths and pathway information
+5. Create metadata file with all paths, pathway, and quiz information
 6. Generate summary report in `test/snapshots/summary.json`
 
 ## Test Tutorials
