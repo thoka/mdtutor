@@ -139,7 +139,23 @@
         console.log('[quiz] Timeout fired, calling initializeQuiz');
         highlightCode();
         renderScratchBlocks();
-        initializeQuiz();
+        // Only initialize quiz if not already initialized (to preserve answered state)
+        // Check if any quiz questions exist and if they're already initialized
+        const existingQuestions = contentDiv.querySelectorAll('form.knowledge-quiz-question');
+        if (existingQuestions.length > 0) {
+          // Check if first question is already initialized (has event listeners)
+          const firstQuestion = existingQuestions[0] as HTMLElement;
+          const firstCheckButton = firstQuestion.querySelector('input[type="button"]') as HTMLInputElement;
+          const isInitialized = firstCheckButton && (firstCheckButton as any)._quizButtonListener;
+          if (!isInitialized) {
+            console.log('[quiz] Quiz not yet initialized, calling initializeQuiz');
+            initializeQuiz();
+          } else {
+            console.log('[quiz] Quiz already initialized, skipping');
+          }
+        } else {
+          initializeQuiz();
+        }
       }, 10); // Small delay to ensure DOM is fully rendered
     }
   });
@@ -163,8 +179,10 @@
     // Hide all questions initially, show only the first unanswered one
     quizQuestions.forEach((question, index) => {
       console.log(`[quiz] Initializing question ${index + 1}`);
-      // Mark as unanswered initially
-      question.classList.add('knowledge-quiz-question--unanswered');
+      // Mark as unanswered initially (only if not already marked as answered)
+      if (!question.classList.contains('knowledge-quiz-question--answered')) {
+        question.classList.add('knowledge-quiz-question--unanswered');
+      }
       
       // Hide all questions except the first one
       if (index > 0) {
@@ -351,7 +369,7 @@
         console.log('[quiz] No contentDiv, cannot show next question');
         return;
       }
-      const allQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
+      const allQuestions = contentDiv.querySelectorAll('form.knowledge-quiz-question');
       const currentIndex = Array.from(allQuestions).indexOf(question);
       console.log(`[quiz] Current question index: ${currentIndex}, total questions: ${allQuestions.length}`);
       
@@ -360,9 +378,11 @@
       for (let i = currentIndex + 1; i < allQuestions.length; i++) {
         const nextQuestion = allQuestions[i] as HTMLElement;
         const isUnanswered = nextQuestion.classList.contains('knowledge-quiz-question--unanswered');
+        const isAnswered = nextQuestion.classList.contains('knowledge-quiz-question--answered');
         const isHidden = nextQuestion.classList.contains('knowledge-quiz-question--hidden');
-        console.log(`[quiz] Question ${i}: unanswered=${isUnanswered}, hidden=${isHidden}`);
-        if (isUnanswered) {
+        console.log(`[quiz] Question ${i}: unanswered=${isUnanswered}, answered=${isAnswered}, hidden=${isHidden}`);
+        // Show next question if it's unanswered (not answered yet)
+        if (isUnanswered && !isAnswered) {
           nextQuestion.classList.remove('knowledge-quiz-question--hidden');
           nextQuestion.style.display = ''; // Remove inline style
           console.log(`[quiz] Revealed next question at index ${i}`);
