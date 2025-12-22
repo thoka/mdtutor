@@ -232,20 +232,32 @@
   }
   
   function handleQuizCheck(question: Element, inputs: NodeListOf<Element>, feedbacks: NodeListOf<Element>, checkButton: HTMLInputElement) {
+    console.log('[quiz] handleQuizCheck called');
+    
     // Find selected input
     const selectedInput = Array.from(inputs).find((input) => {
       return (input as HTMLInputElement).checked;
     }) as HTMLInputElement;
     
     if (!selectedInput) {
+      console.log('[quiz] No answer selected, returning');
       return; // No answer selected
     }
     
+    console.log('[quiz] Selected input:', {
+      id: selectedInput.id,
+      value: selectedInput.value,
+      dataCorrect: selectedInput.getAttribute('data-correct'),
+      checked: selectedInput.checked
+    });
+    
     // Check if answer is correct
     const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
+    console.log('[quiz] Answer is correct:', isCorrect);
     
     // Hide all feedback items first
     const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
+    console.log(`[quiz] Found ${allFeedbackItems.length} feedback items`);
     allFeedbackItems.forEach((item) => {
       item.classList.remove('knowledge-quiz-question__feedback-item--show');
       item.classList.remove('knowledge-quiz-question__feedback-item--correct');
@@ -266,57 +278,84 @@
     if (choiceMatch) {
       const choiceNum = choiceMatch[1];
       const feedbackId = `feedback-for-choice-${choiceNum}`;
+      console.log(`[quiz] Looking for feedback with ID: ${feedbackId}`);
       feedbackItem = question.querySelector(`#${feedbackId}`);
     }
     
     // Fallback: try to find by value if ID matching fails
     if (!feedbackItem) {
       const feedbackId = `feedback-for-choice-${selectedValue}`;
+      console.log(`[quiz] Fallback: Looking for feedback with ID: ${feedbackId}`);
       feedbackItem = question.querySelector(`#${feedbackId}`);
     }
     
+    console.log('[quiz] Feedback item found:', feedbackItem ? 'yes' : 'no');
+    if (feedbackItem) {
+      console.log('[quiz] Feedback item ID:', feedbackItem.id);
+    }
+    
     if (isCorrect) {
+      console.log('[quiz] Processing correct answer');
       // Correct answer: disable inputs, show feedback, mark as answered, show next question
       inputs.forEach((input) => {
         (input as HTMLInputElement).disabled = true;
       });
       checkButton.disabled = true;
+      console.log('[quiz] Disabled all inputs and check button');
       
       if (feedbackItem) {
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
+        console.log('[quiz] Added show and correct classes to feedback');
       }
       
       // Mark question as answered (remove unanswered class)
       question.classList.remove('knowledge-quiz-question--unanswered');
       question.classList.add('knowledge-quiz-question--answered');
+      console.log('[quiz] Marked question as answered');
       
       // Show next unanswered question
-      if (!contentDiv) return;
+      if (!contentDiv) {
+        console.log('[quiz] No contentDiv, cannot show next question');
+        return;
+      }
       const allQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
       const currentIndex = Array.from(allQuestions).indexOf(question);
+      console.log(`[quiz] Current question index: ${currentIndex}, total questions: ${allQuestions.length}`);
       
       // Find next unanswered question
+      let nextQuestionFound = false;
       for (let i = currentIndex + 1; i < allQuestions.length; i++) {
         const nextQuestion = allQuestions[i] as HTMLElement;
-        if (nextQuestion.classList.contains('knowledge-quiz-question--unanswered')) {
+        const isUnanswered = nextQuestion.classList.contains('knowledge-quiz-question--unanswered');
+        const isHidden = nextQuestion.classList.contains('knowledge-quiz-question--hidden');
+        console.log(`[quiz] Question ${i}: unanswered=${isUnanswered}, hidden=${isHidden}`);
+        if (isUnanswered) {
           nextQuestion.classList.remove('knowledge-quiz-question--hidden');
           nextQuestion.style.display = ''; // Remove inline style
+          console.log(`[quiz] Revealed next question at index ${i}`);
+          nextQuestionFound = true;
           break;
         }
       }
+      if (!nextQuestionFound) {
+        console.log('[quiz] No next unanswered question found');
+      }
     } else {
+      console.log('[quiz] Processing incorrect answer');
       // Incorrect answer: show feedback, keep inputs enabled, allow changing selection
       if (feedbackItem) {
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
+        console.log('[quiz] Added show and incorrect classes to feedback');
       }
       
       // Keep inputs enabled so user can change selection
       // Keep check button enabled
+      console.log('[quiz] Keeping inputs and check button enabled');
       
       // Add listener to hide feedback when selection changes
-      inputs.forEach((input) => {
+      inputs.forEach((input, inputIndex) => {
         const radioInput = input as HTMLInputElement;
         
         // Remove old change listener if exists
@@ -327,6 +366,7 @@
         
         // Add new listener to hide feedback when selection changes
         const newFeedbackListener = () => {
+          console.log(`[quiz] Input ${inputIndex + 1} changed after incorrect answer, hiding feedback`);
           // Hide all feedback items
           allFeedbackItems.forEach((item) => {
             item.classList.remove('knowledge-quiz-question__feedback-item--show');
@@ -336,11 +376,14 @@
           
           // Ensure check button is enabled
           checkButton.disabled = false;
+          console.log('[quiz] Feedback hidden, check button enabled');
         };
         (radioInput as any)._quizFeedbackListener = newFeedbackListener;
         radioInput.addEventListener('change', newFeedbackListener);
+        console.log(`[quiz] Added feedback listener to input ${inputIndex + 1}`);
       });
     }
+    console.log('[quiz] handleQuizCheck completed');
   }
   
   function handleClick(e: MouseEvent) {
