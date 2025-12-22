@@ -329,8 +329,8 @@
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
         // Set inline style to ensure visibility (override all CSS rules)
-        // Use 'block' instead of 'list-item' as it works better
-        (feedbackItem as HTMLElement).style.setProperty('display', 'block', 'important');
+        // Use 'list-item' to preserve list styling (bullet points, etc.)
+        (feedbackItem as HTMLElement).style.setProperty('display', 'list-item', 'important');
         console.log('[quiz] Added show and correct classes to feedback, set inline display style');
         
         // Make feedback container visible (should already be visible after removing --unanswered, but ensure it)
@@ -380,8 +380,8 @@
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
         // Set inline style to ensure visibility (override all CSS rules)
-        // Use 'block' instead of 'list-item' as it works better
-        (feedbackItem as HTMLElement).style.setProperty('display', 'block', 'important');
+        // Use 'list-item' to preserve list styling (bullet points, etc.)
+        (feedbackItem as HTMLElement).style.setProperty('display', 'list-item', 'important');
         console.log('[quiz] Added show and incorrect classes to feedback, set inline display style');
         
         // Make feedback container visible (override --unanswered rule)
