@@ -184,13 +184,18 @@
         question.classList.add('knowledge-quiz-question--unanswered');
       }
       
-      // Hide all questions except the first one
-      if (index > 0) {
+      // Hide all questions except the first unanswered one
+      // Only hide if question is not answered yet
+      const isAnswered = question.classList.contains('knowledge-quiz-question--answered');
+      const isUnanswered = question.classList.contains('knowledge-quiz-question--unanswered');
+      
+      if (index > 0 && !isAnswered) {
+        // Hide unanswered questions after the first one
         question.classList.add('knowledge-quiz-question--hidden');
         // Also set inline style as fallback
         question.style.display = 'none';
-      } else {
-        // Ensure first question is visible
+      } else if (index === 0 || isUnanswered) {
+        // Show first question or any unanswered question that should be visible
         question.classList.remove('knowledge-quiz-question--hidden');
         question.style.display = '';
       }
@@ -363,6 +368,10 @@
       question.classList.remove('knowledge-quiz-question--unanswered');
       question.classList.add('knowledge-quiz-question--answered');
       console.log('[quiz] Marked question as answered');
+      console.log('[quiz] Question classes after marking:', {
+        unanswered: question.classList.contains('knowledge-quiz-question--unanswered'),
+        answered: question.classList.contains('knowledge-quiz-question--answered')
+      });
       
       // Show next unanswered question
       if (!contentDiv) {
