@@ -133,7 +133,9 @@ From the root directory:
   - Interactive quiz rendering with radio buttons and feedback
   - Full Markdown parsing for question text, choice text, and feedback
   - Support for `{:class="..."}` attributes on inline code (Scratch block styling)
-  - Exact API structure matching (form containers, 1-based IDs/values, checked attributes)
+  - Exact API structure matching (form containers, 1-based IDs/values)
+  - Progressive disclosure: Only first unanswered question shown initially
+  - No pre-selected answers (better UX than original API)
   - "Check my answer" button functionality
   - Comprehensive test suite (46+ tests) including API comparison tests
 

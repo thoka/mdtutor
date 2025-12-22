@@ -139,6 +139,14 @@ div.scratch-preview iframe,
   left: auto !important;
 }
 
+/* Hide quiz questions that are not yet active (progressive disclosure) */
+/* Use higher specificity to override any computed.css rules */
+form.knowledge-quiz-question.knowledge-quiz-question--hidden,
+.knowledge-quiz-question.knowledge-quiz-question--hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 /* Quiz feedback is handled by CSS in computed.css */
 /* The --unanswered class hides feedback, and --show class on feedback-item shows it */
 

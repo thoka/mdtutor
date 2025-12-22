@@ -138,19 +138,35 @@
         highlightCode();
         renderScratchBlocks();
         initializeQuiz();
-      }, 0);
+      }, 10); // Small delay to ensure DOM is fully rendered
     }
   });
   
   function initializeQuiz() {
     if (!contentDiv) return;
     
-    // Find all quiz questions
-    const quizQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
+    // Find all quiz questions (forms with knowledge-quiz-question class)
+    const quizQuestions = Array.from(contentDiv.querySelectorAll('form.knowledge-quiz-question')) as HTMLElement[];
     
+    if (quizQuestions.length === 0) {
+      return; // No quiz questions found
+    }
+    
+    // Hide all questions initially, show only the first unanswered one
     quizQuestions.forEach((question, index) => {
       // Mark as unanswered initially
       question.classList.add('knowledge-quiz-question--unanswered');
+      
+      // Hide all questions except the first one
+      if (index > 0) {
+        question.classList.add('knowledge-quiz-question--hidden');
+        // Also set inline style as fallback
+        question.style.display = 'none';
+      } else {
+        // Ensure first question is visible
+        question.classList.remove('knowledge-quiz-question--hidden');
+        question.style.display = '';
+      }
       
       const inputs = question.querySelectorAll('input[type="radio"]');
       const feedbacks = question.querySelectorAll('.knowledge-quiz-question__feedback');
@@ -256,9 +272,9 @@
     if (feedbackItem) {
       feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
       
-      // Add correct/incorrect styling based on checked attribute (original API)
-      // In original API, correct answer has checked attribute
-      const isCorrect = selectedInput.hasAttribute('checked');
+      // Add correct/incorrect styling based on data-correct attribute
+      // We use data-correct to identify correct answers (no checked attribute by default)
+      const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
       if (isCorrect) {
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
       } else {
@@ -269,6 +285,21 @@
     // Mark question as answered (remove unanswered class)
     question.classList.remove('knowledge-quiz-question--unanswered');
     question.classList.add('knowledge-quiz-question--answered');
+    
+    // Show next unanswered question
+    if (!contentDiv) return;
+    const allQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
+    const currentIndex = Array.from(allQuestions).indexOf(question);
+    
+    // Find next unanswered question
+    for (let i = currentIndex + 1; i < allQuestions.length; i++) {
+      const nextQuestion = allQuestions[i] as HTMLElement;
+      if (nextQuestion.classList.contains('knowledge-quiz-question--unanswered')) {
+        nextQuestion.classList.remove('knowledge-quiz-question--hidden');
+        nextQuestion.style.display = ''; // Remove inline style
+        break;
+      }
+    }
   }
   
   function handleClick(e: MouseEvent) {

@@ -199,7 +199,8 @@ For each question file:
 4. **Generate HTML structure**
    - Use exact API structure: `<form class="knowledge-quiz-question">`
    - Radio buttons: `name="answer"`, `id="choice-X"`, `value="X"` (1-based)
-   - Correct answer: `checked` attribute
+   - **No `checked` attribute** - User must select an answer (quiz would be meaningless if pre-selected)
+   - `data-correct="true/false"` attribute - Identifies correct answers for the renderer
    - Button: `name="Submit"`, `value="submit"`
    - Feedback: Direct `<ul>` with `<li>` items, IDs `feedback-for-choice-X`
    - All choice and feedback text is fully parsed Markdown (HTML)
@@ -221,7 +222,8 @@ The generated HTML structure **exactly matches** the original Quiz API structure
 - `name="answer"` - All radio buttons in a question share the same name
 - `id="choice-1"`, `id="choice-2"`, etc. - Sequential IDs (1-based)
 - `value="1"`, `value="2"`, etc. - Sequential values (1-based)
-- `checked` attribute - Present on the correct answer
+- `data-correct="true"` or `data-correct="false"` - Identifies correct/incorrect answers for the renderer
+- **No `checked` attribute by default** - User must select an answer (quiz would be meaningless if correct answer is pre-selected)
 
 ### Button
 - `<input type="button" name="Submit" value="submit" />` - Submit button
@@ -355,7 +357,9 @@ How could you fix the problem?
 2. **HTML Generation:**
    - **Exact API structure**: Generates HTML that exactly matches the original Quiz API
    - Container: `<form class="knowledge-quiz-question">`
-   - Radio buttons: `name="answer"`, `id="choice-X"`, `value="X"` (1-based), `checked` attribute for correct answer
+   - Radio buttons: `name="answer"`, `id="choice-X"`, `value="X"` (1-based)
+   - **No `checked` attribute** - User must select an answer (better UX than original API)
+   - `data-correct="true/false"` attribute - Identifies correct answers for the renderer
    - Button: `name="Submit"`, `value="submit"`
    - Feedback: Direct `<ul>` with `<li>` items, IDs `feedback-for-choice-X`
    - All text content is fully parsed Markdown (HTML)
@@ -370,6 +374,9 @@ How could you fix the problem?
    - Check button functionality (supports both `value="submit"` and `value="Check my answer"`)
    - Answer disabling after check
    - Feedback lookup: Supports both API structures (ID-based and data-answer-based)
+   - **Progressive Disclosure**: Only the first unanswered question is shown initially
+   - After submitting an answer, the next unanswered question is automatically revealed
+   - Uses `knowledge-quiz-question--hidden` class and inline styles to hide inactive questions
 
 5. **Testing:**
    - Comprehensive test suite (46+ tests)

@@ -86,19 +86,18 @@ async function generateQuizHtml(questions, options = {}) {
     // Answers container
     html += '    <div class="knowledge-quiz-question__answers">\n';
     
-    // Find correct answer index (1-based for API structure)
-    const correctIndex = question.choices.findIndex(c => c.correct);
-    
     for (let j = 0; j < question.choices.length; j++) {
       const choice = question.choices[j];
       // Use 1-based IDs and values like original API
       const choiceNum = j + 1;
       const answerId = `choice-${choiceNum}`;
-      const isChecked = j === correctIndex;
+      // No checked attribute - user must select an answer
+      // Add data-correct attribute to identify correct answers for the renderer
 
       html += '    <div class="knowledge-quiz-question__answer">\n';
-      // Use generic "answer" name and 1-based value, add checked attribute for correct answer
-      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}"${isChecked ? ' checked' : ''} />\n`;
+      // Use generic "answer" name and 1-based value, no checked attribute
+      // Add data-correct attribute to identify correct answers for the renderer
+      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}" data-correct="${choice.correct}" />\n`;
       html += `      <label for="${answerId}">\n`;
       // Parse choice text (markdown) to HTML
       const choiceHtml = await parseFeedback(choice.text, options);
@@ -128,7 +127,7 @@ async function generateQuizHtml(questions, options = {}) {
     
     html += '  </ul>\n';
     
-    // Add submit button like original API
+    // Add submit button for each question (like original API)
     html += '  <input type="button" name="Submit" value="submit" />\n';
     
     html += '</form>\n\n';
