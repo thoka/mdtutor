@@ -134,7 +134,9 @@
     step;
     if (contentDiv) {
       // Use setTimeout to ensure DOM is updated
+      console.log('[quiz] Setting timeout to initialize quiz');
       setTimeout(() => {
+        console.log('[quiz] Timeout fired, calling initializeQuiz');
         highlightCode();
         renderScratchBlocks();
         initializeQuiz();
@@ -143,17 +145,24 @@
   });
   
   function initializeQuiz() {
-    if (!contentDiv) return;
+    console.log('[quiz] initializeQuiz called');
+    if (!contentDiv) {
+      console.log('[quiz] No contentDiv, returning');
+      return;
+    }
     
     // Find all quiz questions (forms with knowledge-quiz-question class)
     const quizQuestions = Array.from(contentDiv.querySelectorAll('form.knowledge-quiz-question')) as HTMLElement[];
+    console.log(`[quiz] Found ${quizQuestions.length} quiz questions`);
     
     if (quizQuestions.length === 0) {
+      console.log('[quiz] No quiz questions found, returning');
       return; // No quiz questions found
     }
     
     // Hide all questions initially, show only the first unanswered one
     quizQuestions.forEach((question, index) => {
+      console.log(`[quiz] Initializing question ${index + 1}`);
       // Mark as unanswered initially
       question.classList.add('knowledge-quiz-question--unanswered');
       
@@ -172,6 +181,8 @@
       const feedbacks = question.querySelectorAll('.knowledge-quiz-question__feedback');
       const checkButton = question.querySelector('input[type="button"]') as HTMLInputElement;
       
+      console.log(`[quiz] Question ${index + 1}: ${inputs.length} inputs, ${feedbacks.length} feedback containers, checkButton:`, checkButton ? 'found' : 'not found');
+      
       // Hide all feedback items initially (CSS handles this via --unanswered class)
       const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
       allFeedbackItems.forEach((item) => {
@@ -181,10 +192,11 @@
       // Initially disable check button
       if (checkButton) {
         checkButton.disabled = true;
+        console.log(`[quiz] Question ${index + 1}: Check button disabled initially`);
       }
       
       // Add change listeners to radio inputs (allow changing selection)
-      inputs.forEach((input) => {
+      inputs.forEach((input, inputIndex) => {
         const radioInput = input as HTMLInputElement;
         
         // Remove old listener if exists
@@ -195,21 +207,28 @@
         
         // Add new listener - just enable check button, don't show feedback yet
         const newListener = () => {
+          console.log(`[quiz] Question ${index + 1}, Input ${inputIndex + 1}: Selection changed`);
           // Enable check button when an answer is selected
           // Support both button values: "Check my answer" (ours) and "submit" (original API)
           if (checkButton) {
             checkButton.disabled = false;
+            console.log(`[quiz] Question ${index + 1}: Check button enabled`);
           }
           // Don't disable inputs yet - allow changing selection
           // If feedback is showing (from incorrect answer), hide it
           const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
+          let hiddenCount = 0;
           allFeedbackItems.forEach((item) => {
             if (item.classList.contains('knowledge-quiz-question__feedback-item--show')) {
               item.classList.remove('knowledge-quiz-question__feedback-item--show');
               item.classList.remove('knowledge-quiz-question__feedback-item--correct');
               item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
+              hiddenCount++;
             }
           });
+          if (hiddenCount > 0) {
+            console.log(`[quiz] Question ${index + 1}: Hid ${hiddenCount} feedback items`);
+          }
         };
         (radioInput as any)._quizChangeListener = newListener;
         radioInput.addEventListener('change', newListener);
@@ -223,12 +242,14 @@
         }
         
         const newButtonListener = () => {
+          console.log(`[quiz] Question ${index + 1}: Check button clicked`);
           handleQuizCheck(question, inputs, feedbacks, checkButton);
         };
         (checkButton as any)._quizButtonListener = newButtonListener;
         checkButton.addEventListener('click', newButtonListener);
       }
     });
+    console.log('[quiz] initializeQuiz completed');
   }
   
   function handleQuizCheck(question: Element, inputs: NodeListOf<Element>, feedbacks: NodeListOf<Element>, checkButton: HTMLInputElement) {
