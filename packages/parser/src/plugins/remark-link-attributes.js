@@ -45,8 +45,16 @@ export default function remarkLinkAttributes() {
       const nextNode = parent.children[index + 1];
       if (!nextNode || nextNode.type !== 'text') return;
       
+      // Only process if the text node starts with attribute syntax
+      // Must start with { and contain at least one valid attribute pattern
       const attrMatch = nextNode.value.match(/^\{([^}]+)\}/);
       if (!attrMatch) return;
+      
+      // Verify that the attribute block contains valid attribute syntax
+      // (either :key="value" or .class)
+      const attrText = attrMatch[1];
+      const hasValidAttr = /:([a-z_-]+)="([^"]*)"/.test(attrText) || /\.([a-z0-9_-]+)/i.test(attrText);
+      if (!hasValidAttr) return;
       
       // Process links, images, and code blocks
       if (node.type !== 'link' && node.type !== 'image' && node.type !== 'inlineCode' && node.type !== 'code') {

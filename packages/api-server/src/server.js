@@ -44,6 +44,22 @@ async function getProjectData(slug, requestedLang) {
       if (existsSync(repoPath) && existsSync(join(repoPath, 'meta.yml'))) {
         const parsed = await parseProject(repoPath, { languages: [lang] });
         if (parsed && parsed.data) {
+          // Convert relative image URLs to absolute URLs pointing to Vite's static file server
+          // Images are served from /snapshots/:slug/repo/:lang/images/...
+          const imageUrlPattern = /src="(images\/[^"]+)"/g;
+          
+          // Replace image URLs in all step content
+          if (parsed.data.attributes?.content?.steps) {
+            parsed.data.attributes.content.steps.forEach(step => {
+              if (step.content) {
+                step.content = step.content.replace(imageUrlPattern, (match, imagePath) => {
+                  const absoluteUrl = `/snapshots/${slug}/repo/${lang}/${imagePath}`;
+                  return `src="${absoluteUrl}"`;
+                });
+              }
+            });
+          }
+          
           return parsed;
         }
       }

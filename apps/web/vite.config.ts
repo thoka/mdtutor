@@ -12,5 +12,9 @@ export default defineConfig({
         changeOrigin: true,
       }
     }
-  }
+  },
+  // Vite automatically serves files from the 'public' directory
+  // A symlink at public/snapshots -> ../../../test/snapshots allows
+  // images to be served from /snapshots/:slug/repo/:lang/images/...
+  // In production, nginx/caddy will serve these files directly
 })
