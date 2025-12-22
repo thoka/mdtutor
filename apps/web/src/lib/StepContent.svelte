@@ -365,10 +365,13 @@
       }
       
       // Mark question as answered (remove unanswered class)
-      question.classList.remove('knowledge-quiz-question--unanswered');
-      question.classList.add('knowledge-quiz-question--answered');
+      // Use setAttribute to ensure the class is persisted
+      const currentClasses = question.className.split(' ').filter(c => c && c !== 'knowledge-quiz-question--unanswered');
+      currentClasses.push('knowledge-quiz-question--answered');
+      question.className = currentClasses.join(' ');
       console.log('[quiz] Marked question as answered');
       console.log('[quiz] Question classes after marking:', {
+        className: question.className,
         unanswered: question.classList.contains('knowledge-quiz-question--unanswered'),
         answered: question.classList.contains('knowledge-quiz-question--answered')
       });
@@ -390,13 +393,17 @@
         const isAnswered = nextQuestion.classList.contains('knowledge-quiz-question--answered');
         const isHidden = nextQuestion.classList.contains('knowledge-quiz-question--hidden');
         console.log(`[quiz] Question ${i}: unanswered=${isUnanswered}, answered=${isAnswered}, hidden=${isHidden}`);
-        // Show next question if it's unanswered (not answered yet)
-        // Also handle case where question has neither class (should be treated as unanswered)
-        if ((isUnanswered || (!isAnswered && !isUnanswered)) && !isAnswered) {
+        // Show next question if it's not answered yet
+        // If it has neither class, treat it as unanswered
+        if (!isAnswered) {
           // Ensure it has unanswered class if it doesn't have answered class
-          if (!isUnanswered && !isAnswered) {
-            nextQuestion.classList.add('knowledge-quiz-question--unanswered');
-            console.log(`[quiz] Added --unanswered class to question ${i}`);
+          if (!isUnanswered) {
+            const currentClasses = nextQuestion.className.split(' ').filter(c => c);
+            if (!currentClasses.includes('knowledge-quiz-question--unanswered')) {
+              currentClasses.push('knowledge-quiz-question--unanswered');
+              nextQuestion.className = currentClasses.join(' ');
+              console.log(`[quiz] Added --unanswered class to question ${i}`);
+            }
           }
           nextQuestion.classList.remove('knowledge-quiz-question--hidden');
           nextQuestion.style.removeProperty('display'); // Remove inline style
