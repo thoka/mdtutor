@@ -391,9 +391,15 @@
         const isHidden = nextQuestion.classList.contains('knowledge-quiz-question--hidden');
         console.log(`[quiz] Question ${i}: unanswered=${isUnanswered}, answered=${isAnswered}, hidden=${isHidden}`);
         // Show next question if it's unanswered (not answered yet)
-        if (isUnanswered && !isAnswered) {
+        // Also handle case where question has neither class (should be treated as unanswered)
+        if ((isUnanswered || (!isAnswered && !isUnanswered)) && !isAnswered) {
+          // Ensure it has unanswered class if it doesn't have answered class
+          if (!isUnanswered && !isAnswered) {
+            nextQuestion.classList.add('knowledge-quiz-question--unanswered');
+            console.log(`[quiz] Added --unanswered class to question ${i}`);
+          }
           nextQuestion.classList.remove('knowledge-quiz-question--hidden');
-          nextQuestion.style.display = ''; // Remove inline style
+          nextQuestion.style.removeProperty('display'); // Remove inline style
           console.log(`[quiz] Revealed next question at index ${i}`);
           nextQuestionFound = true;
           break;
