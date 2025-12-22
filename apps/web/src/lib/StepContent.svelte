@@ -329,6 +329,13 @@
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
         console.log('[quiz] Added show and correct classes to feedback');
+        
+        // Make feedback container visible (should already be visible after removing --unanswered, but ensure it)
+        const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
+        if (feedbackContainer) {
+          (feedbackContainer as HTMLElement).style.display = 'block';
+          console.log('[quiz] Made feedback container visible via inline style');
+        }
       }
       
       // Mark question as answered (remove unanswered class)
@@ -370,6 +377,16 @@
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
         console.log('[quiz] Added show and incorrect classes to feedback');
+        
+        // Make feedback container visible (override --unanswered rule)
+        // The container is a <ul> with class "knowledge-quiz-question__feedback"
+        const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
+        if (feedbackContainer) {
+          (feedbackContainer as HTMLElement).style.display = 'block';
+          console.log('[quiz] Made feedback container visible via inline style');
+        } else {
+          console.log('[quiz] WARNING: Feedback container not found!');
+        }
       }
       
       // Keep inputs enabled so user can change selection
@@ -395,6 +412,13 @@
             item.classList.remove('knowledge-quiz-question__feedback-item--correct');
             item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
           });
+          
+          // Hide feedback container again (since question is still --unanswered)
+          const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
+          if (feedbackContainer) {
+            (feedbackContainer as HTMLElement).style.display = '';
+            console.log('[quiz] Hid feedback container again');
+          }
           
           // Ensure check button is enabled
           checkButton.disabled = false;
