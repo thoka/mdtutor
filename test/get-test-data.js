@@ -47,6 +47,25 @@ function extractIngredientsFromProject(projectData) {
 }
 
 /**
+ * Extract unique quiz paths from project API data
+ */
+function extractQuizzesFromProject(projectData) {
+  const quizzes = new Set();
+  
+  if (!projectData?.data?.attributes?.content?.steps) {
+    return quizzes;
+  }
+  
+  projectData.data.attributes.content.steps.forEach(step => {
+    if (step.knowledgeQuiz && typeof step.knowledgeQuiz === 'string') {
+      quizzes.add(step.knowledgeQuiz);
+    }
+  });
+  
+  return Array.from(quizzes);
+}
+
+/**
  * Fetch tutorial from GitHub
  */
 async function cloneRepository(tutorialSlug) {
@@ -210,6 +229,50 @@ async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
 }
 
 /**
+ * Fetch Quiz API response
+ * @param {string} quizPath - Quiz path (e.g., "quiz1")
+ * @param {string} tutorialSlug - Tutorial slug
+ * @param {string} language - Language code
+ * @returns {Promise<{path: string, file: string|null, available: boolean}>}
+ */
+async function fetchQuizApi(quizPath, tutorialSlug, language = 'en') {
+  const apiUrl = `${API_BASE}/${language}/projects/${tutorialSlug}/quizzes/${quizPath}`;
+  const targetFile = join(SNAPSHOTS_DIR, tutorialSlug, `api-quiz-${quizPath}-${language}.json`);
+  
+  console.log(`  Fetching Quiz API: ${quizPath} (${language})...`);
+  
+  // Check if already exists
+  if (existsSync(targetFile)) {
+    console.log(`    → Already exists, reading from cache`);
+    try {
+      const data = JSON.parse(readFileSync(targetFile, 'utf-8'));
+      return { path: quizPath, file: targetFile, available: true, data };
+    } catch (error) {
+      console.warn(`    ⚠ Cache read failed, re-fetching: ${error.message}`);
+    }
+  }
+  
+  try {
+    const response = await fetch(apiUrl);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    
+    const data = await response.json();
+    
+    mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
+    writeFileSync(targetFile, JSON.stringify(data, null, 2));
+    
+    console.log(`    ✓ Saved`);
+    return { path: quizPath, file: targetFile, available: true, data };
+  } catch (error) {
+    console.warn(`    ⚠ Failed (optional): ${error.message}`);
+    return { path: quizPath, file: null, available: false, data: null };
+  }
+}
+
+/**
  * Create snapshot metadata with all API paths and pathway info
  */
 function createSnapshotMetadata(tutorialSlug, repoPath, apiPaths, pathwayInfo) {
@@ -275,10 +338,13 @@ async function runMetaTest() {
       
       hasRequiredData = true;
       
-      // Extract pathways from project data (only once from first language)
+      // Extract pathways and quizzes from project data (only once from first language)
       if (language === LANGUAGES[0]) {
         pathways = extractPathwaysFromProject(projectResult.data);
       }
+      
+      // Extract quizzes from project data
+      const quizzes = extractQuizzesFromProject(projectResult.data);
       
       // Optional: Progress API
       const progressPath = await fetchProgressApi(tutorial, language);
@@ -303,11 +369,21 @@ async function runMetaTest() {
         }
       }
       
+      // Optional: Quiz API (for each quiz from project data)
+      const quizFiles = {};
+      for (const quizPath of quizzes) {
+        const quizResult = await fetchQuizApi(quizPath, tutorial, language);
+        if (quizResult.file) {
+          quizFiles[quizPath] = quizResult.file;
+        }
+      }
+      
       // Store paths for this language
       apiPaths[language] = {
         project: projectResult.file,
         progress: progressPath,
-        pathways: pathwayFiles
+        pathways: pathwayFiles,
+        quizzes: quizFiles
       };
     }
     

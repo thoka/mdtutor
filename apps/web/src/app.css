@@ -127,6 +127,39 @@ div.scratch-preview iframe,
   visibility: visible !important;
 }
 
+/* Quiz feedback visibility - ensure feedback items are shown when --show class is added */
+/* The computed.css has two rules that hide feedback:
+ * 1. .knowledge-quiz-question__feedback-item { display: none; } - hides all items by default (line 1721)
+ * 2. .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback { display: none; } - hides container (line 1720)
+ */
+/* Override both with higher specificity and !important */
+/* Use multiple selectors to ensure we override the base rule */
+/* Note: The class name uses double dash: --show (BEM notation) */
+.knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question .knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback-item--show,
+li.knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question__feedback-item.knowledge-quiz-question__feedback-item--show {
+  display: list-item !important;
+  visibility: visible !important;
+}
+
+/* Ensure correct/incorrect symbols are applied correctly */
+/* The --correct class should override the default incorrect symbol */
+.knowledge-quiz-question__feedback-item--show.knowledge-quiz-question__feedback-item--correct,
+.knowledge-quiz-question__feedback-item.knowledge-quiz-question__feedback-item--show.knowledge-quiz-question__feedback-item--correct {
+  list-style-image: url("data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='15'%20cy='15'%20r='15'%20fill='%2342B961'/%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='3'/%3e%3c/svg%3e") !important;
+}
+
+/* Ensure feedback container (<ul>) is visible when feedback is shown (even if question is still marked unanswered) */
+/* The feedback container is a <ul> with class "knowledge-quiz-question__feedback" */
+/* Use higher specificity to override the .knowledge-quiz-question--unanswered rule */
+.knowledge-quiz-question--unanswered ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
+ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
+.knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show) {
+  display: block !important;
+}
+
 /* Nuclear option: override ALL iframe rules in content areas */
 /* Note: Don't override width/height so iframe attributes are respected */
 .c-project__content iframe,
@@ -138,3 +171,19 @@ div.scratch-preview iframe,
   top: auto !important;
   left: auto !important;
 }
+
+/* Hide quiz questions that are not yet active (progressive disclosure) */
+/* Use higher specificity to override any computed.css rules */
+form.knowledge-quiz-question.knowledge-quiz-question--hidden,
+.knowledge-quiz-question.knowledge-quiz-question--hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Quiz feedback is handled by CSS in computed.css */
+/* The --unanswered class hides feedback, and --show class on feedback-item shows it */
+
+/* Quiz check button styling - matches computed.css */
+/* The button styles are already in computed.css for .knowledge-quiz input[type="button"] */
+/* We just need to ensure the button is inside a .knowledge-quiz container */
+/* The parser already generates the button inside .knowledge-quiz-question, so we need to add .knowledge-quiz class */

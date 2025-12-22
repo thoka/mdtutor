@@ -1,6 +1,7 @@
 /**
  * Remark plugin to parse link attributes
  * Converts [text](url){:attr="value"} to links/images with attributes
+ * Also handles code blocks with {:class="..."} syntax
  */
 
 import { visit } from 'unist-util-visit';
@@ -33,7 +34,7 @@ function parseAttributes(text) {
 }
 
 /**
- * Apply attributes to links and images
+ * Apply attributes to links, images, and code blocks
  */
 export default function remarkLinkAttributes() {
   return (tree) => {
@@ -47,8 +48,10 @@ export default function remarkLinkAttributes() {
       const attrMatch = nextNode.value.match(/^\{([^}]+)\}/);
       if (!attrMatch) return;
       
-      // Only process links and images
-      if (node.type !== 'link' && node.type !== 'image') return;
+      // Process links, images, and code blocks
+      if (node.type !== 'link' && node.type !== 'image' && node.type !== 'inlineCode' && node.type !== 'code') {
+        return;
+      }
       
       // Parse attributes
       const attrs = parseAttributes(attrMatch[1]);
@@ -56,6 +59,15 @@ export default function remarkLinkAttributes() {
       // Apply attributes to node
       node.data = node.data || {};
       node.data.hProperties = node.data.hProperties || {};
+      
+      // For className, merge with existing classes
+      if (attrs.className) {
+        const existingClasses = node.data.hProperties.className || [];
+        const existingArray = Array.isArray(existingClasses) ? existingClasses : [existingClasses];
+        node.data.hProperties.className = [...existingArray, attrs.className].filter(Boolean);
+        delete attrs.className;
+      }
+      
       Object.assign(node.data.hProperties, attrs);
       
       // Remove attribute text from next node

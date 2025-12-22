@@ -129,6 +129,18 @@ From the root directory:
 - Code block processing (Scratch, Python, etc.)
 - Task and ingredient panel extraction
 - Language class propagation from `<code>` to `<pre>` tags
+- Knowledge quiz parsing from separate quiz directories
+  - Interactive quiz rendering with radio buttons and feedback
+  - Full Markdown parsing for question text, choice text, and feedback
+  - Support for `{:class="..."}` attributes on inline code (Scratch block styling)
+  - Exact API structure matching (form containers, 1-based IDs/values)
+  - Progressive disclosure: Only first unanswered question shown initially
+  - No pre-selected answers (better UX than original API)
+  - Correct answer: Shows green checkmark, disables inputs, reveals next question
+  - Incorrect answer: Shows red X, allows retry, hides feedback on selection change
+  - State persistence via className manipulation across Svelte re-renders
+  - "Check my answer" button functionality
+  - Comprehensive test suite (46+ tests) including API comparison tests
 
 ### API Server
 - Express server serving cached tutorial data

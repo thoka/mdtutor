@@ -3,9 +3,10 @@
  */
 
 import { readdirSync, readFileSync, existsSync } from 'fs';
-import { join } from 'path';
+import { join, dirname } from 'path';
 import { parseMeta } from './utils/parse-meta.js';
 import { parseTutorial } from './parse-tutorial.js';
+import { parseQuiz } from './parse-quiz.js';
 
 /**
  * Parse complete project directory
@@ -58,11 +59,31 @@ export async function parseProject(projectPath, options = {}) {
       const file = `step_${index + 1}.md`;
       const filePath = join(actualPath, file);
       const markdown = readFileSync(filePath, 'utf-8');
-      const content = await parseTutorial(markdown, {
+      let content = await parseTutorial(markdown, {
         basePath,
         transclusionCache,
         languages: preferredLanguages
       });
+      
+      // If step has a quiz, parse and embed it
+      let knowledgeQuiz = metaStep.knowledgeQuiz;
+      if (metaStep.quiz && metaStep.knowledgeQuiz) {
+        const quizPath = join(actualPath, metaStep.knowledgeQuiz);
+        try {
+          const quizData = await parseQuiz(quizPath, {
+            basePath,
+            transclusionCache,
+            languages: preferredLanguages
+          });
+          // Embed quiz HTML into step content
+          // Find where to insert (usually after the main content)
+          // For now, append at the end
+          content += '\n' + quizData.html;
+        } catch (error) {
+          console.warn(`Failed to parse quiz at ${quizPath}:`, error.message);
+          // Continue without quiz
+        }
+      }
       
       return {
         title: metaStep.title || extractTitle(markdown),
@@ -72,7 +93,7 @@ export async function parseProject(projectPath, options = {}) {
         challenge: false, // TODO: Detect from content
         completion: metaStep.completion || [],
         ingredients: metaStep.ingredients || [],
-        knowledgeQuiz: metaStep.knowledgeQuiz || {}
+        knowledgeQuiz: knowledgeQuiz || null
       };
     })
   );
