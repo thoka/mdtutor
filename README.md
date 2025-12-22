@@ -136,6 +136,9 @@ From the root directory:
   - Exact API structure matching (form containers, 1-based IDs/values)
   - Progressive disclosure: Only first unanswered question shown initially
   - No pre-selected answers (better UX than original API)
+  - Correct answer: Shows green checkmark, disables inputs, reveals next question
+  - Incorrect answer: Shows red X, allows retry, hides feedback on selection change
+  - State persistence via className manipulation across Svelte re-renders
   - "Check my answer" button functionality
   - Comprehensive test suite (46+ tests) including API comparison tests
 

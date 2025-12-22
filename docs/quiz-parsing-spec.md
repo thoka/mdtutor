@@ -225,6 +225,16 @@ The generated HTML structure **exactly matches** the original Quiz API structure
 - `data-correct="true"` or `data-correct="false"` - Identifies correct/incorrect answers for the renderer
 - **No `checked` attribute by default** - User must select an answer (quiz would be meaningless if correct answer is pre-selected)
 
+### Feedback Display
+- Feedback items use `list-style-image` for visual indicators (SVG icons)
+- **Correct answer**: Green circle with white checkmark (`#42B961`)
+- **Incorrect answer**: Red circle with white X (`#CB0C49`)
+- Feedback visibility controlled via:
+  - `knowledge-quiz-question__feedback-item--show` class
+  - Inline `display: list-item !important` style
+  - Feedback container visibility via inline `display: block !important` style
+- Classes are managed via `className` manipulation to persist across Svelte re-renders
+
 ### Button
 - `<input type="button" name="Submit" value="submit" />` - Submit button
 
@@ -351,15 +361,18 @@ How could you fix the problem?
 3. **Submitting Answer:**
    - User clicks "Check my answer" / "submit" button
    - **If correct:**
-     - Feedback is shown with correct styling (green checkmark)
+     - Feedback is shown with correct styling (green checkmark symbol)
      - All inputs are disabled
-     - Question is marked as answered
+     - Check button is disabled
+     - Question is marked as answered (removes `--unanswered`, adds `--answered` class)
      - Next unanswered question is automatically revealed
+     - Feedback container and item are made visible via inline styles with `!important`
    - **If incorrect:**
-     - Feedback is shown with incorrect styling (red X)
+     - Feedback is shown with incorrect styling (red X symbol)
      - Inputs remain enabled (user can change selection)
      - Check button remains enabled
      - If user changes selection, feedback is hidden again
+     - Feedback container visibility is managed via inline styles
 
 4. **Progressive Disclosure:**
    - Questions are revealed one at a time
@@ -405,13 +418,26 @@ How could you fix the problem?
    - Radio button selection and feedback display
    - Check button functionality (supports both `value="submit"` and `value="Check my answer"`)
    - **Answer handling logic:**
-     - **Correct answer**: Disable inputs, show feedback, mark question as answered, show next question
-     - **Incorrect answer**: Show feedback, keep inputs enabled, allow changing selection
-     - **Selection change after incorrect answer**: Hide feedback, enable check button again
+     - **Correct answer**: 
+       - Disable inputs and check button
+       - Show feedback with green checkmark symbol
+       - Mark question as answered (remove `--unanswered`, add `--answered`)
+       - Automatically reveal next unanswered question
+     - **Incorrect answer**: 
+       - Show feedback with red X symbol
+       - Keep inputs and check button enabled
+       - Allow changing selection
+       - Hide feedback when selection changes
+   - **Feedback display:**
+     - Uses inline `display: list-item !important` style to ensure visibility
+     - Uses `className` manipulation to persist classes across Svelte re-renders
+     - CSS rules ensure correct/incorrect symbols are displayed correctly
+     - Feedback container visibility handled via inline styles
    - Feedback lookup: Supports both API structures (ID-based and data-answer-based)
    - **Progressive Disclosure**: Only the first unanswered question is shown initially
    - After submitting a correct answer, the next unanswered question is automatically revealed
    - Uses `knowledge-quiz-question--hidden` class and inline styles to hide inactive questions
+   - **State persistence**: Uses `className` manipulation instead of `classList` to ensure classes persist across Svelte re-renders
 
 5. **Testing:**
    - Comprehensive test suite (46+ tests)
