@@ -328,12 +328,15 @@
       if (feedbackItem) {
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
-        console.log('[quiz] Added show and correct classes to feedback');
+        // Set inline style to ensure visibility (override all CSS rules)
+        // Use 'block' instead of 'list-item' as it works better
+        (feedbackItem as HTMLElement).style.setProperty('display', 'block', 'important');
+        console.log('[quiz] Added show and correct classes to feedback, set inline display style');
         
         // Make feedback container visible (should already be visible after removing --unanswered, but ensure it)
         const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
         if (feedbackContainer) {
-          (feedbackContainer as HTMLElement).style.display = 'block';
+          (feedbackContainer as HTMLElement).style.setProperty('display', 'block', 'important');
           console.log('[quiz] Made feedback container visible via inline style');
         }
       }
@@ -376,13 +379,16 @@
       if (feedbackItem) {
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
-        console.log('[quiz] Added show and incorrect classes to feedback');
+        // Set inline style to ensure visibility (override all CSS rules)
+        // Use 'block' instead of 'list-item' as it works better
+        (feedbackItem as HTMLElement).style.setProperty('display', 'block', 'important');
+        console.log('[quiz] Added show and incorrect classes to feedback, set inline display style');
         
         // Make feedback container visible (override --unanswered rule)
         // The container is a <ul> with class "knowledge-quiz-question__feedback"
         const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
         if (feedbackContainer) {
-          (feedbackContainer as HTMLElement).style.display = 'block';
+          (feedbackContainer as HTMLElement).style.setProperty('display', 'block', 'important');
           console.log('[quiz] Made feedback container visible via inline style');
         } else {
           console.log('[quiz] WARNING: Feedback container not found!');
@@ -411,12 +417,14 @@
             item.classList.remove('knowledge-quiz-question__feedback-item--show');
             item.classList.remove('knowledge-quiz-question__feedback-item--correct');
             item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
+            // Remove inline display style
+            (item as HTMLElement).style.removeProperty('display');
           });
           
           // Hide feedback container again (since question is still --unanswered)
           const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
           if (feedbackContainer) {
-            (feedbackContainer as HTMLElement).style.display = '';
+            (feedbackContainer as HTMLElement).style.removeProperty('display');
             console.log('[quiz] Hid feedback container again');
           }
           
