@@ -128,17 +128,28 @@ div.scratch-preview iframe,
 }
 
 /* Quiz feedback visibility - ensure feedback items are shown when --show class is added */
-/* The computed.css has: .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback { display: none; } */
-/* This hides the entire feedback container (<ul>), so we need to override it when showing feedback */
-.knowledge-quiz-question__feedback-item--show {
+/* The computed.css has two rules that hide feedback:
+ * 1. .knowledge-quiz-question__feedback-item { display: none; } - hides all items by default (line 1721)
+ * 2. .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback { display: none; } - hides container (line 1720)
+ */
+/* Override both with higher specificity and !important */
+/* Use multiple selectors to ensure we override the base rule */
+/* Note: The class name uses double dash: --show (BEM notation) */
+.knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question .knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback-item--show,
+li.knowledge-quiz-question__feedback-item--show,
+.knowledge-quiz-question__feedback-item.knowledge-quiz-question__feedback-item--show {
   display: list-item !important;
+  visibility: visible !important;
 }
 
 /* Ensure feedback container (<ul>) is visible when feedback is shown (even if question is still marked unanswered) */
 /* The feedback container is a <ul> with class "knowledge-quiz-question__feedback" */
 /* Use higher specificity to override the .knowledge-quiz-question--unanswered rule */
 .knowledge-quiz-question--unanswered ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
-ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show) {
+ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
+.knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show) {
   display: block !important;
 }
 
