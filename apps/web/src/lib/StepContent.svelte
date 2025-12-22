@@ -349,12 +349,20 @@
       console.log('[quiz] Disabled all inputs and check button');
       
       if (feedbackItem) {
-        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
-        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
+        // Use className to ensure classes are set correctly and in the right order
+        const currentClasses = (feedbackItem as HTMLElement).className.split(' ').filter(c => c);
+        // Remove any existing state classes
+        const stateClasses = ['knowledge-quiz-question__feedback-item--show', 'knowledge-quiz-question__feedback-item--correct', 'knowledge-quiz-question__feedback-item--incorrect'];
+        const filteredClasses = currentClasses.filter(c => !stateClasses.includes(c));
+        // Add show and correct classes
+        filteredClasses.push('knowledge-quiz-question__feedback-item--show');
+        filteredClasses.push('knowledge-quiz-question__feedback-item--correct');
+        (feedbackItem as HTMLElement).className = filteredClasses.join(' ');
         // Set inline style to ensure visibility (override all CSS rules)
         // Use 'list-item' to preserve list styling (bullet points, etc.)
         (feedbackItem as HTMLElement).style.setProperty('display', 'list-item', 'important');
         console.log('[quiz] Added show and correct classes to feedback, set inline display style');
+        console.log('[quiz] Feedback item classes:', (feedbackItem as HTMLElement).className);
         
         // Make feedback container visible (should already be visible after removing --unanswered, but ensure it)
         const feedbackContainer = question.querySelector('ul.knowledge-quiz-question__feedback');
