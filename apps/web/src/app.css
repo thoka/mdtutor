@@ -127,6 +127,21 @@ div.scratch-preview iframe,
   visibility: visible !important;
 }
 
+/* Quiz feedback visibility - ensure feedback items are shown when --show class is added */
+/* The computed.css has: .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback { display: none; } */
+/* This hides the entire feedback container (<ul>), so we need to override it when showing feedback */
+.knowledge-quiz-question__feedback-item--show {
+  display: list-item !important;
+}
+
+/* Ensure feedback container (<ul>) is visible when feedback is shown (even if question is still marked unanswered) */
+/* The feedback container is a <ul> with class "knowledge-quiz-question__feedback" */
+/* Use higher specificity to override the .knowledge-quiz-question--unanswered rule */
+.knowledge-quiz-question--unanswered ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
+ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show) {
+  display: block !important;
+}
+
 /* Nuclear option: override ALL iframe rules in content areas */
 /* Note: Don't override width/height so iframe attributes are respected */
 .c-project__content iframe,
