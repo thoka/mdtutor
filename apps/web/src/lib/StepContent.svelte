@@ -201,6 +201,15 @@
             checkButton.disabled = false;
           }
           // Don't disable inputs yet - allow changing selection
+          // If feedback is showing (from incorrect answer), hide it
+          const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
+          allFeedbackItems.forEach((item) => {
+            if (item.classList.contains('knowledge-quiz-question__feedback-item--show')) {
+              item.classList.remove('knowledge-quiz-question__feedback-item--show');
+              item.classList.remove('knowledge-quiz-question__feedback-item--correct');
+              item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
+            }
+          });
         };
         (radioInput as any)._quizChangeListener = newListener;
         radioInput.addEventListener('change', newListener);
@@ -232,19 +241,16 @@
       return; // No answer selected
     }
     
+    // Check if answer is correct
+    const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
+    
     // Hide all feedback items first
     const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
     allFeedbackItems.forEach((item) => {
       item.classList.remove('knowledge-quiz-question__feedback-item--show');
+      item.classList.remove('knowledge-quiz-question__feedback-item--correct');
+      item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
     });
-    
-    // Disable all inputs in this question (after check)
-    inputs.forEach((input) => {
-      (input as HTMLInputElement).disabled = true;
-    });
-    
-    // Disable check button
-    checkButton.disabled = true;
     
     // Show feedback for selected answer
     // Original API structure: feedback-for-choice-X ID on feedback item
@@ -269,36 +275,71 @@
       feedbackItem = question.querySelector(`#${feedbackId}`);
     }
     
-    if (feedbackItem) {
-      feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
+    if (isCorrect) {
+      // Correct answer: disable inputs, show feedback, mark as answered, show next question
+      inputs.forEach((input) => {
+        (input as HTMLInputElement).disabled = true;
+      });
+      checkButton.disabled = true;
       
-      // Add correct/incorrect styling based on data-correct attribute
-      // We use data-correct to identify correct answers (no checked attribute by default)
-      const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
-      if (isCorrect) {
+      if (feedbackItem) {
+        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--correct');
-      } else {
+      }
+      
+      // Mark question as answered (remove unanswered class)
+      question.classList.remove('knowledge-quiz-question--unanswered');
+      question.classList.add('knowledge-quiz-question--answered');
+      
+      // Show next unanswered question
+      if (!contentDiv) return;
+      const allQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
+      const currentIndex = Array.from(allQuestions).indexOf(question);
+      
+      // Find next unanswered question
+      for (let i = currentIndex + 1; i < allQuestions.length; i++) {
+        const nextQuestion = allQuestions[i] as HTMLElement;
+        if (nextQuestion.classList.contains('knowledge-quiz-question--unanswered')) {
+          nextQuestion.classList.remove('knowledge-quiz-question--hidden');
+          nextQuestion.style.display = ''; // Remove inline style
+          break;
+        }
+      }
+    } else {
+      // Incorrect answer: show feedback, keep inputs enabled, allow changing selection
+      if (feedbackItem) {
+        feedbackItem.classList.add('knowledge-quiz-question__feedback-item--show');
         feedbackItem.classList.add('knowledge-quiz-question__feedback-item--incorrect');
       }
-    }
-    
-    // Mark question as answered (remove unanswered class)
-    question.classList.remove('knowledge-quiz-question--unanswered');
-    question.classList.add('knowledge-quiz-question--answered');
-    
-    // Show next unanswered question
-    if (!contentDiv) return;
-    const allQuestions = contentDiv.querySelectorAll('.knowledge-quiz-question');
-    const currentIndex = Array.from(allQuestions).indexOf(question);
-    
-    // Find next unanswered question
-    for (let i = currentIndex + 1; i < allQuestions.length; i++) {
-      const nextQuestion = allQuestions[i] as HTMLElement;
-      if (nextQuestion.classList.contains('knowledge-quiz-question--unanswered')) {
-        nextQuestion.classList.remove('knowledge-quiz-question--hidden');
-        nextQuestion.style.display = ''; // Remove inline style
-        break;
-      }
+      
+      // Keep inputs enabled so user can change selection
+      // Keep check button enabled
+      
+      // Add listener to hide feedback when selection changes
+      inputs.forEach((input) => {
+        const radioInput = input as HTMLInputElement;
+        
+        // Remove old change listener if exists
+        const oldFeedbackListener = (radioInput as any)._quizFeedbackListener;
+        if (oldFeedbackListener) {
+          radioInput.removeEventListener('change', oldFeedbackListener);
+        }
+        
+        // Add new listener to hide feedback when selection changes
+        const newFeedbackListener = () => {
+          // Hide all feedback items
+          allFeedbackItems.forEach((item) => {
+            item.classList.remove('knowledge-quiz-question__feedback-item--show');
+            item.classList.remove('knowledge-quiz-question__feedback-item--correct');
+            item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
+          });
+          
+          // Ensure check button is enabled
+          checkButton.disabled = false;
+        };
+        (radioInput as any)._quizFeedbackListener = newFeedbackListener;
+        radioInput.addEventListener('change', newFeedbackListener);
+      });
     }
   }
   

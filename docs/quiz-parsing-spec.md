@@ -334,6 +334,38 @@ How could you fix the problem?
      - `compare-quiz-api.test.js`: 5 tests comparing with original API structure
      - `compare-quiz-api-exact.test.js`: 4 tests for exact API comparison and difference documentation
 
+## User Interaction Flow
+
+### Quiz Behavior
+
+1. **Initial State:**
+   - Only the first question is visible
+   - No answer is pre-selected
+   - Check button is disabled until an answer is selected
+
+2. **Answer Selection:**
+   - User selects a radio button
+   - Check button becomes enabled
+   - If feedback was showing (from previous incorrect answer), it is hidden
+
+3. **Submitting Answer:**
+   - User clicks "Check my answer" / "submit" button
+   - **If correct:**
+     - Feedback is shown with correct styling (green checkmark)
+     - All inputs are disabled
+     - Question is marked as answered
+     - Next unanswered question is automatically revealed
+   - **If incorrect:**
+     - Feedback is shown with incorrect styling (red X)
+     - Inputs remain enabled (user can change selection)
+     - Check button remains enabled
+     - If user changes selection, feedback is hidden again
+
+4. **Progressive Disclosure:**
+   - Questions are revealed one at a time
+   - Only unanswered questions are shown
+   - Completed questions remain visible but disabled
+
 ## Edge Cases
 
 1. **Missing question files**: Skip missing questions, log warning
@@ -372,10 +404,13 @@ How could you fix the problem?
    - Quiz interaction handling in `StepContent.svelte`
    - Radio button selection and feedback display
    - Check button functionality (supports both `value="submit"` and `value="Check my answer"`)
-   - Answer disabling after check
+   - **Answer handling logic:**
+     - **Correct answer**: Disable inputs, show feedback, mark question as answered, show next question
+     - **Incorrect answer**: Show feedback, keep inputs enabled, allow changing selection
+     - **Selection change after incorrect answer**: Hide feedback, enable check button again
    - Feedback lookup: Supports both API structures (ID-based and data-answer-based)
    - **Progressive Disclosure**: Only the first unanswered question is shown initially
-   - After submitting an answer, the next unanswered question is automatically revealed
+   - After submitting a correct answer, the next unanswered question is automatically revealed
    - Uses `knowledge-quiz-question--hidden` class and inline styles to hide inactive questions
 
 5. **Testing:**
