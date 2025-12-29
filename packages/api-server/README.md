@@ -37,26 +37,28 @@ node src/server.js --force
 ### Health Endpoint
 
 ```bash
-curl http://localhost:3201/api/health
+# Port is read from .env file
+curl http://localhost:${API_PORT:-$(grep API_PORT .env | cut -d= -f2)}/api/health
 ```
 
 Response includes:
 ```json
 {
   "status": "ok",
-  "port": 3201,
-  "commitHash": "ef01ce767cc3ad0b5b9535131ebfc9af745a6ada",
-  "commitHashShort": "ef01ce7",
+  "port": "<port from .env>",
+  "apiPort": "<API_PORT from .env>",
+  "commitHash": "...",
+  "commitHashShort": "...",
   "usingParser": true
 }
 ```
 
 ## Configuration
 
-Port can be configured via environment variables:
+Port **MUST** be configured in `.env` file:
 - `API_PORT` (preferred)
-- `PORT` (fallback)
-- Default: `3201`
+- `PORT` (fallback if API_PORT not set)
+- **No default** - server will exit if port is not configured
 
 ## Development
 

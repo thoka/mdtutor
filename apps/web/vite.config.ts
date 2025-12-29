@@ -4,14 +4,28 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 // https://vite.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '../../', '')
+  
+  // Port MUST be set in .env file - no default fallback
+  const webPort = env.WEB_PORT || env.PORT;
+  if (!webPort) {
+    console.error('ERROR: WEB_PORT or PORT must be set in .env file');
+    process.exit(1);
+  }
+  
+  const apiPort = env.API_PORT || env.PORT;
+  if (!apiPort) {
+    console.error('ERROR: API_PORT or PORT must be set in .env file');
+    process.exit(1);
+  }
+  
   return {
     plugins: [svelte()],
     envDir: '../../',
     server: {
-      port: parseInt(env.WEB_PORT || '5201', 10),
+      port: parseInt(webPort, 10),
       proxy: {
         '/api': {
-          target: `http://localhost:${env.API_PORT || '3201'}`,
+          target: `http://localhost:${apiPort}`,
           changeOrigin: true,
         }
       }
