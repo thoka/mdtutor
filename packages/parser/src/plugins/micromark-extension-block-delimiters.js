@@ -61,10 +61,12 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       dashCount++;
       effects.consume(code);
       if (dashCount === 3) {
+        // Don't exit marker yet - wait for whitespace or type
         return afterThreeDashes;
       }
       return afterFirstDash;
     }
+    // Not enough dashes - exit and fail
     effects.exit('blockDelimiterMarker');
     return nok(code);
   }
@@ -153,18 +155,24 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
   }
   
   function beforeClosingDashes(code) {
+    // Allow optional whitespace before closing ---
+    if (code === codes.space || code === codes.tab) {
+      effects.consume(code);
+      return beforeClosingDashes;
+    }
+    
+    // Allow newline before closing ---
+    if (code === codes.lineFeed || code === codes.carriageReturn) {
+      effects.consume(code);
+      return beforeClosingDashes;
+    }
+    
     // Expect --- to close
     if (code === codes.dash) {
       dashCount = 1;
       effects.enter('blockDelimiterMarker');
       effects.consume(code);
       return inClosingDashes;
-    }
-    
-    // Allow optional whitespace
-    if (code === codes.space || code === codes.tab) {
-      effects.consume(code);
-      return beforeClosingDashes;
     }
     
     return nok(code);
