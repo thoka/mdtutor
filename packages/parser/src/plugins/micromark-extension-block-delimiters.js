@@ -46,28 +46,38 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
     if (code !== codes.dash) return nok(code);
     
     dashCount = 1;
+    effects.enter('blockDelimiterMarker');
+    effects.consume(code);
     return afterFirstDash;
   }
   
   function afterFirstDash(code) {
     if (code === codes.dash) {
       dashCount++;
+      effects.consume(code);
       if (dashCount === 3) {
         return afterThreeDashes;
       }
       return afterFirstDash;
     }
+    effects.exit('blockDelimiterMarker');
     return nok(code);
   }
   
   function afterThreeDashes(code) {
     // After ---, expect whitespace
     if (code === codes.space || code === codes.tab) {
-      effects.enter('blockDelimiterMarker');
       effects.consume(code);
       effects.exit('blockDelimiterMarker');
       return beforeType;
     }
+    // Allow newline after --- (some files have newlines)
+    if (code === codes.lineFeed || code === codes.carriageReturn) {
+      effects.consume(code);
+      effects.exit('blockDelimiterMarker');
+      return beforeType;
+    }
+    effects.exit('blockDelimiterMarker');
     return nok(code);
   }
   
