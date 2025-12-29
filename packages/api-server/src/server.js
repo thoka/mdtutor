@@ -20,10 +20,15 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: join(__dirname, '../../../.env') });
 
 import { parseProject } from '../../parser/src/parse-project.js';
+import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js';
+
 const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 const app = express();
 const PORT = process.env.API_PORT || process.env.PORT || 3201;
+
+// Check for --force flag
+const FORCE_FLAG = process.argv.includes('--force');
 
 app.use(cors());
 app.use(express.json());
@@ -96,6 +101,23 @@ async function getProjectData(slug, requestedLang) {
   return null;
 }
 
+// Health check endpoint with port and commit information
+app.get('/api/health', (req, res) => {
+  const commitHash = getCurrentCommitHash();
+  const commitHashShort = getCurrentCommitHashShort();
+  
+  res.json({
+    status: 'ok',
+    port: PORT,
+    apiPort: process.env.API_PORT || null,
+    portEnv: process.env.PORT || null,
+    usingParser: true, // Indicates this server uses parseProject
+    commitHash: commitHash,
+    commitHashShort: commitHashShort,
+    timestamp: new Date().toISOString()
+  });
+});
+
 // GET /api/projects/:slug
 // Returns cached API project data
 app.get('/api/projects/:slug', async (req, res) => {
@@ -146,7 +168,67 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`API Server running on http://localhost:${PORT}`);
-  console.log(`Serving snapshots from: ${SNAPSHOTS_DIR}`);
+/**
+ * Check if another API server is running on this port with different commit
+ * @returns {Promise<boolean>} True if commit matches or no server running
+ */
+async function validateCommitBeforeStart() {
+  if (FORCE_FLAG) {
+    console.log('⚠ --force flag set, skipping commit validation');
+    return true;
+  }
+  
+  const currentCommit = getCurrentCommitHash();
+  if (!currentCommit) {
+    // Not in git repo, allow start
+    return true;
+  }
+  
+  try {
+    const response = await fetch(`http://localhost:${PORT}/api/health`);
+    if (response.ok) {
+      const health = await response.json();
+      const runningCommit = health.commitHash;
+      
+      if (runningCommit && runningCommit !== currentCommit) {
+        console.error('\n❌ Commit mismatch detected!');
+        console.error(`  Running API commit: ${health.commitHashShort || runningCommit.substring(0, 7)}`);
+        console.error(`  Current commit:     ${currentCommit.substring(0, 7)}`);
+        console.error(`\n  The API server is running with a different commit.`);
+        console.error(`  Use --force to start anyway: npm run api -- --force`);
+        return false;
+      }
+      
+      console.log(`✓ Commit matches: ${currentCommit.substring(0, 7)}`);
+    }
+  } catch (error) {
+    // No server running on this port, that's fine
+    if (error.code === 'ECONNREFUSED') {
+      return true;
+    }
+    // Other errors, allow start but warn
+    console.warn('⚠ Could not check running API server:', error.message);
+  }
+  
+  return true;
+}
+
+// Validate commit before starting
+validateCommitBeforeStart().then(canStart => {
+  if (!canStart) {
+    process.exit(1);
+  }
+  
+  app.listen(PORT, () => {
+    const commitHash = getCurrentCommitHashShort();
+    console.log(`API Server running on http://localhost:${PORT}`);
+    console.log(`Serving snapshots from: ${SNAPSHOTS_DIR}`);
+    console.log(`Health check: http://localhost:${PORT}/api/health`);
+    if (commitHash) {
+      console.log(`Commit: ${commitHash}`);
+    }
+  });
+}).catch(error => {
+  console.error('Failed to validate commit:', error);
+  process.exit(1);
 });

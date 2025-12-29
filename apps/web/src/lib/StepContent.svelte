@@ -340,7 +340,6 @@
     
     if (isCorrect) {
       console.log('[quiz] Processing correct answer');
-      console.log('[quiz] Processing correct answer');
       // Correct answer: disable inputs, show feedback, mark as answered, show next question
       inputs.forEach((input) => {
         (input as HTMLInputElement).disabled = true;
