@@ -143,7 +143,28 @@ export default function remarkBlockDelimiters() {
     const nodeSplits = [];
     const delimiterSplits = []; // For paragraphs that start with delimiters
     
-    // First pass: find delimiter positions and collect node splits
+    // First pass: find HTML comment delimiters (from preprocessing)
+    // These are now own tokens as HTML nodes
+    visit(tree, 'html', (node, index, parent) => {
+      if (!parent || index === null) return;
+      
+      // Check if this is a block delimiter comment: <!-- block-delimiter:TYPE:open/close -->
+      const match = node.value?.match(/<!--\s*block-delimiter:([a-z-]+):(open|close)\s*-->/);
+      if (match) {
+        const blockType = match[1];
+        const isClosing = match[2] === 'close';
+        
+        transformations.push({
+          parent,
+          index,
+          isClosing,
+          blockType,
+          nodeType: 'html' // Mark as HTML node (own token)
+        });
+      }
+    });
+    
+    // Second pass: find delimiter positions in paragraphs (legacy/fallback)
     // Check paragraphs and headings (not text nodes directly, as they don't have index/parent)
     visit(tree, 'paragraph', (node, index, parent) => {
       if (!parent || index === null) return;
@@ -172,7 +193,8 @@ export default function remarkBlockDelimiters() {
               parent,
               index,
               lines: [lines[0], lines[lines.length - 1]],
-              blockType: line1Match[2]
+              blockType: line1Match[2],
+              contentLines: lines.slice(1, -1) // Content between delimiters
             });
             return;
           }
@@ -291,7 +313,7 @@ export default function remarkBlockDelimiters() {
     // Apply node splits (after visit to avoid modifying tree during traversal)
     // Process in reverse order to maintain correct indices
     for (const split of nodeSplits.reverse()) {
-      const { parent, index, lines, blockType } = split;
+      const { parent, index, lines, blockType, contentLines } = split;
       if (!parent || !parent.children || index >= parent.children.length || index < 0) continue;
       
       const node = parent.children[index];
@@ -312,9 +334,24 @@ export default function remarkBlockDelimiters() {
         position: node.position || undefined
       };
       
+      // Create content paragraph(s) if there's content between delimiters
+      const newNodes = [openingPara];
+      if (contentLines && contentLines.length > 0) {
+        const contentText = contentLines.join('\n');
+        if (contentText.trim()) {
+          const contentPara = {
+            type: 'paragraph',
+            children: [{ type: 'text', value: contentText }],
+            position: node.position || undefined
+          };
+          newNodes.push(contentPara);
+        }
+      }
+      newNodes.push(closingPara);
+      
       // Validate that parent.children is still valid before splicing
       if (parent.children && Array.isArray(parent.children) && index < parent.children.length) {
-        parent.children.splice(index, 1, openingPara, closingPara);
+        parent.children.splice(index, 1, ...newNodes);
       } else {
         continue; // Skip if parent structure is invalid
       }
@@ -329,7 +366,7 @@ export default function remarkBlockDelimiters() {
       });
       transformations.push({
         parent,
-        index: index + 1,
+        index: index + newNodes.length - 1,
         isClosing: true,
         blockType,
         nodeType: 'paragraph'
@@ -526,11 +563,24 @@ export default function remarkBlockDelimiters() {
       };
       
       // Replace delimiter nodes with HTML
-      // Nodes can be paragraphs, headings, or other types depending on how markdown parser interprets them
+      // Nodes can be HTML comments (from preprocessing), paragraphs, headings, or other types
       const startNode = children[startIndex];
       const endNode = children[endIndex];
       
-      // Check if start node contains delimiter text (might be in paragraph, heading, or text node)
+      // Check if nodes are HTML comment delimiters (own tokens from preprocessing)
+      const isStartHtmlDelimiter = startNode?.type === 'html' && 
+        startNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:open\s*-->/);
+      const isEndHtmlDelimiter = endNode?.type === 'html' && 
+        endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/);
+      
+      if (isStartHtmlDelimiter && isEndHtmlDelimiter) {
+        // Both are HTML comment delimiters - simple replacement
+        parent.children[startIndex] = openHTML;
+        parent.children[endIndex] = closeHTML;
+        continue;
+      }
+      
+      // Fallback: Check if start node contains delimiter text (might be in paragraph, heading, or text node)
       let startNodeIsDelimiter = false;
       let startNodeNeedsSplit = false;
       if (startNode) {

@@ -25,13 +25,23 @@ import rehypeHeadingIds from './plugins/rehype-heading-ids.js';
  * @returns {Promise<string>} HTML content
  */
 /**
- * Preprocess markdown to convert YAML blocks to a parseable format
+ * Preprocess markdown to convert:
+ * 1. YAML blocks to a parseable format
+ * 2. Block delimiters (--- TYPE ---) to HTML comments (own tokens)
+ * 
  * Converts:
  * ---
  * title: value
  * ---
+ * To: ```yaml-block ... ```
  * 
- * To a format that remark-parse can handle (using code blocks as markers)
+ * Converts:
+ * --- task ---
+ * To: <!-- block-delimiter:task:open -->
+ * 
+ * Converts:
+ * --- /task ---
+ * To: <!-- block-delimiter:task:close -->
  */
 function preprocessYamlBlocks(markdown) {
   const lines = markdown.split('\n');
@@ -40,6 +50,18 @@ function preprocessYamlBlocks(markdown) {
   
   while (i < lines.length) {
     const line = lines[i];
+    
+    // First check for block delimiters (--- TYPE --- or --- /TYPE ---)
+    // These must be checked before YAML delimiters to avoid conflicts
+    const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s+---$/);
+    if (blockDelimiterMatch) {
+      const isClosing = blockDelimiterMatch[1] === '/';
+      const blockType = blockDelimiterMatch[2];
+      // Convert to HTML comment - remark-parse will create an 'html' node for this
+      processed.push(`<!-- block-delimiter:${blockType}:${isClosing ? 'close' : 'open'} -->`);
+      i++;
+      continue;
+    }
     
     // Check if this line is exactly "---" (YAML delimiter)
     // Must not have text before or after (to distinguish from block delimiters like "--- collapse ---")
@@ -106,6 +128,21 @@ export async function parseTutorial(markdown, options = {}) {
     .use(rehypeStringify, { allowDangerousHtml: true });
   
   const vfile = await processor.process(preprocessed);
-  return String(vfile);
+  let html = String(vfile);
+  
+  // Post-process: Remove any remaining raw block delimiters that weren't converted
+  // This handles edge cases where delimiters weren't properly processed
+  // Match delimiters in various HTML contexts: <p>--- ... ---</p>, standalone, etc.
+  const rawDelimiterPatterns = [
+    /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi,
+    /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi,
+    />---\s*\/?[a-z-]+\s*---</gi  // Between tags
+  ];
+  
+  for (const pattern of rawDelimiterPatterns) {
+    html = html.replace(pattern, '');
+  }
+  
+  return html;
 }
 
