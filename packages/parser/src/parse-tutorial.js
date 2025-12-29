@@ -91,8 +91,8 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
+    .use(remarkBlockDelimiters) // Process block delimiters early, before YAML blocks processing
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
-    .use(remarkBlockDelimiters)
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,

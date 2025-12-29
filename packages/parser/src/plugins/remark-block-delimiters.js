@@ -144,29 +144,38 @@ export default function remarkBlockDelimiters() {
     visit(tree, 'paragraph', (node, index, parent) => {
       if (!parent || index === null) return;
       
-      if (!node.children || node.children.length !== 1) return;
-      const child = node.children[0];
-      if (child.type !== 'text') return;
+      if (!node.children || node.children.length === 0) return;
       
-      const text = child.value.trim();
+      // Extract text content from paragraph
+      // Most paragraphs have a single text child, but some may have multiple
+      const textNodes = node.children.filter(child => child.type === 'text');
+      if (textNodes.length === 0) return;
       
-      // Handle case where both delimiters are in one paragraph (e.g., "--- save ---\n--- /save ---")
+      const text = textNodes.map(child => child.value).join('').trim();
+      
+      // Handle case where both delimiters are in one paragraph
+      // This can happen when markdown parser combines them into a single paragraph
       const lines = text.split('\n');
-      if (lines.length === 2) {
+      if (lines.length >= 2) {
+        // Check first line for opening delimiter
         const line1Match = matchDelimiterLine(lines[0].trim());
-        const line2Match = matchDelimiterLine(lines[1].trim());
-        if (line1Match && line2Match && line1Match[2] === line2Match[2] && !line1Match[1] && line2Match[1] === '/') {
-          // This is a complete block in one paragraph - split it after visit
-          nodeSplits.push({
-            parent,
-            index,
-            lines,
-            blockType: line1Match[2]
-          });
-          return;
+        if (line1Match && !line1Match[1]) {
+          // Check last line for closing delimiter
+          const lastLineMatch = matchDelimiterLine(lines[lines.length - 1].trim());
+          if (lastLineMatch && lastLineMatch[1] === '/' && lastLineMatch[2] === line1Match[2]) {
+            // This is a complete block in one paragraph - split it after visit
+            nodeSplits.push({
+              parent,
+              index,
+              lines: [lines[0], lines[lines.length - 1]],
+              blockType: line1Match[2]
+            });
+            return;
+          }
         }
       }
       
+      // Check if the entire paragraph text is a delimiter
       const match = matchDelimiterLine(text);
       if (!match) return;
       
@@ -254,10 +263,12 @@ export default function remarkBlockDelimiters() {
     }
     
     // Second pass: match opening/closing pairs and wrap content
+    // Sort transformations by index to process in order
+    const sortedTransformations = [...transformations].sort((a, b) => a.index - b.index);
     const stack = [];
     const wrapRanges = [];
     
-    for (const t of transformations) {
+    for (const t of sortedTransformations) {
       if (!t.isClosing) {
         stack.push(t);
       } else {
@@ -291,11 +302,19 @@ export default function remarkBlockDelimiters() {
     }
     
     // Third pass: apply transformations (reverse order to preserve indices)
+    // Since we're early in the pipeline, indices should be stable
     wrapRanges.sort((a, b) => b.startIndex - a.startIndex);
     
     for (const range of wrapRanges) {
       const { parent, startIndex, endIndex, blockType } = range;
+      if (!parent || !parent.children) continue;
       const children = parent.children;
+      
+      // Validate indices - should be stable since we're early in pipeline
+      if (startIndex >= children.length || endIndex >= children.length || startIndex < 0 || endIndex < 0) {
+        console.warn(`Invalid indices for ${blockType} block: startIndex=${startIndex}, endIndex=${endIndex}, children.length=${children.length}`);
+        continue;
+      }
       
       // Special handling for collapse blocks with frontmatter
       if (blockType === 'collapse') {
@@ -321,8 +340,8 @@ export default function remarkBlockDelimiters() {
           if (titleInfo.frontmatterIndex !== undefined && titleInfo.frontmatterIndex < endIndex) {
             parent.children.splice(titleInfo.frontmatterIndex, 1);
             // Adjust endIndex if we removed a node before it
-            const adjustedEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
-            parent.children[adjustedEndIndex] = closeHTML;
+            const finalEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
+            parent.children[finalEndIndex] = closeHTML;
           } else {
             parent.children[endIndex] = closeHTML;
           }
@@ -350,10 +369,10 @@ export default function remarkBlockDelimiters() {
         // Remove frontmatter/heading if present
         if (titleInfo && titleInfo.frontmatterIndex !== undefined && titleInfo.frontmatterIndex < endIndex) {
           parent.children.splice(titleInfo.frontmatterIndex, 1);
-          const adjustedEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
+          const finalEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
           // Remove closing delimiter and all content between
-          if (adjustedEndIndex > startIndex) {
-            parent.children.splice(startIndex + 1, adjustedEndIndex - startIndex);
+          if (finalEndIndex > startIndex) {
+            parent.children.splice(startIndex + 1, finalEndIndex - startIndex);
           }
         } else {
           // Remove closing delimiter if it exists (might not exist for unclosed save blocks)
@@ -390,8 +409,23 @@ export default function remarkBlockDelimiters() {
       };
       
       // Replace delimiter paragraphs with HTML
-      parent.children[startIndex] = openHTML;
-      parent.children[endIndex] = closeHTML;
+      // Since we're early in the pipeline (before YAML blocks), nodes should be paragraphs
+      if (children[startIndex] && children[startIndex].type === 'paragraph') {
+        parent.children[startIndex] = openHTML;
+      } else {
+        console.warn(`Cannot replace opening delimiter at index ${startIndex} - node type: ${children[startIndex]?.type}`);
+        continue;
+      }
+      
+      if (children[endIndex] && children[endIndex].type === 'paragraph') {
+        parent.children[endIndex] = closeHTML;
+      } else {
+        console.warn(`Cannot replace closing delimiter at index ${endIndex} - node type: ${children[endIndex]?.type}`);
+        continue;
+      }
+      
+      // Update index shift: we replaced 2 nodes (opening and closing) with 2 HTML nodes, so no shift
+      // But if we had to search for the closing delimiter, we might have a different shift
     }
   };
 }

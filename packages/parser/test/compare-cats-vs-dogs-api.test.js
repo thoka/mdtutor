@@ -189,11 +189,24 @@ test('compare-cats-vs-dogs - content HTML matches', async () => {
   });
   
   // Check that block delimiters are properly converted
-  // Should NOT have raw "--- collapse ---" text in HTML
+  // Should NOT have raw "--- TYPE ---" text in HTML
   const ourHtmlText = ourStep0.content;
-  assert.ok(!ourHtmlText.includes('--- collapse ---'),
-    'Block delimiters should be converted, not left as raw text');
-  assert.ok(!ourHtmlText.includes('--- /collapse ---'),
-    'Block closing delimiters should be converted');
+  
+  // Generic check for any raw block delimiters
+  const rawDelimiterPattern = /---\s*\/?[a-z-]+\s*---/gi;
+  const rawDelimiters = ourHtmlText.match(rawDelimiterPattern);
+  if (rawDelimiters && rawDelimiters.length > 0) {
+    console.error('Found raw block delimiters in HTML:', rawDelimiters);
+    assert.fail(`Block delimiters should be converted, not left as raw text. Found: ${rawDelimiters.join(', ')}`);
+  }
+  
+  // Also check all steps for raw delimiters
+  ourContent.steps.forEach((step, index) => {
+    const stepRawDelimiters = step.content.match(rawDelimiterPattern);
+    if (stepRawDelimiters && stepRawDelimiters.length > 0) {
+      console.error(`Step ${index} (${step.title}) has raw delimiters:`, stepRawDelimiters);
+      assert.fail(`Step ${index} has raw block delimiters: ${stepRawDelimiters.join(', ')}`);
+    }
+  });
 });
 
