@@ -15,6 +15,7 @@ import remarkTransclusion from './plugins/remark-transclusion.js';
 import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
 import rehypeHeadingIds from './plugins/rehype-heading-ids.js';
 import { blockDelimiters } from './plugins/micromark-extension-block-delimiters.js';
+import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimiters.js';
 
 /**
  * Parse markdown content to HTML
@@ -113,9 +114,9 @@ export async function parseTutorial(markdown, options = {}) {
   const preprocessed = preprocessYamlBlocks(markdown);
   
   const processor = unified()
-    .use(remarkParse, {
-      extensions: [blockDelimiters()]
-    })
+    .data('micromarkExtensions', [blockDelimiters()])
+    .data('fromMarkdownExtensions', [blockDelimitersFromMarkdown()])
+    .use(remarkParse)
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkBlockDelimiters) // Process block delimiters early, before YAML blocks processing
