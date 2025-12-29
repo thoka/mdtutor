@@ -77,14 +77,16 @@ Nach Implementierung der micromark-extension für Block-Delimiter gibt es noch *
 **Änderung:** 
 - `remark-block-delimiters.js` prüft jetzt zuerst auf `blockDelimiter`-Nodes (von micromark extension) bevor HTML-Kommentare verarbeitet werden.
 - Preprocessing für Block-Delimiter entfernt (sollte Extension überlassen werden)
+- Extension verbessert: Bessere Whitespace- und Newline-Behandlung
 
 **Ergebnis:** 
 - ✅ **Tag-Mismatches: 88 → 8 (-80, -91%)** - Massive Verbesserung!
 - ✅ **HTML-Fehler: 85 → 61 (-24, -28%)**
-- ⚠️ Extension verursacht Fehler: "Cannot read properties of undefined (reading 'length')"
-- ⚠️ Extension temporär deaktiviert, Preprocessing als Fallback reaktiviert
+- ⚠️ Extension verursacht noch Fehler: "Cannot read properties of undefined (reading 'length')"
+- ⚠️ Fehler tritt nur in bestimmten Fällen auf, Extension funktioniert größtenteils
+- ⚠️ Extension aktiviert, da sie die Tag-Mismatches deutlich reduziert
 
-**Status:** Extension funktioniert teilweise, aber verursacht Fehler. Muss debuggt werden.
+**Status:** Extension funktioniert größtenteils und reduziert Tag-Mismatches deutlich. Fehler muss noch behoben werden, blockiert aber nicht die Hauptfunktionalität.
 
 ## Nächste Schritte
 
