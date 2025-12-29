@@ -148,6 +148,46 @@ export default function remarkBlockDelimiters() {
       if (child.type !== 'text') return;
       
       const text = child.value.trim();
+      
+      // Handle case where both delimiters are in one paragraph (e.g., "--- save ---\n--- /save ---")
+      const lines = text.split('\n');
+      if (lines.length === 2) {
+        const line1Match = matchDelimiterLine(lines[0].trim());
+        const line2Match = matchDelimiterLine(lines[1].trim());
+        if (line1Match && line2Match && line1Match[2] === line2Match[2] && !line1Match[1] && line2Match[1] === '/') {
+          // This is a complete block in one paragraph - split it
+          const blockType = line1Match[2];
+          const openingPara = {
+            type: 'paragraph',
+            children: [{ type: 'text', value: lines[0] }]
+          };
+          const closingPara = {
+            type: 'paragraph',
+            children: [{ type: 'text', value: lines[1] }]
+          };
+          parent.children.splice(index, 1, openingPara, closingPara);
+          // Re-process this node (now it's the opening delimiter)
+          const newMatch = matchDelimiterLine(lines[0].trim());
+          if (newMatch) {
+            transformations.push({
+              parent,
+              index,
+              isClosing: false,
+              blockType: newMatch[2],
+              nodeType: 'paragraph'
+            });
+            transformations.push({
+              parent,
+              index: index + 1,
+              isClosing: true,
+              blockType: newMatch[2],
+              nodeType: 'paragraph'
+            });
+          }
+          return;
+        }
+      }
+      
       const match = matchDelimiterLine(text);
       if (!match) return;
       
@@ -252,30 +292,31 @@ export default function remarkBlockDelimiters() {
         const titleInfo = extractTitle(children, startIndex);
         const panelModifier = PANEL_MODIFIERS[blockType] || 'c-project-panel--save';
         
-        if (titleInfo) {
-          const openHTML = {
-            type: 'html',
-            value: `<div class="c-project-panel ${panelModifier}">\n  <h3 class="c-project-panel__heading">\n    ${titleInfo.title}\n  </h3>\n</div>`
-          };
-          
-          // For save blocks, we replace the entire block (no content)
-          parent.children[startIndex] = openHTML;
-          
-          // Remove frontmatter/heading if present
-          if (titleInfo.frontmatterIndex !== undefined && titleInfo.frontmatterIndex < endIndex) {
-            parent.children.splice(titleInfo.frontmatterIndex, 1);
-            const adjustedEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
-            // Remove closing delimiter and all content between
-            parent.children.splice(startIndex + 1, adjustedEndIndex - startIndex);
-          } else {
-            // Remove closing delimiter
-            parent.children.splice(endIndex, 1);
-            // Remove content between
-            parent.children.splice(startIndex + 1, endIndex - startIndex - 1);
-          }
-          
-          continue;
+        // Save blocks always need a heading - use extracted title or default
+        const saveTitle = titleInfo?.title || 'Save your project';
+        
+        const openHTML = {
+          type: 'html',
+          value: `<div class="c-project-panel ${panelModifier}">\n  <h3 class="c-project-panel__heading">\n    ${saveTitle}\n  </h3>\n</div>`
+        };
+        
+        // For save blocks, we replace the entire block (no content)
+        parent.children[startIndex] = openHTML;
+        
+        // Remove frontmatter/heading if present
+        if (titleInfo && titleInfo.frontmatterIndex !== undefined && titleInfo.frontmatterIndex < endIndex) {
+          parent.children.splice(titleInfo.frontmatterIndex, 1);
+          const adjustedEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
+          // Remove closing delimiter and all content between
+          parent.children.splice(startIndex + 1, adjustedEndIndex - startIndex);
+        } else {
+          // Remove closing delimiter
+          parent.children.splice(endIndex, 1);
+          // Remove content between
+          parent.children.splice(startIndex + 1, endIndex - startIndex - 1);
         }
+        
+        continue;
       }
       
       // Default handling for other block types
