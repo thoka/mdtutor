@@ -119,13 +119,27 @@ Das remark-Plugin:
 
 ## Implementierungs-Status
 
-**Entscheidung:** Statt einer vollständigen micromark-extension (komplex) haben wir die bestehende Implementierung verbessert:
+**Vollständige micromark-extension implementiert:**
 
-1. ✅ Regex in `preprocessYamlBlocks` korrigiert (optionales Whitespace nach `---`)
-2. ⏳ Weitere Verbesserungen der Delimiter-Erkennung geplant
-3. ⏳ Robuste Fehlerbehandlung implementieren
+1. ✅ `micromark-extension-block-delimiters.js` - Tokenizer für `--- TYPE ---` Syntax
+2. ✅ `mdast-util-block-delimiters.js` - Handler um Tokens in MDAST-Nodes zu konvertieren
+3. ✅ Integration über `unified.data()` in `parse-tutorial.js`
+4. ✅ `remark-block-delimiters.js` erweitert um `blockDelimiter` Nodes zu verarbeiten
+5. ✅ Preprocessing bleibt als Fallback für Rückwärtskompatibilität
+
+**Architektur:**
+```
+Markdown → micromark (mit Extension) → Tokens → mdast-util (mit Handler) → MDAST Nodes → remark Plugin → HTML
+```
+
+**Vorteile:**
+- Direkte Parser-Integration (kein Preprocessing nötig)
+- Robuste Token-Erkennung
+- Eigene Node-Typen im AST
+- Fallback auf HTML-Kommentare für Kompatibilität
 
 **Nächste Schritte:**
-- Wenn Probleme weiterhin bestehen, kann eine vollständige micromark-extension evaluiert werden
-- Aktueller Ansatz ist pragmatischer und einfacher zu warten
+- Tests validieren dass Tokens korrekt im AST ankommen
+- Preprocessing für Delimiter optional machen (nur für YAML)
+- Performance-Tests durchführen
 
