@@ -74,12 +74,17 @@ Nach Implementierung der micromark-extension für Block-Delimiter gibt es noch *
 
 ## Iteration 1: blockDelimiter Node Handling
 
-**Änderung:** `remark-block-delimiters.js` prüft jetzt zuerst auf `blockDelimiter`-Nodes (von micromark extension) bevor HTML-Kommentare verarbeitet werden.
+**Änderung:** 
+- `remark-block-delimiters.js` prüft jetzt zuerst auf `blockDelimiter`-Nodes (von micromark extension) bevor HTML-Kommentare verarbeitet werden.
+- Preprocessing für Block-Delimiter entfernt (sollte Extension überlassen werden)
 
-**Status:** Implementiert, aber noch keine Verbesserung sichtbar. Mögliche Ursachen:
-- blockDelimiter-Nodes kommen nicht im AST an
-- Metadaten werden nicht korrekt übertragen
-- Handler liest Metadaten nicht korrekt
+**Ergebnis:** 
+- ✅ **Tag-Mismatches: 88 → 8 (-80, -91%)** - Massive Verbesserung!
+- ✅ **HTML-Fehler: 85 → 61 (-24, -28%)**
+- ⚠️ Extension verursacht Fehler: "Cannot read properties of undefined (reading 'length')"
+- ⚠️ Extension temporär deaktiviert, Preprocessing als Fallback reaktiviert
+
+**Status:** Extension funktioniert teilweise, aber verursacht Fehler. Muss debuggt werden.
 
 ## Nächste Schritte
 
