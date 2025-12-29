@@ -246,6 +246,23 @@ export default function remarkBlockDelimiters() {
       }
     }
     
+    // Handle unclosed save blocks (they don't need closing delimiters)
+    for (const t of transformations) {
+      if (!t.isClosing && t.blockType === 'save') {
+        // Check if this save block was already matched with a closing delimiter
+        const alreadyMatched = wrapRanges.some(r => r.startIndex === t.index && r.blockType === 'save');
+        if (!alreadyMatched) {
+          // Create a wrap range that ends at the end of the parent's children
+          wrapRanges.push({
+            parent: t.parent,
+            startIndex: t.index,
+            endIndex: t.parent.children.length - 1,
+            blockType: 'save'
+          });
+        }
+      }
+    }
+    
     // Third pass: apply transformations (reverse order to preserve indices)
     wrapRanges.sort((a, b) => b.startIndex - a.startIndex);
     
@@ -308,12 +325,21 @@ export default function remarkBlockDelimiters() {
           parent.children.splice(titleInfo.frontmatterIndex, 1);
           const adjustedEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
           // Remove closing delimiter and all content between
-          parent.children.splice(startIndex + 1, adjustedEndIndex - startIndex);
+          if (adjustedEndIndex > startIndex) {
+            parent.children.splice(startIndex + 1, adjustedEndIndex - startIndex);
+          }
         } else {
-          // Remove closing delimiter
-          parent.children.splice(endIndex, 1);
-          // Remove content between
-          parent.children.splice(startIndex + 1, endIndex - startIndex - 1);
+          // Remove closing delimiter if it exists (might not exist for unclosed save blocks)
+          if (endIndex > startIndex && endIndex < parent.children.length) {
+            parent.children.splice(endIndex, 1);
+            // Remove content between
+            if (endIndex > startIndex + 1) {
+              parent.children.splice(startIndex + 1, endIndex - startIndex - 1);
+            }
+          } else if (endIndex === startIndex) {
+            // Unclosed save block - just remove the delimiter paragraph
+            // (already replaced above)
+          }
         }
         
         continue;
