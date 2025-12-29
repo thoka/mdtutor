@@ -103,13 +103,23 @@ export async function parseProject(projectPath, options = {}) {
         }
       }
       
+      // Determine quiz flag: true if knowledgeQuiz exists, otherwise use metaStep.quiz
+      const hasQuiz = !!knowledgeQuiz;
+      const quizFlag = hasQuiz || metaStep.quiz || false;
+      
+      // Normalize completion: ensure it's always an array (API sometimes has undefined or "")
+      let completion = metaStep.completion || [];
+      if (!Array.isArray(completion)) {
+        completion = [];
+      }
+      
       return {
         title: metaStep.title || extractTitle(markdown),
         content,
         position: index,
-        quiz: metaStep.quiz || false,
+        quiz: quizFlag,
         challenge: false, // TODO: Detect from content
-        completion: metaStep.completion || [],
+        completion: completion,
         ingredients: ingredients,
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
