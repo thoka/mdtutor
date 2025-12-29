@@ -141,6 +141,7 @@ export default function remarkBlockDelimiters() {
   return (tree) => {
     const transformations = [];
     const nodeSplits = [];
+    const delimiterSplits = []; // For paragraphs that start with delimiters
     
     // First pass: find delimiter positions and collect node splits
     // Check paragraphs and headings (not text nodes directly, as they don't have index/parent)
@@ -178,20 +179,55 @@ export default function remarkBlockDelimiters() {
         }
       }
       
-      // Check if the entire paragraph text is a delimiter
+      // Check if the paragraph starts with a delimiter line
+      // The first line might be a delimiter, even if the paragraph contains more text
+      if (lines.length > 0) {
+        const firstLine = lines[0].trim();
+        const match = matchDelimiterLine(firstLine);
+        if (match && lines.length > 1) {
+          // Paragraph starts with delimiter but has more content - split it after visit
+          const isClosing = match[1] === '/';
+          const blockType = match[2];
+          
+          delimiterSplits.push({
+            parent,
+            index,
+            firstLine,
+            restLines: lines.slice(1),
+            isClosing,
+            blockType
+          });
+          return;
+        } else if (match) {
+          // Paragraph contains only delimiter
+          const isClosing = match[1] === '/';
+          const blockType = match[2];
+          
+          transformations.push({
+            parent,
+            index,
+            isClosing,
+            blockType,
+            nodeType: node.type
+          });
+          return;
+        }
+      }
+      
+      // Also check if the entire paragraph text is a delimiter (exact match)
       const match = matchDelimiterLine(text);
-      if (!match) return;
-      
-      const isClosing = match[1] === '/';
-      const blockType = match[2];
-      
-      transformations.push({
-        parent,
-        index,
-        isClosing,
-        blockType,
-        nodeType: node.type
-      });
+      if (match) {
+        const isClosing = match[1] === '/';
+        const blockType = match[2];
+        
+        transformations.push({
+          parent,
+          index,
+          isClosing,
+          blockType,
+          nodeType: node.type
+        });
+      }
     });
     
     // Also check headings for delimiters
@@ -216,6 +252,41 @@ export default function remarkBlockDelimiters() {
         nodeType: node.type
       });
     });
+    
+    // Apply delimiter splits (paragraphs that start with delimiters)
+    // Process in reverse order to maintain correct indices
+    for (const split of delimiterSplits.reverse()) {
+      const { parent, index, firstLine, restLines, isClosing, blockType } = split;
+      if (!parent || !parent.children || index >= parent.children.length || index < 0) continue;
+      
+      const node = parent.children[index];
+      if (!node || node.type !== 'paragraph') continue;
+      
+      // Split paragraph: delimiter in first, rest in second
+      const delimiterPara = {
+        type: 'paragraph',
+        children: [{ type: 'text', value: firstLine }],
+        position: node.position || undefined
+      };
+      const restText = restLines.join('\n');
+      const restPara = {
+        type: 'paragraph',
+        children: [{ type: 'text', value: restText }],
+        position: node.position || undefined
+      };
+      
+      // Replace original paragraph with split paragraphs
+      parent.children.splice(index, 1, delimiterPara, restPara);
+      
+      // Add transformation for the delimiter paragraph
+      transformations.push({
+        parent,
+        index,
+        isClosing,
+        blockType,
+        nodeType: 'paragraph'
+      });
+    }
     
     // Apply node splits (after visit to avoid modifying tree during traversal)
     // Process in reverse order to maintain correct indices
@@ -454,19 +525,123 @@ export default function remarkBlockDelimiters() {
         value: '</div>'
       };
       
-      // Replace delimiter paragraphs with HTML
-      // Since we're early in the pipeline (before YAML blocks), nodes should be paragraphs
-      if (children[startIndex] && children[startIndex].type === 'paragraph') {
+      // Replace delimiter nodes with HTML
+      // Nodes can be paragraphs, headings, or other types depending on how markdown parser interprets them
+      const startNode = children[startIndex];
+      const endNode = children[endIndex];
+      
+      // Check if start node contains delimiter text (might be in paragraph, heading, or text node)
+      let startNodeIsDelimiter = false;
+      let startNodeNeedsSplit = false;
+      if (startNode) {
+        if (startNode.type === 'paragraph' || startNode.type === 'heading') {
+          const text = extractTextFromNode(startNode);
+          const lines = text.split('\n');
+          // Check if first line is a delimiter (paragraphs can contain delimiter + content)
+          if (lines.length > 0 && matchDelimiterLine(lines[0].trim())) {
+            startNodeIsDelimiter = true;
+            if (lines.length > 1) {
+              startNodeNeedsSplit = true;
+            }
+          } else if (matchDelimiterLine(text.trim())) {
+            // Also check entire text as fallback
+            startNodeIsDelimiter = true;
+          }
+        } else if (startNode.type === 'text') {
+          if (matchDelimiterLine(startNode.value.trim())) {
+            startNodeIsDelimiter = true;
+          }
+        }
+      }
+      
+      // Check if end node contains delimiter text
+      let endNodeIsDelimiter = false;
+      let endNodeNeedsSplit = false;
+      if (endNode) {
+        if (endNode.type === 'paragraph' || endNode.type === 'heading') {
+          const text = extractTextFromNode(endNode);
+          const lines = text.split('\n');
+          // Check if first line is a delimiter, or if last line is a closing delimiter
+          if (lines.length > 0) {
+            const firstLineMatch = matchDelimiterLine(lines[0].trim());
+            const lastLineMatch = lines.length > 1 ? matchDelimiterLine(lines[lines.length - 1].trim()) : null;
+            if (firstLineMatch || lastLineMatch) {
+              endNodeIsDelimiter = true;
+              if ((firstLineMatch && lines.length > 1) || (lastLineMatch && lines.length > 1)) {
+                endNodeNeedsSplit = true;
+              }
+            }
+          }
+          if (!endNodeIsDelimiter && matchDelimiterLine(text.trim())) {
+            // Also check entire text as fallback
+            endNodeIsDelimiter = true;
+          }
+        } else if (endNode.type === 'text') {
+          if (matchDelimiterLine(endNode.value.trim())) {
+            endNodeIsDelimiter = true;
+          }
+        }
+      }
+      
+      // Split nodes if needed (delimiter + content in same node)
+      if (startNodeNeedsSplit && startNode.type === 'paragraph') {
+        const text = extractTextFromNode(startNode);
+        const lines = text.split('\n');
+        const delimiterLine = lines[0];
+        const restText = lines.slice(1).join('\n');
+        
+        const delimiterPara = {
+          type: 'paragraph',
+          children: [{ type: 'text', value: delimiterLine }],
+          position: startNode.position
+        };
+        const restPara = {
+          type: 'paragraph',
+          children: [{ type: 'text', value: restText }],
+          position: startNode.position
+        };
+        
+        parent.children.splice(startIndex, 1, delimiterPara, restPara);
+        // Adjust endIndex if it was after startIndex
+        if (endIndex > startIndex) {
+          endIndex++;
+        }
+      }
+      
+      if (endNodeNeedsSplit && endNode.type === 'paragraph') {
+        const text = extractTextFromNode(endNode);
+        const lines = text.split('\n');
+        const delimiterLine = lines[lines.length - 1];
+        const restText = lines.slice(0, -1).join('\n');
+        
+        const restPara = {
+          type: 'paragraph',
+          children: [{ type: 'text', value: restText }],
+          position: endNode.position
+        };
+        const delimiterPara = {
+          type: 'paragraph',
+          children: [{ type: 'text', value: delimiterLine }],
+          position: endNode.position
+        };
+        
+        parent.children.splice(endIndex, 1, restPara, delimiterPara);
+        // endIndex now points to the delimiter paragraph
+        endIndex++;
+      }
+      
+      // Replace if nodes are delimiters
+      if (startNodeIsDelimiter) {
         parent.children[startIndex] = openHTML;
       } else {
-        console.warn(`Cannot replace opening delimiter at index ${startIndex} - node type: ${children[startIndex]?.type}`);
+        console.warn(`Cannot replace opening delimiter at index ${startIndex} - node type: ${startNode?.type}, text: ${extractTextFromNode(startNode)?.substring(0, 100)}`);
         continue;
       }
       
-      if (children[endIndex] && children[endIndex].type === 'paragraph') {
+      if (endNodeIsDelimiter) {
         parent.children[endIndex] = closeHTML;
       } else {
-        console.warn(`Cannot replace closing delimiter at index ${endIndex} - node type: ${children[endIndex]?.type}`);
+        console.warn(`Cannot replace closing delimiter at index ${endIndex} - node type: ${endNode?.type}, text: ${extractTextFromNode(endNode)?.substring(0, 100)}`);
         continue;
       }
       
