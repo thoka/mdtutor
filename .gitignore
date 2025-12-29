@@ -1,6 +1,9 @@
 # Test snapshots - cloned repositories and API responses
 test/snapshots/
 
+# Test output files
+test-differences.json
+
 # Node modules
 node_modules/
 
