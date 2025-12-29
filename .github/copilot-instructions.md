@@ -19,7 +19,7 @@ Expert guidance for coding in the MDTutor monorepo.
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.
 - **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
-- **Documentation**: Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after).
+- **Documentation**: Distributed across modules. Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after).
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Verification**: Merge to `main` only after full verification and passing tests.
 
