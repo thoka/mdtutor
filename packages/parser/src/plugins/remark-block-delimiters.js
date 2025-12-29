@@ -40,7 +40,8 @@ const PANEL_MODIFIERS = {
  * Check if a text node is a block delimiter line
  */
 function matchDelimiterLine(text) {
-  return text.match(/^---\s+(\/?)([a-z-]+)\s+---$/);
+  // Match with optional trailing whitespace (some files have spaces after ---)
+  return text.match(/^---\s+(\/?)([a-z-]+)\s*---$/);
 }
 
 /**
@@ -616,6 +617,18 @@ export default function remarkBlockDelimiters() {
         parent.children[startIndex] = openHTML;
         parent.children[endIndex] = closeHTML;
         continue;
+      }
+      
+      // Also check if start/end nodes are HTML comment delimiters individually
+      if (isStartHtmlDelimiter && !isEndHtmlDelimiter) {
+        // Start is HTML comment, but end is not - try to find end in children
+        parent.children[startIndex] = openHTML;
+        // Continue to process end node below
+      }
+      if (isEndHtmlDelimiter && !isStartHtmlDelimiter) {
+        // End is HTML comment, but start is not - try to find start in children
+        parent.children[endIndex] = closeHTML;
+        // Continue to process start node below
       }
       
       // Fallback: Check if start node contains delimiter text (might be in paragraph, heading, or text node)
