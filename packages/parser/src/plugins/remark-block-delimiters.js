@@ -621,15 +621,29 @@ export default function remarkBlockDelimiters() {
       };
       
       // Replace delimiter nodes with HTML
-      // Nodes can be HTML comments (from preprocessing), paragraphs, headings, or other types
+      // Nodes can be blockDelimiter nodes (from micromark extension), HTML comments (from preprocessing), paragraphs, headings, or other types
       const startNode = children[startIndex];
       const endNode = children[endIndex];
+      
+      // Check if nodes are blockDelimiter nodes (from micromark extension)
+      const isStartBlockDelimiter = startNode?.type === 'blockDelimiter' && 
+        !(startNode.data?.isClosing || startNode.isClosing);
+      const isEndBlockDelimiter = endNode?.type === 'blockDelimiter' && 
+        (endNode.data?.isClosing || endNode.isClosing);
       
       // Check if nodes are HTML comment delimiters (own tokens from preprocessing)
       const isStartHtmlDelimiter = startNode?.type === 'html' && 
         startNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:open\s*-->/);
       const isEndHtmlDelimiter = endNode?.type === 'html' && 
         endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/);
+      
+      // Prefer blockDelimiter nodes over HTML comments (micromark extension takes precedence)
+      if (isStartBlockDelimiter && isEndBlockDelimiter) {
+        // Both are blockDelimiter nodes - simple replacement
+        parent.children[startIndex] = openHTML;
+        parent.children[endIndex] = closeHTML;
+        continue;
+      }
       
       if (isStartHtmlDelimiter && isEndHtmlDelimiter) {
         // Both are HTML comment delimiters - simple replacement
