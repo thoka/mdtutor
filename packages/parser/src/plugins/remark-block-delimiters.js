@@ -144,7 +144,26 @@ export default function remarkBlockDelimiters() {
     const nodeSplits = [];
     const delimiterSplits = []; // For paragraphs that start with delimiters
     
-    // First pass: find HTML comment delimiters (from preprocessing)
+    // First pass: find blockDelimiter nodes (from micromark extension)
+    // These are custom nodes created by the micromark extension
+    visit(tree, 'blockDelimiter', (node, index, parent) => {
+      if (!parent || index === null) return;
+      
+      const blockType = node.data?.blockType || node.blockType;
+      const isClosing = node.data?.isClosing || node.isClosing || false;
+      
+      if (blockType) {
+        transformations.push({
+          parent,
+          index,
+          isClosing,
+          blockType,
+          nodeType: 'blockDelimiter' // Mark as blockDelimiter node
+        });
+      }
+    });
+    
+    // Second pass: find HTML comment delimiters (from preprocessing - fallback)
     // These are now own tokens as HTML nodes
     visit(tree, 'html', (node, index, parent) => {
       if (!parent || index === null) return;
