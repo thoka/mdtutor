@@ -137,8 +137,9 @@ function extractTextFromNode(node) {
 export default function remarkBlockDelimiters() {
   return (tree) => {
     const transformations = [];
+    const nodeSplits = [];
     
-    // First pass: find delimiter positions
+    // First pass: find delimiter positions and collect node splits
     // Check paragraphs and headings (not text nodes directly, as they don't have index/parent)
     visit(tree, 'paragraph', (node, index, parent) => {
       if (!parent || index === null) return;
@@ -155,35 +156,13 @@ export default function remarkBlockDelimiters() {
         const line1Match = matchDelimiterLine(lines[0].trim());
         const line2Match = matchDelimiterLine(lines[1].trim());
         if (line1Match && line2Match && line1Match[2] === line2Match[2] && !line1Match[1] && line2Match[1] === '/') {
-          // This is a complete block in one paragraph - split it
-          const blockType = line1Match[2];
-          const openingPara = {
-            type: 'paragraph',
-            children: [{ type: 'text', value: lines[0] }]
-          };
-          const closingPara = {
-            type: 'paragraph',
-            children: [{ type: 'text', value: lines[1] }]
-          };
-          parent.children.splice(index, 1, openingPara, closingPara);
-          // Re-process this node (now it's the opening delimiter)
-          const newMatch = matchDelimiterLine(lines[0].trim());
-          if (newMatch) {
-            transformations.push({
-              parent,
-              index,
-              isClosing: false,
-              blockType: newMatch[2],
-              nodeType: 'paragraph'
-            });
-            transformations.push({
-              parent,
-              index: index + 1,
-              isClosing: true,
-              blockType: newMatch[2],
-              nodeType: 'paragraph'
-            });
-          }
+          // This is a complete block in one paragraph - split it after visit
+          nodeSplits.push({
+            parent,
+            index,
+            lines,
+            blockType: line1Match[2]
+          });
           return;
         }
       }
@@ -225,6 +204,39 @@ export default function remarkBlockDelimiters() {
         nodeType: node.type
       });
     });
+    
+    // Apply node splits (after visit to avoid modifying tree during traversal)
+    for (const split of nodeSplits.reverse()) {
+      const { parent, index, lines, blockType } = split;
+      const node = parent.children[index];
+      const openingPara = {
+        type: 'paragraph',
+        children: [{ type: 'text', value: lines[0] }],
+        position: node.position
+      };
+      const closingPara = {
+        type: 'paragraph',
+        children: [{ type: 'text', value: lines[1] }],
+        position: node.position
+      };
+      parent.children.splice(index, 1, openingPara, closingPara);
+      
+      // Add transformations for the split nodes
+      transformations.push({
+        parent,
+        index,
+        isClosing: false,
+        blockType,
+        nodeType: 'paragraph'
+      });
+      transformations.push({
+        parent,
+        index: index + 1,
+        isClosing: true,
+        blockType,
+        nodeType: 'paragraph'
+      });
+    }
     
     // Second pass: match opening/closing pairs and wrap content
     const stack = [];
