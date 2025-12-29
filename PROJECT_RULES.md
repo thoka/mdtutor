@@ -23,6 +23,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Documentation**: Distributed across modules. Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after). Module-specific specifications must be placed in the respective module's `docs/` directory (e.g., `packages/parser/docs/`).
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Verification**: Merge to `main` only after full verification and passing tests.
+- **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates. When updating status/timestamps in documentation, verify the current date first.
 
 ## Project Conventions
 - **Svelte 5**: Use Runes (`$state`, `$derived`, `$effect`, `$props`) exclusively. Avoid Svelte 4 syntax.
