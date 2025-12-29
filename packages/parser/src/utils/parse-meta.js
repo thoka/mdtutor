@@ -7,7 +7,8 @@ import yaml from 'js-yaml';
 
 /**
  * Preprocess YAML content to handle duplicate keys
- * Merges duplicate keys that are arrays (e.g., completion:)
+ * When duplicate completion: keys are found, the last one overwrites the first
+ * (matching standard YAML behavior and the API's interpretation).
  * This handles cases where the same key appears multiple times in a step,
  * which is invalid YAML but can occur in source files.
  * @param {string} content - Raw YAML content
@@ -17,8 +18,8 @@ function preprocessYaml(content) {
   const lines = content.split('\n');
   const processed = [];
   let stepIndent = 0;
-  let lastCompletionIndex = -1;
-  let inCompletionBlock = false;
+  let firstCompletionStart = -1;
+  let inFirstCompletionBlock = false;
   
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
@@ -28,46 +29,54 @@ function preprocessYaml(content) {
     // Detect start of a new step (starts with "- title:")
     if (trimmed.startsWith('- title:')) {
       stepIndent = indent;
-      lastCompletionIndex = -1;
-      inCompletionBlock = false;
+      firstCompletionStart = -1;
+      inFirstCompletionBlock = false;
       processed.push(line);
       continue;
     }
     
     // Detect completion key within a step
     if (trimmed === 'completion:' && indent === stepIndent + 2) {
-      if (lastCompletionIndex >= 0) {
-        // Duplicate completion key - skip this line but collect its values
-        inCompletionBlock = true;
+      if (firstCompletionStart >= 0) {
+        // Duplicate completion key found - remove the first one
+        // Find the end of the first completion block by looking backwards
+        let firstCompletionEnd = processed.length;
+        for (let j = processed.length - 1; j >= firstCompletionStart; j--) {
+          const prevLine = processed[j];
+          const prevTrimmed = prevLine.trim();
+          const prevIndent = prevLine.match(/^(\s*)/)?.[1].length || 0;
+          // Stop at the completion: line or when we find a line with same/less indent as completion
+          if (prevTrimmed === 'completion:' || (prevIndent <= stepIndent + 2 && j > firstCompletionStart)) {
+            firstCompletionEnd = j + 1;
+            break;
+          }
+        }
+        // Remove the first completion block
+        processed.splice(firstCompletionStart, firstCompletionEnd - firstCompletionStart);
+        // Start tracking the new completion block
+        firstCompletionStart = processed.length;
+        inFirstCompletionBlock = true;
+        processed.push(line);
         continue;
       } else {
         // First completion key in this step
-        lastCompletionIndex = processed.length;
-        inCompletionBlock = true;
+        firstCompletionStart = processed.length;
+        inFirstCompletionBlock = true;
         processed.push(line);
         continue;
       }
     }
     
-    // If we're in a duplicate completion block, collect values
-    if (inCompletionBlock && lastCompletionIndex >= 0) {
+    // Track completion block items
+    if (inFirstCompletionBlock && firstCompletionStart >= 0) {
       // Check if we're still in the completion block (indent > completion key indent)
       if (indent > stepIndent + 2 && trimmed.startsWith('- ')) {
-        // This is a list item - add it to the previous completion block
-        // Find where to insert (after last item in completion array)
-        let insertPos = lastCompletionIndex + 1;
-        while (insertPos < processed.length) {
-          const nextIndent = processed[insertPos].match(/^(\s*)/)?.[1].length || 0;
-          if (nextIndent <= stepIndent + 2) {
-            break;
-          }
-          insertPos++;
-        }
-        processed.splice(insertPos, 0, line);
+        // This is a list item in the completion block
+        processed.push(line);
         continue;
-      } else {
-        // We've left the completion block
-        inCompletionBlock = false;
+      } else if (indent <= stepIndent + 2 && trimmed !== '') {
+        // We've left the completion block (non-empty line with same/less indent)
+        inFirstCompletionBlock = false;
       }
     }
     

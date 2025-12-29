@@ -113,15 +113,15 @@ export async function parseProject(projectPath, options = {}) {
           title: meta.title,
           description: meta.description,
           heroImage: meta.heroImage,
+          version: meta.version,
+          listed: meta.listed,
+          copyedit: meta.copyedit,
+          lastTested: meta.lastTested,
           metaTitle: meta.metaTitle,
           metaDescription: meta.metaDescription,
           pdf: meta.pdf,
           steps
-        },
-        version: meta.version,
-        listed: meta.listed,
-        copyedit: meta.copyedit,
-        lastTested: meta.lastTested
+        }
       }
     },
     included: [] // TODO: Add pathways etc.
