@@ -157,13 +157,25 @@ export async function parseTutorial(markdown, options = {}) {
     }
   }
   
+  const warnings = [];
   if (foundDelimiters.length > 0) {
     const totalCount = foundDelimiters.reduce((sum, d) => sum + d.count, 0);
-    const warningMessage = `WARNING: Found ${totalCount} raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.\n` +
-      `Found types: ${foundDelimiters.map(d => `${d.type} (${d.count})`).join(', ')}\n` +
-      `Examples: ${foundDelimiters.flatMap(d => d.examples).slice(0, 3).join(', ')}`;
+    const warningMessage = `Found ${totalCount} raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.`;
     
-    console.warn(warningMessage);
+    warnings.push({
+      type: 'unprocessed_block_delimiter',
+      message: warningMessage,
+      count: totalCount,
+      details: {
+        foundTypes: foundDelimiters.map(d => ({ type: d.type, count: d.count })),
+        examples: foundDelimiters.flatMap(d => d.examples).slice(0, 3)
+      }
+    });
+    
+    // Also log to console for debugging
+    console.warn(`WARNING: ${warningMessage}\n` +
+      `Found types: ${foundDelimiters.map(d => `${d.type} (${d.count})`).join(', ')}\n` +
+      `Examples: ${foundDelimiters.flatMap(d => d.examples).slice(0, 3).map(e => JSON.stringify(e)).join(', ')}`);
     
     // Remove the delimiters to prevent them from appearing in output
     // But this is a workaround - the root cause should be fixed
@@ -172,6 +184,6 @@ export async function parseTutorial(markdown, options = {}) {
     }
   }
   
-  return html;
+  return { html, warnings };
 }
 

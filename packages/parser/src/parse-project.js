@@ -73,11 +73,13 @@ export async function parseProject(projectPath, options = {}) {
         });
       }
       
-      let content = await parseTutorial(markdown, {
+      const parseResult = await parseTutorial(markdown, {
         basePath,
         transclusionCache,
         languages: preferredLanguages
       });
+      const content = parseResult.html || parseResult; // Support both old and new return format
+      const stepWarnings = parseResult.warnings || [];
       
       // If step has a quiz, parse and embed it
       let knowledgeQuiz = metaStep.knowledgeQuiz;
@@ -124,13 +126,28 @@ export async function parseProject(projectPath, options = {}) {
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
         // If empty, return {} (empty object) instead of null to match API
-        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : {}
+        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : {},
+        // Include parsing warnings if any
+        warnings: stepWarnings.length > 0 ? stepWarnings : undefined
       };
     })
   );
   
+  // Collect all warnings from steps BEFORE removing them
+  const allWarnings = steps
+    .flatMap((step, index) => {
+      const stepWarnings = step.warnings || [];
+      return stepWarnings.map(w => ({ 
+        ...w, 
+        stepIndex: index, 
+        stepTitle: step.title,
+        stepPosition: step.position
+      }));
+    })
+    .filter(w => w); // Remove undefined/null
+  
   // Build API-compatible structure
-  return {
+  const result = {
     data: {
       type: 'projects',
       attributes: {
@@ -145,12 +162,19 @@ export async function parseProject(projectPath, options = {}) {
           metaTitle: meta.metaTitle,
           metaDescription: meta.metaDescription,
           pdf: meta.pdf,
-          steps
+          steps: steps.map(({ warnings, ...step }) => step) // Remove warnings from steps (they're in the root)
         }
       }
     },
     included: [] // TODO: Add pathways etc.
   };
+  
+  // Add warnings at root level if any
+  if (allWarnings.length > 0) {
+    result.warnings = allWarnings;
+  }
+  
+  return result;
 }
 
 /**
