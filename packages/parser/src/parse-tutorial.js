@@ -13,6 +13,7 @@ import remarkBlockDelimiters from './plugins/remark-block-delimiters.js';
 import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 import remarkTransclusion from './plugins/remark-transclusion.js';
 import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
+import rehypeHeadingIds from './plugins/rehype-heading-ids.js';
 
 /**
  * Parse markdown content to HTML
@@ -100,6 +101,7 @@ export async function parseTutorial(markdown, options = {}) {
       languages: options.languages
     })
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeHeadingIds) // Add IDs to headings
     .use(rehypeCodePreClass)
     .use(rehypeStringify, { allowDangerousHtml: true });
   

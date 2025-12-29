@@ -99,7 +99,8 @@ export async function parseProject(projectPath, options = {}) {
         ingredients: metaStep.ingredients || [],
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
-        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : null
+        // If empty, return {} (empty object) instead of null to match API
+        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : {}
       };
     })
   );

@@ -59,8 +59,14 @@ function extractHtmlStructure(html) {
     // Collect all attributes
     const attributes = {};
     if (node.attributes) {
-      for (const attr of node.attributes) {
-        attributes[attr.name] = attr.value;
+      // node-html-parser uses a different structure - attributes is an object, not an array
+      if (Array.isArray(node.attributes)) {
+        for (const attr of node.attributes) {
+          attributes[attr.name] = attr.value;
+        }
+      } else if (typeof node.attributes === 'object') {
+        // node-html-parser stores attributes as an object
+        Object.assign(attributes, node.attributes);
       }
     }
 
