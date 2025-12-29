@@ -1,6 +1,6 @@
 # HTML-Unterschiede Übersicht
 
-**Datum:** 2025-01-XX  
+**Datum:** 2025-12-29  
 **Status:** Analyse der verbleibenden Unterschiede
 
 ## Zusammenfassung

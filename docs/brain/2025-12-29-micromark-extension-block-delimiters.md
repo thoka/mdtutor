@@ -1,6 +1,6 @@
 # Micromark-Extension für `--- TYPE ---` Syntax
 
-**Datum:** 2025-01-XX  
+**Datum:** 2025-12-29  
 **Status:** In Implementierung
 
 ## Ziel
