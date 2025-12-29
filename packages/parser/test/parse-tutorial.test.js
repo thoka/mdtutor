@@ -73,3 +73,14 @@ test('parseTutorial - link attributes', async () => {
   assert.ok(html.includes('width="300px"'));
   assert.ok(html.includes('class="button primary"'));
 });
+
+test('parseTutorial - link attributes on separate line', async () => {
+  const markdown = `
+![Image](test.png)
+{:width="300px"}
+`;
+
+  const html = await parseTutorial(markdown);
+  assert.ok(html.includes('width="300px"'), 'Should have width attribute on img tag');
+  assert.ok(!html.includes('{:width='), 'Should not have raw attribute syntax in output');
+});

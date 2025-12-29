@@ -137,7 +137,8 @@ export async function parseTutorial(markdown, options = {}) {
   const rawDelimiterPatterns = [
     /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi,
     /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi,
-    />---\s*\/?[a-z-]+\s*---</gi  // Between tags
+    />---\s*\/?[a-z-]+\s*---</gi,  // Between tags
+    /---\s*\/?[a-z-]+\s*---/g  // Anywhere (fallback)
   ];
   
   for (const pattern of rawDelimiterPatterns) {
