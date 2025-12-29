@@ -72,22 +72,34 @@ Nach Implementierung der micromark-extension für Block-Delimiter gibt es noch *
 - **input -> strong/img/span:** 9 Fälle
 - **Problem:** Task-Checkboxes werden manchmal falsch geparst
 
+## Iteration 1: blockDelimiter Node Handling
+
+**Änderung:** `remark-block-delimiters.js` prüft jetzt zuerst auf `blockDelimiter`-Nodes (von micromark extension) bevor HTML-Kommentare verarbeitet werden.
+
+**Status:** Implementiert, aber noch keine Verbesserung sichtbar. Mögliche Ursachen:
+- blockDelimiter-Nodes kommen nicht im AST an
+- Metadaten werden nicht korrekt übertragen
+- Handler liest Metadaten nicht korrekt
+
 ## Nächste Schritte
 
-1. **div -> p Mismatches analysieren:**
+1. **blockDelimiter-Nodes Debugging:**
+   - Prüfen, ob Nodes im AST ankommen
+   - Prüfen, ob Metadaten korrekt übertragen werden
+   - Prüfen, ob Handler korrekt funktioniert
+
+2. **div -> p Mismatches analysieren:**
    - Prüfen, ob Block-Delimiter korrekt erkannt werden
    - Prüfen, ob YAML-Blöcke korrekt verarbeitet werden
+   - Prüfen, ob es Edge Cases gibt, wo Delimiter als Paragraphs enden
 
-2. **Task-Struktur verbessern:**
-   - Prüfen, ob `c-project-task__body` korrekt hinzugefügt wird
+3. **Task-Struktur verbessern:**
+   - Prüfen, ob `c-project-task__body` korrekt hinzugefügt wird (24 fehlende Fälle)
    - Prüfen, ob Checkbox-Struktur korrekt ist
 
-3. **Block-Elemente vs. Paragraphs:**
+4. **Block-Elemente vs. Paragraphs:**
    - Prüfen, warum Überschriften als Paragraphs geparst werden
    - Prüfen, warum Code-Blöcke falsch geparst werden
-
-4. **Input-Elemente:**
-   - Prüfen, warum Checkboxes manchmal als andere Elemente erscheinen
 
 ## Pipeline Error Hints
 
