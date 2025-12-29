@@ -65,6 +65,15 @@ async function getProjectData(slug, requestedLang) {
             });
           }
           
+          // Transform heroImage URL from relative to absolute
+          if (parsed.data.attributes?.content?.heroImage) {
+            const heroImagePath = parsed.data.attributes.content.heroImage;
+            // If it's a relative path (starts with "images/"), convert to absolute
+            if (heroImagePath.startsWith('images/')) {
+              parsed.data.attributes.content.heroImage = `/snapshots/${slug}/repo/${lang}/${heroImagePath}`;
+            }
+          }
+          
           return parsed;
         }
       }
