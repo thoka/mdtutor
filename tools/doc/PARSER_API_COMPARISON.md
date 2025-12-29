@@ -35,4 +35,5 @@ Siehe `docs/brain/2025-12-29-parser-api-differences.md` für eine detaillierte A
 1. ✅ **Struktur**: `version`, `listed`, `copyedit`, `lastTested` sind jetzt in `data.attributes.content` statt `data.attributes`
 2. ✅ **Tool erstellt**: Generisches JSON-Vergleichstool ist verfügbar
 3. ✅ **Block-Delimiter**: `--- collapse ---` Blöcke werden jetzt korrekt zu Panel-Struktur konvertiert
+4. ✅ **YAML Duplikate**: Doppelte `completion:` Schlüssel in meta.yml werden korrekt behandelt (letzter überschreibt ersten, wie in Standard-YAML)
 

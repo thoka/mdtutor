@@ -59,6 +59,12 @@ There are differences in the HTML content of steps between the original API and 
 - YAML frontmatter within collapse blocks is recognized and parsed
 - Panel structure generated with title: `<div class="c-project-panel c-project-panel--ingredient">...`
 
+### ✅ YAML Duplicate Keys
+- Duplicate `completion:` keys in meta.yml now handled correctly
+- Last completion block overwrites the first (matching standard YAML behavior and API interpretation)
+- Fixed issue where Step 5 had `['internal','external']` instead of `['external']`
+- All completion arrays now match API output
+
 ### ✅ Comparison Tool
 - Generic JSON comparison tool (`compare-json.js`) created and available
 
