@@ -59,6 +59,20 @@ export async function parseProject(projectPath, options = {}) {
       const file = `step_${index + 1}.md`;
       const filePath = join(actualPath, file);
       const markdown = readFileSync(filePath, 'utf-8');
+      
+      // Extract ingredients from transclusions in markdown
+      // Transclusions are in the format: [[[project-name]]]
+      const transclusionMatches = markdown.match(/\[\[\[([a-z0-9-]+)\]\]\]/g);
+      const ingredients = metaStep.ingredients || [];
+      if (transclusionMatches) {
+        transclusionMatches.forEach(match => {
+          const projectName = match.match(/\[\[\[([a-z0-9-]+)\]\]\]/)[1];
+          if (!ingredients.includes(projectName)) {
+            ingredients.push(projectName);
+          }
+        });
+      }
+      
       let content = await parseTutorial(markdown, {
         basePath,
         transclusionCache,
@@ -96,7 +110,7 @@ export async function parseProject(projectPath, options = {}) {
         quiz: metaStep.quiz || false,
         challenge: false, // TODO: Detect from content
         completion: metaStep.completion || [],
-        ingredients: metaStep.ingredients || [],
+        ingredients: ingredients,
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
         // If empty, return {} (empty object) instead of null to match API

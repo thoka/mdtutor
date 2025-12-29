@@ -620,6 +620,7 @@ function compareStepAttributes(expectedStep, actualStep, stepIndex) {
       path: `steps[${stepIndex}].completion`,
       jsonPath: `/data/attributes/content/steps/${stepIndex}/completion`,
       type: 'array_mismatch',
+      field: 'completion',
       expected: expectedStep.completion,
       actual: actualStep.completion
     });
@@ -631,6 +632,7 @@ function compareStepAttributes(expectedStep, actualStep, stepIndex) {
       path: `steps[${stepIndex}].ingredients`,
       jsonPath: `/data/attributes/content/steps/${stepIndex}/ingredients`,
       type: 'array_mismatch',
+      field: 'ingredients',
       expected: expectedStep.ingredients,
       actual: actualStep.ingredients
     });
