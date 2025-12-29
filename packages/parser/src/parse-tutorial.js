@@ -54,7 +54,7 @@ function preprocessYamlBlocks(markdown) {
     // First check for block delimiters (--- TYPE --- or --- /TYPE ---)
     // These must be checked before YAML delimiters to avoid conflicts
     // Match with optional trailing whitespace (some files have spaces after ---)
-    const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s+---\s*$/);
+    const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s*---\s*$/);
     if (blockDelimiterMatch) {
       const isClosing = blockDelimiterMatch[1] === '/';
       const blockType = blockDelimiterMatch[2];
