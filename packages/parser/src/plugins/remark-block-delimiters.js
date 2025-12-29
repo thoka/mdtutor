@@ -448,16 +448,34 @@ export default function remarkBlockDelimiters() {
           };
           
           // Replace opening delimiter with panel opening
-          parent.children[startIndex] = openHTML;
+          // Check if startIndex node is an HTML comment delimiter (own token)
+          const startNode = children[startIndex];
+          if (startNode?.type === 'html' && startNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:open\s*-->/)) {
+            parent.children[startIndex] = openHTML;
+          } else {
+            parent.children[startIndex] = openHTML;
+          }
           
           // Remove frontmatter/heading if present
           if (titleInfo.frontmatterIndex !== undefined && titleInfo.frontmatterIndex < endIndex) {
             parent.children.splice(titleInfo.frontmatterIndex, 1);
             // Adjust endIndex if we removed a node before it
             const finalEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
-            parent.children[finalEndIndex] = closeHTML;
+            // Check if endIndex node is an HTML comment delimiter
+            const endNode = children[finalEndIndex];
+            if (endNode?.type === 'html' && endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/)) {
+              parent.children[finalEndIndex] = closeHTML;
+            } else {
+              parent.children[finalEndIndex] = closeHTML;
+            }
           } else {
-            parent.children[endIndex] = closeHTML;
+            // Check if endIndex node is an HTML comment delimiter
+            const endNode = children[endIndex];
+            if (endNode?.type === 'html' && endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/)) {
+              parent.children[endIndex] = closeHTML;
+            } else {
+              parent.children[endIndex] = closeHTML;
+            }
           }
           
           continue;
@@ -489,15 +507,33 @@ export default function remarkBlockDelimiters() {
           };
           
           // Replace opening delimiter with panel opening
-          parent.children[startIndex] = openHTML;
+          // Check if startIndex node is an HTML comment delimiter (own token)
+          const startNode = children[startIndex];
+          if (startNode?.type === 'html' && startNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:open\s*-->/)) {
+            parent.children[startIndex] = openHTML;
+          } else {
+            parent.children[startIndex] = openHTML;
+          }
           
           // Remove title heading if we extracted it
           if (titleNodeIndex !== null && titleNodeIndex < endIndex) {
             parent.children.splice(titleNodeIndex, 1);
             const finalEndIndex = endIndex > titleNodeIndex ? endIndex - 1 : endIndex;
-            parent.children[finalEndIndex] = closeHTML;
+            // Check if endIndex node is an HTML comment delimiter
+            const endNode = children[finalEndIndex];
+            if (endNode?.type === 'html' && endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/)) {
+              parent.children[finalEndIndex] = closeHTML;
+            } else {
+              parent.children[finalEndIndex] = closeHTML;
+            }
           } else {
-            parent.children[endIndex] = closeHTML;
+            // Check if endIndex node is an HTML comment delimiter
+            const endNode = children[endIndex];
+            if (endNode?.type === 'html' && endNode.value?.match(/<!--\s*block-delimiter:[a-z-]+:close\s*-->/)) {
+              parent.children[endIndex] = closeHTML;
+            } else {
+              parent.children[endIndex] = closeHTML;
+            }
           }
           
           continue;
