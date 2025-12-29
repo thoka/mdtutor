@@ -175,17 +175,15 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       dashCount++;
       effects.consume(code);
       if (dashCount === 3) {
-        effects.exit('blockDelimiterMarker');
-        // Exit blockDelimiterName if still open
-        if (type.length > 0) {
-          effects.exit('blockDelimiterName');
-        }
+        // Exit blockDelimiterName if still open (should have been closed before)
+        // But check to be safe
         // Store metadata in containerState BEFORE creating token
         self.containerState.blockDelimiter = {
           blockType: type,
           isClosing: isClosing
         };
-        // Create the token
+        // Exit marker and create token
+        effects.exit('blockDelimiterMarker');
         effects.enter('blockDelimiter');
         effects.exit('blockDelimiter');
         
