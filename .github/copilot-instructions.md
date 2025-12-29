@@ -4,6 +4,7 @@ Expert guidance for coding in the MDTutor monorepo.
 
 ## Architecture & Data Flow
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
+- **Loose Coupling**: Modules are independent. Keep logic, tests, and documentation within the module directory.
 - **Parser (`packages/parser`)**: Converts Markdown to RPL-compatible JSON using `unified.js` (remark/rehype).
 - **API Server (`packages/api-server`)**: Express server serving content from `test/snapshots`. Supports on-the-fly parsing and language fallback.
 - **Web App (`apps/web`)**: Svelte 5 + Vite frontend. Uses `svelte-spa-router`.
@@ -19,7 +20,7 @@ Expert guidance for coding in the MDTutor monorepo.
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.
 - **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
-- **Documentation**: Distributed across modules. Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after).
+- **Documentation**: Distributed across modules. Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after). Module-specific specifications must be placed in the respective module's `docs/` directory (e.g., `packages/parser/docs/`).
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Verification**: Merge to `main` only after full verification and passing tests.
 
