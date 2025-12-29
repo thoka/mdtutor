@@ -129,6 +129,7 @@ From the root directory:
 - Code block processing (Scratch, Python, etc.)
 - Task and ingredient panel extraction
 - Language class propagation from `<code>` to `<pre>` tags
+- Link attribute parsing with improved validation (prevents false matches on long alt text)
 - Knowledge quiz parsing from separate quiz directories
   - Interactive quiz rendering with radio buttons and feedback
   - Full Markdown parsing for question text, choice text, and feedback
@@ -146,6 +147,8 @@ From the root directory:
 - Express server serving cached tutorial data
 - CORS enabled for development
 - Reads from test/snapshots directory
+- Converts relative image URLs to absolute paths for Vite static file serving
+- Does not serve static files (images) - handled by Vite dev server or nginx/caddy in production
 
 ### Web Renderer
 - Svelte 5 with runes mode
@@ -160,6 +163,10 @@ From the root directory:
   - Supports Scratch 3.0 style
 - Syntax highlighting for code blocks (Prism.js)
 - Material Symbols icons for navigation
+- Static file serving: Images served via Vite dev server from `public/snapshots` symlink
+  - Development: Vite serves files from `public/snapshots` → `test/snapshots`
+  - Production: nginx/caddy serves files directly from `public/snapshots`
+  - Image URLs: `/snapshots/:slug/repo/:lang/images/...`
 
 ## Documentation
 
