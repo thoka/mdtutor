@@ -32,24 +32,11 @@ node compare-json.js file1.json file2.json --max-diffs 100
 
 1. ✅ **Struktur**: `version`, `listed`, `copyedit`, `lastTested` sind jetzt in `data.attributes.content` statt `data.attributes`
 2. ✅ **Tool erstellt**: Generisches JSON-Vergleichstool ist verfügbar
+3. ✅ **Block-Delimiter**: `--- collapse ---` Blöcke werden jetzt korrekt zu Panel-Struktur konvertiert
 
 ### Offene Probleme
 
-1. ❌ **Block-Delimiter**: `--- collapse ---` Blöcke werden nicht korrekt zu Panel-Struktur konvertiert
-   - Aktuell: `<h2>--- collapse ---</h2>`
-   - Erwartet: `<div class="c-project-panel c-project-panel--ingredient">...`
-   - Problem: Frontmatter innerhalb von `collapse`-Blöcken wird nicht erkannt
-   - Beispiel:
-     ```markdown
-     --- collapse ---
-     ---
-     title: What you should already know
-     ---
-     Content...
-     --- /collapse ---
-     ```
-
-2. ❌ **Fehlende Felder** (können ignoriert werden, da nicht aus Markdown geparst):
+1. ❌ **Fehlende Felder** (können ignoriert werden, da nicht aus Markdown geparst):
    - `data.id`
    - `data.attributes.id`
    - `data.attributes.repositoryName`
@@ -69,12 +56,11 @@ node compare-json.js file1.json file2.json --max-diffs 100
    - `data.relationships`
    - `included` (Pathways)
 
-3. ❌ **HTML-Inhalte**: Unterschiede in den HTML-Inhalten der Steps (wahrscheinlich aufgrund von Problem #1)
+2. ❌ **HTML-Inhalte**: Unterschiede in den HTML-Inhalten der Steps (weitere Analyse erforderlich)
 
 ## Nächste Schritte
 
-1. ✅ Block-Delimiter-Parser erweitert, um Frontmatter in `collapse`-Blöcken zu erkennen
-2. ✅ Korrekte Panel-Struktur wird generiert (`c-project-panel`, `c-project-panel--ingredient`, etc.)
-3. Tests mit `compare-json.js` durchführen, um alle Unterschiede zu identifizieren
-4. Schrittweise alle Unterschiede beheben
+1. Tests mit `compare-json.js` durchführen, um alle verbleibenden Unterschiede zu identifizieren
+2. Schrittweise alle Unterschiede beheben
+3. HTML-Inhalte analysieren und Unterschiede beheben
 
