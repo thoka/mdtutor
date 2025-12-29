@@ -13,6 +13,9 @@ import remarkBlockDelimiters from './plugins/remark-block-delimiters.js';
 import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 import remarkTransclusion from './plugins/remark-transclusion.js';
 import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
+import rehypeHeadingIds from './plugins/rehype-heading-ids.js';
+import { blockDelimiters } from './plugins/micromark-extension-block-delimiters.js';
+import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimiters.js';
 
 /**
  * Parse markdown content to HTML
@@ -24,13 +27,16 @@ import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
  * @returns {Promise<string>} HTML content
  */
 /**
- * Preprocess markdown to convert YAML blocks to a parseable format
+ * Preprocess markdown to convert YAML blocks to a parseable format.
+ * 
+ * Block delimiters (--- TYPE ---) are now handled by the micromark extension,
+ * so they are NOT converted to HTML comments here.
+ * 
  * Converts:
  * ---
  * title: value
  * ---
- * 
- * To a format that remark-parse can handle (using code blocks as markers)
+ * To: ```yaml-block ... ```
  */
 function preprocessYamlBlocks(markdown) {
   const lines = markdown.split('\n');
@@ -39,6 +45,19 @@ function preprocessYamlBlocks(markdown) {
   
   while (i < lines.length) {
     const line = lines[i];
+    
+    // NOTE: Block delimiters are now handled by micromark extension
+    // We no longer convert them to HTML comments in preprocessing
+    // This allows the extension to create proper blockDelimiter nodes
+    // Only check for block delimiters to skip them (don't process as YAML)
+    const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s*---\s*$/);
+    if (blockDelimiterMatch) {
+      // Leave the delimiter as-is for micromark extension to process
+      // Just skip it in YAML processing
+      processed.push(line);
+      i++;
+      continue;
+    }
     
     // Check if this line is exactly "---" (YAML delimiter)
     // Must not have text before or after (to distinguish from block delimiters like "--- collapse ---")
@@ -88,11 +107,13 @@ export async function parseTutorial(markdown, options = {}) {
   const preprocessed = preprocessYamlBlocks(markdown);
   
   const processor = unified()
+    .data('micromarkExtensions', [blockDelimiters()])
+    .data('fromMarkdownExtensions', [blockDelimitersFromMarkdown()])
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
+    .use(remarkBlockDelimiters) // Process block delimiters early, before YAML blocks processing
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
-    .use(remarkBlockDelimiters)
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,
@@ -100,10 +121,62 @@ export async function parseTutorial(markdown, options = {}) {
       languages: options.languages
     })
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeHeadingIds) // Add IDs to headings
     .use(rehypeCodePreClass)
     .use(rehypeStringify, { allowDangerousHtml: true });
   
   const vfile = await processor.process(preprocessed);
-  return String(vfile);
+  let html = String(vfile);
+  
+  // Post-process: Check for any remaining raw block delimiters that weren't converted
+  // With the micromark extension, this should not happen anymore
+  // If delimiters are found, it indicates a parsing issue that needs to be fixed
+  const rawDelimiterPatterns = [
+    { pattern: /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi, name: 'paragraph-wrapped' },
+    { pattern: /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi, name: 'paragraph-wrapped-with-spaces' },
+    { pattern: />---\s*\/?[a-z-]+\s*---</gi, name: 'between-tags' },
+    { pattern: /---\s*\/?[a-z-]+\s*---/g, name: 'anywhere' }
+  ];
+  
+  const foundDelimiters = [];
+  for (const { pattern, name } of rawDelimiterPatterns) {
+    const matches = html.match(pattern);
+    if (matches && matches.length > 0) {
+      foundDelimiters.push({
+        type: name,
+        count: matches.length,
+        examples: matches.slice(0, 3) // Show first 3 examples
+      });
+    }
+  }
+  
+  const warnings = [];
+  if (foundDelimiters.length > 0) {
+    const totalCount = foundDelimiters.reduce((sum, d) => sum + d.count, 0);
+    const warningMessage = `Found ${totalCount} raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.`;
+    
+    warnings.push({
+      type: 'unprocessed_block_delimiter',
+      message: warningMessage,
+      count: totalCount,
+      details: {
+        foundTypes: foundDelimiters.map(d => ({ type: d.type, count: d.count })),
+        examples: foundDelimiters.flatMap(d => d.examples).slice(0, 3)
+      }
+    });
+    
+    // Also log to console for debugging
+    console.warn(`WARNING: ${warningMessage}\n` +
+      `Found types: ${foundDelimiters.map(d => `${d.type} (${d.count})`).join(', ')}\n` +
+      `Examples: ${foundDelimiters.flatMap(d => d.examples).slice(0, 3).map(e => JSON.stringify(e)).join(', ')}`);
+    
+    // Remove the delimiters to prevent them from appearing in output
+    // But this is a workaround - the root cause should be fixed
+    for (const { pattern } of rawDelimiterPatterns) {
+      html = html.replace(pattern, '');
+    }
+  }
+  
+  return { html, warnings };
 }
 

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "./src/index.js",
   "scripts": {
-    "dev": "node --watch src/server.js",
+    "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "test": "node --test"
   },
@@ -13,10 +13,12 @@
     "mdtutor-api": "./src/server.js"
   },
   "dependencies": {
-    "express": "^4.21.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
   "keywords": [
     "api",
     "server",

@@ -59,11 +59,27 @@ export async function parseProject(projectPath, options = {}) {
       const file = `step_${index + 1}.md`;
       const filePath = join(actualPath, file);
       const markdown = readFileSync(filePath, 'utf-8');
-      let content = await parseTutorial(markdown, {
+      
+      // Extract ingredients from transclusions in markdown
+      // Transclusions are in the format: [[[project-name]]]
+      const transclusionMatches = markdown.match(/\[\[\[([a-z0-9-]+)\]\]\]/g);
+      const ingredients = metaStep.ingredients || [];
+      if (transclusionMatches) {
+        transclusionMatches.forEach(match => {
+          const projectName = match.match(/\[\[\[([a-z0-9-]+)\]\]\]/)[1];
+          if (!ingredients.includes(projectName)) {
+            ingredients.push(projectName);
+          }
+        });
+      }
+      
+      const parseResult = await parseTutorial(markdown, {
         basePath,
         transclusionCache,
         languages: preferredLanguages
       });
+      const content = parseResult.html || parseResult; // Support both old and new return format
+      const stepWarnings = parseResult.warnings || [];
       
       // If step has a quiz, parse and embed it
       let knowledgeQuiz = metaStep.knowledgeQuiz;
@@ -89,23 +105,49 @@ export async function parseProject(projectPath, options = {}) {
         }
       }
       
+      // Determine quiz flag: true if knowledgeQuiz exists, otherwise use metaStep.quiz
+      const hasQuiz = !!knowledgeQuiz;
+      const quizFlag = hasQuiz || metaStep.quiz || false;
+      
+      // Normalize completion: ensure it's always an array (API sometimes has undefined or "")
+      let completion = metaStep.completion || [];
+      if (!Array.isArray(completion)) {
+        completion = [];
+      }
+      
       return {
         title: metaStep.title || extractTitle(markdown),
         content,
         position: index,
-        quiz: metaStep.quiz || false,
+        quiz: quizFlag,
         challenge: false, // TODO: Detect from content
-        completion: metaStep.completion || [],
-        ingredients: metaStep.ingredients || [],
+        completion: completion,
+        ingredients: ingredients,
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
-        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : null
+        // If empty, return {} (empty object) instead of null to match API
+        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : {},
+        // Include parsing warnings if any
+        warnings: stepWarnings.length > 0 ? stepWarnings : undefined
       };
     })
   );
   
+  // Collect all warnings from steps BEFORE removing them
+  const allWarnings = steps
+    .flatMap((step, index) => {
+      const stepWarnings = step.warnings || [];
+      return stepWarnings.map(w => ({ 
+        ...w, 
+        stepIndex: index, 
+        stepTitle: step.title,
+        stepPosition: step.position
+      }));
+    })
+    .filter(w => w); // Remove undefined/null
+  
   // Build API-compatible structure
-  return {
+  const result = {
     data: {
       type: 'projects',
       attributes: {
@@ -120,12 +162,19 @@ export async function parseProject(projectPath, options = {}) {
           metaTitle: meta.metaTitle,
           metaDescription: meta.metaDescription,
           pdf: meta.pdf,
-          steps
+          steps: steps.map(({ warnings, ...step }) => step) // Remove warnings from steps (they're in the root)
         }
       }
     },
     included: [] // TODO: Add pathways etc.
   };
+  
+  // Add warnings at root level if any
+  if (allWarnings.length > 0) {
+    result.warnings = allWarnings;
+  }
+  
+  return result;
 }
 
 /**

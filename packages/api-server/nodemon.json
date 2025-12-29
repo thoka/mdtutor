@@ -1,0 +1,18 @@
+{
+  "watch": [
+    "src/**/*.js",
+    "../../parser/src/**/*.js"
+  ],
+  "ignore": [
+    "**/*.test.js",
+    "node_modules/**",
+    "test/**"
+  ],
+  "ext": "js,json",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": 500,
+  "verbose": false
+}
+
