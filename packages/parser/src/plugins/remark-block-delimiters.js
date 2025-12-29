@@ -47,7 +47,8 @@ function matchDelimiterLine(text) {
  * Check if a node is a YAML frontmatter block
  */
 function isYamlFrontmatter(node) {
-  return node.type === 'yaml';
+  return node.type === 'yaml' || 
+         (node.type === 'code' && node.lang === 'yaml-block');
 }
 
 /**
@@ -70,7 +71,9 @@ function extractTitle(children, startIndex) {
   if (startIndex + 1 < children.length) {
     const nextNode = children[startIndex + 1];
     if (isYamlFrontmatter(nextNode)) {
-      const frontmatter = parseFrontmatter(nextNode.value);
+      // Handle both yaml nodes and code blocks with yaml-block language
+      const yamlContent = nextNode.type === 'code' ? nextNode.value : nextNode.value;
+      const frontmatter = parseFrontmatter(yamlContent);
       if (frontmatter.title) {
         return {
           title: frontmatter.title,
@@ -320,9 +323,12 @@ export default function remarkBlockDelimiters() {
       if (blockType === 'collapse') {
         const titleInfo = extractTitle(children, startIndex);
         
+        // Always create panel structure for collapse blocks
+        // If no title found, we'll need to extract it from the content or use a default
+        const panelModifier = PANEL_MODIFIERS[blockType] || 'c-project-panel--ingredient';
+        
         if (titleInfo) {
           // Generate panel structure with title
-          const panelModifier = PANEL_MODIFIERS[blockType] || `c-project-panel--${titleInfo.panelType}`;
           const openHTML = {
             type: 'html',
             value: `<div class="c-project-panel ${panelModifier}">\n  <h3 class="c-project-panel__heading js-project-panel__toggle">\n    ${titleInfo.title}\n  </h3>\n\n  <div class="c-project-panel__content u-hidden">`
@@ -341,6 +347,46 @@ export default function remarkBlockDelimiters() {
             parent.children.splice(titleInfo.frontmatterIndex, 1);
             // Adjust endIndex if we removed a node before it
             const finalEndIndex = endIndex > titleInfo.frontmatterIndex ? endIndex - 1 : endIndex;
+            parent.children[finalEndIndex] = closeHTML;
+          } else {
+            parent.children[endIndex] = closeHTML;
+          }
+          
+          continue;
+        } else {
+          // No title found - try to extract from first heading in content
+          // Look for first h2 or h3 in the content range
+          let extractedTitle = null;
+          let titleNodeIndex = null;
+          
+          for (let i = startIndex + 1; i < endIndex; i++) {
+            const node = children[i];
+            if (node && node.type === 'heading' && (node.depth === 2 || node.depth === 3)) {
+              extractedTitle = extractTextFromNode(node);
+              titleNodeIndex = i;
+              break;
+            }
+          }
+          
+          // Use extracted title or default
+          const title = extractedTitle || 'Panel';
+          const openHTML = {
+            type: 'html',
+            value: `<div class="c-project-panel ${panelModifier}">\n  <h3 class="c-project-panel__heading js-project-panel__toggle">\n    ${title}\n  </h3>\n\n  <div class="c-project-panel__content u-hidden">`
+          };
+          
+          const closeHTML = {
+            type: 'html',
+            value: '\n  </div>\n</div>'
+          };
+          
+          // Replace opening delimiter with panel opening
+          parent.children[startIndex] = openHTML;
+          
+          // Remove title heading if we extracted it
+          if (titleNodeIndex !== null && titleNodeIndex < endIndex) {
+            parent.children.splice(titleNodeIndex, 1);
+            const finalEndIndex = endIndex > titleNodeIndex ? endIndex - 1 : endIndex;
             parent.children[finalEndIndex] = closeHTML;
           } else {
             parent.children[endIndex] = closeHTML;
