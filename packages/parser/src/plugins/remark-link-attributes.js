@@ -39,7 +39,7 @@ function parseAttributes(text) {
 export default function remarkLinkAttributes() {
   return (tree) => {
     visit(tree, (node, index, parent) => {
-      if (!parent || index === null) return;
+      if (!parent || index === null || !node) return;
       
       // Check if next sibling is a text node with attributes
       const nextNode = parent.children[index + 1];

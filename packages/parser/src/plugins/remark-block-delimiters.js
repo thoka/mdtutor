@@ -206,20 +206,35 @@ export default function remarkBlockDelimiters() {
     });
     
     // Apply node splits (after visit to avoid modifying tree during traversal)
+    // Process in reverse order to maintain correct indices
     for (const split of nodeSplits.reverse()) {
       const { parent, index, lines, blockType } = split;
+      if (!parent || !parent.children || index >= parent.children.length || index < 0) continue;
+      
       const node = parent.children[index];
+      if (!node || !node.children || node.children.length === 0) continue; // Skip if node was already removed or invalid
+      
+      // Ensure we have valid text content
+      const firstChild = node.children[0];
+      if (!firstChild || firstChild.type !== 'text') continue;
+      
       const openingPara = {
         type: 'paragraph',
         children: [{ type: 'text', value: lines[0] }],
-        position: node.position
+        position: node.position || undefined
       };
       const closingPara = {
         type: 'paragraph',
         children: [{ type: 'text', value: lines[1] }],
-        position: node.position
+        position: node.position || undefined
       };
-      parent.children.splice(index, 1, openingPara, closingPara);
+      
+      // Validate that parent.children is still valid before splicing
+      if (parent.children && Array.isArray(parent.children) && index < parent.children.length) {
+        parent.children.splice(index, 1, openingPara, closingPara);
+      } else {
+        continue; // Skip if parent structure is invalid
+      }
       
       // Add transformations for the split nodes
       transformations.push({
