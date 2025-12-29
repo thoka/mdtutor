@@ -133,6 +133,7 @@ export default function remarkLinkAttributes() {
     // This handles cases like:
     // ![Image](url)
     // {:width="300px"}
+    // Also handles duplicate attributes (same attribute on same line and separate line)
     // Process in reverse order to avoid index issues when removing nodes
     const attributeParagraphs = [];
     visit(tree, 'paragraph', (paragraphNode, paragraphIndex, paragraphParent) => {
@@ -171,7 +172,7 @@ export default function remarkLinkAttributes() {
               // Parse attributes
               const attrs = parseAttributes(attrText);
               
-              // Apply attributes to node
+              // Apply attributes to node (merge with existing attributes)
               child.data = child.data || {};
               child.data.hProperties = child.data.hProperties || {};
               
@@ -183,6 +184,7 @@ export default function remarkLinkAttributes() {
                 delete attrs.className;
               }
               
+              // Merge other attributes (duplicates will overwrite)
               Object.assign(child.data.hProperties, attrs);
               
               // Remove the attribute paragraph
@@ -193,5 +195,36 @@ export default function remarkLinkAttributes() {
         }
       }
     }
+    
+    // Third pass: remove any remaining raw attribute text nodes in paragraphs
+    // This handles cases where attributes appear as text (e.g., duplicate attributes)
+    visit(tree, 'paragraph', (paragraphNode, paragraphIndex, paragraphParent) => {
+      if (!paragraphParent || !paragraphNode.children) return;
+      
+      // Check all text children for raw attribute syntax
+      for (let i = paragraphNode.children.length - 1; i >= 0; i--) {
+        const child = paragraphNode.children[i];
+        if (child && child.type === 'text') {
+          const trimmed = child.value.trim();
+          const attrMatch = trimmed.match(/^\{([^}]+)\}$/);
+          if (attrMatch) {
+            const attrText = attrMatch[1];
+            const hasValidAttr = /:([a-z_-]+)="([^"]*)"/.test(attrText) || /\.([a-z0-9_-]+)/i.test(attrText);
+            if (hasValidAttr) {
+              // This is a standalone attribute that wasn't processed - remove it
+              paragraphNode.children.splice(i, 1);
+            }
+          }
+        }
+      }
+      
+      // Remove paragraph if it's now empty
+      if (paragraphNode.children.length === 0) {
+        const paraIndex = paragraphParent.children.indexOf(paragraphNode);
+        if (paraIndex !== -1) {
+          paragraphParent.children.splice(paraIndex, 1);
+        }
+      }
+    });
   };
 }
