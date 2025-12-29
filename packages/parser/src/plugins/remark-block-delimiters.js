@@ -588,14 +588,16 @@ export default function remarkBlockDelimiters() {
       const openHTML = {
         type: 'html',
         value: blockType === 'task'
-          ? `<div class="${className}">\n<input class="c-project-task__checkbox" type="checkbox" aria-label="Mark this task as complete" />`
+          ? `<div class="${className}">\n<input class="c-project-task__checkbox" type="checkbox" aria-label="Mark this task as complete" />\n<div class="c-project-task__body">`
           : `<div class="${className}">`
       };
       
       // Create closing HTML node
       const closeHTML = {
         type: 'html',
-        value: '</div>'
+        value: blockType === 'task'
+          ? '</div>\n</div>'
+          : '</div>'
       };
       
       // Replace delimiter nodes with HTML
