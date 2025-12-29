@@ -25,7 +25,12 @@ import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js'
 const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 const app = express();
-const PORT = process.env.API_PORT || process.env.PORT || 3201;
+// Port MUST be set in .env file - no default fallback
+const PORT = process.env.API_PORT || process.env.PORT;
+if (!PORT) {
+  console.error('ERROR: API_PORT or PORT must be set in .env file');
+  process.exit(1);
+}
 
 // Check for --force flag
 const FORCE_FLAG = process.argv.includes('--force');

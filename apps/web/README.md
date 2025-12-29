@@ -25,7 +25,7 @@ npm install
 # Start dev server
 npm run dev
 
-# Access at http://localhost:5201/#/silly-eyes/0 (or as configured in .env)
+# Access at http://localhost:<WEB_PORT from .env>/#/silly-eyes/0
 ```
 
 ## Build
@@ -65,11 +65,11 @@ src/
 - **Svelte 5**: Reactive UI framework with runes
 - **Vite 7**: Build tool and dev server
 - **svelte-spa-router**: Hash-based routing
-- **API Server**: Must be running on port 3201 (or as configured in .env)
+- **API Server**: Must be running on port configured in `.env` (API_PORT or PORT)
 
 ## Environment
 
-The dev server proxies `/api` requests to `http://localhost:3201` (or as configured in .env) where the API server serves cached tutorial data.
+The dev server proxies `/api` requests to the API server port configured in `.env` file where the API server serves cached tutorial data.
 
 ## Type Checking
 
