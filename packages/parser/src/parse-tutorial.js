@@ -135,18 +135,41 @@ export async function parseTutorial(markdown, options = {}) {
   const vfile = await processor.process(preprocessed);
   let html = String(vfile);
   
-  // Post-process: Remove any remaining raw block delimiters that weren't converted
-  // This handles edge cases where delimiters weren't properly processed
-  // Match delimiters in various HTML contexts: <p>--- ... ---</p>, standalone, etc.
+  // Post-process: Check for any remaining raw block delimiters that weren't converted
+  // With the micromark extension, this should not happen anymore
+  // If delimiters are found, it indicates a parsing issue that needs to be fixed
   const rawDelimiterPatterns = [
-    /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi,
-    /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi,
-    />---\s*\/?[a-z-]+\s*---</gi,  // Between tags
-    /---\s*\/?[a-z-]+\s*---/g  // Anywhere (fallback)
+    { pattern: /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi, name: 'paragraph-wrapped' },
+    { pattern: /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi, name: 'paragraph-wrapped-with-spaces' },
+    { pattern: />---\s*\/?[a-z-]+\s*---</gi, name: 'between-tags' },
+    { pattern: /---\s*\/?[a-z-]+\s*---/g, name: 'anywhere' }
   ];
   
-  for (const pattern of rawDelimiterPatterns) {
-    html = html.replace(pattern, '');
+  const foundDelimiters = [];
+  for (const { pattern, name } of rawDelimiterPatterns) {
+    const matches = html.match(pattern);
+    if (matches && matches.length > 0) {
+      foundDelimiters.push({
+        type: name,
+        count: matches.length,
+        examples: matches.slice(0, 3) // Show first 3 examples
+      });
+    }
+  }
+  
+  if (foundDelimiters.length > 0) {
+    const totalCount = foundDelimiters.reduce((sum, d) => sum + d.count, 0);
+    const warningMessage = `WARNING: Found ${totalCount} raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.\n` +
+      `Found types: ${foundDelimiters.map(d => `${d.type} (${d.count})`).join(', ')}\n` +
+      `Examples: ${foundDelimiters.flatMap(d => d.examples).slice(0, 3).join(', ')}`;
+    
+    console.warn(warningMessage);
+    
+    // Remove the delimiters to prevent them from appearing in output
+    // But this is a workaround - the root cause should be fixed
+    for (const { pattern } of rawDelimiterPatterns) {
+      html = html.replace(pattern, '');
+    }
   }
   
   return html;
