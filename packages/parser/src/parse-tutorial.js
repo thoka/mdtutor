@@ -114,8 +114,9 @@ export async function parseTutorial(markdown, options = {}) {
   const preprocessed = preprocessYamlBlocks(markdown);
   
   const processor = unified()
-    .data('micromarkExtensions', [blockDelimiters()])
-    .data('fromMarkdownExtensions', [blockDelimitersFromMarkdown()])
+    // Temporarily disable micromark extension to debug
+    // .data('micromarkExtensions', [blockDelimiters()])
+    // .data('fromMarkdownExtensions', [blockDelimitersFromMarkdown()])
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
