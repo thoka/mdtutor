@@ -692,6 +692,17 @@ test('step-content-exact - all projects', async () => {
       let parsedData;
       try {
         parsedData = await parseProject(projectPath, { languages: [language] });
+        
+        // Check for parsing warnings
+        if (parsedData.warnings && parsedData.warnings.length > 0) {
+          allDifferences.push({
+            project: project.slug,
+            language: language,
+            type: 'parsing_warnings',
+            warnings: parsedData.warnings,
+            warningCount: parsedData.warnings.length
+          });
+        }
       } catch (error) {
         console.error(`Failed to parse ${project.slug}/${language}:`, error.message);
         continue;
@@ -750,15 +761,38 @@ test('step-content-exact - all projects', async () => {
     }
   }
 
+  // Separate warnings from other differences
+  const warnings = allDifferences.filter(d => d.type === 'parsing_warnings');
+  const otherDifferences = allDifferences.filter(d => d.type !== 'parsing_warnings');
+  
   // Output results
-  if (allDifferences.length > 0) {
+  if (warnings.length > 0 || otherDifferences.length > 0) {
     console.log('\n' + '='.repeat(80));
-    console.log(`Found ${allDifferences.length} difference(s) across all projects`);
+    
+    // Report warnings
+    if (warnings.length > 0) {
+      const totalWarnings = warnings.reduce((sum, w) => sum + (w.warningCount || 0), 0);
+      console.log(`⚠️  Found ${warnings.length} project(s) with parsing warnings (${totalWarnings} total warnings):`);
+      warnings.forEach(w => {
+        console.log(`  [${w.project}/${w.language}] ${w.warningCount} warning(s):`);
+        w.warnings.forEach(warning => {
+          console.log(`    - ${warning.type}: ${warning.message}`);
+          if (warning.stepTitle) {
+            console.log(`      Step: ${warning.stepTitle} (index ${warning.stepIndex})`);
+          }
+        });
+      });
+      console.log('');
+    }
+    
+    if (otherDifferences.length > 0) {
+      console.log(`Found ${otherDifferences.length} difference(s) across all projects`);
+    }
     console.log('='.repeat(80));
 
-    // Group by project
+    // Group by project (only non-warning differences)
     const byProject = {};
-    allDifferences.forEach(diff => {
+    otherDifferences.forEach(diff => {
       const key = `${diff.project}/${diff.language}`;
       if (!byProject[key]) {
         byProject[key] = [];
@@ -800,7 +834,11 @@ test('step-content-exact - all projects', async () => {
     console.log(`\n✓ Full differences exported to: ${exportPath}`);
 
     // Fail the test
-    assert.fail(`Found ${allDifferences.length} difference(s). See output above and ${exportPath} for details.`);
+    const totalIssues = otherDifferences.length + (warnings.length > 0 ? 1 : 0);
+    const message = warnings.length > 0 
+      ? `Found ${otherDifferences.length} difference(s) and ${warnings.length} project(s) with parsing warnings. See output above and ${exportPath} for details.`
+      : `Found ${otherDifferences.length} difference(s). See output above and ${exportPath} for details.`;
+    assert.fail(message);
   } else {
     console.log('\n✓ All step content attributes match exactly!');
   }
