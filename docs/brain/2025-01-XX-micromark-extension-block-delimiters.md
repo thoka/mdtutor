@@ -138,8 +138,13 @@ Markdown → micromark (mit Extension) → Tokens → mdast-util (mit Handler) �
 - Eigene Node-Typen im AST
 - Fallback auf HTML-Kommentare für Kompatibilität
 
+**Ergebnisse nach Implementierung:**
+- ✅ Unterschiede: 93 → 86 (-7)
+- ✅ Tag-Mismatches: 169 → 150 (-19)
+- ✅ Task-Struktur korrekt (Tasks und Bodies stimmen überein)
+
 **Nächste Schritte:**
-- Tests validieren dass Tokens korrekt im AST ankommen
 - Preprocessing für Delimiter optional machen (nur für YAML)
+- Weitere Verbesserungen der Token-Erkennung (z.B. Edge Cases)
 - Performance-Tests durchführen
 
