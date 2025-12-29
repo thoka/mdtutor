@@ -70,18 +70,17 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
   }
   
   function afterThreeDashes(code) {
-    // After ---, expect whitespace
+    // After ---, expect whitespace or newline
     if (code === codes.space || code === codes.tab) {
       effects.consume(code);
-      effects.exit('blockDelimiterMarker');
       return beforeType;
     }
     // Allow newline after --- (some files have newlines)
     if (code === codes.lineFeed || code === codes.carriageReturn) {
       effects.consume(code);
-      effects.exit('blockDelimiterMarker');
       return beforeType;
     }
+    // If no whitespace/newline, still try to parse (might be malformed)
     effects.exit('blockDelimiterMarker');
     return nok(code);
   }
@@ -177,22 +176,17 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       effects.consume(code);
       if (dashCount === 3) {
         effects.exit('blockDelimiterMarker');
-        // Create the token with metadata stored in the token
-        effects.enter('blockDelimiter');
-        // Store metadata - will be accessible in mdast handler
-        const token = {
-          type: 'blockDelimiter',
-          blockType: type,
-          isClosing: isClosing
-        };
-        // Attach metadata to token context
-        if (!self.containerState) {
-          self.containerState = {};
+        // Exit blockDelimiterName if still open
+        if (type.length > 0) {
+          effects.exit('blockDelimiterName');
         }
+        // Store metadata in containerState BEFORE creating token
         self.containerState.blockDelimiter = {
           blockType: type,
           isClosing: isClosing
         };
+        // Create the token
+        effects.enter('blockDelimiter');
         effects.exit('blockDelimiter');
         
         return ok;
