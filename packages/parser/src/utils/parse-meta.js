@@ -33,7 +33,12 @@ export function parseMeta(filePath) {
       challenge: false, // Will be determined from markdown content
       completion: step.completion || [],
       ingredients: step.ingredients || [],
-      knowledgeQuiz: step.knowledge_quiz?.path || (step.knowledge_quiz ? step.knowledge_quiz.path || 'quiz1' : null)
+      knowledgeQuiz: step.knowledge_quiz ? {
+        path: step.knowledge_quiz.path || 'quiz1',
+        version: step.knowledge_quiz.version || 1,
+        questions: step.knowledge_quiz.questions || 0,
+        passing_score: step.knowledge_quiz.passing_score || 0
+      } : null
     }))
   };
 }

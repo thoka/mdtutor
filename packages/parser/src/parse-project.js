@@ -68,7 +68,11 @@ export async function parseProject(projectPath, options = {}) {
       // If step has a quiz, parse and embed it
       let knowledgeQuiz = metaStep.knowledgeQuiz;
       if (metaStep.quiz && metaStep.knowledgeQuiz) {
-        const quizPath = join(actualPath, metaStep.knowledgeQuiz);
+        // knowledgeQuiz can be either a string (path) or an object with path property
+        const quizPathValue = typeof metaStep.knowledgeQuiz === 'string' 
+          ? metaStep.knowledgeQuiz 
+          : metaStep.knowledgeQuiz.path;
+        const quizPath = join(actualPath, quizPathValue);
         try {
           const quizData = await parseQuiz(quizPath, {
             basePath,
@@ -93,7 +97,9 @@ export async function parseProject(projectPath, options = {}) {
         challenge: false, // TODO: Detect from content
         completion: metaStep.completion || [],
         ingredients: metaStep.ingredients || [],
-        knowledgeQuiz: knowledgeQuiz || null
+        // Convert knowledgeQuiz object to string for API compatibility
+        // Original API uses string (e.g., "quiz1"), not object
+        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : null
       };
     })
   );
