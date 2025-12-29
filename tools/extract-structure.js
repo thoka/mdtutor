@@ -2,14 +2,49 @@
 /**
  * Extract HTML Structure Tool
  * 
- * Extracts and prints the HTML structure from a single page.
- * Useful for inspecting the structure of reference or local pages.
+ * AGENT USE: Dumps HTML tag/class hierarchy.
+ * 
+ * USAGE:
+ *   node tools/extract-structure.js <url> [options]
+ * 
+ * OPTIONS:
+ *   --help       Show this help
+ *   --json       Output results as JSON for machine parsing
+ *   --puppeteer  Force use of Puppeteer (required for client-side rendering)
+ * 
+ * EXAMPLES:
+ *   node tools/extract-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 --puppeteer
+ *   node tools/extract-structure.js http://localhost:5173/#/cats-vs-dogs/1 --json
  */
 
 import { parse } from 'node-html-parser';
 import puppeteer from 'puppeteer';
 import https from 'https';
 import http from 'http';
+
+/**
+ * Show help message
+ */
+function showHelp() {
+  console.log(`
+Extract HTML Structure Tool
+---------------------------
+Extracts and prints the HTML structure from a single page.
+Useful for inspecting the structure of reference or local pages.
+
+Usage:
+  node tools/extract-structure.js <url> [options]
+
+Options:
+  --help       Show this help
+  --json       Output results as JSON for machine parsing
+  --puppeteer  Force use of Puppeteer (required for client-side rendering)
+
+Examples:
+  node tools/extract-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 --puppeteer
+  node tools/extract-structure.js http://localhost:5173/#/cats-vs-dogs/1 --json
+  `);
+}
 
 async function fetchHTML(url, usePuppeteer = false) {
   if (usePuppeteer) {
@@ -26,7 +61,7 @@ async function fetchHTML(url, usePuppeteer = false) {
       }
       
       // Wait a bit more for dynamic content
-      await page.waitForTimeout(2000);
+      await new Promise(resolve => setTimeout(resolve, 2000));
       
       const html = await page.content();
       await browser.close();
@@ -142,51 +177,72 @@ function printStructure(structure, label) {
 
 async function main() {
   const args = process.argv.slice(2);
+  const isJson = args.includes('--json');
+  const isHelp = args.includes('--help');
+
+  if (isHelp) {
+    showHelp();
+    process.exit(0);
+  }
   
-  if (args.length < 1) {
-    console.error('Usage: node extract-structure.js <url> [--puppeteer]');
-    console.error('Example: node extract-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 --puppeteer');
+  const params = args.filter(arg => !arg.startsWith('--'));
+  
+  if (params.length < 1) {
+    if (isJson) {
+      console.log(JSON.stringify({ error: 'Missing URL', usage: 'node extract-structure.js <url> [options]' }));
+    } else {
+      showHelp();
+    }
     process.exit(1);
   }
   
-  const url = args[0];
+  const url = params[0];
   const forcePuppeteer = args.includes('--puppeteer');
   const usePuppeteer = forcePuppeteer || url.includes('localhost') || url.includes('#');
   
-  console.log(`Fetching HTML from: ${url}`);
-  if (usePuppeteer) {
-    console.log('(Using Puppeteer for client-side rendering)');
+  if (!isJson) {
+    console.log(`Fetching HTML from: ${url}`);
+    if (usePuppeteer) {
+      console.log('(Using Puppeteer for client-side rendering)');
+    }
   }
   
   try {
     const html = await fetchHTML(url, usePuppeteer);
-    console.log(`✓ Fetched ${html.length} bytes`);
     
-    // Debug: check if .c-project exists
-    const root = parse(html);
-    const projectContainer = root.querySelector('.c-project');
-    if (!projectContainer) {
-      console.log('\n⚠ Warning: .c-project container not found in HTML');
-      console.log('Looking for alternative containers...');
-      const body = root.querySelector('body');
-      if (body) {
-        const allClasses = body.querySelectorAll('[class*="project"]');
-        console.log(`Found ${allClasses.length} elements with "project" in class name`);
-        allClasses.slice(0, 5).forEach(el => {
-          console.log(`  - ${el.tagName.toLowerCase()}.${el.getAttribute('class')}`);
-        });
+    if (!isJson) {
+      console.log(`✓ Fetched ${html.length} bytes`);
+      
+      // Debug: check if .c-project exists
+      const root = parse(html);
+      const projectContainer = root.querySelector('.c-project');
+      if (!projectContainer) {
+        console.log('\n⚠ Warning: .c-project container not found in HTML');
+        console.log('Looking for alternative containers...');
       }
     }
     
-    console.log('\nExtracting structure...');
     const structure = extractStructure(html);
     
-    printStructure(structure, `Structure from ${url}`);
+    if (isJson) {
+      console.log(JSON.stringify({
+        url,
+        usePuppeteer,
+        totalNodes: structure.length,
+        structure
+      }, null, 2));
+    } else {
+      printStructure(structure, `Structure from ${url}`);
+    }
     
   } catch (error) {
-    console.error('Error:', error.message);
-    if (error.stack) {
-      console.error(error.stack);
+    if (isJson) {
+      console.log(JSON.stringify({ error: error.message, stack: error.stack }));
+    } else {
+      console.error('Error:', error.message);
+      if (error.stack) {
+        console.error(error.stack);
+      }
     }
     process.exit(1);
   }

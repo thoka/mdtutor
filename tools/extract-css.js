@@ -2,14 +2,47 @@
 /**
  * Extract CSS Tool
  * 
- * Extracts all CSS from a reference page (including inline styles and stylesheets)
- * and saves it for cloning to the local renderer.
+ * AGENT USE: Scrapes CSS from reference pages for cloning.
+ * 
+ * USAGE:
+ *   node tools/extract-css.js <url> [output-dir] [options]
+ * 
+ * OPTIONS:
+ *   --help     Show this help
+ *   --json     Output results as JSON for machine parsing
+ * 
+ * EXAMPLES:
+ *   node tools/extract-css.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 ./css
+ *   node tools/extract-css.js https://... ./css --json
  */
 
 import puppeteer from 'puppeteer';
 import { writeFileSync, existsSync, mkdirSync } from 'fs';
 import https from 'https';
 import http from 'http';
+
+/**
+ * Show help message
+ */
+function showHelp() {
+  console.log(`
+Extract CSS Tool
+----------------
+Extracts all CSS from a reference page (including inline styles and stylesheets)
+and saves it for cloning to the local renderer.
+
+Usage:
+  node tools/extract-css.js <url> [output-dir] [options]
+
+Options:
+  --help     Show this help
+  --json     Output results as JSON for machine parsing
+
+Examples:
+  node tools/extract-css.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 ./css
+  node tools/extract-css.js https://... ./css --json
+  `);
+}
 
 async function extractCSS(url) {
   const browser = await puppeteer.launch({ headless: true });
@@ -124,18 +157,32 @@ async function downloadCSS(url, outputPath) {
 
 async function main() {
   const args = process.argv.slice(2);
+  const isJson = args.includes('--json');
+  const isHelp = args.includes('--help');
+
+  if (isHelp) {
+    showHelp();
+    process.exit(0);
+  }
   
-  if (args.length < 1) {
-    console.error('Usage: node extract-css.js <url> [output-dir]');
-    console.error('Example: node extract-css.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 ./css');
+  const params = args.filter(arg => !arg.startsWith('--'));
+  
+  if (params.length < 1) {
+    if (isJson) {
+      console.log(JSON.stringify({ error: 'Missing URL', usage: 'node extract-css.js <url> [output-dir]' }));
+    } else {
+      showHelp();
+    }
     process.exit(1);
   }
   
-  const url = args[0];
-  const outputDir = args[1] || './css';
+  const url = params[0];
+  const outputDir = params[1] || './css';
   
-  console.log(`Extracting CSS from: ${url}`);
-  console.log(`Output directory: ${outputDir}`);
+  if (!isJson) {
+    console.log(`Extracting CSS from: ${url}`);
+    console.log(`Output directory: ${outputDir}`);
+  }
   
   try {
     // Create output directory if it doesn't exist
@@ -144,9 +191,9 @@ async function main() {
     }
     
     // Extract stylesheet links
-    console.log('\n1. Extracting stylesheet links...');
+    if (!isJson) console.log('\n1. Extracting stylesheet links...');
     const stylesheetLinks = await extractStylesheetLinks(url);
-    console.log(`   Found ${stylesheetLinks.length} stylesheets`);
+    if (!isJson) console.log(`   Found ${stylesheetLinks.length} stylesheets`);
     
     // Download each stylesheet
     const downloaded = [];
@@ -155,21 +202,21 @@ async function main() {
       try {
         const filename = link.split('/').pop().split('?')[0] || `stylesheet-${i + 1}.css`;
         const outputPath = `${outputDir}/${filename}`;
-        console.log(`   Downloading: ${filename}`);
+        if (!isJson) console.log(`   Downloading: ${filename}`);
         const size = await downloadCSS(link, outputPath);
         downloaded.push({ link, filename, size });
-        console.log(`   ✓ Saved ${size} bytes`);
+        if (!isJson) console.log(`   ✓ Saved ${size} bytes`);
       } catch (error) {
-        console.log(`   ✗ Failed to download ${link}: ${error.message}`);
+        if (!isJson) console.log(`   ✗ Failed to download ${link}: ${error.message}`);
       }
     }
     
     // Extract computed CSS
-    console.log('\n2. Extracting computed CSS...');
+    if (!isJson) console.log('\n2. Extracting computed CSS...');
     const computedCSS = await extractCSS(url);
     const computedPath = `${outputDir}/computed.css`;
     writeFileSync(computedPath, computedCSS, 'utf-8');
-    console.log(`   ✓ Saved computed CSS (${computedCSS.length} bytes) to ${computedPath}`);
+    if (!isJson) console.log(`   ✓ Saved computed CSS (${computedCSS.length} bytes) to ${computedPath}`);
     
     // Create index file
     const indexContent = `/* CSS extracted from ${url} */
@@ -187,14 +234,33 @@ ${downloaded.map(({ filename, size }) => `@import "${filename}"; /* ${size} byte
     
     const indexPath = `${outputDir}/index.css`;
     writeFileSync(indexPath, indexContent, 'utf-8');
-    console.log(`\n✓ Created index file: ${indexPath}`);
-    console.log(`\nTotal stylesheets: ${downloaded.length}`);
-    console.log(`Total CSS size: ${downloaded.reduce((sum, f) => sum + f.size, 0) + computedCSS.length} bytes`);
+    
+    if (isJson) {
+      console.log(JSON.stringify({
+        url,
+        outputDir,
+        totalStylesheets: downloaded.length,
+        totalSize: downloaded.reduce((sum, f) => sum + f.size, 0) + computedCSS.length,
+        files: [
+          ...downloaded.map(d => ({ type: 'stylesheet', ...d })),
+          { type: 'computed', filename: 'computed.css', size: computedCSS.length },
+          { type: 'index', filename: 'index.css' }
+        ]
+      }, null, 2));
+    } else {
+      console.log(`\n✓ Created index file: ${indexPath}`);
+      console.log(`\nTotal stylesheets: ${downloaded.length}`);
+      console.log(`Total CSS size: ${downloaded.reduce((sum, f) => sum + f.size, 0) + computedCSS.length} bytes`);
+    }
     
   } catch (error) {
-    console.error('Error:', error.message);
-    if (error.stack) {
-      console.error(error.stack);
+    if (isJson) {
+      console.log(JSON.stringify({ error: error.message, stack: error.stack }));
+    } else {
+      console.error('Error:', error.message);
+      if (error.stack) {
+        console.error(error.stack);
+      }
     }
     process.exit(1);
   }

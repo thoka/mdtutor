@@ -36,6 +36,13 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - [apps/web/src/routes/TutorialView.svelte](apps/web/src/routes/TutorialView.svelte): Main tutorial rendering component.
 - [docs/SPEC.md](docs/SPEC.md): Core project specification.
 
+## Agent Toolbox
+Custom tools in `tools/` are optimized for agent use. Read `tools/README.md` for a list.
+- `compare-structure.js`: Compare HTML structure between reference and local.
+- `extract-css.js`: Extract CSS from reference pages.
+- `extract-structure.js`: Extract HTML structure from a single page.
+- `save-html.js`: Save rendered HTML for inspection.
+
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.
 - **Transclusions**: Handled by `remark-transclusion` plugin, resolving relative paths across repositories.

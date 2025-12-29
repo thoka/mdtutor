@@ -1,20 +1,46 @@
 #!/usr/bin/env node
 /**
- * HTML Structure Comparison Tool (Improved)
+ * HTML Structure Comparison Tool
  * 
- * Compares the HTML structure between the reference RPL site and local renderer
- * by:
- * 1. Getting both rendered HTMLs via Puppeteer
- * 2. Removing all content (keeping only structure)
- * 3. Removing all Svelte scoped classes (s-*)
- * 4. Comparing with hierarchical information
+ * AGENT USE: Identifies structural HTML differences between reference and local.
  * 
- * This tool helps identify structural differences that affect CSS matching,
- * such as nested <main> tags, incorrect class names, or missing containers.
+ * USAGE:
+ *   node tools/compare-structure.js <ref-url> <local-url> [options]
+ * 
+ * OPTIONS:
+ *   --help     Show this help
+ *   --json     Output results as JSON for machine parsing
+ * 
+ * EXAMPLES:
+ *   node tools/compare-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 http://localhost:5173/#/cats-vs-dogs/1
+ *   node tools/compare-structure.js https://... http://localhost... --json
  */
 
 import { parse } from 'node-html-parser';
 import puppeteer from 'puppeteer';
+
+/**
+ * Show help message
+ */
+function showHelp() {
+  console.log(`
+HTML Structure Comparison Tool
+------------------------------
+Compares the HTML structure between the reference RPL site and local renderer.
+Filters out content, scripts, styles, and Svelte-specific classes.
+
+Usage:
+  node tools/compare-structure.js <reference-url> <local-url> [options]
+
+Options:
+  --help     Show this help
+  --json     Output results as JSON for machine parsing
+
+Examples:
+  node tools/compare-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 http://localhost:5173/#/cats-vs-dogs/1
+  node tools/compare-structure.js https://... http://localhost... --json
+  `);
+}
 
 /**
  * Normalize HTML by removing content and Svelte classes
@@ -329,20 +355,34 @@ function printDifferences(differences) {
 
 async function main() {
   const args = process.argv.slice(2);
+  const isJson = args.includes('--json');
+  const isHelp = args.includes('--help');
+
+  if (isHelp) {
+    showHelp();
+    process.exit(0);
+  }
   
-  if (args.length < 2) {
-    console.error('Usage: node compare-structure.js <reference-url> <local-url>');
-    console.error('Example: node compare-structure.js https://projects.raspberrypi.org/en/projects/cats-vs-dogs/1 http://localhost:5274/#/cats-vs-dogs/1');
+  const urls = args.filter(arg => !arg.startsWith('--'));
+  
+  if (urls.length < 2) {
+    if (isJson) {
+      console.log(JSON.stringify({ error: 'Missing URLs', usage: 'node compare-structure.js <ref-url> <local-url>' }));
+    } else {
+      showHelp();
+    }
     process.exit(1);
   }
   
-  const [refUrl, localUrl] = args;
+  const [refUrl, localUrl] = urls;
   
-  console.log('HTML Structure Comparison Tool (Improved)');
-  console.log('='.repeat(80));
-  console.log('\nStep 1: Fetching rendered HTML...');
-  console.log(`  Reference: ${refUrl}`);
-  console.log(`  Local: ${localUrl}`);
+  if (!isJson) {
+    console.log('HTML Structure Comparison Tool');
+    console.log('='.repeat(80));
+    console.log('\nStep 1: Fetching rendered HTML...');
+    console.log(`  Reference: ${refUrl}`);
+    console.log(`  Local: ${localUrl}`);
+  }
   
   try {
     const [refHTML, localHTML] = await Promise.all([
@@ -350,37 +390,60 @@ async function main() {
       fetchHTML(localUrl)
     ]);
     
-    console.log(`  ✓ Reference: ${refHTML.length} bytes`);
-    console.log(`  ✓ Local: ${localHTML.length} bytes`);
-    
-    console.log('\nStep 2: Normalizing HTML (removing content, Svelte classes)...');
+    if (!isJson) {
+      console.log(`  ✓ Reference: ${refHTML.length} bytes`);
+      console.log(`  ✓ Local: ${localHTML.length} bytes`);
+      console.log('\nStep 2: Normalizing HTML (removing content, Svelte classes)...');
+    }
+
     const refNormalized = normalizeHTML(refHTML);
     const localNormalized = normalizeHTML(localHTML);
-    console.log(`  ✓ Normalized reference: ${refNormalized.length} bytes`);
-    console.log(`  ✓ Normalized local: ${localNormalized.length} bytes`);
     
-    console.log('\nStep 3: Extracting hierarchical structure...');
+    if (!isJson) {
+      console.log(`  ✓ Normalized reference: ${refNormalized.length} bytes`);
+      console.log(`  ✓ Normalized local: ${localNormalized.length} bytes`);
+      console.log('\nStep 3: Extracting hierarchical structure...');
+    }
+
     const refStructure = extractHierarchicalStructure(refNormalized);
     const localStructure = extractHierarchicalStructure(localNormalized);
-    console.log(`  ✓ Reference: ${refStructure.length} nodes`);
-    console.log(`  ✓ Local: ${localStructure.length} nodes`);
     
-    console.log('\nStep 4: Comparing structures...');
+    if (!isJson) {
+      console.log(`  ✓ Reference: ${refStructure.length} nodes`);
+      console.log(`  ✓ Local: ${localStructure.length} nodes`);
+      console.log('\nStep 4: Comparing structures...');
+    }
+
     const differences = compareStructures(refStructure, localStructure);
     
-    printDifferences(differences);
-    
-    // Summary
-    console.log(`\n${'='.repeat(80)}`);
-    console.log('Summary:');
-    console.log(`  Total differences: ${differences.length}`);
-    const byType = differences.reduce((acc, d) => {
-      acc[d.type] = (acc[d.type] || 0) + 1;
-      return acc;
-    }, {});
-    Object.entries(byType).forEach(([type, count]) => {
-      console.log(`  ${type}: ${count}`);
-    });
+    if (isJson) {
+      console.log(JSON.stringify({
+        refUrl,
+        localUrl,
+        differences,
+        summary: {
+          total: differences.length,
+          byType: differences.reduce((acc, d) => {
+            acc[d.type] = (acc[d.type] || 0) + 1;
+            return acc;
+          }, {})
+        }
+      }, null, 2));
+    } else {
+      printDifferences(differences);
+      
+      // Summary
+      console.log(`\n${'='.repeat(80)}`);
+      console.log('Summary:');
+      console.log(`  Total differences: ${differences.length}`);
+      const byType = differences.reduce((acc, d) => {
+        acc[d.type] = (acc[d.type] || 0) + 1;
+        return acc;
+      }, {});
+      Object.entries(byType).forEach(([type, count]) => {
+        console.log(`  ${type}: ${count}`);
+      });
+    }
     
     // Exit with error code if differences found
     if (differences.length > 0) {
@@ -388,9 +451,13 @@ async function main() {
     }
     
   } catch (error) {
-    console.error('Error:', error.message);
-    if (error.stack) {
-      console.error(error.stack);
+    if (isJson) {
+      console.log(JSON.stringify({ error: error.message, stack: error.stack }));
+    } else {
+      console.error('Error:', error.message);
+      if (error.stack) {
+        console.error(error.stack);
+      }
     }
     process.exit(1);
   }
