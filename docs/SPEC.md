@@ -121,8 +121,6 @@ The Vite dev server automatically configures its proxy to match the API server p
 ### Iteration Strategy
 1. Minimal text/code for agent-based automation
 2. Iterative cycles with focused changes
-3. Start with API reverse engineering
-4. Build compatibility layer first
 
 ### Documentation & Workflow
 - All technical decisions, plans, and progress documented in `docs/brain/` directory
@@ -139,13 +137,6 @@ The Vite dev server automatically configures its proxy to match the API server p
 - **Iteration Commits**: After each iteration (implementation cycle), create a commit in the feature branch
 - **Merging**: Only after complete verification merge to `main`
 - **Tests first**: Write and commit tests first!
-
-### Next Steps
-1. Analyze existing API responses (learning-admin.raspberrypi.org)
-2. Document JSON structure
-3. Select reference tutorials (e.g., silly-eyes)
-4. Build Markdown → JSON converter prototype
-5. Iterate on remaining components
 
 ## Open Decisions
 - Exact skill taxonomy and administration
