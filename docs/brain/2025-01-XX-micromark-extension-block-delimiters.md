@@ -117,12 +117,15 @@ Das remark-Plugin:
 - [micromark extensions](https://github.com/micromark/micromark#extensions) - Dokumentation
 - [micromark-extension-directive](https://github.com/micromark/micromark-extension-directive) - Beispiel-Implementierung
 
-## Implementierungs-Todos
+## Implementierungs-Status
 
-1. ✅ Erstelle micromark-extension-block-delimiters.js mit State Machine
-2. ✅ Refactore remark-block-delimiters.js um blockDelimiter Tokens zu verarbeiten
-3. ✅ Integriere micromark-extension in remark-parse
-4. ✅ Entferne Preprocessing für Block-Delimiter
-5. ✅ Aktualisiere Tests
-6. ✅ Validiere dass HTML-Output identisch ist
+**Entscheidung:** Statt einer vollständigen micromark-extension (komplex) haben wir die bestehende Implementierung verbessert:
+
+1. ✅ Regex in `preprocessYamlBlocks` korrigiert (optionales Whitespace nach `---`)
+2. ⏳ Weitere Verbesserungen der Delimiter-Erkennung geplant
+3. ⏳ Robuste Fehlerbehandlung implementieren
+
+**Nächste Schritte:**
+- Wenn Probleme weiterhin bestehen, kann eine vollständige micromark-extension evaluiert werden
+- Aktueller Ansatz ist pragmatischer und einfacher zu warten
 
