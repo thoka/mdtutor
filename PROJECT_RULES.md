@@ -1,6 +1,6 @@
-# MDTutor Project Rules (Copilot)
+# MDTutor Project Rules & Instructions
 
-Please follow the rules defined in [PROJECT_RULES.md](../PROJECT_RULES.md).
+Expert guidance for coding in the MDTutor monorepo. This file serves as the central source of truth for AI agents and developers.
 
 ## Architecture & Data Flow
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
@@ -31,10 +31,10 @@ Please follow the rules defined in [PROJECT_RULES.md](../PROJECT_RULES.md).
 - **Styling**: Cloned from Raspberry Pi Learning (RPL). See `apps/web/src/styles/rpl-cloned/`.
 
 ## Key Files
-- [packages/parser/src/parse-tutorial.js](../packages/parser/src/parse-tutorial.js): The `unified` pipeline configuration.
-- [packages/api-server/src/server.js](../packages/api-server/src/server.js): API routing and language fallback logic.
-- [apps/web/src/routes/TutorialView.svelte](../apps/web/src/routes/TutorialView.svelte): Main tutorial rendering component.
-- [docs/SPEC.md](../docs/SPEC.md): Core project specification.
+- [packages/parser/src/parse-tutorial.js](packages/parser/src/parse-tutorial.js): The `unified` pipeline configuration.
+- [packages/api-server/src/server.js](packages/api-server/src/server.js): API routing and language fallback logic.
+- [apps/web/src/routes/TutorialView.svelte](apps/web/src/routes/TutorialView.svelte): Main tutorial rendering component.
+- [docs/SPEC.md](docs/SPEC.md): Core project specification.
 
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.
