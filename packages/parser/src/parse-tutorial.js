@@ -27,23 +27,16 @@ import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimite
  * @returns {Promise<string>} HTML content
  */
 /**
- * Preprocess markdown to convert:
- * 1. YAML blocks to a parseable format
- * 2. Block delimiters (--- TYPE ---) to HTML comments (own tokens)
+ * Preprocess markdown to convert YAML blocks to a parseable format.
+ * 
+ * Block delimiters (--- TYPE ---) are now handled by the micromark extension,
+ * so they are NOT converted to HTML comments here.
  * 
  * Converts:
  * ---
  * title: value
  * ---
  * To: ```yaml-block ... ```
- * 
- * Converts:
- * --- task ---
- * To: <!-- block-delimiter:task:open -->
- * 
- * Converts:
- * --- /task ---
- * To: <!-- block-delimiter:task:close -->
  */
 function preprocessYamlBlocks(markdown) {
   const lines = markdown.split('\n');
