@@ -53,15 +53,15 @@ function preprocessYamlBlocks(markdown) {
   while (i < lines.length) {
     const line = lines[i];
     
-    // First check for block delimiters (--- TYPE --- or --- /TYPE ---)
-    // These must be checked before YAML delimiters to avoid conflicts
-    // Match with optional trailing whitespace (some files have spaces after ---)
+    // NOTE: Block delimiters are now handled by micromark extension
+    // We no longer convert them to HTML comments in preprocessing
+    // This allows the extension to create proper blockDelimiter nodes
+    // Only check for block delimiters to skip them (don't process as YAML)
     const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s*---\s*$/);
     if (blockDelimiterMatch) {
-      const isClosing = blockDelimiterMatch[1] === '/';
-      const blockType = blockDelimiterMatch[2];
-      // Convert to HTML comment - remark-parse will create an 'html' node for this
-      processed.push(`<!-- block-delimiter:${blockType}:${isClosing ? 'close' : 'open'} -->`);
+      // Leave the delimiter as-is for micromark extension to process
+      // Just skip it in YAML processing
+      processed.push(line);
       i++;
       continue;
     }

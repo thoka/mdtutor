@@ -146,9 +146,11 @@ export default function remarkBlockDelimiters() {
     
     // First pass: find blockDelimiter nodes (from micromark extension)
     // These are custom nodes created by the micromark extension
+    let blockDelimiterNodeCount = 0;
     visit(tree, 'blockDelimiter', (node, index, parent) => {
       if (!parent || index === null) return;
       
+      blockDelimiterNodeCount++;
       const blockType = node.data?.blockType || node.blockType;
       const isClosing = node.data?.isClosing || node.isClosing || false;
       
@@ -160,8 +162,17 @@ export default function remarkBlockDelimiters() {
           blockType,
           nodeType: 'blockDelimiter' // Mark as blockDelimiter node
         });
+      } else {
+        // Debug: log if blockType is missing
+        console.warn(`blockDelimiter node found but blockType is missing. Node data:`, node.data, `Node:`, node);
       }
     });
+    
+    // Debug: log if no blockDelimiter nodes found (might indicate extension not working)
+    if (blockDelimiterNodeCount === 0) {
+      // This is expected if preprocessing handles delimiters, but log for debugging
+      // console.warn('No blockDelimiter nodes found in AST - using fallback methods');
+    }
     
     // Second pass: find HTML comment delimiters (from preprocessing - fallback)
     // These are now own tokens as HTML nodes

@@ -28,14 +28,13 @@ export function blockDelimitersFromMarkdown() {
  * @param {import('mdast-util-from-markdown').State} state
  */
 function enterBlockDelimiter(token, state) {
-  // Get metadata from token or containerState
+  // Get metadata from containerState
   // The metadata is stored in containerState by the micromark extension
+  // Note: containerState is shared across all tokens in the same document
   const containerState = state.containerState || {};
   const blockDelimiterData = containerState.blockDelimiter || {};
-  const blockType = blockDelimiterData.blockType || token.blockType || '';
-  const isClosing = blockDelimiterData.isClosing !== undefined 
-    ? blockDelimiterData.isClosing 
-    : (token.isClosing || false);
+  const blockType = blockDelimiterData.blockType || '';
+  const isClosing = blockDelimiterData.isClosing || false;
   
   // Create a custom MDAST node
   const node = {
@@ -48,8 +47,9 @@ function enterBlockDelimiter(token, state) {
   
   state.enter(node, token);
   
-  // Clear the containerState after use
-  if (containerState.blockDelimiter) {
+  // Clear the containerState after use (so next delimiter can set it)
+  // But only if we successfully read the data
+  if (blockDelimiterData.blockType) {
     delete containerState.blockDelimiter;
   }
 }

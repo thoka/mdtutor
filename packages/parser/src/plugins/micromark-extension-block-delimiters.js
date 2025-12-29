@@ -38,6 +38,11 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
   let isClosing = false;
   let dashCount = 0;
   
+  // Initialize containerState if needed
+  if (!self.containerState) {
+    self.containerState = {};
+  }
+  
   return start;
   
   function start(code) {
