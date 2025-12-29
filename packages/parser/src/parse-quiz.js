@@ -95,9 +95,11 @@ async function generateQuizHtml(questions, options = {}) {
       // Add data-correct attribute to identify correct answers for the renderer
 
       html += '    <div class="knowledge-quiz-question__answer">\n';
-      // Use generic "answer" name and 1-based value, no checked attribute
-      // Add data-correct attribute to identify correct answers for the renderer
-      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}" data-correct="${choice.correct}" />\n`;
+      // Use generic "answer" name and 1-based value
+      // Set checked attribute for API compatibility (original API uses checked)
+      // Also add data-correct attribute for renderer (renderer should ignore checked)
+      const checkedAttr = choice.correct ? ' checked' : '';
+      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}" data-correct="${choice.correct}"${checkedAttr} />\n`;
       html += `      <label for="${answerId}">\n`;
       // Parse choice text (markdown) to HTML
       const choiceHtml = await parseFeedback(choice.text, options);

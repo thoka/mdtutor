@@ -8,17 +8,22 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { readFile, existsSync } from 'fs';
+import { existsSync } from 'fs';
 import { readFile as readFileAsync } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { parseProject } from '../../parser/src/parse-project.js';
+import dotenv from 'dotenv';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Load root .env if it exists
+dotenv.config({ path: join(__dirname, '../../../.env') });
+
+import { parseProject } from '../../parser/src/parse-project.js';
 const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 const app = express();
-const PORT = process.env.API_PORT || process.env.PORT || 3001;
+const PORT = process.env.API_PORT || process.env.PORT || 3201;
 
 app.use(cors());
 app.use(express.json());
@@ -58,6 +63,15 @@ async function getProjectData(slug, requestedLang) {
                 });
               }
             });
+          }
+          
+          // Transform heroImage URL from relative to absolute
+          if (parsed.data.attributes?.content?.heroImage) {
+            const heroImagePath = parsed.data.attributes.content.heroImage;
+            // If it's a relative path (starts with "images/"), convert to absolute
+            if (heroImagePath.startsWith('images/')) {
+              parsed.data.attributes.content.heroImage = `/snapshots/${slug}/repo/${lang}/${heroImagePath}`;
+            }
           }
           
           return parsed;
@@ -101,7 +115,7 @@ app.get('/api/projects/:slug', async (req, res) => {
 app.get('/api/projects', async (req, res) => {
   try {
     const summaryPath = join(SNAPSHOTS_DIR, 'summary.json');
-    const data = await readFile(summaryPath, 'utf-8');
+    const data = await readFileAsync(summaryPath, 'utf-8');
     const summary = JSON.parse(data);
     
     // summary.json uses "results" array with "tutorial" as slug

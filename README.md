@@ -74,13 +74,13 @@ This downloads reference tutorials and API responses from raspberrypilearning.or
 ```bash
 npm run api
 ```
-Server runs on http://localhost:3001
+Server runs on http://localhost:3201 (or as configured in .env)
 
 **Run Web Renderer:**
 ```bash
 npm run web
 ```
-Dev server runs on http://localhost:5173
+Dev server runs on http://localhost:5201 (or as configured in .env)
 
 **Parser Development:**
 ```bash
@@ -100,8 +100,8 @@ From the root directory:
 
 - `npm run test` - Run tests
 - `npm run test:data` - Fetch test data from Raspberry Pi Learning
-- `npm run api` - Start API server (port 3001)
-- `npm run web` - Start web dev server (port 5173)
+- `npm run api` - Start API server (port 3201 or .env)
+- `npm run web` - Start web dev server (port 5201 or .env)
 - `npm run dev` - Run both API and web servers concurrently
 - `npm run dev:bg` - Run both servers in background (uses .env for ports)
 - `npm run lint` - Lint all files
