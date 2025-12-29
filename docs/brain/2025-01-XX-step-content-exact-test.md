@@ -1,0 +1,59 @@
+# Step Content-Attribute Exaktvergleichstest mit vollständiger HTML-Struktur-Analyse
+
+**Datum:** 2025-01-XX  
+**Status:** In Implementierung
+
+## Ziel
+Test, der alle content-attribute der **Steps** (`data.attributes.content.steps[]`) im Parser-Output gegen die gecachten Original-API-Dateien (`api-project-*.json`) auf exakte Übereinstimmung prüft. **Besonderer Fokus:** Vollständige HTML-Struktur-Analyse für `steps[].content`, die beide HTML-Strukturen und deren Unterschiede enthält.
+
+## Fokus: Step-Attribute
+Der Test konzentriert sich auf die Attribute jedes Steps in `data.attributes.content.steps[]`:
+- `title` - Step-Titel
+- `content` - HTML-Content des Steps (**vollständige Struktur-Analyse erforderlich**)
+- `position` - Position im Array
+- `quiz` - Boolean
+- `challenge` - Boolean
+- `completion` - Array
+- `ingredients` - Array
+- `knowledgeQuiz` - Object oder String
+
+## Vollständige HTML-Struktur-Analyse
+
+### Strukturextraktion
+- Parse beide HTML-Strings mit `node-html-parser`
+- Extrahiere hierarchische Struktur für beide Versionen:
+  - Vollständiger Baum: Jedes Element mit Tag, Klassen, ID, Attributen, Tiefe, Pfad
+  - Text-Inhalte: Text-Knoten mit Position im Baum
+  - Element-Hierarchie: Parent-Child-Beziehungen
+
+### Strukturvergleich
+- Vergleiche beide Strukturen Element für Element
+- Identifiziere fehlende/extra/geänderte Elemente mit vollständiger Struktur-Info
+
+### Diff-Format
+Das Diff-Format enthält:
+- `expectedStructure` und `actualStructure`: Vollständige hierarchische Struktur beider HTML-Versionen
+- `structuralDifferences`: Alle Unterschiede mit vollständiger Struktur-Info
+- `textContentDifferences`: Text-Inhalts-Unterschiede
+- `lineBasedDiff`: Unified-Diff-Format
+- `pipelineErrorHints`: Spezifische Hinweise auf Pipeline-Fehler
+
+## Implementierung
+
+**Datei:** `packages/parser/test/step-content-exact.test.js`
+
+**Funktionen:**
+- `extractHtmlStructure(html)` - Extrahiert vollständige hierarchische HTML-Struktur
+- `compareHtmlStructures(expectedStructure, actualStructure)` - Vergleicht beide Strukturen
+- `compareHtmlContent(expectedHtml, actualHtml, options)` - Haupt-Vergleichsfunktion
+
+## Test-Ablauf
+
+1. Finde alle Projekte in `test/snapshots/` mit `repo/` Verzeichnis
+2. Für jedes Projekt und jede verfügbare Sprache:
+   - Parse Projekt mit `parseProject(repo/{lang}/)`
+   - Lade Original API: `api-project-{lang}.json`
+   - Extrahiere `data.attributes.content.steps[]` aus beiden
+   - Für jeden Step: Vollständige HTML-Struktur-Analyse für `content` Feld
+3. Ausgabe: Detaillierte Abweichungen mit vollständiger Struktur-Analyse
+
