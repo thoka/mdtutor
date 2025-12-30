@@ -6,7 +6,23 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert';
+import { readFileSync, existsSync } from 'fs';
 import { getCurrentCommitHash, getCurrentCommitHashShort } from '../src/git-utils.js';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const projectRoot = join(__dirname, '../../..');
+
+// Load .env file if it exists
+const envPath = join(projectRoot, '.env');
+if (existsSync(envPath)) {
+  dotenv.config({ path: envPath });
+}
+
+
 
 test('getCurrentCommitHash returns commit hash', () => {
   const hash = getCurrentCommitHash();
@@ -35,7 +51,7 @@ test('getCurrentCommitHashShort returns short hash', () => {
 
 test('API health endpoint includes commit hash', async () => {
   // Load environment variables
-  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
+  const apiPort = parseInt(process.env.API_PORT, 10);
   const apiUrl = `http://localhost:${apiPort}`;
   
   try {
