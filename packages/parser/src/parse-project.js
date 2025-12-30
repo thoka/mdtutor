@@ -35,8 +35,8 @@ export async function parseProject(projectPath, options = {}) {
     }
   } else {
     // If meta.yml exists directly, try to infer language from path
-    const parts = projectPath.split('/');
-    currentLanguage = parts[parts.length - 1] || parts[parts.length - 2] || 'en';
+    const pathParts = projectPath.split('/');
+    currentLanguage = pathParts[pathParts.length - 1] || pathParts[pathParts.length - 2] || 'en';
   }
 
   // Read meta.yml
@@ -78,7 +78,7 @@ export async function parseProject(projectPath, options = {}) {
         transclusionCache,
         languages: preferredLanguages
       });
-      const content = parseResult.html || parseResult; // Support both old and new return format
+      let content = parseResult.html || parseResult; // Support both old and new return format
       const stepWarnings = parseResult.warnings || [];
       
       // If step has a quiz, parse and embed it
