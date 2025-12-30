@@ -32,9 +32,6 @@ if (!PORT) {
   process.exit(1);
 }
 
-// Check for --force flag
-const FORCE_FLAG = process.argv.includes('--force');
-
 app.use(cors());
 app.use(express.json());
 
@@ -173,67 +170,13 @@ app.get('/api/projects', async (req, res) => {
   }
 });
 
-/**
- * Check if another API server is running on this port with different commit
- * @returns {Promise<boolean>} True if commit matches or no server running
- */
-async function validateCommitBeforeStart() {
-  if (FORCE_FLAG) {
-    console.log('⚠ --force flag set, skipping commit validation');
-    return true;
+// Start server
+app.listen(PORT, () => {
+  const commitHash = getCurrentCommitHashShort();
+  console.log(`API Server running on http://localhost:${PORT}`);
+  console.log(`Serving snapshots from: ${SNAPSHOTS_DIR}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
+  if (commitHash) {
+    console.log(`Commit: ${commitHash}`);
   }
-  
-  const currentCommit = getCurrentCommitHash();
-  if (!currentCommit) {
-    // Not in git repo, allow start
-    return true;
-  }
-  
-  try {
-    const response = await fetch(`http://localhost:${PORT}/api/health`);
-    if (response.ok) {
-      const health = await response.json();
-      const runningCommit = health.commitHash;
-      
-      if (runningCommit && runningCommit !== currentCommit) {
-        console.error('\n❌ Commit mismatch detected!');
-        console.error(`  Running API commit: ${health.commitHashShort || runningCommit.substring(0, 7)}`);
-        console.error(`  Current commit:     ${currentCommit.substring(0, 7)}`);
-        console.error(`\n  The API server is running with a different commit.`);
-        console.error(`  Use --force to start anyway: npm run api -- --force`);
-        return false;
-      }
-      
-      console.log(`✓ Commit matches: ${currentCommit.substring(0, 7)}`);
-    }
-  } catch (error) {
-    // No server running on this port, that's fine
-    if (error.code === 'ECONNREFUSED') {
-      return true;
-    }
-    // Other errors, allow start but warn
-    console.warn('⚠ Could not check running API server:', error.message);
-  }
-  
-  return true;
-}
-
-// Validate commit before starting
-validateCommitBeforeStart().then(canStart => {
-  if (!canStart) {
-    process.exit(1);
-  }
-  
-  app.listen(PORT, () => {
-    const commitHash = getCurrentCommitHashShort();
-    console.log(`API Server running on http://localhost:${PORT}`);
-    console.log(`Serving snapshots from: ${SNAPSHOTS_DIR}`);
-    console.log(`Health check: http://localhost:${PORT}/api/health`);
-    if (commitHash) {
-      console.log(`Commit: ${commitHash}`);
-    }
-  });
-}).catch(error => {
-  console.error('Failed to validate commit:', error);
-  process.exit(1);
 });

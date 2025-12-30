@@ -10,6 +10,8 @@ export interface ApiHealth {
   apiPort: string | null;
   portEnv: string | null;
   usingParser: boolean;
+  commitHash?: string;
+  commitHashShort?: string;
   timestamp: string;
 }
 
