@@ -9,7 +9,6 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import remarkYamlBlocks from './plugins/remark-yaml-blocks.js';
-import remarkBlockDelimiters from './plugins/remark-block-delimiters.js';
 import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 import remarkTransclusion from './plugins/remark-transclusion.js';
 import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
@@ -112,7 +111,6 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
-    .use(remarkBlockDelimiters) // Process block delimiters early, before YAML blocks processing
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
