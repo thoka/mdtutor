@@ -15,7 +15,8 @@ print("Hello")
 \`\`\`
 `;
 
-  const html = await parseTutorial(markdown);
+  const result = await parseTutorial(markdown);
+  const html = result.html;
   
   assert.ok(html.includes('<h2>Test Step</h2>'));
   assert.ok(html.includes('<strong>bold</strong>'));
@@ -31,7 +32,8 @@ test('parseTutorial - with HTML passthrough', async () => {
 Content
 </div>`;
 
-  const html = await parseTutorial(markdown);
+  const result = await parseTutorial(markdown);
+  const html = result.html;
   
   assert.ok(html.includes('<div class="custom">'));
   assert.ok(html.includes('Content'));
@@ -52,11 +54,12 @@ Hidden content.
 --- /no-print ---
 `;
 
-  const html = await parseTutorial(markdown);
+  const result = await parseTutorial(markdown);
+  const html = result.html;
   assert.ok(html.includes('<div class="c-project-task">'));
   assert.ok(html.includes('checkbox'));
   assert.ok(html.includes('<div class="u-no-print">'));
-  assert.strictEqual(html.match(/<\/div>/g).length, 2);
+  assert.strictEqual(html.match(/<\/div>/g).length, 3); // Changed from 2 to 3 because task has body div now
 });
 
 test('parseTutorial - link attributes', async () => {
@@ -68,7 +71,8 @@ test('parseTutorial - link attributes', async () => {
 [Button](link){.button .primary}
 `;
 
-  const html = await parseTutorial(markdown);
+  const result = await parseTutorial(markdown);
+  const html = result.html;
   assert.ok(html.includes('target="_blank"'));
   assert.ok(html.includes('width="300px"'));
   assert.ok(html.includes('class="button primary"'));
@@ -80,7 +84,8 @@ test('parseTutorial - link attributes on separate line', async () => {
 {:width="300px"}
 `;
 
-  const html = await parseTutorial(markdown);
+  const result = await parseTutorial(markdown);
+  const html = result.html;
   assert.ok(html.includes('width="300px"'), 'Should have width attribute on img tag');
   assert.ok(!html.includes('{:width='), 'Should not have raw attribute syntax in output');
 });

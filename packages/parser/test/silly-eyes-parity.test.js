@@ -7,6 +7,7 @@
 
 import { test } from 'node:test';
 import assert from 'node:assert';
+import { readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { parseProject } from '../src/parse-project.js';
@@ -30,7 +31,21 @@ async function runParityTest(language) {
   }
 
   const projectPath = join(snapshotsDir, projectSlug, 'repo', language);
-  const parsedData = await parseProject(projectPath, { languages: [language] });
+  
+  // Load asset base URL from snapshot-meta.json if available
+  let assetBaseUrl = '';
+  try {
+    const metaPath = join(snapshotsDir, projectSlug, 'snapshot-meta.json');
+    const snapshotMeta = JSON.parse(readFileSync(metaPath, 'utf-8'));
+    assetBaseUrl = snapshotMeta.asset_base_url || '';
+  } catch {
+    // Ignore if not found
+  }
+
+  const parsedData = await parseProject(projectPath, { 
+    languages: [language],
+    assetBaseUrl
+  });
   
   const apiSteps = apiData.data.attributes.content.steps || [];
   const parsedSteps = parsedData.data.attributes.content.steps || [];
@@ -62,6 +77,10 @@ async function runParityTest(language) {
       }
 
       // Compare content (HTML)
+      if (i === 0) {
+        console.log('DEBUG Step 0 API:', apiStep.content.substring(0, 100));
+        console.log('DEBUG Step 0 Parsed:', parsedStep.content.substring(0, 100));
+      }
       if (apiStep.content !== parsedStep.content) {
         const htmlAnalysis = compareHtmlContent(apiStep.content, parsedStep.content);
         differences.push({
@@ -81,6 +100,11 @@ async function runParityTest(language) {
         console.log(`  Step ${diff.stepIndex}: ${diff.stepTitle}`);
         if (diff.type === 'html_mismatch') {
           console.log(`    Structural differences: ${diff.htmlAnalysis.structuralDifferences.length}`);
+        diff.htmlAnalysis.structuralDifferences.slice(0, 5).forEach(sd => {
+          console.log(`      - ${sd.type}: ${sd.message}`);
+          if (sd.expected) console.log(`        Expected: ${sd.expected}`);
+          if (sd.actual) console.log(`        Actual:   ${sd.actual}`);
+        });
           if (diff.htmlAnalysis.pipelineErrorHints.length > 0) {
             diff.htmlAnalysis.pipelineErrorHints.forEach(hint => {
               console.log(`    Hint: ${hint.suggestion}`);

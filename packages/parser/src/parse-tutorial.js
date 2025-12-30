@@ -7,12 +7,16 @@ import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
+import { visit } from 'unist-util-visit';
 import remarkYamlBlocks from './plugins/remark-yaml-blocks.js';
+import remarkBlockContainers from './plugins/remark-block-containers.js';
 import remarkLinkAttributes from './plugins/remark-link-attributes.js';
 import remarkTransclusion from './plugins/remark-transclusion.js';
 import rehypeCodePreClass from './plugins/rehype-code-pre-class.js';
 import rehypeHeadingIds from './plugins/rehype-heading-ids.js';
+import rehypeLegacyCompat from './plugins/rehype-legacy-compat.js';
 import { blockDelimiters } from './plugins/micromark-extension-block-delimiters.js';
 import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimiters.js';
 
@@ -101,7 +105,33 @@ function preprocessYamlBlocks(markdown) {
   return processed.join('\n');
 }
 
+/**
+ * Rehype plugin to resolve asset URLs (images, etc.)
+ */
+function rehypeResolveAssets(options = {}) {
+  const { baseUrl } = options;
+  return (tree) => {
+    if (!baseUrl) return;
+    
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'img' && node.properties?.src) {
+        const src = node.properties.src;
+        if (!src.startsWith('http') && !src.startsWith('//') && !src.startsWith('data:')) {
+          // Resolve relative path
+          try {
+            node.properties.src = new URL(src, baseUrl).toString();
+          } catch (e) {
+            // Ignore invalid URLs
+          }
+        }
+      }
+    });
+  };
+}
+
 export async function parseTutorial(markdown, options = {}) {
+  const { stepIndex, depth = 0 } = options;
+  if (depth === 0) console.log(`[parseTutorial] Processing step ${stepIndex}`);
   // Preprocess YAML blocks before parsing
   const preprocessed = preprocessYamlBlocks(markdown);
   
@@ -109,9 +139,21 @@ export async function parseTutorial(markdown, options = {}) {
     .data('micromarkExtensions', [blockDelimiters()])
     .data('fromMarkdownExtensions', [blockDelimitersFromMarkdown()])
     .use(remarkParse)
-    .use(remarkGfm)
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
+    .use(remarkBlockContainers) // Transform block delimiters into containers
+    .use(() => (tree) => {
+      if (tree.children.length === 7) {
+        const printOnly = tree.children[6];
+        console.error(`[parseTutorial] print-only children count: ${printOnly.children.length}`);
+        printOnly.children.forEach((c, i) => {
+          console.error(`  child[${i}]: type=${c.type}, children=${c.children?.length || 0}`);
+          if (c.type === 'paragraph') {
+            c.children.forEach((cc, ii) => console.error(`    p-child[${ii}]: type=${cc.type}, url=${cc.url || 'none'}`));
+          }
+        });
+      }
+    })
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,
@@ -119,7 +161,10 @@ export async function parseTutorial(markdown, options = {}) {
       languages: options.languages
     })
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeLegacyCompat)
     .use(rehypeHeadingIds) // Add IDs to headings
+    .use(rehypeResolveAssets, { baseUrl: options.assetBaseUrl })
     .use(rehypeCodePreClass)
     .use(rehypeStringify, { allowDangerousHtml: true });
   

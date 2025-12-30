@@ -63,7 +63,10 @@ export default function remarkTransclusion(options = {}) {
           if (cache.has(cacheKey)) {
             projectData = cache.get(cacheKey);
           } else {
-            projectData = await parseProject(repoPath, { languages: preferredLanguages });
+            projectData = await parseProject(repoPath, { 
+              languages: preferredLanguages,
+              depth: (options.depth || 0) + 1
+            });
             cache.set(cacheKey, projectData);
           }
           

@@ -27,7 +27,7 @@ export default function rehypeCodePreClass() {
             typeof cls === 'string' && cls.startsWith('language-')
           );
           
-          if (languageClass) {
+          if (languageClass && languageClass !== 'language-blocks3') {
             // Add language class to <pre> tag
             if (!node.properties.className) {
               node.properties.className = [];

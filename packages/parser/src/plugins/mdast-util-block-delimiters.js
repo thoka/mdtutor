@@ -25,55 +25,26 @@ export function blockDelimitersFromMarkdown() {
  * Enter a blockDelimiter token
  * 
  * @param {import('mdast-util-from-markdown').Token} token
- * @param {import('mdast-util-from-markdown').State} state
  */
-function enterBlockDelimiter(token, state) {
-  // Get metadata from containerState
-  // The metadata is stored in containerState by the micromark extension
-  // Note: containerState is shared across all tokens in the same document
-  // Ensure state exists before accessing it
-  if (!state) {
-    // If state is undefined, we can't create a node - this shouldn't happen
-    // but we need to handle it gracefully
-    return;
-  }
-  
-  const containerState = state.containerState || {};
-  const blockDelimiterData = containerState.blockDelimiter || {};
-  const blockType = blockDelimiterData.blockType || '';
-  const isClosing = blockDelimiterData.isClosing || false;
-  
+function enterBlockDelimiter(token) {
   // Create a custom MDAST node
   const node = {
     type: 'blockDelimiter',
     data: {
-      blockType: blockType,
-      isClosing: isClosing
+      blockType: token.blockType || '',
+      isClosing: token.isClosing || false
     }
   };
   
-  // Ensure state.enter exists before calling it
-  if (state.enter) {
-    state.enter(node, token);
-  }
-  
-  // Clear the containerState after use (so next delimiter can set it)
-  // But only if we successfully read the data
-  if (blockDelimiterData.blockType && containerState) {
-    delete containerState.blockDelimiter;
-  }
+  this.enter(node, token);
 }
 
 /**
  * Exit a blockDelimiter token
  * 
  * @param {import('mdast-util-from-markdown').Token} token
- * @param {import('mdast-util-from-markdown').State} state
  */
-function exitBlockDelimiter(token, state) {
-  // Ensure state exists before calling exit
-  if (state && state.exit) {
-    state.exit(token);
-  }
+function exitBlockDelimiter(token) {
+  this.exit(token);
 }
 

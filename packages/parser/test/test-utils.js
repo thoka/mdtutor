@@ -36,17 +36,37 @@ export function extractHtmlStructure(html) {
     statistics.elementCountByTag[tagName] = (statistics.elementCountByTag[tagName] || 0) + 1;
 
     const classList = (node.getAttribute('class') || '').split(' ').filter(c => c.trim());
-    const id = node.getAttribute('id') || '';
+    let id = node.getAttribute('id') || '';
+    if (id) id = id.replace(/-+$/, ''); // Normalize ID (remove trailing hyphens)
     
     // Collect all attributes
     const attributes = {};
     if (node.attributes) {
-      if (Array.isArray(node.attributes)) {
-        for (const attr of node.attributes) {
-          attributes[attr.name] = attr.value;
+      const attrEntries = Array.isArray(node.attributes) 
+        ? node.attributes.map(a => [a.name, a.value])
+        : Object.entries(node.attributes);
+        
+      for (const [name, value] of attrEntries) {
+        let normalizedValue = value;
+        
+        // Normalize image src: only keep the filename
+        if (tagName === 'img' && name === 'src') {
+          normalizedValue = value.split('/').pop();
         }
-      } else if (typeof node.attributes === 'object') {
-        Object.assign(attributes, node.attributes);
+        
+        // Normalize link href: if relative, keep only the filename
+        if (tagName === 'a' && name === 'href') {
+          if (value && !value.startsWith('http') && !value.startsWith('#')) {
+            normalizedValue = value.split('/').pop();
+          }
+        }
+        
+        // Normalize id attribute
+        if (name === 'id') {
+          normalizedValue = value.replace(/-+$/, '');
+        }
+        
+        attributes[name] = normalizedValue;
       }
     }
 

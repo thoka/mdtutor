@@ -33,27 +33,17 @@ export function blockDelimiters() {
  * @returns {import('micromark-util-types').State}
  */
 function tokenizeBlockDelimiter(effects, ok, nok) {
-  const self = this;
   let type = '';
   let isClosing = false;
   let dashCount = 0;
-  
-  // Initialize containerState if needed
-  // containerState must exist on self (the tokenizer context)
-  if (!self || typeof self !== 'object') {
-    return nok;
-  }
-  if (!self.containerState) {
-    self.containerState = {};
-  }
+  let mainToken;
   
   return start;
   
   function start(code) {
-    // We're already at the first dash (code === codes.dash)
-    // Check if we have --- (three dashes)
     if (code !== codes.dash) return nok(code);
     
+    mainToken = effects.enter('blockDelimiter');
     dashCount = 1;
     effects.enter('blockDelimiterMarker');
     effects.consume(code);
@@ -65,79 +55,41 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       dashCount++;
       effects.consume(code);
       if (dashCount === 3) {
-        // Don't exit marker yet - wait for whitespace or type
+        effects.exit('blockDelimiterMarker');
         return afterThreeDashes;
       }
       return afterFirstDash;
     }
-    // Not enough dashes - exit and fail
     effects.exit('blockDelimiterMarker');
     return nok(code);
   }
   
   function afterThreeDashes(code) {
-    // After ---, expect whitespace or newline
     if (code === codes.space || code === codes.tab) {
       effects.consume(code);
-      return beforeType;
+      return afterThreeDashes;
     }
-    // Allow newline after --- (some files have newlines)
-    if (code === codes.lineFeed || code === codes.carriageReturn) {
-      effects.consume(code);
-      return beforeType;
-    }
-    // If no whitespace/newline, still try to parse (might be malformed)
-    effects.exit('blockDelimiterMarker');
-    return nok(code);
-  }
-  
-  function beforeType(code) {
-    // Check for closing delimiter: /
     if (code === codes.slash) {
       isClosing = true;
       effects.enter('blockDelimiterMarker');
       effects.consume(code);
       effects.exit('blockDelimiterMarker');
-      // Skip whitespace after /
-      return skipWhitespace;
+      return afterThreeDashes;
     }
-    
-    // Start reading type name
-    if (code === codes.space || code === codes.tab) {
+    if (
+      (code >= codes.digit0 && code <= codes.digit9) ||
+      (code >= codes.lowercaseA && code <= codes.lowercaseZ) ||
+      code === codes.dash
+    ) {
+      effects.enter('blockDelimiterName');
       effects.consume(code);
-      return beforeType;
+      type += String.fromCharCode(code);
+      return inType;
     }
-    
-    if (code === null || code === codes.eof || code === codes.lineFeed || code === codes.carriageReturn) {
-      return nok(code);
-    }
-    
-    // Start of type name
-    effects.enter('blockDelimiterName');
-    effects.consume(code);
-    type += String.fromCharCode(code);
-    return inType;
-  }
-  
-  function skipWhitespace(code) {
-    if (code === codes.space || code === codes.tab) {
-      effects.consume(code);
-      return skipWhitespace;
-    }
-    
-    // Start reading type name after /
-    if (code === null || code === codes.eof || code === codes.lineFeed || code === codes.carriageReturn) {
-      return nok(code);
-    }
-    
-    effects.enter('blockDelimiterName');
-    effects.consume(code);
-    type += String.fromCharCode(code);
-    return inType;
+    return nok(code);
   }
   
   function inType(code) {
-    // Type name can contain letters, numbers, and hyphens
     if (
       (code >= codes.digit0 && code <= codes.digit9) ||
       (code >= codes.lowercaseA && code <= codes.lowercaseZ) ||
@@ -147,38 +99,21 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       type += String.fromCharCode(code);
       return inType;
     }
-    
-    // End of type name - expect whitespace and closing ---
-    if (code === codes.space || code === codes.tab) {
-      effects.exit('blockDelimiterName');
-      effects.consume(code);
-      return beforeClosingDashes;
-    }
-    
-    return nok(code);
+    effects.exit('blockDelimiterName');
+    return afterType;
   }
   
-  function beforeClosingDashes(code) {
-    // Allow optional whitespace before closing ---
+  function afterType(code) {
     if (code === codes.space || code === codes.tab) {
       effects.consume(code);
-      return beforeClosingDashes;
+      return afterType;
     }
-    
-    // Allow newline before closing ---
-    if (code === codes.lineFeed || code === codes.carriageReturn) {
-      effects.consume(code);
-      return beforeClosingDashes;
-    }
-    
-    // Expect --- to close
     if (code === codes.dash) {
       dashCount = 1;
       effects.enter('blockDelimiterMarker');
       effects.consume(code);
       return inClosingDashes;
     }
-    
     return nok(code);
   }
   
@@ -187,25 +122,25 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       dashCount++;
       effects.consume(code);
       if (dashCount === 3) {
-        // Exit blockDelimiterName if still open (should have been closed before)
-        // But check to be safe
-        // Store metadata in containerState BEFORE creating token
-        if (self && self.containerState) {
-          self.containerState.blockDelimiter = {
-            blockType: type,
-            isClosing: isClosing
-          };
-        }
-        // Exit marker and create token
         effects.exit('blockDelimiterMarker');
-        effects.enter('blockDelimiter');
-        effects.exit('blockDelimiter');
-        
-        return ok;
+        mainToken.blockType = type;
+        mainToken.isClosing = isClosing;
+        return afterClosingDashes;
       }
       return inClosingDashes;
     }
-    
+    return nok(code);
+  }
+
+  function afterClosingDashes(code) {
+    if (code === codes.space || code === codes.tab) {
+      effects.consume(code);
+      return afterClosingDashes;
+    }
+    if (code === codes.lineFeed || code === codes.carriageReturn || code === null) {
+      effects.exit('blockDelimiter');
+      return ok(code);
+    }
     return nok(code);
   }
 }
@@ -217,7 +152,7 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
  * @param {import('micromark-util-types').TokenizeContext} context
  * @returns {import('micromark-util-types').Event[]}
  */
-function resolveBlockDelimiter(events, context) {
+function resolveBlockDelimiter(events, _context) {
   // Micromark expects resolve functions to return the events array
   // If events is undefined or not an array, return empty array
   if (!events || !Array.isArray(events)) {

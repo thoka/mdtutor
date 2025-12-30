@@ -1,0 +1,1512 @@
+[parseTutorial] Processing step 0
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken sie zum Leben."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/showcase-line.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du wirst:"
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding node type=heading to parent at depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Bewege die Maus (oder, wenn du ein Tablet verwendest, deine Finger) über die Bühne."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Was passiert, wenn du dich zwischen Gobos Augen bewegst?"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Was passiert, wenn du auf verschiedene Teile des Projekts klickst?"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Adding node type=heading to parent at depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Probiere diese Beispielprojekte aus, um Ideen zu bekommen:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="⭐ Teile dein fertiges Albernes-Augen-Projekt - mit etwas Glück wird es hier vorgestellt."
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=" (vorgestelltes Community-Projekt)"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Klicke auf den Kugelfisch, die Mütze, den Schal, den Hintergrund und die Augäpfel:"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=" (vorgestelltes Community-Projekt)"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Klicke auf den Hintergrund und die Augäpfel:"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding node type=heading to parent at depth=2
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=text, value="Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken deine Figur zum Leben. Weitere Ideen findest du in Beispielprojekten im Scratch-Studio „Alberne Augen – Beispiele“ ("
+  child[1]: type=strong
+  child[2]: type=text, value="): "
+  child[3]: type=link
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=image, url=images/gobo-watching.png
+  child[1]: type=text, value="\n"
+  child[2]: type=image, url=images/dont-eat-donut.png
+  child[3]: type=text, value="\n"
+  child[4]: type=image, url=images/sporg.png
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=7
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=4
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=8
+[processTask] Processing task with 8 children
+  child[0]: type=html, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=paragraph, tag=none
+  child[4]: type=paragraph, tag=none
+  child[5]: type=html, tag=none
+  child[6]: type=html, tag=none
+  child[7]: type=html, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=12
+[processTask] Processing task with 12 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=html, tag=none
+  child[4]: type=paragraph, tag=none
+  child[5]: type=html, tag=none
+  child[6]: type=paragraph, tag=none
+  child[7]: type=paragraph, tag=none
+  child[8]: type=html, tag=none
+  child[9]: type=paragraph, tag=none
+  child[10]: type=paragraph, tag=none
+  child[11]: type=html, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=3
+[parseTutorial] print-only children count: 3
+  child[0]: type=heading, children=1
+  child[1]: type=paragraph, children=4
+    p-child[0]: type=text, url=none
+    p-child[1]: type=strong, url=none
+    p-child[2]: type=text, url=none
+    p-child[3]: type=link, url=https://scratch.mit.edu/studios/29029028
+  child[2]: type=paragraph, children=5
+    p-child[0]: type=image, url=images/gobo-watching.png
+    p-child[1]: type=text, url=none
+    p-child[2]: type=image, url=images/dont-eat-donut.png
+    p-child[3]: type=text, url=none
+    p-child[4]: type=image, url=images/sporg.png
+[parseTutorial] Processing step 1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/character.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Öffne das "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"}. Scratch wird in einem anderen Tab im Browser geöffnet."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[working-offline]]]"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="⏱️ Wenig Zeit? Du kannst mit einem der "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} beginnen."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 6 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Füge für dein Alberne Augen Projekt eine "
+  child[2]: type=strong
+  child[3]: type=text, value=" und einen "
+  child[4]: type=strong
+  child[5]: type=text, value=" hinzu."
+[remarkBlockContainers] Adding node type=list to parent at depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/sprite-and-backdrop.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[generic-scratch3-sprite-from-library]]]"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[generic-scratch3-backdrop-from-library]]]"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-backdrops-and-sprites-using-shapes]]]"
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="Du bist dir nicht sicher, welche Figur du wählen sollst? Im Menü "
+  child[1]: type=strong
+  child[2]: type=text, value=", wähle die Option "
+  child[3]: type=strong
+  child[4]: type=text, value=", um deinem Projekt eine Überraschungsfigur hinzuzufügen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/surprise-sprite.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Wenn du im Zeichnen-Editor deine eigene Figur erstellst, "
+  child[2]: type=strong
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Ändere im Figurenbereich die Zahl in der Eigenschaft "
+  child[1]: type=strong
+  child[2]: type=text, value=" in eine Zahl, mit der deine Figur die Bühne gut ausfüllt."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/size-property.png
+  child[1]: type=text, value="{:width=\"500px\"}"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Schau auf die Bühne. Du wirst deinen großen Charakter und den ausgewählten Hintergrund sehen."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/large-sprite-stage.png
+  child[1]: type=text, value="{:width=\"500px\"}"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=12
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=3
+[processTask] Processing task with 3 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=8
+[processTask] Processing task with 8 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=list, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=paragraph, tag=none
+  child[4]: type=paragraph, tag=none
+  child[5]: type=paragraph, tag=none
+  child[6]: type=blockContainer, tag=div
+  child[7]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=3
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Besuche "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} für mehr Information zum Einrichten von Scratch für die offline Benutzung."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/stage-choose.png
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/backdrop.png
+[remarkBlockContainers] Finished first pass. rootChildren count=4
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du kannst Hintergründe und Kostüme für Figuren erstellen, indem du im Malen-Fenster Formen verwendest."
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=1
+  child[0]: type=text, value="Gehe zum Menü "
+  child[1]: type=strong
+  child[2]: type=text, value=" oder "
+  child[3]: type=strong
+  child[4]: type=text, value=" und wähle die Option "
+  child[5]: type=strong
+  child[6]: type=text, value=":"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/choose-a-sprite.png
+  child[1]: type=text, value="{:style=\"float: left\"}"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/choose-a-backdrop.png
+  child[1]: type=text, value="{:style=\"float: left\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wähle aus, welche(s) Werkzeug(e) du zum Erstellen der gewünschten Form(en) verwenden möchtest:"
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/circle-tool.png
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/rectangle-tool.png
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/square.png
+  child[1]: type=text, value="{:style=\"width: 150px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/reshape.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/delete.png
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/corner.png
+  child[1]: type=text, value="{:style=\"width: 150px\"}"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Du kannst das Werkzeug "
+  child[1]: type=strong
+  child[2]: type=text, value=" verwenden, um die Farbe einer Form zu ändern:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/fill-tool.png
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/changed-colour.png
+  child[1]: type=text, value="{:style=\"width: 350px\"}"
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Möglicherweise musst du die Werkzeuge "
+  child[1]: type=strong
+  child[2]: type=text, value=" und "
+  child[3]: type=strong
+  child[4]: type=text, value=" verwenden, um deine Formen nach vorne oder hinten zu verschieben, damit sie in deinem Bild richtig positioniert sind:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/front-back-tools.png
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Du kannst alle Formen auswählen und "
+  child[1]: type=strong
+  child[2]: type=text, value=", sodass du sie als eine Form anpassen oder verschieben kannst:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/group.png
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/selected-shapes.png
+  child[1]: type=text, value="{:style=\"width: 350px\"}"
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Hier ist ein Beispiel für eine Figur, die mit den Werkzeugen "
+  child[1]: type=strong
+  child[2]: type=text, value=" und "
+  child[3]: type=strong
+  child[4]: type=text, value=" erstellt wurde:"
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Denke daran, den Kostümen und Hintergründen, die du im Malen-Fenster erstellst, einen Namen zu geben."
+[remarkBlockContainers] Finished first pass. rootChildren count=26
+[parseTutorial] Processing step 2
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/character-with-eyes.png
+  child[1]: type=text, value="\n{:width=\"300px\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Verwende die Option "
+  child[1]: type=strong
+  child[2]: type=text, value=", um eine neue "
+  child[3]: type=strong
+  child[4]: type=text, value=" zu erstellen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/paint-a-sprite.png
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Der Zeichnen-Editor wird geöffnet und du kannst dort das "
+  child[1]: type=strong
+  child[2]: type=text, value="-Kostüm deiner Figur erstellen."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Es ist wirklich wichtig, dass:"
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Zeichne einen Augapfel "
+  child[2]: type=strong
+  child[3]: type=text, value=" beginne mit einer runden Figur."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/make-an-eye.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Wählen das Werkzeug "
+  child[1]: type=strong
+  child[2]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=3
+  child[0]: type=text, value="Um einen perfekten Kreis zu zeichnen, halte die "
+  child[1]: type=html
+  child[2]: type=text, value="Umschalttaste"
+  child[3]: type=html
+  child[4]: type=text, value=" auf der Tastatur gedrückt, während du mit dem Werkzeug "
+  child[5]: type=strong
+  child[6]: type=text, value=" zeichnest. Wenn du ein Tablet verwendest, versuche, einen möglichst perfekten Kreis zu zeichnen."
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="In diesem Beispiel setzen wir die "
+  child[1]: type=strong
+  child[2]: type=text, value=" auf Schwarz und die "
+  child[3]: type=strong
+  child[4]: type=text, value=" des Augapfels auf Weiß:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eyeball-outline.png
+[remarkBlockContainers] Adding paragraph with 19 children to parent at depth=3
+  child[0]: type=text, value="Nutze das Farbauswahlmenü für "
+  child[1]: type=strong
+  child[2]: type=text, value=" und "
+  child[3]: type=strong
+  child[4]: type=text, value=". Um Schwarz zu erzeugen, verschiebe die Werte "
+  child[5]: type=strong
+  child[6]: type=text, value=" und "
+  child[7]: type=strong
+  child[8]: type=text, value=" auf "
+  child[9]: type=inlineCode
+  child[10]: type=text, value=". Um Weiß zu erzeugen, schiebe die "
+  child[11]: type=strong
+  child[12]: type=text, value=" auf "
+  child[13]: type=inlineCode
+  child[14]: type=text, value=" und die "
+  child[15]: type=strong
+  child[16]: type=text, value=" auf "
+  child[17]: type=inlineCode
+  child[18]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=image, url=images/black-colour.png
+  child[1]: type=text, value=" "
+  child[2]: type=image, url=images/white-colour.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eye-centre.gif
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Zeichne einen kleineren perfekten Kreis und positioniere ihn auf der rechten Seite des Augapfels:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eyeball-with-iris.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Du kannst auch Kreise in Kreise zeichnen oder Farbe verwenden, um unterschiedliche Effekte zu erzielen."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="In Scratch gibt es Kostüme, die du bearbeiten kannst um deiner Figur lustige Augen zu verpassen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/costume-eyes.gif
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Klicke auf das Symbol "
+  child[1]: type=strong
+  child[2]: type=text, value=", um die Scratch-Kostümbibliothek anzuzeigen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/choose-a-costume.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Klick auf das Kostüm, das du deiner Figur hinzufügen möchtest."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Verwende den Zeichnen-Editor, um das Kostüm zu ändern. Du könntest Kreise hinzufügen, eine andere "
+  child[1]: type=strong
+  child[2]: type=text, value=" wählen oder Teile des Kostüms entfernen, um es in ein albernes Auge zu verwandeln."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/crosshair-centre.gif
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=" Die schwarze Pupille und die farbige Iris müssen auf der rechten Seite des Kostüms positioniert werden, sodass der "
+  child[2]: type=strong
+  child[3]: type=text, value=" dem Mauszeiger folgt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/button-eye.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Gib deiner Figur im Figurenbereich den Namen "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/eyeball-name.png
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Ziehe die Figur "
+  child[1]: type=strong
+  child[2]: type=text, value=", um sie auf der Bühne zu positionieren, und ändere ihre Größe, damit sie zu deiner Figur passt."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Richte nun den Blick des Auges auf den "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3motion\"}, damit der Benutzer mit deinem Projekt interagieren kann."
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 9 children to parent at depth=2
+  child[0]: type=text, value="Füge ein Skript hinzu und "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3motion\"} auf "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3motion\"}, damit der Augapfel "
+  child[5]: type=inlineCode
+  child[6]: type=text, value="{:class=\"block3motion\"}, und dies "
+  child[7]: type=inlineCode
+  child[8]: type=text, value="{:class=\"block3control\"}."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Um ein weiteres Auge hinzuzufügen, klicke mit der rechten Maustaste (oder tippe und halte auf einem Tablet) auf die Figur "
+  child[1]: type=strong
+  child[2]: type=text, value=" in der Figurenliste und wähle "
+  child[3]: type=strong
+  child[4]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/duplicate-eyes.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-duplicate-sprite]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Klicke auf die grüne Flagge, um dein Projekt zu testen. Folgen die albernen Augen deinem Mauszeiger, wenn du die Maus bewegst?"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Du musst den Mauszeiger nicht unbedingt auf der Bühne halten. Die Augen folgen deinem Mauszeiger, während du in Scratch weiter programmierst."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Möglicherweise findest du in deinem Projekt einige Fehler, die du beheben könntest. Hier sind einige häufige Fehler:"
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="Stelle sicher, dass du den Code zu den "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figuren hinzugefügt und "
+  child[3]: type=strong
+  child[4]: type=text, value=" geklickt hast. Dein Code wird erst ausgeführt, wenn du auf die grüne Flagge klickst."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Überprüfe bei den "
+  child[1]: type=strong
+  child[2]: type=text, value=" Kostümen, ob sich die Pupille auf der rechten Seite befindet (hinter dem blauen Kreuz in der Mitte des Kostüms)."
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=3
+  child[0]: type=text, value="Die "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figuren haben den "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3motion\"} "
+  child[5]: type=inlineCode
+  child[6]: type=text, value="{:class=\"block3motion\"}, damit sie in jede Richtung rotieren können."
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=3
+  child[0]: type=text, value="Wenn die "
+  child[1]: type=strong
+  child[2]: type=text, value=" sich "
+  child[3]: type=inlineCode
+  child[4]: type=text, value=" des "
+  child[5]: type=inlineCode
+  child[6]: type=text, value="{:class=\"block3motion\"} drehen, sind die Pupillen dem Mauszeiger am nächsten."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eye-right.gif
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eye-costume.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Überprüfe, ob die "
+  child[1]: type=strong
+  child[2]: type=text, value=" Kostüme zentriert sind. Um ein Kostüm zu zentrieren, ziehe das Kostüm so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eye-centered.gif
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=image, url=images/eye-costume.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Wenn du eine Figur ziehst, um es auf der Bühne zu positionieren, bewegt es sich vor die anderen Figuren."
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="So stellst du deine "
+  child[1]: type=strong
+  child[2]: type=text, value="figur "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"} an:"
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Hast du die Augen als Kostüme für deinen "
+  child[1]: type=strong
+  child[2]: type=text, value=" hinzugefügt, anstatt als Kostüme für andere Figuren? Das kannst du beheben."
+[remarkBlockContainers] Adding paragraph with 17 children to parent at depth=3
+  child[0]: type=text, value="Eine Möglichkeit, das Problem zu beheben, besteht darin, die "
+  child[1]: type=strong
+  child[2]: type=text, value="figur zu duplizieren und die Kopie dann in "
+  child[3]: type=inlineCode
+  child[4]: type=text, value=" umzubenennen. Lösche dann die "
+  child[5]: type=strong
+  child[6]: type=text, value=" Kostüme aus der "
+  child[7]: type=strong
+  child[8]: type=text, value="figur und lösche die "
+  child[9]: type=strong
+  child[10]: type=text, value="kostüme aus der "
+  child[11]: type=strong
+  child[12]: type=text, value=" Figur. Anschließend kannst du die "
+  child[13]: type=strong
+  child[14]: type=text, value=" Figur duplizieren und die Kopie "
+  child[15]: type=inlineCode
+  child[16]: type=text, value=" nennen."
+[remarkBlockContainers] Adding paragraph with 9 children to parent at depth=3
+  child[0]: type=text, value="Der Code zum "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3motion\"} "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3motion\"} sollte auf den "
+  child[5]: type=strong
+  child[6]: type=text, value=" Figuren sein und nicht auf der "
+  child[7]: type=strong
+  child[8]: type=text, value="figur."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=3
+  child[0]: type=text, value="Du musst den "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3motion\"} Code zu den einzelnen "
+  child[3]: type=strong
+  child[4]: type=text, value=" Figuren hinzufügen, nicht zu deiner "
+  child[5]: type=strong
+  child[6]: type=text, value="figur!"
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="Um den Code zu kopieren, kannst du den Code aus dem Codebereich für deine "
+  child[1]: type=strong
+  child[2]: type=text, value="figur auf die "
+  child[3]: type=strong
+  child[4]: type=text, value=" Figuren in der Figurenliste ziehen."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Du musst auch das Skript aus der "
+  child[1]: type=strong
+  child[2]: type=text, value="figur löschen. Ziehe dazu das Skript in das Blöckemenü."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Möglicherweise findest du einen Fehler, der hier nicht aufgeführt ist. Kannst du herausfinden, wie du das Problem selbst beheben kannst?"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Wir freuen uns, von deinen Fehlern zu hören und wie du sie behoben hast. Verwende die Schaltfläche "
+  child[1]: type=strong
+  child[2]: type=text, value=" unten auf dieser Seite und teile uns mit, ob du in deinem Projekt einen anderen Fehler gefunden hast."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=21
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=3
+[processTask] Processing task with 3 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=4
+[processTask] Processing task with 4 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=blockContainer, tag=div
+  child[3]: type=blockContainer, tag=div
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=12
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=11
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=1
+[processTask] Processing task with 1 children
+  child[0]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=blockContainer, tag=div
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=2
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=3
+[processTask] Processing task with 3 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=9
+[processTask] Processing task with 9 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=blockContainer, tag=div
+  child[2]: type=blockContainer, tag=div
+  child[3]: type=blockContainer, tag=div
+  child[4]: type=blockContainer, tag=div
+  child[5]: type=blockContainer, tag=div
+  child[6]: type=blockContainer, tag=div
+  child[7]: type=paragraph, tag=none
+  child[8]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=2
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=6
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=4
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=4
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=4
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=4
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Klicke mit der rechten Maustaste auf deine erste Figur in der Figuren-Liste unter der Bühne (oder auf einem Tablet: tippe und halte die Figur):"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/challenge1-right-click-sprite.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Wähle "
+  child[1]: type=strong
+  child[2]: type=text, value=". Dadurch wird eine Kopie deiner ersten Figur mit dem Suffix „2“ erstellt:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/challenge1-duplicate-sprite.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Eine Figur umbenennen:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/challenge1-rename-sprite.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Der Name deiner Figur ändert sich in der Figuren-Liste:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/challenge1-sprite-list.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Deine zweite Figur hat genau denselben Code wie die erste Figur. Führe das Programm erst aus, wenn du begonnen hast, den Code der zweiten Figur zu ändern. Möglicherweise siehst du die zweite Figur nicht, weil es sich unter der ersten Figur befindet."
+[remarkBlockContainers] Finished first pass. rootChildren count=9
+[parseTutorial] Processing step 3
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/character-graphic-effects.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Füge deiner "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figur einen "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3events\"} Block hinzu."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Kannst du herausfinden, welchen Codeblock du darunter einfügen musst, um die Augenfarbe deiner Figur zu ändern, wenn du auf die "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figur klickst?"
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Wenn beide Augäpfel den gleichen Effekt haben sollen, musst du dein Skript in die "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figur kopieren."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-copy-code]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Klicke in der Figurenliste auf deinen "
+  child[1]: type=strong
+  child[2]: type=text, value=" und dann auf die Registerkarte "
+  child[3]: type=strong
+  child[4]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Füge dasselbe Skript hinzu, das du zum Ändern der Augenfarbe verwendet hast. Welche Grafikeffekte möchtest du für deinen "
+  child[1]: type=strong
+  child[2]: type=text, value=" ändern?"
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Wähle einen Effekt im Dropdown-Menü im Block "
+  child[2]: type=inlineCode
+  child[3]: type=text, value="{:class=\"block3looks\"}. Experimentiere mit den Zahlen und Effekten, bis du eine Änderung erzielst, die dir gefällt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-graphic-effects]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Füge nun ein "
+  child[1]: type=strong
+  child[2]: type=text, value=" hinzu, beispielsweise einen Hut, der sich ändert, wenn du darauf klickst – verwende den Block "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"}."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Füge ein Accessoire- oder Kostümwechsel deiner Wahl hinzu."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/accessory-sprite.png
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=3
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=3
+  child[0]: type=text, value="Für einige Figuren steht bereits eine Kostümauswahl zur Verfügung."
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=3
+  child[0]: type=text, value="Du kannst Code hinzufügen, um das Kostüm einer Figur zum nächsten Kostüm zu wechseln ("
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"}), wenn du auf die Figur klickst:"
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Wenn für deine Figur keine Kostümauswahl verfügbar ist oder du weitere hinzufügen möchtest, kannst du einer Figur ein beliebiges Kostüm hinzufügen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-add-costumes-to-a-sprite]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Arbeite an deinen Figuren, bis sie wie gewünscht interagieren."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Probiere jeweils nur eine Änderung aus und teste, was sie bewirkt, damit du jede Änderung leicht erkennen und alles rückgängig machen kannst, was dir nicht gefällt."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=strong
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Wenn du der falschen Figur Code hinzufügst, kannst du das beheben:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-copy-code]]]"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Bei Bedarf kannst du die Grafikeffekte zurücksetzen:"
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=3
+  child[0]: type=text, value="Um die Grafikeffekte jederzeit zurückzusetzen, klicke im Blockmenü "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} auf den Block "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"}. Durch Klicken auf die grüne Flagge werden auch Grafikeffekte gelöscht."
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Teste dein Projekt erneut, aber diesmal im Vollbildmodus, damit du sehen kannst, wie es auf den Betrachter wirkt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="[[[scratch3-full-screen]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=16
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=3
+[processTask] Processing task with 3 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=blockContainer, tag=div
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=2
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=4
+[processTask] Processing task with 4 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=5
+[processTask] Processing task with 5 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=blockContainer, tag=div
+  child[3]: type=paragraph, tag=none
+  child[4]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=6
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=5
+[processTask] Processing task with 5 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=paragraph, tag=none
+  child[4]: type=blockContainer, tag=div
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=3
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/drag-parrot-code.gif
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast."
+[remarkBlockContainers] Finished first pass. rootChildren count=3
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Die Blöcke "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} und "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"} verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann:"
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Probiere die Effekte aus und "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen."
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 10 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=" Ein "
+  child[2]: type=inlineCode
+  child[3]: type=text, value="{:class=\"block3looks\"} von "
+  child[4]: type=inlineCode
+  child[5]: type=text, value=" ist identisch zu einem "
+  child[6]: type=inlineCode
+  child[7]: type=text, value="{:class=\"block3looks\"} von "
+  child[8]: type=inlineCode
+  child[9]: type=text, value=", du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde."
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Verwende den Block "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"}, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht."
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} unter einem Block "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3events\"}:"
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=1
+  child[0]: type=text, value="**Tipp:**Du kannst die Blöcke "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} und "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"} Effekt auch für die "
+  child[5]: type=strong
+  child[6]: type=text, value=" verwenden."
+[remarkBlockContainers] Finished first pass. rootChildren count=12
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Klicke auf den Reiter "
+  child[1]: type=strong
+  child[2]: type=text, value=" und dann auf "
+  child[3]: type=strong
+  child[4]: type=text, value=", um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/choose-a-costume.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=" Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen."
+[remarkBlockContainers] Finished first pass. rootChildren count=4
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen:"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/drag-parrot-code.gif
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast."
+[remarkBlockContainers] Finished first pass. rootChildren count=3
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Um dein Scratch-Projekt im Vollbildmodus auszuführen, gehe in den Bereich über der Bühne und klicke auf das Symbol mit den vier nach außen gerichteten Pfeilen. Dies ist das Symbol "
+  child[1]: type=strong
+  child[2]: type=text, value=":"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/fullscreen_frank.png
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Um den Vollbildmodus zu verlassen, klicke erneut auf das Symbol "
+  child[1]: type=strong
+  child[2]: type=text, value=". Es hat vier Pfeile, die nach innen zeigen."
+[remarkBlockContainers] Finished first pass. rootChildren count=3
+[parseTutorial] Processing step 4
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step 5
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du Zeit hast, kannst du dein Projekt erweitern."
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Lass dein Projekt etwas tun, wenn du auf die "
+  child[1]: type=strong
+  child[2]: type=text, value=" klickst."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/stage-effects.png
+  child[1]: type=text, value="{:width=\"300px\"}\n{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Klick auf den Bühnenbereich und dann auf die Registerkarte "
+  child[1]: type=strong
+  child[2]: type=text, value=", um Code zur "
+  child[3]: type=strong
+  child[4]: type=text, value=" hinzuzufügen."
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" Wähle aus, was du ändern möchtest, wenn auf die "
+  child[2]: type=strong
+  child[3]: type=text, value=" geklickt wird."
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=false, stackDepth=2
+[remarkBlockContainers] Pushed to stack. New depth=3
+[remarkBlockContainers] Adding node type=yaml to parent at depth=3
+[remarkBlockContainers] Adding node type=code to parent at depth=3
+[remarkBlockContainers] Found delimiter: type=collapse, isClosing=true, stackDepth=3
+[remarkBlockContainers] Popped from stack. New depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du könntest auch hinzufügen:"
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Dieser "
+  child[1]: type=strong
+  child[2]: type=text, value=" Charakter hat auch Arme, die "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3motion\"}."
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=": "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding node type=html to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du andere Körperteile hinzufügst, musst du sie an dem Punkt zentrieren, von dem aus sie rotieren sollen. Beispielsweise würde ein Arm von der Schulter aus rotieren."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="[[[scratch-crosshair]]]"
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Jedes Projekt im Scratch-Studio "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} hat einen Link "
+  child[3]: type=strong
+  child[4]: type=text, value=", mit dem du das Projekt im Scratch-Editor öffnen und dir den Code ansehen kannst, um Ideen zu bekommen und zu sehen, wie das Projekt funktioniert."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Wirf einen Blick auf unser Scratch-Studio "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"}, um von Community-Mitgliedern erstellte Projekte anzuzeigen."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Du kannst dir auch die Remixe für das "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} ansehen, um zu sehen, was andere Ersteller gemacht haben."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=save, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Finished first pass. rootChildren count=19
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=4
+[processTask] Processing task with 4 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=blockContainer, tag=div
+  child[3]: type=blockContainer, tag=div
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=2
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--ingredient, childrenCount=2
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=1
+[processTask] Processing task with 1 children
+  child[0]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=1
+[processTask] Processing task with 1 children
+  child[0]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=1
+[processTask] Processing task with 1 children
+  child[0]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-panel, c-project-panel--save, childrenCount=0
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Figuren drehen sich um ihren Mittelpunkt. Im Mal-Editor erkennst du, ob deine Figur zentriert ist, indem du das kleine graue Fadenkreuz ansiehst:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/crosshair.png
+  child[1]: type=text, value="{:width=\"200px\"}"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Wenn es sich nicht in der Mitte des Kostüms befindet, hebe das gesamte Kostüm mithilfe des "
+  child[1]: type=strong
+  child[2]: type=text, value="-Tools hervor. Daraufhin erscheint ein Kreuz in der Mitte des hervorgehobenen Kostüms:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/off-centre-crosshair.png
+  child[1]: type=text, value="{:width=\"500px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Ziehe das Kostüm, bis das Kreuz genau auf dem Fadenkreuz liegt:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/centre-crosshair.png
+  child[1]: type=text, value="{:width=\"500px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Manchmal möchtest du vielleicht einen Drehpunkt wählen, der nicht genau in der Mitte des Kostüms liegt. Richte in diesem Fall den gewünschten Drehpunkt des Kostüms am Fadenkreuz im Mal-Editor aus:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/rotation-point.png
+  child[1]: type=text, value="{:width=\"500px\"}"
+[remarkBlockContainers] Finished first pass. rootChildren count=8
+[parseTutorial] Processing step 6
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du Mitglied in einem Club bist, warum teilst du dein Projekt nicht mit Freunden und Kollegen?"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du könntest auch deiner Familie zeigen, wie dein Projekt funktioniert."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du ein Scratch-Konto hast, könnest du dein Projekt über Scratch teilen. Du könntest einen Link an Personen senden, die du kennst, und die gesamte Scratch-Community kann dein Projekt finden und ausprobieren."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="[[[share-scratch]]]"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Warum nicht deine Freunde einladen, ein Projekt zu erstellen? Lass sie wissen, wie viel Spaß du hattest."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du ein Scratch-Konto hast und dein „Alberne Augen“-Projekt geteilt habst, achte auf die Kommentare anderer zu deiner Kreation. Feedback ist eine großartige Möglichkeit, über deine Arbeit nachzudenken. Ignoriere alle Kommentare, die nicht hilfreich oder irrelevant sind."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="[[[comments-feedback-scratch]]]"
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Begeistere die Raspberry Pi Foundation Community mit deinem Projekt!"
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=2
+  child[0]: type=text, value="Um dein Projekt an unserem "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} einzureichen, damit andere es sehen können, fülle bitte "
+  child[3]: type=link
+  child[4]: type=text, value="{:target=\"_blank\"} aus."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=heading to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Schau dir diese fabelhaften Community Projekte aus unserem "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} an. Klick auf die Hintergründe, Augäpfel und Accessoires, um mit ihnen zu interagieren:"
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" (Marienkäfer-Schrecken) "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Klicke auf Bühnenbilder:"
+[remarkBlockContainers] Adding node type=html to parent at depth=2
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" (Schmetterling und Bär) "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Klicke auf den Bären und den Schmetterling:"
+[remarkBlockContainers] Adding node type=html to parent at depth=2
+[remarkBlockContainers] Adding paragraph with 4 children to parent at depth=2
+  child[0]: type=strong
+  child[1]: type=text, value=" "
+  child[2]: type=link
+  child[3]: type=text, value="{:target=\"_blank\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=text, value="Klick auf die grüne Flagge, um alles verpixelt anzuzeigen:"
+[remarkBlockContainers] Adding node type=html to parent at depth=2
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=task, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=2
+  child[0]: type=text, value="Du kannst dir auch die Remixe für das "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"} ansehen, um zu sehen, was andere Ersteller gemacht haben."
+[remarkBlockContainers] Found delimiter: type=task, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=12
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=2
+[processTask] Processing task with 2 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=10
+[processTask] Processing task with 10 children
+  child[0]: type=paragraph, tag=none
+  child[1]: type=paragraph, tag=none
+  child[2]: type=paragraph, tag=none
+  child[3]: type=html, tag=none
+  child[4]: type=paragraph, tag=none
+  child[5]: type=paragraph, tag=none
+  child[6]: type=html, tag=none
+  child[7]: type=paragraph, tag=none
+  child[8]: type=paragraph, tag=none
+  child[9]: type=html, tag=none
+[remarkBlockContainers] Visiting blockContainer: classes=c-project-task, childrenCount=1
+[processTask] Processing task with 1 children
+  child[0]: type=paragraph, tag=none
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Bitte stelle sicher, dass du "
+  child[1]: type=strong
+  child[2]: type=text, value=" persönlichen Informationen über dich selbst weitergibst, wenn du deine Scratch-Projekte teilst."
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/name_file.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/name_file.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/share.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/share.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/add_instructions.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/add_instructions.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/notes_and_credits.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/notes_and_credits.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding node type=list to parent at depth=1
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/copy_link.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/copy_link.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Scratch bietet die Möglichkeit, eigene und die Projekte anderer zu kommentieren. Wenn du nicht möchtest, dass andere Personen dein Projekt kommentieren, solltest du die Kommentarfunktion deaktivieren. Um das Kommentieren auszuschalten, stelle den Schieberegler über dem Feld "
+  child[1]: type=strong
+  child[2]: type=text, value=" auf "
+  child[3]: type=strong
+  child[4]: type=text, value="."
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/comments-off.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Finished first pass. rootChildren count=18
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="In Scratch kannst du Kommentare zu Projekten posten (eigene Projekte und Projekte von Anderen). Falls du nicht willst, dass jemand dein Projekt kommentiert, schalte die Kommentare aus. Gehe dazu zur Projektseite und bewege den Schieberegler oberhalb des Felds "
+  child[1]: type=strong
+  child[2]: type=text, value=" auf "
+  child[3]: type=strong
+  child[4]: type=text, value=":"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/comments-off.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn du keine Bedenken hast, dass dein Projekt kommentiert wird, kannst du den ersten Kommentar posten:"
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=2
+  child[0]: type=image, url=images/add_comments.gif
+[remarkBlockContainers] Found delimiter: type=no-print, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=false, stackDepth=1
+[remarkBlockContainers] Pushed to stack. New depth=2
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=2
+  child[0]: type=image, url=images/add_comments.png
+  child[1]: type=text, value="{:width=\"300px\"}"
+[remarkBlockContainers] Found delimiter: type=print-only, isClosing=true, stackDepth=2
+[remarkBlockContainers] Popped from stack. New depth=1
+[remarkBlockContainers] Adding paragraph with 7 children to parent at depth=1
+  child[0]: type=text, value="Wenn du einen Kommentar oder ein Projekt gemein, beleidigend, zu gewalttätig oder auf andere Weise unangebracht findest, melde ihn über den Knopf "
+  child[1]: type=strong
+  child[2]: type=text, value=" an das Scratch-Team. Klicke auf den Knopf "
+  child[3]: type=strong
+  child[4]: type=text, value=" oberhalb des Kommentars, um ihn zu melden. Klicke auf den Knopf "
+  child[5]: type=strong
+  child[6]: type=text, value=" auf der Projektseite, um es zu melden:"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=image, url=images/add_report.png
+  child[1]: type=text, value="{:width=\"250px\"}"
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Lies die "
+  child[1]: type=link
+  child[2]: type=text, value="{:target=\"_blank\"}, um zu erfahren, wie du und Andere dafür sorgt, dass die Community ein einladender und kreativer Ort bleibt."
+[remarkBlockContainers] Finished first pass. rootChildren count=8
+[remarkBlockContainers] Visiting blockContainer: classes=u-no-print, childrenCount=1
+[remarkBlockContainers] Visiting blockContainer: classes=u-print-only, childrenCount=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Wir haben diesen Code zu einer "
+  child[1]: type=strong
+  child[2]: type=text, value=" Figur hinzugefügt, aber der Augapfel dreht sich nicht, wenn sich der Mauszeiger bewegt."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/code-not-running.png
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wie könntest du das Problem mit nur einer Aktion beheben?"
+[remarkBlockContainers] Finished first pass. rootChildren count=3
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Um die Rakete interaktiv zu machen, hat die Figur "
+  child[1]: type=strong
+  child[2]: type=text, value=" dieses Skript:"
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Welches "
+  child[1]: type=strong
+  child[2]: type=text, value=" Kostüm sollten wir verwenden, damit die Spitze der Rakete zum Mauszeiger zeigt?"
+[remarkBlockContainers] Finished first pass. rootChildren count=3
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 8 children to parent at depth=1
+  child[0]: type=html
+  child[1]: type=strong
+  child[2]: type=html
+  child[3]: type=text, value=" ist die Art und Weise, wie das Projekt auf Benutzer reagiert. Das von dir erstellte Projekt „Alberne Augen“ enthält wahrscheinlich viele "
+  child[4]: type=html
+  child[5]: type=strong
+  child[6]: type=html
+  child[7]: type=text, value="!"
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Welches dieser Skripte ermöglicht Benutzerinteraktion nach dem Programmstart?"
+[remarkBlockContainers] Finished first pass. rootChildren count=2
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Klicke auf die grüne Flagge"
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Klicke auf den Augapfel"
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Verschiebe den Block "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} in die "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3control\"} Schleife"
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Klicke auf die Bühne"
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Ja! Das bloße Hinzufügen des Skripts führt nicht dazu, dass es ausgeführt wird. Du musst auf die grüne Flagge klicken, um deinen Code auszuführen."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Dein Code ist während der Ausführung gelb umrandet."
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Vergessen, auf die grüne Flagge zu klicken, ist ein weit verbreiteter Fehler – das passiert uns allen!"
+[remarkBlockContainers] Adding paragraph with 2 children to parent at depth=1
+  child[0]: type=strong
+  child[1]: type=text, value=" Wenn du deinen Code in einer Schleife änderst, während das Skript läuft, führt Scratch den neuen Code erst beim nächsten Ausführen der Schleife aus! Ein erneutes Klicken auf die grüne Flagge ist nicht nötig. Dies ist wirklich nützlich, wenn Du Ideen ausprobierst."
+[remarkBlockContainers] Finished first pass. rootChildren count=4
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Das Skript beginnt nicht mit einem "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3events\"} Block."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 5 children to parent at depth=1
+  child[0]: type=text, value="Der Block "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3looks\"} muss nicht mehrere Male ausgeführt werden. Wenn du ihn einmal vor der Schleife festlegst, wird er nicht geändert, bis du es auf einen anderen Typ setzt. Den Block "
+  child[3]: type=inlineCode
+  child[4]: type=text, value="{:class=\"block3looks\"} verschieben hilft bei diesem Problem nicht."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Du musst nicht auf die Bühne klicken, um den Augapfel zu drehen. Wenn der Code ausgeführt wird, folgt das Auge einfach dem Mauszeiger (oder deinem Finger, wenn du ein Tablet verwendest)."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/rocket_left.png
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/rocket_down.png
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/rocket_right.png
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=image, url=images/rocket_up.png
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn die Rakete nach links zeigt, wird sie beim Drehen in die entgegengesetzte Richtung (von dem Mauszeiger weg) zeigen."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn die Rakete nach unten zeigt, zeigt sie beim Drehen in eine andere Richtung als der Mauszeiger."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 3 children to parent at depth=1
+  child[0]: type=text, value="Wenn die Rakete nach rechts zeigt, befindet sie sich in der Standardposition, um korrekt auf deinen Mauszeiger zu zeigen, sofern der Drehtyp auf "
+  child[1]: type=inlineCode
+  child[2]: type=text, value="{:class=\"block3motion\"} eingestellt ist."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Wenn die Rakete nach oben zeigt, zeigt sie beim Drehen in eine andere Richtung als der Mauszeiger."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding node type=code to parent at depth=1
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Gib mir einen Hinweis."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Die Grafikeffekte werden gelöscht, nachdem der Timer 10 erreicht. Benutzende müssen nichts tun, es findet also keine Benutzerinteraktion statt."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Die Figur sagt „Hallo“, nachdem der Hintergrund gewechselt hat. Benutzende müssen nichts tun, es findet also keine Benutzerinteraktion statt."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Um die Farbe zu ändern, muss auf die Figur geklickt werden. Dies ist Benutzerinteraktion."
+[remarkBlockContainers] Finished first pass. rootChildren count=1
+[parseTutorial] Processing step undefined
+[remarkBlockContainers] Adding paragraph with 1 children to parent at depth=1
+  child[0]: type=text, value="Benutzerinteraktion bezeichnet die Art und Weise, wie das Projekt auf Aktionen bei der Benutzung reagiert, beispielsweise das Bewegen der Maus oder Klicken auf dem Bildschirm."
+[remarkBlockContainers] Finished first pass. rootChildren count=1

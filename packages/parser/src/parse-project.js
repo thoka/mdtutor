@@ -19,6 +19,7 @@ import { parseQuiz } from './parse-quiz.js';
  */
 export async function parseProject(projectPath, options = {}) {
   const preferredLanguages = options.languages || ['en'];
+  const depth = options.depth || 0;
   
   // Determine actual project path (handle language fallback)
   let actualPath = projectPath;
@@ -76,7 +77,10 @@ export async function parseProject(projectPath, options = {}) {
       const parseResult = await parseTutorial(markdown, {
         basePath,
         transclusionCache,
-        languages: preferredLanguages
+        languages: preferredLanguages,
+        assetBaseUrl: options.assetBaseUrl,
+        stepIndex: index,
+        depth
       });
       let content = parseResult.html || parseResult; // Support both old and new return format
       const stepWarnings = parseResult.warnings || [];
@@ -95,10 +99,9 @@ export async function parseProject(projectPath, options = {}) {
             transclusionCache,
             languages: preferredLanguages
           });
-          // Embed quiz HTML into step content
-          // Find where to insert (usually after the main content)
-          // For now, append at the end
-          content += '\n' + quizData.html;
+          // Legacy API has empty content for quiz steps, so we don't embed HTML
+          content = ''; 
+          knowledgeQuiz = quizData;
         } catch (error) {
           console.warn(`Failed to parse quiz at ${quizPath}:`, error.message);
           // Continue without quiz

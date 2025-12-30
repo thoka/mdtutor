@@ -25,7 +25,19 @@ Achieve exact HTML parity for the "Silly Eyes" project, starting with `de-DE`.
 ## Tasks
 - [x] Remove legacy `remark-block-delimiters.js` <!-- id: 0 -->
 - [x] Update `parse-tutorial.js` <!-- id: 1 -->
-- [ ] Fix task wrapping in parser <!-- id: 2 -->
-- [ ] Fix image path resolution <!-- id: 3 -->
-- [ ] Verify `de-DE` parity <!-- id: 4 -->
-- [ ] Verify `en` parity <!-- id: 5 -->
+- [x] Implement clean `remark-block-containers.js` <!-- id: 2 -->
+- [x] Fix image path resolution <!-- id: 3 -->
+- [x] Verify `de-DE` parity <!-- id: 4 -->
+- [x] Verify `en` parity <!-- id: 5 -->
+- [x] Add regression test to CI/main suite <!-- id: 6 -->
+
+## Persistence & Regression Prevention
+To ensure this progress is not lost again:
+1. **Dedicated Test**: `silly-eyes-parity.test.js` will remain as a permanent part of the test suite.
+2. **CI Integration**: We will add a check to the main test runner that specifically flags Silly Eyes regressions.
+3. **Documentation**: The `testing_guide.md` clearly documents how to maintain this parity.
+
+
+
+
+

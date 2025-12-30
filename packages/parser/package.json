@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
+    "rehype-raw": "^7.0.0",
     "rehype-stringify": "^10.0.0",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.0",

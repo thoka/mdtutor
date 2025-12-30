@@ -17,7 +17,8 @@ function parseAttributes(text) {
   const attrPattern = /:([a-z_-]+)="([^"]*)"/g;
   let match;
   while ((match = attrPattern.exec(text)) !== null) {
-    attrs[match[1]] = match[2];
+    const key = match[1] === 'class' ? 'className' : match[1];
+    attrs[key] = match[2];
   }
   
   // Match {.class}
@@ -112,13 +113,20 @@ export default function remarkLinkAttributes() {
       // Handle both cases: attribute at start of text node, or attribute is the entire text node
       if (nextNode.value.trim() === attrMatch[0]) {
         // Attribute is the entire text node - remove it
-        const nodeIndex = parent.children.indexOf(nextNode);
-        if (nodeIndex !== -1) {
-          parent.children.splice(nodeIndex, 1);
+        // But keep any trailing whitespace if it's not just the attribute
+        const trailingWhitespace = nextNode.value.match(/\}\s+$/);
+        if (trailingWhitespace) {
+          nextNode.value = trailingWhitespace[0].slice(1);
+        } else {
+          const nodeIndex = parent.children.indexOf(nextNode);
+          if (nodeIndex !== -1) {
+            parent.children.splice(nodeIndex, 1);
+          }
         }
       } else {
         // Attribute is at the start - remove it
-        nextNode.value = nextNode.value.replace(/^\s*\{([^}]+)\}\s*/, '');
+        // Only remove leading whitespace, keep trailing whitespace as it might be a word separator
+        nextNode.value = nextNode.value.replace(/^\s*\{([^}]+)\}/, '');
         // If text node is now empty or only whitespace, remove it
         if (nextNode.value.trim() === '') {
           const nodeIndex = parent.children.indexOf(nextNode);
