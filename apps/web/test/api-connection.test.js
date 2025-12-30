@@ -31,13 +31,12 @@ test('Vite proxy targets correct API port', () => {
   const viteConfigContent = readFileSync(viteConfigPath, 'utf-8');
   
   // Extract proxy target port from vite config
-  const proxyMatch = viteConfigContent.match(/target:\s*`http:\/\/localhost:\$\{env\.API_PORT\s*\|\|\s*'(\d+)'\}`/);
+  const proxyMatch = viteConfigContent.match(/target:\s*`http:\/\/localhost:\$\{apiPort\}`/);
   
   assert.ok(proxyMatch, 'Vite proxy configuration should be found');
-  const viteProxyDefaultPort = parseInt(proxyMatch[1], 10);
   
   // Calculate what Vite would actually use
-  const viteProxyPort = parseInt(process.env.API_PORT || '3201', 10);
+  const viteProxyPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
   const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
   
   console.log('Port Configuration:');

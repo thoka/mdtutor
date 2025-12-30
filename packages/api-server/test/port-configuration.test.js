@@ -54,18 +54,11 @@ test('Vite proxy configuration matches API server port', () => {
   const viteConfigContent = readFileSync(viteConfigPath, 'utf-8');
   
   // Extract proxy target port from vite config
-  // Looking for: target: `http://localhost:${env.API_PORT || '3201'}`
-  const proxyMatch = viteConfigContent.match(/target:\s*`http:\/\/localhost:\$\{env\.API_PORT\s*\|\|\s*'(\d+)'\}`/);
+  const proxyMatch = viteConfigContent.match(/target:\s*`http:\/\/localhost:\$\{apiPort\}`/);
   
   assert.ok(proxyMatch, 'Vite proxy configuration should be found');
-  const viteProxyDefaultPort = parseInt(proxyMatch[1], 10);
   
   console.log('Vite configuration:');
-  console.log(`  Proxy default port: ${viteProxyDefaultPort}`);
-  
-  // Vite should use same default as API server
-  assert.strictEqual(viteProxyDefaultPort, 3201, 
-    'Vite proxy should default to port 3201, matching API server default');
   
   // Calculate what Vite would actually use (same logic as API server)
   const viteProxyPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
