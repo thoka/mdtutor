@@ -81,8 +81,9 @@ async function runParityTest(language) {
         console.log('DEBUG Step 0 API:', apiStep.content.substring(0, 100));
         console.log('DEBUG Step 0 Parsed:', parsedStep.content.substring(0, 100));
       }
-      if (apiStep.content !== parsedStep.content) {
-        const htmlAnalysis = compareHtmlContent(apiStep.content, parsedStep.content);
+      
+      const htmlAnalysis = compareHtmlContent(apiStep.content, parsedStep.content);
+      if (htmlAnalysis.structuralDifferences.length > 0) {
         differences.push({
           stepIndex: i,
           stepTitle: apiStep.title,
@@ -98,6 +99,12 @@ async function runParityTest(language) {
     differences.forEach(diff => {
       if (diff.stepIndex !== undefined) {
         console.log(`  Step ${diff.stepIndex}: ${diff.stepTitle}`);
+        if (diff.type === 'attribute_mismatch') {
+          console.log('    Attribute mismatches:');
+          diff.details.forEach(d => {
+            console.log(`      - ${d.field || d.path}: expected ${JSON.stringify(d.expected)}, got ${JSON.stringify(d.actual)}`);
+          });
+        }
         if (diff.type === 'html_mismatch') {
           console.log(`    Structural differences: ${diff.htmlAnalysis.structuralDifferences.length}`);
         diff.htmlAnalysis.structuralDifferences.slice(0, 5).forEach(sd => {

@@ -41,6 +41,20 @@ export default function rehypeLegacyCompat() {
             // 3. Smart quotes (legacy quirk)
             // Replace ' with smart quotes
             text = text.replace(/'([^']+)'/g, '‘$1’');
+            // Replace 's with ’s
+            text = text.replace(/(\w)'s/g, '$1’s');
+            // Replace 't with ’t
+            text = text.replace(/(\w)'t/g, '$1’t');
+            // Replace 're with ’re
+            text = text.replace(/(\w)'re/g, '$1’re');
+            // Replace 've with ’ve
+            text = text.replace(/(\w)'ve/g, '$1’ve');
+            // Replace 'll with ’ll
+            text = text.replace(/(\w)'ll/g, '$1’ll');
+            // Replace 'd with ’d
+            text = text.replace(/(\w)'d/g, '$1’d');
+            // Replace 'm with ’m
+            text = text.replace(/(\w)'m/g, '$1’m');
 
             // 4. Manual parsing of inline markdown (bold and code)
             // This is needed because content inside raw HTML blocks isn't always parsed by remark

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert';
 
-const PORT = process.env.API_PORT || 3201;
+const PORT = process.env.API_PORT;
 const BASE_URL = `http://localhost:${PORT}`;
 
 test('API Server - Language Fallback', async () => {

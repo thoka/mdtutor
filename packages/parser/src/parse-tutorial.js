@@ -141,7 +141,7 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkParse)
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
-    .use(remarkBlockContainers) // Transform block delimiters into containers
+    .use(remarkBlockContainers, { languages: options.languages }) // Transform block delimiters into containers
     .use(() => (tree) => {
       if (tree.children.length === 7) {
         const printOnly = tree.children[6];

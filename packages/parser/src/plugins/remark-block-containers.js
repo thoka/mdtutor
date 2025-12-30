@@ -1,4 +1,5 @@
 import { visit } from 'unist-util-visit';
+import { getTranslation } from '../utils/i18n.js';
 
 /**
  * Block type to CSS class mapping
@@ -14,7 +15,9 @@ const BLOCK_CLASSES = {
 /**
  * Remark plugin to transform blockDelimiter nodes into nested containers
  */
-export default function remarkBlockContainers() {
+export default function remarkBlockContainers(options = {}) {
+  const languages = options.languages || ['en'];
+
   return (tree) => {
     const stack = [];
     const rootChildren = [];
@@ -88,10 +91,10 @@ export default function remarkBlockContainers() {
       const className = node.data?.hProperties?.className || [];
       console.error(`[remarkBlockContainers] Visiting blockContainer: classes=${className.join(', ')}, childrenCount=${node.children.length}`);
       if (className.includes('c-project-panel')) {
-        processPanel(node);
+        processPanel(node, languages);
       }
       if (className.includes('c-project-task')) {
-        processTask(node);
+        processTask(node, languages);
       }
     });
   };
@@ -100,9 +103,9 @@ export default function remarkBlockContainers() {
 /**
  * Process a panel (collapse/save) to extract title and wrap body
  */
-function processPanel(node) {
+function processPanel(node, languages) {
   const children = node.children;
-  let title = 'Hint'; // Default title
+  let title = getTranslation('hint', languages); // Default title
   let bodyStartIndex = 0;
 
   // 1. Check for YAML frontmatter at the start
@@ -124,8 +127,8 @@ function processPanel(node) {
   const className = node.data?.hProperties?.className || [];
   const isSavePanel = className.includes('c-project-panel--save');
   
-  if (isSavePanel && title === 'Hint') {
-    title = 'Speichere dein Projekt';
+  if (isSavePanel && (title === 'Hint' || title === 'Hinweis')) {
+    title = getTranslation('save_project', languages);
   }
 
   const headingClasses = ['c-project-panel__heading'];
@@ -168,14 +171,14 @@ function processPanel(node) {
 /**
  * Process a task to add checkbox and wrap body
  */
-function processTask(node) {
+function processTask(node, languages) {
   const children = node.children;
   console.error(`[processTask] Processing task with ${children.length} children`);
   children.forEach((c, idx) => console.error(`  child[${idx}]: type=${c.type}, tag=${c.data?.hName || 'none'}`));
 
   const checkbox = {
     type: 'html',
-    value: '<input type="checkbox" class="c-project-task__checkbox" aria-label="Mark this task as complete" />'
+    value: `<input type="checkbox" class="c-project-task__checkbox" aria-label="${getTranslation('mark_complete', languages)}" />`
   };
 
   const body = {
@@ -189,3 +192,4 @@ function processTask(node) {
 
   node.children = [checkbox, body];
 }
+

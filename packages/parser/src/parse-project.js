@@ -108,9 +108,8 @@ export async function parseProject(projectPath, options = {}) {
         }
       }
       
-      // Determine quiz flag: true if knowledgeQuiz exists, otherwise use metaStep.quiz
-      const hasQuiz = !!knowledgeQuiz;
-      const quizFlag = hasQuiz || metaStep.quiz || false;
+      // Determine quiz flag: only use metaStep.quiz (legacy behavior)
+      const quizFlag = metaStep.quiz || false;
       
       // Normalize completion: ensure it's always an array (API sometimes has undefined or "")
       let completion = metaStep.completion || [];
@@ -129,7 +128,7 @@ export async function parseProject(projectPath, options = {}) {
         // Convert knowledgeQuiz object to string for API compatibility
         // Original API uses string (e.g., "quiz1"), not object
         // If empty, return {} (empty object) instead of null to match API
-        knowledgeQuiz: knowledgeQuiz ? (typeof knowledgeQuiz === 'string' ? knowledgeQuiz : knowledgeQuiz.path) : {},
+        knowledgeQuiz: metaStep.knowledgeQuiz ? (typeof metaStep.knowledgeQuiz === 'string' ? metaStep.knowledgeQuiz : metaStep.knowledgeQuiz.path) : {},
         // Include parsing warnings if any
         warnings: stepWarnings.length > 0 ? stepWarnings : undefined
       };

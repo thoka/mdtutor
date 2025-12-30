@@ -14,8 +14,7 @@ function slugify(text) {
     .trim()
     .replace(/[^\p{L}\p{N}\s-]/gu, '-') // Replace non-letters/numbers with hyphen
     .replace(/[\s_-]+/g, '-') // Normalize hyphens
-    .replace(/^-+/g, '') // Remove leading hyphens
-    .replace(/-+$/g, ''); // Remove trailing hyphens
+    .replace(/^-+/g, ''); // Remove leading hyphens
 }
 
 export default function rehypeHeadingIds() {

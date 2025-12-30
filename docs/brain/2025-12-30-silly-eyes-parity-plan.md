@@ -1,26 +1,15 @@
 # Implementation Plan - Silly Eyes Parity
 
-Achieve exact HTML parity for the "Silly Eyes" project, starting with `de-DE`.
+Achieve exact HTML parity for the "Silly Eyes" project, starting with `de-DE`, then `en`.
 
 ## Current Status
-- Targeted testing infrastructure is in place (`silly-eyes-parity.test.js`).
-- Significant structural mismatches identified in `silly-eyes/de-DE` (missing wrappers, relative paths).
-- Legacy code identified for removal.
-
-## Proposed Changes
-
-### 1. Cleanup Legacy Code
-- Remove `packages/parser/src/plugins/remark-block-delimiters.js`.
-- Update `packages/parser/src/parse-tutorial.js` to remove references to the deleted plugin.
-
-### 2. Fix Structural Mismatches
-- Investigate why `u-no-print` and `c-project-task` wrappers are missing.
-- Adjust `packages/parser/src/plugins/remark-yaml-blocks.js` or related plugins to ensure correct wrapping.
-- Ensure image paths are handled correctly (absolute vs relative).
-
-### 3. Verification
-- Run `PROJECT=silly-eyes LANG=de-DE node --test packages/parser/test/step-content-exact.test.js` after each change.
-- Aim for 0 structural differences in `de-DE`, then proceed to `en`.
+- `de-DE` parity achieved! ✅
+- `en` parity is currently failing with 69 structural differences in Step 0.
+- Identified issues:
+  - Trailing spaces in YAML delimiters (e.g., `--- `) break preprocessing.
+  - Potential unclosed `div` tags in `en/step_1.md` source.
+  - `basePath` resolution issues for transclusions.
+  - Minor mismatches like `<img>` vs `<br>` or text content differences.
 
 ## Tasks
 - [x] Remove legacy `remark-block-delimiters.js` <!-- id: 0 -->
@@ -28,16 +17,12 @@ Achieve exact HTML parity for the "Silly Eyes" project, starting with `de-DE`.
 - [x] Implement clean `remark-block-containers.js` <!-- id: 2 -->
 - [x] Fix image path resolution <!-- id: 3 -->
 - [x] Verify `de-DE` parity <!-- id: 4 -->
-- [x] Verify `en` parity <!-- id: 5 -->
-- [x] Add regression test to CI/main suite <!-- id: 6 -->
+- [ ] Fix trailing space issue in YAML preprocessing <!-- id: 7 -->
+- [ ] Fix `basePath` resolution for transclusions <!-- id: 8 -->
+- [ ] Fix unclosed `div` issue in Step 0 (en) <!-- id: 9 -->
+- [ ] Verify `en` parity <!-- id: 5 -->
+- [ ] Add regression test to CI/main suite <!-- id: 6 -->
 
-## Persistence & Regression Prevention
-To ensure this progress is not lost again:
-1. **Dedicated Test**: `silly-eyes-parity.test.js` will remain as a permanent part of the test suite.
-2. **CI Integration**: We will add a check to the main test runner that specifically flags Silly Eyes regressions.
-3. **Documentation**: The `testing_guide.md` clearly documents how to maintain this parity.
-
-
-
-
-
+## Verification
+- Run `node --test packages/parser/test/silly-eyes-parity.test.js` after each change.
+- Aim for 0 structural differences in both `de-DE` and `en`.
