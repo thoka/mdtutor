@@ -8,17 +8,19 @@ import assert from 'node:assert';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkYamlBlocks from '../src/plugins/remark-yaml-blocks.js';
+import { preprocessYamlBlocks } from '../src/parse-tutorial.js';
 
 /**
  * Parse markdown and return AST
  */
 async function parseToAST(markdown) {
+  const preprocessed = preprocessYamlBlocks(markdown);
   const processor = unified()
     .use(remarkParse)
     .use(remarkYamlBlocks);
   
-  const result = await processor.parse(markdown);
-  return result;
+  const ast = processor.parse(preprocessed);
+  return await processor.run(ast);
 }
 
 test('remark-yaml-blocks - recognizes YAML block in middle of document', async () => {

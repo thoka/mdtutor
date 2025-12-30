@@ -9,7 +9,7 @@ const projectRoot = join(__dirname, '../../..');
 
 test('parseProject - silly-eyes structure', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath);
+  const result = await parseProject(projectPath, { includeQuizData: true });
   
   // Check top-level structure
   assert.strictEqual(result.data.type, 'projects');
@@ -34,8 +34,6 @@ test('parseProject - silly-eyes structure', async () => {
   
   // Check quiz step (step 5)
   const quizStep = content.steps[4];
-  // Note: Original API has quiz: false but knowledgeQuiz: "quiz1" (string)
-  // We set quiz: true when knowledge_quiz exists in meta.yml
-  assert.strictEqual(quizStep.quiz, true);
+  assert.strictEqual(quizStep.quiz, false);
   assert.strictEqual(quizStep.knowledgeQuiz, 'quiz1');
 });

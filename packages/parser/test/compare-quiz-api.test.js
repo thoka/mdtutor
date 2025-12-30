@@ -85,7 +85,7 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
   
   // Parse our version
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const ourResult = await parseProject(projectPath, { languages: ['en'] });
+  const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
   console.log('\n=== Comparison: Step 4 ===');
@@ -105,9 +105,8 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
   assert.strictEqual(ourStep4.title, originalStep4.title, 'Title should match');
   assert.strictEqual(ourStep4.knowledgeQuiz, originalStep4.knowledgeQuiz, 'KnowledgeQuiz should match');
   
-  // Note: Original API has quiz: false, but we set it to true when knowledgeQuiz exists
-  // This is intentional - we're more explicit about quiz steps
-  assert.strictEqual(ourStep4.quiz, true, 'We mark quiz steps as quiz: true');
+  // Note: Original API has quiz: false
+  assert.strictEqual(ourStep4.quiz, false, 'We match original API quiz: false');
   
   // Content should not be empty (we generate quiz HTML)
   assert.ok(ourStep4.content && ourStep4.content.length > 0, 'Our content should contain quiz HTML');
@@ -154,7 +153,7 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
 test('compare-quiz - HTML structure matches reference', async () => {
   // Parse our version
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const ourResult = await parseProject(projectPath, { languages: ['en'] });
+  const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
   const parsed = parse(ourStep4.content);
@@ -229,7 +228,7 @@ test('compare-quiz - HTML structure matches reference', async () => {
 
 test('compare-quiz - answer IDs and names are correct', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const ourResult = await parseProject(projectPath, { languages: ['en'] });
+  const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
   const parsed = parse(ourStep4.content);
@@ -259,7 +258,7 @@ test('compare-quiz - answer IDs and names are correct', async () => {
 
 test('compare-quiz - feedback structure is correct', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const ourResult = await parseProject(projectPath, { languages: ['en'] });
+  const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
   const parsed = parse(ourStep4.content);
@@ -291,7 +290,7 @@ test('compare-quiz - feedback structure is correct', async () => {
 test('compare-quiz - rendered HTML structure vs original website', async () => {
   // Parse our version
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const ourResult = await parseProject(projectPath, { languages: ['en'] });
+  const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   const ourHtml = ourStep4.content;
   

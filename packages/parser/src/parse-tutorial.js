@@ -41,7 +41,7 @@ import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimite
  * ---
  * To: ```yaml-block ... ```
  */
-function preprocessYamlBlocks(markdown) {
+export function preprocessYamlBlocks(markdown) {
   const lines = markdown.split('\n');
   const processed = [];
   let i = 0;
@@ -64,7 +64,7 @@ function preprocessYamlBlocks(markdown) {
     
     // Check if this line is exactly "---" (YAML delimiter)
     // Must not have text before or after (to distinguish from block delimiters like "--- collapse ---")
-    if (line.trim() === '---' && line === '---') {
+    if (line.trim() === '---') {
       // Look ahead for YAML content and closing delimiter
       let yamlLines = [];
       let foundClosing = false;
@@ -130,8 +130,6 @@ function rehypeResolveAssets(options = {}) {
 }
 
 export async function parseTutorial(markdown, options = {}) {
-  const { stepIndex, depth = 0 } = options;
-  if (depth === 0) console.log(`[parseTutorial] Processing step ${stepIndex}`);
   // Preprocess YAML blocks before parsing
   const preprocessed = preprocessYamlBlocks(markdown);
   
@@ -142,18 +140,6 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
     .use(remarkBlockContainers, { languages: options.languages }) // Transform block delimiters into containers
-    .use(() => (tree) => {
-      if (tree.children.length === 7) {
-        const printOnly = tree.children[6];
-        console.error(`[parseTutorial] print-only children count: ${printOnly.children.length}`);
-        printOnly.children.forEach((c, i) => {
-          console.error(`  child[${i}]: type=${c.type}, children=${c.children?.length || 0}`);
-          if (c.type === 'paragraph') {
-            c.children.forEach((cc, ii) => console.error(`    p-child[${ii}]: type=${cc.type}, url=${cc.url || 'none'}`));
-          }
-        });
-      }
-    })
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,

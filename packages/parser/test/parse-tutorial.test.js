@@ -15,10 +15,9 @@ print("Hello")
 \`\`\`
 `;
 
-  const result = await parseTutorial(markdown);
-  const html = result.html;
+  const { html } = await parseTutorial(markdown);
   
-  assert.ok(html.includes('<h2>Test Step</h2>'));
+  assert.ok(html.includes('<h2 id="test-step">Test Step</h2>'));
   assert.ok(html.includes('<strong>bold</strong>'));
   assert.ok(html.includes('<em>italic</em>'));
   assert.ok(html.includes('<li>List item 1</li>'));

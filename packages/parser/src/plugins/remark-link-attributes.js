@@ -180,20 +180,29 @@ export default function remarkLinkAttributes() {
               // Parse attributes
               const attrs = parseAttributes(attrText);
               
+              // Determine target for attributes: 
+              // If paragraph has only this image/link/code (plus whitespace), apply to paragraph
+              // This matches Jekyll/Kramdown behavior for block attributes
+              const isOnlyContent = prevNode.children.every(c => 
+                c === child || (c.type === 'text' && c.value.trim() === '')
+              );
+              
+              const target = isOnlyContent ? prevNode : child;
+              
               // Apply attributes to node (merge with existing attributes)
-              child.data = child.data || {};
-              child.data.hProperties = child.data.hProperties || {};
+              target.data = target.data || {};
+              target.data.hProperties = target.data.hProperties || {};
               
               // For className, merge with existing classes
               if (attrs.className) {
-                const existingClasses = child.data.hProperties.className || [];
+                const existingClasses = target.data.hProperties.className || [];
                 const existingArray = Array.isArray(existingClasses) ? existingClasses : [existingClasses];
-                child.data.hProperties.className = [...existingArray, attrs.className].filter(Boolean);
+                target.data.hProperties.className = [...existingArray, attrs.className].filter(Boolean);
                 delete attrs.className;
               }
               
               // Merge other attributes (duplicates will overwrite)
-              Object.assign(child.data.hProperties, attrs);
+              Object.assign(target.data.hProperties, attrs);
               
               // Remove the attribute paragraph
               paragraphParent.children.splice(paragraphIndex, 1);

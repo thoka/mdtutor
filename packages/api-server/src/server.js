@@ -54,7 +54,10 @@ async function getProjectData(slug, requestedLang) {
     try {
       const repoPath = join(SNAPSHOTS_DIR, slug, 'repo', lang);
       if (existsSync(repoPath) && existsSync(join(repoPath, 'meta.yml'))) {
-        const parsed = await parseProject(repoPath, { languages: [lang] });
+        const parsed = await parseProject(repoPath, { 
+          languages: [lang],
+          includeQuizData: true
+        });
         if (parsed && parsed.data) {
           // Convert relative image URLs to absolute URLs pointing to Vite's static file server
           // Images are served from /snapshots/:slug/repo/:lang/images/...

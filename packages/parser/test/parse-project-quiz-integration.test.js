@@ -16,19 +16,18 @@ const projectRoot = join(__dirname, '../../..');
 
 test('parseProject - detects quiz step from meta.yml', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
   
   assert.ok(quizStep, 'Should find a quiz step');
-  assert.strictEqual(quizStep.quiz, true, 'Quiz step should have quiz: true');
   assert.strictEqual(quizStep.knowledgeQuiz, 'quiz1', 'KnowledgeQuiz should match path from meta.yml');
 });
 
 test('parseProject - embeds quiz HTML in step content', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -42,7 +41,7 @@ test('parseProject - embeds quiz HTML in step content', async () => {
 
 test('parseProject - quiz step has correct structure', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -50,14 +49,13 @@ test('parseProject - quiz step has correct structure', async () => {
   assert.ok(quizStep, 'Should find a quiz step');
   assert.strictEqual(typeof quizStep.title, 'string', 'Title should be a string');
   assert.strictEqual(typeof quizStep.position, 'number', 'Position should be a number');
-  assert.strictEqual(typeof quizStep.quiz, 'boolean', 'Quiz should be a boolean');
   assert.strictEqual(typeof quizStep.knowledgeQuiz, 'string', 'KnowledgeQuiz should be a string');
   assert.ok(Array.isArray(quizStep.completion), 'Completion should be an array');
 });
 
 test('parseProject - quiz HTML contains all questions', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -71,7 +69,7 @@ test('parseProject - quiz HTML contains all questions', async () => {
 
 test('parseProject - quiz HTML structure matches spec', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -97,7 +95,7 @@ test('parseProject - quiz HTML structure matches spec', async () => {
 
 test('parseProject - quiz step maintains other step properties', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -111,7 +109,7 @@ test('parseProject - quiz step maintains other step properties', async () => {
 
 test('parseProject - non-quiz steps are not affected', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const nonQuizSteps = content.steps.filter(step => !step.knowledgeQuiz);
@@ -128,7 +126,7 @@ test('parseProject - non-quiz steps are not affected', async () => {
 
 test('parseProject - quiz step content includes check buttons', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -149,7 +147,7 @@ test('parseProject - quiz step content includes check buttons', async () => {
 
 test('parseProject - quiz HTML preserves question order', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
   const quizStep = content.steps.find(step => step.knowledgeQuiz);
@@ -167,7 +165,7 @@ test('parseProject - quiz HTML preserves question order', async () => {
 
 test('parseProject - quiz step matches original API structure', async () => {
   const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
-  const result = await parseProject(projectPath, { languages: ['en'] });
+  const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   // Load original API for comparison
   const originalApiPath = join(projectRoot, 'test/snapshots/silly-eyes/api-project-en.json');
@@ -190,9 +188,9 @@ test('parseProject - quiz step matches original API structure', async () => {
   assert.strictEqual(ourQuizStep.title, originalQuizStep.title, 'Title should match');
   assert.strictEqual(ourQuizStep.knowledgeQuiz, originalQuizStep.knowledgeQuiz, 
     'KnowledgeQuiz should match');
-  // Note: Original API has quiz: false, but we set it to true (intentional)
-  assert.strictEqual(ourQuizStep.quiz, true, 'We mark quiz steps as quiz: true');
-  // Original API has empty content, but we generate quiz HTML
+  // Note: Original API has quiz: false
+  assert.strictEqual(ourQuizStep.quiz, false, 'We match original API quiz: false');
+  // Original API has empty content, but we generate quiz HTML when includeQuizData is true
   assert.ok(ourQuizStep.content.length > 0, 'Our content should contain quiz HTML');
 });
 

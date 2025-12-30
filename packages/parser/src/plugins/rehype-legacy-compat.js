@@ -30,6 +30,13 @@ export default function rehypeLegacyCompat() {
 
       // 2. Parse inline markdown and smart quotes in text nodes
       if (['p', 'span', 'div', 'li', 'strong', 'em', 'a', 'h1', 'h2', 'h3'].includes(node.tagName) && node.children) {
+        // Skip smart quotes for panel headings (legacy quirk)
+        const isPanelHeading = node.tagName === 'h3' && 
+                               node.properties && 
+                               node.properties.className && 
+                               Array.isArray(node.properties.className) && 
+                               node.properties.className.includes('c-project-panel__heading');
+
         const newChildren = [];
         
         for (let i = 0; i < node.children.length; i++) {
@@ -37,25 +44,6 @@ export default function rehypeLegacyCompat() {
           
           if (child.type === 'text') {
             let text = child.value;
-
-            // 3. Smart quotes (legacy quirk)
-            // Replace ' with smart quotes
-            text = text.replace(/'([^']+)'/g, '‘$1’');
-            // Replace 's with ’s
-            text = text.replace(/(\w)'s/g, '$1’s');
-            // Replace 't with ’t
-            text = text.replace(/(\w)'t/g, '$1’t');
-            // Replace 're with ’re
-            text = text.replace(/(\w)'re/g, '$1’re');
-            // Replace 've with ’ve
-            text = text.replace(/(\w)'ve/g, '$1’ve');
-            // Replace 'll with ’ll
-            text = text.replace(/(\w)'ll/g, '$1’ll');
-            // Replace 'd with ’d
-            text = text.replace(/(\w)'d/g, '$1’d');
-            // Replace 'm with ’m
-            text = text.replace(/(\w)'m/g, '$1’m');
-
             // 4. Manual parsing of inline markdown (bold and code)
             // This is needed because content inside raw HTML blocks isn't always parsed by remark
             const parts = text.split(/(\*\*.*?\*\*|__.*?__|`.*?`\{:class="[^"]+"\}|`.*?`)/g);
@@ -87,16 +75,41 @@ export default function rehypeLegacyCompat() {
                     children: [{ type: 'text', value: part.slice(1, -1) }]
                   });
                 } else if (part.length > 0) {
-                  newChildren.push({ type: 'text', value: part });
+                  let partValue = part;
+                  if (!isPanelHeading) {
+                    // 3. Smart quotes (legacy quirk)
+                    // Apply ONLY to non-markdown parts to avoid breaking attributes like {:class="..."}
+                    partValue = partValue.replace(/"([^"]+)"/g, '“$1”');
+                    partValue = partValue.replace(/'([^']+)'/g, '‘$1’');
+                    partValue = partValue.replace(/(\w)'s/g, '$1’s');
+                    partValue = partValue.replace(/(\w)'t/g, '$1’t');
+                    partValue = partValue.replace(/(\w)'re/g, '$1’re');
+                    partValue = partValue.replace(/(\w)'ve/g, '$1’ve');
+                    partValue = partValue.replace(/(\w)'ll/g, '$1’ll');
+                    partValue = partValue.replace(/(\w)'d/g, '$1’d');
+                    partValue = partValue.replace(/(\w)'m/g, '$1’m');
+                  }
+                  newChildren.push({ type: 'text', value: partValue });
                 }
               }
               continue;
             } else {
+              if (!isPanelHeading) {
+                text = text.replace(/"([^"]+)"/g, '“$1”');
+                text = text.replace(/'([^']+)'/g, '‘$1’');
+                text = text.replace(/(\w)'s/g, '$1’s');
+                text = text.replace(/(\w)'t/g, '$1’t');
+                text = text.replace(/(\w)'re/g, '$1’re');
+                text = text.replace(/(\w)'ve/g, '$1’ve');
+                text = text.replace(/(\w)'ll/g, '$1’ll');
+                text = text.replace(/(\w)'d/g, '$1’d');
+                text = text.replace(/(\w)'m/g, '$1’m');
+              }
               child.value = text;
             }
           }
 
-          // 4. Handle {:class="..."} after inline code
+          // 5. Handle {:class="..."} after inline code
           if (child.type === 'element' && child.tagName === 'code') {
             const nextChild = node.children[i + 1];
             if (nextChild && nextChild.type === 'text') {

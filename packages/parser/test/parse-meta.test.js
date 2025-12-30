@@ -18,7 +18,7 @@ test('parseMeta - silly-eyes', () => {
   assert.strictEqual(result.steps.length, 7);
   assert.strictEqual(result.steps[0].title, 'You will make');
   assert.strictEqual(result.steps[0].position, 0);
-  assert.strictEqual(result.steps[4].quiz, true); // Quiz step
+  assert.strictEqual(result.steps[4].quiz, false); // Quiz step
   assert.deepStrictEqual(result.steps[4].knowledgeQuiz, {
     path: 'quiz1',
     version: 1,

@@ -590,8 +590,14 @@ export function compareStepAttributes(expectedStep, actualStep, stepIndex) {
     });
   }
 
-  const expectedQuiz = expectedStep.knowledgeQuiz || (expectedStep.knowledgeQuiz === null ? null : {});
-  const actualQuiz = actualStep.knowledgeQuiz || (actualStep.knowledgeQuiz === null ? null : {});
+  const normalizeQuiz = (q) => {
+    if (typeof q === 'string') return q;
+    if (q && typeof q === 'object' && Object.keys(q).length > 0) return q;
+    return {};
+  };
+  const expectedQuiz = normalizeQuiz(expectedStep.knowledgeQuiz);
+  const actualQuiz = normalizeQuiz(actualStep.knowledgeQuiz);
+  
   if (JSON.stringify(expectedQuiz) !== JSON.stringify(actualQuiz)) {
     differences.push({
       path: `steps[${stepIndex}].knowledgeQuiz`,

@@ -47,7 +47,6 @@ export default function rehypeHeadingIds() {
         
         const text = extractText(node);
         const id = slugify(text);
-        console.log(`[rehypeHeadingIds] text="${text}" id="${id}"`);
         
         // Add ID attribute if we have a valid slug
         if (id) {

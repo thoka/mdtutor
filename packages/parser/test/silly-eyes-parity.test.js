@@ -76,20 +76,22 @@ async function runParityTest(language) {
         });
       }
 
-      // Compare content (HTML)
-      if (i === 0) {
-        console.log('DEBUG Step 0 API:', apiStep.content.substring(0, 100));
-        console.log('DEBUG Step 0 Parsed:', parsedStep.content.substring(0, 100));
-      }
-      
-      const htmlAnalysis = compareHtmlContent(apiStep.content, parsedStep.content);
-      if (htmlAnalysis.structuralDifferences.length > 0) {
-        differences.push({
-          stepIndex: i,
-          stepTitle: apiStep.title,
-          type: 'html_mismatch',
-          htmlAnalysis: htmlAnalysis
-        });
+      // Compare content (HTML) - Skip for quiz steps as we generate HTML but API is empty
+      if (!apiStep.knowledgeQuiz) {
+        if (i === 0) {
+          console.log('DEBUG Step 0 API:', apiStep.content.substring(0, 100));
+          console.log('DEBUG Step 0 Parsed:', parsedStep.content.substring(0, 100));
+        }
+        
+        const htmlAnalysis = compareHtmlContent(apiStep.content, parsedStep.content);
+        if (htmlAnalysis.structuralDifferences.length > 0) {
+          differences.push({
+            stepIndex: i,
+            stepTitle: apiStep.title,
+            type: 'html_mismatch',
+            htmlAnalysis: htmlAnalysis
+          });
+        }
       }
     }
   }

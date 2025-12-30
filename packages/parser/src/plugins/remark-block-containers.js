@@ -32,7 +32,6 @@ export default function remarkBlockContainers(options = {}) {
       
       if (node.type === 'blockDelimiter') {
         const { blockType, isClosing } = node.data || {};
-        console.error(`[remarkBlockContainers] Found delimiter: type=${blockType}, isClosing=${isClosing}, stackDepth=${stack.length}`);
         
         if (!isClosing) {
           // Start a new container
@@ -58,38 +57,24 @@ export default function remarkBlockContainers(options = {}) {
           stack[stack.length - 1].children.push(container);
           // Push to stack to become the new parent
           stack.push(container);
-          console.error(`[remarkBlockContainers] Pushed to stack. New depth=${stack.length}`);
         } else {
           // End current container
           if (stack.length > 1) {
             stack.pop();
-            console.error(`[remarkBlockContainers] Popped from stack. New depth=${stack.length}`);
           }
         }
       } else {
         // Regular node - add to current parent
-        if (node.type === 'paragraph') {
-          console.error(`[remarkBlockContainers] Adding paragraph with ${node.children?.length} children to parent at depth=${stack.length}`);
-          node.children?.forEach((c, i) => {
-            if (c.type === 'image') console.error(`  child[${i}]: type=image, url=${c.url}`);
-            else if (c.type === 'text') console.error(`  child[${i}]: type=text, value=${JSON.stringify(c.value)}`);
-            else console.error(`  child[${i}]: type=${c.type}`);
-          });
-        } else {
-          console.error(`[remarkBlockContainers] Adding node type=${node.type} to parent at depth=${stack.length}`);
-        }
         stack[stack.length - 1].children.push(node);
       }
     }
     
     // Update tree children
     tree.children = rootChildren;
-    console.error(`[remarkBlockContainers] Finished first pass. rootChildren count=${rootChildren.length}`);
 
     // Second pass: handle special content like titles for panels
     visit(tree, 'blockContainer', (node) => {
       const className = node.data?.hProperties?.className || [];
-      console.error(`[remarkBlockContainers] Visiting blockContainer: classes=${className.join(', ')}, childrenCount=${node.children.length}`);
       if (className.includes('c-project-panel')) {
         processPanel(node, languages);
       }
@@ -173,8 +158,6 @@ function processPanel(node, languages) {
  */
 function processTask(node, languages) {
   const children = node.children;
-  console.error(`[processTask] Processing task with ${children.length} children`);
-  children.forEach((c, idx) => console.error(`  child[${idx}]: type=${c.type}, tag=${c.data?.hName || 'none'}`));
 
   const checkbox = {
     type: 'html',

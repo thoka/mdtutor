@@ -86,26 +86,30 @@ export async function parseProject(projectPath, options = {}) {
       const stepWarnings = parseResult.warnings || [];
       
       // If step has a quiz, parse and embed it
-      let knowledgeQuiz = metaStep.knowledgeQuiz;
-      if (metaStep.quiz && metaStep.knowledgeQuiz) {
+      let quizData = null;
+      if (metaStep.knowledgeQuiz) {
         // knowledgeQuiz can be either a string (path) or an object with path property
         const quizPathValue = typeof metaStep.knowledgeQuiz === 'string' 
           ? metaStep.knowledgeQuiz 
           : metaStep.knowledgeQuiz.path;
         const quizPath = join(actualPath, quizPathValue);
         try {
-          const quizData = await parseQuiz(quizPath, {
+          quizData = await parseQuiz(quizPath, {
             basePath,
             transclusionCache,
             languages: preferredLanguages
           });
-          // Legacy API has empty content for quiz steps, so we don't embed HTML
-          content = ''; 
-          knowledgeQuiz = quizData;
         } catch (error) {
           console.warn(`Failed to parse quiz at ${quizPath}:`, error.message);
           // Continue without quiz
         }
+      }
+      
+      // Determine content (embed quiz HTML if requested and available)
+      if (metaStep.knowledgeQuiz && !options.includeQuizData) {
+        content = '';
+      } else if (quizData && options.includeQuizData) {
+        content = quizData.html || '';
       }
       
       // Determine quiz flag: only use metaStep.quiz (legacy behavior)
@@ -125,10 +129,12 @@ export async function parseProject(projectPath, options = {}) {
         challenge: false, // TODO: Detect from content
         completion: completion,
         ingredients: ingredients,
-        // Convert knowledgeQuiz object to string for API compatibility
-        // Original API uses string (e.g., "quiz1"), not object
-        // If empty, return {} (empty object) instead of null to match API
-        knowledgeQuiz: metaStep.knowledgeQuiz ? (typeof metaStep.knowledgeQuiz === 'string' ? metaStep.knowledgeQuiz : metaStep.knowledgeQuiz.path) : {},
+        // Match original API format: string path for knowledgeQuiz
+        knowledgeQuiz: metaStep.knowledgeQuiz 
+          ? (typeof metaStep.knowledgeQuiz === 'string' ? metaStep.knowledgeQuiz : metaStep.knowledgeQuiz.path)
+          : null,
+        // Include full quiz data if requested (for integration tests/web app)
+        quizData: options.includeQuizData ? quizData : undefined,
         // Include parsing warnings if any
         warnings: stepWarnings.length > 0 ? stepWarnings : undefined
       };
@@ -136,7 +142,7 @@ export async function parseProject(projectPath, options = {}) {
   );
   
   // Collect all warnings from steps BEFORE removing them
-  const allWarnings = steps
+    const allWarnings = steps
     .flatMap((step, index) => {
       const stepWarnings = step.warnings || [];
       return stepWarnings.map(w => ({ 
@@ -164,7 +170,7 @@ export async function parseProject(projectPath, options = {}) {
           metaTitle: meta.metaTitle,
           metaDescription: meta.metaDescription,
           pdf: meta.pdf,
-          steps: steps.map(({ warnings, ...step }) => step) // Remove warnings from steps (they're in the root)
+          steps: steps.map(({ warnings, quizData, ...step }) => step)
         }
       }
     },

@@ -127,7 +127,7 @@ export function parseMeta(filePath) {
     steps: (data.steps || []).map((step, index) => ({
       title: step.title,
       position: index,
-      quiz: !!step.knowledge_quiz,
+      quiz: false, // Legacy quiz flag (not used for knowledge_quiz)
       challenge: false, // Will be determined from markdown content
       completion: step.completion || [],
       ingredients: step.ingredients || [],
