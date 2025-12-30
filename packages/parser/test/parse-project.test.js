@@ -29,7 +29,8 @@ test('parseProject - silly-eyes structure', async () => {
   const firstStep = content.steps[0];
   assert.strictEqual(firstStep.title, 'You will make');
   assert.strictEqual(firstStep.position, 0);
-  assert.ok(firstStep.content.includes('<h2>'));
+  // Check for h2 tag (with or without attributes like id)
+  assert.ok(firstStep.content.includes('<h2'), 'First step should contain h2 tag');
   
   // Check quiz step (step 5)
   const quizStep = content.steps[4];

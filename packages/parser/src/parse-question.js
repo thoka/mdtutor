@@ -47,11 +47,13 @@ export async function parseQuestion(markdown, options = {}) {
   const questionText = questionBody.substring(0, questionBody.indexOf('--- choices ---')).trim();
 
   // Parse question text to HTML
-  const questionHtml = await parseTutorial(questionText, {
+  const questionResult = await parseTutorial(questionText, {
     basePath: options.basePath,
     transclusionCache: options.transclusionCache,
     languages: options.languages
   });
+  // parseTutorial returns { html, warnings }, we need only html
+  const questionHtml = questionResult.html || questionResult;
 
   // Parse choices
   const choices = parseChoices(choicesText);
@@ -119,4 +121,3 @@ function parseChoices(choicesText) {
 
   return choices;
 }
-

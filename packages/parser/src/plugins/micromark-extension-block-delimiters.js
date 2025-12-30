@@ -39,6 +39,10 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
   let dashCount = 0;
   
   // Initialize containerState if needed
+  // containerState must exist on self (the tokenizer context)
+  if (!self || typeof self !== 'object') {
+    return nok;
+  }
   if (!self.containerState) {
     self.containerState = {};
   }
@@ -186,10 +190,12 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
         // Exit blockDelimiterName if still open (should have been closed before)
         // But check to be safe
         // Store metadata in containerState BEFORE creating token
-        self.containerState.blockDelimiter = {
-          blockType: type,
-          isClosing: isClosing
-        };
+        if (self && self.containerState) {
+          self.containerState.blockDelimiter = {
+            blockType: type,
+            isClosing: isClosing
+          };
+        }
         // Exit marker and create token
         effects.exit('blockDelimiterMarker');
         effects.enter('blockDelimiter');
@@ -209,10 +215,14 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
  * 
  * @param {import('micromark-util-types').Event[]} events
  * @param {import('micromark-util-types').TokenizeContext} context
- * @returns {void}
+ * @returns {import('micromark-util-types').Event[]}
  */
 function resolveBlockDelimiter(events, context) {
-  // This can be used to post-process tokens if needed
-  // For now, we just pass through
+  // Micromark expects resolve functions to return the events array
+  // If events is undefined or not an array, return empty array
+  if (!events || !Array.isArray(events)) {
+    return [];
+  }
+  return events;
 }
 

@@ -180,3 +180,6 @@ export async function parseTutorial(markdown, options = {}) {
   return { html, warnings };
 }
 
+// parseTutorialToAST temporarily disabled - causes issues with async plugins
+// Will be re-enabled after fixing AST extraction
+
