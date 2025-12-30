@@ -12,7 +12,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 
 ## Critical Workflows
 - **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots.
-- **Development**: `npm run dev` runs both API (3001) and Web (5173) concurrently.
+- **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
 - **Linting**: `npm run lint` (ESLint 9).
 
