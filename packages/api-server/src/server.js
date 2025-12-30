@@ -26,7 +26,7 @@ const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 const app = express();
 // Port MUST be set in .env file - no default fallback
-const PORT = process.env.API_PORT || process.env.PORT;
+const PORT = process.env.API_PORT;
 if (!PORT) {
   console.error('ERROR: API_PORT or PORT must be set in .env file');
   process.exit(1);
@@ -90,7 +90,10 @@ async function getProjectData(slug, requestedLang) {
     }
   }
 
-  // Fallback to static JSON files
+  // throw error here
+  throw new Error(`Failed to parse project ${slug} from repository for languages: ${uniqueLangs.join(', ')}`);
+
+  // legacy Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
       const filePath = join(SNAPSHOTS_DIR, slug, `api-project-${lang}.json`);
@@ -112,7 +115,6 @@ app.get('/api/health', (req, res) => {
     status: 'ok',
     port: PORT,
     apiPort: process.env.API_PORT || null,
-    portEnv: process.env.PORT || null,
     usingParser: true, // Indicates this server uses parseProject
     commitHash: commitHash,
     commitHashShort: commitHashShort,

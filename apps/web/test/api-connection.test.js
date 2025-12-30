@@ -36,13 +36,11 @@ test('Vite proxy targets correct API port', () => {
   assert.ok(proxyMatch, 'Vite proxy configuration should be found');
   
   // Calculate what Vite would actually use
-  const viteProxyPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
-  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
+  const viteProxyPort = parseInt(process.env.API_PORT , 10);
+  const apiPort = parseInt(process.env.API_PORT , 10);
   
   console.log('Port Configuration:');
   console.log(`  API_PORT env: ${process.env.API_PORT || '(not set)'}`);
-  console.log(`  PORT env: ${process.env.PORT || '(not set)'}`);
-  console.log(`  Vite proxy default: ${viteProxyDefaultPort}`);
   console.log(`  Vite proxy actual: ${viteProxyPort}`);
   console.log(`  API server port: ${apiPort}`);
   
@@ -52,7 +50,7 @@ test('Vite proxy targets correct API port', () => {
 });
 
 test('API health endpoint is accessible', async () => {
-  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
+  const apiPort = parseInt(process.env.API_PORT, 10);
   const apiUrl = `http://localhost:${apiPort}`;
   
   try {
@@ -85,52 +83,12 @@ test('API health endpoint is accessible', async () => {
   }
 });
 
-test('API server uses parseProject (not static files)', async () => {
-  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
-  const apiUrl = `http://localhost:${apiPort}`;
-  
-  // Test with cats-vs-dogs which should use parseProject
-  // Step 5 should have completion: ["external"] (not ["internal","external"])
-  try {
-    const response = await fetch(`${apiUrl}/api/projects/cats-vs-dogs?lang=en`);
-    
-    if (response.ok) {
-      const data = await response.json();
-      
-      const step5 = data?.data?.attributes?.content?.steps?.[5];
-      
-      if (step5) {
-        console.log('Step 5 completion check:');
-        console.log(`  Got: ${JSON.stringify(step5.completion)}`);
-        
-        // If using parseProject, completion should be ["external"]
-        // If using static JSON, it might be ["internal","external"]
-        const expectedCompletion = ["external"];
-        const actualCompletion = step5.completion;
-        
-        if (JSON.stringify(actualCompletion) === JSON.stringify(expectedCompletion)) {
-          console.log('  ✓ API is using parseProject (correct completion array)');
-        } else {
-          console.warn('  ⚠ API might be using static JSON files instead of parseProject');
-          console.warn(`    Expected: ${JSON.stringify(expectedCompletion)}`);
-          console.warn(`    Got: ${JSON.stringify(actualCompletion)}`);
-          console.warn('  This indicates the API server needs to be restarted to use the updated parser');
-        }
-      }
-    }
-  } catch (error) {
-    if (error.code !== 'ECONNREFUSED') {
-      throw error;
-    }
-    console.warn('  ⚠ API server not running, skipping parseProject test');
-  }
-});
 
 test('Web app can connect to API through proxy', async () => {
   // This test would require the web dev server to be running
   // For now, we just verify the configuration is correct
-  const webPort = parseInt(process.env.WEB_PORT || '5201', 10);
-  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
+  const webPort = parseInt(process.env.WEB_PORT , 10);
+  const apiPort = parseInt(process.env.API_PORT , 10);
   
   console.log('Web App Configuration:');
   console.log(`  Web port: ${webPort}`);
