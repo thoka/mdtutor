@@ -19,7 +19,7 @@ const projectRoot = join(__dirname, '../../..');
  * Load original Quiz API data
  */
 function loadQuizApi(quizPath, language = 'en') {
-  const apiPath = join(projectRoot, 'content/RPL/projects/silly-eyes', `api-quiz-${quizPath}-${language}.json`);
+  const apiPath = join(projectRoot, 'test/snapshots', `silly-eyes-api-quiz-${quizPath}-${language}.json`);
   if (!existsSync(apiPath)) {
     return null;
   }

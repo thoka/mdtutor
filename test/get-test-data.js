@@ -14,7 +14,8 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { load } from 'js-yaml';
 
-const SNAPSHOTS_DIR = 'content/RPL/projects';
+const PROJECTS_DIR = 'content/RPL/projects';
+const SNAPSHOTS_DIR = 'test/snapshots';
 const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
 
 // Configurable languages (extend with 'de' etc. as needed)
@@ -68,7 +69,7 @@ function extractQuizzesFromProject(projectData) {
  */
 async function cloneRepository(tutorialSlug) {
   const repoUrl = `https://github.com/raspberrypilearning/${tutorialSlug}.git`;
-  const targetDir = join(SNAPSHOTS_DIR, tutorialSlug, 'repo');
+  const targetDir = join(PROJECTS_DIR, tutorialSlug, 'repo');
   
   console.log(`Cloning ${tutorialSlug}...`);
   
@@ -123,7 +124,7 @@ function extractPathwaysFromProject(projectData) {
  */
 async function fetchProjectApi(tutorialSlug, language = 'en') {
   const apiUrl = `${API_BASE}/${language}/projects/${tutorialSlug}`;
-  const targetFile = join(SNAPSHOTS_DIR, tutorialSlug, `api-project-${language}.json`);
+  const targetFile = join(SNAPSHOTS_DIR, `${tutorialSlug}-api-project-${language}.json`);
   
   console.log(`  Fetching Projects API (${language})...`);
   
@@ -163,7 +164,7 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
  */
 async function fetchProgressApi(tutorialSlug, language = 'en') {
   const apiUrl = `${API_BASE}/${language}/progress/${tutorialSlug}`;
-  const targetFile = join(SNAPSHOTS_DIR, tutorialSlug, `api-progress-${language}.json`);
+  const targetFile = join(SNAPSHOTS_DIR, `${tutorialSlug}-api-progress-${language}.json`);
   
   console.log(`  Fetching Progress API (${language})...`);
   
@@ -197,7 +198,7 @@ async function fetchProgressApi(tutorialSlug, language = 'en') {
  */
 async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
   const apiUrl = `${API_BASE}/${language}/pathways/${pathwaySlug}/projects`;
-  const targetFile = join(SNAPSHOTS_DIR, tutorialSlug, `api-pathway-${pathwaySlug}-${language}.json`);
+  const targetFile = join(SNAPSHOTS_DIR, `${tutorialSlug}-api-pathway-${pathwaySlug}-${language}.json`);
   
   console.log(`  Fetching Pathway API: ${pathwaySlug} (${language})...`);
   
@@ -235,7 +236,7 @@ async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
  */
 async function fetchQuizApi(quizPath, tutorialSlug, language = 'en') {
   const apiUrl = `${API_BASE}/${language}/projects/${tutorialSlug}/quizzes/${quizPath}`;
-  const targetFile = join(SNAPSHOTS_DIR, tutorialSlug, `api-quiz-${quizPath}-${language}.json`);
+  const targetFile = join(SNAPSHOTS_DIR, `${tutorialSlug}-api-quiz-${quizPath}-${language}.json`);
   
   console.log(`  Fetching Quiz API: ${quizPath} (${language})...`);
   
@@ -285,7 +286,7 @@ function createSnapshotMetadata(tutorialSlug, repoPath, apiPaths, pathwayInfo) {
     pathways: pathwayInfo
   };
   
-  const metaFile = join(SNAPSHOTS_DIR, tutorialSlug, 'snapshot-meta.json');
+  const metaFile = join(SNAPSHOTS_DIR, `${tutorialSlug}-snapshot-meta.json`);
   writeFileSync(metaFile, JSON.stringify(metadata, null, 2));
   
   return metaFile;
@@ -298,6 +299,7 @@ async function runMetaTest() {
   console.log('=== Meta-Test: Creating Tutorial Snapshots ===\n');
   
   mkdirSync(SNAPSHOTS_DIR, { recursive: true });
+  mkdirSync(PROJECTS_DIR, { recursive: true });
   
   const results = [];
   
@@ -414,7 +416,7 @@ async function runMetaTest() {
   const allIngredients = new Set();
   
   for (const result of results.filter(r => r.success && TEST_TUTORIALS.includes(r.tutorial))) {
-    const apiPath = join(SNAPSHOTS_DIR, result.tutorial, 'api-project-en.json');
+    const apiPath = join(SNAPSHOTS_DIR, `${result.tutorial}-api-project-en.json`);
     if (existsSync(apiPath)) {
       const projectData = JSON.parse(readFileSync(apiPath, 'utf-8'));
       const ingredients = extractIngredientsFromProject(projectData);

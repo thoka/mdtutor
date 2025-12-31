@@ -25,7 +25,8 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'content/RPL/projects');
+const projectsDir = join(projectRoot, 'content/RPL/projects');
+const apiSnapshotsDir = join(projectRoot, 'test/snapshots');
 
 async function getPathwayProjects(pathwayName) {
   const pathwaysPath = join(projectRoot, 'content/RPL/pathways/rpl-pathways.yaml');
@@ -39,8 +40,8 @@ const languages = ['en', 'de-DE'];
 
 for (const projectId of projects) {
   for (const lang of languages) {
-    const projectPath = join(snapshotsDir, projectId, 'repo', lang);
-    const apiPath = join(snapshotsDir, projectId, `api-project-${lang}.json`);
+    const projectPath = join(projectsDir, projectId, 'repo', lang);
+    const apiPath = join(apiSnapshotsDir, `${projectId}-api-project-${lang}.json`);
 
     if (!existsSync(projectPath) || !existsSync(apiPath)) {
       continue;
@@ -48,10 +49,10 @@ for (const projectId of projects) {
 
     test(`Compliance: ${projectId} [${lang}] matches API snapshot structure`, async () => {
       // Parse local version
-      const parsed = await parseProject(projectPath, { languages: [lang], basePath: snapshotsDir });
+      const parsed = await parseProject(projectPath, { languages: [lang], basePath: projectsDir });
       
       // Load API snapshot
-      const apiData = loadApiData(snapshotsDir, projectId, lang);
+      const apiData = loadApiData(apiSnapshotsDir, projectId, lang);
       
       const ourContent = parsed.data.attributes.content;
       const apiContent = apiData.data.attributes.content;
@@ -121,13 +122,13 @@ for (const projectId of projects) {
         } else if (typeof apiStep.knowledgeQuiz === 'string') {
           // Test quiz structure against cached quiz API response
           const quizSlug = apiStep.knowledgeQuiz;
-          const quizApiData = loadQuizApiData(snapshotsDir, projectId, quizSlug, lang);
+          const quizApiData = loadQuizApiData(apiSnapshotsDir, projectId, quizSlug, lang);
           
           if (quizApiData) {
             const quizPath = join(projectPath, quizSlug);
             const ourQuiz = await parseQuiz(quizPath, {
               languages: [lang],
-              basePath: snapshotsDir
+              basePath: projectsDir
             });
             
             const apiQuestions = quizApiData.data.attributes.content.questions || [];

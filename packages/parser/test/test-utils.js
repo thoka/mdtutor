@@ -530,7 +530,8 @@ export function findProjects(snapshotsDir) {
  * Lädt Original-API-Daten
  */
 export function loadApiData(snapshotsDir, projectSlug, language) {
-  const apiPath = join(snapshotsDir, projectSlug, `api-project-${language}.json`);
+  // snapshotsDir now points to test/snapshots (flat structure)
+  const apiPath = join(snapshotsDir, `${projectSlug}-api-project-${language}.json`);
   if (!existsSync(apiPath)) return null;
   return JSON.parse(readFileSync(apiPath, 'utf-8'));
 }
@@ -539,7 +540,8 @@ export function loadApiData(snapshotsDir, projectSlug, language) {
  * Lädt Original-Quiz-API-Daten
  */
 export function loadQuizApiData(snapshotsDir, projectSlug, quizSlug, language) {
-  const apiPath = join(snapshotsDir, projectSlug, `api-quiz-${quizSlug}-${language}.json`);
+  // snapshotsDir now points to test/snapshots (flat structure)
+  const apiPath = join(snapshotsDir, `${projectSlug}-api-quiz-${quizSlug}-${language}.json`);
   if (!existsSync(apiPath)) return null;
   return JSON.parse(readFileSync(apiPath, 'utf-8'));
 }

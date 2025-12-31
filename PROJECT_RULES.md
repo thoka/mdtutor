@@ -14,7 +14,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
   1. Create a **feature branch** (`feature/name`).
   2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
-- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots into `content/RPL/projects`.
+- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
 - **Linting**: `npm run lint` (ESLint 9).

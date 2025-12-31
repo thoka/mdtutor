@@ -23,13 +23,14 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'content/RPL/projects');
+const projectsDir = join(projectRoot, 'content/RPL/projects');
+const apiSnapshotsDir = join(projectRoot, 'test/snapshots');
 
 /**
  * Haupttest: Vergleicht alle Projekte
  */
 test('step-content-exact - all projects', async () => {
-  let projects = findProjects(snapshotsDir);
+  let projects = findProjects(projectsDir);
   
   // Filter by PROJECT environment variable if set
   if (process.env.PROJECT) {
@@ -52,14 +53,14 @@ test('step-content-exact - all projects', async () => {
 
     for (const language of languages) {
       // Load API data
-      const apiData = loadApiData(snapshotsDir, project.slug, language);
+      const apiData = loadApiData(apiSnapshotsDir, project.slug, language);
       if (!apiData) {
         console.log(`Skipping ${project.slug}/${language} - API file not found`);
         continue;
       }
 
       // Parse project
-      const projectPath = join(snapshotsDir, project.slug, 'repo', language);
+      const projectPath = join(projectsDir, project.slug, 'repo', language);
       let parsedData;
       try {
         parsedData = await parseProject(projectPath, { languages: [language] });

@@ -18,7 +18,7 @@ const projectRoot = join(__dirname, '../../..');
  * Load original API data
  */
 function loadApiData(language = 'en') {
-  const apiPath = join(projectRoot, 'content/RPL/projects/cats-vs-dogs', `api-project-${language}.json`);
+  const apiPath = join(projectRoot, 'test/snapshots', `cats-vs-dogs-api-project-${language}.json`);
   if (!existsSync(apiPath)) {
     return null;
   }
