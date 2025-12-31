@@ -40,12 +40,12 @@ export default function remarkTransclusion(options = {}) {
           // Determine base path
           let basePath = options.basePath;
           if (!basePath && file.history && file.history[0]) {
-            // Auto-detect: go up from current file to snapshots directory
+            // Auto-detect: go up from current file to projects directory within content
             const currentFile = file.history[0];
             const parts = currentFile.split('/');
-            const snapshotsIndex = parts.indexOf('snapshots');
-            if (snapshotsIndex !== -1) {
-              basePath = parts.slice(0, snapshotsIndex + 1).join('/');
+            const projectsIndex = parts.lastIndexOf('projects');
+            if (projectsIndex !== -1) {
+              basePath = parts.slice(0, projectsIndex + 1).join('/');
             }
           }
           

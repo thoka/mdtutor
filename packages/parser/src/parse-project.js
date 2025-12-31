@@ -44,11 +44,11 @@ export async function parseProject(projectPath, options = {}) {
   const metaPath = join(actualPath, 'meta.yml');
   const meta = parseMeta(metaPath);
   
-  // Determine base path for transclusions (go up to snapshots directory)
+  // Determine base path for transclusions (go up to projects directory within content)
   const parts = actualPath.split('/');
-  const snapshotsIndex = parts.indexOf('snapshots');
-  const basePath = snapshotsIndex !== -1 
-    ? parts.slice(0, snapshotsIndex + 1).join('/')
+  const projectsIndex = parts.lastIndexOf('projects');
+  const basePath = projectsIndex !== -1 
+    ? parts.slice(0, projectsIndex + 1).join('/')
     : null;
   
   // Shared transclusion cache for all steps

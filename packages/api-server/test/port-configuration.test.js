@@ -111,7 +111,7 @@ test('API server uses parseProject when repository exists', async () => {
   
   // Test with cats-vs-dogs which should use parseProject
   try {
-    const response = await fetch(`${apiUrl}/api/projects/cats-vs-dogs?lang=en`);
+    const response = await fetch(`${apiUrl}/api/projects/rpl:cats-vs-dogs?lang=en`);
     
     if (response.ok) {
       const data = await response.json();

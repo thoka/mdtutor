@@ -51,7 +51,7 @@ test('getCurrentCommitHashShort returns short hash', () => {
 
 test('API health endpoint includes commit hash', async () => {
   // Load environment variables
-  const apiPort = parseInt(process.env.API_PORT, 10);
+  const apiPort = parseInt(process.env.API_PORT || process.env.PORT || '3201', 10);
   const apiUrl = `http://localhost:${apiPort}`;
   
   try {

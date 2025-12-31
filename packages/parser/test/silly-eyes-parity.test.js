@@ -19,7 +19,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'test/snapshots');
+const snapshotsDir = join(projectRoot, 'content/RPL/projects');
 const projectSlug = 'silly-eyes';
 
 async function runParityTest(language) {

@@ -1,5 +1,6 @@
-# Test snapshots - cloned repositories and API responses
-test/snapshots/
+# Content - cloned repositories and API responses
+content/RPL/projects/
+content/RPL/pathways/
 
 # Test output files
 test-differences.json

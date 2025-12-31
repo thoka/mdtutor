@@ -15,11 +15,11 @@ const projectRoot = join(__dirname, '../../..');
 
 test('integration - silly-eyes matches API snapshot structure', async () => {
   // Parse with our parser
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const parsed = await parseProject(projectPath);
   
   // Load API snapshot
-  const apiPath = join(projectRoot, 'test/snapshots/silly-eyes/api-project-en.json');
+  const apiPath = join(projectRoot, 'content/RPL/projects/silly-eyes/api-project-en.json');
   const apiData = JSON.parse(await readFile(apiPath, 'utf-8'));
   
   // Compare basic structure

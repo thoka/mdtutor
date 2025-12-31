@@ -14,14 +14,14 @@ import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
 import { load } from 'js-yaml';
 
-const SNAPSHOTS_DIR = 'test/snapshots';
+const SNAPSHOTS_DIR = 'content/RPL/projects';
 const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
 
 // Configurable languages (extend with 'de' etc. as needed)
 const LANGUAGES = ['en', 'de-DE'];
 
 // Load tutorials from pathways.yaml
-const PATHWAYS_FILE = 'test/pathways.yaml';
+const PATHWAYS_FILE = 'content/RPL/pathways/rpl-pathways.yaml';
 const pathwaysData = load(readFileSync(PATHWAYS_FILE, 'utf8'));
 const TEST_TUTORIALS = Object.values(pathwaysData).flat();
 
