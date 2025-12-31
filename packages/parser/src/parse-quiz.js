@@ -90,16 +90,13 @@ async function generateQuizHtml(questions, options = {}) {
       const choice = question.choices[j];
       // Use 1-based IDs and values like original API
       const choiceNum = j + 1;
-      const answerId = `choice-${choiceNum}`;
-      // No checked attribute - user must select an answer
-      // Add data-correct attribute to identify correct answers for the renderer
+      const questionNum = i + 1;
+      const answerId = `q${questionNum}-choice-${choiceNum}`;
 
       html += '    <div class="knowledge-quiz-question__answer">\n';
-      // Use generic "answer" name and 1-based value
-      // Set checked attribute for API compatibility (original API uses checked)
-      // Also add data-correct attribute for renderer (renderer should ignore checked)
-      const checkedAttr = choice.correct ? ' checked' : '';
-      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}" data-correct="${choice.correct}"${checkedAttr} />\n`;
+      // No checked attribute - user must select an answer
+      // Add data-correct attribute to identify correct answers for the renderer
+      html += `      <input type="radio" name="answer" value="${choiceNum}" id="${answerId}" data-correct="${choice.correct}" />\n`;
       html += `      <label for="${answerId}">\n`;
       // Parse choice text (markdown) to HTML
       const choiceHtml = await parseFeedback(choice.text, options);
@@ -118,7 +115,8 @@ async function generateQuizHtml(questions, options = {}) {
       const choice = question.choices[j];
       if (choice.feedback) {
         const choiceNum = j + 1;
-        const feedbackId = `feedback-for-choice-${choiceNum}`;
+        const questionNum = i + 1;
+        const feedbackId = `q${questionNum}-feedback-for-choice-${choiceNum}`;
         const feedbackHtml = await parseFeedback(choice.feedback, options);
         
         html += `  <li class="knowledge-quiz-question__feedback-item" id="${feedbackId}">\n`;

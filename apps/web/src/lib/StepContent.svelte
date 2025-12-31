@@ -316,20 +316,32 @@
     
     let feedbackItem: Element | null = null;
     
-    // Extract choice number from ID (e.g., "choice-1" -> "1")
+    // Extract choice number from ID (e.g., "q1-choice-1" -> "1")
     // The value should match the choice number (1-based)
-    const choiceMatch = selectedId.match(/choice-(\d+)/);
+    const choiceMatch = selectedId.match(/q(\d+)-choice-(\d+)/);
     if (choiceMatch) {
-      const choiceNum = choiceMatch[1];
-      const feedbackId = `feedback-for-choice-${choiceNum}`;
+      const questionNum = choiceMatch[1];
+      const choiceNum = choiceMatch[2];
+      const feedbackId = `q${questionNum}-feedback-for-choice-${choiceNum}`;
       console.log(`[quiz] Looking for feedback with ID: ${feedbackId}`);
       feedbackItem = question.querySelector(`#${feedbackId}`);
     }
     
-    // Fallback: try to find by value if ID matching fails
+    // Fallback: try to find by original ID format if prefix matching fails
+    if (!feedbackItem) {
+      const choiceMatchLegacy = selectedId.match(/choice-(\d+)/);
+      if (choiceMatchLegacy) {
+        const choiceNum = choiceMatchLegacy[1];
+        const feedbackId = `feedback-for-choice-${choiceNum}`;
+        console.log(`[quiz] Legacy fallback: Looking for feedback with ID: ${feedbackId}`);
+        feedbackItem = question.querySelector(`#${feedbackId}`);
+      }
+    }
+    
+    // Second fallback: try to find by value if ID matching fails
     if (!feedbackItem) {
       const feedbackId = `feedback-for-choice-${selectedValue}`;
-      console.log(`[quiz] Fallback: Looking for feedback with ID: ${feedbackId}`);
+      console.log(`[quiz] Second fallback: Looking for feedback with ID: ${feedbackId}`);
       feedbackItem = question.querySelector(`#${feedbackId}`);
     }
     
@@ -584,4 +596,6 @@
 
 <div class="c-project__step-content" bind:this={contentDiv}>
   {@html content}
+</div>
+
 </div>
