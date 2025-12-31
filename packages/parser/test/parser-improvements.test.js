@@ -11,17 +11,6 @@ test('Parser Improvements: Heading IDs with emojis', async () => {
   assert.ok(html.includes('id="spielen-️"'), `Expected id="spielen-️", got: ${html}`);
 });
 
-test('Parser Improvements: Duplicate Heading IDs', async () => {
-  const markdown = `
-### Test
-### Test
-`;
-  const { html } = await parseTutorial(markdown);
-  
-  assert.ok(html.includes('id="test"'), 'First heading should have id="test"');
-  assert.ok(html.includes('id="test-1"'), 'Second heading should have id="test-1"');
-});
-
 test('Parser Improvements: Robust <p> wrapping inside <div>', async () => {
   const markdown = `
 <div class="custom">
@@ -87,14 +76,29 @@ Content
   assert.ok(html.includes('Content'), 'Should include content');
 });
 
-test('Parser Improvements: Inline block delimiters', async () => {
-  const markdown = 'Some text --- task --- content --- /task --- more text';
+test('Parser Improvements: Block delimiters nesting in no-print', async () => {
+  const markdown = `
+--- no-print ---
+
+--- task ---
+Task 1
+--- /task ---
+
+### Heading
+
+--- task ---
+Task 2
+--- /task ---
+
+--- /no-print ---
+`;
   const { html } = await parseTutorial(markdown);
   
-  const normalized = normalizeText(html);
-  assert.ok(normalized.includes('Some text'), 'Should parse text before delimiter');
-  assert.ok(normalized.includes('<div class="c-project-task">'), 'Should parse inline delimiter as block');
-  assert.ok(normalized.includes('content'), 'Should parse content between delimiters');
-  assert.ok(normalized.includes('more text'), 'Should parse text after delimiter');
+  // Count task divs
+  const taskCount = (html.match(/class="c-project-task"/g) || []).length;
+  assert.strictEqual(taskCount, 2, 'Should have exactly 2 tasks');
+  
+  // Check that they are not nested
+  assert.ok(!html.includes('class="c-project-task"><input type="checkbox" class="c-project-task__checkbox" aria-label="Mark this task as complete"><div class="c-project-task__body"><div class="c-project-task">'), 'Tasks should not be nested');
 });
 

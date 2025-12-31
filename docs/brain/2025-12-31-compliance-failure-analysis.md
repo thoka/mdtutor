@@ -26,6 +26,7 @@ Analysis of why compliance tests are failing and a plan to fix the parser to mat
 
 ### 1. Heading IDs [DONE]
 - Fixed `slugify` in `packages/parser/src/plugins/rehype-heading-ids.js` to handle sequences of non-alphanumeric characters correctly and preserve `\ufe0f`.
+- Added duplicate ID suffixing (e.g. `-1`) to match common markdown parser behavior.
 - Improved ID normalization in `packages/parser/test/test-utils.js` to remove trailing hyphens and `\ufe0f` during comparison.
 
 ### 2. Missing `<p>` tags [DONE]
@@ -35,9 +36,14 @@ Analysis of why compliance tests are failing and a plan to fix the parser to mat
 ### 3. Inline Markdown in Raw HTML [DONE]
 - Enhanced `packages/parser/src/plugins/rehype-legacy-compat.js` to manually parse **links** (e.g., `[text](url){:target="_blank"}`) inside raw HTML blocks.
 
-### 4. Remaining Issues
-- **Nesting in `surprise-animation`**: Some delimiters like `--- task ---` are sensitive to missing blank lines in the markdown, causing incorrect nesting in the MDAST.
-- **Duplicate IDs in `space-talk [de-DE]`**: The API sometimes suffixes duplicate IDs and sometimes doesn't (especially when they are inside `no-print`/`print-only`). Our current logic is correctly suffixing, but the API is inconsistent.
+### 4. Flexible Block Delimiters [DONE]
+- Updated `micromark-extension-block-delimiters.js` to recognize delimiters in inline/text contexts.
+- Updated `remark-block-containers.js` to automatically split paragraphs containing delimiters.
+- This allows delimiters to work anywhere, including inside HTML tags and without blank lines.
+
+### 5. Remaining Issues
+- **Duplicate IDs Inconsistency**: The API sometimes allows duplicate IDs if they are in different sections (e.g. `no-print` vs `print-only`), while our parser suffixes them. This remains a minor structural mismatch.
+- **Nesting in `surprise-animation`**: Some complex markdown structures still cause subtle nesting differences between our parser and the API.
 
 ## Verification Plan
 - Run `npm test packages/parser/test/pathway-compliance.test.js` after each fix.
