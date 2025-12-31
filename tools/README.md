@@ -12,4 +12,5 @@ This directory contains scripts optimized for AI agent use.
 - `extract-css.js`: Scrapes CSS from reference pages for cloning.
 - `extract-structure.js`: Dumps HTML tag/class hierarchy.
 - `save-html.js`: Downloads fully rendered HTML (Puppeteer-backed).
+- `fetch-pathways.js`: Fetches learning pathways and projects from the RPL API.
 
