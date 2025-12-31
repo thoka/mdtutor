@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1215",
+    "type": "projects",
+    "attributes": {
+      "id": 1215,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Einer Figur ein Kostüm hinzufügen",
+            "content": "<p>Klicke auf den Reiter <strong>Kostüme</strong> und dann auf <strong>Wähle ein Kostüm</strong>, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-costumes-to-a-sprite/75e3a61b6f886579877e3928c5c7185c7c496bed/de-DE/images/choose-a-costume.png\" alt=\"Das Symbol „Kostüm auswählen“ ist hervorgehoben.\" /></p>\n\n<p>Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt.</p>\n\n<p><strong>Tipp:</strong> Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen.</p>\n\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Einer Figur ein Kostüm hinzufügen",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Einer Figur ein Kostüm hinzufügen",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-add-costumes-to-a-sprite/75e3a61b6f886579877e3928c5c7185c7c496bed/de-DE/images/banner.png",
+        "plainText": "Klicke auf den Reiter Kostüme und dann auf Wähle ein Kostüm, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen: Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt. Tipp: Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen.",
+        "description": "Einer Figur ein Kostüm hinzufügen",
+        "lastTested": "2021-03-12",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-add-costumes-to-a-sprite",
+      "masterLastCommit": "75e3a61b6f886579877e3928c5c7185c7c496bed",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

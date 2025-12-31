@@ -8,7 +8,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, statSync } from 'fs';
 import { readFile as readFileAsync, readdir as readdirAsync } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -24,6 +24,7 @@ import { parseProject } from '../../parser/src/parse-project.js';
 import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js';
 
 const CONTENT_DIR = join(__dirname, '../../../content');
+const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 /**
  * Get all content providers and their metadata
@@ -123,6 +124,34 @@ async function resolvePathway(namespacedSlug) {
     }
   }
   return null;
+}
+
+/**
+ * Resolve a local image path by checking multiple possible locations
+ * @param {string} pSlug Project slug
+ * @param {string} pLang Language code
+ * @param {string} imagePath Relative image path (e.g. "banner.png")
+ * @returns {string} The resolved local URL
+ */
+function resolveLocalImagePath(pSlug, pLang, imagePath) {
+  const projectPath = join(CONTENT_DIR, 'RPL', 'projects', pSlug);
+  const repoPath = join(projectPath, 'repo');
+  
+  const candidates = [
+    join(repoPath, pLang, 'images', imagePath),
+    join(repoPath, 'en', 'images', imagePath),
+    join(repoPath, imagePath),
+    join(repoPath, 'images', imagePath)
+  ];
+  
+  for (const candidate of candidates) {
+    if (existsSync(candidate) && statSync(candidate).isFile()) {
+      return `/content/RPL/projects/${pSlug}/repo${candidate.split('/repo')[1]}`;
+    }
+  }
+  
+  // Fallback
+  return `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
 }
 
 /**
@@ -275,7 +304,13 @@ async function getProjectData(namespacedSlug, requestedLang) {
   // legacy Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
-      const filePath = join(projectPath, `api-project-${lang}.json`);
+      let filePath = join(projectPath, `api-project-${lang}.json`);
+      
+      // Fallback to test/snapshots if not in project directory
+      if (!existsSync(filePath)) {
+        filePath = join(SNAPSHOTS_DIR, `${slug}-api-project-${lang}.json`);
+      }
+
       const data = await readFileAsync(filePath, 'utf-8');
       const parsed = JSON.parse(data);
       
@@ -289,7 +324,7 @@ async function getProjectData(namespacedSlug, requestedLang) {
         parsed.data.attributes.content.steps.forEach(step => {
           if (step.content) {
             step.content = step.content.replace(rplUrlPattern, (match, pSlug, pLang, imagePath) => {
-              return `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
+              return resolveLocalImagePath(pSlug, pLang, imagePath);
             });
           }
         });
@@ -300,7 +335,7 @@ async function getProjectData(namespacedSlug, requestedLang) {
         const match = rplUrlPattern.exec(heroImage);
         if (match) {
           const [, pSlug, pLang, imagePath] = match;
-          parsed.data.attributes.content.heroImage = `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
+          parsed.data.attributes.content.heroImage = resolveLocalImagePath(pSlug, pLang, imagePath);
         }
       }
       

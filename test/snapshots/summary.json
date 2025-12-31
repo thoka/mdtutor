@@ -1,0 +1,452 @@
+{
+  "timestamp": "2025-12-31T16:33:10.449Z",
+  "languages": [
+    "en",
+    "de-DE"
+  ],
+  "results": [
+    {
+      "tutorial": "space-talk",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/space-talk/repo",
+        "meta": "test/snapshots/space-talk-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "catch-the-bus",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/catch-the-bus/repo",
+        "meta": "test/snapshots/catch-the-bus-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "find-the-bug",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/find-the-bug/repo",
+        "meta": "test/snapshots/find-the-bug-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "silly-eyes",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/silly-eyes/repo",
+        "meta": "test/snapshots/silly-eyes-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "surprise-animation",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/surprise-animation/repo",
+        "meta": "test/snapshots/surprise-animation-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "i-made-you-a-book",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/i-made-you-a-book/repo",
+        "meta": "test/snapshots/i-made-you-a-book-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "scratch-intro"
+      ]
+    },
+    {
+      "tutorial": "scratchpc-interactive-book",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratchpc-interactive-book/repo",
+        "meta": "test/snapshots/scratchpc-interactive-book-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": [
+        "physical-computing-with-scratch-and-the-raspberry-pi"
+      ]
+    },
+    {
+      "tutorial": "getting-started-with-minecraft-pi",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/getting-started-with-minecraft-pi/repo",
+        "meta": "test/snapshots/getting-started-with-minecraft-pi-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "comments-feedback-scratch",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/comments-feedback-scratch/repo",
+        "meta": "test/snapshots/comments-feedback-scratch-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "generic-scratch3-backdrop-from-library",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/generic-scratch3-backdrop-from-library/repo",
+        "meta": "test/snapshots/generic-scratch3-backdrop-from-library-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "generic-scratch3-saving",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/generic-scratch3-saving/repo",
+        "meta": "test/snapshots/generic-scratch3-saving-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "generic-scratch3-sprite-from-library",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/generic-scratch3-sprite-from-library/repo",
+        "meta": "test/snapshots/generic-scratch3-sprite-from-library-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch-crosshair",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch-crosshair/repo",
+        "meta": "test/snapshots/scratch-crosshair-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-add-costumes-to-a-sprite",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-add-costumes-to-a-sprite/repo",
+        "meta": "test/snapshots/scratch3-add-costumes-to-a-sprite-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-add-sound",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-add-sound/repo",
+        "meta": "test/snapshots/scratch3-add-sound-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-animate-movement-costumes",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-animate-movement-costumes/repo",
+        "meta": "test/snapshots/scratch3-animate-movement-costumes-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-backdrops-and-sprites-using-shapes",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-backdrops-and-sprites-using-shapes/repo",
+        "meta": "test/snapshots/scratch3-backdrops-and-sprites-using-shapes-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-change-costumes-to-show-mood",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-change-costumes-to-show-mood/repo",
+        "meta": "test/snapshots/scratch3-change-costumes-to-show-mood-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-changing-backdrops-pages-levels",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-changing-backdrops-pages-levels/repo",
+        "meta": "test/snapshots/scratch3-changing-backdrops-pages-levels-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-copy-code",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-copy-code/repo",
+        "meta": "test/snapshots/scratch3-copy-code-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-copy-parts-between-sprite-costumes",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-copy-parts-between-sprite-costumes/repo",
+        "meta": "test/snapshots/scratch3-copy-parts-between-sprite-costumes-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-duplicate-sprite",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-duplicate-sprite/repo",
+        "meta": "test/snapshots/scratch3-duplicate-sprite-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-full-screen",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-full-screen/repo",
+        "meta": "test/snapshots/scratch3-full-screen-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-graphic-effects",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-graphic-effects/repo",
+        "meta": "test/snapshots/scratch3-graphic-effects-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-jiggle-a-sprite",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-jiggle-a-sprite/repo",
+        "meta": "test/snapshots/scratch3-jiggle-a-sprite-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-paint-a-new-backdrop-extended",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-paint-a-new-backdrop-extended/repo",
+        "meta": "test/snapshots/scratch3-paint-a-new-backdrop-extended-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-positioning-with-layers",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-positioning-with-layers/repo",
+        "meta": "test/snapshots/scratch3-positioning-with-layers-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-record-sound",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-record-sound/repo",
+        "meta": "test/snapshots/scratch3-record-sound-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-show-hide-sprites-backdrops",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-show-hide-sprites-backdrops/repo",
+        "meta": "test/snapshots/scratch3-show-hide-sprites-backdrops-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-text-to-speech",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-text-to-speech/repo",
+        "meta": "test/snapshots/scratch3-text-to-speech-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "scratch3-use-text-tool",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/scratch3-use-text-tool/repo",
+        "meta": "test/snapshots/scratch3-use-text-tool-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "share-scratch",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/share-scratch/repo",
+        "meta": "test/snapshots/share-scratch-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    },
+    {
+      "tutorial": "working-offline",
+      "success": true,
+      "paths": {
+        "repo": "content/RPL/projects/working-offline/repo",
+        "meta": "test/snapshots/working-offline-snapshot-meta.json"
+      },
+      "languages": [
+        "en",
+        "de-DE"
+      ],
+      "pathways": []
+    }
+  ]
+}

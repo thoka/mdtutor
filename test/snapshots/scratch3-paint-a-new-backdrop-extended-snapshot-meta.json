@@ -1,0 +1,153 @@
+{
+  "tutorial": "scratch3-paint-a-new-backdrop-extended",
+  "timestamp": "2025-12-31T16:33:03.191Z",
+  "languages": [
+    "en",
+    "de-DE"
+  ],
+  "paths": {
+    "repository": "content/RPL/projects/scratch3-paint-a-new-backdrop-extended/repo",
+    "api": {
+      "en": {
+        "projects": {
+          "file": "test/snapshots/scratch3-paint-a-new-backdrop-extended-api-project-en.json",
+          "data": {
+            "data": {
+              "id": "1208",
+              "type": "projects",
+              "attributes": {
+                "id": 1208,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Create a new backdrop in the Paint editor",
+                      "content": "<p>Go to the <strong>Choose a Backdrop</strong> menu and click on <strong>Paint</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/paint-backdrop.png\" alt=\"The 'Paint' option in the 'Choose a Backdrop' menu.\" /></p>\n\n<p>You will be taken to the Paint editor, where the new backdrop will be highlighted in the list. If you have other backdrops in your project, you will also see them in the list.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/new-background-in-editor.png\" alt=\"The new backdrop open in the Paint editor and highlighted in the list.\" /></p>\n\n<p>To set the main colour of the backdrop, click on the <strong>Rectangle</strong> tool, then use the <strong>Fill</strong> colour chooser to select a colour, then drag the shape over the full backdrop canvas:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/fill-colour-tool.png\" alt=\"The Fill colour chooser menu with 'Color', 'Saturation', and 'Brightness' sliders.\" /><br />\n<img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/single-colour-backdrop.png\" alt=\"A light-blue rectangle drawn larger than the canvas to create an entirely light-blue backdrop.\" /></p>\n\n<p>If you want to add more details to your backdrop, you can use the <strong>Rectangle</strong> tool, <strong>Circle</strong> tool, or <strong>Brush</strong> tool, or a combination of all three!</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/hill-backdrop.png\" alt=\"The backdrop canvas with the light-blue rectangle, and in front of it, a smaller green circle representing a hill.\" /></p>\n\n<p>When you have finished, make sure that you give your new backdrop a name that makes sense:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/name-backdrop.png\" alt=\"The backdrop name box with the word 'Hill' typed in.\" /></p>\n\n<p>Your new backdrop will be shown on the Stage and will be available to use in <code class=\"block3looks\">Looks</code> blocks.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/finished-backdrop.png\" alt=\"The new Hill backdrop and the Scratch Cat sprite on the Stage.\" /></p>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Create a new backdrop in the Paint editor",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "scratch Create a new backdrop in the Paint editor Create a new backdrop in the Paint editor Create a new backdrop in the Paint editor",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/banner.png",
+                  "plainText": "Go to the Choose a Backdrop menu and click on Paint: You will be taken to the Paint editor, where the new backdrop will be highlighted in the list. If you have other backdrops in your project, you will also see them in the list. To set the main colour of the backdrop, click on the Rectangle tool, then use the Fill colour chooser to select a colour, then drag the shape over the full backdrop canvas: If you want to add more details to your backdrop, you can use the Rectangle tool, Circle tool, or Brush tool, or a combination of all three! When you have finished, make sure that you give your new backdrop a name that makes sense: Your new backdrop will be shown on the Stage and will be available to use in Looks blocks.",
+                  "description": "Create a new backdrop in the Paint editor",
+                  "lastTested": "2021-03-11",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "en",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "blue"
+                },
+                "repositoryName": "scratch3-paint-a-new-backdrop-extended",
+                "masterLastCommit": "ac4b70837df8f08b4f86af7b9bec8254ec10d4b4",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "en",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      },
+      "de-DE": {
+        "projects": {
+          "file": "test/snapshots/scratch3-paint-a-new-backdrop-extended-api-project-de-DE.json",
+          "data": {
+            "data": {
+              "id": "1208",
+              "type": "projects",
+              "attributes": {
+                "id": 1208,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Create a new backdrop in the Paint editor",
+                      "content": "<p>Go to the <strong>Choose a Backdrop</strong> menu and click on <strong>Paint</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/paint-backdrop.png\" alt=\"The 'Paint' option in the 'Choose a Backdrop' menu.\" /></p>\n\n<p>You will be taken to the Paint editor, where the new backdrop will be highlighted in the list. If you have other backdrops in your project, you will also see them in the list.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/new-background-in-editor.png\" alt=\"The new backdrop open in the Paint editor and highlighted in the list.\" /></p>\n\n<p>To set the main colour of the backdrop, click on the <strong>Rectangle</strong> tool, then use the <strong>Fill</strong> colour chooser to select a colour, then drag the shape over the full backdrop canvas:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/fill-colour-tool.png\" alt=\"The Fill colour chooser menu with 'Color', 'Saturation', and 'Brightness' sliders.\" /><br />\n<img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/single-colour-backdrop.png\" alt=\"A light-blue rectangle drawn larger than the canvas to create an entirely light-blue backdrop.\" /></p>\n\n<p>If you want to add more details to your backdrop, you can use the <strong>Rectangle</strong> tool, <strong>Circle</strong> tool, or <strong>Brush</strong> tool, or a combination of all three!</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/hill-backdrop.png\" alt=\"The backdrop canvas with the light-blue rectangle, and in front of it, a smaller green circle representing a hill.\" /></p>\n\n<p>When you have finished, make sure that you give your new backdrop a name that makes sense:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/name-backdrop.png\" alt=\"The backdrop name box with the word 'Hill' typed in.\" /></p>\n\n<p>Your new backdrop will be shown on the Stage and will be available to use in <code class=\"block3looks\">Looks</code> blocks.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/finished-backdrop.png\" alt=\"The new Hill backdrop and the Scratch Cat sprite on the Stage.\" /></p>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Create a new backdrop in the Paint editor",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "scratch Create a new backdrop in the Paint editor Create a new backdrop in the Paint editor Create a new backdrop in the Paint editor",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-paint-a-new-backdrop-extended/ac4b70837df8f08b4f86af7b9bec8254ec10d4b4/en/images/banner.png",
+                  "plainText": "Go to the Choose a Backdrop menu and click on Paint: You will be taken to the Paint editor, where the new backdrop will be highlighted in the list. If you have other backdrops in your project, you will also see them in the list. To set the main colour of the backdrop, click on the Rectangle tool, then use the Fill colour chooser to select a colour, then drag the shape over the full backdrop canvas: If you want to add more details to your backdrop, you can use the Rectangle tool, Circle tool, or Brush tool, or a combination of all three! When you have finished, make sure that you give your new backdrop a name that makes sense: Your new backdrop will be shown on the Stage and will be available to use in Looks blocks.",
+                  "description": "Create a new backdrop in the Paint editor",
+                  "lastTested": "2021-03-11",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "en",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "blue"
+                },
+                "availableLocales": [
+                  "en",
+                  "ar-SA",
+                  "cy-GB",
+                  "el-GR",
+                  "es-LA",
+                  "fr-FR",
+                  "hi-IN",
+                  "it-IT",
+                  "ja-JP",
+                  "nl-NL",
+                  "pl-PL",
+                  "pt-BR",
+                  "sv-SE",
+                  "uk-UA"
+                ],
+                "repositoryName": "scratch3-paint-a-new-backdrop-extended"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "pathways": null
+}

@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1218",
+    "type": "projects",
+    "attributes": {
+      "id": 1218,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Working offline",
+            "content": "<p>For information about how to set up Scratch for offline use, visit <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/1\" target=\"_blank\">our ‘Getting started with Scratch’ guide</a>.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Working offline",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Working offline",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/working-offline/05e7ba74f89c435966f25f35aef5bedddd0af0a0/en/images/banner.png",
+        "plainText": "For information about how to set up Scratch for offline use, visit our ‘Getting started with Scratch’ guide.",
+        "description": "Standard instructions for working offline in Scratch",
+        "lastTested": "2021-03-18",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "working-offline",
+      "masterLastCommit": "0f09d8d10282341aeb920f3f224386a25e22f161",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

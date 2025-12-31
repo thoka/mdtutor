@@ -1,0 +1,374 @@
+{
+  "data": [
+    {
+      "id": "1155",
+      "type": "projects",
+      "attributes": {
+        "id": 1155,
+        "content": {
+          "title": "Weltraumgespräch",
+          "listed": true,
+          "copyedit": false,
+          "keywords": "scratch communication space Weltraumgespräch",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/space-talk/6a9d544b6b945c2de92317d66f903fc798d6acaa/de-DE/images/banner.png",
+          "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Einführung in Scratch",
+          "description": "Verwende Scratch, um Figuren ein „Emote“ zu geben, damit sie kommunizieren, wenn sie angeklickt werden",
+          "lastTested": "2021-02-09",
+          "metaDescription": "Lerne programmieren (coden) in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle Scratch-Animationen, Spiele, Apps und mehr.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "communication",
+            "space"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 1,
+          "badgeTemplateId": "379ea05e-10e5-4f4b-bbc7-a5d7ffd9e63b",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "de-DE",
+          "editorStarterProject": "",
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "red"
+        },
+        "repositoryName": "space-talk",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "1156",
+      "type": "projects",
+      "attributes": {
+        "id": 1156,
+        "content": {
+          "title": "Erwische den Bus",
+          "listed": true,
+          "version": 4,
+          "copyedit": false,
+          "keywords": "scratch games Erwische den Bus",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/banner.png",
+          "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Erwische den Bus",
+          "description": "Programmiere Figuren so, dass sie zum Bus laufen oder fliegen, bevor er losfährt",
+          "lastTested": "2021-02-17",
+          "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation mit Figuren, die sich beeilen, einen Bus zu erwischen.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "games"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 1,
+          "badgeTemplateId": "cef52429-8d09-4b6f-992f-e0bb7de83c1b",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "de-DE",
+          "editorStarterProject": "",
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "orange"
+        },
+        "repositoryName": "catch-the-bus",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "1192",
+      "type": "projects",
+      "attributes": {
+        "id": 1192,
+        "content": {
+          "title": "Finde den Bug",
+          "listed": true,
+          "version": 4,
+          "copyedit": false,
+          "keywords": "games scratch Finde den Bug",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/find-the-bug/726cfef9615e3c21dfaa5694ac4f676bcff894f7/de-DE/images/banner.png",
+          "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Finde den Bug",
+          "description": "Erstelle ein Spiel, in dem du in jedem Level einen versteckten Bug finden musst",
+          "lastTested": "2021-02-26",
+          "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch ein Spiel bei dem du in jedem Level einen versteckten Käfer (engl.: Bug) finden musst.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "games"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 1,
+          "badgeTemplateId": "00865546-ded5-4fdb-9754-1145d2742669",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "de-DE",
+          "editorStarterProject": "",
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "yellow"
+        },
+        "repositoryName": "find-the-bug",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "1191",
+      "type": "projects",
+      "attributes": {
+        "id": 1191,
+        "content": {
+          "title": "Alberne Augen",
+          "listed": true,
+          "version": 4,
+          "copyedit": false,
+          "keywords": "games art scratch Alberne Augen",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/banner.png",
+          "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Alberne Augen",
+          "description": "Erstelle deine eigene App mit einem Charakter, dessen Augen dem Mauszeiger folgen",
+          "lastTested": "2021-02-25",
+          "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation und einen Charakter mit albernen Augen.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "games",
+            "art"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 1,
+          "badgeTemplateId": "953c4b47-1142-46ee-81ea-9ac2df7704dc",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "de-DE",
+          "editorStarterProject": null,
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "green"
+        },
+        "repositoryName": "silly-eyes",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "1195",
+      "type": "projects",
+      "attributes": {
+        "id": 1195,
+        "content": {
+          "pdf": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/resources/surprise-animation.pdf",
+          "title": "Überraschung! Animation",
+          "listed": true,
+          "version": 4,
+          "copyedit": false,
+          "keywords": "stories scratch Überraschung! Animation",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/banner.png",
+          "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Überraschung! Animation",
+          "description": "Erstelle eine Animation von einer Geschichte mit einer Überraschung",
+          "lastTested": "2021-03-09",
+          "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation mit einer lustigen Überraschung.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "stories"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 1,
+          "badgeTemplateId": "31b5d250-75b3-41a6-9dbe-c7a5ed6e710f",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "de-DE",
+          "editorStarterProject": null,
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "blue"
+        },
+        "repositoryName": "surprise-animation",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "1196",
+      "type": "projects",
+      "attributes": {
+        "id": 1196,
+        "content": {
+          "pdf": "https://projects-static.raspberrypi.org/projects/i-made-you-a-book/a090d812918875c289b9365cb8343819a50c7dbc/en/resources/i-made-you-a-book.pdf",
+          "title": "I made you a book",
+          "listed": true,
+          "version": 4,
+          "copyedit": false,
+          "keywords": "stories art scratch I made you a book",
+          "heroImage": "https://projects-static.raspberrypi.org/projects/i-made-you-a-book/a090d812918875c289b9365cb8343819a50c7dbc/en/images/banner.png",
+          "metaTitle": "Scratch coding projects for kids and teens | I made you a book",
+          "description": "Create a book with multiple pages to tell a story or share facts",
+          "lastTested": "2021-03-09",
+          "metaDescription": "Learn to code in Scratch with the Raspberry Pi Foundation's coding projects for kids and teens. Make a Scratch digital book for someone you care about.",
+          "technologyLabels": [
+            "scratch"
+          ],
+          "interestLabels": [
+            "art",
+            "stories"
+          ],
+          "hardwareLabels": [],
+          "primaryTechnology": "scratch",
+          "difficultyLevel": 2,
+          "badgeTemplateId": "6b73d9df-73c6-4952-b5b0-372fa6f56302",
+          "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+          "locale": "en",
+          "editorStarterProject": null,
+          "hardware": [],
+          "software": [
+            "scratch"
+          ],
+          "theme": "violet"
+        },
+        "repositoryName": "i-made-you-a-book",
+        "issuedBadge": null,
+        "userProgress": null,
+        "pathways": [
+          {
+            "id": 134,
+            "duration": "30 minutes",
+            "name": "Scratch intro",
+            "slug": "scratch-intro",
+            "ordered": true,
+            "is_beta": true,
+            "difficulty_level": 1,
+            "technology_theme": "scratch",
+            "published": false,
+            "title": "Einführung in Scratch",
+            "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+            "skill_list": [
+              "scratch"
+            ],
+            "theme_list": [
+              "red"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

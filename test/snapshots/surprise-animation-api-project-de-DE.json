@@ -1,0 +1,555 @@
+{
+  "data": {
+    "id": "1195",
+    "type": "projects",
+    "attributes": {
+      "id": 1195,
+      "content": {
+        "pdf": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/resources/surprise-animation.pdf",
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Einleitung",
+            "content": "<h2 id=\"das-wirst-du-machen\">Das wirst du machen</h2>\n\n<p>Erstelle eine kurze Animation 🎥 mit einer lustigen Überraschung 🎉!</p>\n\n<p>Du wirst:</p>\n\n<ul>\n  <li>Deine eigene Animation erstellen</li>\n  <li>Dein Projekt testen und Fehler suchen und beheben</li>\n  <li>Erstelle deine Animation Schritt für Schritt</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/surprise-example.png\" alt=\"Beispielprojekte.\" /></p>\n\n<div class=\"u-no-print\">\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1\">\n\n    <h3 id=\"spielen-\">Spielen ▶️</h3>\n\n    <p>Klicke auf die grüne Flagge, um die Animation anzusehen.</p>\n\n    <p>Die Animation besteht aus drei Teilen:</p>\n    <ul>\n      <li>Neugier</li>\n      <li>Überraschung!</li>\n      <li>Reaktion</li>\n    </ul>\n\n  </div>\n  <div>\n    <p><strong>Dinosaurier-Überraschung!</strong>: <a href=\"https://scratch.mit.edu/projects/1208518944/editor\" target=\"_blank\">Schau hinein</a></p>\n    <div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n      <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1208518944/?autostart=false\" frameborder=\"0\"></iframe>\n    </div>\n\n  </div>\n</div>\n\n  </div>\n</div>\n\n  <h3 id=\"hole-dir-ideen-\">Hole dir Ideen 💭</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Probiere diese Beispielprojekte aus, um Ideen zu bekommen. Überlege, wie deine Animation aussehen könnte, und hole dir einige Ideen bei diesen Beispielprojekten:</p>\n\n<p>⭐ Teile dein fertiges Überraschung! Animations-Projekt - mit etwas Glück wird es hier vorgestellt.</p>\n\n<p><strong>BUH!</strong>: <a href=\"https://scratch.mit.edu/projects/1207325892/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1207325892/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>Katzenmagie</strong>: <a href=\"https://scratch.mit.edu/projects/1207326248/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1207326248/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>⭐ Schock-Effekt!</strong>: <a href=\"https://scratch.mit.edu/projects/720220722/editor\" target=\"_blank\">Schau hinein</a> (vorgestelltes Community-Projekt)</p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/720220722/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n  </div>\n</div>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <h3 id=\"hole-dir-ideen-\">Hole dir Ideen 💭</h3>\n\n  <p>Du wirst Entscheidungen zum Design (Aussehen) treffen und denkst dir eine Geschichte mit einer Überraschung für deine Animation aus. Denke darüber nach, wie deine Geschichte aussehen könnte. <strong>Schau hinein</strong> und sammle weitere Ideen mit den Beispielprojekten in „Überraschung! Animation – Beispiele” aus Scratch Studio: https://scratch.mit.edu/studios/29075822/</p>\n\n  <p>Die Animation besteht aus drei Teilen:</p>\n  <ul>\n    <li>Neugier</li>\n    <li>Überraschung!</li>\n    <li>Reaktion</li>\n  </ul>\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/boo.png\" alt=\"Das „BUH!“-Projekt.\" />\n<img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/cat-magic.png\" alt=\"Das Projekt „Katzenmagie“.\" /></p>\n\n</div>\n\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Erstelle deine Szene",
+            "content": "<h2 id=\"erstelle-deine-szene\">Erstelle deine Szene</h2>\n\n<p>Habst du eine Idee für deine Animation?</p>\n\n<p>Füge einen Hintergrund 🖼️, eine Hauptfigur 🐙👩‍🦼🦖 und ein interessantes Objekt 🎂🎾🎁 deiner Wahl hinzu, um den <strong>ersten Teil</strong> deiner Animation zu erstellen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/scene.png\" alt=\"Ein Filmstreifen mit 3 Bildern. Der erste Rahmen (frame) ist hervorgehoben. Der Rahmen zeigt eine Szene mit Figur, Objekt und Hintergrund.\" /></p>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\n  <span style=\"color: #0faeb0\"><strong>Animation</strong></span> erzeugt einen Bewegungseffekt durch schnelle Bildwechsel. Die ersten Animatoren schnitzten Bilder aus Holzblöcken und verwendeten sie als Stempel. Es ist viel schneller, Scratch zum Programmieren deiner Animation zu verwenden!\n</p>\n\n<h3 id=\"öffne-das-starterprojekt\">Öffne das Starterprojekt</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Öffne das <a href=\"https://scratch.mit.edu/projects/582222532/editor\" target=\"_blank\">Überraschung! Animation Startprojekt</a>.</p>\n\n<p>⏱️ Wenig Zeit? Du kannst mit einem der <a href=\"https://scratch.mit.edu/studios/29075822\" target=\"_blank\">Beispiele</a> beginnen.</p>\n\n  </div>\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\nEs gibt Leute namens <span style=\"color: #0faeb0\"><strong>Narrative Designer</strong></span>, die Storytelling für Apps und Videospiele machen, also “Geschichtenerzähler” sind. Die Fähigkeit, digitales Geschichten zu erzählen, ermöglicht es jedem, seine Geschichten und kreativen Vorstellungen mit anderen Menschen zu teilen.\n</p>\n\n<h3 id=\"gestalten-deine-szene\">Gestalten deine Szene</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> ein Thema für deine Animation. Du könntest folgendes wählen:</p>\n\n<ul>\n  <li>🐯 Landtiere</li>\n  <li>🐠 Meerestiere</li>\n  <li>👽 Außerirdische</li>\n  <li>🌿 Natur</li>\n  <li>🌈 Wetter</li>\n  <li>🌮 Essen</li>\n  <li>🚀 Reisen</li>\n  <li>⚾ Sport …. Oder etwas anderes</li>\n</ul>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> Wähle eine Figur als 🐙👩‍🦼🦖 <strong>Hauptfigur</strong>, eine andere Figur als 🎂🎾🎁 <strong>interessantes Objekt</strong> und einen 🖼️ <strong>Hintergrund</strong>, um die Szene zu gestalten.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/sprites-and-backdrop.png\" alt=\"Zwei „Wähle eine Figur“-Symbole und ein „Wähle einen Hintergrund“-Symbol.\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"bereite-deine-figuren-vor\">Bereite deine Figuren vor</h3>\n\n<p>Wo ist die Startposition deiner Figuren? Wie groß sollen sie sein? Wie möchtest du, dass sie aussehen?</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen Block <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code> hinzu und füge dann darunter Blöcke hinzu, um die Figuren zu Beginn deiner Animation einzurichten.</p>\n\n<p><strong>Tipp:</strong> Denke daran, sowohl deine 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> als auch deine 🎂🎾🎁 <strong>interessante Objekt</strong> Figur einzurichten.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Positioniere deine Figuren\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Bewege die 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> an die gewünschte Position auf der Bühne und füge dann einen <code class=\"block3motion\">gehe zu x: y:</code>-Block zu deinem Code hinzu:</p>\n\n<pre><code class=\"language-blocks3\">go to x: (0) y: (0) // füge die Position der Figur hinzu\n</code></pre>\n\n<p>Wiederhole diese Aufgabe für das 🎂🎾🎁 <strong>interessante Objekt</strong>.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Passe die Größe deiner Figuren an\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Um die Größe einer Figur für das gesamte Projekt zu ändern, ändere die Zahl in der Eigenschaft <strong>Größe</strong> im Figuren-Bereich:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/sprite-pane-size.png\" alt=\"\" /></p>\n\n<p>Um die Größe eine Figur für einen Teil des Projekts zu ändern, füge Code hinzu, um <code class=\"block3looks\">setze Größe auf</code> die Größe deiner Wahl festzulegen. Diese Option ist gut, wenn du möchtest, dass deine Figur im Projekt seine Größe ändert.</p>\n\n<pre><code class=\"language-blocks3\">set size to [100] % // &lt;100 ist kleiner, &gt;100 ist größer\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Lege die Kostüme deiner Figuren fest\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Um das Kostüm einer Figur für das gesamte Projekt zu ändern, klicke auf die Registerkarte <strong>Kostüme</strong> und wähle eines der verfügbaren Kostüme aus:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/nano-costumes.png\" alt=\"Die Registerkarte „Kostüme“ mit den verfügbaren Kostümen für eine Figur.\" /></p>\n\n<p>Um das Kostüm einer Figur für einen Teil des Projekts zu ändern, füge deinem Code einen Block <code class=\"block3looks\">wechsle zu Kostüm</code> hinzu und aktualisiere diesen Block, um das Kostüm deiner Wahl anzuzeigen:</p>\n\n<pre><code class=\"language-blocks3\">switch costume to [ v]  // passe dies an für dein ausgewähltes Kostüm\n</code></pre>\n\n<p>Um eine Figur zu Beginn des Projekts auszublenden, füge deinem Code den Block <code class=\"block3looks\">verstecke dich</code> hinzu:</p>\n\n<pre><code class=\"language-blocks3\">hide \n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Lege die Richtung deiner Figuren fest\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Deine Figuren sind möglicherweise in die falsche Richtung ausgerichtet, wenn du sie zu deinem Projekt hinzufügst.</p>\n\n<p>Um die Richtung einer Figur für das gesamte Projekt zu ändern, ändere die <strong>Richtung</strong> und den <strong>Drehtyp</strong> im Figuren-Bereich:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/sprite-pane-direction.png\" alt=\"Das Richtungs- und Drehtyp-Menü im Figuren-Bereich.\" /></p>\n\n<p>Um die Richtung einer Figur für einen Teil des Projekts zu ändern, füge deinem Code Blöcke hinzu, um den <code class=\"block3motion\">Drehtyp</code> und die <code class=\"block3motion\">Richtung</code> zu ändern:</p>\n\n<pre><code class=\"language-blocks3\">set rotation style [links-rechts v]\npoint in direction (-90) // nach links drehen\n</code></pre>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Speichere dein Projekt.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ein Scratch-Projekt speichern\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <ul>\n  <li>Gebe deinem Projekt einen Namen, indem du ihn in das Textfeld oben eingibst.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-saving/b9c27ce1eccd5ae8bee0a444b386e58d0fd90125/de-DE/images/name-annotated.png\" alt=\"Textbox, um deinem Scratch Projekt einen Namen zu geben\" /></p>\n\n<ul>\n  <li>Um dein Projekt zu speichern, klickst du auf <strong>Datei</strong> und dann auf <strong>Jetzt speichern</strong>.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-saving/b9c27ce1eccd5ae8bee0a444b386e58d0fd90125/de-DE/images/save.png\" alt=\"Screenshot\" /></p>\n\n<p><strong>Hinweis:</strong> Wenn du nicht online bist oder kein Scratch-Konto hast, kannst du eine Kopie deines Projekts speichern, indem du stattdessen auf <strong>Auf deinem Computer speichern</strong> klickst.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n",
+            "position": 1,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "generic-scratch3-saving"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Zeige Neugier",
+            "content": "<h2 id=\"zeige-neugier\">Zeige Neugier</h2>\n\n<p>Wird das Objekt etwas tun, um Aufmerksamkeit zu erregen? Wie wird der Charakter reagieren? Es ist deine Entscheidung! Erstelle den <strong>zweiten Teil</strong> deiner Animation.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/curiosity.png\" alt=\"Ein Filmstreifen mit 3 Bildern. Der zweite Rahmen (frame) ist hervorgehoben. Der Rahmen zeigt eine Szene, in der der Charakter „hmmmm“ denkt, während er ein merkwürdiges Objekt betrachtet.\" /></p>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\n  <span style=\"color: #0faeb0\"><strong>Zerlegung</strong></span> ist die Aufteilung eines Projekts in kleinere und leichter verständliche Teile. Dies bedeutet, dass du ein Projekt Stück für Stück aufbauen kannst, bis du es abgeschlossen hast. In diesem Schritt konzentrierst du dich nur auf den Neugier-Teil deiner Animation.\n</p>\n\n<h3 id=\"das-objekt\">Das Objekt</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> Wenn das 🎂🎾🎁 <strong>interessante Objekt</strong> etwas tun soll, um Aufmerksamkeit zu erregen, wähle aus, was das Objekt tun soll.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/jiggle.gif\" alt=\"Ein Wüstenhintergrund mit einem hin und her wackelnden Felsen.\" /></p>\n\n<p>Füge Blöcke in deinem🎂🎾🎁 <strong>interessanten Objekt</strong> am Ende des <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>-Skripts hinzu.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Eine Figur zum wackeln bringen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-jiggle-a-sprite/c89b8ba86e760bb22bce92eca1275aa3b54dc302/de-DE/images/jiggle.png\" alt=\"Einige Bilder, die eine Fels Figur mit verschiedenen Drehungen zeigt, um zu veranschaulichen, dass das Wackeln einer Figur erzeugt wird, indem die Figur leicht hin und her gedreht wird.\" /></p>\n\n<pre><code class=\"language-blocks3\">repeat [8]\nturn left [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn left [15] degrees\nwait [0.1] seconds\nend\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Verwende Grafikeffekte\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Hahn-Effekte</strong>: <a href=\"https://scratch.mit.edu/projects/435730522/editor\" target=\"_blank\">Schaue hinein</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/435730522/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Die Blöcke <code class=\"block3looks\">setze Effekt Farbe auf</code> und <code class=\"block3looks\">ändere Effekt Farbe um</code> verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann:</p>\n\n<ul>\n  <li><code class=\"block3looks\">Farbe</code>: von <code>0</code> bis <code>199</code> (größere Zahlen werden umgebrochen, also ist <code>200</code> dasselbe wie <code>0</code>)</li>\n  <li><code class=\"block3looks\">Fischauge</code>: <code>0</code> bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt</li>\n  <li><code class=\"block3looks\">Wirbel</code>: <code>0</code> bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts</li>\n  <li><code class=\"block3looks\">Pixel</code>: <code>0</code> bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel</li>\n  <li><code class=\"block3looks\">Mosaik</code>: <code>0</code> bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien</li>\n  <li><code class=\"block3looks\">Helligkeit</code>: <code>0</code> bedeutet keinen Effekt, Zahlen bis <code>100</code> machen die Figur heller und negative Zahlen bis <code>-100</code> machen die Figur dunkler</li>\n  <li><code class=\"block3looks\">Durchsichtigkeit</code>: <code>0</code> bedeutet keinen Effekt, und Zahlen bis <code>100</code> machen die Figur transparenter</li>\n</ul>\n\n<p>Probiere die Effekte aus und <code class=\"block3looks\">setze</code> verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen.</p>\n\n<pre><code class=\"language-blocks3\">set [Wirbel v] effect to (100)\n\nset [Pixel v] effect to (50)\n</code></pre>\n\n<p><strong>Tipp:</strong> Ein <code class=\"block3looks\">Effekt Farbe</code> von <code>225</code> ist identisch zu einem <code class=\"block3looks\">Effekt Farbe</code> von <code>25</code>, du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde.</p>\n\n<pre><code class=\"language-blocks3\">forever\nchange [Farbe v] effect by [25]\nwait [0.5] seconds\n</code></pre>\n\n<p>Verwende den Block <code class=\"block3looks\">schalte Grafikeffekte aus</code>, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht.</p>\n\n<p>Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block <code class=\"block3looks\">setze Effekt ... auf</code> unter einem Block <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>:</p>\n\n<pre><code class=\"language-blocks3\">when green flag clicked\nset [Durchsichtigkeit v] effect to (25)\n</code></pre>\n\n<p><strong>Tipp:</strong>Du kannst die Blöcke <code class=\"block3looks\">setze</code> und <code class=\"block3looks\">ändere</code> Effekt auch für die <strong>Bühne</strong> verwenden.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"der-charakter\">Der Charakter</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Bringe die 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> dazu, Interesse an dem Objekt zu zeigen. Füge Blöcke am Ende des Setup-Skripts der 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> hinzu.</p>\n\n<p>Wenn die 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> warten soll, bis das 🎂🎾🎁 <strong>interessante Objekt</strong> etwas getan hat, füge einen <code class=\"block3control\">warte</code>-Block hinzu.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/bear.gif\" alt=\"Ein Wüstenhintergrund mit einem hin und her wackelnden Felsen.\" /></p>\n\n<p>Du könntest <code class=\"block3looks\">sage</code> oder <code class=\"block3looks\">denke</code>-Blöcke verwenden, oder sogar die Erweiterung <code class=\"block3extensions\">Text zu Sprache</code>, um die Figur laut sprechen zu lassen!</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Bringe eine Figur zum Sprechen mit der Text-zu-Sprache-Erweiterung\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Pico und Giga sprechen mit der Spracherweiterung</strong>: <a href=\"https://scratch.mit.edu/projects/499373708/editor\" target=\"_blank\">Schau es dir an</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499373708/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Klicke auf <strong>Erweiterung hinzufügen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/add-extension.png\" alt=\"Das Symbol &quot;Erweiterung hinzufügen&quot;.\" /></p>\n\n<p>Wähle <strong>Text zu Sprache</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/text-to-speech.png\" alt=\"Die Erweiterung &quot;Text zu Sprache&quot; ist hervorgehoben.\" /></p>\n\n<p>Du bekommst ein neues <code class=\"block3extensions\">Text zu Sprache</code> Blockmenü angezeigt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/text-to-speech-blocks.png\" alt=\"Das Blockmenü &quot;Text zu Sprache&quot;.\" /></p>\n\n<p>Du kannst die Blöcke im Menü <code class=\"block3extensions\">Text zu Sprache</code> verwenden, um deine Figuren laut sprechen zu lassen.</p>\n\n<p>Du kannst eine Figur laut sprechen lassen, wenn du sie anklickst:</p>\n\n<pre><code class=\"language-blocks3\">when this sprite clicked\nset voice to (alto v) :: tts\nset language to (Spanish v) :: tts\nspeak [Hola] :: tts\n</code></pre>\n\n<p>Du kannst deiner Figur sogar eine Kätzchenstimme geben!</p>\n\n<pre><code class=\"language-blocks3\">set voice to (kitten v) :: tts\nspeak [Hast du Milch für mich?] :: tts\n</code></pre>\n\n  </div>\n</div>\n\n<p>Der Charakter könnte Emotionen zeigen, wie im Projekt <a href=\"https://projects.raspberrypi.org/de-DE/projects/space-talk\" target=\"_blank\">Weltraumgespräch</a>.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Zeige die Stimmung einer Figur mit Kostümen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Abby denkt „Hmm“</strong>: <a href=\"https://scratch.mit.edu/projects/498767227/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/498767227/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Du kannst <code class=\"block3looks\">Wechsle zu Kostüm ...</code> Block vor und nach einem <code class=\"block3looks\">sage für</code>, <code class=\"block3looks\">denken für</code>, <code class=\"block3sound\">spiele Klang</code>, oder <code class=\"block3control\">warte</code> Bausteine, damit dein Charakter seine Gefühle zeigt.</p>\n\n<pre><code class=\"language-blocks3\">switch costume to [abby-a v] // Kostüm am Anfang\nwait [1] seconds\nswitch costume to [abby-b v] // zeigt Gefühle\nthink [Hmm...] for [2] seconds\nswitch costume to [abby-a v] // Zurück zum Kostüm vom Anfang\n</code></pre>\n\n<p><strong>Tipp:</strong> Stelle sicher, dass du einen Block mit einem Zeitwert verwendest und keinen <code class=\"block3sound\">spiele Klang</code>, <code class=\"block3looks\">sage</code> oder <code class=\"block3looks\">denke</code> Block. Andernfalls ist der Kostümwechsel nicht sichtbar.</p>\n\n  </div>\n</div>\n\n<p>Der Charakter könnte mutig sein und näher herangehen, um das Objekt zu erkunden.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Figur-Bewegungen mit Kostümen animieren\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Laufender Igel</strong>: <a href=\"https://scratch.mit.edu/projects/499398615/editor\" target=\"_blank\">Ansehen</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499398615/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Du kannst <code class=\"block3looks\">wechsle zu Kostüm</code> und <code class=\"block3motion\">gehe</code> Schritt verwenden, um eine sich bewegende Figur mithilfe einer <code class=\"block3control\">wiederhole</code>-Schleife zu animieren. Ändere die Zeit im <code class=\"block3control\">warte</code>-Block, um die Geschwindigkeit einzustellen.</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked // Wechseln zwischen zwei Kostümen\nrepeat [20]\nswitch costume to [hedgehog-a v]\nmove [3] steps\nwait [0.1] seconds\nswitch costume to [hedgehog-b v]\nmove [3] steps\nwait [0.1] seconds\nend\n</code></pre>\n\n<p><strong>Tipp:</strong> Sieh dir alle Kostüme für eine Figur an, indem du den Block <code class=\"block3looks\">nächstes Kostüm</code> in einer Schleife verwendest.</p>\n\n<p><strong>Tipp:</strong> Erhöhe die Anzahl der Schritte in allen <code class=\"block3motion\">bewege</code>-Blöcken, damit sich die Figur schneller bewegt. Erhöhe die Anzahl in der <code class=\"block3control\">wiederhole</code>-Schleife, um die Entfernung anzupassen.</p>\n\n<p><strong>Tipp:</strong> Damit sich die Figur rückwärts <code class=\"block3motion\">bewegt</code>, verwendest du negative Zahlen, z. B. <code class=\"block3motion\">bewege</code> <code>-3</code> <code class=\"block3motion\">Schritt</code>. Außerdem gibt es einen <code class=\"block3motion\">setze Richtung auf</code> <code>-90</code> Grad-Block, mit dem du die Richtung der Figur änderst, bevor sie sich zu bewegen beginnt (<code>-90</code> Grad nach links).</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge, um dein Projekt zu testen. Die 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> sollte Neugierde hinsichtlich des Objekts zeigen.</p>\n\n<p>Klicke erneut auf die grüne Flagge. Wenn du die Position oder das Aussehen der Figur 🎂🎾🎁 <strong>interessantes Objekt</strong> oder 🐙👩‍🦼🦖 <strong>Hauptfigur</strong> geändert hast, achte darauf, dass diese beim erneuten Ausführen des Projekts auf ihre ursprüngliche Position oder Aussehen zurückgesetzt werden.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Lege die Startposition und das Aussehen einer Figur fest\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Wähle die Blöcke aus, um die Position und das Aussehen beim Start festzulegen.</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked // füge Blöcke hinzu, um den Start vorzubereiten \nswitch costume to [Kostüm1 v]\nset size to (100) % // Ausgangsgröße\ngo to x: (-200) y: (50) // Startposition\npoint in direction [90]\nset [Helligkeit v] effect to [80]\nshow\n</code></pre>\n\n<p><strong>Tipp:</strong> Alle Grafikeffekte werden gelöscht, wenn du auf die grüne Flagge klickst. Diese musst du also nicht löschen. Aber möglicherweise musst du die Effekte festlegen, die die Figur haben soll.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Fehlersuche:</strong></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Der Ton funktioniert nicht\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Überprüfe, ob die Lautstärke deines Computers oder Tablets hoch genug ist und ob deine Lautsprecher oder Kopfhörer angeschlossen sind und ordnungsgemäß funktionieren.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Meine Animation wird nicht richtig zurückgesetzt, wenn ich auf die grüne Flagge klicke\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Überprüfe, ob dein Projekt <code class=\"block3events\">wenn grüne Flagge angeklickt wird</code>-Skripte für die Figuren enthält, die dies benötigen und dort die Position, Größe und das Aussehen der Figuren zurückgesetzt werden. Hilfe hierzu findest du in der obigen Aufgabe <strong>Lege die Startposition und das Aussehen einer Figur fest</strong>.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n",
+            "position": 2,
+            "challenge": false,
+            "completion": [
+              "engaged"
+            ],
+            "ingredients": [
+              "scratch3-jiggle-a-sprite",
+              "scratch3-graphic-effects",
+              "scratch3-text-to-speech",
+              "scratch3-change-costumes-to-show-mood",
+              "scratch3-animate-movement-costumes"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Füge eine Überraschung hinzu!",
+            "content": "<h2 id=\"füge-eine-überraschung-hinzu\">Füge eine Überraschung hinzu!</h2>\n\n<p>Jetzt fügst du noch eine Überraschung hinzu. Was könnte mit dem Objekt passieren?</p>\n<ul>\n  <li>Wird es sich in ein anderes Objekt verwandeln?</li>\n  <li>Wird es zu einer Figur?</li>\n  <li>Wird es verschwinden und eine andere Figur enthüllen?</li>\n</ul>\n\n<p>Es ist deine Entscheidung! Erstelle den <strong>drittenTeil</strong> deiner Animation.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/surprise.png\" alt=\"Ein Filmstreifen mit 3 Bildern. Der dritte Rahmen (frame) ist hervorgehoben. Der Rahmen zeigt eine Szene mit einer Figur, die überrascht ein Objekt ansieht.\" /></p>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\nHast du eine Geschichte mit einer unerwarteten Wendung oder Überraschung geschrieben? Hast du eine Sendung gesehen oder ein Buch gelesen mit einem unvorhersehbaren Ende? Du kannst dieselben Methoden verwenden, wenn du eine digitale Geschichte oder Animation erstellst. \n</p>\n\n<h3 id=\"wann-kommt-die-überraschung\">Wann kommt die Überraschung?</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wähle die Figur 🎂🎾🎁 <strong>interessante Objekt</strong> aus. Füge ein Skript hinzu, damit die Überraschung zum gewünschten Zeitpunkt beginnt.</p>\n\n<p>Du musst eine Verzögerung wählen, die für dein Projekt geeignet ist. Wenn du eine Figur verwendest, die lange Zeit neugierig ist, benötigst du eine längere Verzögerung.</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\nwait (5) seconds // ändere die Zahl, um deine Verzögerung einzustellen\n</code></pre>\n\n  </div>\n</div>\n\n<h3 id=\"und-jetzt-sorgst-du-für-die-überraschung\">Und jetzt sorgst du für die Überraschung!</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Das Objekt könnte <code class=\"block3sound\">einen Ton abspielen</code>, <code class=\"block3looks\">das Kostüm wechseln</code>, <code class=\"block3looks\">Grafikeffekte ändern</code> oder <code class=\"block3looks\">die Größe ändern</code>.</p>\n\n<p>Du könntest der Figur ein überraschendes Kostüm hinzufügen, dann könnte die Figur <code class=\"block3looks\">das Kostüm wechseln</code>, um es zu enthüllen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/bat.gif\" alt=\"Ein Wüstenhintergrund mit einem hin und her wackelnden Felsen.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Einer Figur ein Kostüm hinzufügen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Klicke auf den Reiter <strong>Kostüme</strong> und dann auf <strong>Wähle ein Kostüm</strong>, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-costumes-to-a-sprite/75e3a61b6f886579877e3928c5c7185c7c496bed/de-DE/images/choose-a-costume.png\" alt=\"Das Symbol „Kostüm auswählen“ ist hervorgehoben.\" /></p>\n\n<p>Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt.</p>\n\n<p><strong>Tipp:</strong> Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen.</p>\n\n  </div>\n</div>\n\n<p>Du kannst den Anschein erwecken, als würde sich die Figur in eine andere Figur verwandeln. Dazu verwendest du <code class=\"block3looks\">verstecke dich</code> für die 🎂🎾🎁 <strong>interessante Objekt</strong> Figur und gleichzeitig <code class=\"block3looks\">zeige dich</code> für die andere Figur.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Figuren ausblenden und anzeigen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Die Figur 🎂🎾🎁 <strong>interessante Objekt</strong>:</p>\n<pre><code class=\"language-blocks3\">when flag clicked\nshow\nwait (5) seconds\nhide\n</code></pre>\n\n<p>Die Figur 🎷👻⚡<strong>Überraschungsobjekt</strong>:</p>\n<pre><code class=\"language-blocks3\">when flag clicked\nhide\nwait (5) seconds\nshow\n</code></pre>\n\n<p><strong>Tipp:</strong> Wenn du bei einer 🎷👻⚡<strong>Überraschungsobjekt</strong> Figur <code class=\"block3looks\">zeige dich</code> nutzt, ist es erforderlich, bei <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code> <code class=\"block3looks\">verstecke dich</code> hinzuzufügen.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Kommt die Überraschung zum richtigen Zeitpunkt? Wird die Animation ordnungsgemäß zurückgesetzt?</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Fehlersuche:</strong></p>\n\n<p>Wenn eine Figur vor oder hinter einer anderen Figur stehen soll, kannst du Ebenen verwenden:</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Figuren mit Ebenen positionieren\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Es gibt zwei Möglichkeiten, die Figuren in Ebenen anzuordnen.</p>\n\n<p>Du kannst eine Figur auf der Bühne ziehen, um es in die vordere Ebene zu verschieben:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-positioning-with-layers/9be6734318b95aa3d10f434d5ab0411ecf0dc6ee/de-DE/images/drag-sprite-change-layers.gif\" alt=\"Ziehe eine Figur auf der Bühne, um sie nach vorne zu verschieben. Ziehe dann eine andere Figur auf der Bühne, um diese nach vorne zu verschieben.\" width=\"300px\" /></p>\n\n<p>Du kannst auch einen Block vom Typ <code class=\"block3looks\">gehe zu vorderster Ebene</code> oder <code class=\"block3looks\">gehe zu hinterster Ebene</code> verwenden, um eine Figur zu positionieren.</p>\n\n<p>Wenn du eine Figur immer im <code class=\"block3looks\">Vordergrund</code> oder <code class=\"block3looks\">Hintergrund</code> halten möchtest, kannst du eine <code class=\"block3control\">wiederhole fortlaufend</code> Schleife verwenden, um die Figur immer wieder in die gewünschte Ebene zu holen, solltest du sie versehentlich woanders hin bewegen:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\nforever\ngo to [vorderster v] layer // oder hinterster\n</code></pre>\n\n  </div>\n</div>\n\n<p>Kommt die Überraschung zum falschen Zeitpunkt, kannst du das korrigieren:</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Überraschung beginnt zur falschen Zeit\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Möglicherweise ist es erforderlich, dass du die Dauer in einigen oder allen <code class=\"block3control\">warte x Sekunden</code>-Blöcken änderst oder weitere <code class=\"block3control\">warte x Sekunden</code>-Blöcke hinzufügst, um das richtige Timing zu erzielen.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n",
+            "position": 3,
+            "challenge": false,
+            "completion": [
+              "internal"
+            ],
+            "ingredients": [
+              "scratch3-add-costumes-to-a-sprite",
+              "scratch3-positioning-with-layers"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Kurzes Quiz",
+            "content": "",
+            "position": 4,
+            "challenge": false,
+            "completion": [
+              "external"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": "quiz1"
+          },
+          {
+            "quiz": false,
+            "title": "Verbessere Dein Projekt",
+            "content": "<h2 id=\"verbessere-dein-projekt\">Verbessere dein Projekt</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Du könntest dein Projekt durch das Hinzufügen einer Reaktion verbessern. Wie wird dein Hauptcharakter reagieren?</p>\n\n    <p>Es ist deine Entscheidung!</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/tresspass.png\" alt=\"Das „Unbefugtes Betreten“-Projekt zeigt die Reaktion auf die Überraschung.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Was werden sie tun? Werden die Figuren etwas sagen, ein Geräusch machen, das Kostüm wechseln oder sich bewegen?</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Zeige die Stimmung einer Figur mit Kostümen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Abby denkt „Hmm“</strong>: <a href=\"https://scratch.mit.edu/projects/498767227/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/498767227/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Du kannst <code class=\"block3looks\">Wechsle zu Kostüm ...</code> Block vor und nach einem <code class=\"block3looks\">sage für</code>, <code class=\"block3looks\">denken für</code>, <code class=\"block3sound\">spiele Klang</code>, oder <code class=\"block3control\">warte</code> Bausteine, damit dein Charakter seine Gefühle zeigt.</p>\n\n<pre><code class=\"language-blocks3\">switch costume to [abby-a v] // Kostüm am Anfang\nwait [1] seconds\nswitch costume to [abby-b v] // zeigt Gefühle\nthink [Hmm...] for [2] seconds\nswitch costume to [abby-a v] // Zurück zum Kostüm vom Anfang\n</code></pre>\n\n<p><strong>Tipp:</strong> Stelle sicher, dass du einen Block mit einem Zeitwert verwendest und keinen <code class=\"block3sound\">spiele Klang</code>, <code class=\"block3looks\">sage</code> oder <code class=\"block3looks\">denke</code> Block. Andernfalls ist der Kostümwechsel nicht sichtbar.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Verwende Grafikeffekte\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Hahn-Effekte</strong>: <a href=\"https://scratch.mit.edu/projects/435730522/editor\" target=\"_blank\">Schaue hinein</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/435730522/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Die Blöcke <code class=\"block3looks\">setze Effekt Farbe auf</code> und <code class=\"block3looks\">ändere Effekt Farbe um</code> verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann:</p>\n\n<ul>\n  <li><code class=\"block3looks\">Farbe</code>: von <code>0</code> bis <code>199</code> (größere Zahlen werden umgebrochen, also ist <code>200</code> dasselbe wie <code>0</code>)</li>\n  <li><code class=\"block3looks\">Fischauge</code>: <code>0</code> bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt</li>\n  <li><code class=\"block3looks\">Wirbel</code>: <code>0</code> bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts</li>\n  <li><code class=\"block3looks\">Pixel</code>: <code>0</code> bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel</li>\n  <li><code class=\"block3looks\">Mosaik</code>: <code>0</code> bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien</li>\n  <li><code class=\"block3looks\">Helligkeit</code>: <code>0</code> bedeutet keinen Effekt, Zahlen bis <code>100</code> machen die Figur heller und negative Zahlen bis <code>-100</code> machen die Figur dunkler</li>\n  <li><code class=\"block3looks\">Durchsichtigkeit</code>: <code>0</code> bedeutet keinen Effekt, und Zahlen bis <code>100</code> machen die Figur transparenter</li>\n</ul>\n\n<p>Probiere die Effekte aus und <code class=\"block3looks\">setze</code> verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen.</p>\n\n<pre><code class=\"language-blocks3\">set [Wirbel v] effect to (100)\n\nset [Pixel v] effect to (50)\n</code></pre>\n\n<p><strong>Tipp:</strong> Ein <code class=\"block3looks\">Effekt Farbe</code> von <code>225</code> ist identisch zu einem <code class=\"block3looks\">Effekt Farbe</code> von <code>25</code>, du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde.</p>\n\n<pre><code class=\"language-blocks3\">forever\nchange [Farbe v] effect by [25]\nwait [0.5] seconds\n</code></pre>\n\n<p>Verwende den Block <code class=\"block3looks\">schalte Grafikeffekte aus</code>, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht.</p>\n\n<p>Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block <code class=\"block3looks\">setze Effekt ... auf</code> unter einem Block <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>:</p>\n\n<pre><code class=\"language-blocks3\">when green flag clicked\nset [Durchsichtigkeit v] effect to (25)\n</code></pre>\n\n<p><strong>Tipp:</strong>Du kannst die Blöcke <code class=\"block3looks\">setze</code> und <code class=\"block3looks\">ändere</code> Effekt auch für die <strong>Bühne</strong> verwenden.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Bringe eine Figur zum Sprechen mit der Text-zu-Sprache-Erweiterung\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Pico und Giga sprechen mit der Spracherweiterung</strong>: <a href=\"https://scratch.mit.edu/projects/499373708/editor\" target=\"_blank\">Schau es dir an</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499373708/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Klicke auf <strong>Erweiterung hinzufügen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/add-extension.png\" alt=\"Das Symbol &quot;Erweiterung hinzufügen&quot;.\" /></p>\n\n<p>Wähle <strong>Text zu Sprache</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/text-to-speech.png\" alt=\"Die Erweiterung &quot;Text zu Sprache&quot; ist hervorgehoben.\" /></p>\n\n<p>Du bekommst ein neues <code class=\"block3extensions\">Text zu Sprache</code> Blockmenü angezeigt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/de-DE/images/text-to-speech-blocks.png\" alt=\"Das Blockmenü &quot;Text zu Sprache&quot;.\" /></p>\n\n<p>Du kannst die Blöcke im Menü <code class=\"block3extensions\">Text zu Sprache</code> verwenden, um deine Figuren laut sprechen zu lassen.</p>\n\n<p>Du kannst eine Figur laut sprechen lassen, wenn du sie anklickst:</p>\n\n<pre><code class=\"language-blocks3\">when this sprite clicked\nset voice to (alto v) :: tts\nset language to (Spanish v) :: tts\nspeak [Hola] :: tts\n</code></pre>\n\n<p>Du kannst deiner Figur sogar eine Kätzchenstimme geben!</p>\n\n<pre><code class=\"language-blocks3\">set voice to (kitten v) :: tts\nspeak [Hast du Milch für mich?] :: tts\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Figur-Bewegungen mit Kostümen animieren\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Laufender Igel</strong>: <a href=\"https://scratch.mit.edu/projects/499398615/editor\" target=\"_blank\">Ansehen</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499398615/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Du kannst <code class=\"block3looks\">wechsle zu Kostüm</code> und <code class=\"block3motion\">gehe</code> Schritt verwenden, um eine sich bewegende Figur mithilfe einer <code class=\"block3control\">wiederhole</code>-Schleife zu animieren. Ändere die Zeit im <code class=\"block3control\">warte</code>-Block, um die Geschwindigkeit einzustellen.</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked // Wechseln zwischen zwei Kostümen\nrepeat [20]\nswitch costume to [hedgehog-a v]\nmove [3] steps\nwait [0.1] seconds\nswitch costume to [hedgehog-b v]\nmove [3] steps\nwait [0.1] seconds\nend\n</code></pre>\n\n<p><strong>Tipp:</strong> Sieh dir alle Kostüme für eine Figur an, indem du den Block <code class=\"block3looks\">nächstes Kostüm</code> in einer Schleife verwendest.</p>\n\n<p><strong>Tipp:</strong> Erhöhe die Anzahl der Schritte in allen <code class=\"block3motion\">bewege</code>-Blöcken, damit sich die Figur schneller bewegt. Erhöhe die Anzahl in der <code class=\"block3control\">wiederhole</code>-Schleife, um die Entfernung anzupassen.</p>\n\n<p><strong>Tipp:</strong> Damit sich die Figur rückwärts <code class=\"block3motion\">bewegt</code>, verwendest du negative Zahlen, z. B. <code class=\"block3motion\">bewege</code> <code>-3</code> <code class=\"block3motion\">Schritt</code>. Außerdem gibt es einen <code class=\"block3motion\">setze Richtung auf</code> <code>-90</code> Grad-Block, mit dem du die Richtung der Figur änderst, bevor sie sich zu bewegen beginnt (<code>-90</code> Grad nach links).</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Füge einer Figur oder der Bühne einen Klang hinzu\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Wähle die Figur aus, die den neuen Klang haben soll, und wähle dann die Registerkarte <strong>Klänge</strong>. Jede Figur beginnt mit einem Standard-Klang:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-sound/df8a845bece24b1014dcd3caa698ecc66b2eabfe/de-DE/images/sound-tab.png\" alt=\"Die Registerkarte „Klänge“ ist im Scratch-Editor geöffnet.\" /></p>\n\n<p>Scratch verfügt über eine Bibliothek mit Klängen, die du deinen Figuren hinzufügen kannst. Klicke auf <strong>Klang wählen</strong>, um die Bibliothek aller in Scratch vorhandener Klänge anzuzeigen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-sound/df8a845bece24b1014dcd3caa698ecc66b2eabfe/de-DE/images/choose-a-sound-button.png\" alt=\"Das Symbol „Klang auswählen“ ist hervorgehoben.\" /></p>\n\n<p>Um einen Klang abzuspielen, halte den Mauszeiger (oder deinen Finger, wenn du ein Tablet verwendest) über das Symbol <strong>Abspielen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-sound/df8a845bece24b1014dcd3caa698ecc66b2eabfe/de-DE/images/sound-preview.png\" alt=\"„Abspielen“-Symbole.\" /></p>\n\n<p>Klicke auf einen Klang, um ihn deiner Figur hinzuzufügen. Du wirst direkt zur Registerkarte „<strong>Klänge</strong>“ zurückgeleitet und kannst den Klang sehen, den du gerade hinzugefügt hast:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-sound/df8a845bece24b1014dcd3caa698ecc66b2eabfe/de-DE/images/new-sound-added.png\" alt=\"Ein neu eingefügter Klang im Reiter „Klänge“.\" /></p>\n\n<p>Wenn du zur Registerkarte <strong>Skripte</strong> wechselst und dir das Blockmenü <code class=\"block3sound\">Klang</code> ansiehst, kannst du den neuen Klang auswählen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-sound/df8a845bece24b1014dcd3caa698ecc66b2eabfe/de-DE/images/new-sound-block.png\" alt=\"Das Blockmenü „Klang“ mit dem neuen Klang, der innerhalb von Blöcken verwendet werden kann.\" /></p>\n\n<p><strong>Tipp:</strong> Du kannst auch der <strong>-Bühne</strong> Klänge hinzufügen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Einen Ton aufnehmen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Wähle die Figur aus, die den neu aufgenommenen Ton haben soll, und wähle dann die Registerkarte „<strong>Klänge</strong>“:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/sounds-tab.png\" alt=\"Die Registerkarte „Klänge“ ist im Scratch-Editor geöffnet.\" /></p>\n\n<p>Gehe zum Menü „<strong>Klang wählen</strong>“ und wähle die Option „<strong>Aufnehmen</strong>“:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/record-sound-button.png\" alt=\"Das Menü „Klang wählen“ mit hervorgehobener Option „Aufnehmen“.\" /></p>\n\n<p>Wenn du bereit bist, klicke auf die Schaltfläche <strong>Aufnehmen</strong>, um mit der Tonaufnahme zu beginnen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/record-sound.png\" alt=\"Das Popup-Fenster „Klang aufnehmen“ mit der Schaltfläche „Aufnehmen“.\" /></p>\n\n<p>Klicke auf die <strong>Aufnahme beenden</strong> Taste, um die Aufnahme deines Klangs zu beenden:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/stop-recording-sound.png\" alt=\"Das Popup-Fenster „Klang aufnehmen“ mit der Schaltfläche „Aufnahme beenden“.\" /></p>\n\n<p>Deine neue Aufnahme wird angezeigt. Du kannst deinen Sound <strong>Erneut aufnehmen</strong>, wenn du nicht damit zufrieden bist.</p>\n\n<p>Ziehe die orangefarbenen Kreise, um den Klang zuzuschneiden. Der Teil des Tons mit blauem Hintergrund (zwischen den orangefarbenen Kreisen) bleibt erhalten:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/crop-your-sound.png\" alt=\"Der vollständige aufgenommene Klang, wobei die orangefarbenen Kreise so angepasst sind, dass nur ein Teil des Klanges vor einem blauen Hintergrund angezeigt wird. Der restliche Klang befindet sich in einem orange schattierten Bereich.\" /></p>\n\n<p>Wenn du mit deiner Aufnahme zufrieden bist, klicke auf die Schaltfläche <strong>Speichern</strong>. Du wirst direkt zur Registerkarte „<strong>Klänge</strong>“ zurückgeleitet und kannst den Klangsehen, den du gerade hinzugefügt hast:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/new-sound-inserted.png\" alt=\"Die Registerkarte „Klänge“ mit „recording1“(also die erste Aufnahme) in der Klangliste.\" /></p>\n\n<p>Wenn du zur Registerkarte <strong>Skripte</strong> wechselst und dir das Blockmenü <code class=\"block3sound\">Klang</code> ansiehst, kannst du den neuen Klang auswählen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-record-sound/6a01528ef6d66750b8fbb37820f3908cb28ebebc/de-DE/images/sound-blocks-menu.png\" alt=\"Das Menü „Klang“-Blöcke mit recording1 (Aufnahme1), die innerhalb von Blöcken verwendet werden kann.\" /></p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du könntest auch:</p>\n<ul>\n  <li>Ergänze oder verbessere deine Animation durch Bewegung, Aussehen und grafischen Effekten</li>\n  <li>Erstelle oder bearbeite deine Kostüme im Zeichen-Editor, um ihnen das gewünschte Aussehen zu verleihen</li>\n  <li>Nehme deine Stimme auf oder nehme Soundeffekte auf und füge die neuen Sounds deinem Projekt hinzu</li>\n</ul>\n\n  </div>\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\nProfessionelle Programmierer erkunden den Code anderer Programmierer und lassen sich davon inspirieren. \n</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du kannst dir auch die Remixe für das <a href=\"https://scratch.mit.edu/projects/582222532/remixes\" target=\"_blank\">Überraschung! Animation Starter-Projekt</a> ansehen, um zu sehen, was andere Ersteller gemacht haben.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Jedes Projekt in der <a href=\"https://scratch.mit.edu/studios/29075822\" target=\"_blank\">„Überraschung! Animation – Beispiele” Scratch Studio</a> hat einen <strong>Schau hinein</strong> Link, mit dem du das Projekt im Scratch-Editor öffnen und den Code ansehen kannst, um Ideen zu sammeln und zu sehen, wie das Projekt funktioniert.</p>\n\n<p><strong>Doppelgänger</strong>: <a href=\"https://scratch.mit.edu/projects/1207326481/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1207326481/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Schau dir unsere <a href=\"https://scratch.mit.edu/studios/29079784\" target=\"_blank\">„Überraschung! Animation – Community” Scratch-Studio</a> an, um von Community-Mitgliedern erstellte Projekte anzusehen.</p>\n\n  </div>\n</div>\n\n",
+            "position": 5,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "scratch3-change-costumes-to-show-mood",
+              "scratch3-graphic-effects",
+              "scratch3-text-to-speech",
+              "scratch3-animate-movement-costumes",
+              "scratch3-add-sound",
+              "scratch3-record-sound"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Teile und spiele",
+            "content": "<h2 id=\"teile-und-spiele\">Teile und spiele</h2>\n\n<p>Wenn du Mitglied in einem Club bist, warum teilst du dein Projekt nicht mit Freunden und anderen Mitgliedern?</p>\n\n<p>Du könntest auch deiner Familie zeigen, wie dein Projekt funktioniert.</p>\n\n<p>Wenn du ein Scratch-Konto hast, kannst du dein Projekt über Scratch teilen. Du kannst einen Link an Personen senden, die du kennst, und die gesamte Scratch-Community kann dein Projekt finden und ausprobieren.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ein Scratch-Projekt teilen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Bitte stelle sicher, dass du <strong>keine</strong> persönlichen Informationen über dich selbst weitergibst, wenn du deine Scratch-Projekte teilst.</p>\n\n<ul>\n  <li>Gib deinem Scratch-Projekt einen Namen.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/name_file.gif\" alt=\"Ändere &quot;Ohne Titel&quot; in &quot;Walking Cat&quot;, um das Projekt im Feld links neben der orangefarbenen Schaltfläche „Teilen“ oben auf dem Bildschirm zu benennen.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/name_file.png\" alt=\"Das Projektnamenfeld mit dem hervorgehobenen neuen Namen „Walking Cat“ links neben der orangefarbenen Schaltfläche „Teilen“ oben auf dem Bildschirm.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Klicke auf die Schaltfläche <strong>Teilen</strong>, um das Projekt öffentlich zu machen.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/share.gif\" alt=\"Klicke auf die orangefarbene Schaltfläche „Teilen“ oben auf dem Bildschirm. Dann erscheint die Meldung &quot;Dein Projekt ist jetzt freigegeben.&quot;\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/share.png\" alt=\"Die orangefarbene Schaltfläche „Teilen“ oben auf dem Bildschirm ist hervorgehoben.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Wenn du möchtest, kannst du im Feld <strong>Anweisungen</strong> Anweisungen hinzufügen, um anderen Personen die Verwendung deines Projekts zu erklären.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/add_instructions.gif\" alt=\"Gib &quot;Watch the cat walk&quot; in das Feld „Anweisungen“ ein.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/add_instructions.png\" alt=\"Im Feld „Anweisungen“ wird die eingegebene Zeichenfolge &quot;Watch the cat walk&quot; angezeigt.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Du kannst auch das Feld „<strong>Anmerkungen und Credits</strong>“ ausfüllen: Wenn du ein Originalprojekt erstellt hast, kannst du einige kurze Kommentare schreiben, oder wenn du ein Projekt geremixt hast, kannst du den ursprünglichen Ersteller angeben.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/notes_and_credits.gif\" alt=\"Gib &quot;Erstellt von der Raspberry Pi Foundation&quot; in das Feld „Hinweise und Credits“ ein.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/notes_and_credits.png\" alt=\"Das Feld „Anmerkungen und Credits“ zeigt die Eingabe „ &quot;Hergestellt von der Raspberry Pi Foundation&quot; “ an.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Klicke auf die Schaltfläche <strong>Link kopieren</strong>, um den Link zu deinem Projekt zu erhalten. Du kannst diesen Link per E-Mail, Nachricht oder über soziale Medien an andere Personen senden.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/copy_link.gif\" alt=\"Klicke auf „Link kopieren“, wodurch ein Dialogfeld „Link kopieren“ geöffnet wird. Markiere dann im Dialogfeld die URL unter „Link“ und wähle „Link kopieren“ aus.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/copy_link.png\" alt=\"Die Schaltfläche „Link kopieren“ ist im Dialogfeld „Link kopieren“ hervorgehoben.\" width=\"300px\" /></p>\n\n</div>\n\n<p>Scratch bietet die Möglichkeit, eigene und die Projekte anderer zu kommentieren. Wenn du nicht möchtest, dass andere Personen dein Projekt kommentieren, solltest du die Kommentarfunktion deaktivieren. Um das Kommentieren auszuschalten, stelle den Schieberegler über dem Feld <strong>Kommentare</strong> auf <strong>Kommentieren aus</strong>.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/comments-off.png\" alt=\"Der Schieberegler über dem Feld „Kommentare“ befindet sich in der Position „Kommentieren aus“. Es wird die folgende Meldung angezeigt: &quot;Leider wurde die Kommentarfunktion für dieses Projekt deaktiviert.&quot;\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<p>Warum nicht deine Freunde einladen, ein Projekt zu erstellen? Lass sie wissen, wie viel Spaß du hattest.</p>\n\n<p>Wenn du ein Scratch-Konto hast und dein Projekt „Überraschung! Animation“ geteilt hast, behalte die Kommentare im Auge, die andere zu deiner Kreation abgeben. Feedback ist eine großartige Möglichkeit, über deine Arbeit nachzudenken. Ignoriere alle Kommentare, die nicht hilfreich oder irrelevant sind.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Kommentare und Feedback in Scratch\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>In Scratch kannst du Kommentare zu Projekten posten (eigene Projekte und Projekte von Anderen). Falls du nicht willst, dass jemand dein Projekt kommentiert, schalte die Kommentare aus. Gehe dazu zur Projektseite und bewege den Schieberegler oberhalb des Felds <strong>Kommentare</strong> auf <strong>Kommentarfunktion aus</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/97d1e429c1f9fd6b24d9fad267f993602a93ef01/de-DE/images/comments-off.png\" alt=\"Der Schieberegler oberhalb des Felds „Kommentare“ ist in der Position „Kommentarfunktion aus“. Diese Nachricht wird angezeigt: &quot;Kommentarfunktion für dieses Projekt deaktiviert.&quot;\" width=\"300px\" /></p>\n\n<p>Wenn du keine Bedenken hast, dass dein Projekt kommentiert wird, kannst du den ersten Kommentar posten:</p>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/97d1e429c1f9fd6b24d9fad267f993602a93ef01/de-DE/images/add_comments.gif\" alt=\"Tippe in das Feld „Kommentare“ den Text &quot;Das ist meine Animation einer Katze, die auf zwei Beinen läuft&quot; und klicke dann darunter zum Posten auf den Knopf „Absenden“. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/97d1e429c1f9fd6b24d9fad267f993602a93ef01/de-DE/images/add_comments.png\" alt=\"Klicke auf den blauen Knopf „Absenden“, um den Kommentar zu posten. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" width=\"300px\" /></p>\n\n</div>\n\n<p>Wenn du einen Kommentar oder ein Projekt gemein, beleidigend, zu gewalttätig oder auf andere Weise unangebracht findest, melde ihn über den Knopf <strong>Melden</strong> an das Scratch-Team. Klicke auf den Knopf <strong>Melden</strong> oberhalb des Kommentars, um ihn zu melden. Klicke auf den Knopf <strong>Melden</strong> auf der Projektseite, um es zu melden:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/97d1e429c1f9fd6b24d9fad267f993602a93ef01/de-DE/images/add_report.png\" alt=\"Hervorgehobener Knopf „Melden“.\" width=\"250px\" /></p>\n\n<p>Lies die <a href=\"https://scratch.mit.edu/community_guidelines\" target=\"_blank\">Scratch-Community-Regeln</a>, um zu erfahren, wie du und Andere dafür sorgt, dass die Community ein einladender und kreativer Ort bleibt.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Begeistere die Raspberry Pi Foundation Community mit deinem Projekt!</p>\n\n<p>Um dein Projekt bei unserer <a href=\"https://scratch.mit.edu/studios/29079784\" target=\"_blank\">„Überraschung! Animation – Community” Scratch Studio</a> einzureichen, fülle bitte <a href=\"https://form.raspberrypi.org/f/community-project-submissions\" target=\"_blank\">dieses Formular</a> aus.</p>\n\n  </div>\n</div>\n\n<h3 id=\"community-einreichungen\">Community Einreichungen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Schau dir diese fantastischen Community-Projekte unserer <a href=\"https://scratch.mit.edu/studios/29079784\" target=\"_blank\">„Überraschung! Animation – Community” Scratch Studio</a> an:</p>\n\n<p><strong>Überraschungseier</strong>: <a href=\"https://scratch.mit.edu/projects/723810901/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/723810901/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>Unheimliches Gebäude</strong>: <a href=\"https://scratch.mit.edu/projects/578827663/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/578827663/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du kannst dir auch die Remixe für das <a href=\"https://scratch.mit.edu/projects/582222532/remixes\" target=\"_blank\">Überraschung! Animation Starter-Projekt</a> ansehen, um zu sehen, was andere Ersteller gemacht haben.</p>\n\n  </div>\n</div>\n\n",
+            "position": 6,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "share-scratch",
+              "comments-feedback-scratch"
+            ],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Überraschung! Animation",
+        "listed": true,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "stories scratch Überraschung! Animation",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/banner.png",
+        "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Überraschung! Animation",
+        "plainText": "Das wirst du machen Erstelle eine kurze Animation 🎥 mit einer lustigen Überraschung 🎉! Du wirst: Deine eigene Animation erstellen Dein Projekt testen und Fehler suchen und beheben Erstelle deine Animation Schritt für Schritt Spielen ▶️ Klicke auf die grüne Flagge, um die Animation anzusehen. Die Animation besteht aus drei Teilen: Neugier Überraschung! Reaktion Dinosaurier-Überraschung!: Schau hinein Hole dir Ideen 💭 Probiere diese Beispielprojekte aus, um Ideen zu bekommen. Überlege, wie deine Animation aussehen könnte, und hole dir einige Ideen bei diesen Beispielprojekten: ⭐ Teile dein fertiges Überraschung! Animations-Projekt - mit etwas Glück wird es hier vorgestellt. BUH!: Schau hinein Katzenmagie: Schau hinein ⭐ Schock-Effekt!: Schau hinein (vorgestelltes Community-Projekt) Hole dir Ideen 💭 Du wirst Entscheidungen zum Design (Aussehen) treffen und denkst dir eine Geschichte mit einer Überraschung für deine Animation aus. Denke darüber nach, wie deine Geschichte aussehen könnte. Schau hinein und sammle weitere Ideen mit den Beispielprojekten in „Überraschung! Animation – Beispiele” aus Scratch Studio: https://scratch.mit.edu/studios// Die Animation besteht aus drei Teilen: Neugier Überraschung! Reaktion Erstelle deine Szene Habst du eine Idee für deine Animation? Füge einen Hintergrund 🖼️, eine Hauptfigur 🐙👩‍🦼🦖 und ein interessantes Objekt 🎂🎾🎁 deiner Wahl hinzu, um den ersten Teil deiner Animation zu erstellen. Animation erzeugt einen Bewegungseffekt durch schnelle Bildwechsel. Die ersten Animatoren schnitzten Bilder aus Holzblöcken und verwendeten sie als Stempel. Es ist viel schneller, Scratch zum Programmieren deiner Animation zu verwenden! Öffne das Starterprojekt Öffne das Überraschung! Animation Startprojekt. ⏱️ Wenig Zeit? Du kannst mit einem der Beispiele beginnen. Es gibt Leute namens Narrative Designer, die Storytelling für Apps und Videospiele machen, also “Geschichtenerzähler” sind. Die Fähigkeit, digitales Geschichten zu erzählen, ermöglicht es jedem, seine Geschichten und kreativen Vorstellungen mit anderen Menschen zu teilen. Gestalten deine Szene Wähle: ein Thema für deine Animation. Du könntest folgendes wählen: 🐯 Landtiere 🐠 Meerestiere 👽 Außerirdische 🌿 Natur 🌈 Wetter 🌮 Essen 🚀 Reisen ⚾ Sport …. Oder etwas anderes Wähle: Wähle eine Figur als 🐙👩‍🦼🦖 Hauptfigur, eine andere Figur als 🎂🎾🎁 interessantes Objekt und einen 🖼️ Hintergrund, um die Szene zu gestalten. Bereite deine Figuren vor Wo ist die Startposition deiner Figuren? Wie groß sollen sie sein? Wie möchtest du, dass sie aussehen? Füge einen Block Wenn grüne Flagge angeklickt wird hinzu und füge dann darunter Blöcke hinzu, um die Figuren zu Beginn deiner Animation einzurichten. Tipp: Denke daran, sowohl deine 🐙👩‍🦼🦖 Hauptfigur als auch deine 🎂🎾🎁 interessante Objekt Figur einzurichten. Positioniere deine Figuren Bewege die 🐙👩‍🦼🦖 Hauptfigur an die gewünschte Position auf der Bühne und füge dann einen gehe zu x: y:-Block zu deinem Code hinzu: go to x: () y: () // füge die Position der Figur hinzu Wiederhole diese Aufgabe für das 🎂🎾🎁 interessante Objekt. Passe die Größe deiner Figuren an Um die Größe einer Figur für das gesamte Projekt zu ändern, ändere die Zahl in der Eigenschaft Größe im Figuren-Bereich: Um die Größe eine Figur für einen Teil des Projekts zu ändern, füge Code hinzu, um setze Größe auf die Größe deiner Wahl festzulegen. Diese Option ist gut, wenn du möchtest, dass deine Figur im Projekt seine Größe ändert. set size to [] % // < ist kleiner, > ist größer Lege die Kostüme deiner Figuren fest Um das Kostüm einer Figur für das gesamte Projekt zu ändern, klicke auf die Registerkarte Kostüme und wähle eines der verfügbaren Kostüme aus: Um das Kostüm einer Figur für einen Teil des Projekts zu ändern, füge deinem Code einen Block wechsle zu Kostüm hinzu und aktualisiere diesen Block, um das Kostüm deiner Wahl anzuzeigen: switch costume to [ v] // passe dies an für dein ausgewähltes Kostüm Um eine Figur zu Beginn des Projekts auszublenden, füge deinem Code den Block verstecke dich hinzu: hide Lege die Richtung deiner Figuren fest Deine Figuren sind möglicherweise in die falsche Richtung ausgerichtet, wenn du sie zu deinem Projekt hinzufügst. Um die Richtung einer Figur für das gesamte Projekt zu ändern, ändere die Richtung und den Drehtyp im Figuren-Bereich: Um die Richtung einer Figur für einen Teil des Projekts zu ändern, füge deinem Code Blöcke hinzu, um den Drehtyp und die Richtung zu ändern: set rotation style [links-rechts v] point in direction (-) // nach links drehen Speichere dein Projekt. Ein Scratch-Projekt speichern Gebe deinem Projekt einen Namen, indem du ihn in das Textfeld oben eingibst. Um dein Projekt zu speichern, klickst du auf Datei und dann auf Jetzt speichern. Hinweis: Wenn du nicht online bist oder kein Scratch-Konto hast, kannst du eine Kopie deines Projekts speichern, indem du stattdessen auf Auf deinem Computer speichern klickst. Zeige Neugier Wird das Objekt etwas tun, um Aufmerksamkeit zu erregen? Wie wird der Charakter reagieren? Es ist deine Entscheidung! Erstelle den zweiten Teil deiner Animation. Zerlegung ist die Aufteilung eines Projekts in kleinere und leichter verständliche Teile. Dies bedeutet, dass du ein Projekt Stück für Stück aufbauen kannst, bis du es abgeschlossen hast. In diesem Schritt konzentrierst du dich nur auf den Neugier-Teil deiner Animation. Das Objekt Wähle: Wenn das 🎂🎾🎁 interessante Objekt etwas tun soll, um Aufmerksamkeit zu erregen, wähle aus, was das Objekt tun soll. Füge Blöcke in deinem🎂🎾🎁 interessanten Objekt am Ende des Wenn grüne Flagge angeklickt wird-Skripts hinzu. Eine Figur zum wackeln bringen repeat [] turn left [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn left [] degrees wait [.] seconds end Verwende Grafikeffekte Hahn-Effekte: Schaue hinein Die Blöcke setze Effekt Farbe auf und ändere Effekt Farbe um verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann: Farbe: von  bis  (größere Zahlen werden umgebrochen, also ist  dasselbe wie ) Fischauge:  bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt Wirbel:  bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts Pixel:  bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel Mosaik:  bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien Helligkeit:  bedeutet keinen Effekt, Zahlen bis  machen die Figur heller und negative Zahlen bis - machen die Figur dunkler Durchsichtigkeit:  bedeutet keinen Effekt, und Zahlen bis  machen die Figur transparenter Probiere die Effekte aus und setze verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen. set [Wirbel v] effect to () set [Pixel v] effect to () Tipp: Ein Effekt Farbe von  ist identisch zu einem Effekt Farbe von , du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde. forever change [Farbe v] effect by [] wait [.] seconds Verwende den Block schalte Grafikeffekte aus, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht. Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block setze Effekt ... auf unter einem Block Wenn grüne Flagge angeklickt wird: when green flag clicked set [Durchsichtigkeit v] effect to () Tipp:Du kannst die Blöcke setze und ändere Effekt auch für die Bühne verwenden. Der Charakter Bringe die 🐙👩‍🦼🦖 Hauptfigur dazu, Interesse an dem Objekt zu zeigen. Füge Blöcke am Ende des Setup-Skripts der 🐙👩‍🦼🦖 Hauptfigur hinzu. Wenn die 🐙👩‍🦼🦖 Hauptfigur warten soll, bis das 🎂🎾🎁 interessante Objekt etwas getan hat, füge einen warte-Block hinzu. Du könntest sage oder denke-Blöcke verwenden, oder sogar die Erweiterung Text zu Sprache, um die Figur laut sprechen zu lassen! Bringe eine Figur zum Sprechen mit der Text-zu-Sprache-Erweiterung Pico und Giga sprechen mit der Spracherweiterung: Schau es dir an Klicke auf Erweiterung hinzufügen: Wähle Text zu Sprache: Du bekommst ein neues Text zu Sprache Blockmenü angezeigt: Du kannst die Blöcke im Menü Text zu Sprache verwenden, um deine Figuren laut sprechen zu lassen. Du kannst eine Figur laut sprechen lassen, wenn du sie anklickst: when this sprite clicked set voice to (alto v) :: tts set language to (Spanish v) :: tts speak [Hola] :: tts Du kannst deiner Figur sogar eine Kätzchenstimme geben! set voice to (kitten v) :: tts speak [Hast du Milch für mich?] :: tts Der Charakter könnte Emotionen zeigen, wie im Projekt Weltraumgespräch. Zeige die Stimmung einer Figur mit Kostümen Abby denkt „Hmm“: Schau hinein Du kannst Wechsle zu Kostüm ... Block vor und nach einem sage für, denken für, spiele Klang, oder warte Bausteine, damit dein Charakter seine Gefühle zeigt. switch costume to [abby-a v] // Kostüm am Anfang wait [] seconds switch costume to [abby-b v] // zeigt Gefühle think [Hmm...] for [] seconds switch costume to [abby-a v] // Zurück zum Kostüm vom Anfang Tipp: Stelle sicher, dass du einen Block mit einem Zeitwert verwendest und keinen spiele Klang, sage oder denke Block. Andernfalls ist der Kostümwechsel nicht sichtbar. Der Charakter könnte mutig sein und näher herangehen, um das Objekt zu erkunden. Figur-Bewegungen mit Kostümen animieren Laufender Igel: Ansehen Du kannst wechsle zu Kostüm und gehe Schritt verwenden, um eine sich bewegende Figur mithilfe einer wiederhole-Schleife zu animieren. Ändere die Zeit im warte-Block, um die Geschwindigkeit einzustellen. when flag clicked // Wechseln zwischen zwei Kostümen repeat [] switch costume to [hedgehog-a v] move [] steps wait [.] seconds switch costume to [hedgehog-b v] move [] steps wait [.] seconds end Tipp: Sieh dir alle Kostüme für eine Figur an, indem du den Block nächstes Kostüm in einer Schleife verwendest. Tipp: Erhöhe die Anzahl der Schritte in allen bewege-Blöcken, damit sich die Figur schneller bewegt. Erhöhe die Anzahl in der wiederhole-Schleife, um die Entfernung anzupassen. Tipp: Damit sich die Figur rückwärts bewegt, verwendest du negative Zahlen, z. B. bewege - Schritt. Außerdem gibt es einen setze Richtung auf - Grad-Block, mit dem du die Richtung der Figur änderst, bevor sie sich zu bewegen beginnt (- Grad nach links). Test: Klicke auf die grüne Flagge, um dein Projekt zu testen. Die 🐙👩‍🦼🦖 Hauptfigur sollte Neugierde hinsichtlich des Objekts zeigen. Klicke erneut auf die grüne Flagge. Wenn du die Position oder das Aussehen der Figur 🎂🎾🎁 interessantes Objekt oder 🐙👩‍🦼🦖 Hauptfigur geändert hast, achte darauf, dass diese beim erneuten Ausführen des Projekts auf ihre ursprüngliche Position oder Aussehen zurückgesetzt werden. Lege die Startposition und das Aussehen einer Figur fest Wähle die Blöcke aus, um die Position und das Aussehen beim Start festzulegen. when flag clicked // füge Blöcke hinzu, um den Start vorzubereiten switch costume to [Kostüm1 v] set size to () % // Ausgangsgröße go to x: (-) y: () // Startposition point in direction [] set [Helligkeit v] effect to [] show Tipp: Alle Grafikeffekte werden gelöscht, wenn du auf die grüne Flagge klickst. Diese musst du also nicht löschen. Aber möglicherweise musst du die Effekte festlegen, die die Figur haben soll. Fehlersuche: Der Ton funktioniert nicht Überprüfe, ob die Lautstärke deines Computers oder Tablets hoch genug ist und ob deine Lautsprecher oder Kopfhörer angeschlossen sind und ordnungsgemäß funktionieren. Meine Animation wird nicht richtig zurückgesetzt, wenn ich auf die grüne Flagge klicke Überprüfe, ob dein Projekt wenn grüne Flagge angeklickt wird-Skripte für die Figuren enthält, die dies benötigen und dort die Position, Größe und das Aussehen der Figuren zurückgesetzt werden. Hilfe hierzu findest du in der obigen Aufgabe Lege die Startposition und das Aussehen einer Figur fest. Füge eine Überraschung hinzu! Jetzt fügst du noch eine Überraschung hinzu. Was könnte mit dem Objekt passieren? Wird es sich in ein anderes Objekt verwandeln? Wird es zu einer Figur? Wird es verschwinden und eine andere Figur enthüllen? Es ist deine Entscheidung! Erstelle den drittenTeil deiner Animation. Hast du eine Geschichte mit einer unerwarteten Wendung oder Überraschung geschrieben? Hast du eine Sendung gesehen oder ein Buch gelesen mit einem unvorhersehbaren Ende? Du kannst dieselben Methoden verwenden, wenn du eine digitale Geschichte oder Animation erstellst. Wann kommt die Überraschung? Wähle die Figur 🎂🎾🎁 interessante Objekt aus. Füge ein Skript hinzu, damit die Überraschung zum gewünschten Zeitpunkt beginnt. Du musst eine Verzögerung wählen, die für dein Projekt geeignet ist. Wenn du eine Figur verwendest, die lange Zeit neugierig ist, benötigst du eine längere Verzögerung. when flag clicked wait () seconds // ändere die Zahl, um deine Verzögerung einzustellen Und jetzt sorgst du für die Überraschung! Das Objekt könnte einen Ton abspielen, das Kostüm wechseln, Grafikeffekte ändern oder die Größe ändern. Du könntest der Figur ein überraschendes Kostüm hinzufügen, dann könnte die Figur das Kostüm wechseln, um es zu enthüllen. Einer Figur ein Kostüm hinzufügen Klicke auf den Reiter Kostüme und dann auf Wähle ein Kostüm, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen: Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt. Tipp: Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen. Du kannst den Anschein erwecken, als würde sich die Figur in eine andere Figur verwandeln. Dazu verwendest du verstecke dich für die 🎂🎾🎁 interessante Objekt Figur und gleichzeitig zeige dich für die andere Figur. Figuren ausblenden und anzeigen Die Figur 🎂🎾🎁 interessante Objekt: when flag clicked show wait () seconds hide Die Figur 🎷👻⚡Überraschungsobjekt: when flag clicked hide wait () seconds show Tipp: Wenn du bei einer 🎷👻⚡Überraschungsobjekt Figur zeige dich nutzt, ist es erforderlich, bei Wenn grüne Flagge angeklickt wird verstecke dich hinzuzufügen. Test: Klicke auf die grüne Flagge. Kommt die Überraschung zum richtigen Zeitpunkt? Wird die Animation ordnungsgemäß zurückgesetzt? Fehlersuche: Wenn eine Figur vor oder hinter einer anderen Figur stehen soll, kannst du Ebenen verwenden: Figuren mit Ebenen positionieren Es gibt zwei Möglichkeiten, die Figuren in Ebenen anzuordnen. Du kannst eine Figur auf der Bühne ziehen, um es in die vordere Ebene zu verschieben: Du kannst auch einen Block vom Typ gehe zu vorderster Ebene oder gehe zu hinterster Ebene verwenden, um eine Figur zu positionieren. Wenn du eine Figur immer im Vordergrund oder Hintergrund halten möchtest, kannst du eine wiederhole fortlaufend Schleife verwenden, um die Figur immer wieder in die gewünschte Ebene zu holen, solltest du sie versehentlich woanders hin bewegen: when flag clicked forever go to [vorderster v] layer // oder hinterster Kommt die Überraschung zum falschen Zeitpunkt, kannst du das korrigieren: Die Überraschung beginnt zur falschen Zeit Möglicherweise ist es erforderlich, dass du die Dauer in einigen oder allen warte x Sekunden-Blöcken änderst oder weitere warte x Sekunden-Blöcke hinzufügst, um das richtige Timing zu erzielen.",
+        "description": "Erstelle eine Animation von einer Geschichte mit einer Überraschung",
+        "lastTested": "2021-03-09",
+        "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation mit einer lustigen Überraschung.",
+        "technologyLabels": [
+          "scratch"
+        ],
+        "interestLabels": [
+          "stories"
+        ],
+        "hardwareLabels": [],
+        "primaryTechnology": "scratch",
+        "difficultyLevel": 1,
+        "badgeTemplateId": "31b5d250-75b3-41a6-9dbe-c7a5ed6e710f",
+        "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "surprise-animation",
+      "masterLastCommit": "6d0d6894b56114b786a89aae0c947a1774b9f753",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": {
+        "pathway_id": 134,
+        "project_id": 1195,
+        "category": "design",
+        "position": 5,
+        "total": 6
+      },
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [
+        {
+          "data": {
+            "id": "75",
+            "type": "projects",
+            "attributes": {
+              "id": 75,
+              "repositoryName": "boat-race",
+              "title": "Bootsrennen",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/boat-race/b10b49c7356d487b75778f61e8887f535a1fb16f/de-DE/images/small_banner.png",
+              "difficultyLevel": 1,
+              "description": "Programmiere ein Rennspiel, in dem Du mit deinem Boot Hindernissen ausweichen musst.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "sports"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fi-FI",
+                "fr-FR",
+                "hi-IN",
+                "hu-HU",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "pt-PT",
+                "ru-RU",
+                "sl-SI",
+                "tr-TR",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "182",
+            "type": "projects",
+            "attributes": {
+              "id": 182,
+              "repositoryName": "create-your-own-world",
+              "title": "Erschaffe deine eigene Welt",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/create-your-own-world/abb7bd4663245bfa48779f59e87d008bb696b9c6/de-DE/images/banner.png",
+              "difficultyLevel": 3,
+              "description": "Lerne, wie du dein eigenes Open-World Abenteuerspiel erstellen kannst",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "mr-IN",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "ru-RU",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "205",
+            "type": "projects",
+            "attributes": {
+              "id": 205,
+              "repositoryName": "snowball-fight",
+              "title": "Schneeballschlacht",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/snowball-fight/aa3363d3fa3b818976f0515e444d1368fe9d9792/de-DE/images/banner.png",
+              "difficultyLevel": 2,
+              "description": "Erstelle ein Spiel, in dem du Schneebälle auf ein Ziel werfen musst",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "ja-JP",
+                "ko-KR",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "ru-RU",
+                "uk-UA",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "207",
+            "type": "projects",
+            "attributes": {
+              "id": 207,
+              "repositoryName": "sprint",
+              "title": "Sprint!",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/sprint/490e5b94682873d74d71ac1b6cf8901c8bbd190f/de-DE/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Verwende die Pfeiltasten, um so schnell, wie möglich, zur Ziellinie zu gelangen.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "sports"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "ja-JP",
+                "ko-KR",
+                "nl-NL",
+                "pt-BR"
+              ],
+              "pdf": null
+            }
+          }
+        }
+      ],
+      "nextPathway": {
+        "data": {
+          "id": "172",
+          "type": "pathways",
+          "attributes": {
+            "slug": "more-scratch",
+            "name": "More Scratch",
+            "technologyTheme": "scratch"
+          }
+        }
+      },
+      "recommendedPathways": [],
+      "nextProject": {
+        "data": {
+          "id": "1196",
+          "type": "projects",
+          "attributes": {
+            "id": 1196,
+            "repositoryName": "i-made-you-a-book",
+            "title": "I made you a book",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/i-made-you-a-book/a090d812918875c289b9365cb8343819a50c7dbc/en/images/banner.png",
+            "difficultyLevel": 2,
+            "description": "Create a book with multiple pages to tell a story or share facts",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "art",
+              "stories"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "cy-GB",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA"
+            ],
+            "pdf": null
+          }
+        }
+      },
+      "nextPathwayProject": {
+        "data": {
+          "id": "1196",
+          "type": "projects",
+          "attributes": {
+            "id": 1196,
+            "repositoryName": "i-made-you-a-book",
+            "title": "I made you a book",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/i-made-you-a-book/a090d812918875c289b9365cb8343819a50c7dbc/en/images/banner.png",
+            "difficultyLevel": 2,
+            "description": "Create a book with multiple pages to tell a story or share facts",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "art",
+              "stories"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "cy-GB",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA"
+            ],
+            "pdf": null
+          }
+        }
+      }
+    },
+    "relationships": {
+      "pathways": {
+        "data": [
+          {
+            "id": "134",
+            "type": "pathways"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "134",
+      "type": "pathways",
+      "attributes": {
+        "id": 134,
+        "slug": "scratch-intro",
+        "title": "Einführung in Scratch",
+        "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+        "difficultyLevel": 1,
+        "technologyTheme": "scratch",
+        "ordered": true,
+        "isBeta": true,
+        "skills": [
+          {
+            "id": 60,
+            "name": "scratch",
+            "taggings_count": 336
+          }
+        ],
+        "themes": [
+          {
+            "id": 286,
+            "name": "red",
+            "taggings_count": 5
+          }
+        ],
+        "stepCount": 6,
+        "subtitle": "Sprites, Skripte und Schleifen",
+        "metaTitle": "Projektpfad | Einführung in die Programmierung mit Scratch für Kids",
+        "metaDescription": "Einführung in das Programmieren in Scratch für Kids, Jugendliche und junge Erwachsene. Du lernst Animationen, ein Spiel, eine App und ein Buch zu erstellen.",
+        "header": [
+          {
+            "title": "Was werde ich erschaffen?",
+            "content": "<p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.\nAm Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein digitales Buch mit mehreren Seiten zu schreiben.</p>\n"
+          },
+          {
+            "title": "Was muss ich wissen?",
+            "content": "<p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>\n"
+          },
+          {
+            "title": "Was benötige ich?",
+            "content": "<p>Dieser Pfad erfordert:</p>\n\n<p>– Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry Pi-Computer\n– Zugang zum Internet, um Scratch online zu nutzen oder die Möglichkeit, Scratch herunterzuladen und zu installieren. Weitere Informationen findest du in unserem <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/1\" target=\"_blank\">Scratch EInführungsleitfaden</a>\n- Optional ein <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/2\" target=\"_blank\">Scratch Account</a></p>\n"
+          },
+          {
+            "title": "Informationen für den Mentor",
+            "content": "<h2 id=\"make\">321…Make!</h2>\n<p>Dieser Pfad folgt der Anleitung <a href=\"https://projects.raspberrypi.org/en/projects/321-make-mentor-guide\" target=\"_blank\">321…Make!</a>:</p>\n\n<p>– <strong>3 Erkunden</strong>-Projekte: Vermitteln Sie Ihren Lernende einige Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen, die ihnen dabei helfen, erstes Selbstvertrauen zu entwickeln.\n– <strong>2 Gestalten</strong>-Projekte: Ermöglichen Sie Ihren Lernenden, Fähigkeiten aus den Erkunden-Projekten zu üben und sich kreativ auszudrücken, während sie selbständiger werden.\n– <strong>1 Erfinden</strong>-Projekt: Ermutigen Sie Ihre Lernende, ihre Fähigkeiten einzusetzen, um ein einzigartiges Projekt zu erstellen, das den Projektvorgaben für ein bestimmtes Publikum entspricht.</p>\n\n<h2 id=\"schnellquiz\">Schnellquiz</h2>\n<p>Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen. Maker werden durch nützliches Feedback zur richtigen Antwort geführt und erhalten ein Projektabzeichen.</p>\n\n<h2 id=\"die-community-inspirieren\">Die Community inspirieren</h2>\n<p>Lernende werden ermutigt, andere in der Raspberry-Pi-Foundation-Community zu inspirieren, indem sie ihre Gestalten- und Erfinden-Projekte über das <a href=\"https://form.raspberrypi.org/f/community-project-submissions\" target=\"_blank\">Projekteinreichungsformular</a> mit uns teilen. Projekte werden in unseren Community-Galerien geteilt.\nWie Sie <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9\" target=\"_blank\">Projekte teilen</a>, erfahren Sie in unserer Anleitung.</p>\n"
+          }
+        ]
+      },
+      "relationships": {
+        "projects": {
+          "data": [
+            {
+              "id": "1155",
+              "type": "projects"
+            },
+            {
+              "id": "1156",
+              "type": "projects"
+            },
+            {
+              "id": "1192",
+              "type": "projects"
+            },
+            {
+              "id": "1191",
+              "type": "projects"
+            },
+            {
+              "id": "1195",
+              "type": "projects"
+            },
+            {
+              "id": "1196",
+              "type": "projects"
+            }
+          ]
+        },
+        "steps": {
+          "data": [
+            {
+              "id": "364",
+              "type": "step"
+            },
+            {
+              "id": "365",
+              "type": "step"
+            },
+            {
+              "id": "366",
+              "type": "step"
+            },
+            {
+              "id": "367",
+              "type": "step"
+            },
+            {
+              "id": "368",
+              "type": "step"
+            },
+            {
+              "id": "369",
+              "type": "step"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

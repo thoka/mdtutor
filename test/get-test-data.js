@@ -148,7 +148,6 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
     
     const data = await response.json();
     
-    mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
     console.log('    ✓ Saved');
@@ -182,7 +181,6 @@ async function fetchProgressApi(tutorialSlug, language = 'en') {
     
     const data = await response.json();
     
-    mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
     console.log('    ✓ Saved');
@@ -216,7 +214,6 @@ async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
     
     const data = await response.json();
     
-    mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
     console.log('    ✓ Saved');
@@ -260,7 +257,6 @@ async function fetchQuizApi(quizPath, tutorialSlug, language = 'en') {
     
     const data = await response.json();
     
-    mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
     console.log('    ✓ Saved');

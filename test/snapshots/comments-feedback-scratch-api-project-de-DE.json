@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1112",
+    "type": "projects",
+    "attributes": {
+      "id": 1112,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Kommentare und Feedback in Scratch",
+            "content": "<p>In Scratch kannst du Kommentare zu Projekten posten (eigene Projekte und Projekte von Anderen). Falls du nicht willst, dass jemand dein Projekt kommentiert, schalte die Kommentare aus. Gehe dazu zur Projektseite und bewege den Schieberegler oberhalb des Felds <strong>Kommentare</strong> auf <strong>Kommentarfunktion aus</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/comments-off.png\" alt=\"Der Schieberegler oberhalb des Felds „Kommentare“ ist in der Position „Kommentarfunktion aus“. Diese Nachricht wird angezeigt: &quot;Kommentarfunktion für dieses Projekt deaktiviert.&quot;\" width=\"300px\" /></p>\n\n<p>Wenn du keine Bedenken hast, dass dein Projekt kommentiert wird, kannst du den ersten Kommentar posten:</p>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_comments.gif\" alt=\"Tippe in das Feld „Kommentare“ den Text &quot;Das ist meine Animation einer Katze, die auf zwei Beinen läuft&quot; und klicke dann darunter zum Posten auf den Knopf „Absenden“. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_comments.png\" alt=\"Klicke auf den blauen Knopf „Absenden“, um den Kommentar zu posten. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" width=\"300px\" /></p>\n\n</div>\n\n<p>Wenn du einen Kommentar oder ein Projekt gemein, beleidigend, zu gewalttätig oder auf andere Weise unangebracht findest, melde ihn über den Knopf <strong>Melden</strong> an das Scratch-Team. Klicke auf den Knopf <strong>Melden</strong> oberhalb des Kommentars, um ihn zu melden. Klicke auf den Knopf <strong>Melden</strong> auf der Projektseite, um es zu melden:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_report.png\" alt=\"Hervorgehobener Knopf „Melden“.\" width=\"250px\" /></p>\n\n<p>Lies die <a href=\"https://scratch.mit.edu/community_guidelines\" target=\"_blank\">Scratch-Community-Regeln</a>, um zu erfahren, wie du und Andere dafür sorgt, dass die Community ein einladender und kreativer Ort bleibt.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Kommentare und Feedback in Scratch",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Kommentare und Feedback in Scratch",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/banner.png",
+        "plainText": "In Scratch kannst du Kommentare zu Projekten posten (eigene Projekte und Projekte von Anderen). Falls du nicht willst, dass jemand dein Projekt kommentiert, schalte die Kommentare aus. Gehe dazu zur Projektseite und bewege den Schieberegler oberhalb des Felds Kommentare auf Kommentarfunktion aus: Wenn du keine Bedenken hast, dass dein Projekt kommentiert wird, kannst du den ersten Kommentar posten: Wenn du einen Kommentar oder ein Projekt gemein, beleidigend, zu gewalttätig oder auf andere Weise unangebracht findest, melde ihn über den Knopf Melden an das Scratch-Team. Klicke auf den Knopf Melden oberhalb des Kommentars, um ihn zu melden. Klicke auf den Knopf Melden auf der Projektseite, um es zu melden: Lies die Scratch-Community-Regeln, um zu erfahren, wie du und Andere dafür sorgt, dass die Community ein einladender und kreativer Ort bleibt.",
+        "description": "Kommentare und Feedback in Scratch",
+        "lastTested": "2020-11-27",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "comments-feedback-scratch",
+      "masterLastCommit": "dde8aef79921e084194045a43e523a918398e6f8",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

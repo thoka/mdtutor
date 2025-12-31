@@ -1,0 +1,551 @@
+{
+  "data": {
+    "id": "1191",
+    "type": "projects",
+    "attributes": {
+      "id": 1191,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Das wirst du machen",
+            "content": "<h2 id=\"das-wirst-du-machen\">Das wirst Du machen</h2>\n\n<p>Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken sie zum Leben.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/showcase-line.png\" alt=\"Beispielprojekte.\" /></p>\n\n<p>Du wirst:</p>\n\n<ul>\n  <li>Ein Projekt machen, das Spaß macht</li>\n  <li>Eine eigene Figur erstellen</li>\n  <li>Dein Projekt mit <strong>Figuren, Skripten und Schleifen</strong> programmieren</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <h3 id=\"abspielen-\">Abspielen ▶️</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 175px; flex-grow: 1\">\n\n    <p><strong>Gobo beobachtet</strong>: <a href=\"https://scratch.mit.edu/projects/1092542239/editor\" target=\"_blank\">Schau hinein</a></p>\n\n    <p>Bewege die Maus (oder, wenn du ein Tablet verwendest, deine Finger) über die Bühne.</p>\n\n    <p>Was passiert, wenn du dich zwischen Gobos Augen bewegst?</p>\n\n    <p>Was passiert, wenn du auf verschiedene Teile des Projekts klickst?</p>\n  </div>\n  <div>\n\n    <div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n      <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1092542239/?autostart=false\" frameborder=\"0\"></iframe>\n    </div>\n\n  </div>\n</div>\n\n  </div>\n</div>\n\n  <h3 id=\"hole-dir-ideen-\">Hole dir Ideen 💭</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Probiere diese Beispielprojekte aus, um Ideen zu bekommen:</p>\n\n<p>⭐ Teile dein fertiges Albernes-Augen-Projekt - mit etwas Glück wird es hier vorgestellt.</p>\n\n<p><strong>Iss Donut nicht</strong>: <a href=\"https://scratch.mit.edu/projects/1092535104/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1092535104/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>Sporg</strong>: <a href=\"https://scratch.mit.edu/projects/1092540444/editor\" target=\"_blank\">Schau hinein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1092540444/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>⭐ Alberner Kugelfisch</strong> (vorgestelltes Community-Projekt)</p>\n\n<p>Klicke auf den Kugelfisch, die Mütze, den Schal, den Hintergrund und die Augäpfel:</p>\n\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/772759744/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>⭐ Alberner Torwarthandschuh von NinjaTR3R</strong> (vorgestelltes Community-Projekt)</p>\n\n<p>Klicke auf den Hintergrund und die Augäpfel:</p>\n\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/877343292/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n  </div>\n</div>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <h3 id=\"hole-dir-ideen-\">Hole dir Ideen 💭</h3>\n\n  <p>Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken deine Figur zum Leben. Weitere Ideen findest du in Beispielprojekten im Scratch-Studio „Alberne Augen – Beispiele“ (<strong>Schau hinein</strong>): https://scratch.mit.edu/studios/29029028</p>\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/gobo-watching.png\" alt=\"Das Projekt „Gobo beobachtet“.\" />\n<img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/dont-eat-donut.png\" alt=\"Das Projekt „Iss Donut nicht“.\" />\n<img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/sporg.png\" alt=\"Das „Sporg“-Projekt.\" /></p>\n\n</div>\n\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Erstelle deinen Charakter",
+            "content": "<h2 id=\"dein-charakter\">Dein Charakter</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Nutze deine Designfähigkeiten, um ein Charakter und einen passenden Hintergrund hinzuzufügen.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/character.png\" alt=\"Ein großer Charakter.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\n<span style=\"color: #0faeb0\"><strong>Design</strong></span> bedeutet, Entscheidungen zu treffen über das Aussehen und die Funktion eines Projekts. \n</p>\n\n<h3 id=\"öffne-das-starterprojekt\">Öffne das Starterprojekt</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Öffne das <a href=\"https://scratch.mit.edu/projects/582221984/editor\" target=\"_blank\">Alberne Augen Starterprojekt</a>. Scratch wird in einem anderen Tab im Browser geöffnet.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Offline arbeiten\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Besuche <a href=\"https://projects.raspberrypi.org/de-DE/projects/getting-started-scratch/1\" target=\"_blank\">unsere Anleitung ‘Erste Schritte mit Scratch’</a> für mehr Information zum Einrichten von Scratch für die offline Benutzung.</p>\n\n  </div>\n</div>\n\n<p>⏱️ Wenig Zeit? Du kannst mit einem der <a href=\"https://scratch.mit.edu/studios/29029028\" target=\"_blank\">Beispiele</a> beginnen.</p>\n\n  </div>\n</div>\n\n<h3 id=\"wähle-deine-figur-und-deinen-hintergrund\">Wähle deine Figur und deinen Hintergrund</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> Füge für dein Alberne Augen Projekt eine <strong>Figur</strong> und einen <strong>Hintergrund</strong> hinzu.</p>\n\n<ul>\n  <li>Wie sieht dein Charakter aus? Eine Person 🧜🏽‍♀️, ein Tier 🐶 oder ein Gegenstand 🧸.</li>\n  <li>Wo soll dein Charakter leben? Irgendwo vernünftig 🏠 albern 🎪.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/sprite-and-backdrop.png\" alt=\"Die Symbole „Figur hinzufügen“ und „Hintergrund hinzufügen“ liegen nebeneinander.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Eine Scratch-Figur aus der Bibliothek hinzufügen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <ul>\n  <li>\n    <p>Klicke auf <strong>Figur wählen</strong> um die Bibliothek aller in Scratch vorhandener Figuren anzuzeigen.</p>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/de-DE/images/sprite-library.png\" alt=\"Screenshot\" /></p>\n  </li>\n  <li>\n    <p>Du kannst die Figuren themenbezogen suchen und ansehen. Klicke auf eine Figur, um sie in dein Projekt aufzunehmen.</p>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/de-DE/images/sprite-choose.png\" alt=\"screenshot\" /></p>\n  </li>\n</ul>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ein Bühnenbild aus der Scratch-Bibliothek auswählen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <ul>\n  <li>Klicke unten rechts auf <strong>Bühnenbild wählen</strong>.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/de-DE/images/stage-choose.png\" alt=\"Screenshot\" /></p>\n\n<ul>\n  <li>Du kannst ein Bühnenbild suchen oder die Auswahl durch Kategorien oder Themen begrenzen. Klicke auf das Bühnenbild um es auszuwählen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/de-DE/images/backdrop.png\" alt=\"Screenshot\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Hintergründe und Figuren mit Formen erstellen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du kannst Hintergründe und Kostüme für Figuren erstellen, indem du im Malen-Fenster Formen verwendest.</p>\n\n<p>Gehe zum Menü <strong>Figur wählen</strong> oder <strong>Hintergrund wählen</strong> und wähle die Option <strong>Malen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/choose-a-sprite.png\" alt=\"Die Option „Malen“ im Menü „Figur auswählen“.\" style=\"float: left\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/choose-a-backdrop.png\" alt=\"Die Option „Malen“ im Menü „Hintergrund auswählen“.\" style=\"float: left\" /></p>\n\n<p>Wähle aus, welche(s) Werkzeug(e) du zum Erstellen der gewünschten Form(en) verwenden möchtest:</p>\n\n<ul>\n  <li><strong>Kreis</strong>: Klicke auf das Werkzeug <strong>Kreis</strong>, um einen Kreis zu zeichnen. Halte die <kbd>Umschalttaste</kbd> auf deiner Tastatur gedrückt, um einen perfekten Kreis zu zeichnen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/circle-tool.png\" alt=\"Das Kreis-Werkzeug.\" /></p>\n\n<ul>\n  <li><strong>Rechteck</strong>: Klicke auf das Werkzeug <strong>Rechteck</strong>, um ein Rechteck zu zeichnen. Halte die <kbd>Umschalttaste</kbd> gedrückt, um ein Quadrat zu zeichnen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/rectangle-tool.png\" alt=\"Das Rechteck-Werkzeug.\" /></p>\n\n<ul>\n  <li><strong>Dreieck</strong>: Verwende das Werkzeug <strong>Rechteck</strong>, um ein Rechteck oder ein Quadrat zu zeichnen. Klicke auf das Werkzeug <strong>Verformen</strong> und wähle die Ecke aus, die du entfernen möchtest. Klicke auf das Werkzeug <strong>Löschen</strong>, um die Form in ein Dreieck umzuwandeln.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/square.png\" alt=\"Eine quadratische Form mit einer ausgewählten Ecke.\" style=\"width: 150px\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/reshape.png\" alt=\"Das Verformen-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/delete.png\" alt=\"Das Löschen-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/corner.png\" alt=\"Eine Dreiecksform.\" style=\"width: 150px\" /></p>\n\n<p>Du kannst das Werkzeug <strong>Fülleimer</strong> verwenden, um die Farbe einer Form zu ändern:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/fill-tool.png\" alt=\"Das Fülleimer-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/changed-colour.png\" alt=\"Die Farb-Auswahl und die neue Farbe der Form.\" style=\"width: 350px\" /></p>\n\n<p>Möglicherweise musst du die Werkzeuge <strong>nach vorne</strong> und <strong>nach hinten</strong> verwenden, um deine Formen nach vorne oder hinten zu verschieben, damit sie in deinem Bild richtig positioniert sind:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/front-back-tools.png\" alt=\"Die „nach vorne“ und „nach hinten“ Werkzeuge.\" /></p>\n\n<p>Du kannst alle Formen auswählen und <strong>Gruppieren</strong>, sodass du sie als eine Form anpassen oder verschieben kannst:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/group.png\" alt=\"Das Gruppieren-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/selected-shapes.png\" alt=\"Mehrere Formen ausgewählt.\" style=\"width: 350px\" /></p>\n\n<p>Hier ist ein Beispiel für eine Figur, die mit den Werkzeugen <strong>Kreis</strong> und <strong>Rechteck</strong> erstellt wurde:</p>\n\n<p><strong>Schwein</strong>: <a href=\"https://scratch.mit.edu/projects/495903163/editor\" target=\"_blank\">Schau rein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/495903163/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Denke daran, den Kostümen und Hintergründen, die du im Malen-Fenster erstellst, einen Namen zu geben.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Hol dir eine Überraschungsfigur\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du bist dir nicht sicher, welche Figur du wählen sollst? Im Menü <strong>Figur auswählen</strong>, wähle die Option <strong>Überraschung</strong>, um deinem Projekt eine Überraschungsfigur hinzuzufügen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/surprise-sprite.png\" alt=\"Die Option „Überraschung“ im Menü „Figur auswählen“.\" /></p>\n\n  </div>\n</div>\n\n<p><strong>Tipp:</strong> Wenn du im Zeichnen-Editor deine eigene Figur erstellst, <strong>füge noch keine Augen hinzu, da es sich dabei um separate Figuren handeln muss.</strong></p>\n\n  </div>\n</div>\n\n<h3 id=\"ändere-die-größe-deiner-figur\">Ändere die Größe deiner Figur</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ändere im Figurenbereich die Zahl in der Eigenschaft <strong>Größe</strong> in eine Zahl, mit der deine Figur die Bühne gut ausfüllt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/size-property.png\" alt=\"\" width=\"500px\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Schau auf die Bühne. Du wirst deinen großen Charakter und den ausgewählten Hintergrund sehen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/large-sprite-stage.png\" alt=\"\" width=\"500px\" /></p>\n\n  </div>\n</div>\n\n",
+            "position": 1,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "working-offline",
+              "generic-scratch3-sprite-from-library",
+              "generic-scratch3-backdrop-from-library",
+              "scratch3-backdrops-and-sprites-using-shapes"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Mache alberne Augen",
+            "content": "<h2 id=\"mach-alberne-augen\">Mach alberne Augen</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Mach alberne Augen! Jedes Auge muss eine separate Figur sein, damit es sich separat bewegen kann.</p>\n\n  </div>\n  <div>\n\n    <p width=\"300px\"><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/character-with-eyes.png\" alt=\"Eine Figur mit albernen Augen.\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"zeichne-einen-augapfel\">Zeichne einen Augapfel</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Verwende die Option <strong>Malen</strong>, um eine neue <strong>Figur</strong> zu erstellen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/paint-a-sprite.png\" alt=\"Die Option „Malen“ im Menü „Figur auswählen“.\" /></p>\n\n<p>Der Zeichnen-Editor wird geöffnet und du kannst dort das <strong>Augapfel</strong>-Kostüm deiner Figur erstellen.</p>\n\n  </div>\n</div>\n\n<p>Es ist wirklich wichtig, dass:</p>\n<ul>\n  <li>Die schwarze Pupille und die farbige Iris zur rechten Seite des <strong>Augapfel</strong> Kostüms schauen</li>\n  <li>Das <strong>Augapfel</strong>-Kostüm zentriert ist</li>\n</ul>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> Zeichne einen Augapfel <strong>oder</strong> beginne mit einer runden Figur.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/make-an-eye.png\" alt=\"Beispiel Augäpfel. Eines wurde von Grund auf gezeichnet, ein anderes von einem Beachball und das dritte von einem Baseball.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Zeichne einen Augapfel im Zeichnen-Editor\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Wählen das Werkzeug <strong>Kreis</strong>.</p>\n\n<p>Um einen perfekten Kreis zu zeichnen, halte die <kbd>Umschalttaste</kbd> auf der Tastatur gedrückt, während du mit dem Werkzeug <strong>Kreis</strong> zeichnest. Wenn du ein Tablet verwendest, versuche, einen möglichst perfekten Kreis zu zeichnen.</p>\n\n<p>In diesem Beispiel setzen wir die <strong>Randfarbe</strong> auf Schwarz und die <strong>Füllfarbe</strong> des Augapfels auf Weiß:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eyeball-outline.png\" alt=\"Ein weißer Augapfel mit schwarzer Umrandung.\" /></p>\n\n<p>Nutze das Farbauswahlmenü für <strong>Füllfarbe</strong> und <strong>Randfarbe</strong>. Um Schwarz zu erzeugen, verschiebe die Werte <strong>Sättigung</strong> und <strong>Helligkeit</strong> auf <code>0</code>. Um Weiß zu erzeugen, schiebe die <strong>Sättigung</strong> auf <code>0</code> und die <strong>Helligkeit</strong> auf <code>100</code>.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/black-colour.png\" alt=\"Schieberegler für Sättigung und Helligkeit auf 0 eingestellt.\" /> <img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/white-colour.png\" alt=\"Schieberegler für Sättigung und Helligkeit auf 100 eingestellt.\" /></p>\n\n<p>Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eye-centre.gif\" alt=\"Ein animiertes Bild eines Kreiskostüms, das von oben links gezogen wird, bis die Kreise über dem Fadenkreuzsymbol zentriert sind.\" /></p>\n\n<p>Zeichne einen kleineren perfekten Kreis und positioniere ihn auf der rechten Seite des Augapfels:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eyeball-with-iris.png\" alt=\"Ein Augapfel mit roter Iris und schwarzer Pupille auf der rechten Seite.\" /></p>\n\n<p>Du kannst auch Kreise in Kreise zeichnen oder Farbe verwenden, um unterschiedliche Effekte zu erzielen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Verwandle ein rundes Kostüm in einen Augapfel\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>In Scratch gibt es Kostüme, die du bearbeiten kannst um deiner Figur lustige Augen zu verpassen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/costume-eyes.gif\" alt=\"Vorhandene Scratch-Kostüme als Augäpfel.\" /></p>\n\n<p>Klicke auf das Symbol <strong>Wähle ein Kostüm</strong>, um die Scratch-Kostümbibliothek anzuzeigen.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/choose-a-costume.png\" alt=\"Das Symbol „Kostüm wählen“.\" /></p>\n\n<p>Klick auf das Kostüm, das du deiner Figur hinzufügen möchtest.</p>\n\n<p>Verwende den Zeichnen-Editor, um das Kostüm zu ändern. Du könntest Kreise hinzufügen, eine andere <strong>Füllfarbe</strong> wählen oder Teile des Kostüms entfernen, um es in ein albernes Auge zu verwandeln.</p>\n\n<p>Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/crosshair-centre.gif\" alt=\"Ein animiertes Bild eines Ballkostüms, das von oben links gezogen wird, sodass der Ball mittig über dem Fadenkreuzsymbol sitzt.\" /></p>\n\n<p><strong>Tipp:</strong> Die schwarze Pupille und die farbige Iris müssen auf der rechten Seite des Kostüms positioniert werden, sodass der <strong>Augapfel</strong> dem Mauszeiger folgt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/button-eye.png\" alt=\"Der Zeichnen-Editor zeigt ein bearbeitetes Button1-Kostüm.\" /></p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Gib deiner Figur im Figurenbereich den Namen <code>Augapfel</code>.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eyeball-name.png\" alt=\"Der Name der Figur ist im Figurenbereich auf „Augapfel“ eingestellt.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ziehe die Figur <strong>Augapfel</strong>, um sie auf der Bühne zu positionieren, und ändere ihre Größe, damit sie zu deiner Figur passt.</p>\n\n  </div>\n</div>\n\n<p>Richte nun den Blick des Auges auf den <code class=\"block3motion\">Mauszeiger</code>, damit der Benutzer mit deinem Projekt interagieren kann.</p>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\n<span style=\"color: #0faeb0\"><strong>Benutzer</strong></span> oder <span style=\"color: #0faeb0\"><strong>Nutzer</strong></span> bezeichnet die Person, die das Projekt verwendet (nicht nur erstellt), und <span style=\"color: #0faeb0\"><strong>Benutzerinteraktion</strong></span> oder <span style=\"color: #0faeb0\"><strong>Nutzerinteraktion</strong></span> gibt an, wie das Projekt auf Aktionen des Benutzers reagiert, z. B. wenn dieser die Maus bewegt oder auf dem Bildschirm klickt. \n</p>\n\n<h3 id=\"programmiere-deinen-augapfel\">Programmiere deinen Augapfel</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge ein Skript hinzu und <code class=\"block3motion\">setze Drehtyp</code> auf <code class=\"block3motion\">rundherum</code>, damit der Augapfel <code class=\"block3motion\">sich auf den Mauszeiger dreht</code>, und dies <code class=\"block3control\">fortlaufend wiederholt</code>.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Drehe eine Figur zum Mauszeiger\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <pre><code class=\"language-blocks3\">when flag clicked\nset rotation style [rundherum v]\nforever\npoint towards (Mauszeiger v)\nend\n</code></pre>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"füge-einen-weiteren-augapfel-hinzu\">Füge einen weiteren Augapfel hinzu</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Um ein weiteres Auge hinzuzufügen, klicke mit der rechten Maustaste (oder tippe und halte auf einem Tablet) auf die Figur <strong>Augapfel</strong> in der Figurenliste und wähle <strong>Duplizieren</strong>.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/duplicate-eyes.png\" alt=\"Beispiel: Augäpfel paarweise. Eines wurde von Grund auf gezeichnet und ein anderes wurde aus der Figur 'Ball' erstellt.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Eine Figur duplizieren (kopieren)\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Klicke mit der rechten Maustaste auf deine erste Figur in der Figuren-Liste unter der Bühne (oder auf einem Tablet: tippe und halte die Figur):</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-right-click-sprite.png\" alt=\"Die Figuren-Liste mit der ersten hervorgehobenen Figur und einem Popup-Menü mit den Optionen „Duplizieren“, „Exportieren“ und „Löschen“.\" width=\"300px\" /></p>\n\n<p>Wähle <strong>duplizieren</strong>. Dadurch wird eine Kopie deiner ersten Figur mit dem Suffix „2“ erstellt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-duplicate-sprite.png\" alt=\"Die Figuren-Liste zeigt die erste Figur und die neue (duplizierte) Figur.\" width=\"300px\" /></p>\n\n<p>Eine Figur umbenennen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-rename-sprite.png\" alt=\"Der Figuren-Bereich mit hervorgehobenem „Figuren“-Feld.\" width=\"300px\" /></p>\n\n<p>Der Name deiner Figur ändert sich in der Figuren-Liste:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-sprite-list.png\" alt=\"Die Figuren-Liste zeigt die duplizierte Figur mit einem neuen Namen.\" width=\"300px\" /></p>\n\n<p>Deine zweite Figur hat genau denselben Code wie die erste Figur. Führe das Programm erst aus, wenn du begonnen hast, den Code der zweiten Figur zu ändern. Möglicherweise siehst du die zweite Figur nicht, weil es sich unter der ersten Figur befindet.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"teste-deine-albernen-augen\">Teste deine albernen Augen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge, um dein Projekt zu testen. Folgen die albernen Augen deinem Mauszeiger, wenn du die Maus bewegst?</p>\n\n<p><strong>Tipp:</strong> Du musst den Mauszeiger nicht unbedingt auf der Bühne halten. Die Augen folgen deinem Mauszeiger, während du in Scratch weiter programmierst.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Debug:</strong> Möglicherweise findest du in deinem Projekt einige Fehler, die du beheben könntest. Hier sind einige häufige Fehler:</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Augen bewegen sich nicht\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Stelle sicher, dass du den Code zu den <strong>Augapfel</strong> Figuren hinzugefügt und <strong>auf die grüne Flagge</strong> geklickt hast. Dein Code wird erst ausgeführt, wenn du auf die grüne Flagge klickst.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Augen zeigen von der Maus weg\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Überprüfe bei den <strong>Augapfel</strong> Kostümen, ob sich die Pupille auf der rechten Seite befindet (hinter dem blauen Kreuz in der Mitte des Kostüms).</p>\n\n<p>Die <strong>Augapfel</strong> Figuren haben den <code class=\"block3motion\">Drehtyp</code> <code class=\"block3motion\">rundherum</code>, damit sie in jede Richtung rotieren können.</p>\n\n<p>Wenn die <strong>Augäpfel</strong> sich <code>in die Richtung</code> des <code class=\"block3motion\">Mauszeigers</code> drehen, sind die Pupillen dem Mauszeiger am nächsten.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eye-right.gif\" alt=\"Platzieren der Pupille auf der rechten Seite eines Augapfelkostüms.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eye-costume.png\" alt=\"Ein Augapfelkostüm mit der Pupille auf der rechten Seite.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Augen springen über die Bühne\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Überprüfe, ob die <strong>Augapfel</strong> Kostüme zentriert sind. Um ein Kostüm zu zentrieren, ziehe das Kostüm so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eye-centered.gif\" alt=\"Zentrieren eines Augapfelkostüms im Zeichnen-Editor.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/eye-costume.png\" alt=\"Ein im Zeichnen-Editor zentriertes Augapfelkostüm.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Figur ist vor den Augen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Wenn du eine Figur ziehst, um es auf der Bühne zu positionieren, bewegt es sich vor die anderen Figuren.</p>\n\n<p>So stellst du deine <strong>Charakter</strong>figur <code class=\"block3looks\">hinten</code> an:</p>\n\n<pre><code class=\"language-blocks3\">when green flag clicked\nforever\ngo to [hinterster v] layer // hinter allen anderen Figuren\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Figur und die Augen folgen dem Mauszeiger\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Hast du die Augen als Kostüme für deinen <strong>-Charakter</strong> hinzugefügt, anstatt als Kostüme für andere Figuren? Das kannst du beheben.</p>\n\n<p>Eine Möglichkeit, das Problem zu beheben, besteht darin, die <strong>Charakter</strong>figur zu duplizieren und die Kopie dann in <code>Augapfel</code> umzubenennen. Lösche dann die <strong>Augapfel</strong> Kostüme aus der <strong>Charakter</strong>figur und lösche die <strong>Charakter</strong>kostüme aus der <strong>Augapfel</strong> Figur. Anschließend kannst du die <strong>Augapfel</strong> Figur duplizieren und die Kopie <code>Augapfel 2</code> nennen.</p>\n\n<p>Der Code zum <code class=\"block3motion\">drehe dich zu</code> <code class=\"block3motion\">Mauszeiger</code> sollte auf den <strong>Augapfel</strong> Figuren sein und nicht auf der <strong>Charakter</strong>figur.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Die Figur folgt dem Mauszeiger (die Augen jedoch nicht)\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du musst den <code class=\"block3motion\">drehe dich zu</code> Code zu den einzelnen <strong>Augapfel</strong> Figuren hinzufügen, nicht zu deiner <strong>Charakter</strong>figur!</p>\n\n<p>Um den Code zu kopieren, kannst du den Code aus dem Codebereich für deine <strong>Charakter</strong>figur auf die <strong>Augapfel</strong> Figuren in der Figurenliste ziehen.</p>\n\n<p>Du musst auch das Skript aus der <strong>Charakter</strong>figur löschen. Ziehe dazu das Skript in das Blöckemenü.</p>\n\n  </div>\n</div>\n\n<p>Möglicherweise findest du einen Fehler, der hier nicht aufgeführt ist. Kannst du herausfinden, wie du das Problem selbst beheben kannst?</p>\n\n<p>Wir freuen uns, von deinen Fehlern zu hören und wie du sie behoben hast. Verwende die Schaltfläche <strong>Feedback senden</strong> unten auf dieser Seite und teile uns mit, ob du in deinem Projekt einen anderen Fehler gefunden hast.</p>\n\n  </div>\n</div>\n\n",
+            "position": 2,
+            "challenge": false,
+            "completion": [
+              "engaged"
+            ],
+            "ingredients": [
+              "scratch3-duplicate-sprite"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Figureneffekte hinzufügen",
+            "content": "<h2 id=\"figureneffekte\">Figureneffekte</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Du kannst es einrichten, dass deine <strong>Charakter</strong>figur und <strong>alberne Augen</strong> Figuren ihr <code class=\"block3looks\">Aussehen</code> ändern, wenn du darauf klickst.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/character-graphic-effects.png\" alt=\"Ein Charakter und Augen mit Grafikeffekten.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"alberne-augen-effekte\">Alberne Augen Effekte</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge deiner <strong>Augapfel</strong> Figur einen <code class=\"block3events\">Wenn diese Figur angeklickt wird</code> Block hinzu.</p>\n\n<p>Kannst du herausfinden, welchen Codeblock du darunter einfügen musst, um die Augenfarbe deiner Figur zu ändern, wenn du auf die <strong>Augapfel</strong> Figur klickst?</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ändere Grafikeffekte, wenn auf die Figur geklickt wird\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <pre><code class=\"language-blocks3\">when this sprite clicked  \nchange [Farbe v] effect by (25)\n</code></pre>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wenn beide Augäpfel den gleichen Effekt haben sollen, musst du dein Skript in die <strong>Augapfel 2</strong> Figur kopieren.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Kopiere Code von einer Figur zu einer anderen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-copy-code/308a28e47d3d64ff30c072ea2cb8eec539569c8f/de-DE/images/drag-parrot-code.gif\" alt=\"Ziehe den Code aus dem Codebereich einer Figur zu einer anderen Figur in der Figurenliste und lasse den Code dann los.\" /></p>\n\n<p>Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"charaktereffekte\">Charaktereffekte</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke in der Figurenliste auf deinen <strong>Charakter</strong> und dann auf die Registerkarte <strong>Skripte</strong>.</p>\n\n<p>Füge dasselbe Skript hinzu, das du zum Ändern der Augenfarbe verwendet hast. Welche Grafikeffekte möchtest du für deinen <strong>Charakter</strong> ändern?</p>\n\n<p><strong>Wähle:</strong> Wähle einen Effekt im Dropdown-Menü im Block <code class=\"block3looks\">ändere Effekt Farbe um</code>. Experimentiere mit den Zahlen und Effekten, bis du eine Änderung erzielst, die dir gefällt.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Verwende Grafikeffekte\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Hahn-Effekte</strong>: <a href=\"https://scratch.mit.edu/projects/435730522/editor\" target=\"_blank\">Schaue hinein</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/435730522/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Die Blöcke <code class=\"block3looks\">setze Effekt Farbe auf</code> und <code class=\"block3looks\">ändere Effekt Farbe um</code> verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann:</p>\n\n<ul>\n  <li><code class=\"block3looks\">Farbe</code>: von <code>0</code> bis <code>199</code> (größere Zahlen werden umgebrochen, also ist <code>200</code> dasselbe wie <code>0</code>)</li>\n  <li><code class=\"block3looks\">Fischauge</code>: <code>0</code> bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt</li>\n  <li><code class=\"block3looks\">Wirbel</code>: <code>0</code> bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts</li>\n  <li><code class=\"block3looks\">Pixel</code>: <code>0</code> bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel</li>\n  <li><code class=\"block3looks\">Mosaik</code>: <code>0</code> bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien</li>\n  <li><code class=\"block3looks\">Helligkeit</code>: <code>0</code> bedeutet keinen Effekt, Zahlen bis <code>100</code> machen die Figur heller und negative Zahlen bis <code>-100</code> machen die Figur dunkler</li>\n  <li><code class=\"block3looks\">Durchsichtigkeit</code>: <code>0</code> bedeutet keinen Effekt, und Zahlen bis <code>100</code> machen die Figur transparenter</li>\n</ul>\n\n<p>Probiere die Effekte aus und <code class=\"block3looks\">setze</code> verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen.</p>\n\n<pre><code class=\"language-blocks3\">set [Wirbel v] effect to (100)\n\nset [Pixel v] effect to (50)\n</code></pre>\n\n<p><strong>Tipp:</strong> Ein <code class=\"block3looks\">Effekt Farbe</code> von <code>225</code> ist identisch zu einem <code class=\"block3looks\">Effekt Farbe</code> von <code>25</code>, du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde.</p>\n\n<pre><code class=\"language-blocks3\">forever\nchange [Farbe v] effect by [25]\nwait [0.5] seconds\n</code></pre>\n\n<p>Verwende den Block <code class=\"block3looks\">schalte Grafikeffekte aus</code>, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht.</p>\n\n<p>Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block <code class=\"block3looks\">setze Effekt ... auf</code> unter einem Block <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>:</p>\n\n<pre><code class=\"language-blocks3\">when green flag clicked\nset [Durchsichtigkeit v] effect to (25)\n</code></pre>\n\n<p><strong>Tipp:</strong>Du kannst die Blöcke <code class=\"block3looks\">setze</code> und <code class=\"block3looks\">ändere</code> Effekt auch für die <strong>Bühne</strong> verwenden.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"ein-accessoire\">Ein Accessoire</h3>\n\n<p>Füge nun ein <strong>Accessoire</strong> hinzu, beispielsweise einen Hut, der sich ändert, wenn du darauf klickst – verwende den Block <code class=\"block3looks\">wechsle zum nächsten Kostüm</code>.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Wähle:</strong> Füge ein Accessoire- oder Kostümwechsel deiner Wahl hinzu.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/accessory-sprite.png\" alt=\"Figur mit Zubehör.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Lasse eine Figur ihr Kostüm wechseln, wenn du darauf klickst\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p><strong>Gobo mit Kostümzubehör</strong>: <a href=\"https://scratch.mit.edu/projects/496334057/editor\" target=\"_blank\">Schau rein</a></p>\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/496334057/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Für einige Figuren steht bereits eine Kostümauswahl zur Verfügung.</p>\n\n<p>Du kannst Code hinzufügen, um das Kostüm einer Figur zum nächsten Kostüm zu wechseln (<code class=\"block3looks\">wechsle zum nächsten Kostüm</code>), wenn du auf die Figur klickst:</p>\n\n<pre><code class=\"language-blocks3\">when this sprite clicked\nnext costume\n</code></pre>\n\n  </div>\n</div>\n\n<p>Wenn für deine Figur keine Kostümauswahl verfügbar ist oder du weitere hinzufügen möchtest, kannst du einer Figur ein beliebiges Kostüm hinzufügen.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Einer Figur ein Kostüm hinzufügen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Klicke auf den Reiter <strong>Kostüme</strong> und dann auf <strong>Wähle ein Kostüm</strong>, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-add-costumes-to-a-sprite/75e3a61b6f886579877e3928c5c7185c7c496bed/de-DE/images/choose-a-costume.png\" alt=\"Das Symbol „Kostüm auswählen“ ist hervorgehoben.\" /></p>\n\n<p>Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt.</p>\n\n<p><strong>Tipp:</strong> Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Arbeite an deinen Figuren, bis sie wie gewünscht interagieren.</p>\n\n<p><strong>Tipp:</strong> Probiere jeweils nur eine Änderung aus und teste, was sie bewirkt, damit du jede Änderung leicht erkennen und alles rückgängig machen kannst, was dir nicht gefällt.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Fehlersuche:</strong></p>\n\n<p>Wenn du der falschen Figur Code hinzufügst, kannst du das beheben:</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Kopiere Code von einer Figur zu einer anderen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-copy-code/308a28e47d3d64ff30c072ea2cb8eec539569c8f/de-DE/images/drag-parrot-code.gif\" alt=\"Ziehe den Code aus dem Codebereich einer Figur zu einer anderen Figur in der Figurenliste und lasse den Code dann los.\" /></p>\n\n<p>Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast.</p>\n\n  </div>\n</div>\n\n<p>Bei Bedarf kannst du die Grafikeffekte zurücksetzen:</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ich möchte diese Grafikeffekte nicht\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Um die Grafikeffekte jederzeit zurückzusetzen, klicke im Blockmenü <code class=\"block3looks\">Aussehen</code> auf den Block <code class=\"block3looks\">schalte Grafikeffekte aus</code>. Durch Klicken auf die grüne Flagge werden auch Grafikeffekte gelöscht.</p>\n\n<pre><code class=\"language-blocks3\">clear graphic effects\n</code></pre>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Teste dein Projekt erneut, aber diesmal im Vollbildmodus, damit du sehen kannst, wie es auf den Betrachter wirkt.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ausführen eines Scratch-Projekts im Vollbildmodus\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Um dein Scratch-Projekt im Vollbildmodus auszuführen, gehe in den Bereich über der Bühne und klicke auf das Symbol mit den vier nach außen gerichteten Pfeilen. Dies ist das Symbol <strong>Vollbildsteuerung</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-full-screen/6811db768feb3779641dfc677afef71c1c0a3e63/de-DE/images/fullscreen_frank.png\" alt=\"Das Symbol „Vollbildsteuerung“ ist hervorgehoben, oberhalb der Bühne in der rechten Ecke.\" /></p>\n\n<p>Um den Vollbildmodus zu verlassen, klicke erneut auf das Symbol <strong>Vollbildsteuerung</strong>. Es hat vier Pfeile, die nach innen zeigen.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\nIndem du dein Projekt im Vollbildmodus anzeigst, siehst du deine Arbeit aus der Perspektive eines Benutzers, der mit deinem Projekt spielt. <strong>Benutzerinteraktion</strong> oder <strong>Nutzerinteraktion</strong> ist bei der digitalen Erstellung wichtig. \n</p>\n\n",
+            "position": 3,
+            "challenge": false,
+            "completion": [
+              "internal"
+            ],
+            "ingredients": [
+              "scratch3-copy-code",
+              "scratch3-graphic-effects",
+              "scratch3-add-costumes-to-a-sprite",
+              "scratch3-full-screen"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Kurzes Quiz",
+            "content": "",
+            "position": 4,
+            "challenge": false,
+            "completion": [
+              "external"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": "quiz1"
+          },
+          {
+            "quiz": false,
+            "title": "Verbessere Dein Projekt",
+            "content": "<h2 id=\"verbessere-dein-projekt\">Verbessere Dein Projekt</h2>\n\n<p>Wenn du Zeit hast, kannst du dein Projekt erweitern.</p>\n\n<h3 id=\"bühneneffekte-hinzufügen\">Bühneneffekte hinzufügen</h3>\n\n<p>Lass dein Projekt etwas tun, wenn du auf die <strong>Bühne</strong> klickst.</p>\n\n<p width=\"300px\"><img src=\"https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/stage-effects.png\" alt=\"Die Bühne mit grafischen Effekten.\" width=\"300px\" /></p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klick auf den Bühnenbereich und dann auf die Registerkarte <strong>Skripte</strong>, um Code zur <strong>Bühne</strong> hinzuzufügen.</p>\n\n<p><strong>Wähle:</strong> Wähle aus, was du ändern möchtest, wenn auf die <strong>Bühne</strong> geklickt wird.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ändere Grafikeffekte, wenn auf die Bühne geklickt wird\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <pre><code class=\"language-blocks3\">when stage clicked\nchange [Farbe v] effect by [25]\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Hintergrund wechseln, wenn auf die Bühne geklickt wird\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <pre><code class=\"language-blocks3\">when stage clicked\nnext backdrop\n</code></pre>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"mehr-hinzufügen\">Mehr hinzufügen</h3>\n\n<p>Du könntest auch hinzufügen:</p>\n<ul>\n  <li>Weitere Körperteile</li>\n  <li>Mehr Figuren mit albernen Augen</li>\n  <li>Weitere Hintergründe</li>\n  <li>Mehr Accessoires oder füge deinem Accessoire weitere Kostüme hinzu</li>\n</ul>\n\n<p>Dieser <strong>Sporg</strong> Charakter hat auch Arme, die <code class=\"block3motion\">sich zum Mauszeiger drehen</code>.</p>\n\n<p><strong>Sporg</strong>: <a href=\"https://scratch.mit.edu/projects/1092540444/editor\" target=\"_blank\">Schau rein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/1092540444/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Wenn du andere Körperteile hinzufügst, musst du sie an dem Punkt zentrieren, von dem aus sie rotieren sollen. Beispielsweise würde ein Arm von der Schulter aus rotieren.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Kostüme zentrieren\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Figuren drehen sich um ihren Mittelpunkt. Im Mal-Editor erkennst du, ob deine Figur zentriert ist, indem du das kleine graue Fadenkreuz ansiehst:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/crosshair.png\" alt=\"Das Fadenkreuz.\" width=\"200px\" /></p>\n\n<p>Wenn es sich nicht in der Mitte des Kostüms befindet, hebe das gesamte Kostüm mithilfe des <strong>Auswählen</strong>-Tools hervor. Daraufhin erscheint ein Kreuz in der Mitte des hervorgehobenen Kostüms:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/off-centre-crosshair.png\" alt=\"Das Kreuz in der Mitte des Kostüms ist nicht am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n\n<p>Ziehe das Kostüm, bis das Kreuz genau auf dem Fadenkreuz liegt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/centre-crosshair.png\" alt=\"Das Kreuz des Kostüms ist jetzt am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n\n<p>Manchmal möchtest du vielleicht einen Drehpunkt wählen, der nicht genau in der Mitte des Kostüms liegt. Richte in diesem Fall den gewünschten Drehpunkt des Kostüms am Fadenkreuz im Mal-Editor aus:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/rotation-point.png\" alt=\"Ein Drehpunkt am unteren Rand des Kostüms ist am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"hole-dir-ideen\">Hole dir Ideen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Jedes Projekt im Scratch-Studio <a href=\"https://scratch.mit.edu/studios/29029028\" target=\"_blank\">„Alberne Augen – Beispiele“</a> hat einen Link <strong>Schau hinein</strong>, mit dem du das Projekt im Scratch-Editor öffnen und dir den Code ansehen kannst, um Ideen zu bekommen und zu sehen, wie das Projekt funktioniert.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wirf einen Blick auf unser Scratch-Studio <a href=\"https://scratch.mit.edu/studios/29120534\" target=\"_blank\">„Alberne Augen – Community“</a>, um von Community-Mitgliedern erstellte Projekte anzuzeigen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du kannst dir auch die Remixe für das <a href=\"https://scratch.mit.edu/projects/582221984/remixes\" target=\"_blank\">Alberne Augen Starter-Projekt</a> ansehen, um zu sehen, was andere Ersteller gemacht haben.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Speichere dein Projekt\n  </h3>\n</div>\n\n",
+            "position": 5,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "scratch-crosshair"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Teile und spiele",
+            "content": "<h2 id=\"teile-und-spiele\">Teile und spiele</h2>\n\n<p>Wenn du Mitglied in einem Club bist, warum teilst du dein Projekt nicht mit Freunden und Kollegen?</p>\n\n<p>Du könntest auch deiner Familie zeigen, wie dein Projekt funktioniert.</p>\n\n<p>Wenn du ein Scratch-Konto hast, könnest du dein Projekt über Scratch teilen. Du könntest einen Link an Personen senden, die du kennst, und die gesamte Scratch-Community kann dein Projekt finden und ausprobieren.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Ein Scratch-Projekt teilen\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Bitte stelle sicher, dass du <strong>keine</strong> persönlichen Informationen über dich selbst weitergibst, wenn du deine Scratch-Projekte teilst.</p>\n\n<ul>\n  <li>Gib deinem Scratch-Projekt einen Namen.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/name_file.gif\" alt=\"Ändere &quot;Ohne Titel&quot; in &quot;Walking Cat&quot;, um das Projekt im Feld links neben der orangefarbenen Schaltfläche „Teilen“ oben auf dem Bildschirm zu benennen.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/name_file.png\" alt=\"Das Projektnamenfeld mit dem hervorgehobenen neuen Namen „Walking Cat“ links neben der orangefarbenen Schaltfläche „Teilen“ oben auf dem Bildschirm.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Klicke auf die Schaltfläche <strong>Teilen</strong>, um das Projekt öffentlich zu machen.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/share.gif\" alt=\"Klicke auf die orangefarbene Schaltfläche „Teilen“ oben auf dem Bildschirm. Dann erscheint die Meldung &quot;Dein Projekt ist jetzt freigegeben.&quot;\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/share.png\" alt=\"Die orangefarbene Schaltfläche „Teilen“ oben auf dem Bildschirm ist hervorgehoben.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Wenn du möchtest, kannst du im Feld <strong>Anweisungen</strong> Anweisungen hinzufügen, um anderen Personen die Verwendung deines Projekts zu erklären.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/add_instructions.gif\" alt=\"Gib &quot;Watch the cat walk&quot; in das Feld „Anweisungen“ ein.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/add_instructions.png\" alt=\"Im Feld „Anweisungen“ wird die eingegebene Zeichenfolge &quot;Watch the cat walk&quot; angezeigt.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Du kannst auch das Feld „<strong>Anmerkungen und Credits</strong>“ ausfüllen: Wenn du ein Originalprojekt erstellt hast, kannst du einige kurze Kommentare schreiben, oder wenn du ein Projekt geremixt hast, kannst du den ursprünglichen Ersteller angeben.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/notes_and_credits.gif\" alt=\"Gib &quot;Erstellt von der Raspberry Pi Foundation&quot; in das Feld „Hinweise und Credits“ ein.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/notes_and_credits.png\" alt=\"Das Feld „Anmerkungen und Credits“ zeigt die Eingabe „ &quot;Hergestellt von der Raspberry Pi Foundation&quot; “ an.\" width=\"300px\" /></p>\n\n</div>\n\n<ul>\n  <li>Klicke auf die Schaltfläche <strong>Link kopieren</strong>, um den Link zu deinem Projekt zu erhalten. Du kannst diesen Link per E-Mail, Nachricht oder über soziale Medien an andere Personen senden.</li>\n</ul>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/copy_link.gif\" alt=\"Klicke auf „Link kopieren“, wodurch ein Dialogfeld „Link kopieren“ geöffnet wird. Markiere dann im Dialogfeld die URL unter „Link“ und wähle „Link kopieren“ aus.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/copy_link.png\" alt=\"Die Schaltfläche „Link kopieren“ ist im Dialogfeld „Link kopieren“ hervorgehoben.\" width=\"300px\" /></p>\n\n</div>\n\n<p>Scratch bietet die Möglichkeit, eigene und die Projekte anderer zu kommentieren. Wenn du nicht möchtest, dass andere Personen dein Projekt kommentieren, solltest du die Kommentarfunktion deaktivieren. Um das Kommentieren auszuschalten, stelle den Schieberegler über dem Feld <strong>Kommentare</strong> auf <strong>Kommentieren aus</strong>.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/share-scratch/92eaab07263c0115502f805f102cf560ca707712/de-DE/images/comments-off.png\" alt=\"Der Schieberegler über dem Feld „Kommentare“ befindet sich in der Position „Kommentieren aus“. Es wird die folgende Meldung angezeigt: &quot;Leider wurde die Kommentarfunktion für dieses Projekt deaktiviert.&quot;\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<p>Warum nicht deine Freunde einladen, ein Projekt zu erstellen? Lass sie wissen, wie viel Spaß du hattest.</p>\n\n<p>Wenn du ein Scratch-Konto hast und dein „Alberne Augen“-Projekt geteilt habst, achte auf die Kommentare anderer zu deiner Kreation. Feedback ist eine großartige Möglichkeit, über deine Arbeit nachzudenken. Ignoriere alle Kommentare, die nicht hilfreich oder irrelevant sind.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Kommentare und Feedback in Scratch\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>In Scratch kannst du Kommentare zu Projekten posten (eigene Projekte und Projekte von Anderen). Falls du nicht willst, dass jemand dein Projekt kommentiert, schalte die Kommentare aus. Gehe dazu zur Projektseite und bewege den Schieberegler oberhalb des Felds <strong>Kommentare</strong> auf <strong>Kommentarfunktion aus</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/comments-off.png\" alt=\"Der Schieberegler oberhalb des Felds „Kommentare“ ist in der Position „Kommentarfunktion aus“. Diese Nachricht wird angezeigt: &quot;Kommentarfunktion für dieses Projekt deaktiviert.&quot;\" width=\"300px\" /></p>\n\n<p>Wenn du keine Bedenken hast, dass dein Projekt kommentiert wird, kannst du den ersten Kommentar posten:</p>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_comments.gif\" alt=\"Tippe in das Feld „Kommentare“ den Text &quot;Das ist meine Animation einer Katze, die auf zwei Beinen läuft&quot; und klicke dann darunter zum Posten auf den Knopf „Absenden“. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_comments.png\" alt=\"Klicke auf den blauen Knopf „Absenden“, um den Kommentar zu posten. Der Schieberegler über dem Feld „Kommentare“ steht auf „Kommentarfunktion ein“.\" width=\"300px\" /></p>\n\n</div>\n\n<p>Wenn du einen Kommentar oder ein Projekt gemein, beleidigend, zu gewalttätig oder auf andere Weise unangebracht findest, melde ihn über den Knopf <strong>Melden</strong> an das Scratch-Team. Klicke auf den Knopf <strong>Melden</strong> oberhalb des Kommentars, um ihn zu melden. Klicke auf den Knopf <strong>Melden</strong> auf der Projektseite, um es zu melden:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/de-DE/images/add_report.png\" alt=\"Hervorgehobener Knopf „Melden“.\" width=\"250px\" /></p>\n\n<p>Lies die <a href=\"https://scratch.mit.edu/community_guidelines\" target=\"_blank\">Scratch-Community-Regeln</a>, um zu erfahren, wie du und Andere dafür sorgt, dass die Community ein einladender und kreativer Ort bleibt.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Begeistere die Raspberry Pi Foundation Community mit deinem Projekt!</p>\n\n<p>Um dein Projekt an unserem <a href=\"https://scratch.mit.edu/studios/29120534\" target=\"_blank\">„Alberne Augen“-Scratch-Studio</a> einzureichen, damit andere es sehen können, fülle bitte <a href=\"https://form.raspberrypi.org/f/community-project-submissions\" target=\"_blank\">dieses Formular</a> aus.</p>\n\n  </div>\n</div>\n\n<h3 id=\"community-einreichungen\">Community Einreichungen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Schau dir diese fabelhaften Community Projekte aus unserem <a href=\"https://scratch.mit.edu/studios/29120534\" target=\"_blank\">„Alberne Augen – Community“-Scratch-Studio</a> an. Klick auf die Hintergründe, Augäpfel und Accessoires, um mit ihnen zu interagieren:</p>\n\n<p><strong>Ladybug scare</strong> (Marienkäfer-Schrecken) <a href=\"https://scratch.mit.edu/projects/517735755/editor\" target=\"_blank\">Schau hinein</a></p>\n\n<p>Klicke auf Bühnenbilder:</p>\n\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/517735755/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>Butterfly and bear</strong> (Schmetterling und Bär) <a href=\"https://scratch.mit.edu/projects/569624392/editor\" target=\"_blank\">Schau hinein</a></p>\n\n<p>Klicke auf den Bären und den Schmetterling:</p>\n\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/569624392/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p><strong>Pixel dot</strong> <a href=\"https://scratch.mit.edu/projects/747156758/editor\" target=\"_blank\">Schau hinein</a></p>\n\n<p>Klick auf die grüne Flagge, um alles verpixelt anzuzeigen:</p>\n\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/747156758/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du kannst dir auch die Remixe für das <a href=\"https://scratch.mit.edu/projects/582221984/remixes\" target=\"_blank\">Alberne Augen Starter-Projekt</a> ansehen, um zu sehen, was andere Ersteller gemacht haben.</p>\n\n  </div>\n</div>\n\n",
+            "position": 6,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "share-scratch",
+              "comments-feedback-scratch"
+            ],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Alberne Augen",
+        "listed": true,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "games art scratch Alberne Augen",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/silly-eyes/2938546aacb4c9b39b5ef6b1d3dc98137c8a1943/de-DE/images/banner.png",
+        "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Alberne Augen",
+        "plainText": "Das wirst Du machen Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken sie zum Leben. Du wirst: Ein Projekt machen, das Spaß macht Eine eigene Figur erstellen Dein Projekt mit Figuren, Skripten und Schleifen programmieren Abspielen ▶️ Gobo beobachtet: Schau hinein Bewege die Maus (oder, wenn du ein Tablet verwendest, deine Finger) über die Bühne. Was passiert, wenn du dich zwischen Gobos Augen bewegst? Was passiert, wenn du auf verschiedene Teile des Projekts klickst? Hole dir Ideen 💭 Probiere diese Beispielprojekte aus, um Ideen zu bekommen: ⭐ Teile dein fertiges Albernes-Augen-Projekt - mit etwas Glück wird es hier vorgestellt. Iss Donut nicht: Schau hinein Sporg: Schau hinein ⭐ Alberner Kugelfisch (vorgestelltes Community-Projekt) Klicke auf den Kugelfisch, die Mütze, den Schal, den Hintergrund und die Augäpfel: ⭐ Alberner Torwarthandschuh von NinjaTR3R (vorgestelltes Community-Projekt) Klicke auf den Hintergrund und die Augäpfel: Hole dir Ideen 💭 Entwerfe und erstelle einen Charakter mit albernen Augen 👀. Die großen, albernen Augen der Figur folgen dem Mauszeiger und erwecken deine Figur zum Leben. Weitere Ideen findest du in Beispielprojekten im Scratch-Studio „Alberne Augen – Beispiele“ (Schau hinein): https://scratch.mit.edu/studios/ Dein Charakter Nutze deine Designfähigkeiten, um ein Charakter und einen passenden Hintergrund hinzuzufügen. Design bedeutet, Entscheidungen zu treffen über das Aussehen und die Funktion eines Projekts. Öffne das Starterprojekt Öffne das Alberne Augen Starterprojekt. Scratch wird in einem anderen Tab im Browser geöffnet. Offline arbeiten Besuche unsere Anleitung ‘Erste Schritte mit Scratch’ für mehr Information zum Einrichten von Scratch für die offline Benutzung. ⏱️ Wenig Zeit? Du kannst mit einem der Beispiele beginnen. Wähle deine Figur und deinen Hintergrund Wähle: Füge für dein Alberne Augen Projekt eine Figur und einen Hintergrund hinzu. Wie sieht dein Charakter aus? Eine Person 🧜🏽‍♀️, ein Tier 🐶 oder ein Gegenstand 🧸. Wo soll dein Charakter leben? Irgendwo vernünftig 🏠 albern 🎪. Eine Scratch-Figur aus der Bibliothek hinzufügen Klicke auf Figur wählen um die Bibliothek aller in Scratch vorhandener Figuren anzuzeigen. Du kannst die Figuren themenbezogen suchen und ansehen. Klicke auf eine Figur, um sie in dein Projekt aufzunehmen. Ein Bühnenbild aus der Scratch-Bibliothek auswählen Klicke unten rechts auf Bühnenbild wählen. Du kannst ein Bühnenbild suchen oder die Auswahl durch Kategorien oder Themen begrenzen. Klicke auf das Bühnenbild um es auszuwählen. Hintergründe und Figuren mit Formen erstellen Du kannst Hintergründe und Kostüme für Figuren erstellen, indem du im Malen-Fenster Formen verwendest. Gehe zum Menü Figur wählen oder Hintergrund wählen und wähle die Option Malen: Wähle aus, welche(s) Werkzeug(e) du zum Erstellen der gewünschten Form(en) verwenden möchtest: Kreis: Klicke auf das Werkzeug Kreis, um einen Kreis zu zeichnen. Halte die Umschalttaste auf deiner Tastatur gedrückt, um einen perfekten Kreis zu zeichnen. Rechteck: Klicke auf das Werkzeug Rechteck, um ein Rechteck zu zeichnen. Halte die Umschalttaste gedrückt, um ein Quadrat zu zeichnen. Dreieck: Verwende das Werkzeug Rechteck, um ein Rechteck oder ein Quadrat zu zeichnen. Klicke auf das Werkzeug Verformen und wähle die Ecke aus, die du entfernen möchtest. Klicke auf das Werkzeug Löschen, um die Form in ein Dreieck umzuwandeln. Du kannst das Werkzeug Fülleimer verwenden, um die Farbe einer Form zu ändern: Möglicherweise musst du die Werkzeuge nach vorne und nach hinten verwenden, um deine Formen nach vorne oder hinten zu verschieben, damit sie in deinem Bild richtig positioniert sind: Du kannst alle Formen auswählen und Gruppieren, sodass du sie als eine Form anpassen oder verschieben kannst: Hier ist ein Beispiel für eine Figur, die mit den Werkzeugen Kreis und Rechteck erstellt wurde: Schwein: Schau rein Denke daran, den Kostümen und Hintergründen, die du im Malen-Fenster erstellst, einen Namen zu geben. Hol dir eine Überraschungsfigur Du bist dir nicht sicher, welche Figur du wählen sollst? Im Menü Figur auswählen, wähle die Option Überraschung, um deinem Projekt eine Überraschungsfigur hinzuzufügen. Tipp: Wenn du im Zeichnen-Editor deine eigene Figur erstellst, füge noch keine Augen hinzu, da es sich dabei um separate Figuren handeln muss. Ändere die Größe deiner Figur Ändere im Figurenbereich die Zahl in der Eigenschaft Größe in eine Zahl, mit der deine Figur die Bühne gut ausfüllt. Schau auf die Bühne. Du wirst deinen großen Charakter und den ausgewählten Hintergrund sehen. Mach alberne Augen Mach alberne Augen! Jedes Auge muss eine separate Figur sein, damit es sich separat bewegen kann. Zeichne einen Augapfel Verwende die Option Malen, um eine neue Figur zu erstellen. Der Zeichnen-Editor wird geöffnet und du kannst dort das Augapfel-Kostüm deiner Figur erstellen. Es ist wirklich wichtig, dass: Die schwarze Pupille und die farbige Iris zur rechten Seite des Augapfel Kostüms schauen Das Augapfel-Kostüm zentriert ist Wähle: Zeichne einen Augapfel oder beginne mit einer runden Figur. Zeichne einen Augapfel im Zeichnen-Editor Wählen das Werkzeug Kreis. Um einen perfekten Kreis zu zeichnen, halte die Umschalttaste auf der Tastatur gedrückt, während du mit dem Werkzeug Kreis zeichnest. Wenn du ein Tablet verwendest, versuche, einen möglichst perfekten Kreis zu zeichnen. In diesem Beispiel setzen wir die Randfarbe auf Schwarz und die Füllfarbe des Augapfels auf Weiß: Nutze das Farbauswahlmenü für Füllfarbe und Randfarbe. Um Schwarz zu erzeugen, verschiebe die Werte Sättigung und Helligkeit auf . Um Weiß zu erzeugen, schiebe die Sättigung auf  und die Helligkeit auf . Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt. Zeichne einen kleineren perfekten Kreis und positioniere ihn auf der rechten Seite des Augapfels: Du kannst auch Kreise in Kreise zeichnen oder Farbe verwenden, um unterschiedliche Effekte zu erzielen. Verwandle ein rundes Kostüm in einen Augapfel In Scratch gibt es Kostüme, die du bearbeiten kannst um deiner Figur lustige Augen zu verpassen. Klicke auf das Symbol Wähle ein Kostüm, um die Scratch-Kostümbibliothek anzuzeigen. Klick auf das Kostüm, das du deiner Figur hinzufügen möchtest. Verwende den Zeichnen-Editor, um das Kostüm zu ändern. Du könntest Kreise hinzufügen, eine andere Füllfarbe wählen oder Teile des Kostüms entfernen, um es in ein albernes Auge zu verwandeln. Stelle sicher, dass der Augapfel zentriert ist – verschiebe ihn so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt. Tipp: Die schwarze Pupille und die farbige Iris müssen auf der rechten Seite des Kostüms positioniert werden, sodass der Augapfel dem Mauszeiger folgt. Gib deiner Figur im Figurenbereich den Namen Augapfel. Ziehe die Figur Augapfel, um sie auf der Bühne zu positionieren, und ändere ihre Größe, damit sie zu deiner Figur passt. Richte nun den Blick des Auges auf den Mauszeiger, damit der Benutzer mit deinem Projekt interagieren kann. Benutzer oder Nutzer bezeichnet die Person, die das Projekt verwendet (nicht nur erstellt), und Benutzerinteraktion oder Nutzerinteraktion gibt an, wie das Projekt auf Aktionen des Benutzers reagiert, z. B. wenn dieser die Maus bewegt oder auf dem Bildschirm klickt. Programmiere deinen Augapfel Füge ein Skript hinzu und setze Drehtyp auf rundherum, damit der Augapfel sich auf den Mauszeiger dreht, und dies fortlaufend wiederholt. Drehe eine Figur zum Mauszeiger when flag clicked set rotation style [rundherum v] forever point towards (Mauszeiger v) end Füge einen weiteren Augapfel hinzu Um ein weiteres Auge hinzuzufügen, klicke mit der rechten Maustaste (oder tippe und halte auf einem Tablet) auf die Figur Augapfel in der Figurenliste und wähle Duplizieren. Eine Figur duplizieren (kopieren) Klicke mit der rechten Maustaste auf deine erste Figur in der Figuren-Liste unter der Bühne (oder auf einem Tablet: tippe und halte die Figur): Wähle duplizieren. Dadurch wird eine Kopie deiner ersten Figur mit dem Suffix „“ erstellt: Eine Figur umbenennen: Der Name deiner Figur ändert sich in der Figuren-Liste: Deine zweite Figur hat genau denselben Code wie die erste Figur. Führe das Programm erst aus, wenn du begonnen hast, den Code der zweiten Figur zu ändern. Möglicherweise siehst du die zweite Figur nicht, weil es sich unter der ersten Figur befindet. Teste deine albernen Augen Test: Klicke auf die grüne Flagge, um dein Projekt zu testen. Folgen die albernen Augen deinem Mauszeiger, wenn du die Maus bewegst? Tipp: Du musst den Mauszeiger nicht unbedingt auf der Bühne halten. Die Augen folgen deinem Mauszeiger, während du in Scratch weiter programmierst. Debug: Möglicherweise findest du in deinem Projekt einige Fehler, die du beheben könntest. Hier sind einige häufige Fehler: Die Augen bewegen sich nicht Stelle sicher, dass du den Code zu den Augapfel Figuren hinzugefügt und auf die grüne Flagge geklickt hast. Dein Code wird erst ausgeführt, wenn du auf die grüne Flagge klickst. Die Augen zeigen von der Maus weg Überprüfe bei den Augapfel Kostümen, ob sich die Pupille auf der rechten Seite befindet (hinter dem blauen Kreuz in der Mitte des Kostüms). Die Augapfel Figuren haben den Drehtyp rundherum, damit sie in jede Richtung rotieren können. Wenn die Augäpfel sich in die Richtung des Mauszeigers drehen, sind die Pupillen dem Mauszeiger am nächsten. Die Augen springen über die Bühne Überprüfe, ob die Augapfel Kostüme zentriert sind. Um ein Kostüm zu zentrieren, ziehe das Kostüm so, dass das blaue Kreuz im Kostüm mit dem grauen Fadenkreuz im Zeichnen-Editor übereinstimmt. Die Figur ist vor den Augen Wenn du eine Figur ziehst, um es auf der Bühne zu positionieren, bewegt es sich vor die anderen Figuren. So stellst du deine Charakterfigur hinten an: when green flag clicked forever go to [hinterster v] layer // hinter allen anderen Figuren Die Figur und die Augen folgen dem Mauszeiger Hast du die Augen als Kostüme für deinen -Charakter hinzugefügt, anstatt als Kostüme für andere Figuren? Das kannst du beheben. Eine Möglichkeit, das Problem zu beheben, besteht darin, die Charakterfigur zu duplizieren und die Kopie dann in Augapfel umzubenennen. Lösche dann die Augapfel Kostüme aus der Charakterfigur und lösche die Charakterkostüme aus der Augapfel Figur. Anschließend kannst du die Augapfel Figur duplizieren und die Kopie Augapfel  nennen. Der Code zum drehe dich zu Mauszeiger sollte auf den Augapfel Figuren sein und nicht auf der Charakterfigur. Die Figur folgt dem Mauszeiger (die Augen jedoch nicht) Du musst den drehe dich zu Code zu den einzelnen Augapfel Figuren hinzufügen, nicht zu deiner Charakterfigur! Um den Code zu kopieren, kannst du den Code aus dem Codebereich für deine Charakterfigur auf die Augapfel Figuren in der Figurenliste ziehen. Du musst auch das Skript aus der Charakterfigur löschen. Ziehe dazu das Skript in das Blöckemenü. Möglicherweise findest du einen Fehler, der hier nicht aufgeführt ist. Kannst du herausfinden, wie du das Problem selbst beheben kannst? Wir freuen uns, von deinen Fehlern zu hören und wie du sie behoben hast. Verwende die Schaltfläche Feedback senden unten auf dieser Seite und teile uns mit, ob du in deinem Projekt einen anderen Fehler gefunden hast. Figureneffekte Du kannst es einrichten, dass deine Charakterfigur und alberne Augen Figuren ihr Aussehen ändern, wenn du darauf klickst. Alberne Augen Effekte Füge deiner Augapfel Figur einen Wenn diese Figur angeklickt wird Block hinzu. Kannst du herausfinden, welchen Codeblock du darunter einfügen musst, um die Augenfarbe deiner Figur zu ändern, wenn du auf die Augapfel Figur klickst? Ändere Grafikeffekte, wenn auf die Figur geklickt wird when this sprite clicked change [Farbe v] effect by () Wenn beide Augäpfel den gleichen Effekt haben sollen, musst du dein Skript in die Augapfel  Figur kopieren. Kopiere Code von einer Figur zu einer anderen Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen: Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast. Charaktereffekte Klicke in der Figurenliste auf deinen Charakter und dann auf die Registerkarte Skripte. Füge dasselbe Skript hinzu, das du zum Ändern der Augenfarbe verwendet hast. Welche Grafikeffekte möchtest du für deinen Charakter ändern? Wähle: Wähle einen Effekt im Dropdown-Menü im Block ändere Effekt Farbe um. Experimentiere mit den Zahlen und Effekten, bis du eine Änderung erzielst, die dir gefällt. Verwende Grafikeffekte Hahn-Effekte: Schaue hinein Die Blöcke setze Effekt Farbe auf und ändere Effekt Farbe um verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann: Farbe: von  bis  (größere Zahlen werden umgebrochen, also ist  dasselbe wie ) Fischauge:  bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt Wirbel:  bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts Pixel:  bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel Mosaik:  bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien Helligkeit:  bedeutet keinen Effekt, Zahlen bis  machen die Figur heller und negative Zahlen bis - machen die Figur dunkler Durchsichtigkeit:  bedeutet keinen Effekt, und Zahlen bis  machen die Figur transparenter Probiere die Effekte aus und setze verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen. set [Wirbel v] effect to () set [Pixel v] effect to () Tipp: Ein Effekt Farbe von  ist identisch zu einem Effekt Farbe von , du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde. forever change [Farbe v] effect by [] wait [.] seconds Verwende den Block schalte Grafikeffekte aus, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht. Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block setze Effekt ... auf unter einem Block Wenn grüne Flagge angeklickt wird: when green flag clicked set [Durchsichtigkeit v] effect to () Tipp:Du kannst die Blöcke setze und ändere Effekt auch für die Bühne verwenden. Ein Accessoire Füge nun ein Accessoire hinzu, beispielsweise einen Hut, der sich ändert, wenn du darauf klickst – verwende den Block wechsle zum nächsten Kostüm. Wähle: Füge ein Accessoire- oder Kostümwechsel deiner Wahl hinzu. Lasse eine Figur ihr Kostüm wechseln, wenn du darauf klickst Gobo mit Kostümzubehör: Schau rein Für einige Figuren steht bereits eine Kostümauswahl zur Verfügung. Du kannst Code hinzufügen, um das Kostüm einer Figur zum nächsten Kostüm zu wechseln (wechsle zum nächsten Kostüm), wenn du auf die Figur klickst: when this sprite clicked next costume Wenn für deine Figur keine Kostümauswahl verfügbar ist oder du weitere hinzufügen möchtest, kannst du einer Figur ein beliebiges Kostüm hinzufügen. Einer Figur ein Kostüm hinzufügen Klicke auf den Reiter Kostüme und dann auf Wähle ein Kostüm, um der Figur ein beliebiges Kostüm aus der Kostümbibliothek hinzuzufügen: Positioniere das hinzugefügte Kostüm und ändere seine Größe im Mal-Editor so, dass es zu den anderen Kostümen der Figur passt. Tipp: Wenn Du eine Figur auf die Bühne stellst und dann ihr Kostüm änderst, kann es vorkommen, dass die Figur „springt“ oder ihre Größe ändert. Du musst die Kostüme im Mal-Editor positionieren und ihre Größe ändern, damit sie alle an der richtigen Position auf der Bühne erscheinen. Test: Arbeite an deinen Figuren, bis sie wie gewünscht interagieren. Tipp: Probiere jeweils nur eine Änderung aus und teste, was sie bewirkt, damit du jede Änderung leicht erkennen und alles rückgängig machen kannst, was dir nicht gefällt. Fehlersuche: Wenn du der falschen Figur Code hinzufügst, kannst du das beheben: Kopiere Code von einer Figur zu einer anderen Du kannst Code aus dem Codebereich von einer Figur in eine andere Figur in der Figurenliste ziehen: Beide Figuren enthalten die Codeblöcke, die du kopiert hast. Wenn du den Code von einer Figur zu einer anderen Figur verschieben möchtest, kannst du den Code aus der ersten Figur löschen, nachdem du ihn in die andere Figur kopiert hast. Bei Bedarf kannst du die Grafikeffekte zurücksetzen: Ich möchte diese Grafikeffekte nicht Um die Grafikeffekte jederzeit zurückzusetzen, klicke im Blockmenü Aussehen auf den Block schalte Grafikeffekte aus. Durch Klicken auf die grüne Flagge werden auch Grafikeffekte gelöscht. clear graphic effects Test: Teste dein Projekt erneut, aber diesmal im Vollbildmodus, damit du sehen kannst, wie es auf den Betrachter wirkt. Ausführen eines Scratch-Projekts im Vollbildmodus Um dein Scratch-Projekt im Vollbildmodus auszuführen, gehe in den Bereich über der Bühne und klicke auf das Symbol mit den vier nach außen gerichteten Pfeilen. Dies ist das Symbol Vollbildsteuerung: Um den Vollbildmodus zu verlassen, klicke erneut auf das Symbol Vollbildsteuerung. Es hat vier Pfeile, die nach innen zeigen. Indem du dein Projekt im Vollbildmodus anzeigst, siehst du deine Arbeit aus der Perspektive eines Benutzers, der mit deinem Projekt spielt. Benutzerinteraktion oder Nutzerinteraktion ist bei der digitalen Erstellung wichtig.",
+        "description": "Erstelle deine eigene App mit einem Charakter, dessen Augen dem Mauszeiger folgen",
+        "lastTested": "2021-02-25",
+        "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation und einen Charakter mit albernen Augen.",
+        "technologyLabels": [
+          "scratch"
+        ],
+        "interestLabels": [
+          "games",
+          "art"
+        ],
+        "hardwareLabels": [],
+        "primaryTechnology": "scratch",
+        "difficultyLevel": 1,
+        "badgeTemplateId": "953c4b47-1142-46ee-81ea-9ac2df7704dc",
+        "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "green"
+      },
+      "repositoryName": "silly-eyes",
+      "masterLastCommit": "2938546aacb4c9b39b5ef6b1d3dc98137c8a1943",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": {
+        "pathway_id": 134,
+        "project_id": 1191,
+        "category": "design",
+        "position": 4,
+        "total": 6
+      },
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [
+        {
+          "data": {
+            "id": "75",
+            "type": "projects",
+            "attributes": {
+              "id": 75,
+              "repositoryName": "boat-race",
+              "title": "Bootsrennen",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/boat-race/b10b49c7356d487b75778f61e8887f535a1fb16f/de-DE/images/small_banner.png",
+              "difficultyLevel": 1,
+              "description": "Programmiere ein Rennspiel, in dem Du mit deinem Boot Hindernissen ausweichen musst.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "sports"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fi-FI",
+                "fr-FR",
+                "hi-IN",
+                "hu-HU",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "pt-PT",
+                "ru-RU",
+                "sl-SI",
+                "tr-TR",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "182",
+            "type": "projects",
+            "attributes": {
+              "id": 182,
+              "repositoryName": "create-your-own-world",
+              "title": "Erschaffe deine eigene Welt",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/create-your-own-world/abb7bd4663245bfa48779f59e87d008bb696b9c6/de-DE/images/banner.png",
+              "difficultyLevel": 3,
+              "description": "Lerne, wie du dein eigenes Open-World Abenteuerspiel erstellen kannst",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "mr-IN",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "ru-RU",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "205",
+            "type": "projects",
+            "attributes": {
+              "id": 205,
+              "repositoryName": "snowball-fight",
+              "title": "Schneeballschlacht",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/snowball-fight/aa3363d3fa3b818976f0515e444d1368fe9d9792/de-DE/images/banner.png",
+              "difficultyLevel": 2,
+              "description": "Erstelle ein Spiel, in dem du Schneebälle auf ein Ziel werfen musst",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "ja-JP",
+                "ko-KR",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "ru-RU",
+                "uk-UA",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "207",
+            "type": "projects",
+            "attributes": {
+              "id": 207,
+              "repositoryName": "sprint",
+              "title": "Sprint!",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/sprint/490e5b94682873d74d71ac1b6cf8901c8bbd190f/de-DE/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Verwende die Pfeiltasten, um so schnell, wie möglich, zur Ziellinie zu gelangen.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "sports"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "ja-JP",
+                "ko-KR",
+                "nl-NL",
+                "pt-BR"
+              ],
+              "pdf": null
+            }
+          }
+        }
+      ],
+      "nextPathway": {
+        "data": {
+          "id": "172",
+          "type": "pathways",
+          "attributes": {
+            "slug": "more-scratch",
+            "name": "More Scratch",
+            "technologyTheme": "scratch"
+          }
+        }
+      },
+      "recommendedPathways": [],
+      "nextProject": {
+        "data": {
+          "id": "1195",
+          "type": "projects",
+          "attributes": {
+            "id": 1195,
+            "repositoryName": "surprise-animation",
+            "title": "Überraschung! Animation",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/banner.png",
+            "difficultyLevel": 1,
+            "description": "Erstelle eine Animation von einer Geschichte mit einer Überraschung",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "stories"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "cy-GB",
+              "de-DE",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA"
+            ],
+            "pdf": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/resources/surprise-animation.pdf"
+          }
+        }
+      },
+      "nextPathwayProject": {
+        "data": {
+          "id": "1195",
+          "type": "projects",
+          "attributes": {
+            "id": 1195,
+            "repositoryName": "surprise-animation",
+            "title": "Überraschung! Animation",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/images/banner.png",
+            "difficultyLevel": 1,
+            "description": "Erstelle eine Animation von einer Geschichte mit einer Überraschung",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "stories"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "cy-GB",
+              "de-DE",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA"
+            ],
+            "pdf": "https://projects-static.raspberrypi.org/projects/surprise-animation/6d0d6894b56114b786a89aae0c947a1774b9f753/de-DE/resources/surprise-animation.pdf"
+          }
+        }
+      }
+    },
+    "relationships": {
+      "pathways": {
+        "data": [
+          {
+            "id": "134",
+            "type": "pathways"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "134",
+      "type": "pathways",
+      "attributes": {
+        "id": 134,
+        "slug": "scratch-intro",
+        "title": "Einführung in Scratch",
+        "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+        "difficultyLevel": 1,
+        "technologyTheme": "scratch",
+        "ordered": true,
+        "isBeta": true,
+        "skills": [
+          {
+            "id": 60,
+            "name": "scratch",
+            "taggings_count": 336
+          }
+        ],
+        "themes": [
+          {
+            "id": 286,
+            "name": "red",
+            "taggings_count": 5
+          }
+        ],
+        "stepCount": 6,
+        "subtitle": "Sprites, Skripte und Schleifen",
+        "metaTitle": "Projektpfad | Einführung in die Programmierung mit Scratch für Kids",
+        "metaDescription": "Einführung in das Programmieren in Scratch für Kids, Jugendliche und junge Erwachsene. Du lernst Animationen, ein Spiel, eine App und ein Buch zu erstellen.",
+        "header": [
+          {
+            "title": "Was werde ich erschaffen?",
+            "content": "<p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.\nAm Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein digitales Buch mit mehreren Seiten zu schreiben.</p>\n"
+          },
+          {
+            "title": "Was muss ich wissen?",
+            "content": "<p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>\n"
+          },
+          {
+            "title": "Was benötige ich?",
+            "content": "<p>Dieser Pfad erfordert:</p>\n\n<p>– Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry Pi-Computer\n– Zugang zum Internet, um Scratch online zu nutzen oder die Möglichkeit, Scratch herunterzuladen und zu installieren. Weitere Informationen findest du in unserem <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/1\" target=\"_blank\">Scratch EInführungsleitfaden</a>\n- Optional ein <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/2\" target=\"_blank\">Scratch Account</a></p>\n"
+          },
+          {
+            "title": "Informationen für den Mentor",
+            "content": "<h2 id=\"make\">321…Make!</h2>\n<p>Dieser Pfad folgt der Anleitung <a href=\"https://projects.raspberrypi.org/en/projects/321-make-mentor-guide\" target=\"_blank\">321…Make!</a>:</p>\n\n<p>– <strong>3 Erkunden</strong>-Projekte: Vermitteln Sie Ihren Lernende einige Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen, die ihnen dabei helfen, erstes Selbstvertrauen zu entwickeln.\n– <strong>2 Gestalten</strong>-Projekte: Ermöglichen Sie Ihren Lernenden, Fähigkeiten aus den Erkunden-Projekten zu üben und sich kreativ auszudrücken, während sie selbständiger werden.\n– <strong>1 Erfinden</strong>-Projekt: Ermutigen Sie Ihre Lernende, ihre Fähigkeiten einzusetzen, um ein einzigartiges Projekt zu erstellen, das den Projektvorgaben für ein bestimmtes Publikum entspricht.</p>\n\n<h2 id=\"schnellquiz\">Schnellquiz</h2>\n<p>Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen. Maker werden durch nützliches Feedback zur richtigen Antwort geführt und erhalten ein Projektabzeichen.</p>\n\n<h2 id=\"die-community-inspirieren\">Die Community inspirieren</h2>\n<p>Lernende werden ermutigt, andere in der Raspberry-Pi-Foundation-Community zu inspirieren, indem sie ihre Gestalten- und Erfinden-Projekte über das <a href=\"https://form.raspberrypi.org/f/community-project-submissions\" target=\"_blank\">Projekteinreichungsformular</a> mit uns teilen. Projekte werden in unseren Community-Galerien geteilt.\nWie Sie <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9\" target=\"_blank\">Projekte teilen</a>, erfahren Sie in unserer Anleitung.</p>\n"
+          }
+        ]
+      },
+      "relationships": {
+        "projects": {
+          "data": [
+            {
+              "id": "1155",
+              "type": "projects"
+            },
+            {
+              "id": "1156",
+              "type": "projects"
+            },
+            {
+              "id": "1192",
+              "type": "projects"
+            },
+            {
+              "id": "1191",
+              "type": "projects"
+            },
+            {
+              "id": "1195",
+              "type": "projects"
+            },
+            {
+              "id": "1196",
+              "type": "projects"
+            }
+          ]
+        },
+        "steps": {
+          "data": [
+            {
+              "id": "364",
+              "type": "step"
+            },
+            {
+              "id": "365",
+              "type": "step"
+            },
+            {
+              "id": "366",
+              "type": "step"
+            },
+            {
+              "id": "367",
+              "type": "step"
+            },
+            {
+              "id": "368",
+              "type": "step"
+            },
+            {
+              "id": "369",
+              "type": "step"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

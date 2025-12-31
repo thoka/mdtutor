@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1221",
+    "type": "projects",
+    "attributes": {
+      "id": 1221,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Ausführen eines Scratch-Projekts im Vollbildmodus",
+            "content": "<p>Um dein Scratch-Projekt im Vollbildmodus auszuführen, gehe in den Bereich über der Bühne und klicke auf das Symbol mit den vier nach außen gerichteten Pfeilen. Dies ist das Symbol <strong>Vollbildsteuerung</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-full-screen/6811db768feb3779641dfc677afef71c1c0a3e63/de-DE/images/fullscreen_frank.png\" alt=\"Das Symbol „Vollbildsteuerung“ ist hervorgehoben, oberhalb der Bühne in der rechten Ecke.\" /></p>\n\n<p>Um den Vollbildmodus zu verlassen, klicke erneut auf das Symbol <strong>Vollbildsteuerung</strong>. Es hat vier Pfeile, die nach innen zeigen.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Ausführen eines Scratch-Projekts im Vollbildmodus",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Ausführen eines Scratch-Projekts im Vollbildmodus",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-full-screen/6811db768feb3779641dfc677afef71c1c0a3e63/de-DE/images/banner.png",
+        "plainText": "Um dein Scratch-Projekt im Vollbildmodus auszuführen, gehe in den Bereich über der Bühne und klicke auf das Symbol mit den vier nach außen gerichteten Pfeilen. Dies ist das Symbol Vollbildsteuerung: Um den Vollbildmodus zu verlassen, klicke erneut auf das Symbol Vollbildsteuerung. Es hat vier Pfeile, die nach innen zeigen.",
+        "description": "Ein- und Ausschalten des Vollbildmodus in Scratch",
+        "lastTested": "2021-03-23",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-full-screen",
+      "masterLastCommit": "6811db768feb3779641dfc677afef71c1c0a3e63",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

@@ -1,0 +1,156 @@
+{
+  "tutorial": "scratch3-backdrops-and-sprites-using-shapes",
+  "timestamp": "2025-12-31T16:32:55.245Z",
+  "languages": [
+    "en",
+    "de-DE"
+  ],
+  "paths": {
+    "repository": "content/RPL/projects/scratch3-backdrops-and-sprites-using-shapes/repo",
+    "api": {
+      "en": {
+        "projects": {
+          "file": "test/snapshots/scratch3-backdrops-and-sprites-using-shapes-api-project-en.json",
+          "data": {
+            "data": {
+              "id": "1198",
+              "type": "projects",
+              "attributes": {
+                "id": 1198,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Create backdrops and sprites using shapes",
+                      "content": "<p>You can create backdrops and costumes for sprites in the Paint editor, using just shapes.</p>\n\n<p>Go to the <strong>Choose a Sprite</strong> or <strong>Choose a Backdrop</strong> menu and choose the <strong>Paint</strong> option:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/choose-a-sprite.png\" alt=\"The 'Paint' option in the 'Choose a Sprite' menu.\" style=\"float: left\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/choose-a-backdrop.png\" alt=\"The 'Paint' option in the 'Choose a Backdrop' menu.\" style=\"float: left\" /></p>\n\n<p>Select which tool(s) to use to make the shape(s) that you want:</p>\n\n<ul>\n  <li><strong>Circle</strong>: Click on the <strong>Circle</strong> tool to draw a circle. Press and hold the <kbd>Shift</kbd> key on your keyboard to draw a perfect circle.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/circle-tool.png\" alt=\"The Circle tool.\" /></p>\n\n<ul>\n  <li><strong>Rectangle</strong>: Click on the <strong>Rectangle</strong> tool to draw a rectangle. Press and hold the <kbd>Shift</kbd> key to draw a square.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/rectangle-tool.png\" alt=\"The Rectangle tool.\" /></p>\n\n<ul>\n  <li><strong>Triangle</strong>: Use the <strong>Rectangle</strong> tool to draw a rectangle or a square. Click on the <strong>Reshape</strong> tool and select the corner that you want to remove. Click on the <strong>Delete</strong> tool to turn your shape into a triangle.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/square.png\" alt=\"A square shape with one corner selected.\" style=\"width: 150px\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/reshape.png\" alt=\"The Reshape tool.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/delete.png\" alt=\"The Delete tool.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/corner.png\" alt=\"A triangle shape.\" style=\"width: 150px\" /></p>\n\n<p>You can use the <strong>Fill</strong> tool to change the colour of a shape:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/fill-tool.png\" alt=\"The Fill tool.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/changed-colour.png\" alt=\"The Fill colour chooser and the new colour of the shape.\" style=\"width: 350px\" /></p>\n\n<p>You may need to use the <strong>Forward</strong> and <strong>Backward</strong> tools to move your shapes forward or backward so that they are positioned correctly within your image:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/front-back-tools.png\" alt=\"The Forward and Backward tools.\" /></p>\n\n<p>You can select all the shapes and <strong>Group</strong> them together so that you can adjust them or move them as one shape:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/group.png\" alt=\"The Group tool.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/selected-shapes.png\" alt=\"Multiple shapes selected.\" style=\"width: 350px\" /></p>\n\n<p>Here is an example of a sprite created with the <strong>Circle</strong> and <strong>Rectangle</strong> tools:</p>\n\n<p><strong>Pig</strong>: <a href=\"https://scratch.mit.edu/projects/495903163/editor\" target=\"_blank\">See inside</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/495903163/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Remember to name the costumes and backdrops that you create in the Paint editor.</p>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Create backdrops and sprites using shapes",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "Create backdrops and sprites using shapes",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/en/images/banner.png",
+                  "plainText": "You can create backdrops and costumes for sprites in the Paint editor, using just shapes. Go to the Choose a Sprite or Choose a Backdrop menu and choose the Paint option: Select which tool(s) to use to make the shape(s) that you want: Circle: Click on the Circle tool to draw a circle. Press and hold the Shift key on your keyboard to draw a perfect circle. Rectangle: Click on the Rectangle tool to draw a rectangle. Press and hold the Shift key to draw a square. Triangle: Use the Rectangle tool to draw a rectangle or a square. Click on the Reshape tool and select the corner that you want to remove. Click on the Delete tool to turn your shape into a triangle. You can use the Fill tool to change the colour of a shape: You may need to use the Forward and Backward tools to move your shapes forward or backward so that they are positioned correctly within your image: You can select all the shapes and Group them together so that you can adjust them or move them as one shape: Here is an example of a sprite created with the Circle and Rectangle tools: Pig: See inside Remember to name the costumes and backdrops that you create in the Paint editor.",
+                  "description": "scratch3-backdrops-and-sprites-using-shapes description",
+                  "lastTested": "2021-03-10",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "en",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "green"
+                },
+                "repositoryName": "scratch3-backdrops-and-sprites-using-shapes",
+                "masterLastCommit": "49c4591227c4cb64ae33eefeb89bc033dc8c3576",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "en",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      },
+      "de-DE": {
+        "projects": {
+          "file": "test/snapshots/scratch3-backdrops-and-sprites-using-shapes-api-project-de-DE.json",
+          "data": {
+            "data": {
+              "id": "1198",
+              "type": "projects",
+              "attributes": {
+                "id": 1198,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Hintergründe und Figuren mit Formen erstellen",
+                      "content": "<p>Du kannst Hintergründe und Kostüme für Figuren erstellen, indem du im Malen-Fenster Formen verwendest.</p>\n\n<p>Gehe zum Menü <strong>Figur wählen</strong> oder <strong>Hintergrund wählen</strong> und wähle die Option <strong>Malen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/choose-a-sprite.png\" alt=\"Die Option „Malen“ im Menü „Figur auswählen“.\" style=\"float: left\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/choose-a-backdrop.png\" alt=\"Die Option „Malen“ im Menü „Hintergrund auswählen“.\" style=\"float: left\" /></p>\n\n<p>Wähle aus, welche(s) Werkzeug(e) du zum Erstellen der gewünschten Form(en) verwenden möchtest:</p>\n\n<ul>\n  <li><strong>Kreis</strong>: Klicke auf das Werkzeug <strong>Kreis</strong>, um einen Kreis zu zeichnen. Halte die <kbd>Umschalttaste</kbd> auf deiner Tastatur gedrückt, um einen perfekten Kreis zu zeichnen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/circle-tool.png\" alt=\"Das Kreis-Werkzeug.\" /></p>\n\n<ul>\n  <li><strong>Rechteck</strong>: Klicke auf das Werkzeug <strong>Rechteck</strong>, um ein Rechteck zu zeichnen. Halte die <kbd>Umschalttaste</kbd> gedrückt, um ein Quadrat zu zeichnen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/rectangle-tool.png\" alt=\"Das Rechteck-Werkzeug.\" /></p>\n\n<ul>\n  <li><strong>Dreieck</strong>: Verwende das Werkzeug <strong>Rechteck</strong>, um ein Rechteck oder ein Quadrat zu zeichnen. Klicke auf das Werkzeug <strong>Verformen</strong> und wähle die Ecke aus, die du entfernen möchtest. Klicke auf das Werkzeug <strong>Löschen</strong>, um die Form in ein Dreieck umzuwandeln.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/square.png\" alt=\"Eine quadratische Form mit einer ausgewählten Ecke.\" style=\"width: 150px\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/reshape.png\" alt=\"Das Verformen-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/delete.png\" alt=\"Das Löschen-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/corner.png\" alt=\"Eine Dreiecksform.\" style=\"width: 150px\" /></p>\n\n<p>Du kannst das Werkzeug <strong>Fülleimer</strong> verwenden, um die Farbe einer Form zu ändern:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/fill-tool.png\" alt=\"Das Fülleimer-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/changed-colour.png\" alt=\"Die Farb-Auswahl und die neue Farbe der Form.\" style=\"width: 350px\" /></p>\n\n<p>Möglicherweise musst du die Werkzeuge <strong>nach vorne</strong> und <strong>nach hinten</strong> verwenden, um deine Formen nach vorne oder hinten zu verschieben, damit sie in deinem Bild richtig positioniert sind:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/front-back-tools.png\" alt=\"Die „nach vorne“ und „nach hinten“ Werkzeuge.\" /></p>\n\n<p>Du kannst alle Formen auswählen und <strong>Gruppieren</strong>, sodass du sie als eine Form anpassen oder verschieben kannst:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/group.png\" alt=\"Das Gruppieren-Werkzeug.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/selected-shapes.png\" alt=\"Mehrere Formen ausgewählt.\" style=\"width: 350px\" /></p>\n\n<p>Hier ist ein Beispiel für eine Figur, die mit den Werkzeugen <strong>Kreis</strong> und <strong>Rechteck</strong> erstellt wurde:</p>\n\n<p><strong>Schwein</strong>: <a href=\"https://scratch.mit.edu/projects/495903163/editor\" target=\"_blank\">Schau rein</a></p>\n<div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/495903163/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Denke daran, den Kostümen und Hintergründen, die du im Malen-Fenster erstellst, einen Namen zu geben.</p>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Hintergründe und Figuren mit Formen erstellen",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "Hintergründe und Figuren mit Formen erstellen",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-backdrops-and-sprites-using-shapes/49c4591227c4cb64ae33eefeb89bc033dc8c3576/de-DE/images/banner.png",
+                  "plainText": "Du kannst Hintergründe und Kostüme für Figuren erstellen, indem du im Malen-Fenster Formen verwendest. Gehe zum Menü Figur wählen oder Hintergrund wählen und wähle die Option Malen: Wähle aus, welche(s) Werkzeug(e) du zum Erstellen der gewünschten Form(en) verwenden möchtest: Kreis: Klicke auf das Werkzeug Kreis, um einen Kreis zu zeichnen. Halte die Umschalttaste auf deiner Tastatur gedrückt, um einen perfekten Kreis zu zeichnen. Rechteck: Klicke auf das Werkzeug Rechteck, um ein Rechteck zu zeichnen. Halte die Umschalttaste gedrückt, um ein Quadrat zu zeichnen. Dreieck: Verwende das Werkzeug Rechteck, um ein Rechteck oder ein Quadrat zu zeichnen. Klicke auf das Werkzeug Verformen und wähle die Ecke aus, die du entfernen möchtest. Klicke auf das Werkzeug Löschen, um die Form in ein Dreieck umzuwandeln. Du kannst das Werkzeug Fülleimer verwenden, um die Farbe einer Form zu ändern: Möglicherweise musst du die Werkzeuge nach vorne und nach hinten verwenden, um deine Formen nach vorne oder hinten zu verschieben, damit sie in deinem Bild richtig positioniert sind: Du kannst alle Formen auswählen und Gruppieren, sodass du sie als eine Form anpassen oder verschieben kannst: Hier ist ein Beispiel für eine Figur, die mit den Werkzeugen Kreis und Rechteck erstellt wurde: Schwein: Schau rein Denke daran, den Kostümen und Hintergründen, die du im Malen-Fenster erstellst, einen Namen zu geben.",
+                  "description": "scratch3-backdrops-and-sprites-using-shapes description",
+                  "lastTested": "2021-03-10",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "de-DE",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "green"
+                },
+                "repositoryName": "scratch3-backdrops-and-sprites-using-shapes",
+                "masterLastCommit": "49c4591227c4cb64ae33eefeb89bc033dc8c3576",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "de-DE",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      }
+    }
+  },
+  "pathways": null
+}

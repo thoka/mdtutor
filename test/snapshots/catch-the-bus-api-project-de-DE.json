@@ -1,0 +1,533 @@
+{
+  "data": {
+    "id": "1156",
+    "type": "projects",
+    "attributes": {
+      "id": 1156,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Das wirst du machen",
+            "content": "<h2 id=\"das-wirst-du-machen\">Das wirst du machen</h2>\n\n<p>Erstelle eine Animation mit Figuren, die rennen oder fliegen, um einen Bus 🚌 zu erwischen.</p>\n\n<p>Du wirst:</p>\n<ul>\n  <li>Figuren verschiedene Dinge machen lassen, <code class=\"block3events\">wenn die grüne Flagge geklickt wird</code></li>\n  <li>Figuren auf der <strong>Bühne</strong> positionieren</li>\n  <li>Eine <code class=\"block3control\">wiederhole</code>-Schleife benutzen, um Figuren zum <code class=\"block3motion\">gehen</code> zu bringen und <code class=\"block3looks\">Kostüme zu wechseln</code></li>\n</ul>\n\n<div class=\"u-no-print\">\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <h3 id=\"spielen-️\">Spielen ▶️</h3>\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1\">\n\n    <p>Klicke auf die grüne Flagge, um die Animation anzusehen.</p>\n\n    <p>Welche Figuren wechseln ihre Kostüme, um einen Animationseffekt 🎥 zu erzeugen?</p>\n  </div>\n  <div class=\"scratch-preview\" style=\"margin-left: 15px;\">\n    <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/724160134/?autostart=false\" frameborder=\"0\"></iframe>\n  </div>\n</div>\n\n  </div>\n</div>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/hippo-flies.png\" alt=\"Das abgeschlossene Projekt.\" /></p>\n\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\n<span style=\"color: #0faeb0\"><strong>Animation</strong></span> erzeugt den Bewegungseffekt durch schnelle Bildwechsel. Die ersten Animatoren schnitzten Bilder aus Holzblöcken und verwendeten sie als Stempel. Es ist viel schneller, Scratch zum Programmieren deiner Animation zu verwenden!\n</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Erstelle deine Busszene",
+            "content": "<h2 id=\"erstelle-deine-busszene\">Erstelle deine Busszene</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Wähle ein Hintergrundbild und füge eine Bus-Figur hinzu.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-scene.png\" alt=\"Der City Bus vor dem Schulhintergrund.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"öffne-das-starterprojekt\">Öffne das Starterprojekt</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Öffne das <a href=\"https://scratch.mit.edu/projects/582214330/editor\" target=\"_blank\">Erwische den Bus Starterprojekt</a>. Scratch wird in einem anderen Tab im Browser geöffnet.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Offline arbeiten\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Besuche <a href=\"https://projects.raspberrypi.org/de-DE/projects/getting-started-scratch/1\" target=\"_blank\">unsere Anleitung ‘Erste Schritte mit Scratch’</a> für mehr Information zum Einrichten von Scratch für die offline Benutzung.</p>\n\n  </div>\n</div>\n\n\n  </div>\n</div>\n\n<h3 id=\"wähle-ein-hintergrundbild\">Wähle ein Hintergrundbild</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke (oder tippe auf einem Tablet) auf <strong>Hintergrund wählen</strong> im Bühnenbereich (in der unteren rechten Ecke des Bildschirms):</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/choose-a-backdrop.png\" alt=\"Ein Screenshot des Symbols „Hintergrund wählen“.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf die Kategorie <strong>Landschaften</strong>. Füge ein Hintergrundbild hinzu, das sich gut als Abfahrtspunkt für deinen Bus eignet:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/outdoor-backdrop.png\" alt=\"Die Bühne mit der Schulkulisse.\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"wähle-eine-figur\">Wähle eine Figur</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf <strong>Figur wählen</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/choose-sprite-menu.png\" alt=\"Ein Screenshot des Menüs „Figur wählen“.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Gib in das Suchfeld oben <code>Bus</code> ein:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-search.png\" alt=\"Das in der Figurenbibliothek hervorgehobene Suchfeld.\" /></p>\n\n<p>Füge deinem Projekt die <strong>City Bus</strong> Figur hinzu.</p>\n\n  </div>\n</div>\n\n<h3 id=\"gib-deinem-bus-eine-startposition\">Gib deinem Bus eine Startposition</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Achte darauf, dass die <strong>City Bus</strong> Figur in der Figurenliste ausgewählt ist.</p>\n\n<p>Ziehe einen Block <code class=\"block3events\">wenn grüne Flagge angeklickt wird</code> Block aus dem Blockmenü <code class=\"block3events\">Ereignisse</code> in den Codebereich:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ziehe den Bus an eine gute Position auf der Bühne:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-bottom-middle.png\" alt=\"Der Bus unten in der Mitte der Bühne.\" /></p>\n\n<p>Die <strong>x</strong> und <strong>y</strong> Koordinaten (die zur Beschreibung der Position verwendeten Zahlen) des Busses werden im Figurenbereich unterhalb der Bühne angezeigt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/coords-sprite-pane.png\" alt=\"Ein Screenshot, der zeigt, wo sich die Koordinaten im Figurenbereich befinden.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge deinem Code einen Block <code class=\"block3motion\">gehe zu x: y:</code> hinzu:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\n+go to x: (0) y: (-100)\n</code></pre>\n\n<p>Die Zahlen im Block <code class=\"block3motion\">gehe zu x: y:</code> sind die aktuellen x- und y-Koordinaten des Busses. Die Zahlen in deinem Projekt können etwas anders sein.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Ziehe den Bus an eine beliebige Stelle auf der Bühne und klicke dann auf die grüne Flagge. Der Bus sollte immer zu seiner Ausgangsposition zurückfahren.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/drag-bus.gif\" alt=\"Animation, die zeigt, wie der Bus über den Bildschirm gezogen wird und beim Klicken auf die grüne Flagge in die Mitte zurückspringt.\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"bewege-den-bus-hinter-die-charakterfiguren\">Bewege den Bus hinter die Charakterfiguren</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Um sicherzustellen, dass die <strong>City Bus</strong> Figur immer hinter allen Charakterfiguren liegt, füge den Block <code class=\"block3looks\">gehe zu vorderster Ebene</code> hinzu. Dann klicke auf <code class=\"block3looks\">vorderster</code> und ändere es in <code class=\"block3looks\">hinterster</code>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: (0) y: (-100)\n+ go to [hinterster v] layer\n</code></pre>\n\n<p><strong>Tipp:</strong> Wenn du den Block <code class=\"block3looks\">gehe zu vorderester Ebene</code> nicht siehst, musst du im Blockmenü in der <code class=\"block3looks\">Aussehen</code> Kategorie runterscrollen.</p>\n\n  </div>\n</div>\n\n<h3 id=\"ändere-die-busfarbe\">Ändere die Busfarbe</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du kannst die Farbe des Busses ändern:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: (0) y: (-100)\ngo to [hinterster v] layer\n+set [Farbe v] effect to (50) // versuche Zahlen bis 200\n</code></pre>\n\n  </div>\n</div>\n\n<h3 id=\"ändere-die-größe-der-scratch-katze\">Ändere die Größe der Scratch Katze</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Die Scratch Katze erscheint in allen neuen Scratch-Projekten als <strong>Sprite1</strong> in der Figurenliste. Klicke in der Figurenliste auf die Figur <strong>Sprite1</strong>, um die Animation der Scratch Katze vorzubereiten:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/sprite1-selected.png\" alt=\"Die in der Figurenliste ausgewählte Sprite1 Figur.\" /></p>\n\n<p><strong>Tipp:</strong> Wenn du aus Versehen <strong>Sprite1</strong> (die Scratch Katze) gelöscht hast, kannst du auf das <strong>Figur wählen</strong> Zeichen klicken und nach <code>cat</code> (engl.: Katze) suchen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke im Figurenbereich auf <strong>Größe</strong> und ändere die Größe der Scratch Katze auf <code>50</code>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/sprite-pane-size.png\" alt=\"Ein Screenshot, der die Position der Größeneigenschaft im Figurenbereich hervorhebt.\" /></p>\n\n  </div>\n</div>\n\n",
+            "position": 1,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "working-offline"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Die Scratch Katze erwischt den Bus",
+            "content": "<h2 id=\"die-scratch-katze-erwischt-den-bus\">Die Scratch Katze erwischt den Bus</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Animiere die Scratch Katze so, dass sie auf der <strong>rechten Seite</strong> der Bühne erscheint und zum Bus läuft, indem du eine kleine Bewegung viele Male in einer <strong>Schleife</strong> wiederholst.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/cat-catches-bus.png\" alt=\"Die Scratch Katze geht zum Bus.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"bringe-die-scratch-katze-in-ihre-ausgangsposition\">Bringe die Scratch Katze in ihre Ausgangsposition</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke im Figurenbereich auf die Eigenschaft <strong>Richtung</strong>. Drehe den Pfeil so, dass er auf <code>-90</code>zeigt. Klicke dann auf das Symbol <strong>Links/Rechts</strong> in der Mitte, um den Rotationsstil auf <code>Links-Rechts</code> zu ändern und so zu verhindern, dass sich die Scratch Katze auf den Kopf stellt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/sprite-pane-direction.png\" alt=\"Der Pfeil zeigt auf -90 und das Symbol „Links/Rechts“ ist ausgewählt.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ziehe die Scratch Katze auf die rechte untere Seite der Bühne.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bottom-right-cat.png\" alt=\"Die Bühne mit der Katze in der unteren rechten Ecke.\" /></p>\n\n<p><strong>Tipp:</strong> Wenn du versuchst, eine Figur außerhalb der Bühne zu positionieren, wird sie an seine letzte Position auf der Bühne zurückbewegt.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge Code hinzu, um die Scratch Katze an ihre Startposition zu bringen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) // unten rechts\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Ziehe die Scratch Katze an eine neue Position und klicke dann auf ihren Block <code class=\"block3motion\">gehe zu x: y:</code>. Die Scratch Katze sollte sich jedes Mal wieder nach unten rechts bewegen.</p>\n\n  </div>\n</div>\n\n<h3 id=\"animiere-die-scratch-katze\">Animiere die Scratch Katze</h3>\n\n<p>Du fügst Code in einer <code class=\"block3control\">wiederhole</code>-Schleife hinzu, damit die Scratch Katze eine kleine Anzahl von Schritten viele Male wiederholt. Dadurch erscheint die Scratch Katze animiert.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen Block <code class=\"block3control\">wiederhole</code> <code>10</code> mal hinzu und ziehe dann einen Block <code class=\"block3motion\">gehe</code> <code>10</code> <code class=\"block3motion\">er Schritt</code> in den Wiederholungsblock hinein:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/block-into-loop.gif\" alt=\"Die Anzahl der Schritte im „gehe zu“-Block werden von 10 auf 5 gestellt, dann wird der Block in die „wiederhole“-Schleife eingesetzt.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) // unten rechts\n+ repeat (10) // probiere verschiedene Zahlen aus\nmove (5) steps //  5 ist eine gute Gehgeschwindigkeit\nend\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Versuche mal, die Zahlen im <code class=\"block3control\">wiederhole</code> <code>10</code> mal Block so zu ändern, dass die Scratch Katze am Bus anhält.</p>\n\n  </div>\n</div>\n\n<p>Manche Figuren haben mehr als ein Kostüm. Du wirst die Kostüme der <strong>Scratch Katze</strong> Figur verwenden, um eine Animation des Spaziergangs der Scratch Katze zu erstellen.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf die Registerkarte <strong>Kostüme</strong>. Die <strong>Scratch Katze</strong> Figur hat zwei Kostüme und zusammen können sie verwendet werden, um eine Gehbewegung darzustellen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf das <strong>Skripte</strong> Register. Füge den Block <code class=\"block3looks\">wechsle zum nächsten Kostüm</code> in die <code class=\"block3control\">wiederhole</code> Schleife ein:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) // unten rechts\nrepeat (20) // probiere verschiedene Zahlen aus\nmove (5) steps //  5 ist eine gute Gehgeschwindigkeit\n+ next costume \nend\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge und die Scratch Katze läuft zum Bus.</p>\n\n  </div>\n</div>\n\n<h3 id=\"verstecke-die-scratch-katze\">Verstecke die Scratch Katze</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen <code class=\"block3looks\">verstecke dich</code> Block hinzu, um die Scratch Katze zu verstecken, wenn sie den Bus erreicht:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) // unten rechts\nrepeat (20) // probiere verschiedene Zahlen aus\nmove (5) steps //  5 ist eine gute Gehgeschwindigkeit\nnext costume \nend\n+ hide\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke erneut auf die grüne Flagge und du wirst sehen, dass die Scratch Katze jetzt verschwunden ist.</p>\n\n  </div>\n</div>\n\n<h3 id=\"zeige-die-scratch-katze\">Zeige die Scratch Katze</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen <code class=\"block3looks\">zeige dich</code> Block hinzu, damit die Scratch Katze erscheint, bevor sie zum Bus läuft:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) // unten rechts\n+ show\nrepeat (20) // probiere verschiedene Zahlen aus\nmove (5) steps //  5 ist eine gute Gehgeschwindigkeit\nnext costume \nend\nhide\n</code></pre>\n\n<p><strong>Tipp:</strong> Wenn du einen <code class=\"block3looks\">verstecke dich</code> Block verwendest, musst du auch einen <code class=\"block3looks\">zeige dich</code> Block hinzufügen, um sicherzustellen, dass eine Figur bei Bedarf sichtbar ist.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge, um dein Projekt zu testen, und stelle sicher, dass die Scratch Katze erscheint.</p>\n\n  </div>\n</div>\n\n",
+            "position": 2,
+            "challenge": false,
+            "completion": [
+              "engaged"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Das Nilpferd fliegt zum Bus",
+            "content": "<h2 id=\"das-nilpferd-fliegt-zum-bus\">Das Nilpferd fliegt zum Bus</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Füge eine Nilpferd-Figur hinzu, die zum Bus fliegt.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/hippo-flies.png\" alt=\"Das Nilpferd fliegt zum Bus.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"gib-dem-nilpferd-eine-ausgangsposition\">Gib dem Nilpferd eine Ausgangsposition</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge die <strong>Hippo1</strong> Figur zu deinem Projekt hinzu.</p>\n\n<p>Ändere die <strong>Größe</strong> der <strong>Hippo1</strong> Figur:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/hippo-sprite-size.png\" alt=\"Der Figurenbereich für die Hippo1 Figur, mit der Größe 50.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ziehe das Nilpferd an die obere linke Seite der Bühne.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/hippo-sprite-stage.png\" alt=\"Die Hippo1 Figur oben links auf der Bühne.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge Code hinzu, um das Nilpferd an seine Startposition zu bringen:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: [-200] y: [150] // oben links\n</code></pre>\n\n<p><strong>Tipp:</strong> <code class=\"block3motion\">x</code> und <code class=\"block3motion \">y</code>-Koordinaten im Block <code class=\"block3motion\">gehe zu x: y:</code> werden die aktuelle Position des Nilpferds übernehmen. Sie müssen nicht eingegeben werden.</p>\n\n  </div>\n</div>\n\n<h3 id=\"lass-das-nilpferd-mit-den-flügeln-schlagen-und-fliegen\">Lass das Nilpferd mit den Flügeln schlagen und fliegen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge Code hinzu, damit das Nilpferd zum <strong>City Bus</strong> fliegt:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: [-200] y: [150] \n+repeat [100] \npoint towards (City Bus v) // ändere Auswahl von Mauszeiger zu City Bus\nmove [3] steps\nnext costume\n+end\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge und überprüfe, ob das Nilpferd zum Bus fliegt. Du kannst die Zahl im Block <code class=\"block3control\">wiederhole</code> ändern, damit das Nilpferd genau an der richtigen Stelle anhält.</p>\n\n  </div>\n</div>\n\n<h3 id=\"das-nilpferd-ein--und-ausblenden\">Das Nilpferd ein- und ausblenden</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge die Blöcke <code class=\"block3looks\">zeige dich</code> und <code class=\"block3looks\">verstecke dich</code> hinzu:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: [-200] y: [150] \n+ show\nrepeat [90] \npoint towards (City Bus v)\nmove [3] steps\nnext costume\nend\n+ hide\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Das Nilpferd wird fliegen und in den Bus einsteigen.</p>\n\n  </div>\n</div>\n\n",
+            "position": 3,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Der Bus fährt ab",
+            "content": "<h2 id=\"der-bus-fährt-ab\">Der Bus fährt ab</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Füge weitere Blöcke hinzu, damit der Bus losfährt.</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-leaving.png\" alt=\"Die Bühne auf welcher der Bus nach rechts gefahren ist.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"animiere-den-bus\">Animiere den Bus</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wähle die <strong>City Bus</strong> Figur aus.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge Code hinzu, damit der Bus vier Sekunden nach dem Anklicken der grünen Flagge nach rechts abfährt.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked \nwait [4] seconds // ändere 1 auf 4\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Ziehe den Bus auf die rechte Seite der Bühne. Dies ist die Position <code class=\"block3motion\">x</code> und <code class=\"block3motion\">y</code>, zu der der Bus <code class=\"block3motion\">gleiten</code> wird.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-right.png\" alt=\"\" /></p>\n\n<p><strong>Tipp:</strong> Wenn du den Bus zu weit nach rechts bewegst, springt er zurück. Versuche es erneut, aber gehe nicht so weit.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge unter dem Block <code class=\"block3control\">warte</code> einen Block <code class=\"block3motion\">gleite in</code> <code>2</code> <code class=\"block3motion\">Sek. zu x: y:</code> hinzu.</p>\n\n<p>In deinem Projekt können die Koordinaten <code class=\"block3motion\">x</code> und <code class=\"block3motion\">y</code> etwas anders sein und entsprechen der genauen Position, an die du den Bus gezogen hast.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked \nwait [4] seconds // ändere 1 auf 4\n+glide [2] secs to x: [320] y: [-100] // rechte Seite der Bühne\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Die Scratch Katze und das Nilpferd bewegen sich zum Bus, und der Bus fährt nach vier Sekunden nach rechts los.</p>\n\n  </div>\n</div>\n\n<h3 id=\"bus-ausblenden-und-anzeigen\">Bus ausblenden und anzeigen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen <code class=\"block3looks\">verstecke dich</code>-Block hinzu, damit es so aussieht, als würde der Bus von der Bühne fahren:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked \nwait [4] seconds // ändere 1 auf 4\nglide [2] secs to x: [320] y: [-100]\n+ hide\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Der Bus wird sich nun nach der Abfahrt verstecken. Erinnerst du dich, wie das geht, dass eine Figur erneut erscheint, wenn du auf die grüne Flagge klickst?</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Füge einen <code class=\"block3looks\">zeige dich</code>-Block zu deinem <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>-Skript hinzu, damit der Bus beim Ausführen deines Projekts angezeigt wird:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x: (0) y: (-100)\ngo to [back v] layer\nset [color v] effect to (85) // Versuche Zahlen bis 200\n+show\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge und schau dir deine Animation an. Der Bus sollte in der Mitte der Bühne erscheinen, dann nach rechts abfahren und verschwinden.</p>\n\n<p>Sind alle im Bus, wenn er abfährt? Du kannst die Wartezeit des Busses bei Bedarf ändern.</p>\n\n  </div>\n</div>\n\n",
+            "position": 4,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Den Bus verpasst",
+            "content": "<h2 id=\"den-bus-verpasst\">Den Bus verpasst</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Was wäre, wenn die Scratch Katze nicht schnell genug rennen würde, um den Bus zu erwischen?</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/cat-misses-bus.png\" alt=\"Die Scratch Katze verpasst den Bus.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"lass-scratch-katze-den-bus-verpassen\">Lass Scratch Katze den Bus verpassen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wähle die <strong>Scratch Katze</strong> Figur und füge einen Block <code class=\"block3control\">warte</code> hinzu:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) \nshow\nrepeat (20) // probiere verschiedene Zahlen aus\nmove (5) steps \nnext costume \n+ wait (1) seconds\nend\nhide\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p><strong>Test:</strong> Klicke auf die grüne Flagge. Die Scratch Katze läuft zu langsam und verpasst den Bus!</p>\n\n  </div>\n</div>\n\n<h3 id=\"lass-scratch-katze-den-bus-erwischen\">Lass Scratch Katze den Bus erwischen</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Du wirst Verzögerungen von weniger als eine Sekunde benötigen. 0,5 ist eine halbe Sekunde, 0,25 ist eine Viertelsekunde und 0,1 ist eine Zehntelsekunde.</p>\n\n<p>Ändere die Verzögerung im Block <code class=\"block3control\">warte</code>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">wait (0.2) seconds // versuche es mit 0.1, 0.5, 0.05\n</code></pre>\n\n<p><strong>Test:</strong> Klicke auf die grüne Flagge und die Scratch Katze läuft schneller. Wähle die Verzögerung, die dir am besten gefällt.</p>\n\n  </div>\n</div>\n\n<h3 id=\"entscheide-dich-ob-die-scratch-katze-den-bus-erwischt-oder-verpasst\">Entscheide dich, ob die Scratch Katze den Bus erwischt oder verpasst</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wenn du möchtest, dass die Scratch Katze <strong>den Bus verpasst</strong>, entferne den Block <code class=\"block3looks\">verstecke dich</code> aus deinem Code, damit die Scratch Katze auf der Bühne bleibt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/removing-blocks-at-script-ends.gif\" alt=\"Den Block „verstecke dich“ aus dem Skript im Codebereich in das Blöckemenü ziehen, um den Block aus dem Skript zu entfernen.\" /></p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/scratch-cat-sprite.png\" alt=\"Die Scratch Katze Figur.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\ngo to x:(200) y:(-150) \nshow\nrepeat (20) \nmove (5) steps \nnext costume\nwait (0.5) seconds \nend\n-hide\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wenn du möchtest, dass die Scratch Katze <strong>den Bus erwischt</strong>, lasse den Bus länger warten, bevor er abfährt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-sprite.png\" alt=\"Die Figur &quot;City Bus&quot;.\" /></p>\n\n<pre><code class=\"language-blocks3\">when flag clicked \n+wait [4] seconds // von 4 auf 6 wechseln\nglide [2] secs to x: [320] y: [-100] // rechte Seite der Bühne\nhide\n</code></pre>\n\n<p>Wenn du im letzten Schritt den Block <code class=\"block3looks\">verstecke dich</code> entfernt hast, und möchtest, dass die <strong>Scratch Katze</strong> den Bus doch erwischen soll, musst du ihn wieder einfügen.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Nehme Änderungen vor, bis die Animation deinen Wünschen entspricht.</p>\n\n  </div>\n</div>\n\n<p style=\"border-left: solid; border-width:10px; border-color: #0faeb0; background-color: aliceblue; padding: 10px;\">\nWenn du an einem Projekt arbeitest, ist es normal, oft zurück an frühere Stellen zu gehen und Veränderungen oder Verbesserungen an deinen Code zu machen, wenn dir neue Ideen kommen. \n</p>\n\n",
+            "position": 5,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Ändere das Ziel",
+            "content": "<h2 id=\"ändere-das-ziel\">Ändere das Ziel</h2>\n\n<div style=\"display: flex; flex-wrap: wrap\">\n  <div style=\"flex-basis: 200px; flex-grow: 1; margin-right: 15px;\">\n    <p>Die Aufschrift auf dem Bus lautet „Scratch Tours“, aber du kannst das Ziel nach Belieben ändern. Wohin soll dein Bus fahren?</p>\n  </div>\n  <div>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/maker-bus.png\" alt=\"Der Bus mit dem Text „Maker Festival“.\" width=\"300px\" /></p>\n\n  </div>\n</div>\n\n<h3 id=\"bearbeite-die-figur-city-bus\">Bearbeite die Figur City Bus</h3>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wähle die Figur <strong>City Bus</strong> und klicke auf die Registerkarte <strong>Kostüme</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/costumes-bus-sprite-highlighted.png\" alt=\"Das Kostüm im Paint-Editor.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf den weißen Text „Scratch Tours“, um ihn auszuwählen, und klicke dann auf <strong>Löschen</strong>, um ihn zu entfernen.</p>\n\n<p><strong>Tipp:</strong> Du kannst das <strong>Löschen</strong> Symbol (der Mülleimer) im Paint-Editor, oder die Taste <kbd>Entf</kbd> auf deiner Tastatur verwenden.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-delete-text.png\" alt=\"Der Text auf dem Bus und das Löschsymbol sind hervorgehoben.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Wähle das <strong>Text</strong> (Schreib-)Werkzeug aus.</p>\n\n<p>Klicke an der Stelle auf den Bus, an der dein Text beginnen soll, und gebe das gewünschte Ziel ein.</p>\n\n<p>Um die Schriftart (den Schreibstil) zu ändern, kannst du auf das Dropdown-Menü <strong>Schriftarten</strong> klicken:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-text-font.png\" alt=\"Das Menü „Schriftart“ ist oben in der Mitte des Paint-Editors ausgewählt.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Klicke auf das Werkzeug <strong>Auswählen</strong> (Pfeil) und ziehe dann den Text, um ihn auf dem Bus zu positionieren.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-destination-centered.png\" alt=\"Der Text auf dem Bus und das Auswahlwerkzeug sind hervorgehoben.\" /></p>\n\n  </div>\n</div>\n\n",
+            "position": 6,
+            "challenge": false,
+            "completion": [
+              "internal"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Kurzes Quiz",
+            "content": "",
+            "position": 7,
+            "challenge": false,
+            "completion": [
+              "external"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": "quiz1"
+          },
+          {
+            "quiz": false,
+            "title": "Verbessere dein Projekt",
+            "content": "<h2 id=\"verbessere-dein-projekt\">Verbessere Dein Projekt</h2>\n\n<p>Jetzt kannst du eine Figur deiner Wahl zu deiner Animation hinzufügen. Du musst dafür Code hinzufügen, damit deine Figur mit dem Block <code class=\"block3motion\">gehe zu</code> zu einer Startposition geht und mit <code class=\"block3motion\">setze Richtung auf</code> in die richtige Richtung zeigt. Dann kann die neue Figur mit Hilfe der Blöcke <code class=\"block3control\">wiederhole</code>, <code class=\"block3motion\">gehe</code> und <code class=\"block3looks\">wechsle zum nächsten Kostüm</code> den Bus erreichen.</p>\n\n<p><strong>Tipp:</strong> Wenn du auf <strong>Figur auswählen</strong>klickst, kannst du den Mauszeiger über eine Figur halten, um ihre Kostüme anzuzeigen. Auf manchen Mobilgeräten kannst du auch auf eine Figur tippen und gedrückt halten, um ihre Kostüme anzuzeigen (wenn ein Fenster erscheint, während du auf eine Figur tippst und gedrückt hältst, tippe auf die Seite des Bildschirms, um das Fenster zu schließen und die Kostüme anzuzeigen). Ein Blick auf die Kostüme der Figuren kann dir dabei helfen, eine Figur zu finden, die sich gut für eine Animation eignet.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/bus-upgrade.png\" alt=\"Andere Figuren bewegen sich auf einen Bus mit dem Text &quot;Maker Festival&quot; zu.\" width=\"300px\" /></p>\n\n<p>Du kannst alle Blöcke verwenden, die du in diesem Projekt kennengelernt hast, sowie diejenigen, die du bereits kennst:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\n\ngo to x: [0] y: [0] // ziehe die Figur, um x und y auszuwählen\n\nshow\n\nhide\n\nglide [2] secs to x: [0] y: [-100] // unten in der Mitte der Bühne\n\nrepeat [30]\nend\n\npoint towards (City Bus v)\n\npoint in direction (180) // zeige nach unten\n\nset rotation style [links-rechts v]\n\nmove [3] steps\n\nnext costume\n\nstart sound [clown honk v]\n\nwait [0.1] seconds // kurze Verzögerung\n\nset [Farbe v] effect to [50] // bis zu 200\n</code></pre>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Abgeschlossenes Projekt\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Du findest das <a href=\"https://scratch.mit.edu/projects/724160134/\" target=\"_blank\">abgeschlossene Projekt hier</a>.</p>\n\n  </div>\n</div>\n\n<p>Du kannst das Projekt auch „Remixen“, um es nach deinen Wünschen zu ändern. Du könntest dem Bus oder anderen Figuren Soundeffekte hinzufügen oder den Farbeffekt des Busses einstellen. Eine der Figuren könnte den Bus verpassen und sich nicht verstecken.</p>\n\n<p>Vielen Dank an die digitale Schöpferin Lyla, die uns dieses fantastische Upgrade geschickt hat!</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/Lyla-bus.gif\" alt=\"Ein Projekt mit einem Bus mit blinkenden Farben.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Speichere dein Projekt\n  </h3>\n</div>\n\n",
+            "position": 8,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Erwische den Bus",
+        "listed": true,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "scratch games Erwische den Bus",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/catch-the-bus/f80d0ecf4432ce4301c0337c0367f75a5ea55662/de-DE/images/banner.png",
+        "metaTitle": "Scratch Coding Projekte für Kinder und Jugendliche | Erwische den Bus",
+        "plainText": "Das wirst du machen Erstelle eine Animation mit Figuren, die rennen oder fliegen, um einen Bus 🚌 zu erwischen. Du wirst: Figuren verschiedene Dinge machen lassen, wenn die grüne Flagge geklickt wird Figuren auf der Bühne positionieren Eine wiederhole-Schleife benutzen, um Figuren zum gehen zu bringen und Kostüme zu wechseln Spielen ▶️ Klicke auf die grüne Flagge, um die Animation anzusehen. Welche Figuren wechseln ihre Kostüme, um einen Animationseffekt 🎥 zu erzeugen? Animation erzeugt den Bewegungseffekt durch schnelle Bildwechsel. Die ersten Animatoren schnitzten Bilder aus Holzblöcken und verwendeten sie als Stempel. Es ist viel schneller, Scratch zum Programmieren deiner Animation zu verwenden! Erstelle deine Busszene Wähle ein Hintergrundbild und füge eine Bus-Figur hinzu. Öffne das Starterprojekt Öffne das Erwische den Bus Starterprojekt. Scratch wird in einem anderen Tab im Browser geöffnet. Offline arbeiten Besuche unsere Anleitung ‘Erste Schritte mit Scratch’ für mehr Information zum Einrichten von Scratch für die offline Benutzung. Wähle ein Hintergrundbild Klicke (oder tippe auf einem Tablet) auf Hintergrund wählen im Bühnenbereich (in der unteren rechten Ecke des Bildschirms): Klicke auf die Kategorie Landschaften. Füge ein Hintergrundbild hinzu, das sich gut als Abfahrtspunkt für deinen Bus eignet: Wähle eine Figur Klicke auf Figur wählen: Gib in das Suchfeld oben Bus ein: Füge deinem Projekt die City Bus Figur hinzu. Gib deinem Bus eine Startposition Achte darauf, dass die City Bus Figur in der Figurenliste ausgewählt ist. Ziehe einen Block wenn grüne Flagge angeklickt wird Block aus dem Blockmenü Ereignisse in den Codebereich: when flag clicked Ziehe den Bus an eine gute Position auf der Bühne: Die x und y Koordinaten (die zur Beschreibung der Position verwendeten Zahlen) des Busses werden im Figurenbereich unterhalb der Bühne angezeigt: Füge deinem Code einen Block gehe zu x: y: hinzu: when flag clicked +go to x: () y: (-) Die Zahlen im Block gehe zu x: y: sind die aktuellen x- und y-Koordinaten des Busses. Die Zahlen in deinem Projekt können etwas anders sein. Test: Ziehe den Bus an eine beliebige Stelle auf der Bühne und klicke dann auf die grüne Flagge. Der Bus sollte immer zu seiner Ausgangsposition zurückfahren. Bewege den Bus hinter die Charakterfiguren Um sicherzustellen, dass die City Bus Figur immer hinter allen Charakterfiguren liegt, füge den Block gehe zu vorderster Ebene hinzu. Dann klicke auf vorderster und ändere es in hinterster: when flag clicked go to x: () y: (-) + go to [hinterster v] layer Tipp: Wenn du den Block gehe zu vorderester Ebene nicht siehst, musst du im Blockmenü in der Aussehen Kategorie runterscrollen. Ändere die Busfarbe Du kannst die Farbe des Busses ändern: when flag clicked go to x: () y: (-) go to [hinterster v] layer +set [Farbe v] effect to () // versuche Zahlen bis  Ändere die Größe der Scratch Katze Die Scratch Katze erscheint in allen neuen Scratch-Projekten als Sprite1 in der Figurenliste. Klicke in der Figurenliste auf die Figur Sprite1, um die Animation der Scratch Katze vorzubereiten: Tipp: Wenn du aus Versehen Sprite1 (die Scratch Katze) gelöscht hast, kannst du auf das Figur wählen Zeichen klicken und nach cat (engl.: Katze) suchen. Klicke im Figurenbereich auf Größe und ändere die Größe der Scratch Katze auf : Die Scratch Katze erwischt den Bus Animiere die Scratch Katze so, dass sie auf der rechten Seite der Bühne erscheint und zum Bus läuft, indem du eine kleine Bewegung viele Male in einer Schleife wiederholst. Bringe die Scratch Katze in ihre Ausgangsposition Klicke im Figurenbereich auf die Eigenschaft Richtung. Drehe den Pfeil so, dass er auf -90zeigt. Klicke dann auf das Symbol Links/Rechts in der Mitte, um den Rotationsstil auf Links-Rechts zu ändern und so zu verhindern, dass sich die Scratch Katze auf den Kopf stellt: Ziehe die Scratch Katze auf die rechte untere Seite der Bühne. Tipp: Wenn du versuchst, eine Figur außerhalb der Bühne zu positionieren, wird sie an seine letzte Position auf der Bühne zurückbewegt. Füge Code hinzu, um die Scratch Katze an ihre Startposition zu bringen: when flag clicked go to x:() y:(-) // unten rechts Test: Ziehe die Scratch Katze an eine neue Position und klicke dann auf ihren Block gehe zu x: y:. Die Scratch Katze sollte sich jedes Mal wieder nach unten rechts bewegen. Animiere die Scratch Katze Du fügst Code in einer wiederhole-Schleife hinzu, damit die Scratch Katze eine kleine Anzahl von Schritten viele Male wiederholt. Dadurch erscheint die Scratch Katze animiert. Füge einen Block wiederhole  mal hinzu und ziehe dann einen Block gehe  er Schritt in den Wiederholungsblock hinein: when flag clicked go to x:() y:(-) // unten rechts + repeat () // probiere verschiedene Zahlen aus move () steps //  ist eine gute Gehgeschwindigkeit end Test: Klicke auf die grüne Flagge. Versuche mal, die Zahlen im wiederhole  mal Block so zu ändern, dass die Scratch Katze am Bus anhält. Manche Figuren haben mehr als ein Kostüm. Du wirst die Kostüme der Scratch Katze Figur verwenden, um eine Animation des Spaziergangs der Scratch Katze zu erstellen. Klicke auf die Registerkarte Kostüme. Die Scratch Katze Figur hat zwei Kostüme und zusammen können sie verwendet werden, um eine Gehbewegung darzustellen. Klicke auf das Skripte Register. Füge den Block wechsle zum nächsten Kostüm in die wiederhole Schleife ein: when flag clicked go to x:() y:(-) // unten rechts repeat () // probiere verschiedene Zahlen aus move () steps //  ist eine gute Gehgeschwindigkeit + next costume end Test: Klicke auf die grüne Flagge und die Scratch Katze läuft zum Bus. Verstecke die Scratch Katze Füge einen verstecke dich Block hinzu, um die Scratch Katze zu verstecken, wenn sie den Bus erreicht: when flag clicked go to x:() y:(-) // unten rechts repeat () // probiere verschiedene Zahlen aus move () steps //  ist eine gute Gehgeschwindigkeit next costume end + hide Test: Klicke erneut auf die grüne Flagge und du wirst sehen, dass die Scratch Katze jetzt verschwunden ist. Zeige die Scratch Katze Füge einen zeige dich Block hinzu, damit die Scratch Katze erscheint, bevor sie zum Bus läuft: when flag clicked go to x:() y:(-) // unten rechts + show repeat () // probiere verschiedene Zahlen aus move () steps //  ist eine gute Gehgeschwindigkeit next costume end hide Tipp: Wenn du einen verstecke dich Block verwendest, musst du auch einen zeige dich Block hinzufügen, um sicherzustellen, dass eine Figur bei Bedarf sichtbar ist. Test: Klicke auf die grüne Flagge, um dein Projekt zu testen, und stelle sicher, dass die Scratch Katze erscheint. Das Nilpferd fliegt zum Bus Füge eine Nilpferd-Figur hinzu, die zum Bus fliegt. Gib dem Nilpferd eine Ausgangsposition Füge die Hippo1 Figur zu deinem Projekt hinzu. Ändere die Größe der Hippo1 Figur: Ziehe das Nilpferd an die obere linke Seite der Bühne. Füge Code hinzu, um das Nilpferd an seine Startposition zu bringen: when flag clicked go to x: [-] y: [] // oben links Tipp: x und y-Koordinaten im Block gehe zu x: y: werden die aktuelle Position des Nilpferds übernehmen. Sie müssen nicht eingegeben werden. Lass das Nilpferd mit den Flügeln schlagen und fliegen Füge Code hinzu, damit das Nilpferd zum City Bus fliegt: when flag clicked go to x: [-] y: [] +repeat [] point towards (City Bus v) // ändere Auswahl von Mauszeiger zu City Bus move [] steps next costume +end Test: Klicke auf die grüne Flagge und überprüfe, ob das Nilpferd zum Bus fliegt. Du kannst die Zahl im Block wiederhole ändern, damit das Nilpferd genau an der richtigen Stelle anhält. Das Nilpferd ein- und ausblenden Füge die Blöcke zeige dich und verstecke dich hinzu: when flag clicked go to x: [-] y: [] + show repeat [] point towards (City Bus v) move [] steps next costume end + hide Test: Klicke auf die grüne Flagge. Das Nilpferd wird fliegen und in den Bus einsteigen. Der Bus fährt ab Füge weitere Blöcke hinzu, damit der Bus losfährt. Animiere den Bus Wähle die City Bus Figur aus. Füge Code hinzu, damit der Bus vier Sekunden nach dem Anklicken der grünen Flagge nach rechts abfährt. when flag clicked wait [] seconds // ändere  auf  Ziehe den Bus auf die rechte Seite der Bühne. Dies ist die Position x und y, zu der der Bus gleiten wird. Tipp: Wenn du den Bus zu weit nach rechts bewegst, springt er zurück. Versuche es erneut, aber gehe nicht so weit. Füge unter dem Block warte einen Block gleite in  Sek. zu x: y: hinzu. In deinem Projekt können die Koordinaten x und y etwas anders sein und entsprechen der genauen Position, an die du den Bus gezogen hast. when flag clicked wait [] seconds // ändere  auf  +glide [] secs to x: [] y: [-] // rechte Seite der Bühne Test: Klicke auf die grüne Flagge. Die Scratch Katze und das Nilpferd bewegen sich zum Bus, und der Bus fährt nach vier Sekunden nach rechts los. Bus ausblenden und anzeigen Füge einen verstecke dich-Block hinzu, damit es so aussieht, als würde der Bus von der Bühne fahren: when flag clicked wait [] seconds // ändere  auf  glide [] secs to x: [] y: [-] + hide Test: Klicke auf die grüne Flagge. Der Bus wird sich nun nach der Abfahrt verstecken. Erinnerst du dich, wie das geht, dass eine Figur erneut erscheint, wenn du auf die grüne Flagge klickst? Füge einen zeige dich-Block zu deinem Wenn grüne Flagge angeklickt wird-Skript hinzu, damit der Bus beim Ausführen deines Projekts angezeigt wird: when flag clicked go to x: () y: (-) go to [back v] layer set [color v] effect to () // Versuche Zahlen bis  +show Test: Klicke auf die grüne Flagge und schau dir deine Animation an. Der Bus sollte in der Mitte der Bühne erscheinen, dann nach rechts abfahren und verschwinden. Sind alle im Bus, wenn er abfährt? Du kannst die Wartezeit des Busses bei Bedarf ändern. Den Bus verpasst Was wäre, wenn die Scratch Katze nicht schnell genug rennen würde, um den Bus zu erwischen? Lass Scratch Katze den Bus verpassen Wähle die Scratch Katze Figur und füge einen Block warte hinzu: when flag clicked go to x:() y:(-) show repeat () // probiere verschiedene Zahlen aus move () steps next costume + wait () seconds end hide Test: Klicke auf die grüne Flagge. Die Scratch Katze läuft zu langsam und verpasst den Bus! Lass Scratch Katze den Bus erwischen Du wirst Verzögerungen von weniger als eine Sekunde benötigen. , ist eine halbe Sekunde, , ist eine Viertelsekunde und , ist eine Zehntelsekunde. Ändere die Verzögerung im Block warte: wait (.) seconds // versuche es mit ., ., . Test: Klicke auf die grüne Flagge und die Scratch Katze läuft schneller. Wähle die Verzögerung, die dir am besten gefällt. Entscheide dich, ob die Scratch Katze den Bus erwischt oder verpasst Wenn du möchtest, dass die Scratch Katze den Bus verpasst, entferne den Block verstecke dich aus deinem Code, damit die Scratch Katze auf der Bühne bleibt: when flag clicked go to x:() y:(-) show repeat () move () steps next costume wait (.) seconds end -hide Wenn du möchtest, dass die Scratch Katze den Bus erwischt, lasse den Bus länger warten, bevor er abfährt: when flag clicked +wait [] seconds // von  auf  wechseln glide [] secs to x: [] y: [-] // rechte Seite der Bühne hide Wenn du im letzten Schritt den Block verstecke dich entfernt hast, und möchtest, dass die Scratch Katze den Bus doch erwischen soll, musst du ihn wieder einfügen. Nehme Änderungen vor, bis die Animation deinen Wünschen entspricht. Wenn du an einem Projekt arbeitest, ist es normal, oft zurück an frühere Stellen zu gehen und Veränderungen oder Verbesserungen an deinen Code zu machen, wenn dir neue Ideen kommen. Ändere das Ziel Die Aufschrift auf dem Bus lautet „Scratch Tours“, aber du kannst das Ziel nach Belieben ändern. Wohin soll dein Bus fahren? Bearbeite die Figur City Bus Wähle die Figur City Bus und klicke auf die Registerkarte Kostüme: Klicke auf den weißen Text „Scratch Tours“, um ihn auszuwählen, und klicke dann auf Löschen, um ihn zu entfernen. Tipp: Du kannst das Löschen Symbol (der Mülleimer) im Paint-Editor, oder die Taste Entf auf deiner Tastatur verwenden. Wähle das Text (Schreib-)Werkzeug aus. Klicke an der Stelle auf den Bus, an der dein Text beginnen soll, und gebe das gewünschte Ziel ein. Um die Schriftart (den Schreibstil) zu ändern, kannst du auf das Dropdown-Menü Schriftarten klicken: Klicke auf das Werkzeug Auswählen (Pfeil) und ziehe dann den Text, um ihn auf dem Bus zu positionieren.",
+        "description": "Programmiere Figuren so, dass sie zum Bus laufen oder fliegen, bevor er losfährt",
+        "lastTested": "2021-02-17",
+        "metaDescription": "Lerne Coding in Scratch mit den Coding Projekten der Raspberry Pi Foundation für Kinder und Jugendliche. Erstelle mit Scratch eine Animation mit Figuren, die sich beeilen, einen Bus zu erwischen.",
+        "technologyLabels": [
+          "scratch"
+        ],
+        "interestLabels": [
+          "games"
+        ],
+        "hardwareLabels": [],
+        "primaryTechnology": "scratch",
+        "difficultyLevel": 1,
+        "badgeTemplateId": "cef52429-8d09-4b6f-992f-e0bb7de83c1b",
+        "providerId": "d6616bc0-05e6-47b4-ba25-5c14c5de6a79",
+        "locale": "de-DE",
+        "editorStarterProject": "",
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "orange"
+      },
+      "repositoryName": "catch-the-bus",
+      "masterLastCommit": "f80d0ecf4432ce4301c0337c0367f75a5ea55662",
+      "archived": false,
+      "unskippable": false,
+      "template": "default",
+      "pathwayStep": {
+        "pathway_id": 134,
+        "project_id": 1156,
+        "category": "explore",
+        "position": 2,
+        "total": 6
+      },
+      "editorStarterProject": "",
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [
+        {
+          "data": {
+            "id": "268",
+            "type": "projects",
+            "attributes": {
+              "id": 268,
+              "repositoryName": "astronaut-reaction-times",
+              "title": "Astronaut Reaction Time Game",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/astronaut-reaction-times/230b9c0b6daa63f0b740d2b5a0bce6076537cef8/en/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Do you have the fast reactions needed to be an astronaut? Create this game to find out!",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "space"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "2054",
+            "type": "projects",
+            "attributes": {
+              "id": 2054,
+              "repositoryName": "world-environment-day",
+              "title": "World Environment Day",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/world-environment-day/784336a1811eeae01b07741a6ddcef48408a8fc0/en/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Make your own interactive digital card to share with someone for World Environment Day.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "nature"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "75",
+            "type": "projects",
+            "attributes": {
+              "id": 75,
+              "repositoryName": "boat-race",
+              "title": "Bootsrennen",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/boat-race/b10b49c7356d487b75778f61e8887f535a1fb16f/de-DE/images/small_banner.png",
+              "difficultyLevel": 1,
+              "description": "Programmiere ein Rennspiel, in dem Du mit deinem Boot Hindernissen ausweichen musst.",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games",
+                "sports"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fi-FI",
+                "fr-FR",
+                "hi-IN",
+                "hu-HU",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "pt-PT",
+                "ru-RU",
+                "sl-SI",
+                "tr-TR",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "182",
+            "type": "projects",
+            "attributes": {
+              "id": 182,
+              "repositoryName": "create-your-own-world",
+              "title": "Erschaffe deine eigene Welt",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/create-your-own-world/abb7bd4663245bfa48779f59e87d008bb696b9c6/de-DE/images/banner.png",
+              "difficultyLevel": 3,
+              "description": "Lerne, wie du dein eigenes Open-World Abenteuerspiel erstellen kannst",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "scratch"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "scratch",
+              "localesAvailable": [
+                "en",
+                "ar-SA",
+                "bn-IN",
+                "ca-ES",
+                "cy-GB",
+                "de-DE",
+                "el-GR",
+                "es-ES",
+                "es-LA",
+                "fr-FR",
+                "hi-IN",
+                "it-IT",
+                "ja-JP",
+                "kn-IN",
+                "ko-KR",
+                "me-ME",
+                "mr-IN",
+                "nl-NL",
+                "pl-PL",
+                "pt-BR",
+                "ru-RU",
+                "uk-UA",
+                "zh-CN",
+                "zh-TW"
+              ],
+              "pdf": null
+            }
+          }
+        }
+      ],
+      "nextPathway": {
+        "data": {
+          "id": "172",
+          "type": "pathways",
+          "attributes": {
+            "slug": "more-scratch",
+            "name": "More Scratch",
+            "technologyTheme": "scratch"
+          }
+        }
+      },
+      "recommendedPathways": [],
+      "nextProject": {
+        "data": {
+          "id": "1192",
+          "type": "projects",
+          "attributes": {
+            "id": 1192,
+            "repositoryName": "find-the-bug",
+            "title": "Finde den Bug",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/find-the-bug/726cfef9615e3c21dfaa5694ac4f676bcff894f7/de-DE/images/banner.png",
+            "difficultyLevel": 1,
+            "description": "Erstelle ein Spiel, in dem du in jedem Level einen versteckten Bug finden musst",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "games"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "ca-ES",
+              "cy-GB",
+              "de-DE",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA",
+              "xh-ZA"
+            ],
+            "pdf": null
+          }
+        }
+      },
+      "nextPathwayProject": {
+        "data": {
+          "id": "1192",
+          "type": "projects",
+          "attributes": {
+            "id": 1192,
+            "repositoryName": "find-the-bug",
+            "title": "Finde den Bug",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/find-the-bug/726cfef9615e3c21dfaa5694ac4f676bcff894f7/de-DE/images/banner.png",
+            "difficultyLevel": 1,
+            "description": "Erstelle ein Spiel, in dem du in jedem Level einen versteckten Bug finden musst",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "scratch"
+            ],
+            "interestLabels": [
+              "games"
+            ],
+            "primaryTechnology": "scratch",
+            "localesAvailable": [
+              "en",
+              "ar-SA",
+              "ca-ES",
+              "cy-GB",
+              "de-DE",
+              "el-GR",
+              "es-LA",
+              "fr-FR",
+              "it-IT",
+              "ja-JP",
+              "nl-NL",
+              "pl-PL",
+              "pt-BR",
+              "sv-SE",
+              "uk-UA",
+              "xh-ZA"
+            ],
+            "pdf": null
+          }
+        }
+      }
+    },
+    "relationships": {
+      "pathways": {
+        "data": [
+          {
+            "id": "134",
+            "type": "pathways"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "134",
+      "type": "pathways",
+      "attributes": {
+        "id": 134,
+        "slug": "scratch-intro",
+        "title": "Einführung in Scratch",
+        "description": "In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein Spiel, eine App und ein Buch erstellst.",
+        "difficultyLevel": 1,
+        "technologyTheme": "scratch",
+        "ordered": true,
+        "isBeta": true,
+        "skills": [
+          {
+            "id": 60,
+            "name": "scratch",
+            "taggings_count": 336
+          }
+        ],
+        "themes": [
+          {
+            "id": 286,
+            "name": "red",
+            "taggings_count": 5
+          }
+        ],
+        "stepCount": 6,
+        "subtitle": "Sprites, Skripte und Schleifen",
+        "metaTitle": "Projektpfad | Einführung in die Programmierung mit Scratch für Kids",
+        "metaDescription": "Einführung in das Programmieren in Scratch für Kids, Jugendliche und junge Erwachsene. Du lernst Animationen, ein Spiel, eine App und ein Buch zu erstellen.",
+        "header": [
+          {
+            "title": "Was werde ich erschaffen?",
+            "content": "<p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.\nAm Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein digitales Buch mit mehreren Seiten zu schreiben.</p>\n"
+          },
+          {
+            "title": "Was muss ich wissen?",
+            "content": "<p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>\n"
+          },
+          {
+            "title": "Was benötige ich?",
+            "content": "<p>Dieser Pfad erfordert:</p>\n\n<p>– Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry Pi-Computer\n– Zugang zum Internet, um Scratch online zu nutzen oder die Möglichkeit, Scratch herunterzuladen und zu installieren. Weitere Informationen findest du in unserem <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/1\" target=\"_blank\">Scratch EInführungsleitfaden</a>\n- Optional ein <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-scratch/2\" target=\"_blank\">Scratch Account</a></p>\n"
+          },
+          {
+            "title": "Informationen für den Mentor",
+            "content": "<h2 id=\"make\">321…Make!</h2>\n<p>Dieser Pfad folgt der Anleitung <a href=\"https://projects.raspberrypi.org/en/projects/321-make-mentor-guide\" target=\"_blank\">321…Make!</a>:</p>\n\n<p>– <strong>3 Erkunden</strong>-Projekte: Vermitteln Sie Ihren Lernende einige Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen, die ihnen dabei helfen, erstes Selbstvertrauen zu entwickeln.\n– <strong>2 Gestalten</strong>-Projekte: Ermöglichen Sie Ihren Lernenden, Fähigkeiten aus den Erkunden-Projekten zu üben und sich kreativ auszudrücken, während sie selbständiger werden.\n– <strong>1 Erfinden</strong>-Projekt: Ermutigen Sie Ihre Lernende, ihre Fähigkeiten einzusetzen, um ein einzigartiges Projekt zu erstellen, das den Projektvorgaben für ein bestimmtes Publikum entspricht.</p>\n\n<h2 id=\"schnellquiz\">Schnellquiz</h2>\n<p>Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen. Maker werden durch nützliches Feedback zur richtigen Antwort geführt und erhalten ein Projektabzeichen.</p>\n\n<h2 id=\"die-community-inspirieren\">Die Community inspirieren</h2>\n<p>Lernende werden ermutigt, andere in der Raspberry-Pi-Foundation-Community zu inspirieren, indem sie ihre Gestalten- und Erfinden-Projekte über das <a href=\"https://form.raspberrypi.org/f/community-project-submissions\" target=\"_blank\">Projekteinreichungsformular</a> mit uns teilen. Projekte werden in unseren Community-Galerien geteilt.\nWie Sie <a href=\"https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9\" target=\"_blank\">Projekte teilen</a>, erfahren Sie in unserer Anleitung.</p>\n"
+          }
+        ]
+      },
+      "relationships": {
+        "projects": {
+          "data": [
+            {
+              "id": "1155",
+              "type": "projects"
+            },
+            {
+              "id": "1156",
+              "type": "projects"
+            },
+            {
+              "id": "1192",
+              "type": "projects"
+            },
+            {
+              "id": "1191",
+              "type": "projects"
+            },
+            {
+              "id": "1195",
+              "type": "projects"
+            },
+            {
+              "id": "1196",
+              "type": "projects"
+            }
+          ]
+        },
+        "steps": {
+          "data": [
+            {
+              "id": "364",
+              "type": "step"
+            },
+            {
+              "id": "365",
+              "type": "step"
+            },
+            {
+              "id": "366",
+              "type": "step"
+            },
+            {
+              "id": "367",
+              "type": "step"
+            },
+            {
+              "id": "368",
+              "type": "step"
+            },
+            {
+              "id": "369",
+              "type": "step"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

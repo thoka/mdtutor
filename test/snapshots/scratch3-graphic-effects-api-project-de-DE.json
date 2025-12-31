@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1197",
+    "type": "projects",
+    "attributes": {
+      "id": 1197,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Verwende Grafikeffekte",
+            "content": "<p><strong>Hahn-Effekte</strong>: <a href=\"https://scratch.mit.edu/projects/435730522/editor\" target=\"_blank\">Schaue hinein</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/435730522/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Die Blöcke <code class=\"block3looks\">setze Effekt Farbe auf</code> und <code class=\"block3looks\">ändere Effekt Farbe um</code> verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann:</p>\n\n<ul>\n  <li><code class=\"block3looks\">Farbe</code>: von <code>0</code> bis <code>199</code> (größere Zahlen werden umgebrochen, also ist <code>200</code> dasselbe wie <code>0</code>)</li>\n  <li><code class=\"block3looks\">Fischauge</code>: <code>0</code> bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt</li>\n  <li><code class=\"block3looks\">Wirbel</code>: <code>0</code> bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts</li>\n  <li><code class=\"block3looks\">Pixel</code>: <code>0</code> bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel</li>\n  <li><code class=\"block3looks\">Mosaik</code>: <code>0</code> bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien</li>\n  <li><code class=\"block3looks\">Helligkeit</code>: <code>0</code> bedeutet keinen Effekt, Zahlen bis <code>100</code> machen die Figur heller und negative Zahlen bis <code>-100</code> machen die Figur dunkler</li>\n  <li><code class=\"block3looks\">Durchsichtigkeit</code>: <code>0</code> bedeutet keinen Effekt, und Zahlen bis <code>100</code> machen die Figur transparenter</li>\n</ul>\n\n<p>Probiere die Effekte aus und <code class=\"block3looks\">setze</code> verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen.</p>\n\n<pre><code class=\"language-blocks3\">set [Wirbel v] effect to (100)\n\nset [Pixel v] effect to (50)\n</code></pre>\n\n<p><strong>Tipp:</strong> Ein <code class=\"block3looks\">Effekt Farbe</code> von <code>225</code> ist identisch zu einem <code class=\"block3looks\">Effekt Farbe</code> von <code>25</code>, du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde.</p>\n\n<pre><code class=\"language-blocks3\">forever\nchange [Farbe v] effect by [25]\nwait [0.5] seconds\n</code></pre>\n\n<p>Verwende den Block <code class=\"block3looks\">schalte Grafikeffekte aus</code>, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht.</p>\n\n<p>Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block <code class=\"block3looks\">setze Effekt ... auf</code> unter einem Block <code class=\"block3events\">Wenn grüne Flagge angeklickt wird</code>:</p>\n\n<pre><code class=\"language-blocks3\">when green flag clicked\nset [Durchsichtigkeit v] effect to (25)\n</code></pre>\n\n<p><strong>Tipp:</strong>Du kannst die Blöcke <code class=\"block3looks\">setze</code> und <code class=\"block3looks\">ändere</code> Effekt auch für die <strong>Bühne</strong> verwenden.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Verwende Grafikeffekte",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Verwende Grafikeffekte",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-graphic-effects/5d59976dc7f069891ee912898e95b4d7213f099c/de-DE/images/banner.png",
+        "plainText": "Hahn-Effekte: Schaue hinein Die Blöcke setze Effekt Farbe auf und ändere Effekt Farbe um verfügen beide über Dropdown-Menüs, in denen du aus einer Reihe verschiedener Grafikeffekte auswählen kannst, mit denen das Aussehen deiner Figur geändert werden kann: Farbe: von  bis  (größere Zahlen werden umgebrochen, also ist  dasselbe wie ) Fischauge:  bedeutet keinen Effekt, größere Zahlen bewirken einen größeren Fischaugeneffekt und negative Zahlen bewirken einen umgekehrten Fischaugeneffekt Wirbel:  bedeutet keinen Effekt, große Zahlen machen einen großen Wirbel nach links und große negative Zahlen machen einen großen Wirbel nach rechts Pixel:  bedeutet keinen Effekt, und größere Zahlen erzeugen mehr Pixel Mosaik:  bedeutet keinen Effekt, und größere oder negative Zahlen beeinflussen die Anzahl der Kopien Helligkeit:  bedeutet keinen Effekt, Zahlen bis  machen die Figur heller und negative Zahlen bis - machen die Figur dunkler Durchsichtigkeit:  bedeutet keinen Effekt, und Zahlen bis  machen die Figur transparenter Probiere die Effekte aus und setze verschiedene Werte ein, um zu sehen, was jeder einzelne Effekt bewirkt. Finde heraus, wie die unterschiedlichen Effekte das Aussehen deiner Figur beeinflussen. set [Wirbel v] effect to () set [Pixel v] effect to () Tipp: Ein Effekt Farbe von  ist identisch zu einem Effekt Farbe von , du kannst die Farbe also fortlaufend ändern. Bei anderen Effekten werden keine weiteren Änderungen mehr vorgenommen, nachdem die Maximal- oder Minimalzahl für den Effekt erreicht wurde. forever change [Farbe v] effect by [] wait [.] seconds Verwende den Block schalte Grafikeffekte aus, um erneut zu beginnen. Durch Klicken auf die grüne Flagge werden die Grafikeffekte ebenfalls gelöscht. Um beim Starten des Projekts einen Grafikeffekt für eine Figur festzulegen, platziere einen Block setze Effekt ... auf unter einem Block Wenn grüne Flagge angeklickt wird: when green flag clicked set [Durchsichtigkeit v] effect to () Tipp:Du kannst die Blöcke setze und ändere Effekt auch für die Bühne verwenden.",
+        "description": "Verwende Grafikeffekte, um Farbe, Durchsichtigkeit, Helligkeit und andere Effekte für Figuren sowie für die Bühne zu ändern und einzustellen",
+        "lastTested": "2021-03-10",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "orange"
+      },
+      "repositoryName": "scratch3-graphic-effects",
+      "masterLastCommit": "5d59976dc7f069891ee912898e95b4d7213f099c",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

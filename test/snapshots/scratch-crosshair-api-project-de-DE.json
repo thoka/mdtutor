@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1151",
+    "type": "projects",
+    "attributes": {
+      "id": 1151,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Kostüme zentrieren",
+            "content": "<p>Figuren drehen sich um ihren Mittelpunkt. Im Mal-Editor erkennst du, ob deine Figur zentriert ist, indem du das kleine graue Fadenkreuz ansiehst:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/crosshair.png\" alt=\"Das Fadenkreuz.\" width=\"200px\" /></p>\n\n<p>Wenn es sich nicht in der Mitte des Kostüms befindet, hebe das gesamte Kostüm mithilfe des <strong>Auswählen</strong>-Tools hervor. Daraufhin erscheint ein Kreuz in der Mitte des hervorgehobenen Kostüms:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/off-centre-crosshair.png\" alt=\"Das Kreuz in der Mitte des Kostüms ist nicht am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n\n<p>Ziehe das Kostüm, bis das Kreuz genau auf dem Fadenkreuz liegt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/centre-crosshair.png\" alt=\"Das Kreuz des Kostüms ist jetzt am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n\n<p>Manchmal möchtest du vielleicht einen Drehpunkt wählen, der nicht genau in der Mitte des Kostüms liegt. Richte in diesem Fall den gewünschten Drehpunkt des Kostüms am Fadenkreuz im Mal-Editor aus:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/rotation-point.png\" alt=\"Ein Drehpunkt am unteren Rand des Kostüms ist am Fadenkreuz ausgerichtet.\" width=\"500px\" /></p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Kostüme zentrieren",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Kostüme zentrieren",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch-crosshair/95f9644fba675f7ec40c236f7dec937b3005484e/de-DE/images/banner.png",
+        "plainText": "Figuren drehen sich um ihren Mittelpunkt. Im Mal-Editor erkennst du, ob deine Figur zentriert ist, indem du das kleine graue Fadenkreuz ansiehst: Wenn es sich nicht in der Mitte des Kostüms befindet, hebe das gesamte Kostüm mithilfe des Auswählen-Tools hervor. Daraufhin erscheint ein Kreuz in der Mitte des hervorgehobenen Kostüms: Ziehe das Kostüm, bis das Kreuz genau auf dem Fadenkreuz liegt: Manchmal möchtest du vielleicht einen Drehpunkt wählen, der nicht genau in der Mitte des Kostüms liegt. Richte in diesem Fall den gewünschten Drehpunkt des Kostüms am Fadenkreuz im Mal-Editor aus:",
+        "description": "Kostüme zentrieren",
+        "lastTested": "2020-12-09",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch-crosshair",
+      "masterLastCommit": "95f9644fba675f7ec40c236f7dec937b3005484e",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

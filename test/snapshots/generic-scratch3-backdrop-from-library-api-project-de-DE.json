@@ -1,0 +1,63 @@
+{
+  "data": {
+    "id": "569",
+    "type": "projects",
+    "attributes": {
+      "id": 569,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Wähle ein Bühnenbild",
+            "content": "<ul>\n  <li>Klicke unten rechts auf <strong>Bühnenbild wählen</strong>.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/de-DE/images/stage-choose.png\" alt=\"Screenshot\" /></p>\n\n<ul>\n  <li>Du kannst ein Bühnenbild suchen oder die Auswahl durch Kategorien oder Themen begrenzen. Klicke auf das Bühnenbild um es auszuwählen.</li>\n</ul>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/de-DE/images/backdrop.png\" alt=\"Screenshot\" /></p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Ein Bühnenbild aus der Scratch-Bibliothek auswählen",
+        "listed": false,
+        "copyedit": true,
+        "keywords": "Ein Bühnenbild aus der Scratch-Bibliothek auswählen",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/de-DE/images/banner.png",
+        "ingredient": true,
+        "plainText": "Klicke unten rechts auf Bühnenbild wählen. Du kannst ein Bühnenbild suchen oder die Auswahl durch Kategorien oder Themen begrenzen. Klicke auf das Bühnenbild um es auszuwählen.",
+        "description": "Ein Bühnenbild aus der Scratch-Bibliothek auswählen",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "generic-scratch3-backdrop-from-library",
+      "masterLastCommit": "ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}
