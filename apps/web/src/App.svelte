@@ -9,6 +9,10 @@
   
   const routes = {
     '/': HomeView,
+    '/:lang/projects': HomeView,
+    '/:lang/projects/:slug': TutorialView,
+    '/:lang/projects/:slug/:step': TutorialView,
+    // Fallback for old URLs
     '/:slug': TutorialView,
     '/:slug/:step': TutorialView,
     '*': HomeView  // Fallback to home

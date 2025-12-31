@@ -2,13 +2,21 @@
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
 
+  let { params = {} }: { params?: { lang?: string } } = $props();
+
   let projects = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
+  let lang = $derived(params.lang || 'de-DE');
 
-  onMount(async () => {
+  $effect(() => {
+    loadProjects();
+  });
+
+  async function loadProjects() {
+    isLoading = true;
     try {
-      const response = await fetch('/api/projects');
+      const response = await fetch(`/api/projects?lang=${lang}`);
       if (!response.ok) {
         throw new Error('Failed to fetch projects');
       }
@@ -19,7 +27,7 @@
     } finally {
       isLoading = false;
     }
-  });
+  }
 </script>
 
 <div class="c-projects-list">
@@ -38,7 +46,8 @@
   {:else}
     <div class="c-projects-list__projects">
       {#each projects as project}
-        <a href="/{project.slug}" use:link class="c-project-card">
+        {@const displaySlug = project.slug.startsWith('rpl:') ? project.slug.slice(4) : project.slug}
+        <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card">
           {#if project.heroImage}
             <img 
               class="c-project-card__image" 

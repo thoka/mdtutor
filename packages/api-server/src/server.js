@@ -217,6 +217,7 @@ app.get('/api/projects/:slug', async (req, res) => {
 // Lists available projects
 app.get('/api/projects', async (req, res) => {
   try {
+    const lang = req.query.lang || 'de-DE';
     const providers = await getProviders();
     const allProjects = [];
 
@@ -231,9 +232,9 @@ app.get('/api/projects', async (req, res) => {
           const slug = dir.name;
           const namespacedSlug = `${meta.namespace}:${slug}`;
           
-          // Try to get German data first for the overview
+          // Try to get requested language data first for the overview
           try {
-            const projectData = await getProjectData(namespacedSlug, 'de-DE');
+            const projectData = await getProjectData(namespacedSlug, lang);
             
             let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
             let description = projectData?.data?.attributes?.content?.description || null;
