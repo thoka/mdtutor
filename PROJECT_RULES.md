@@ -6,7 +6,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
 - **Loose Coupling**: Modules are independent. Keep logic, tests, and documentation within the module directory.
 - **Parser (`packages/parser`)**: Converts Markdown to RPL-compatible JSON using `unified.js` (remark/rehype).
-- **API Server (`packages/api-server`)**: Express server serving content from `test/snapshots`. Supports on-the-fly parsing and language fallback.
+- **API Server (`packages/api-server`)**: Express server serving content from `content/`. Supports multiple providers (RPL, TAG) and namespaced IDs.
 - **Web App (`apps/web`)**: Svelte 5 + Vite frontend. Uses `svelte-spa-router`.
 - **Data Flow**: Markdown (GitHub) → Parser → JSON (RPL Format) → API Server → Svelte Frontend.
 
@@ -14,7 +14,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
   1. Create a **feature branch** (`feature/name`).
   2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
-- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots.
+- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots into `content/RPL/projects`.
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
 - **Linting**: `npm run lint` (ESLint 9).
@@ -24,13 +24,15 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
+- **Planning**: Implementation plans MUST be discussed and approved BEFORE coding starts.
 - **Verification**: Merge to `main` only after full verification and passing tests.
+- **Review**: Never merge into `main` without a review and approval.
 - **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates.
 
 ## Iteration Flow
 1.  **Preparation**: Create a feature branch.
 2.  **Proposal**: Document the approach in `docs/brain/YYYY-MM-DD-feature-name.md` (Implementation Plan).
-3.  - **Discussion**: Present the proposal and wait for feedback/approval.
+3.  - **Approval (MANDATORY)**: Present the proposal and wait for explicit feedback/approval BEFORE starting implementation.
 4.  - **Clarification**: If an iteration is "expensive" (complex/time-consuming), ask for clarification *before* starting.
 5.  **Execution (TDD)**: Implement subtasks using TDD. Log progress and changes in the brain document.
 6.  **Walkthrough**: Document the final state/result in a `*-walkthrough.md` in `docs/brain/`.
@@ -53,11 +55,12 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - [docs/SPEC.md](docs/SPEC.md): Core project specification.
 
 ## Agent Toolbox
-Custom tools in `tools/` are optimized for agent use. Read `tools/README.md` for a list.
-- `compare-structure.js`: Compare HTML structure between reference and local.
-- `extract-css.js`: Extract CSS from reference pages.
-- `extract-structure.js`: Extract HTML structure from a single page.
-- `save-html.js`: Save rendered HTML for inspection.
+| Tool | Description |
+| --- | --- |
+| `compare-structure.js` | Compare HTML structure between reference and local. |
+| `extract-css.js` | Extract CSS from reference pages. |
+| `extract-structure.js` | Extract HTML structure from a single page. |
+| `save-html.js` | Save rendered HTML for inspection. |
 
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.

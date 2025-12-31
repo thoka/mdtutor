@@ -19,7 +19,7 @@ const projectRoot = join(__dirname, '../../..');
  * Load original Quiz API data
  */
 function loadQuizApi(quizPath, language = 'en') {
-  const apiPath = join(projectRoot, 'test/snapshots/silly-eyes', `api-quiz-${quizPath}-${language}.json`);
+  const apiPath = join(projectRoot, 'content/RPL/projects/silly-eyes', `api-quiz-${quizPath}-${language}.json`);
   if (!existsSync(apiPath)) {
     return null;
   }
@@ -97,7 +97,7 @@ test('compare-quiz-api-exact - quiz API structure matches our output', async () 
   assert.strictEqual(originalQuestions.length, 3, 'Original API should have 3 questions');
   
   // Parse our version
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const ourResult = await parseQuiz(quizPath);
   
   assert.strictEqual(ourResult.questions.length, 3, 'Our parser should have 3 questions');
@@ -183,7 +183,7 @@ test('compare-quiz-api-exact - HTML structure differences documented', async () 
   const originalStruct = extractQuestionStructure(originalQuestions[0]);
   
   // Parse our version
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const ourResult = await parseQuiz(quizPath);
   const ourHtml = ourResult.html;
   const ourParsed = parse(ourHtml);
@@ -285,7 +285,7 @@ test('compare-quiz-api-exact - feedback structure comparison', async () => {
   const originalStruct = extractQuestionStructure(originalQuestions[0]);
   
   // Parse our version
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const ourResult = await parseQuiz(quizPath);
   const ourHtml = ourResult.html;
   const ourParsed = parse(ourHtml);
@@ -333,7 +333,7 @@ test('compare-quiz-api-exact - answer correctness matches', async () => {
   const originalQuestions = quizApi.data.attributes.content.questions;
   
   // Parse our version
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const ourResult = await parseQuiz(quizPath);
   
   // Compare which answers are marked as correct

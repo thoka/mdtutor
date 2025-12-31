@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
 
 test('parseProject - German content', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/de-DE');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/de-DE');
   const result = await parseProject(projectPath);
   
   assert.strictEqual(result.data.attributes.content.title, 'Alberne Augen');
@@ -16,7 +16,7 @@ test('parseProject - German content', async () => {
 });
 
 test('parseProject - Fallback logic', async () => {
-  const repoPath = join(projectRoot, 'test/snapshots/silly-eyes/repo');
+  const repoPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo');
   
   // Prefer German
   const resultDe = await parseProject(repoPath, { languages: ['de-DE', 'en'] });
@@ -27,13 +27,13 @@ test('parseProject - Fallback logic', async () => {
   assert.strictEqual(resultEn.data.attributes.content.title, 'Silly eyes');
   
   // Fallback to English if German not available (using a project that only has en)
-  const repoPathEnOnly = join(projectRoot, 'test/snapshots/scratchpc-interactive-book/repo');
+  const repoPathEnOnly = join(projectRoot, 'content/RPL/projects/scratchpc-interactive-book/repo');
   const resultFallback = await parseProject(repoPathEnOnly, { languages: ['de-DE', 'en'] });
   assert.strictEqual(resultFallback.data.attributes.content.title, 'Make an interactive book');
 });
 
 test('Transclusion - Language fallback', async () => {
-  const repoPath = join(projectRoot, 'test/snapshots/silly-eyes/repo');
+  const repoPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo');
   
   // Parse German project, should have German transclusions
   const resultDe = await parseProject(repoPath, { languages: ['de-DE', 'en'] });

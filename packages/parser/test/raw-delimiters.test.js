@@ -10,7 +10,7 @@ import { join } from 'path';
 import { parseProject } from '../src/parse-project.js';
 
 const projectRoot = join(import.meta.dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'test/snapshots');
+const snapshotsDir = join(projectRoot, 'content/RPL/projects');
 
 /**
  * Find all test repos

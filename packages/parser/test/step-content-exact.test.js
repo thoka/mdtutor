@@ -23,7 +23,7 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'test/snapshots');
+const snapshotsDir = join(projectRoot, 'content/RPL/projects');
 
 /**
  * Haupttest: Vergleicht alle Projekte
@@ -37,7 +37,7 @@ test('step-content-exact - all projects', async () => {
   }
 
   if (projects.length === 0) {
-    console.log('No projects found in test/snapshots/' + (process.env.PROJECT ? ` matching ${process.env.PROJECT}` : ''));
+    console.log('No projects found in content/RPL/projects/' + (process.env.PROJECT ? ` matching ${process.env.PROJECT}` : ''));
     return;
   }
 

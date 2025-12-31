@@ -1,5 +1,12 @@
-# Test snapshots - cloned repositories and API responses
-test/snapshots/
+# Content - cloned repositories and API responses
+content/RPL/projects/*
+content/RPL/pathways/*
+
+# Keep source files and metadata
+!content/RPL/meta.yml
+!content/RPL/README.md
+!content/RPL/pathways/rpl-pathways.yaml
+!content/TAG/**
 
 # Test output files
 test-differences.json

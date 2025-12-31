@@ -494,7 +494,7 @@ export function compareHtmlContent(expectedHtml, actualHtml) {
 }
 
 /**
- * Findet alle Projekte in test/snapshots mit repo/ Verzeichnis
+ * Findet alle Projekte in content/RPL/projects mit repo/ Verzeichnis
  */
 export function findProjects(snapshotsDir) {
   const projects = [];

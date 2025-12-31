@@ -17,7 +17,7 @@ test('quiz content - quiz step has quiz HTML in content', async () => {
   // Skip full parseProject test for now due to micromark issues
   // Test parseQuiz directly instead
   const { parseQuiz } = await import('../src/parse-quiz.js');
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const quizData = await parseQuiz(quizPath, {
     transclusionCache: new Map(),
     languages: ['en']
@@ -49,7 +49,7 @@ test('quiz content - quiz step has quiz HTML in content', async () => {
 test('quiz content - quiz HTML structure is valid', async () => {
   // Test parseQuiz directly
   const { parseQuiz } = await import('../src/parse-quiz.js');
-  const quizPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/quiz1');
+  const quizPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/quiz1');
   const quizData = await parseQuiz(quizPath, {
     transclusionCache: new Map(),
     languages: ['en']
@@ -84,7 +84,7 @@ test('quiz content - quiz HTML structure is valid', async () => {
 });
 
 test('quiz content - quiz step exists and has content property', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   
   // This test just ensures quiz step exists and has content
   // We'll skip the full parseProject test for now due to micromark issues

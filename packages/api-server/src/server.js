@@ -8,11 +8,12 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { existsSync } from 'fs';
-import { readFile as readFileAsync } from 'fs/promises';
+import { existsSync, readdirSync } from 'fs';
+import { readFile as readFileAsync, readdir as readdirAsync } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
+import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -22,7 +23,115 @@ dotenv.config({ path: join(__dirname, '../../../.env') });
 import { parseProject } from '../../parser/src/parse-project.js';
 import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js';
 
-const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
+const CONTENT_DIR = join(__dirname, '../../../content');
+
+/**
+ * Get all content providers and their metadata
+ * @returns {Promise<Object>} Map of provider name to metadata
+ */
+async function getProviders() {
+  const providers = {};
+  if (!existsSync(CONTENT_DIR)) return providers;
+
+  const dirs = await readdirAsync(CONTENT_DIR, { withFileTypes: true });
+  for (const dir of dirs) {
+    if (dir.isDirectory()) {
+      const metaPath = join(CONTENT_DIR, dir.name, 'meta.yml');
+      if (existsSync(metaPath)) {
+        const metaContent = await readFileAsync(metaPath, 'utf-8');
+        providers[dir.name] = yaml.load(metaContent);
+      }
+    }
+  }
+  return providers;
+}
+
+/**
+ * Resolve a namespaced slug to a file path
+ * @param {string} namespacedSlug e.g. "rpl:silly-eyes"
+ * @returns {Promise<{path: string, provider: string, slug: string, namespace: string}|null>}
+ */
+async function resolveSlug(namespacedSlug) {
+  const providers = await getProviders();
+  
+  // If no namespace, try to find it in any provider (fallback for legacy)
+  if (!namespacedSlug.includes(':')) {
+    for (const [name, meta] of Object.entries(providers)) {
+      const projectPath = join(CONTENT_DIR, name, 'projects', namespacedSlug);
+      if (existsSync(projectPath)) {
+        return {
+          path: projectPath,
+          provider: name,
+          slug: namespacedSlug,
+          namespace: meta.namespace
+        };
+      }
+    }
+    return null;
+  }
+
+  const [namespace, slug] = namespacedSlug.split(':');
+  for (const [name, meta] of Object.entries(providers)) {
+    if (meta.namespace === namespace) {
+      const projectPath = join(CONTENT_DIR, name, 'projects', slug);
+      if (existsSync(projectPath)) {
+        return {
+          path: projectPath,
+          provider: name,
+          slug: slug,
+          namespace: namespace
+        };
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Get all project slugs that are part of any pathway
+ * @returns {Promise<Array<{namespacedSlug: string, namespace: string, slug: string, provider: string}>>}
+ */
+async function getPathwayProjects() {
+  const providers = await getProviders();
+  const projects = [];
+  const seen = new Set();
+
+  for (const [providerName, meta] of Object.entries(providers)) {
+    const pathwaysDir = join(CONTENT_DIR, providerName, 'pathways');
+    if (existsSync(pathwaysDir)) {
+      const files = await readdirAsync(pathwaysDir);
+      for (const file of files) {
+        if (file.endsWith('.yaml') || file.endsWith('.yml')) {
+          try {
+            const content = await readFileAsync(join(pathwaysDir, file), 'utf-8');
+            const data = yaml.load(content);
+            if (data && typeof data === 'object') {
+              for (const pathway of Object.values(data)) {
+                if (Array.isArray(pathway)) {
+                  pathway.forEach(slug => {
+                    const namespacedSlug = `${meta.namespace}:${slug}`;
+                    if (!seen.has(namespacedSlug)) {
+                      projects.push({
+                        namespacedSlug,
+                        namespace: meta.namespace,
+                        slug,
+                        provider: providerName
+                      });
+                      seen.add(namespacedSlug);
+                    }
+                  });
+                }
+              }
+            }
+          } catch (e) {
+            console.warn(`Failed to load pathway file ${file} for provider ${providerName}:`, e.message);
+          }
+        }
+      }
+    }
+  }
+  return projects;
+}
 
 const app = express();
 // Port MUST be set in .env file - no default fallback
@@ -37,11 +146,16 @@ app.use(express.json());
 
 /**
  * Helper to find project data with language fallback
- * @param {string} slug 
+ * @param {string} namespacedSlug 
  * @param {string} requestedLang 
  * @returns {Promise<Object|null>}
  */
-async function getProjectData(slug, requestedLang) {
+async function getProjectData(namespacedSlug, requestedLang) {
+  const resolved = await resolveSlug(namespacedSlug);
+  if (!resolved) return null;
+
+  const { path: projectPath, slug, namespace } = resolved;
+
   const languages = requestedLang === 'de' || requestedLang === 'de-DE' 
     ? ['de-DE', 'en'] 
     : [requestedLang, 'de-DE', 'en'];
@@ -52,15 +166,18 @@ async function getProjectData(slug, requestedLang) {
   // First try to parse from repository (for quiz support)
   for (const lang of uniqueLangs) {
     try {
-      const repoPath = join(SNAPSHOTS_DIR, slug, 'repo', lang);
+      const repoPath = join(projectPath, 'repo', lang);
       if (existsSync(repoPath) && existsSync(join(repoPath, 'meta.yml'))) {
         const parsed = await parseProject(repoPath, { 
           languages: [lang],
           includeQuizData: true
         });
         if (parsed && parsed.data) {
+          // Prepend namespace to ID
+          parsed.data.id = `${namespace}:${slug}`;
+
           // Convert relative image URLs to absolute URLs pointing to Vite's static file server
-          // Images are served from /snapshots/:slug/repo/:lang/images/...
+          // Images are served from /content/:provider/projects/:slug/repo/:lang/images/...
           const imageUrlPattern = /src="(images\/[^"]+)"/g;
           
           // Replace image URLs in all step content
@@ -68,7 +185,7 @@ async function getProjectData(slug, requestedLang) {
             parsed.data.attributes.content.steps.forEach(step => {
               if (step.content) {
                 step.content = step.content.replace(imageUrlPattern, (match, imagePath) => {
-                  const absoluteUrl = `/snapshots/${slug}/repo/${lang}/${imagePath}`;
+                  const absoluteUrl = `/content/${resolved.provider}/projects/${slug}/repo/${lang}/${imagePath}`;
                   return `src="${absoluteUrl}"`;
                 });
               }
@@ -80,9 +197,15 @@ async function getProjectData(slug, requestedLang) {
             const heroImagePath = parsed.data.attributes.content.heroImage;
             // If it's a relative path (starts with "images/"), convert to absolute
             if (heroImagePath.startsWith('images/')) {
-              parsed.data.attributes.content.heroImage = `/snapshots/${slug}/repo/${lang}/${heroImagePath}`;
+              parsed.data.attributes.content.heroImage = `/content/${resolved.provider}/projects/${slug}/repo/${lang}/${heroImagePath}`;
             }
           }
+          
+          // Add available languages to the response
+          const repoDir = join(projectPath, 'repo');
+          parsed.languages = existsSync(repoDir) 
+            ? readdirSync(repoDir).filter(f => existsSync(join(repoDir, f, 'meta.yml')))
+            : [];
           
           return parsed;
         }
@@ -96,15 +219,26 @@ async function getProjectData(slug, requestedLang) {
   // legacy Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
-      const filePath = join(SNAPSHOTS_DIR, slug, `api-project-${lang}.json`);
+      const filePath = join(projectPath, `api-project-${lang}.json`);
       const data = await readFileAsync(filePath, 'utf-8');
-      return JSON.parse(data);
+      const parsed = JSON.parse(data);
+      
+      // Prepend namespace to ID
+      parsed.data.id = `${namespace}:${slug}`;
+      
+      // Add available languages to the response
+      const repoDir = join(projectPath, 'repo');
+      parsed.languages = existsSync(repoDir) 
+        ? readdirSync(repoDir).filter(f => existsSync(join(repoDir, f, 'meta.yml')))
+        : [];
+
+      return parsed;
     } catch {
       // Continue to next language
     }
   }
 
-  throw new Error(`Failed to parse project ${slug} from repository or snapshots for languages: ${uniqueLangs.join(', ')}`);
+  throw new Error(`Failed to parse project ${namespacedSlug} from repository or snapshots for languages: ${uniqueLangs.join(', ')}`);
 }
 
 // Health check endpoint with port and commit information
@@ -141,34 +275,51 @@ app.get('/api/projects/:slug', async (req, res) => {
 // Lists available projects
 app.get('/api/projects', async (req, res) => {
   try {
-    const summaryPath = join(SNAPSHOTS_DIR, 'summary.json');
-    const data = await readFileAsync(summaryPath, 'utf-8');
-    const summary = JSON.parse(data);
-    
-    // summary.json uses "results" array with "tutorial" as slug
-    const projects = await Promise.all((summary.results || []).map(async r => {
-      const slug = r.tutorial;
-      
-      // Try to get German data first for the overview
-      const projectData = await getProjectData(slug, 'de-DE');
-      
-      let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
-      let description = projectData?.data?.attributes?.content?.description || null;
-      let title = projectData?.data?.attributes?.content?.title || 
-                  slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    const lang = req.query.lang || 'de-DE';
+    const pathwayProjects = await getPathwayProjects();
+    const allProjects = [];
+    const allLanguages = new Set(['de-DE', 'en']);
 
-      return {
-        slug,
-        title,
-        description,
-        languages: r.languages,
-        heroImage
-      };
-    }));
+    for (const { namespacedSlug, slug } of pathwayProjects) {
+      // Try to get requested language data first for the overview
+      try {
+        const projectData = await getProjectData(namespacedSlug, lang);
+        
+        let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
+        let description = projectData?.data?.attributes?.content?.description || null;
+        let title = projectData?.data?.attributes?.content?.title || 
+                    slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+        const projectLangs = projectData.languages || ['de-DE', 'en'];
+        projectLangs.forEach(l => allLanguages.add(l));
+
+        allProjects.push({
+          slug: namespacedSlug,
+          title,
+          description,
+          languages: projectLangs,
+          heroImage
+        });
+      } catch (e) {
+        // If project data cannot be loaded (e.g. directory missing), 
+        // still include it in the list as requested by user
+        allProjects.push({
+          slug: namespacedSlug,
+          title: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+          description: null,
+          languages: [],
+          heroImage: null,
+          unavailable: true
+        });
+      }
+    }
     
-    res.json({ projects });
+    res.json({ 
+      projects: allProjects,
+      languages: Array.from(allLanguages)
+    });
   } catch (error) {
-    console.error('Error reading summary:', error);
+    console.error('Error listing projects:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -177,7 +328,7 @@ app.get('/api/projects', async (req, res) => {
 app.listen(PORT, () => {
   const commitHash = getCurrentCommitHashShort();
   console.log(`API Server running on http://localhost:${PORT}`);
-  console.log(`Serving snapshots from: ${SNAPSHOTS_DIR}`);
+  console.log(`Serving content from: ${CONTENT_DIR}`);
   console.log(`Health check: http://localhost:${PORT}/api/health`);
   if (commitHash) {
     console.log(`Commit: ${commitHash}`);

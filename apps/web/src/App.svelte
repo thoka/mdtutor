@@ -3,12 +3,18 @@
   import Router from 'svelte-spa-router';
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
+  import LanguageChooser from './lib/LanguageChooser.svelte';
+  import { t } from './lib/i18n';
   import { checkApiHealth } from './lib/api-config';
   import './styles/rpl-cloned/index.css';
   import './app.css';
   
   const routes = {
     '/': HomeView,
+    '/:lang/projects': HomeView,
+    '/:lang/projects/:slug': TutorialView,
+    '/:lang/projects/:slug/:step': TutorialView,
+    // Fallback for old URLs
     '/:slug': TutorialView,
     '/:slug/:step': TutorialView,
     '*': HomeView  // Fallback to home
@@ -51,17 +57,31 @@
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
+
+  .global-nav-bar {
+    background-color: var(--rpf-off-white, #f8f8f8);
+    border-bottom: 1px solid var(--rpf-grey-200, #eee);
+  }
+
+  .global-nav-bar__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
 </style>
 
 <div class="c-i18n-root" dir="ltr">
   {#if apiMismatch}
     <div class="api-mismatch-banner">
-      ⚠ API Version Mismatch! Web: {apiVersions.web} | API: {apiVersions.api}
+      ⚠ {$t('api_mismatch')} Web: {apiVersions.web} | API: {apiVersions.api}
     </div>
   {/if}
   <div class="no-print">
     <div class="global-nav-bar">
-      <!-- Global navigation placeholder -->
+      <div class="global-nav-bar__content">
+        <LanguageChooser />
+      </div>
     </div>
   </div>
   <div class="no-print">

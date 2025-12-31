@@ -25,10 +25,10 @@ import {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'test/snapshots');
+const snapshotsDir = join(projectRoot, 'content/RPL/projects');
 
 async function getPathwayProjects(pathwayName) {
-  const pathwaysPath = join(projectRoot, 'test/pathways.yaml');
+  const pathwaysPath = join(projectRoot, 'content/RPL/pathways/rpl-pathways.yaml');
   const content = await readFile(pathwaysPath, 'utf8');
   const pathways = yaml.load(content);
   return pathways[pathwayName] || [];

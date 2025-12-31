@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
 
 test('parseMeta - silly-eyes', () => {
-  const metaPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en/meta.yml');
+  const metaPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en/meta.yml');
   const result = parseMeta(metaPath);
   
   assert.strictEqual(result.title, 'Silly eyes');

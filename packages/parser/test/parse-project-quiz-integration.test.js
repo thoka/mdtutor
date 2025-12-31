@@ -15,7 +15,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
 
 test('parseProject - detects quiz step from meta.yml', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -26,7 +26,7 @@ test('parseProject - detects quiz step from meta.yml', async () => {
 });
 
 test('parseProject - embeds quiz HTML in step content', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -40,7 +40,7 @@ test('parseProject - embeds quiz HTML in step content', async () => {
 });
 
 test('parseProject - quiz step has correct structure', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -54,7 +54,7 @@ test('parseProject - quiz step has correct structure', async () => {
 });
 
 test('parseProject - quiz HTML contains all questions', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -68,7 +68,7 @@ test('parseProject - quiz HTML contains all questions', async () => {
 });
 
 test('parseProject - quiz HTML structure matches spec', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -94,7 +94,7 @@ test('parseProject - quiz HTML structure matches spec', async () => {
 });
 
 test('parseProject - quiz step maintains other step properties', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -108,7 +108,7 @@ test('parseProject - quiz step maintains other step properties', async () => {
 });
 
 test('parseProject - non-quiz steps are not affected', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -125,7 +125,7 @@ test('parseProject - non-quiz steps are not affected', async () => {
 });
 
 test('parseProject - quiz step content includes check buttons', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -146,7 +146,7 @@ test('parseProject - quiz step content includes check buttons', async () => {
 });
 
 test('parseProject - quiz HTML preserves question order', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   const content = result.data.attributes.content;
@@ -164,11 +164,11 @@ test('parseProject - quiz HTML preserves question order', async () => {
 });
 
 test('parseProject - quiz step matches original API structure', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   // Load original API for comparison
-  const originalApiPath = join(projectRoot, 'test/snapshots/silly-eyes/api-project-en.json');
+  const originalApiPath = join(projectRoot, 'content/RPL/projects/silly-eyes/api-project-en.json');
   if (!existsSync(originalApiPath)) {
     console.log('Skipping test - original API file not found');
     return;

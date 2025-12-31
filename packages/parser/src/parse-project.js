@@ -44,13 +44,12 @@ export async function parseProject(projectPath, options = {}) {
   const metaPath = join(actualPath, 'meta.yml');
   const meta = parseMeta(metaPath);
   
-  // Determine base path for transclusions (go up to snapshots directory)
+  // Determine base path for transclusions (go up to projects directory within content)
   let basePath = options.basePath;
   if (!basePath) {
-    const parts = actualPath.split('/');
-    const snapshotsIndex = parts.indexOf('snapshots');
-    basePath = snapshotsIndex !== -1 
-      ? parts.slice(0, snapshotsIndex + 1).join('/')
+    const projectsIndex = actualPath.indexOf('/projects/');
+    basePath = projectsIndex !== -1 
+      ? actualPath.substring(0, projectsIndex + 10) // include '/projects/'
       : null;
   }
   
@@ -66,11 +65,11 @@ export async function parseProject(projectPath, options = {}) {
       
       // Extract ingredients from transclusions in markdown
       // Transclusions are in the format: [[[project-name]]]
-      const transclusionMatches = markdown.match(/\[\[\[([a-z0-9-]+)\]\]\]/g);
+      const transclusionMatches = markdown.match(/\\[\\[\\[([a-z0-9-]+)\\]\\]\\]/g);
       const ingredients = metaStep.ingredients || [];
       if (transclusionMatches) {
         transclusionMatches.forEach(match => {
-          const projectName = match.match(/\[\[\[([a-z0-9-]+)\]\]\]/)[1];
+          const projectName = match.match(/\\[\\[\\[([a-z0-9-]+)\\]\\]\\]/)[1];
           if (!ingredients.includes(projectName)) {
             ingredients.push(projectName);
           }
@@ -198,4 +197,3 @@ function extractTitle(markdown) {
   const match = markdown.match(/^##?\s+(.+)$/m);
   return match ? match[1] : 'Untitled';
 }
-

@@ -3,9 +3,10 @@
   import { push } from 'svelte-spa-router';
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
-  import { tutorial, loading, error, currentStep, completedSteps } from '../lib/stores';
+  import { tutorial, loading, error, currentStep, completedSteps, currentLanguage, availableLanguages } from '../lib/stores';
+  import { t } from '../lib/i18n';
   
-  let { params = {} }: { params?: { slug?: string; step?: string } } = $props();
+  let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
   
   let tutorialData = $state<any>(null);
   let isLoading = $state(true);
@@ -13,14 +14,15 @@
   let step = $state(0);
   let slug = $state('silly-eyes');
   // Default to German (de-DE) to match API server default
-  // Language can be changed via URL parameter or state in the future
   let lang = $state('de-DE');
   
   $effect(() => {
     slug = params.slug || 'silly-eyes';
     step = params.step ? parseInt(params.step) : 0;
+    lang = params.lang || 'de-DE';
     currentStep.set(step);
-    // Reload tutorial when slug or step changes
+    currentLanguage.set(lang);
+    // Reload tutorial when slug, step or lang changes
     loadTutorial();
   });
   
@@ -35,12 +37,15 @@
       }
       tutorialData = await response.json();
       tutorial.set(tutorialData);
+      if (tutorialData.languages) {
+        availableLanguages.set(tutorialData.languages);
+      }
       completedSteps.load(slug);
       
       // Validate step number
       if (tutorialData && step >= tutorialData.data.attributes.content.steps.length) {
         step = 0;
-        push(`/${slug}/0`);
+        push(`/${lang}/projects/${slug}/0`);
       }
     } catch (e) {
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
@@ -52,27 +57,27 @@
   }
   
   function handleNavigate(newStep: number) {
-    push(`/${slug}/${newStep}`);
+    push(`/${lang}/projects/${slug}/${newStep}`);
   }
   
   function handlePrevious() {
     if (step > 0) {
-      push(`/${slug}/${step - 1}`);
+      push(`/${lang}/projects/${slug}/${step - 1}`);
     }
   }
   
   function handleNext() {
     if (tutorialData && step < tutorialData.data.attributes.content.steps.length - 1) {
       completedSteps.complete(slug, step);
-      push(`/${slug}/${step + 1}`);
+      push(`/${lang}/projects/${slug}/${step + 1}`);
     }
   }
 </script>
 
 {#if isLoading}
-  <div class="loading">Loading tutorial...</div>
+  <div class="loading">{$t('loading')}</div>
 {:else if errorMsg}
-  <div class="error">Error: {errorMsg}</div>
+  <div class="error">{$t('error')}: {errorMsg}</div>
 {:else if tutorialData}
   <div class="c-project theme-blue">
       <div class="no-print">
@@ -127,7 +132,7 @@
                         {@const prevStepData = tutorialData.data.attributes.content.steps[step - 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
-                          href="#"
+                          href="/{lang}/projects/{slug}/{step - 1}"
                           onclick={(e) => { e.preventDefault(); handlePrevious(); }}
                         >
                           <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_left">chevron_left</span>
@@ -139,7 +144,7 @@
                         {@const nextStepData = tutorialData.data.attributes.content.steps[step + 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
-                          href="#"
+                          href="/{lang}/projects/{slug}/{step + 1}"
                           onclick={(e) => { e.preventDefault(); handleNext(); }}
                         >
                           <span class="text">{nextStepData.title}</span>

@@ -8,6 +8,10 @@ export const error = writable<string | null>(null);
 // Current step
 export const currentStep = writable(0);
 
+// Language stores
+export const currentLanguage = writable('de-DE');
+export const availableLanguages = writable<string[]>(['de-DE', 'en']);
+
 // Progress tracking
 function createProgressStore() {
   const { subscribe, set, update } = writable<Set<number>>(new Set());

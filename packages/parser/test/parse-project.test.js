@@ -8,7 +8,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
 
 test('parseProject - silly-eyes structure', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const result = await parseProject(projectPath, { includeQuizData: true });
   
   // Check top-level structure

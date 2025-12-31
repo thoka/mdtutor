@@ -14,7 +14,7 @@ const projectRoot = join(__dirname, '../../..');
  * Load original API data for comparison
  */
 function loadOriginalApi(language = 'en') {
-  const apiPath = join(projectRoot, 'test/snapshots/silly-eyes', `api-project-${language}.json`);
+  const apiPath = join(projectRoot, 'content/RPL/projects/silly-eyes', `api-project-${language}.json`);
   const data = JSON.parse(readFileSync(apiPath, 'utf-8'));
   return data;
 }
@@ -84,7 +84,7 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
   const originalStep4 = originalApi.data.attributes.content.steps[4];
   
   // Parse our version
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
@@ -152,7 +152,7 @@ test('compare-quiz - silly-eyes step 4 structure', async () => {
 
 test('compare-quiz - HTML structure matches reference', async () => {
   // Parse our version
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
@@ -227,7 +227,7 @@ test('compare-quiz - HTML structure matches reference', async () => {
 });
 
 test('compare-quiz - answer IDs and names are correct', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
@@ -257,7 +257,7 @@ test('compare-quiz - answer IDs and names are correct', async () => {
 });
 
 test('compare-quiz - feedback structure is correct', async () => {
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   
@@ -289,7 +289,7 @@ test('compare-quiz - feedback structure is correct', async () => {
 
 test('compare-quiz - rendered HTML structure vs original website', async () => {
   // Parse our version
-  const projectPath = join(projectRoot, 'test/snapshots/silly-eyes/repo/en');
+  const projectPath = join(projectRoot, 'content/RPL/projects/silly-eyes/repo/en');
   const ourResult = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   const ourStep4 = ourResult.data.attributes.content.steps[4];
   const ourHtml = ourStep4.content;
