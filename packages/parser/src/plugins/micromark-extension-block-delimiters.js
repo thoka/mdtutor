@@ -2,7 +2,7 @@
  * Micromark extension for block delimiters
  * Recognizes --- TYPE --- and --- /TYPE --- syntax
  * 
- * Similar to micromark-extension-directive, but for --- TYPE --- syntax
+ * Now supports both flow (block-level) and text (inline) contexts.
  */
 
 import { codes } from 'micromark-util-symbol';
@@ -13,13 +13,18 @@ import { codes } from 'micromark-util-symbol';
  * @returns {import('micromark-util-types').Extension} Micromark extension
  */
 export function blockDelimiters() {
+  const delimiter = {
+    name: 'blockDelimiter',
+    tokenize: tokenizeBlockDelimiter,
+    resolve: resolveBlockDelimiter
+  };
+
   return {
     flow: {
-      [codes.dash]: {
-        name: 'blockDelimiter',
-        tokenize: tokenizeBlockDelimiter,
-        resolve: resolveBlockDelimiter
-      }
+      [codes.dash]: delimiter
+    },
+    text: {
+      [codes.dash]: delimiter
     }
   };
 }
@@ -60,6 +65,9 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
       }
       return afterFirstDash;
     }
+    // If we didn't get 3 dashes, it's not our delimiter
+    // But we might have consumed some dashes already
+    // Micromark handles rollback if we call nok
     effects.exit('blockDelimiterMarker');
     return nok(code);
   }
@@ -133,15 +141,11 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
   }
 
   function afterClosingDashes(code) {
-    if (code === codes.space || code === codes.tab) {
-      effects.consume(code);
-      return afterClosingDashes;
-    }
-    if (code === codes.lineFeed || code === codes.carriageReturn || code === null) {
-      effects.exit('blockDelimiter');
-      return ok(code);
-    }
-    return nok(code);
+    // In flow context, we expect a newline or EOF.
+    // In text context, we accept anything (it's inline).
+    // We exit the token and let micromark continue.
+    effects.exit('blockDelimiter');
+    return ok(code);
   }
 }
 
@@ -153,11 +157,8 @@ function tokenizeBlockDelimiter(effects, ok, nok) {
  * @returns {import('micromark-util-types').Event[]}
  */
 function resolveBlockDelimiter(events, _context) {
-  // Micromark expects resolve functions to return the events array
-  // If events is undefined or not an array, return empty array
   if (!events || !Array.isArray(events)) {
     return [];
   }
   return events;
 }
-

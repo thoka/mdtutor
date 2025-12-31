@@ -70,3 +70,45 @@ test('Structural Comparison: ignores whitespace differences', () => {
   assert.strictEqual(result.structuralDifferences.length, 0, 'Should ignore whitespace normalization differences');
 });
 
+test('Structural Comparison: detects ID mismatch with special characters', () => {
+  // Scenario: API has "spielen-️" (U+FE0F at end), we have "spielen"
+  const expectedHtml = '<h3 id="spielen-️">Spielen ▶️</h3>';
+  const actualHtml = '<h3 id="spielen">Spielen ▶️</h3>';
+
+  const result = compareHtmlContent(expectedHtml, actualHtml);
+  
+  const idMismatch = result.structuralDifferences.find(d => d.type === 'id_mismatch');
+  assert.ok(idMismatch, 'Should detect ID mismatch when special characters are missing');
+  assert.strictEqual(idMismatch.expectedElement.id, 'spielen-️');
+  assert.strictEqual(idMismatch.actualElement.id, 'spielen');
+});
+
+test('Structural Comparison: detects missing p-wrapper inside complex HTML', () => {
+  const expectedHtml = `
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex-basis: 175px; flex-grow: 1">
+<p>Klicke auf jede Figur, um zu sehen, was sie tut.</p>
+<p>Zweite Zeile.</p>
+</div>
+</div>`;
+
+  const actualHtml = `
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex-basis: 175px; flex-grow: 1">
+Klicke auf jede Figur, um zu sehen, was sie tut.
+<p>Zweite Zeile.</p>
+</div>
+</div>`;
+
+  const result = compareHtmlContent(expectedHtml, actualHtml);
+  
+  // The current comparison logic should find a text_content_mismatch on the inner div
+  // because it collects direct text children.
+  const textMismatch = result.structuralDifferences.find(d => 
+    d.type === 'text_content_mismatch' && 
+    d.path.includes('div')
+  );
+  
+  assert.ok(textMismatch, 'Should detect text mismatch when text is not wrapped in <p>');
+});
+

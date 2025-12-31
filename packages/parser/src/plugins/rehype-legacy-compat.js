@@ -11,21 +11,59 @@ export default function rehypeLegacyCompat() {
       // 1. Wrap text nodes in <p> if they are direct children of <div>
       // Legacy parser seems to do this for content inside <div>
       if (node.tagName === 'div' && node.children) {
-        const hasOnlyText = node.children.every(child => 
-          child.type === 'text' || (child.type === 'element' && child.tagName === 'br')
-        );
-        
-        if (hasOnlyText && node.children.some(child => child.type === 'text' && child.value.trim().length > 0)) {
-          // Wrap all children in a <p>
-          node.children = [
-            {
-              type: 'element',
-              tagName: 'p',
-              properties: {},
-              children: node.children
+        const newChildren = [];
+        let currentParagraph = null;
+
+        for (const child of node.children) {
+          // Inline elements that should be wrapped in <p> if they are direct children of <div>
+          const isInline = child.type === 'text' || 
+                          (child.type === 'element' && ['span', 'strong', 'em', 'code', 'a', 'br', 'img'].includes(child.tagName));
+          
+          if (isInline) {
+            // Skip leading whitespace outside paragraph
+            if (child.type === 'text' && child.value.trim() === '' && !currentParagraph) {
+              newChildren.push(child);
+              continue;
             }
-          ];
+            
+            if (!currentParagraph) {
+              // Trim leading newlines/spaces from the first text node in a paragraph
+              if (child.type === 'text') {
+                child.value = child.value.replace(/^\s+/, '');
+                if (child.value === '') continue;
+              }
+              
+              currentParagraph = {
+                type: 'element',
+                tagName: 'p',
+                properties: {},
+                children: []
+              };
+              newChildren.push(currentParagraph);
+            }
+            currentParagraph.children.push(child);
+          } else {
+            // Trim trailing newlines/spaces from the last text node in the previous paragraph
+            if (currentParagraph && currentParagraph.children.length > 0) {
+              const lastChild = currentParagraph.children[currentParagraph.children.length - 1];
+              if (lastChild.type === 'text') {
+                lastChild.value = lastChild.value.replace(/\s+$/, '');
+              }
+            }
+            currentParagraph = null;
+            newChildren.push(child);
+          }
         }
+        
+        // Final trim for the last paragraph if it exists
+        if (currentParagraph && currentParagraph.children.length > 0) {
+          const lastChild = currentParagraph.children[currentParagraph.children.length - 1];
+          if (lastChild.type === 'text') {
+            lastChild.value = lastChild.value.replace(/\s+$/, '');
+          }
+        }
+        
+        node.children = newChildren;
       }
 
       // 2. Parse inline markdown and smart quotes in text nodes
@@ -44,9 +82,9 @@ export default function rehypeLegacyCompat() {
           
           if (child.type === 'text') {
             let text = child.value;
-            // 4. Manual parsing of inline markdown (bold and code)
+            // 4. Manual parsing of inline markdown (bold, links, and code)
             // This is needed because content inside raw HTML blocks isn't always parsed by remark
-            const parts = text.split(/(\*\*.*?\*\*|__.*?__|`.*?`\{:class="[^"]+"\}|`.*?`)/g);
+            const parts = text.split(/(\*\*.*?\*\*|__.*?__|\[.*?\]\(.*?\)\{:target=".*?"\}|\[.*?\]\(.*?\)|`.*?`\{:class="[^"]+"\}|`.*?`)/g);
             
             if (parts.length > 1) {
               for (const part of parts) {
@@ -57,6 +95,21 @@ export default function rehypeLegacyCompat() {
                     properties: {},
                     children: [{ type: 'text', value: part.slice(2, -2) }]
                   });
+                } else if (part.startsWith('[') && part.includes('](')) {
+                  // Handle links like [text](url) or [text](url){:target="_blank"}
+                  const linkMatch = part.match(/\[(.*?)\]\((.*?)\)(\{:target="(.*?)"\})?/);
+                  if (linkMatch) {
+                    const properties = { href: linkMatch[2] };
+                    if (linkMatch[4]) {
+                      properties.target = linkMatch[4];
+                    }
+                    newChildren.push({
+                      type: 'element',
+                      tagName: 'a',
+                      properties,
+                      children: [{ type: 'text', value: linkMatch[1] }]
+                    });
+                  }
                 } else if (part.startsWith('`') && part.includes('`{:class="')) {
                   const codeMatch = part.match(/`(.*?)`\{:class="(.*?)"\}/);
                   if (codeMatch) {

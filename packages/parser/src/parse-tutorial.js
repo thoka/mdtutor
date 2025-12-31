@@ -41,7 +41,7 @@ import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimite
  * ---
  * To: ```yaml-block ... ```
  */
-export function preprocessYamlBlocks(markdown) {
+export function preprocessMarkdown(markdown) {
   const lines = markdown.split('\n');
   const processed = [];
   let i = 0;
@@ -49,60 +49,49 @@ export function preprocessYamlBlocks(markdown) {
   while (i < lines.length) {
     const line = lines[i];
     
-    // NOTE: Block delimiters are now handled by micromark extension
-    // We no longer convert them to HTML comments in preprocessing
-    // This allows the extension to create proper blockDelimiter nodes
-    // Only check for block delimiters to skip them (don't process as YAML)
-    const blockDelimiterMatch = line.match(/^---\s+(\/?)([a-z-]+)\s*---\s*$/);
-    if (blockDelimiterMatch) {
-      // Leave the delimiter as-is for micromark extension to process
-      // Just skip it in YAML processing
-      processed.push(line);
-      i++;
-      continue;
-    }
-    
-    // Check if this line is exactly "---" (YAML delimiter)
-    // Must not have text before or after (to distinguish from block delimiters like "--- collapse ---")
+    // 1. YAML blocks (--- \n title: ... \n ---)
     if (line.trim() === '---') {
-      // Look ahead for YAML content and closing delimiter
       let yamlLines = [];
       let foundClosing = false;
       let j = i + 1;
       
       while (j < lines.length) {
         const nextLine = lines[j];
-        
-        // Check if this is the closing delimiter
         if (nextLine.trim() === '---') {
           foundClosing = true;
           break;
         }
-        
-        // Collect YAML content
         yamlLines.push(nextLine);
         j++;
       }
       
       if (foundClosing) {
-        // Found a YAML block - convert to a code block with special marker
-        // This will be parsed as a code block, which we can then convert to yaml node
         const yamlContent = yamlLines.join('\n');
         processed.push('```yaml-block');
         if (yamlContent.trim()) {
           processed.push(yamlContent);
         }
         processed.push('```');
-        i = j + 1; // Skip the closing ---
+        i = j + 1;
         continue;
       }
     }
-    
+
     processed.push(line);
     i++;
   }
   
-  return processed.join('\n');
+  let content = processed.join('\n');
+  
+  // 2. Ensure blank lines around block-level elements
+  return content
+    // Ensure blank line BEFORE headings if preceded by text or tags
+    .replace(/([^\n])\n(\s*#{1,6}\s+)/g, '$1\n\n$2')
+    // Ensure blank lines around block delimiters (--- type ---)
+    .replace(/^(---\s+\/?([a-z-]+)\s*---)\s*$/gm, '\n$1\n')
+    // Collapse multiple blank lines
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }
 
 /**
@@ -130,8 +119,8 @@ function rehypeResolveAssets(options = {}) {
 }
 
 export async function parseTutorial(markdown, options = {}) {
-  // Preprocess YAML blocks before parsing
-  const preprocessed = preprocessYamlBlocks(markdown);
+  // Preprocess markdown before parsing
+  const preprocessed = preprocessMarkdown(markdown);
   
   const processor = unified()
     .data('micromarkExtensions', [blockDelimiters()])
