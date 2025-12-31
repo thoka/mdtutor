@@ -4,6 +4,7 @@
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
   import { tutorial, loading, error, currentStep, completedSteps, currentLanguage, availableLanguages } from '../lib/stores';
+  import { t } from '../lib/i18n';
   
   let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
   
@@ -74,9 +75,9 @@
 </script>
 
 {#if isLoading}
-  <div class="loading">Loading tutorial...</div>
+  <div class="loading">{$t('loading')}</div>
 {:else if errorMsg}
-  <div class="error">Error: {errorMsg}</div>
+  <div class="error">{$t('error')}: {errorMsg}</div>
 {:else if tutorialData}
   <div class="c-project theme-blue">
       <div class="no-print">
@@ -131,7 +132,7 @@
                         {@const prevStepData = tutorialData.data.attributes.content.steps[step - 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
-                          href="#"
+                          href="/{lang}/projects/{slug}/{step - 1}"
                           onclick={(e) => { e.preventDefault(); handlePrevious(); }}
                         >
                           <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_left">chevron_left</span>
@@ -143,7 +144,7 @@
                         {@const nextStepData = tutorialData.data.attributes.content.steps[step + 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
-                          href="#"
+                          href="/{lang}/projects/{slug}/{step + 1}"
                           onclick={(e) => { e.preventDefault(); handleNext(); }}
                         >
                           <span class="text">{nextStepData.title}</span>

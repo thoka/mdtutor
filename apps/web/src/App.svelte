@@ -4,6 +4,7 @@
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
   import LanguageChooser from './lib/LanguageChooser.svelte';
+  import { t } from './lib/i18n';
   import { checkApiHealth } from './lib/api-config';
   import './styles/rpl-cloned/index.css';
   import './app.css';
@@ -73,7 +74,7 @@
 <div class="c-i18n-root" dir="ltr">
   {#if apiMismatch}
     <div class="api-mismatch-banner">
-      ⚠ API Version Mismatch! Web: {apiVersions.web} | API: {apiVersions.api}
+      ⚠ {$t('api_mismatch')} Web: {apiVersions.web} | API: {apiVersions.api}
     </div>
   {/if}
   <div class="no-print">

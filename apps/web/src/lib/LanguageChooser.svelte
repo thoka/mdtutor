@@ -1,7 +1,11 @@
 <script lang="ts">
   import { push, location } from 'svelte-spa-router';
   import { currentLanguage, availableLanguages } from './stores';
+  import { t } from './i18n';
   
+  // Subset of languages we want to support for now
+  const supportedLanguages = ['de-DE', 'en'];
+
   // Map of language codes to display names
   const languageNames: Record<string, string> = {
     'de-DE': 'Deutsch',
@@ -21,11 +25,14 @@
     'zh-CN': '简体中文'
   };
 
-  let sortedLanguages = $derived([...$availableLanguages].sort((a, b) => {
-    const nameA = languageNames[a] || a;
-    const nameB = languageNames[b] || b;
-    return nameA.localeCompare(nameB);
-  }));
+  let sortedLanguages = $derived([...$availableLanguages]
+    .filter(lang => supportedLanguages.includes(lang))
+    .sort((a, b) => {
+      const nameA = languageNames[a] || a;
+      const nameB = languageNames[b] || b;
+      return nameA.localeCompare(nameB);
+    })
+  );
 
   function handleLanguageChange(event: Event) {
     const newLang = (event.target as HTMLSelectElement).value;
@@ -53,7 +60,7 @@
 </script>
 
 <div class="c-language-chooser">
-  <span class="c-language-chooser__label">Language:</span>
+  <span class="c-language-chooser__label">{$t('language')}:</span>
   <select 
     id="language-select" 
     value={$currentLanguage} 

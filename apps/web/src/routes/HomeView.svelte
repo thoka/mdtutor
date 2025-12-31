@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
   import { currentLanguage, availableLanguages } from '../lib/stores';
+  import { t } from '../lib/i18n';
 
   let { params = {} }: { params?: { lang?: string } } = $props();
 
@@ -38,15 +39,15 @@
 <div class="c-projects-list">
   {#if isLoading}
     <div class="c-projects-list__projects__no-results">
-      <p>Loading tutorials...</p>
+      <p>{$t('loading')}</p>
     </div>
   {:else if errorMsg}
     <div class="c-projects-list__projects__no-results">
-      <p>Error: {errorMsg}</p>
+      <p>{$t('error')}: {errorMsg}</p>
     </div>
   {:else if projects.length === 0}
     <div class="c-projects-list__projects__no-results">
-      <p>No tutorials found.</p>
+      <p>{$t('no_projects')}</p>
     </div>
   {:else}
     <div class="c-projects-list__projects">
