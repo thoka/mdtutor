@@ -3,7 +3,7 @@
   import { push } from 'svelte-spa-router';
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
-  import { tutorial, loading, error, currentStep, completedSteps, currentLanguage, availableLanguages } from '../lib/stores';
+  import { tutorial, loading, error, currentStep, completedSteps, completedProjects, currentLanguage, availableLanguages } from '../lib/stores';
   import { t } from '../lib/i18n';
   
   let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
@@ -41,6 +41,7 @@
         availableLanguages.set(tutorialData.languages);
       }
       completedSteps.load(slug);
+      completedProjects.load();
       
       // Validate step number
       if (tutorialData && step >= tutorialData.data.attributes.content.steps.length) {
@@ -70,6 +71,11 @@
     if (tutorialData && step < tutorialData.data.attributes.content.steps.length - 1) {
       completedSteps.complete(slug, step);
       push(`/${lang}/projects/${slug}/${step + 1}`);
+    } else if (tutorialData && step === tutorialData.data.attributes.content.steps.length - 1) {
+      // Last step completed
+      completedSteps.complete(slug, step);
+      completedProjects.complete(slug);
+      // Optionally redirect to pathway or home
     }
   }
 </script>

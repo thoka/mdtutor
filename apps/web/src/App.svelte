@@ -3,6 +3,7 @@
   import Router from 'svelte-spa-router';
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
+  import PathwayView from './routes/PathwayView.svelte';
   import LanguageChooser from './lib/LanguageChooser.svelte';
   import { t } from './lib/i18n';
   import { checkApiHealth } from './lib/api-config';
@@ -12,6 +13,7 @@
   const routes = {
     '/': HomeView,
     '/:lang/projects': HomeView,
+    '/:lang/pathways/:slug': PathwayView,
     '/:lang/projects/:slug': TutorialView,
     '/:lang/projects/:slug/:step': TutorialView,
     // Fallback for old URLs

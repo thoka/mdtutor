@@ -40,6 +40,34 @@ function createProgressStore() {
 
 export const completedSteps = createProgressStore();
 
+// Project completion tracking
+function createProjectCompletionStore() {
+  const { subscribe, set, update } = writable<Set<string>>(new Set());
+  
+  return {
+    subscribe,
+    load: () => {
+      const stored = localStorage.getItem('completed_projects');
+      const completed = stored ? new Set<string>(JSON.parse(stored)) : new Set<string>();
+      set(completed);
+    },
+    complete: (slug: string) => {
+      update(projects => {
+        projects.add(slug);
+        localStorage.setItem('completed_projects', JSON.stringify([...projects]));
+        return projects;
+      });
+    },
+    isCompleted: (slug: string) => {
+      let completed = false;
+      subscribe(projects => { completed = projects.has(slug); })();
+      return completed;
+    }
+  };
+}
+
+export const completedProjects = createProjectCompletionStore();
+
 // Task completion per step
 export function createTaskStore(slug: string, step: number) {
   const key = `tasks_${slug}_${step}`;
