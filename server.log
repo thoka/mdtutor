@@ -1,0 +1,40 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+API Server running on http://localhost:3102
+Serving content from: /home/toka/dv/mdtutor/vscode-2/content
+Health check: http://localhost:3102/api/health
+Commit: 451f2cc
+2025-12-31T12:30:00.216Z GET /api/v1/de-DE/pathways/scratch-intro
+2025-12-31T12:30:03.864Z GET /api/v1/de-DE/pathways/scratch-intro/projects
+WARNING: Found 2 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (2)
+Examples: "--- /task ---", "--- /no-print ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+2025-12-31T12:30:25.648Z GET /api/v1/de-DE/pathways/scratch-intro
+2025-12-31T12:42:18.094Z GET /api/v1/de-DE/pathways/scratch-intro
+2025-12-31T12:42:18.106Z GET /api/v1/de-DE/pathways/scratch-intro/projects
+WARNING: Found 2 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (2)
+Examples: "--- /task ---", "--- /no-print ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+2025-12-31T12:43:31.225Z HEAD /api/v1/de-DE/pathways/scratch-intro
+2025-12-31T12:43:31.236Z HEAD /api/v1/de-DE/pathways/scratch-intro/projects
+WARNING: Found 2 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (2)
+Examples: "--- /task ---", "--- /no-print ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+WARNING: Found 1 raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.
+Found types: anywhere (1)
+Examples: "--- /task ---"
+2025-12-31T12:44:23.847Z GET /api/health

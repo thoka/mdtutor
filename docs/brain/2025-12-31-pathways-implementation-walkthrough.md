@@ -28,8 +28,10 @@ Implemented the Pathways infrastructure, including metadata storage in YAML, API
   - Updated `TutorialView.svelte` to mark a project as completed when the last step is reached.
   - **Fix:** Improved reactivity in `PathwayView.svelte` using Svelte 5 Runes and `$completedProjects` store.
 
-### 4. Infrastructure
-- **Vite:** Updated `vite.config.ts` to allow all hosts (`host: true`, `allowedHosts: true`) for easier local development.
+### 4. Infrastructure & Browser Compatibility
+- **Vite:** Updated `vite.config.ts` to allow all hosts (`host: true`, `allowedHosts: true`) for easier local development and deployment.
+- **Cookie Mitigation:** Implemented URL rewriting in `server.js` to serve external RPL images from local paths, avoiding `_learn_session` cookie rejection in cross-site contexts.
+- **Font Fix:** Resolved "downloadable font: rejected by sanitizer" errors by switching to Google Fonts CDN for Material Symbols and Lexend, and removing failing local `@font-face` references in cloned CSS.
 
 ## Verification Results
 

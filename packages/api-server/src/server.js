@@ -188,7 +188,10 @@ if (!PORT) {
   process.exit(1);
 }
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
 
 // Simple request logger
@@ -278,6 +281,28 @@ async function getProjectData(namespacedSlug, requestedLang) {
       
       // Prepend namespace to ID
       parsed.data.id = `${namespace}:${slug}`;
+
+      // Convert absolute RPL URLs to local URLs if possible
+      const rplUrlPattern = /https:\/\/projects-static\.raspberrypi\.org\/projects\/([^/]+)\/[^/]+\/([^/]+)\/images\/([^"]+)/g;
+      
+      if (parsed.data.attributes?.content?.steps) {
+        parsed.data.attributes.content.steps.forEach(step => {
+          if (step.content) {
+            step.content = step.content.replace(rplUrlPattern, (match, pSlug, pLang, imagePath) => {
+              return `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
+            });
+          }
+        });
+      }
+
+      if (parsed.data.attributes?.content?.heroImage) {
+        const heroImage = parsed.data.attributes.content.heroImage;
+        const match = rplUrlPattern.exec(heroImage);
+        if (match) {
+          const [, pSlug, pLang, imagePath] = match;
+          parsed.data.attributes.content.heroImage = `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
+        }
+      }
       
       // Add available languages to the response
       const repoDir = join(projectPath, 'repo');
