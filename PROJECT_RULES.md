@@ -6,12 +6,12 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
 - **Loose Coupling**: Modules are independent. Keep logic, tests, and documentation within the module directory.
 - **Parser (`packages/parser`)**: Converts Markdown to RPL-compatible JSON using `unified.js` (remark/rehype).
-- **API Server (`packages/api-server`)**: Express server serving content from `test/snapshots`. Supports on-the-fly parsing and language fallback.
+- **API Server (`packages/api-server`)**: Express server serving content from `content/`. Supports multiple providers (RPL, TAG) and namespaced IDs.
 - **Web App (`apps/web`)**: Svelte 5 + Vite frontend. Uses `svelte-spa-router`.
 - **Data Flow**: Markdown (GitHub) → Parser → JSON (RPL Format) → API Server → Svelte Frontend.
 
 ## Critical Workflows
-- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots.
+- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots into `content/RPL/projects`.
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
 - **Linting**: `npm run lint` (ESLint 9).
