@@ -61,6 +61,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: parseInt(webPort, 10),
+      strictPort: true,
       proxy: {
         '/api': {
           target: `http://localhost:${apiPort}`,
