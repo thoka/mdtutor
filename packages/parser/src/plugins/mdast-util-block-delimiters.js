@@ -28,12 +28,10 @@ export function blockDelimitersFromMarkdown() {
  */
 function enterBlockDelimiter(token) {
   // Create a custom MDAST node
+  // At this point, we don't know the type/closing state yet
   const node = {
     type: 'blockDelimiter',
-    data: {
-      blockType: token.blockType || '',
-      isClosing: token.isClosing || false
-    }
+    data: {}
   };
   
   this.enter(node, token);
@@ -45,6 +43,12 @@ function enterBlockDelimiter(token) {
  * @param {import('mdast-util-from-markdown').Token} token
  */
 function exitBlockDelimiter(token) {
+  const node = this.stack[this.stack.length - 1];
+  
+  // Set the properties that were discovered during tokenization
+  node.data.blockType = token.blockType || '';
+  node.data.isClosing = token.isClosing || false;
+  
   this.exit(token);
 }
 

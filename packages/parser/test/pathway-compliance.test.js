@@ -48,7 +48,7 @@ for (const projectId of projects) {
 
     test(`Compliance: ${projectId} [${lang}] matches API snapshot structure`, async () => {
       // Parse local version
-      const parsed = await parseProject(projectPath, { languages: [lang] });
+      const parsed = await parseProject(projectPath, { languages: [lang], basePath: snapshotsDir });
       
       // Load API snapshot
       const apiData = loadApiData(snapshotsDir, projectId, lang);
@@ -127,7 +127,7 @@ for (const projectId of projects) {
             const quizPath = join(projectPath, quizSlug);
             const ourQuiz = await parseQuiz(quizPath, {
               languages: [lang],
-              basePath: join(snapshotsDir, projectId)
+              basePath: snapshotsDir
             });
             
             const apiQuestions = quizApiData.data.attributes.content.questions || [];

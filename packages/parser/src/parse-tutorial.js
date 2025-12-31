@@ -21,25 +21,7 @@ import { blockDelimiters } from './plugins/micromark-extension-block-delimiters.
 import { blockDelimitersFromMarkdown } from './plugins/mdast-util-block-delimiters.js';
 
 /**
- * Parse markdown content to HTML
- * @param {string} markdown - Markdown content
- * @param {Object} options - Parser options
- * @param {string} options.basePath - Base path for transclusion resolution
- * @param {Map} options.transclusionCache - Cache for transclusion content
- * @param {string[]} options.languages - Preferred languages for transclusions
- * @returns {Promise<string>} HTML content
- */
-/**
- * Preprocess markdown to convert YAML blocks to a parseable format.
- * 
- * Block delimiters (--- TYPE ---) are now handled by the micromark extension,
- * so they are NOT converted to HTML comments here.
- * 
- * Converts:
- * ---
- * title: value
- * ---
- * To: ```yaml-block ... ```
+ * Preprocess markdown to convert YAML blocks and handle raw HTML quirks.
  */
 export function preprocessMarkdown(markdown) {
   const lines = markdown.split('\n');
@@ -48,9 +30,10 @@ export function preprocessMarkdown(markdown) {
   
   while (i < lines.length) {
     const line = lines[i];
+    const trimmed = line.trim();
     
     // 1. YAML blocks (--- \n title: ... \n ---)
-    if (line.trim() === '---') {
+    if (trimmed === '---') {
       let yamlLines = [];
       let foundClosing = false;
       let j = i + 1;
@@ -83,13 +66,58 @@ export function preprocessMarkdown(markdown) {
   
   let content = processed.join('\n');
   
-  // 2. Ensure blank lines around block-level elements
+  // 3. Handle raw HTML p tags with internal blank lines (e.g. <p>... \n\n ... </p>)
+  // We join them to ensure Micromark treats them as a single HTML block.
+  // This is specifically for i-made-you-a-book.
+  content = content.replace(/(<p[^>]*>)([\s\S]*?)(<\/p>)/gi, (match, open, body, close) => {
+    return open + body.replace(/\n\s*\n/g, '\n') + close;
+  });
+
+  // 3. Ensure balanced tags at delimiters (safety net for nesting)
+  // This is critical for Micromark to correctly see delimiters even inside unclosed HTML.
+  // Also handle a legacy quirk where lines in a list are not indented.
+  let divStack = 0;
+  let pStack = 0;
+  const balancedLines = content.split('\n').map((line, index, allLines) => {
+    const trimmed = line.trim();
+    
+    // Legacy quirk: indent lines that follow a list item but are not indented.
+    // We only do this if the line starts with an ellipsis (...) which is a common quirk.
+    if (index > 0 && allLines[index - 1].trim().match(/^[*+-] /) &&
+        trimmed.startsWith('...') &&
+        !line.startsWith(' ')) {
+      line = '  ' + line + '<br />';
+    }
+
+    const openDivs = (trimmed.match(/<div[^>]*>/gi) || []).length;
+    const closeDivs = (trimmed.match(/<\/div>/gi) || []).length;
+    divStack += openDivs - closeDivs;
+
+    const openPs = (trimmed.match(/<p[^>]*>/gi) || []).length;
+    const closePs = (trimmed.match(/<\/p>/gi) || []).length;
+    pStack += openPs - closePs;
+    
+    // Force close tags before block delimiters if they are unbalanced.
+    if (trimmed.startsWith('---') && (divStack > 0 || pStack > 0)) {
+      let forceClosing = '';
+      if (divStack > 0) { forceClosing += '</div>'.repeat(divStack); divStack = 0; }
+      if (pStack > 0) { forceClosing += '</p>'.repeat(pStack); pStack = 0; }
+      // Add multiple newlines to ensure Micromark treats it as a separate block
+      return '\n\n' + forceClosing + '\n\n' + line;
+    }
+    return line;
+  });
+  content = balancedLines.join('\n');
+  if (divStack > 0) content += '\n' + '</div>'.repeat(divStack);
+  if (pStack > 0) content += '\n' + '</p>'.repeat(pStack);
+
+  // 3. Ensure blank lines around block delimiters (--- type ---)
+  // This is critical for Micromark to recognize them. 
+  // We do this AFTER balancing to ensure force-closed tags don't block the delimiter.
+  content = content.replace(/^(---\s+\/?([a-z-]+)\s*---)\s*$/gm, '\n$1\n');
+
+  // 4. Final normalization
   return content
-    // Ensure blank line BEFORE headings if preceded by text or tags
-    .replace(/([^\n])\n(\s*#{1,6}\s+)/g, '$1\n\n$2')
-    // Ensure blank lines around block delimiters (--- type ---)
-    .replace(/^(---\s+\/?([a-z-]+)\s*---)\s*$/gm, '\n$1\n')
-    // Collapse multiple blank lines
     .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
@@ -120,7 +148,12 @@ function rehypeResolveAssets(options = {}) {
 
 export async function parseTutorial(markdown, options = {}) {
   // Preprocess markdown before parsing
-  const preprocessed = preprocessMarkdown(markdown);
+  // 2. Handle soft breaks as hard breaks for certain patterns (legacy compatibility)
+  // This is specifically for transclusions in i-made-you-a-book.
+  let preprocessed = preprocessMarkdown(markdown);
+  if (options.isTransclusion) {
+    preprocessed = preprocessed.replace(/([)}])\n([^\n])/g, '$1  \n$2');
+  }
   
   const processor = unified()
     .data('micromarkExtensions', [blockDelimiters()])
@@ -146,9 +179,7 @@ export async function parseTutorial(markdown, options = {}) {
   const vfile = await processor.process(preprocessed);
   let html = String(vfile);
   
-  // Post-process: Check for any remaining raw block delimiters that weren't converted
-  // With the micromark extension, this should not happen anymore
-  // If delimiters are found, it indicates a parsing issue that needs to be fixed
+  // Post-process: Check for any remaining raw block delimiters
   const rawDelimiterPatterns = [
     { pattern: /<p>---\s*\/?[a-z-]+\s*---<\/p>/gi, name: 'paragraph-wrapped' },
     { pattern: /<p>\s*---\s*\/?[a-z-]+\s*---\s*<\/p>/gi, name: 'paragraph-wrapped-with-spaces' },
@@ -163,7 +194,7 @@ export async function parseTutorial(markdown, options = {}) {
       foundDelimiters.push({
         type: name,
         count: matches.length,
-        examples: matches.slice(0, 3) // Show first 3 examples
+        examples: matches.slice(0, 3)
       });
     }
   }
@@ -171,25 +202,12 @@ export async function parseTutorial(markdown, options = {}) {
   const warnings = [];
   if (foundDelimiters.length > 0) {
     const totalCount = foundDelimiters.reduce((sum, d) => sum + d.count, 0);
-    const warningMessage = `Found ${totalCount} raw block delimiter(s) in HTML output that were not processed by the micromark extension. This indicates a parsing issue.`;
-    
     warnings.push({
       type: 'unprocessed_block_delimiter',
-      message: warningMessage,
-      count: totalCount,
-      details: {
-        foundTypes: foundDelimiters.map(d => ({ type: d.type, count: d.count })),
-        examples: foundDelimiters.flatMap(d => d.examples).slice(0, 3)
-      }
+      message: `Found ${totalCount} raw block delimiter(s) in HTML output.`,
+      count: totalCount
     });
     
-    // Also log to console for debugging
-    console.warn(`WARNING: ${warningMessage}\n` +
-      `Found types: ${foundDelimiters.map(d => `${d.type} (${d.count})`).join(', ')}\n` +
-      `Examples: ${foundDelimiters.flatMap(d => d.examples).slice(0, 3).map(e => JSON.stringify(e)).join(', ')}`);
-    
-    // Remove the delimiters to prevent them from appearing in output
-    // But this is a workaround - the root cause should be fixed
     for (const { pattern } of rawDelimiterPatterns) {
       html = html.replace(pattern, '');
     }
@@ -197,7 +215,3 @@ export async function parseTutorial(markdown, options = {}) {
   
   return { html, warnings };
 }
-
-// parseTutorialToAST temporarily disabled - causes issues with async plugins
-// Will be re-enabled after fixing AST extraction
-

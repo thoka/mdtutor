@@ -45,11 +45,14 @@ export async function parseProject(projectPath, options = {}) {
   const meta = parseMeta(metaPath);
   
   // Determine base path for transclusions (go up to snapshots directory)
-  const parts = actualPath.split('/');
-  const snapshotsIndex = parts.indexOf('snapshots');
-  const basePath = snapshotsIndex !== -1 
-    ? parts.slice(0, snapshotsIndex + 1).join('/')
-    : null;
+  let basePath = options.basePath;
+  if (!basePath) {
+    const parts = actualPath.split('/');
+    const snapshotsIndex = parts.indexOf('snapshots');
+    basePath = snapshotsIndex !== -1 
+      ? parts.slice(0, snapshotsIndex + 1).join('/')
+      : null;
+  }
   
   // Shared transclusion cache for all steps
   const transclusionCache = new Map();
@@ -80,6 +83,7 @@ export async function parseProject(projectPath, options = {}) {
         languages: preferredLanguages,
         assetBaseUrl: options.assetBaseUrl,
         stepIndex: index,
+        isTransclusion: depth > 0,
         depth
       });
       let content = parseResult.html || parseResult; // Support both old and new return format

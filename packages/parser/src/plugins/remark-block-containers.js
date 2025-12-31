@@ -62,6 +62,7 @@ export default function remarkBlockContainers(options = {}) {
       
       if (node.type === 'blockDelimiter') {
         const { blockType, isClosing } = node.data || {};
+        console.log(`[REMARK] blockDelimiter: type=${blockType}, isClosing=${isClosing}, stack depth before: ${stack.length}`);
         
         if (!isClosing) {
           // Start a new container
@@ -93,8 +94,10 @@ export default function remarkBlockContainers(options = {}) {
             stack.pop();
           }
         }
+        console.log(`[REMARK] stack depth after: ${stack.length}`);
       } else {
         // Regular node - add to current parent
+        console.log(`[REMARK] regular node: type=${node.type}, depth: ${stack.length}`);
         stack[stack.length - 1].children.push(node);
       }
     }

@@ -141,6 +141,8 @@ export default function rehypeLegacyCompat() {
                     partValue = partValue.replace(/(\w)'ll/g, '$1’ll');
                     partValue = partValue.replace(/(\w)'d/g, '$1’d');
                     partValue = partValue.replace(/(\w)'m/g, '$1’m');
+                    // 6. Ellipsis (legacy quirk)
+                    partValue = partValue.replace(/\.{3}/g, '…');
                   }
                   newChildren.push({ type: 'text', value: partValue });
                 }
@@ -157,6 +159,8 @@ export default function rehypeLegacyCompat() {
                 text = text.replace(/(\w)'ll/g, '$1’ll');
                 text = text.replace(/(\w)'d/g, '$1’d');
                 text = text.replace(/(\w)'m/g, '$1’m');
+                // 6. Ellipsis (legacy quirk)
+                text = text.replace(/\.{3}/g, '…');
               }
               child.value = text;
             }
