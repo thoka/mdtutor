@@ -3,6 +3,7 @@
   import Router from 'svelte-spa-router';
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
+  import LanguageChooser from './lib/LanguageChooser.svelte';
   import { checkApiHealth } from './lib/api-config';
   import './styles/rpl-cloned/index.css';
   import './app.css';
@@ -55,6 +56,18 @@
     z-index: 9999;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
+
+  .global-nav-bar {
+    background-color: var(--rpf-off-white, #f8f8f8);
+    border-bottom: 1px solid var(--rpf-grey-200, #eee);
+  }
+
+  .global-nav-bar__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
 </style>
 
 <div class="c-i18n-root" dir="ltr">
@@ -65,7 +78,9 @@
   {/if}
   <div class="no-print">
     <div class="global-nav-bar">
-      <!-- Global navigation placeholder -->
+      <div class="global-nav-bar__content">
+        <LanguageChooser />
+      </div>
     </div>
   </div>
   <div class="no-print">

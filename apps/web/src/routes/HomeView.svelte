@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
+  import { currentLanguage, availableLanguages } from '../lib/stores';
 
   let { params = {} }: { params?: { lang?: string } } = $props();
 
@@ -10,6 +11,7 @@
   let lang = $derived(params.lang || 'de-DE');
 
   $effect(() => {
+    currentLanguage.set(lang);
     loadProjects();
   });
 
@@ -22,6 +24,9 @@
       }
       const data = await response.json();
       projects = data.projects || [];
+      if (data.languages) {
+        availableLanguages.set(data.languages);
+      }
     } catch (e) {
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
     } finally {

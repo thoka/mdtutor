@@ -3,7 +3,7 @@
   import { push } from 'svelte-spa-router';
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
-  import { tutorial, loading, error, currentStep, completedSteps } from '../lib/stores';
+  import { tutorial, loading, error, currentStep, completedSteps, currentLanguage, availableLanguages } from '../lib/stores';
   
   let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
   
@@ -20,6 +20,7 @@
     step = params.step ? parseInt(params.step) : 0;
     lang = params.lang || 'de-DE';
     currentStep.set(step);
+    currentLanguage.set(lang);
     // Reload tutorial when slug, step or lang changes
     loadTutorial();
   });
@@ -35,6 +36,9 @@
       }
       tutorialData = await response.json();
       tutorial.set(tutorialData);
+      if (tutorialData.languages) {
+        availableLanguages.set(tutorialData.languages);
+      }
       completedSteps.load(slug);
       
       // Validate step number

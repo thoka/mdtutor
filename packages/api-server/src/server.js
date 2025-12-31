@@ -155,6 +155,12 @@ async function getProjectData(namespacedSlug, requestedLang) {
             }
           }
           
+          // Add available languages to the response
+          const repoDir = join(projectPath, 'repo');
+          parsed.languages = existsSync(repoDir) 
+            ? readdirSync(repoDir).filter(f => existsSync(join(repoDir, f, 'meta.yml')))
+            : [];
+          
           return parsed;
         }
       }
@@ -174,6 +180,12 @@ async function getProjectData(namespacedSlug, requestedLang) {
       // Prepend namespace to ID
       parsed.data.id = `${namespace}:${slug}`;
       
+      // Add available languages to the response
+      const repoDir = join(projectPath, 'repo');
+      parsed.languages = existsSync(repoDir) 
+        ? readdirSync(repoDir).filter(f => existsSync(join(repoDir, f, 'meta.yml')))
+        : [];
+
       return parsed;
     } catch {
       // Continue to next language
@@ -220,6 +232,7 @@ app.get('/api/projects', async (req, res) => {
     const lang = req.query.lang || 'de-DE';
     const providers = await getProviders();
     const allProjects = [];
+    const allLanguages = new Set(['de-DE', 'en']);
 
     for (const [providerName, meta] of Object.entries(providers)) {
       const projectsDir = join(CONTENT_DIR, providerName, 'projects');
@@ -241,11 +254,14 @@ app.get('/api/projects', async (req, res) => {
             let title = projectData?.data?.attributes?.content?.title || 
                         slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
+            const projectLangs = projectData.languages || ['de-DE', 'en'];
+            projectLangs.forEach(l => allLanguages.add(l));
+
             allProjects.push({
               slug: namespacedSlug,
               title,
               description,
-              languages: ['de-DE', 'en'], // Default for now, could be improved
+              languages: projectLangs,
               heroImage
             });
           } catch (e) {
@@ -255,7 +271,10 @@ app.get('/api/projects', async (req, res) => {
       }
     }
     
-    res.json({ projects: allProjects });
+    res.json({ 
+      projects: allProjects,
+      languages: Array.from(allLanguages)
+    });
   } catch (error) {
     console.error('Error listing projects:', error);
     res.status(500).json({ error: 'Internal server error' });
