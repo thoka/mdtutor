@@ -10,17 +10,17 @@ import { join } from 'path';
 import { parseProject } from '../src/parse-project.js';
 
 const projectRoot = join(import.meta.dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'test/snapshots');
+const projectsDir = join(projectRoot, 'content/RPL/projects');
 
 /**
  * Find all test repos
  */
 function findTestRepos() {
-  return readdirSync(snapshotsDir, { withFileTypes: true })
+  return readdirSync(projectsDir, { withFileTypes: true })
     .filter(d => d.isDirectory() && d.name !== 'summary.json')
     .map(d => d.name)
     .map(repo => {
-      const repoPath = join(snapshotsDir, repo, 'repo');
+      const repoPath = join(projectsDir, repo, 'repo');
       const enPath = join(repoPath, 'en');
       if (existsSync(enPath) && existsSync(join(enPath, 'meta.yml'))) {
         return { repo, path: enPath };

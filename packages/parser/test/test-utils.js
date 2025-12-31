@@ -49,7 +49,6 @@ export function extractHtmlStructure(html) {
 
     const classList = (node.getAttribute('class') || '').split(' ').filter(c => c.trim());
     let id = node.getAttribute('id') || '';
-    if (id) id = id.replace(/-+$/, ''); // Normalize ID (remove trailing hyphens)
     
     // Collect all attributes
     const attributes = {};
@@ -73,11 +72,6 @@ export function extractHtmlStructure(html) {
           }
         }
         
-        // Normalize id attribute
-        if (name === 'id') {
-          normalizedValue = value.replace(/-+$/, '');
-        }
-
         // Normalize text-like attributes
         if (['alt', 'title', 'aria-label'].includes(name)) {
           normalizedValue = normalizeText(value);
@@ -87,9 +81,8 @@ export function extractHtmlStructure(html) {
       }
     }
 
-    // Get text content (direct text, not from children)
     const textContent = normalizeText(
-      node.childNodes
+      (node.childNodes || [])
         .filter(n => n.nodeType === 3)
         .map(n => n.textContent)
         .join(' ')
@@ -135,12 +128,19 @@ export function extractHtmlStructure(html) {
     });
     
     if (elementChildren.length > 0) {
+      const rootTextContent = normalizeText(
+        children
+          .filter(n => n.nodeType === 3)
+          .map(n => n.textContent)
+          .join(' ')
+      );
+      
       const structure = {
         tag: 'root',
         classes: [],
         id: null,
         attributes: {},
-        textContent: '',
+        textContent: rootTextContent,
         depth: -1,
         path: ['root'],
         selector: 'root',
@@ -299,15 +299,17 @@ export function compareHtmlStructures(expectedStructure, actualStructure) {
       });
     }
 
-    if (expectedNode.textContent && actualNode.textContent && 
-        expectedNode.textContent.trim() !== actualNode.textContent.trim()) {
+    const expectedText = (expectedNode.textContent || '').trim();
+    const actualText = (actualNode.textContent || '').trim();
+    
+    if ((expectedText || actualText) && expectedText !== actualText) {
       differences.push({
         type: 'text_content_mismatch',
         path: currentPath,
         depth: expectedNode.depth,
-        expectedText: expectedNode.textContent,
-        actualText: actualNode.textContent,
-        message: `Text content mismatch on <${expectedNode.tag}>`
+        expectedText: expectedText,
+        actualText: actualText,
+        message: `Text content mismatch on <${expectedNode.tag}>: expected "${expectedText.substring(0, 20)}${expectedText.length > 20 ? '...' : ''}", found "${actualText.substring(0, 20)}${actualText.length > 20 ? '...' : ''}"`
       });
     }
 
@@ -486,7 +488,7 @@ export function compareHtmlContent(expectedHtml, actualHtml) {
 }
 
 /**
- * Findet alle Projekte in test/snapshots mit repo/ Verzeichnis
+ * Findet alle Projekte in content/RPL/projects mit repo/ Verzeichnis
  */
 export function findProjects(snapshotsDir) {
   const projects = [];
@@ -528,7 +530,8 @@ export function findProjects(snapshotsDir) {
  * Lädt Original-API-Daten
  */
 export function loadApiData(snapshotsDir, projectSlug, language) {
-  const apiPath = join(snapshotsDir, projectSlug, `api-project-${language}.json`);
+  // snapshotsDir now points to test/snapshots (flat structure)
+  const apiPath = join(snapshotsDir, `${projectSlug}-api-project-${language}.json`);
   if (!existsSync(apiPath)) return null;
   return JSON.parse(readFileSync(apiPath, 'utf-8'));
 }
@@ -537,7 +540,8 @@ export function loadApiData(snapshotsDir, projectSlug, language) {
  * Lädt Original-Quiz-API-Daten
  */
 export function loadQuizApiData(snapshotsDir, projectSlug, quizSlug, language) {
-  const apiPath = join(snapshotsDir, projectSlug, `api-quiz-${quizSlug}-${language}.json`);
+  // snapshotsDir now points to test/snapshots (flat structure)
+  const apiPath = join(snapshotsDir, `${projectSlug}-api-quiz-${quizSlug}-${language}.json`);
   if (!existsSync(apiPath)) return null;
   return JSON.parse(readFileSync(apiPath, 'utf-8'));
 }

@@ -168,7 +168,7 @@ test('parseProject - quiz step matches original API structure', async () => {
   const result = await parseProject(projectPath, { languages: ['en'], includeQuizData: true });
   
   // Load original API for comparison
-  const originalApiPath = join(projectRoot, 'test/snapshots/silly-eyes/api-project-en.json');
+  const originalApiPath = join(projectRoot, 'test/snapshots/silly-eyes-api-project-en.json');
   if (!existsSync(originalApiPath)) {
     console.log('Skipping test - original API file not found');
     return;

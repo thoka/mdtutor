@@ -12,18 +12,20 @@ function slugify(text) {
   return text
     .toLowerCase()
     .trim()
-    .replace(/[^\p{L}\p{N}\s-]/gu, '-') // Replace non-letters/numbers with hyphen
-    .replace(/[\s_-]+/g, '-') // Normalize hyphens
-    .replace(/^-+/g, ''); // Remove leading hyphens
+    .replace(/[^\p{L}\p{N}\ufe0f-]+/gu, '-') // Replace sequences of non-alphanumeric (except \ufe0f and hyphen) with a single hyphen
+    .replace(/^-+|-+$/g, ''); // Trim leading and trailing hyphens
 }
 
 export default function rehypeHeadingIds() {
   return (tree) => {
+    const usedIds = new Set();
+    
     visit(tree, 'element', (node) => {
       // Only process heading elements (h1-h6)
       if (node.tagName && /^h[1-6]$/.test(node.tagName)) {
         // Skip if it already has an ID
         if (node.properties && node.properties.id) {
+          usedIds.add(node.properties.id);
           return;
         }
 
@@ -46,10 +48,18 @@ export default function rehypeHeadingIds() {
         };
         
         const text = extractText(node);
-        const id = slugify(text);
+        let id = slugify(text);
         
-        // Add ID attribute if we have a valid slug
+        // Handle duplicate IDs
         if (id) {
+          let originalId = id;
+          let counter = 1;
+          while (usedIds.has(id)) {
+            id = `${originalId}-${counter}`;
+            counter++;
+          }
+          usedIds.add(id);
+          
           node.properties = node.properties || {};
           node.properties.id = id;
         }

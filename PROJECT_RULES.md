@@ -11,7 +11,10 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Data Flow**: Markdown (GitHub) → Parser → JSON (RPL Format) → API Server → Svelte Frontend.
 
 ## Critical Workflows
-- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots into `content/RPL/projects`.
+- **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
+  1. Create a **feature branch** (`feature/name`).
+  2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
+- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
 - **Linting**: `npm run lint` (ESLint 9).
@@ -52,11 +55,12 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - [docs/SPEC.md](docs/SPEC.md): Core project specification.
 
 ## Agent Toolbox
-Custom tools in `tools/` are optimized for agent use. Read `tools/README.md` for a list.
-- `compare-structure.js`: Compare HTML structure between reference and local.
-- `extract-css.js`: Extract CSS from reference pages.
-- `extract-structure.js`: Extract HTML structure from a single page.
-- `save-html.js`: Save rendered HTML for inspection.
+| Tool | Description |
+| --- | --- |
+| `compare-structure.js` | Compare HTML structure between reference and local. |
+| `extract-css.js` | Extract CSS from reference pages. |
+| `extract-structure.js` | Extract HTML structure from a single page. |
+| `save-html.js` | Save rendered HTML for inspection. |
 
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.

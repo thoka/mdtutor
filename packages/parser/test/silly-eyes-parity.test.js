@@ -19,23 +19,24 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const projectRoot = join(__dirname, '../../..');
-const snapshotsDir = join(projectRoot, 'content/RPL/projects');
+const projectsDir = join(projectRoot, 'content/RPL/projects');
+const apiSnapshotsDir = join(projectRoot, 'test/snapshots');
 const projectSlug = 'silly-eyes';
 
 async function runParityTest(language) {
   console.log(`\nRunning parity test for ${projectSlug} [${language}]...`);
   
-  const apiData = loadApiData(snapshotsDir, projectSlug, language);
+  const apiData = loadApiData(apiSnapshotsDir, projectSlug, language);
   if (!apiData) {
     throw new Error(`API snapshot not found for ${projectSlug}/${language}`);
   }
 
-  const projectPath = join(snapshotsDir, projectSlug, 'repo', language);
+  const projectPath = join(projectsDir, projectSlug, 'repo', language);
   
   // Load asset base URL from snapshot-meta.json if available
   let assetBaseUrl = '';
   try {
-    const metaPath = join(snapshotsDir, projectSlug, 'snapshot-meta.json');
+    const metaPath = join(apiSnapshotsDir, `${projectSlug}-snapshot-meta.json`);
     const snapshotMeta = JSON.parse(readFileSync(metaPath, 'utf-8'));
     assetBaseUrl = snapshotMeta.asset_base_url || '';
   } catch {

@@ -45,11 +45,13 @@ export async function parseProject(projectPath, options = {}) {
   const meta = parseMeta(metaPath);
   
   // Determine base path for transclusions (go up to projects directory within content)
-  const parts = actualPath.split('/');
-  const projectsIndex = parts.lastIndexOf('projects');
-  const basePath = projectsIndex !== -1 
-    ? parts.slice(0, projectsIndex + 1).join('/')
-    : null;
+  let basePath = options.basePath;
+  if (!basePath) {
+    const projectsIndex = actualPath.indexOf('/projects/');
+    basePath = projectsIndex !== -1 
+      ? actualPath.substring(0, projectsIndex + 10) // include '/projects/'
+      : null;
+  }
   
   // Shared transclusion cache for all steps
   const transclusionCache = new Map();
@@ -80,6 +82,7 @@ export async function parseProject(projectPath, options = {}) {
         languages: preferredLanguages,
         assetBaseUrl: options.assetBaseUrl,
         stepIndex: index,
+        isTransclusion: depth > 0,
         depth
       });
       let content = parseResult.html || parseResult; // Support both old and new return format
@@ -194,4 +197,3 @@ function extractTitle(markdown) {
   const match = markdown.match(/^##?\s+(.+)$/m);
   return match ? match[1] : 'Untitled';
 }
-

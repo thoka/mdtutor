@@ -19,19 +19,50 @@ export default function remarkBlockContainers(options = {}) {
   const languages = options.languages || ['en'];
 
   return (tree) => {
+    // 1. Flatten the tree to handle nested blockDelimiters (e.g. inside paragraphs)
+    const flattenedChildren = [];
+    
+    for (const node of tree.children) {
+      if (node.type === 'paragraph' && node.children.some(c => c.type === 'blockDelimiter')) {
+        // Split paragraph by blockDelimiter
+        let currentParagraphChildren = [];
+        for (const child of node.children) {
+          if (child.type === 'blockDelimiter') {
+            if (currentParagraphChildren.length > 0) {
+              flattenedChildren.push({
+                type: 'paragraph',
+                children: currentParagraphChildren
+              });
+              currentParagraphChildren = [];
+            }
+            flattenedChildren.push(child);
+          } else {
+            currentParagraphChildren.push(child);
+          }
+        }
+        if (currentParagraphChildren.length > 0) {
+          flattenedChildren.push({
+            type: 'paragraph',
+            children: currentParagraphChildren
+          });
+        }
+      } else {
+        flattenedChildren.push(node);
+      }
+    }
+
     const stack = [];
     const rootChildren = [];
     
     // Initial state: root container
     stack.push({ children: rootChildren });
 
-    const children = [...tree.children];
-    
-    for (let i = 0; i < children.length; i++) {
-      const node = children[i];
+    for (let i = 0; i < flattenedChildren.length; i++) {
+      const node = flattenedChildren[i];
       
       if (node.type === 'blockDelimiter') {
         const { blockType, isClosing } = node.data || {};
+        console.log(`[REMARK] blockDelimiter: type=${blockType}, isClosing=${isClosing}, stack depth before: ${stack.length}`);
         
         if (!isClosing) {
           // Start a new container
@@ -63,8 +94,10 @@ export default function remarkBlockContainers(options = {}) {
             stack.pop();
           }
         }
+        console.log(`[REMARK] stack depth after: ${stack.length}`);
       } else {
         // Regular node - add to current parent
+        console.log(`[REMARK] regular node: type=${node.type}, depth: ${stack.length}`);
         stack[stack.length - 1].children.push(node);
       }
     }

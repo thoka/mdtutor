@@ -14,7 +14,7 @@ const projectRoot = join(__dirname, '../../..');
  * Load original API data for comparison
  */
 function loadOriginalApi(language = 'en') {
-  const apiPath = join(projectRoot, 'content/RPL/projects/silly-eyes', `api-project-${language}.json`);
+  const apiPath = join(projectRoot, 'test/snapshots', `silly-eyes-api-project-${language}.json`);
   const data = JSON.parse(readFileSync(apiPath, 'utf-8'));
   return data;
 }
