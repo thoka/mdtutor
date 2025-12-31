@@ -74,7 +74,7 @@
     } else if (tutorialData && step === tutorialData.data.attributes.content.steps.length - 1) {
       // Last step completed
       completedSteps.complete(slug, step);
-      completedProjects.complete(slug);
+      completedProjects.complete(tutorialData.data.id);
       // Optionally redirect to pathway or home
     }
   }

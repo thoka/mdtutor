@@ -16,6 +16,8 @@ Implemented the Pathways infrastructure, including metadata storage in YAML, API
 - Updated `getPathwayProjects` to support the new YAML structure.
 - Implemented `GET /api/v1/:lang/pathways/:pathwayId` to return pathway metadata in RPL format.
 - Implemented `GET /api/v1/:lang/pathways/:pathwayId/projects` to return full project data for all projects in a pathway.
+- **Fix:** Ensured `projects` list is included in pathway attributes for frontend filtering.
+- **Logging:** Added request logging for better observability.
 
 ### 3. Web App
 - **Stores:** Added `completedProjects` store in `apps/web/src/lib/stores.ts` to track project completion in `localStorage`.
@@ -24,6 +26,10 @@ Implemented the Pathways infrastructure, including metadata storage in YAML, API
   - Created `PathwayView.svelte` to display pathway header, info sections, and grouped project cards.
   - Updated `HomeView.svelte` to include a "Lernpfade" section linking to the Scratch Intro pathway.
   - Updated `TutorialView.svelte` to mark a project as completed when the last step is reached.
+  - **Fix:** Improved reactivity in `PathwayView.svelte` using Svelte 5 Runes and `$completedProjects` store.
+
+### 4. Infrastructure
+- **Vite:** Updated `vite.config.ts` to allow all hosts (`host: true`, `allowedHosts: true`) for easier local development.
 
 ## Verification Results
 

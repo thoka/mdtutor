@@ -191,6 +191,12 @@ if (!PORT) {
 app.use(cors());
 app.use(express.json());
 
+// Simple request logger
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  next();
+});
+
 /**
  * Helper to find project data with language fallback
  * @param {string} namespacedSlug 
@@ -390,8 +396,7 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
         id: data.id?.toString() || pathwayId,
         type: 'pathways',
         attributes: {
-          ...data,
-          projects: undefined // Remove projects list from attributes
+          ...data
         },
         relationships: {
           projects: {

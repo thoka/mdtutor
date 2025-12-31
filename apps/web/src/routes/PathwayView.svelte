@@ -4,20 +4,23 @@
   import { currentLanguage, completedProjects } from '../lib/stores';
   import { t } from '../lib/i18n';
 
-  let { params = {} }: { params?: { slug?: string; lang?: string } } = $props();
+  let { params }: { params: { slug: string; lang: string } } = $props();
 
   let pathway = $state<any>(null);
   let projects = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
+  
   let lang = $derived(params.lang || 'de-DE');
   let slug = $derived(params.slug || '');
 
-  let completedCount = $derived(projects.filter(p => completedProjects.isCompleted(p.id)).length);
+  // Use $completedProjects for reactivity in Svelte 5
+  let completedCount = $derived(projects.filter(p => $completedProjects.has(p.id)).length);
   let totalCount = $derived(projects.length);
   let progressPercent = $derived(totalCount > 0 ? (completedCount / totalCount) * 100 : 0);
 
   $effect(() => {
+    console.log('PathwayView effect', { lang, slug });
     currentLanguage.set(lang);
     completedProjects.load();
     if (slug) {
@@ -26,26 +29,37 @@
   });
 
   async function loadPathway() {
+    console.log('loadPathway starting', slug);
     isLoading = true;
+    errorMsg = null;
     try {
       const [pathwayRes, projectsRes] = await Promise.all([
         fetch(`/api/v1/${lang}/pathways/${slug}`),
         fetch(`/api/v1/${lang}/pathways/${slug}/projects`)
       ]);
 
+      console.log('fetch results', { pathwayOk: pathwayRes.ok, projectsOk: projectsRes.ok });
+
       if (!pathwayRes.ok || !projectsRes.ok) {
-        throw new Error('Failed to fetch pathway data');
+        throw new Error(`Failed to fetch pathway data: ${pathwayRes.status} / ${projectsRes.status}`);
       }
 
       const pathwayData = await pathwayRes.json();
       const projectsData = await projectsRes.json();
 
+      console.log('data loaded', { 
+        hasPathway: !!pathwayData.data, 
+        projectsCount: projectsData.data?.length 
+      });
+
       pathway = pathwayData.data;
       projects = projectsData.data;
     } catch (e) {
+      console.error('loadPathway error', e);
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       isLoading = false;
+      console.log('loadPathway finished', { isLoading, hasPathway: !!pathway });
     }
   }
 
@@ -112,7 +126,7 @@
             <div class="c-projects-list__projects">
               {#each categoryProjects as project}
                 {@const displaySlug = project.id.startsWith('rpl:') ? project.id.slice(4) : project.id}
-                {@const isDone = completedProjects.isCompleted(project.id)}
+                {@const isDone = $completedProjects.has(project.id)}
                 <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card {isDone ? 'is-completed' : ''}">
                   {#if project.attributes.content.heroImage}
                     <div class="c-project-card__image-wrapper">
