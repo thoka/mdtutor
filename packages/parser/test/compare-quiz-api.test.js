@@ -44,10 +44,19 @@ function extractQuizStructure(html) {
       const input = answer.querySelector('input[type="radio"]');
       const label = answer.querySelector('label');
       // Original API structure: feedback items have IDs feedback-for-choice-X
-      // Match feedback by ID based on input ID (choice-1 -> feedback-for-choice-1)
+      // Match feedback by ID based on input ID (q1-choice-1 -> q1-feedback-for-choice-1)
       const inputId = input?.getAttribute('id') || '';
-      const choiceMatch = inputId.match(/choice-(\d+)/);
-      const feedbackId = choiceMatch ? `feedback-for-choice-${choiceMatch[1]}` : null;
+      const choiceMatch = inputId.match(/q(\d+)-choice-(\d+)/) || inputId.match(/choice-(\d+)/);
+      let feedbackId = null;
+      if (choiceMatch) {
+        if (choiceMatch[2]) {
+          // New format: qX-choice-Y
+          feedbackId = `q${choiceMatch[1]}-feedback-for-choice-${choiceMatch[2]}`;
+        } else {
+          // Old format: choice-Y
+          feedbackId = `feedback-for-choice-${choiceMatch[1]}`;
+        }
+      }
       const feedback = feedbackId ? q.querySelector(`#${feedbackId}`) : null;
       
       return {
@@ -215,12 +224,14 @@ test('compare-quiz - HTML structure matches reference', async () => {
     // Find the corresponding input for this feedback item
     const feedbackId = item.getAttribute('id');
     if (!feedbackId) return false;
-    // Extract choice number from id="feedback-for-choice-X"
+    // Extract choice number from id="qX-feedback-for-choice-Y" or "feedback-for-choice-Y"
     const match = feedbackId.match(/feedback-for-choice-(\d+)/);
     if (!match) return false;
     const choiceNum = parseInt(match[1]);
     // Check if this choice is correct
-    const correspondingInput = parsed.querySelector(`input[type="radio"][id="choice-${choiceNum}"]`);
+    const questionNum = feedbackId.startsWith('q') ? feedbackId.split('-')[0].substring(1) : null;
+    const inputId = questionNum ? `q${questionNum}-choice-${choiceNum}` : `choice-${choiceNum}`;
+    const correspondingInput = parsed.querySelector(`input[type="radio"][id="${inputId}"]`);
     return correspondingInput && correspondingInput.getAttribute('data-correct') === 'true';
   });
   assert.ok(correctFeedbackItems.length > 0, 'Should have correct feedback items');
@@ -270,8 +281,9 @@ test('compare-quiz - feedback structure is correct', async () => {
     radioInputs.forEach((input, ansIndex) => {
       const value = input.getAttribute('value');
       // Original API structure: feedback items have IDs feedback-for-choice-X
-      const feedbackId = `feedback-for-choice-${value}`;
-      const feedbackItem = question.querySelector(`#${feedbackId}`);
+      // Our version has prefixed IDs qX-
+      const feedbackId = `q${qIndex + 1}-feedback-for-choice-${value}`;
+      const feedbackItem = question.querySelector(`#${feedbackId}`) || question.querySelector(`#feedback-for-choice-${value}`);
       
       assert.ok(feedbackItem, `Question ${qIndex + 1} answer ${ansIndex} should have feedback with id="${feedbackId}"`);
       

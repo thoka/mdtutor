@@ -212,10 +212,11 @@
         item.classList.remove('knowledge-quiz-question__feedback-item--show');
       });
       
-      // Initially disable check button
+      // Initially disable check button unless an answer is already selected (from API)
       if (checkButton) {
-        checkButton.disabled = true;
-        console.log(`[quiz] Question ${index + 1}: Check button disabled initially`);
+        const anyChecked = Array.from(inputs).some(input => (input as HTMLInputElement).checked);
+        checkButton.disabled = !anyChecked;
+        console.log(`[quiz] Question ${index + 1}: Check button ${anyChecked ? 'enabled' : 'disabled'} initially`);
       }
       
       // Add change listeners to radio inputs (allow changing selection)
@@ -596,6 +597,4 @@
 
 <div class="c-project__step-content" bind:this={contentDiv}>
   {@html content}
-</div>
-
 </div>

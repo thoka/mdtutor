@@ -15,9 +15,9 @@ test('space-talk quiz parsing', async () => {
   
   assert.strictEqual(result.questions.length, 3, 'Should have 3 questions');
   
-  // Check that no answers are checked by default
+  // Check that correct answers are checked by default (API compatibility)
   const html = result.html;
-  assert.ok(!html.includes('checked'), 'HTML should not contain "checked" attribute');
+  assert.ok(html.includes('checked'), 'HTML should contain "checked" attribute for correct answers');
   
   // Check for unique IDs across questions
   const allIds = [];
