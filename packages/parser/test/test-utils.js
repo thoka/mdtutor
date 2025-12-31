@@ -87,9 +87,8 @@ export function extractHtmlStructure(html) {
       }
     }
 
-    // Get text content (direct text, not from children)
     const textContent = normalizeText(
-      node.childNodes
+      (node.childNodes || [])
         .filter(n => n.nodeType === 3)
         .map(n => n.textContent)
         .join(' ')
@@ -135,12 +134,19 @@ export function extractHtmlStructure(html) {
     });
     
     if (elementChildren.length > 0) {
+      const rootTextContent = normalizeText(
+        children
+          .filter(n => n.nodeType === 3)
+          .map(n => n.textContent)
+          .join(' ')
+      );
+      
       const structure = {
         tag: 'root',
         classes: [],
         id: null,
         attributes: {},
-        textContent: '',
+        textContent: rootTextContent,
         depth: -1,
         path: ['root'],
         selector: 'root',
@@ -299,15 +305,17 @@ export function compareHtmlStructures(expectedStructure, actualStructure) {
       });
     }
 
-    if (expectedNode.textContent && actualNode.textContent && 
-        expectedNode.textContent.trim() !== actualNode.textContent.trim()) {
+    const expectedText = (expectedNode.textContent || '').trim();
+    const actualText = (actualNode.textContent || '').trim();
+    
+    if ((expectedText || actualText) && expectedText !== actualText) {
       differences.push({
         type: 'text_content_mismatch',
         path: currentPath,
         depth: expectedNode.depth,
-        expectedText: expectedNode.textContent,
-        actualText: actualNode.textContent,
-        message: `Text content mismatch on <${expectedNode.tag}>`
+        expectedText: expectedText,
+        actualText: actualText,
+        message: `Text content mismatch on <${expectedNode.tag}>: expected "${expectedText.substring(0, 20)}${expectedText.length > 20 ? '...' : ''}", found "${actualText.substring(0, 20)}${actualText.length > 20 ? '...' : ''}"`
       });
     }
 

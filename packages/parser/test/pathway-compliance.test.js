@@ -90,7 +90,11 @@ for (const projectId of projects) {
 
         // Compare content (HTML) - Focus on structure
         // Skip for quiz steps as we generate HTML but API might be different/empty
-        if (!apiStep.knowledgeQuiz) {
+        const hasQuiz = apiStep.knowledgeQuiz && 
+          (typeof apiStep.knowledgeQuiz === 'string' || 
+           (typeof apiStep.knowledgeQuiz === 'object' && apiStep.knowledgeQuiz.path));
+
+        if (!hasQuiz) {
           const htmlAnalysis = compareHtmlContent(apiStep.content, ourStep.content);
           if (htmlAnalysis.structuralDifferences.length > 0) {
             differences.push({
