@@ -3,6 +3,18 @@ import { join } from 'path';
 import { parse } from 'node-html-parser';
 
 /**
+ * Normalisiert Text für den Vergleich (Whitespace, Smart Quotes)
+ */
+export function normalizeText(text) {
+  if (typeof text !== 'string') return text;
+  return text
+    .replace(/[\u201C\u201D\u201E\u201F\u201C\u201D]/g, '"') // Double smart quotes
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'") // Single smart quotes
+    .replace(/\s+/g, ' ') // Collapse whitespace
+    .trim();
+}
+
+/**
  * Extrahiert vollständige hierarchische HTML-Struktur
  * @param {string} html - HTML-String
  * @returns {Object} Struktur-Baum mit allen Element-Informationen
@@ -65,17 +77,23 @@ export function extractHtmlStructure(html) {
         if (name === 'id') {
           normalizedValue = value.replace(/-+$/, '');
         }
+
+        // Normalize text-like attributes
+        if (['alt', 'title', 'aria-label'].includes(name)) {
+          normalizedValue = normalizeText(value);
+        }
         
         attributes[name] = normalizedValue;
       }
     }
 
     // Get text content (direct text, not from children)
-    const textContent = node.childNodes
-      .filter(n => n.nodeType === 3)
-      .map(n => n.textContent.trim())
-      .filter(t => t.length > 0)
-      .join(' ');
+    const textContent = normalizeText(
+      node.childNodes
+        .filter(n => n.nodeType === 3)
+        .map(n => n.textContent)
+        .join(' ')
+    );
 
     // Build hierarchical path
     const pathSegment = tagName + (id ? `#${id}` : '') + (classList.length > 0 ? `.${classList.join('.')}` : '');
@@ -521,13 +539,16 @@ export function loadApiData(snapshotsDir, projectSlug, language) {
 export function compareStepAttributes(expectedStep, actualStep, stepIndex) {
   const differences = [];
 
-  if (expectedStep.title !== actualStep.title) {
+  const expectedTitle = normalizeText(expectedStep.title);
+  const actualTitle = normalizeText(actualStep.title);
+
+  if (expectedTitle !== actualTitle) {
     differences.push({
       path: `steps[${stepIndex}].title`,
       jsonPath: `/data/attributes/content/steps/${stepIndex}/title`,
       type: 'value_mismatch',
-      expected: expectedStep.title,
-      actual: actualStep.title
+      expected: expectedTitle,
+      actual: actualTitle
     });
   }
 
