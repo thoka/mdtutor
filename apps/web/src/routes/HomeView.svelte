@@ -68,13 +68,6 @@
                 <p class="c-project-card__description">{project.description}</p>
               {/if}
             </div>
-            {#if project.languages && project.languages.length > 0}
-              <div class="c-project-card__tags">
-                {#each project.languages as lang}
-                  <span class="rpf-tag">{lang}</span>
-                {/each}
-              </div>
-            {/if}
           </div>
         </a>
       {/each}

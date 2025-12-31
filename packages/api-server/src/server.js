@@ -87,6 +87,52 @@ async function resolveSlug(namespacedSlug) {
   return null;
 }
 
+/**
+ * Get all project slugs that are part of any pathway
+ * @returns {Promise<Array<{namespacedSlug: string, namespace: string, slug: string, provider: string}>>}
+ */
+async function getPathwayProjects() {
+  const providers = await getProviders();
+  const projects = [];
+  const seen = new Set();
+
+  for (const [providerName, meta] of Object.entries(providers)) {
+    const pathwaysDir = join(CONTENT_DIR, providerName, 'pathways');
+    if (existsSync(pathwaysDir)) {
+      const files = await readdirAsync(pathwaysDir);
+      for (const file of files) {
+        if (file.endsWith('.yaml') || file.endsWith('.yml')) {
+          try {
+            const content = await readFileAsync(join(pathwaysDir, file), 'utf-8');
+            const data = yaml.load(content);
+            if (data && typeof data === 'object') {
+              for (const pathway of Object.values(data)) {
+                if (Array.isArray(pathway)) {
+                  pathway.forEach(slug => {
+                    const namespacedSlug = `${meta.namespace}:${slug}`;
+                    if (!seen.has(namespacedSlug)) {
+                      projects.push({
+                        namespacedSlug,
+                        namespace: meta.namespace,
+                        slug,
+                        provider: providerName
+                      });
+                      seen.add(namespacedSlug);
+                    }
+                  });
+                }
+              }
+            }
+          } catch (e) {
+            console.warn(`Failed to load pathway file ${file} for provider ${providerName}:`, e.message);
+          }
+        }
+      }
+    }
+  }
+  return projects;
+}
+
 const app = express();
 // Port MUST be set in .env file - no default fallback
 const PORT = process.env.API_PORT;
@@ -230,44 +276,41 @@ app.get('/api/projects/:slug', async (req, res) => {
 app.get('/api/projects', async (req, res) => {
   try {
     const lang = req.query.lang || 'de-DE';
-    const providers = await getProviders();
+    const pathwayProjects = await getPathwayProjects();
     const allProjects = [];
     const allLanguages = new Set(['de-DE', 'en']);
 
-    for (const [providerName, meta] of Object.entries(providers)) {
-      const projectsDir = join(CONTENT_DIR, providerName, 'projects');
-      if (!existsSync(projectsDir)) continue;
+    for (const { namespacedSlug, slug } of pathwayProjects) {
+      // Try to get requested language data first for the overview
+      try {
+        const projectData = await getProjectData(namespacedSlug, lang);
+        
+        let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
+        let description = projectData?.data?.attributes?.content?.description || null;
+        let title = projectData?.data?.attributes?.content?.title || 
+                    slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-      const projectDirs = await readdirAsync(projectsDir, { withFileTypes: true });
-      
-      for (const dir of projectDirs) {
-        if (dir.isDirectory()) {
-          const slug = dir.name;
-          const namespacedSlug = `${meta.namespace}:${slug}`;
-          
-          // Try to get requested language data first for the overview
-          try {
-            const projectData = await getProjectData(namespacedSlug, lang);
-            
-            let heroImage = projectData?.data?.attributes?.content?.heroImage || null;
-            let description = projectData?.data?.attributes?.content?.description || null;
-            let title = projectData?.data?.attributes?.content?.title || 
-                        slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        const projectLangs = projectData.languages || ['de-DE', 'en'];
+        projectLangs.forEach(l => allLanguages.add(l));
 
-            const projectLangs = projectData.languages || ['de-DE', 'en'];
-            projectLangs.forEach(l => allLanguages.add(l));
-
-            allProjects.push({
-              slug: namespacedSlug,
-              title,
-              description,
-              languages: projectLangs,
-              heroImage
-            });
-          } catch (e) {
-            console.warn(`Failed to load project ${namespacedSlug}:`, e.message);
-          }
-        }
+        allProjects.push({
+          slug: namespacedSlug,
+          title,
+          description,
+          languages: projectLangs,
+          heroImage
+        });
+      } catch (e) {
+        // If project data cannot be loaded (e.g. directory missing), 
+        // still include it in the list as requested by user
+        allProjects.push({
+          slug: namespacedSlug,
+          title: slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '),
+          description: null,
+          languages: [],
+          heroImage: null,
+          unavailable: true
+        });
       }
     }
     
