@@ -11,6 +11,9 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Data Flow**: Markdown (GitHub) → Parser → JSON (RPL Format) → API Server → Svelte Frontend.
 
 ## Critical Workflows
+- **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
+  1. Create a **feature branch** (`feature/name`).
+  2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
 - **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots.
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
