@@ -12,6 +12,7 @@
 import { execSync } from 'child_process';
 import { writeFileSync, mkdirSync, existsSync, readFileSync } from 'fs';
 import { join } from 'path';
+import { load } from 'js-yaml';
 
 const SNAPSHOTS_DIR = 'test/snapshots';
 const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
@@ -19,13 +20,10 @@ const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
 // Configurable languages (extend with 'de' etc. as needed)
 const LANGUAGES = ['en', 'de-DE'];
 
-// Test tutorials to fetch
-const TEST_TUTORIALS = [
-  'silly-eyes',
-  'scratchpc-interactive-book',
-  'getting-started-with-minecraft-pi',
-  'cats-vs-dogs'
-];
+// Load tutorials from pathways.yaml
+const PATHWAYS_FILE = 'test/pathways.yaml';
+const pathwaysData = load(readFileSync(PATHWAYS_FILE, 'utf8'));
+const TEST_TUTORIALS = Object.values(pathwaysData).flat();
 
 /**
  * Extract unique ingredients (transclusions) from project API data
@@ -75,7 +73,7 @@ async function cloneRepository(tutorialSlug) {
   console.log(`Cloning ${tutorialSlug}...`);
   
   if (existsSync(targetDir)) {
-    console.log(`  → Already exists, skipping`);
+    console.log('  → Already exists, skipping');
     return targetDir;
   }
   
@@ -113,7 +111,7 @@ function extractPathwaysFromProject(projectData) {
   if (pathways.length > 0) {
     console.log(`  ✓ Found pathways: ${pathways.map(p => p.slug).join(', ')}`);
   } else {
-    console.log(`  ℹ No pathways in project`);
+    console.log('  ℹ No pathways in project');
   }
   
   return pathways;
@@ -131,7 +129,7 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
   
   // Check if already exists
   if (existsSync(targetFile)) {
-    console.log(`    → Already exists, reading from cache`);
+    console.log('    → Already exists, reading from cache');
     try {
       const data = JSON.parse(readFileSync(targetFile, 'utf-8'));
       return { file: targetFile, data };
@@ -152,7 +150,7 @@ async function fetchProjectApi(tutorialSlug, language = 'en') {
     mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
-    console.log(`    ✓ Saved`);
+    console.log('    ✓ Saved');
     return { file: targetFile, data };
   } catch (error) {
     console.error(`    ✗ Failed: ${error.message}`);
@@ -170,7 +168,7 @@ async function fetchProgressApi(tutorialSlug, language = 'en') {
   console.log(`  Fetching Progress API (${language})...`);
   
   if (existsSync(targetFile)) {
-    console.log(`    → Already exists, skipping`);
+    console.log('    → Already exists, skipping');
     return targetFile;
   }
   
@@ -186,7 +184,7 @@ async function fetchProgressApi(tutorialSlug, language = 'en') {
     mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
-    console.log(`    ✓ Saved`);
+    console.log('    ✓ Saved');
     return targetFile;
   } catch (error) {
     console.warn(`    ⚠ Failed (optional): ${error.message}`);
@@ -204,7 +202,7 @@ async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
   console.log(`  Fetching Pathway API: ${pathwaySlug} (${language})...`);
   
   if (existsSync(targetFile)) {
-    console.log(`    → Already exists, skipping`);
+    console.log('    → Already exists, skipping');
     return { slug: pathwaySlug, file: targetFile, available: true };
   }
   
@@ -220,7 +218,7 @@ async function fetchPathwayApi(pathwaySlug, tutorialSlug, language = 'en') {
     mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
-    console.log(`    ✓ Saved`);
+    console.log('    ✓ Saved');
     return { slug: pathwaySlug, file: targetFile, available: true };
   } catch (error) {
     console.warn(`    ⚠ Failed (optional): ${error.message}`);
@@ -243,7 +241,7 @@ async function fetchQuizApi(quizPath, tutorialSlug, language = 'en') {
   
   // Check if already exists
   if (existsSync(targetFile)) {
-    console.log(`    → Already exists, reading from cache`);
+    console.log('    → Already exists, reading from cache');
     try {
       const data = JSON.parse(readFileSync(targetFile, 'utf-8'));
       return { path: quizPath, file: targetFile, available: true, data };
@@ -264,7 +262,7 @@ async function fetchQuizApi(quizPath, tutorialSlug, language = 'en') {
     mkdirSync(join(SNAPSHOTS_DIR, tutorialSlug), { recursive: true });
     writeFileSync(targetFile, JSON.stringify(data, null, 2));
     
-    console.log(`    ✓ Saved`);
+    console.log('    ✓ Saved');
     return { path: quizPath, file: targetFile, available: true, data };
   } catch (error) {
     console.warn(`    ⚠ Failed (optional): ${error.message}`);

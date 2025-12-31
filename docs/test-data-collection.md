@@ -4,9 +4,11 @@
 
 **Script:** `test/get-test-data.js`
 
+**Tutorial Source:** `test/pathways.yaml` (grouped by pathway)
+
 **Requirements:**
 - Node.js >= 18 (native fetch API support required)
-- No external dependencies needed
+- `js-yaml` (for parsing tutorial list)
 
 ## API Endpoints to Fetch
 
