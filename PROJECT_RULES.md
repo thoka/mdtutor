@@ -21,6 +21,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
+- **Planning**: Implementation plans MUST be discussed and approved BEFORE coding starts.
 - **Verification**: Merge to `main` only after full verification and passing tests.
 - **Review**: Never merge into `main` without a review and approval.
 - **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates.
@@ -28,7 +29,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 ## Iteration Flow
 1.  **Preparation**: Create a feature branch.
 2.  **Proposal**: Document the approach in `docs/brain/YYYY-MM-DD-feature-name.md` (Implementation Plan).
-3.  - **Discussion**: Present the proposal and wait for feedback/approval.
+3.  - **Approval (MANDATORY)**: Present the proposal and wait for explicit feedback/approval BEFORE starting implementation.
 4.  - **Clarification**: If an iteration is "expensive" (complex/time-consuming), ask for clarification *before* starting.
 5.  **Execution (TDD)**: Implement subtasks using TDD. Log progress and changes in the brain document.
 6.  **Walkthrough**: Document the final state/result in a `*-walkthrough.md` in `docs/brain/`.
