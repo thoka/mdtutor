@@ -160,7 +160,7 @@ test('compare-quiz-api-exact - quiz API structure matches our output', async () 
     });
     
     // Compare button
-    console.log(`    Button:`);
+    console.log('    Button:');
     console.log('      Original value:', originalStruct.buttonValue);
     console.log('      Our value:', ourStruct.buttonValue);
     console.log('      Original name:', originalStruct.buttonName);

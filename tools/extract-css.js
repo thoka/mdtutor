@@ -75,7 +75,7 @@ async function extractCSS(url) {
             });
           } catch (e) {
             // Cross-origin stylesheet, skip
-            styles.push(`/* Could not access rules (cross-origin) */`);
+            styles.push('/* Could not access rules (cross-origin) */');
           }
         } catch (e) {
           styles.push(`/* Error accessing stylesheet ${index + 1}: ${e.message} */`);

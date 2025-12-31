@@ -76,7 +76,7 @@ test('API health endpoint includes commit hash', async () => {
   } catch (error) {
     if (error.code === 'ECONNREFUSED' || error.message?.includes('ECONNREFUSED')) {
       console.warn(`  ⚠ API server is not running on port ${apiPort}`);
-      console.warn(`  Start it with: npm run api`);
+      console.warn('  Start it with: npm run api');
     } else {
       throw error;
     }

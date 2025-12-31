@@ -91,13 +91,13 @@ test('API server port can be accessed', async () => {
     
     // If we get a 200 or 404, server is running (404 just means no projects)
     if (response.status === 200 || response.status === 404) {
-      console.log(`  ✓ API server is responding correctly`);
+      console.log('  ✓ API server is responding correctly');
     }
   } catch (error) {
     // If connection refused, server is not running
     if (error.code === 'ECONNREFUSED' || error.message?.includes('ECONNREFUSED')) {
       console.warn(`  ⚠ API server is not running on port ${apiPort}`);
-      console.warn(`  Start it with: npm run api`);
+      console.warn('  Start it with: npm run api');
       // Don't fail the test, just warn
     } else {
       throw error;
@@ -124,7 +124,7 @@ test('API server uses parseProject when repository exists', async () => {
         
         // If using parseProject, completion should be ["external"]
         // If using static JSON, it might be ["internal","external"]
-        const expectedCompletion = ["external"];
+        const expectedCompletion = ['external'];
         
         if (JSON.stringify(step5.completion) === JSON.stringify(expectedCompletion)) {
           console.log('  ✓ API is using parseProject (correct completion array)');

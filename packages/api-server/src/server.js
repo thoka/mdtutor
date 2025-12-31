@@ -93,9 +93,6 @@ async function getProjectData(slug, requestedLang) {
     }
   }
 
-  // throw error here
-  throw new Error(`Failed to parse project ${slug} from repository for languages: ${uniqueLangs.join(', ')}`);
-
   // legacy Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
@@ -106,7 +103,8 @@ async function getProjectData(slug, requestedLang) {
       // Continue to next language
     }
   }
-  return null;
+
+  throw new Error(`Failed to parse project ${slug} from repository or snapshots for languages: ${uniqueLangs.join(', ')}`);
 }
 
 // Health check endpoint with port and commit information

@@ -75,7 +75,7 @@ test('API health endpoint is accessible', async () => {
   } catch (error) {
     if (error.code === 'ECONNREFUSED' || error.message?.includes('ECONNREFUSED')) {
       console.warn(`  ⚠ API server is not running on port ${apiPort}`);
-      console.warn(`  Start it with: npm run api`);
+      console.warn('  Start it with: npm run api');
       // Don't fail the test, just warn
     } else {
       throw error;

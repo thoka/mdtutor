@@ -70,7 +70,7 @@ async function generateQuizHtml(questions, options = {}) {
     const question = questions[i];
 
     // Use <form> container like original API
-    html += `<form class="knowledge-quiz-question">\n`;
+    html += '<form class="knowledge-quiz-question">\n';
     html += '  <fieldset>\n';
     
     // Question legend

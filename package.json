@@ -12,7 +12,7 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "node --test",
+    "test": "npm run lint && node --test",
     "test:data": "node test/get-test-data.js",
     "api": "npm run dev --workspace=@mdtutor/api-server",
     "web": "npm run dev --workspace=@mdtutor/web",

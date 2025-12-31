@@ -12,7 +12,15 @@ export default [
         Buffer: 'readonly',
         __dirname: 'readonly',
         __filename: 'readonly',
-        fetch: 'readonly'
+        fetch: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        setInterval: 'readonly',
+        clearInterval: 'readonly',
+        URL: 'readonly',
+        document: 'readonly',
+        window: 'readonly',
+        navigator: 'readonly'
       }
     },
     rules: {

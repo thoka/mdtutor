@@ -379,7 +379,7 @@ async function main() {
   
   console.log('JSON Comparison Tool');
   console.log('='.repeat(80));
-  console.log(`\nComparing:`);
+  console.log('\nComparing:');
   console.log(`  Expected (API): ${file1}`);
   console.log(`  Actual (Parsed): ${file2}`);
   

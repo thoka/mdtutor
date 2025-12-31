@@ -205,7 +205,7 @@ test('parseQuestion - handles choices with Scratch blocks in text', async () => 
 });
 
 test('parseQuestion - throws error if question block not found', async () => {
-  const markdown = `This is not a question file.`;
+  const markdown = 'This is not a question file.';
 
   await assert.rejects(
     async () => await parseQuestion(markdown),

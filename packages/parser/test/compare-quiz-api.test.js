@@ -358,7 +358,7 @@ test('compare-quiz - rendered HTML structure vs original website', async () => {
     // Our parser generates all questions, which is correct - renderer handles progressive disclosure
     // So we should have all 3 questions in our output, regardless of what's visible on the original site
     assert.strictEqual(ourQuestions.length, 3, 
-      `Our parser should generate all 3 questions (progressive disclosure is handled by renderer)`);
+      'Our parser should generate all 3 questions (progressive disclosure is handled by renderer)');
     
     // Compare each question
     ourQuestions.forEach((ourQ, index) => {
