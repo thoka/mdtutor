@@ -49,7 +49,6 @@ export function extractHtmlStructure(html) {
 
     const classList = (node.getAttribute('class') || '').split(' ').filter(c => c.trim());
     let id = node.getAttribute('id') || '';
-    if (id) id = id.replace(/[\ufe0f-]+$/, ''); // Normalize ID (remove trailing hyphens and variation selectors)
     
     // Collect all attributes
     const attributes = {};
@@ -73,11 +72,6 @@ export function extractHtmlStructure(html) {
           }
         }
         
-        // Normalize id attribute
-        if (name === 'id') {
-          normalizedValue = value.replace(/[\ufe0f-]+$/, '');
-        }
-
         // Normalize text-like attributes
         if (['alt', 'title', 'aria-label'].includes(name)) {
           normalizedValue = normalizeText(value);
