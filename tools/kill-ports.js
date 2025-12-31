@@ -22,8 +22,8 @@ try {
 
 for (const port of ports) {
   try {
-    // Find PID using lsof and kill it
-    const pid = execSync(`lsof -t -i:${port}`).toString().trim();
+    // Find PID using lsof and kill it (only listening processes)
+    const pid = execSync(`lsof -t -i:${port} -sTCP:LISTEN`).toString().trim();
     if (pid) {
       console.log(`Killing process ${pid} on port ${port}...`);
       // Split by newline in case there are multiple PIDs
