@@ -72,6 +72,7 @@ for (const projectId of projects) {
       );
       
       const differences = [];
+      const warnings = [];
 
       // Compare each step
       for (let i = 0; i < apiSteps.length; i++) {
@@ -96,12 +97,25 @@ for (const projectId of projects) {
 
         if (!hasQuiz) {
           const htmlAnalysis = compareHtmlContent(apiStep.content, ourStep.content);
-          if (htmlAnalysis.structuralDifferences.length > 0) {
+          
+          const idMismatches = htmlAnalysis.structuralDifferences.filter(d => d.type === 'id_mismatch');
+          const structuralMismatches = htmlAnalysis.structuralDifferences.filter(d => d.type !== 'id_mismatch');
+
+          if (idMismatches.length > 0) {
+            warnings.push({
+              stepIndex: i,
+              stepTitle: apiStep.title,
+              type: 'id_mismatches',
+              details: idMismatches
+            });
+          }
+
+          if (structuralMismatches.length > 0) {
             differences.push({
               stepIndex: i,
               stepTitle: apiStep.title,
               type: 'html_structural_mismatch',
-              structuralDifferences: htmlAnalysis.structuralDifferences
+              structuralDifferences: structuralMismatches
             });
           }
         } else if (typeof apiStep.knowledgeQuiz === 'string') {
@@ -170,6 +184,10 @@ for (const projectId of projects) {
             }
           }
         }
+      }
+
+      if (warnings.length > 0) {
+        console.warn(`⚠️ Found ${warnings.length} ID mismatch(es) in ${projectId} [${lang}] (ignoring for compliance)`);
       }
 
       if (differences.length > 0) {

@@ -13,8 +13,7 @@ function slugify(text) {
     .toLowerCase()
     .trim()
     .replace(/[^\p{L}\p{N}\ufe0f-]+/gu, '-') // Replace sequences of non-alphanumeric (except \ufe0f and hyphen) with a single hyphen
-    .replace(/[\s_-]+/g, '-') // Normalize hyphens
-    .replace(/^-+/g, ''); // Remove leading hyphens
+    .replace(/^-+|-+$/g, ''); // Trim leading and trailing hyphens
 }
 
 export default function rehypeHeadingIds() {
