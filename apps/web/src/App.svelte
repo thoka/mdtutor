@@ -1,11 +1,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import Router from 'svelte-spa-router';
+  import Router, { link, location } from 'svelte-spa-router';
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
   import PathwayView from './routes/PathwayView.svelte';
   import LanguageChooser from './lib/LanguageChooser.svelte';
   import { t } from './lib/i18n';
+  import { currentLanguage } from './lib/stores';
   import { checkApiHealth } from './lib/api-config';
   import './styles/rpl-cloned/index.css';
   import './app.css';
@@ -21,6 +22,13 @@
     '/:slug/:step': TutorialView,
     '*': HomeView  // Fallback to home
   };
+
+  const showBackButton = $derived(
+    $location !== '/' && 
+    $location !== `/${$currentLanguage}` && 
+    $location !== `/${$currentLanguage}/projects` &&
+    $location !== `/${$currentLanguage}/projects/`
+  );
 
   let apiMismatch = $state(false);
   let apiVersions = $state({ web: '', api: '' });
@@ -69,7 +77,31 @@
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .c-global-nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: var(--font-family-body);
+  }
+
+  .global-nav-bar .rpf-button--tertiary {
+    --rpf-button-background-color: transparent !important;
+    color: var(--rpf-text-primary);
+    border: none;
+    box-shadow: none;
+    padding-inline: 0.5rem;
+  }
+
+  /* Override icon color for back button in nav bar (light background) */
+  :global(.c-global-nav-back .rpf-button__icon.material-symbols-sharp::before) {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' fill='%23333333'/%3E%3C/svg%3E") !important;
   }
 </style>
 
@@ -82,7 +114,23 @@
   <div class="no-print">
     <div class="global-nav-bar">
       <div class="global-nav-bar__content">
-        <LanguageChooser />
+        <div class="global-nav-bar__left">
+          {#if showBackButton}
+            <a 
+              href="/{$currentLanguage}/projects" 
+              use:link 
+              class="rpf-button rpf-button--tertiary c-global-nav-back"
+            >
+              <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true">chevron_left</span>
+              <span class="text">{$t('back_to_overview')}</span>
+            </a>
+          {:else}
+            <div></div>
+          {/if}
+        </div>
+        <div class="global-nav-bar__right">
+          <LanguageChooser />
+        </div>
       </div>
     </div>
   </div>
