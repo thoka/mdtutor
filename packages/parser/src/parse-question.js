@@ -75,12 +75,13 @@ function parseChoices(choicesText) {
   const choices = [];
   
   // Split by list items (lines starting with -)
-  const choiceBlocks = choicesText.split(/^- \(/m).filter(block => block.trim());
+  // We want to match "- ( )", "- (x)", or "- ()"
+  const choiceBlocks = choicesText.split(/^- \s*\(/m).filter(block => block.trim());
   
   for (const block of choiceBlocks) {
-    // Determine if correct (x) or incorrect ( )
+    // Determine if correct (x) or incorrect ( ) or ()
     const isCorrect = block.startsWith('x)');
-    const isIncorrect = block.startsWith(' )');
+    const isIncorrect = block.startsWith(' )') || block.startsWith(')');
     
     if (!isCorrect && !isIncorrect) {
       continue; // Skip malformed choices

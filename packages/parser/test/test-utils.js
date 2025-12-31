@@ -534,6 +534,15 @@ export function loadApiData(snapshotsDir, projectSlug, language) {
 }
 
 /**
+ * Lädt Original-Quiz-API-Daten
+ */
+export function loadQuizApiData(snapshotsDir, projectSlug, quizSlug, language) {
+  const apiPath = join(snapshotsDir, projectSlug, `api-quiz-${quizSlug}-${language}.json`);
+  if (!existsSync(apiPath)) return null;
+  return JSON.parse(readFileSync(apiPath, 'utf-8'));
+}
+
+/**
  * Vergleicht Step-Attribute (außer content)
  */
 export function compareStepAttributes(expectedStep, actualStep, stepIndex) {
@@ -631,4 +640,57 @@ export function compareStepAttributes(expectedStep, actualStep, stepIndex) {
   }
 
   return differences;
+}
+
+/**
+ * Extrahiert Strukturen aller Quiz-Fragen aus HTML
+ */
+export function extractQuizStructures(htmlString) {
+  const root = parse(htmlString);
+  const containers = root.querySelectorAll('form.knowledge-quiz-question, div.knowledge-quiz-question');
+  
+  return containers.map(container => {
+    const fieldset = container.querySelector('fieldset');
+    const legend = normalizeText(fieldset?.querySelector('legend')?.textContent || '');
+    const blurb = container.querySelector('.knowledge-quiz-question__blurb')?.innerHTML || '';
+    
+    const answers = container.querySelectorAll('.knowledge-quiz-question__answer').map((answer, index) => {
+      const input = answer.querySelector('input[type="radio"]');
+      const label = answer.querySelector('label');
+      
+      return {
+        index: index + 1,
+        id: input?.getAttribute('id') || '',
+        name: input?.getAttribute('name') || '',
+        value: input?.getAttribute('value') || '',
+        checked: input?.hasAttribute('checked'),
+        dataCorrect: input?.getAttribute('data-correct') || '',
+        labelHtml: label?.innerHTML || '',
+        labelText: normalizeText(label?.textContent || '')
+      };
+    });
+    
+    const feedbacks = container.querySelectorAll('.knowledge-quiz-question__feedback-item').map((item, index) => {
+      return {
+        index: index + 1,
+        id: item.getAttribute('id') || '',
+        html: item.innerHTML || '',
+        text: normalizeText(item.textContent || '')
+      };
+    });
+    
+    const button = container.querySelector('input[type="button"]');
+    
+    return {
+      tag: container.tagName.toLowerCase(),
+      className: container.getAttribute('class') || '',
+      legend,
+      answersCount: answers.length,
+      answers,
+      feedbacksCount: feedbacks.length,
+      feedbacks,
+      buttonValue: button?.getAttribute('value') || '',
+      buttonName: button?.getAttribute('name') || ''
+    };
+  });
 }
