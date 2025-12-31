@@ -20,11 +20,23 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.
 - **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
-- **Documentation**: Distributed across modules. Use `docs/brain/` for tracking: `implementation_plan.md` (before), `task.md` (during), and `walkthrough.md` (after). Module-specific specifications must be placed in the respective module's `docs/` directory (e.g., `packages/parser/docs/`).
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Verification**: Merge to `main` only after full verification and passing tests.
-- **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates. When updating status/timestamps in documentation, verify the current date first.
+- **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates.
 
+## Iteration Flow
+1.  **Preparation**: Create a feature branch.
+2.  **Proposal**: Document the approach in `docs/brain/YYYY-MM-DD-feature-name.md` (Implementation Plan).
+3.  - **Discussion**: Present the proposal and wait for feedback/approval.
+4.  - **Clarification**: If an iteration is "expensive" (complex/time-consuming), ask for clarification *before* starting.
+5.  **Execution (TDD)**: Implement subtasks using TDD. Log progress and changes in the brain document.
+6.  **Walkthrough**: Document the final state/result in a `*-walkthrough.md` in `docs/brain/`.
+7.  **Review**: Final verification and merge request.
+
+## Documentation
+- **Distributed**: Keep documentation within the respective module's `docs/` directory.
+- **Brain (`docs/brain/`)**: Use for tracking ongoing work. Use date-prefixed files: `YYYY-MM-DD-topic.md` for plans and `YYYY-MM-DD-topic-walkthrough.md` for results.
+- **Specifications**: Core project spec in `docs/SPEC.md`.
 ## Project Conventions
 - **Svelte 5**: Use Runes (`$state`, `$derived`, `$effect`, `$props`) exclusively. Avoid Svelte 4 syntax.
 - **Language Fallback**: Default to `de-DE`, fallback to `en`. API handles this via `getProjectData`.
