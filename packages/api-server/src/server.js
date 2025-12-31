@@ -8,7 +8,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
-import { existsSync, readdirSync } from 'fs';
+import { existsSync, readdirSync, statSync } from 'fs';
 import { readFile as readFileAsync, readdir as readdirAsync } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -24,6 +24,7 @@ import { parseProject } from '../../parser/src/parse-project.js';
 import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js';
 
 const CONTENT_DIR = join(__dirname, '../../../content');
+const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 /**
  * Get all content providers and their metadata
@@ -88,6 +89,72 @@ async function resolveSlug(namespacedSlug) {
 }
 
 /**
+ * Resolve a namespaced pathway slug to a file path
+ * @param {string} namespacedSlug e.g. "rpl:scratch-intro"
+ * @returns {Promise<{path: string, provider: string, slug: string, namespace: string}|null>}
+ */
+async function resolvePathway(namespacedSlug) {
+  const providers = await getProviders();
+  
+  if (!namespacedSlug.includes(':')) {
+    for (const [name, meta] of Object.entries(providers)) {
+      const pathwayPath = join(CONTENT_DIR, name, 'pathways', `${namespacedSlug}.yml`);
+      if (existsSync(pathwayPath)) {
+        return { path: pathwayPath, provider: name, slug: namespacedSlug, namespace: meta.namespace };
+      }
+      const pathwayPathYaml = join(CONTENT_DIR, name, 'pathways', `${namespacedSlug}.yaml`);
+      if (existsSync(pathwayPathYaml)) {
+        return { path: pathwayPathYaml, provider: name, slug: namespacedSlug, namespace: meta.namespace };
+      }
+    }
+    return null;
+  }
+
+  const [namespace, slug] = namespacedSlug.split(':');
+  for (const [name, meta] of Object.entries(providers)) {
+    if (meta.namespace === namespace) {
+      const pathwayPath = join(CONTENT_DIR, name, 'pathways', `${slug}.yml`);
+      if (existsSync(pathwayPath)) {
+        return { path: pathwayPath, provider: name, slug: slug, namespace: namespace };
+      }
+      const pathwayPathYaml = join(CONTENT_DIR, name, 'pathways', `${slug}.yaml`);
+      if (existsSync(pathwayPathYaml)) {
+        return { path: pathwayPathYaml, provider: name, slug: slug, namespace: namespace };
+      }
+    }
+  }
+  return null;
+}
+
+/**
+ * Resolve a local image path by checking multiple possible locations
+ * @param {string} pSlug Project slug
+ * @param {string} pLang Language code
+ * @param {string} imagePath Relative image path (e.g. "banner.png")
+ * @returns {string} The resolved local URL
+ */
+function resolveLocalImagePath(pSlug, pLang, imagePath) {
+  const projectPath = join(CONTENT_DIR, 'RPL', 'projects', pSlug);
+  const repoPath = join(projectPath, 'repo');
+  
+  const candidates = [
+    join(repoPath, pLang, 'images', imagePath),
+    join(repoPath, 'en', 'images', imagePath),
+    join(repoPath, imagePath),
+    join(repoPath, 'images', imagePath)
+  ];
+  
+  for (const candidate of candidates) {
+    if (existsSync(candidate) && statSync(candidate).isFile()) {
+      return `/content/RPL/projects/${pSlug}/repo${candidate.split('/repo')[1]}`;
+    }
+  }
+  
+  // Fallback
+  return `/content/RPL/projects/${pSlug}/repo/${pLang}/images/${imagePath}`;
+}
+
+/**
  * Get all project slugs that are part of any pathway
  * @returns {Promise<Array<{namespacedSlug: string, namespace: string, slug: string, provider: string}>>}
  */
@@ -105,23 +172,32 @@ async function getPathwayProjects() {
           try {
             const content = await readFileAsync(join(pathwaysDir, file), 'utf-8');
             const data = yaml.load(content);
-            if (data && typeof data === 'object') {
+            if (!data) continue;
+
+            // Handle legacy format (object with arrays of slugs)
+            if (typeof data === 'object' && !data.projects && !data.slug) {
               for (const pathway of Object.values(data)) {
                 if (Array.isArray(pathway)) {
                   pathway.forEach(slug => {
                     const namespacedSlug = `${meta.namespace}:${slug}`;
                     if (!seen.has(namespacedSlug)) {
-                      projects.push({
-                        namespacedSlug,
-                        namespace: meta.namespace,
-                        slug,
-                        provider: providerName
-                      });
+                      projects.push({ namespacedSlug, namespace: meta.namespace, slug, provider: providerName });
                       seen.add(namespacedSlug);
                     }
                   });
                 }
               }
+            } 
+            // Handle new format (single pathway object)
+            else if (data.projects && Array.isArray(data.projects)) {
+              data.projects.forEach(p => {
+                const slug = typeof p === 'string' ? p : p.slug;
+                const namespacedSlug = `${meta.namespace}:${slug}`;
+                if (!seen.has(namespacedSlug)) {
+                  projects.push({ namespacedSlug, namespace: meta.namespace, slug, provider: providerName });
+                  seen.add(namespacedSlug);
+                }
+              });
             }
           } catch (e) {
             console.warn(`Failed to load pathway file ${file} for provider ${providerName}:`, e.message);
@@ -141,8 +217,17 @@ if (!PORT) {
   process.exit(1);
 }
 
-app.use(cors());
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.json());
+
+// Simple request logger
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
+  next();
+});
 
 /**
  * Helper to find project data with language fallback
@@ -219,12 +304,40 @@ async function getProjectData(namespacedSlug, requestedLang) {
   // legacy Fallback to static JSON files
   for (const lang of uniqueLangs) {
     try {
-      const filePath = join(projectPath, `api-project-${lang}.json`);
+      let filePath = join(projectPath, `api-project-${lang}.json`);
+      
+      // Fallback to test/snapshots if not in project directory
+      if (!existsSync(filePath)) {
+        filePath = join(SNAPSHOTS_DIR, `${slug}-api-project-${lang}.json`);
+      }
+
       const data = await readFileAsync(filePath, 'utf-8');
       const parsed = JSON.parse(data);
       
       // Prepend namespace to ID
       parsed.data.id = `${namespace}:${slug}`;
+
+      // Convert absolute RPL URLs to local URLs if possible
+      const rplUrlPattern = /https:\/\/projects-static\.raspberrypi\.org\/projects\/([^/]+)\/[^/]+\/([^/]+)\/images\/([^"]+)/g;
+      
+      if (parsed.data.attributes?.content?.steps) {
+        parsed.data.attributes.content.steps.forEach(step => {
+          if (step.content) {
+            step.content = step.content.replace(rplUrlPattern, (match, pSlug, pLang, imagePath) => {
+              return resolveLocalImagePath(pSlug, pLang, imagePath);
+            });
+          }
+        });
+      }
+
+      if (parsed.data.attributes?.content?.heroImage) {
+        const heroImage = parsed.data.attributes.content.heroImage;
+        const match = rplUrlPattern.exec(heroImage);
+        if (match) {
+          const [, pSlug, pLang, imagePath] = match;
+          parsed.data.attributes.content.heroImage = resolveLocalImagePath(pSlug, pLang, imagePath);
+        }
+      }
       
       // Add available languages to the response
       const repoDir = join(projectPath, 'repo');
@@ -321,6 +434,86 @@ app.get('/api/projects', async (req, res) => {
   } catch (error) {
     console.error('Error listing projects:', error);
     res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// GET /api/v1/:lang/pathways/:pathwayId
+app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
+  const { pathwayId } = req.params;
+  const resolved = await resolvePathway(pathwayId);
+  
+  if (!resolved) {
+    return res.status(404).json({ error: 'Pathway not found' });
+  }
+
+  try {
+    const content = await readFileAsync(resolved.path, 'utf-8');
+    const data = yaml.load(content);
+    
+    // Transform to RPL API format
+    res.json({
+      data: {
+        id: data.id?.toString() || pathwayId,
+        type: 'pathways',
+        attributes: {
+          ...data
+        },
+        relationships: {
+          projects: {
+            data: data.projects?.map(p => ({
+              id: typeof p === 'string' ? p : p.slug,
+              type: 'projects'
+            })) || []
+          }
+        }
+      }
+    });
+  } catch {
+    res.status(500).json({ error: 'Failed to load pathway' });
+  }
+});
+
+// GET /api/v1/:lang/pathways/:pathwayId/projects
+app.get('/api/v1/:lang/pathways/:pathwayId/projects', async (req, res) => {
+  const { lang, pathwayId } = req.params;
+  const resolved = await resolvePathway(pathwayId);
+  
+  if (!resolved) {
+    return res.status(404).json({ error: 'Pathway not found' });
+  }
+
+  try {
+    const content = await readFileAsync(resolved.path, 'utf-8');
+    const data = yaml.load(content);
+    
+    if (!data.projects) {
+      return res.json({ data: [] });
+    }
+
+    const projectsData = [];
+    for (const p of data.projects) {
+      const slug = typeof p === 'string' ? p : p.slug;
+      const namespacedSlug = `${resolved.namespace}:${slug}`;
+      try {
+        const project = await getProjectData(namespacedSlug, lang);
+        projectsData.push({
+          ...project.data,
+          attributes: {
+            ...project.data.attributes,
+            pathways: [{
+              slug: data.slug,
+              title: data.title
+            }]
+          }
+        });
+      } catch {
+        // Skip missing projects
+      }
+    }
+
+    res.json({ data: projectsData });
+  } catch {
+    res.status(500).json({ error: 'Failed to load pathway projects' });
   }
 });
 

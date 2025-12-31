@@ -36,8 +36,23 @@
   }
 </script>
 
-<div class="c-projects-list">
-  {#if isLoading}
+<div class="c-home-view">
+  <section class="c-pathways-overview">
+    <h2 class="c-pathways-overview__title">Lernpfade</h2>
+    <div class="c-projects-list__projects">
+      <a href="/{lang}/pathways/scratch-intro" use:link class="c-project-card c-pathway-card">
+        <div class="c-project-card__content">
+          <h3 class="c-project-card__heading">Einführung in Scratch</h3>
+          <p class="c-project-card__description">Lerne die Grundlagen von Scratch mit diesem geführten Lernpfad.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <hr class="c-home-divider" />
+
+  <div class="c-projects-list">
+    {#if isLoading}
     <div class="c-projects-list__projects__no-results">
       <p>{$t('loading')}</p>
     </div>
@@ -74,3 +89,32 @@
     </div>
   {/if}
 </div>
+</div>
+
+<style>
+  .c-home-view {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .c-pathways-overview {
+    margin-bottom: 3rem;
+  }
+
+  .c-pathways-overview__title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .c-home-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 3rem 0;
+  }
+
+  .c-pathway-card {
+    border-left: 4px solid #e91e63;
+  }
+</style>
