@@ -22,6 +22,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Verification**: Merge to `main` only after full verification and passing tests.
+- **Review**: Never merge into `main` without a review and approval.
 - **Dates**: Always use the actual current date (check with `date` command if unsure). Never guess or use future dates.
 
 ## Iteration Flow
