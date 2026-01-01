@@ -2,6 +2,7 @@
 content/*/layers/
 content/*/projects/
 content/*/pathways/
+content/**/*.json
 
 # Keep config and ecosystem definitions
 !content/*/ecosystem.yaml

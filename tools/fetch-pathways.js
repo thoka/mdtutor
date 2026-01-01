@@ -3,7 +3,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import yaml from 'js-yaml';
-import { parse as parseHtml } from 'node-html-parser';
+import TurndownService from 'turndown';
 import { cloneRepository, fetchProjectApi } from '../test/get-test-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -16,56 +16,62 @@ const ECO_FILE = join(ECOSYSTEM_DIR, 'ecosystem.yaml');
 
 const LANGUAGES = ['en', 'de-DE'];
 
+// Initialize Turndown with custom rules
+const turndownService = new TurndownService({
+  headingStyle: 'atx',
+  bulletListMarker: '-',
+  codeBlockStyle: 'fenced',
+  emDelimiter: '*'
+});
+
+// Custom rule for list items to ensure 1 spaces after hyphen
+turndownService.addRule('simpleListItems', {
+  filter: 'li',
+  replacement: function (content) {
+    const indentedContent = content.trim().replace(/\n/g, '\n    ');
+    return '- ' + indentedContent + '\n';
+  }
+});
+
+turndownService.addRule("dashParagraphToList", {
+  filter: function (node) {
+    return (
+      node.nodeName === "P" &&
+      node.textContent.trim().match(/^[-–]\s+/)
+    );
+  },
+  replacement: function (content) {
+    return content
+      .split(/\s+(?=[-–]\s+)/) // split vor "- " oder "– "
+      .map(item => item.replace(/^[-–]\s*/, "- "))
+      .join("\n") + "\n\n";
+  }
+});
+
+
+/*
+// Custom rule to handle simulated lists (common in German RPL API)
+turndownService.addRule('cleanGedankenstrichList', {
+  filter: (node) => {
+    return node.nodeName === 'P' && /^\s*[–-]\s+/.test(node.textContent);
+  },
+  replacement: (content) => {
+    const cleanContent = content.trim().replace(/^[–-]\s+/, '');
+    const indentedContent = cleanContent.replace(/\n/g, '\n    ');
+    return '\n\n-   ' + indentedContent + '\n\n';
+  }
+});
+*/
+
+
 function htmlToMarkdown(html) {
   if (!html) return '';
-  const root = parseHtml(html);
   
-  function convertNode(node) {
-    if (node.nodeType === 3) { // Text node
-      return node.text;
-    }
-    
-    const tagName = node.tagName?.toLowerCase();
-    const children = node.childNodes.map(convertNode).join('');
-    
-    switch (tagName) {
-      case 'h1':
-      case 'h2':
-      case 'h3':
-        const level = tagName.slice(1);
-        return `${'#'.repeat(parseInt(level))} ${children}\n\n`;
-      case 'p':
-        return `${children}\n\n`;
-      case 'ul':
-        return `${children}\n`;
-      case 'ol':
-        return `${children}\n`;
-      case 'li':
-        return `* ${children.trim()}\n`;
-      case 'strong':
-      case 'b':
-        return `**${children}**`;
-      case 'em':
-      case 'i':
-        return `*${children}*`;
-      case 'a':
-        const href = node.getAttribute('href');
-        return `[${children}](${href})`;
-      case 'br':
-        return '\n';
-      default:
-        return children;
-    }
-  }
+  // 1. Basic Turndown conversion
+  let markdown = turndownService.turndown(html);
   
-  return convertNode(root)
-    .replace(/&ndash;/g, '–')
-    .replace(/&mdash;/g, '—')
-    .replace(/&hellip;/g, '...')
-    .replace(/&quot;/g, '"')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim();
+  // 2. Post-processing for consistent spacing (safe with lineWidth: -1)
+  return markdown;
 }
 
 const HEADER_KEY_MAP = {
@@ -167,7 +173,11 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
 
   // Save the pathway YAML
   const outputFile = join(pathwaysDir, `${slug}.yaml`);
-  writeFileSync(outputFile, yaml.dump(pathwayConfig, { noRefs: true }));
+  writeFileSync(outputFile, yaml.dump(pathwayConfig, { 
+    noRefs: true,
+    lineWidth: -1, // Disable line wrapping
+    quotingType: '"' // Use double quotes for strings if needed, but usually literal is better for multiline
+  }));
   console.log(`✓ Saved pathway config to ${outputFile}`);
 
   // 2. Sync projects (repositories and snapshots)

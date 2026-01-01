@@ -10,7 +10,7 @@ import { join } from 'path';
 import { parseQuiz } from '../src/parse-quiz.js';
 import { parse } from 'node-html-parser';
 
-const TEST_DATA_DIR = join(process.cwd(), 'test', 'snapshots', 'silly-eyes', 'repo', 'en');
+const TEST_DATA_DIR = join(process.cwd(), 'content', 'RPL', 'layers', 'official', 'projects', 'silly-eyes', 'repo', 'en');
 const TEMP_TEST_DIR = join(process.cwd(), 'test', 'temp-quiz-test');
 
 test('parseQuiz - returns empty result for non-existent directory', async () => {

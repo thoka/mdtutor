@@ -9,7 +9,7 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import { parseQuestion } from '../src/parse-question.js';
 
-const TEST_DATA_DIR = join(process.cwd(), 'test', 'snapshots', 'silly-eyes', 'repo', 'en');
+const TEST_DATA_DIR = join(process.cwd(), 'content', 'RPL', 'layers', 'official', 'projects', 'silly-eyes', 'repo', 'en');
 
 test('parseQuestion - extracts frontmatter legend correctly', async () => {
   const questionPath = join(TEST_DATA_DIR, 'quiz1', 'question_1.md');
