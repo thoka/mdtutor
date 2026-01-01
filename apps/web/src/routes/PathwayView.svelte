@@ -94,7 +94,9 @@
       {/if}
       <div class="c-pathway-header__content">
         <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
-        <p class="c-pathway-header__description">{pathway.attributes.description}</p>
+        <div class="c-pathway-header__description">
+          {@html pathway.attributes.description}
+        </div>
         
         <div class="c-pathway-progress">
           <div class="c-pathway-progress__label">

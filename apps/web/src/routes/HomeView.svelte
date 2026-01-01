@@ -62,7 +62,9 @@
             <div class="c-project-card__content">
               <h3 class="c-project-card__heading">{pathway.title}</h3>
               {#if pathway.description}
-                <p class="c-project-card__description">{pathway.description}</p>
+                <div class="c-project-card__description">
+                  {@html pathway.description}
+                </div>
               {/if}
             </div>
           </a>
