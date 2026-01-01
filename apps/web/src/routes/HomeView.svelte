@@ -99,10 +99,16 @@
   }
 
   .c-pathway-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
     width: 100%;
+  }
+
+  @media (min-width: 960px) {
+    .c-pathway-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   .c-pathway-card {
@@ -120,43 +126,34 @@
     width: 100%;
   }
 
-  @media (min-width: 768px) {
+  .c-project-card__image-wrapper {
+    width: 100%;
+    height: 160px;
+    background: #f0f0f0;
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  @media (min-width: 600px) {
     .c-pathway-card {
       flex-direction: row;
-      min-height: 240px;
     }
 
     .c-project-card__image-wrapper {
-      width: 450px;
-      flex-shrink: 0;
+      width: 160px;
+      height: auto;
     }
-
-    .c-project-card__image {
-      height: 100% !important;
-    }
-  }
-
-  .c-pathway-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-    border-color: #d0d0d0;
-    border-left-color: #ff4081;
-  }
-
-  .c-project-card__image-wrapper {
-    position: relative;
-    background: #f0f0f0;
   }
 
   .c-project-card__image {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
     display: block;
   }
 
   .c-project-card__content {
-    padding: 1.5rem;
+    padding: 1rem 1.25rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -164,14 +161,27 @@
   }
 
   .c-project-card__heading {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+    line-height: 1.2;
+    font-weight: 700;
   }
 
   .c-project-card__description {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .c-pathway-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: #d0d0d0;
+    border-left-color: #ff4081;
   }
 </style>
