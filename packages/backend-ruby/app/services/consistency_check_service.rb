@@ -20,7 +20,7 @@ class ConsistencyCheckService
       latest_db = Action.order(created_at: :desc).limit(10).pluck(:id, :action_type, :user_id)
       # JSONL doesn't have ID unless we added it, let's check
       # Actually our TrackActionService creates payload without ID for JSONL
-      
+
       # Let's just compare counts and latest timestamps for now
       latest_jsonl = jsonl_actions.last(10)
       # ... more complex verification could go here
@@ -31,4 +31,3 @@ class ConsistencyCheckService
     report
   end
 end
-

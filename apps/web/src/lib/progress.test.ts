@@ -54,4 +54,25 @@ describe('calculateProgress', () => {
     // Step 0 viewed = 1 step. 1/9 = 11%
     expect(progress.percent).toBe(11);
   });
+
+  it('correctly identifies 3 quiz questions for catch-the-bus step 7', () => {
+    // We need to simulate the project structure for step 7
+    const catchTheBusStep7 = {
+      id: 'RPL:PROJ:catch-the-bus',
+      attributes: {
+        content: {
+          steps: [
+            ...Array(7).fill({ content: '', position: 0 }),
+            { 
+              content: '<form class="knowledge-quiz-question">Q1</form><form class="knowledge-quiz-question">Q2</form><form class="knowledge-quiz-question">Q3</form>',
+              position: 7 
+            }
+          ]
+        }
+      }
+    };
+
+    const progress = calculateProgress(catchTheBusStep7, []);
+    expect(progress.stepInteractions[7].total).toBe(3);
+  });
 });

@@ -307,14 +307,18 @@
     console.log('[quiz] Answer is correct:', isCorrect);
     
     // Track quiz attempt
+    const quizQuestions = Array.from(contentDiv.querySelectorAll('form.knowledge-quiz-question'));
+    const questionIndex = quizQuestions.indexOf(question as HTMLFormElement);
+
     trackAction('quiz_attempt', gid || slug, { 
       step, 
+      question_index: questionIndex,
       is_correct: isCorrect,
       selected_value: selectedInput.value
     });
 
     if (isCorrect) {
-      trackAction('quiz_success', gid || slug, { step });
+      trackAction('quiz_success', gid || slug, { step, question_index: questionIndex });
       console.log('[quiz] Processing correct answer');
       // Correct answer: disable inputs, show feedback, mark as answered, show next question
       inputs.forEach((input) => {

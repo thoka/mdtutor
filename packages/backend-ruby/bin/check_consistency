@@ -19,9 +19,9 @@ puts "\n--- Individual Quiz Selection Test ---"
 alice_id = "student_a"
 # Seed a quiz action with question_index if not present
 Action.create!(
-  user_id: alice_id, 
-  action_type: 'quiz_success', 
-  gid: 'RPL:PROJ:catch-the-bus', 
+  user_id: alice_id,
+  action_type: 'quiz_success',
+  gid: 'RPL:PROJ:catch-the-bus',
   metadata: { step: 7, question_index: 2 },
   timestamp: Time.current
 )
@@ -32,4 +32,3 @@ if q2_actions.any?
 else
   puts "❌ Could not find actions for Question Index 2 via Ruby scope"
 end
-
