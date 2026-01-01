@@ -55,6 +55,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 ## Project Conventions
 - **Svelte 5**: Use Runes (`$state`, `$derived`, `$effect`, `$props`) exclusively.
   - **Caution**: When initializing `$state` from `$props`, remember that the assignment only happens once. Use `$derived` or an `$effect` if the state needs to sync with changing props.
+  - **Validation**: ALWAYS use the Svelte MCP tool `svelte-autofixer` after creating or modifying Svelte components. This catches reactivity issues and syntax errors that standard linters might miss.
 - **Achievement Logic**:
   - **Data Source**: Prefer the **aggregated state** endpoint (`GET /api/v1/actions/user/:user_id/state`) for calculating progress. It is more efficient than fetching the full event history.
   - **Refactoring**: When changing the format or name of achievement data (e.g., `userActions` -> `userState`), always check all consumers: `PathwayView.svelte`, `TutorialView.svelte`, `StepContent.svelte`, and the `createTaskStore` in `stores.ts`.
@@ -81,6 +82,10 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 | `extract-css.js` | Extract CSS from reference pages. |
 | `extract-structure.js` | Extract HTML structure from a single page. |
 | `save-html.js` | Save rendered HTML for inspection. |
+
+### Browser Automation (Puppeteer)
+- **Prefer `evaluate` over `click`**: The `puppeteer_click` tool often hangs or fails to provide progress feedback. For interactions (clicking buttons, toggling elements), always use `puppeteer_evaluate` with a JS snippet like `document.querySelector('selector').click()`.
+- **Wait for Svelte**: When testing Svelte components, use a `setTimeout` or a `Promise` inside `evaluate` to allow the reactive state to settle before inspecting the DOM.
 
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.
