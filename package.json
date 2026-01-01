@@ -17,7 +17,7 @@
     "sync:pathways": "node tools/fetch-pathways.js",
     "api": "npm run dev --workspace=@mdtutor/api-server",
     "web": "npm run dev --workspace=@mdtutor/web",
-    "achievements": "cd packages/backend-ruby && bin/rails s -p ${RAILS_PORT:-3102}",
+    "achievements": "cd packages/backend-ruby && bin/rails s -p ${ACHIEVEMENTS_PORT:-3102}",
     "sso": "cd packages/sso-server && bin/rails s -p ${SSO_PORT:-3103}",
     "dev": "node tools/kill-ports.js && dotenv -- concurrently -n api,web,achiev,sso -c blue,green,magenta,yellow \"npm run api\" \"npm run web\" \"npm run achievements\" \"npm run sso\"",
     "dev:bg": "dotenv -- concurrently -k -n api,web,achiev,sso -c blue,green,magenta,yellow \"npm run api\" \"npm run web\" \"npm run achievements\" \"npm run sso\"",

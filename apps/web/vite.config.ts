@@ -53,16 +53,22 @@ export default defineConfig(({ mode }) => {
     process.exit(1);
   }
 
-  const railsPort = env.RAILS_PORT;
-  if (!railsPort) {
-    console.warn('WARNING: RAILS_PORT not set in .env file');
+  const achievementsPort = env.ACHIEVEMENTS_PORT;
+  if (!achievementsPort) {
+    console.warn('WARNING: ACHIEVEMENTS_PORT not set in .env file');
+  }
+
+  const ssoPort = env.SSO_PORT;
+  if (!ssoPort) {
+    console.warn('WARNING: SSO_PORT not set in .env file');
   }
   
   return {
     plugins: [svelte(), apiCheckPlugin(apiPort, commitHash)],
     envDir: '../../',
     define: {
-      'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash)
+      'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash),
+      'import.meta.env.VITE_SSO_URL': JSON.stringify(ssoPort ? `http://localhost:${ssoPort}` : '')
     },
     server: {
       port: parseInt(webPort, 10),
@@ -70,14 +76,14 @@ export default defineConfig(({ mode }) => {
       host: true,
       allowedHosts: true,
       proxy: {
-        // Auth and Actions go to Rails
+        // Auth and Actions go to Achievements server
         '/api/v1/auth': {
-          target: `http://localhost:${railsPort}`,
+          target: `http://localhost:${achievementsPort}`,
           changeOrigin: true,
           secure: false
         },
         '/api/v1/actions': {
-          target: `http://localhost:${railsPort}`,
+          target: `http://localhost:${achievementsPort}`,
           changeOrigin: true,
           secure: false
         },
