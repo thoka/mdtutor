@@ -421,3 +421,108 @@ Processing by SessionsController#index as HTML
 Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:33:10 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 3.9ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:33:20 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"admin_local", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW5fbG9jYWwiLCJuYW1lIjoiTG9rYWwtQWRtaW4iLCJhZG1pbiI6dHJ1ZSwiZXhwIjoxNzY3MzY4MDAwfQ.Z7RvaOZeD41A0KslZY47q7yXWHC2lxn6pxmxWABsxqY
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:35:11 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 6.3ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 10.0ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:35:12 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"mentor_1", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibWVudG9yXzEiLCJuYW1lIjoiTWVudG9yIChUaG9tYXMpIiwiYWRtaW4iOnRydWUsImF2YXRhciI6Ii9hdmF0YXJzL2FkbWluLnN2ZyIsImV4cCI6MTc2NzM2ODExMn0.3Ze2PngT1kKVi4-fd4rdy-cCZEUJq5wdXO7FsPflusc
+Completed 302 Found in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:35:13 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 1.0ms | GC: 0.0ms)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:35:14 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"admin_local", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiYWRtaW5fbG9jYWwiLCJuYW1lIjoiTG9rYWwtQWRtaW4iLCJhZG1pbiI6dHJ1ZSwiYXZhdGFyIjoiL2F2YXRhcnMvYWRtaW5fbG9jYWwuc3ZnIiwiZXhwIjoxNzY3MzY4MTE0fQ.HWbVq99c1Q3ktseb5R_RI1WtytuI62UHb0w0Zknn3oQ
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:35:19 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 4.0ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 13.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:35:20 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"student_a", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3R1ZGVudF9hIiwibmFtZSI6IkFsaWNlIiwiYWRtaW4iOmZhbHNlLCJhdmF0YXIiOiIvYXZhdGFycy9zdHVkZW50LnN2ZyIsImV4cCI6MTc2NzM2ODEyMH0.amTUnly0a9cnfcrm5-KmGxbtJIhcHxmBPMEpJ5O2uo0
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:37:00 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 1.3ms | GC: 0.6ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:37:01 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"student_a", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3R1ZGVudF9hIiwibmFtZSI6IkFsaWNlIiwiYWRtaW4iOmZhbHNlLCJhdmF0YXIiOiIvYXZhdGFycy9zdHVkZW50LnN2ZyIsImV4cCI6MTc2NzM2ODIyMX0.4d-1oVnV9BMUQnQJnsAskJgA1VoevoNPFex3cZFaDe0
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:37:06 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 0.9ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:37:07 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"student_b", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3R1ZGVudF9iIiwibmFtZSI6IkJvYiIsImFkbWluIjpmYWxzZSwiYXZhdGFyIjoiL2F2YXRhcnMvc3R1ZGVudF9iLnN2ZyIsImV4cCI6MTc2NzM2ODIyN30.zj9xuLTXMrEnm2omBUE2MVT8zxWCFO28lOMlDeaZONA
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:37:09 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 3.3ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:37:10 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"student_c", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoic3R1ZGVudF9jIiwibmFtZSI6IkNoYXJsaWUiLCJhZG1pbiI6ZmFsc2UsImF2YXRhciI6Ii9hdmF0YXJzL3N0dWRlbnRfYy5zdmciLCJleHAiOjE3NjczNjgyMzB9.WJJkbeM7d3XqgTYvKvP7NZRJC4SrK4rVwQtyTuc0oyE
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+

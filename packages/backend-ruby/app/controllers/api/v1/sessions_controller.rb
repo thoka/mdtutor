@@ -6,7 +6,14 @@ module Api
         user = JwtService.decode(token) if token
 
         if user
-          render json: { user: { id: user[:user_id], name: user[:name], is_admin: user[:admin] } }
+          render json: {
+            user: {
+              id: user[:user_id],
+              name: user[:name],
+              is_admin: user[:admin],
+              avatar: user[:avatar]
+            }
+          }
         else
           render json: { error: "Not logged in" }, status: :unauthorized
         end

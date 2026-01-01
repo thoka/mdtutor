@@ -9,12 +9,20 @@
   function handleLogin() {
     auth.login();
   }
+
+  const ssoUrl = import.meta.env.VITE_SSO_URL;
 </script>
 
 <div class="login-bar">
   {#if $auth}
     <button class="user-info-button" onclick={handleLogin}>
-      <span class="material-symbols-sharp user-icon" aria-hidden="true">person</span>
+      {#if $auth.avatar && $auth.avatar.startsWith('/')}
+        <img src={ssoUrl + $auth.avatar} alt="Avatar" class="user-avatar-img" />
+      {:else if $auth.avatar}
+        <span class="user-icon">{$auth.avatar}</span>
+      {:else}
+        <span class="material-symbols-sharp user-icon" aria-hidden="true">person</span>
+      {/if}
       <span class="user-name">{$auth.name} {#if $auth.is_admin}(Admin){/if}</span>
     </button>
   {:else}
@@ -48,6 +56,13 @@
   .user-icon {
     font-size: 1.2rem;
     vertical-align: middle;
+  }
+
+  .user-avatar-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 
   .user-info-button:hover {

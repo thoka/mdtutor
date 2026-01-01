@@ -18,7 +18,8 @@ class SessionsController < ApplicationController
       token = JwtService.encode(
         user_id: user_id,
         name: user["name"],
-        admin: is_admin
+        admin: is_admin,
+        avatar: user["avatar"]
       )
 
       return_to = params[:return_to]

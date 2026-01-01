@@ -4,6 +4,7 @@ export interface User {
   id: string;
   name: string;
   is_admin: boolean;
+  avatar?: string;
 }
 
 function createAuthStore() {
