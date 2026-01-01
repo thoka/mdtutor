@@ -202,7 +202,13 @@
   .c-pathway-header__banner {
     flex-shrink: 0;
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
+  }
+
+  @media (min-width: 768px) {
+    .c-pathway-header__banner {
+      max-width: 200px;
+    }
   }
 
   .c-pathway-header__banner img {
@@ -237,7 +243,7 @@
       flex: 1;
     }
     .c-pathway-header__right {
-      width: 400px;
+      width: 350px;
       flex-shrink: 0;
     }
   }
