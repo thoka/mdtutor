@@ -11,20 +11,23 @@ class Presence < ApplicationRecord
     p = find_or_initialize_by(user_id: user_id)
 
     # Use default room if none provided
-    room_id ||= Room.find_by(slug: "default")&.id
+    room_id ||= Room.find_by(slug: "main")&.id || Room.find_by(slug: "default")&.id
 
     if p.is_present
       # Check-out
       p.is_present = false
+      old_room_id = p.room_id
       p.room_id = nil
-      # End open visit
+      # End open visits for this user
       Visit.where(user_id: user_id, ended_at: nil).update_all(ended_at: Time.current)
     else
       # Check-in
       p.is_present = true
       p.room_id = room_id
-      # Start new visit
-      Visit.create!(user_id: user_id, room_id: room_id, started_at: Time.current)
+      # Start new visit if we have a room
+      if room_id
+        Visit.create!(user_id: user_id, room_id: room_id, started_at: Time.current)
+      end
     end
 
     p.save!

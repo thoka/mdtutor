@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Presence, type: :model do
-  let!(:default_room) { Room.create!(slug: 'default', name: 'Default Room') }
-  let(:user_id) { 'student_a' }
+  let!(:default_room) { Room.find_or_create_by!(slug: 'main') { |r| r.name = 'Main Room' } }
+  let(:user_id) { "user_#{SecureRandom.hex(4)}" }
 
   describe '.toggle' do
     it 'creates a presence and a visit when checking in' do
