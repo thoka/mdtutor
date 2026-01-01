@@ -87,46 +87,44 @@
     <div class="error">{$t('error')}: {errorMsg}</div>
   {:else if pathway}
     <header class="c-pathway-header">
-      <div class="c-pathway-header__content">
-        <div class="c-pathway-header__main">
-          <div class="c-pathway-header__left">
-            <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
-            <div class="c-pathway-header__description">
-              {@html pathway.attributes.description}
-            </div>
-            
-            <div class="c-pathway-progress">
-              <div class="c-pathway-progress__label">
-                {completedCount} von {totalCount} Projekten abgeschlossen
-              </div>
-              <div class="c-pathway-progress__bar">
-                <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
-              </div>
+      <div class="c-pathway-header__top-row">
+        <div class="c-pathway-header__title-area">
+          {#if pathway.attributes.banner}
+            <img class="c-pathway-header__icon" src={pathway.attributes.banner} alt="" />
+          {/if}
+          <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
+        </div>
+
+        {#if pathway.attributes.header}
+          <div class="c-pathway-header__details">
+            <div class="c-pathway-accordions">
+              {#each pathway.attributes.header.filter(s => s.key !== 'mentor') as section}
+                <details class="c-pathway-accordion">
+                  <summary class="c-pathway-accordion__summary">
+                    <span class="c-pathway-accordion__title">{section.title}</span>
+                    <span class="material-symbols-sharp c-pathway-accordion__icon">expand_more</span>
+                  </summary>
+                  <div class="c-pathway-accordion__content">
+                    {@html section.content}
+                  </div>
+                </details>
+              {/each}
             </div>
           </div>
+        {/if}
+      </div>
 
-          <div class="c-pathway-header__right">
-            {#if pathway.attributes.banner}
-              <div class="c-pathway-header__banner">
-                <img src={pathway.attributes.banner} alt="" />
-              </div>
-            {/if}
-
-            {#if pathway.attributes.header}
-              <div class="c-pathway-accordions">
-                {#each pathway.attributes.header.filter(s => s.key !== 'mentor') as section}
-                  <details class="c-pathway-accordion">
-                    <summary class="c-pathway-accordion__summary">
-                      <span class="c-pathway-accordion__title">{section.title}</span>
-                      <span class="material-symbols-sharp c-pathway-accordion__icon">expand_more</span>
-                    </summary>
-                    <div class="c-pathway-accordion__content">
-                      {@html section.content}
-                    </div>
-                  </details>
-                {/each}
-              </div>
-            {/if}
+      <div class="c-pathway-header__meta">
+        <div class="c-pathway-header__description">
+          {@html pathway.attributes.description}
+        </div>
+        
+        <div class="c-pathway-progress">
+          <div class="c-pathway-progress__label">
+            <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
+          </div>
+          <div class="c-pathway-progress__bar">
+            <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
           </div>
         </div>
       </div>
@@ -178,65 +176,66 @@
 
 <style>
   .c-pathway {
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
   }
 
   .c-pathway-header {
     margin-bottom: 3rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
-  .c-pathway-header__banner {
-    margin-bottom: 1rem;
-    width: 100%;
+  .c-pathway-header__top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 
-  .c-pathway-header__banner img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    display: block;
+  .c-pathway-header__title-area {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+    min-width: 300px;
   }
 
-  .c-pathway-header__content {
-    flex-grow: 1;
+  .c-pathway-header__icon {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    background: #eee;
+    flex-shrink: 0;
   }
 
   .c-pathway-header__title {
     font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #333;
+    margin: 0;
+    color: #222;
     line-height: 1.1;
   }
 
-  .c-pathway-header__main {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  .c-pathway-header__details {
+    width: 100%;
+    max-width: 400px;
   }
 
-  @media (min-width: 1024px) {
-    .c-pathway-header__main {
-      flex-direction: row;
-      align-items: flex-start;
-    }
-    .c-pathway-header__left {
-      flex: 1;
-    }
-    .c-pathway-header__right {
-      width: 350px;
-      flex-shrink: 0;
-    }
+  .c-pathway-header__meta {
+    max-width: 800px;
   }
 
   .c-pathway-header__description {
-    font-size: 1.2rem;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
 
   .c-pathway-accordions {
@@ -248,12 +247,12 @@
   .c-pathway-accordion {
     border: 1px solid #eee;
     border-radius: 8px;
-    background: #fdfdfd;
+    background: white;
     overflow: hidden;
   }
 
   .c-pathway-accordion__summary {
-    padding: 1rem;
+    padding: 0.75rem 1rem;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -262,6 +261,7 @@
     font-weight: bold;
     color: #444;
     user-select: none;
+    font-size: 0.9rem;
   }
 
   .c-pathway-accordion__summary::-webkit-details-marker {
@@ -284,13 +284,13 @@
 
   .c-pathway-accordion__content {
     padding: 1rem;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     color: #666;
   }
 
   .c-pathway-accordion__content :global(p) {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   .c-pathway-accordion__content :global(p:last-child) {
@@ -298,12 +298,36 @@
   }
 
   .c-pathway-accordion__content :global(ul) {
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+    margin-bottom: 0.75rem;
   }
 
   .c-pathway-progress {
+    width: 100%;
     max-width: 400px;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #eee;
+  }
+
+  .c-pathway-progress__label {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #444;
+  }
+
+  .c-pathway-progress__bar {
+    height: 8px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .c-pathway-progress__fill {
+    height: 100%;
+    background: #4caf50;
+    transition: width 0.3s ease;
   }
 
   .c-pathway-category {
@@ -320,51 +344,55 @@
 
   .c-projects-list__projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 2rem;
   }
 
   .c-project-card {
     display: flex;
     flex-direction: column;
-    border: 1px solid #eee;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s, box-shadow 0.2s;
     background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
   .c-project-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .c-project-card__image {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   }
 
   .c-project-card__image-wrapper {
     position: relative;
+    height: 180px;
+    background: #f0f0f0;
+  }
+
+  .c-project-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .c-project-card__badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 12px;
+    right: 12px;
     background: #4caf50;
     color: white;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-size: 14px;
   }
 
   .c-project-card.is-completed {
@@ -372,19 +400,21 @@
   }
 
   .c-project-card__content {
-    padding: 1.5rem;
+    padding: 1.25rem;
     flex-grow: 1;
   }
 
   .c-project-card__heading {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+    line-height: 1.3;
+    font-weight: 600;
   }
 
   .c-project-card__description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #666;
-    line-height: 1.5;
+    line-height: 1.4;
   }
 </style>

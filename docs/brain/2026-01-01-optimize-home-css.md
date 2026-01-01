@@ -1,30 +1,27 @@
-# Implementation Plan - Optimize Index Page CSS
+# Implementation Plan - Optimize CSS (Home & Pathway)
 
-Optimize the index page (`HomeView.svelte`) to reduce the "too much white" issue and improve the layout of pathway cards.
+Optimize the index page and pathway page to reduce white space and improve layout efficiency.
 
-## Problem
-- The index page had a white background (fixed by adding off-white global background).
-- Pathway cards were taking up full width in a single column, which looks sparse on large screens.
-- Images were too large in the 1-column layout.
+## Problem (Pathway Page)
+- Large banner takes too much vertical space.
+- Projects are hidden "below the fold".
+- Grid layout only shows few projects per row on medium screens.
+- Details (What I will learn, etc.) take up too much space by default.
 
-## Proposed Changes
-1.  **Global Background**: (Completed) Set a light off-white background color.
-2.  **2-Column Grid Layout**:
-    - Change the pathway list to a grid layout with two columns on desktop screens.
-    - Ensure cards align correctly without indentation on new lines.
-3.  **Smaller Images**:
-    - Reduce the size of images within the cards to accommodate the 2-column layout.
-    - Experiment with image placement (left vs. top) for the 2-column view.
-4.  **Card Enhancements**:
-    - Maintain the improved shadows and borders.
+## Proposed Changes (Pathway Page)
+1.  **Banner to Icon**: Move the banner image to a small rectangular icon (80x80) next to the title.
+2.  **Top Row Layout**: Create a top row containing the title/icon area and the details accordions on the right.
+3.  **Accordion Optimization**: Details take minimal width when closed, can expand when open.
+4.  **3-Column Grid**: Adjust project cards to fit 3 in a row at ~960px width.
+5.  **Description & Progress**: Place below the top row, keeping it compact.
 
 ## Detailed Steps
-1.  **Update `HomeView.svelte`**:
-    - Modify `.c-pathway-list` to use `display: grid` with `grid-template-columns: repeat(auto-fit, minmax(400px, 1fr))`.
-    - Adjust `.c-pathway-card` and its image wrapper.
+1.  **Modify `PathwayView.svelte`**:
+    - Update HTML structure for header.
+    - Update CSS for grid and header layout.
 2.  **Verification**:
-    - Take screenshots at different screen widths.
-    - Ensure cards flow correctly into two columns.
+    - Screenshot at 960px and 1920px.
+    - Check accordion behavior.
 
 ## TDD / Verification
 - Manual verification via Browser/Puppeteer screenshot.
