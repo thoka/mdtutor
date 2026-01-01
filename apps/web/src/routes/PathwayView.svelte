@@ -4,21 +4,32 @@
   import { trackAction } from '../lib/achievements';
   import { currentLanguage, completedProjects } from '../lib/stores';
   import { t } from '../lib/i18n';
+  import { calculateProgress, type ProjectProgress } from '../lib/progress';
 
   let { params }: { params: { slug: string; lang: string } } = $props();
 
   let pathway = $state<any>(null);
   let projects = $state<any[]>([]);
+  let userActions = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
   
   let lang = $derived(params.lang || 'de-DE');
   let slug = $derived(params.slug || '');
 
-  // Use $completedProjects for reactivity in Svelte 5
-  let completedCount = $derived(projects.filter(p => $completedProjects.has(p.id)).length);
+  // Progress logic
+  let projectProgresses = $derived(
+    projects.map(p => calculateProgress(p, userActions))
+  );
+  
+  let completedCount = $derived(projectProgresses.filter(p => p.isCompleted).length);
   let totalCount = $derived(projects.length);
-  let progressPercent = $derived(totalCount > 0 ? (completedCount / totalCount) * 100 : 0);
+  let totalPercent = $derived(
+    projectProgresses.length > 0 
+      ? Math.round(projectProgresses.reduce((sum, p) => sum + p.percent, 0) / projectProgresses.length)
+      : 0
+  );
+  let hasAnyProgress = $derived(projectProgresses.some(p => p.percent > 0));
 
   $effect(() => {
     console.log('PathwayView effect', { lang, slug });
@@ -39,8 +50,6 @@
         fetch(`/api/v1/${lang}/pathways/${slug}/projects`)
       ]);
 
-      console.log('fetch results', { pathwayOk: pathwayRes.ok, projectsOk: projectsRes.ok });
-
       if (!pathwayRes.ok || !projectsRes.ok) {
         throw new Error(`Failed to fetch pathway data: ${pathwayRes.status} / ${projectsRes.status}`);
       }
@@ -48,13 +57,19 @@
       const pathwayData = await pathwayRes.json();
       const projectsData = await projectsRes.json();
 
-      console.log('data loaded', { 
-        hasPathway: !!pathwayData.data, 
-        projectsCount: projectsData.data?.length 
-      });
-
       pathway = pathwayData.data;
       projects = projectsData.data;
+
+      // Fetch user actions for this pathway
+      const token = localStorage.getItem('sso_token');
+      if (token) {
+        const actionsRes = await fetch(`/api/v1/actions/user/${JSON.parse(atob(token.split('.')[1])).user_id}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (actionsRes.ok) {
+          userActions = await actionsRes.json();
+        }
+      }
       
       // Track pathway open
       trackAction('pathway_open', pathway.id, { slug, lang });
@@ -63,7 +78,6 @@
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
     } finally {
       isLoading = false;
-      console.log('loadPathway finished', { isLoading, hasPathway: !!pathway });
     }
   }
 
@@ -104,14 +118,16 @@
             {@html pathway.attributes.description}
           </div>
 
-          <div class="c-pathway-progress">
-            <div class="c-pathway-progress__label">
-              <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
+          {#if hasAnyProgress}
+            <div class="c-pathway-progress">
+              <div class="c-pathway-progress__label">
+                <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
+              </div>
+              <div class="c-pathway-progress__bar">
+                <div class="c-pathway-progress__fill" style="width: {totalPercent}%"></div>
+              </div>
             </div>
-            <div class="c-pathway-progress__bar">
-              <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
-            </div>
-          </div>
+          {/if}
         </div>
 
         {#if pathway.attributes.header}
@@ -145,30 +161,52 @@
             <div class="c-projects-list__projects">
               {#each categoryProjects as project}
                 {@const parts = project.id.split(':')}
-                {@const displaySlug = parts.length >= 3 ? `${parts[0]}:${parts[parts.length-1]}` : project.id}
-                {@const isDone = $completedProjects.has(project.id)}
-                <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card {isDone ? 'is-completed' : ''}">
-                  {#if project.attributes.content.heroImage}
-                    <div class="c-project-card__image-wrapper">
-                      <img 
-                        class="c-project-card__image" 
-                        src={project.attributes.content.heroImage} 
-                        alt={project.attributes.content.title}
-                      />
-                      {#if isDone}
-                        <div class="c-project-card__badge">✓</div>
-                      {/if}
+                {@const projectSlug = parts[parts.length - 1]}
+                {@const displaySlug = parts.length >= 3 ? `${parts[0]}:${projectSlug}` : project.id}
+                {@const progress = calculateProgress(project, userActions)}
+                {@const isDone = progress.isCompleted}
+                
+                <div class="c-project-card-wrapper">
+                  <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card {isDone ? 'is-completed' : ''} {progress.percent > 0 ? 'has-progress' : ''}">
+                    {#if project.attributes.content.heroImage}
+                      <div class="c-project-card__image-wrapper">
+                        <img 
+                          class="c-project-card__image" 
+                          src={project.attributes.content.heroImage} 
+                          alt={project.attributes.content.title}
+                        />
+                        {#if isDone}
+                          <div class="c-project-card__badge-overlay">
+                            <img src="/badges/{projectSlug}.svg" alt="Badge" class="badge-icon" onerror="this.style.display='none'" />
+                          </div>
+                        {:else if progress.percent > 0}
+                          <div class="c-project-card__progress-ring">
+                            <svg viewBox="0 0 36 36" class="circular-chart">
+                              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                              <path class="circle" stroke-dasharray="{progress.percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            </svg>
+                            <span class="progress-text">{progress.percent}%</span>
+                          </div>
+                        {/if}
+                      </div>
+                    {/if}
+                    <div class="c-project-card__content">
+                      <div class="c-project-card__text">
+                        <h3 class="c-project-card__heading">{project.attributes.content.title}</h3>
+                        {#if project.attributes.content.description}
+                          <p class="c-project-card__description">{project.attributes.content.description}</p>
+                        {/if}
+                      </div>
                     </div>
+                  </a>
+                  
+                  {#if progress.percent > 0 && !isDone}
+                    <a href="/{lang}/projects/{displaySlug}/{progress.lastStep}" use:link class="c-project-card__continue">
+                      <span class="material-symbols-sharp">play_arrow</span>
+                      {$t('continue_editing')}
+                    </a>
                   {/if}
-                  <div class="c-project-card__content">
-                    <div class="c-project-card__text">
-                      <h3 class="c-project-card__heading">{project.attributes.content.title}</h3>
-                      {#if project.attributes.content.description}
-                        <p class="c-project-card__description">{project.attributes.content.description}</p>
-                      {/if}
-                    </div>
-                  </div>
-                </a>
+                </div>
               {/each}
             </div>
           </section>
@@ -370,6 +408,12 @@
     gap: 2rem;
   }
 
+  .c-project-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
   .c-project-card {
     display: flex;
     flex-direction: column;
@@ -381,6 +425,7 @@
     transition: transform 0.2s, box-shadow 0.2s;
     background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: 100%;
   }
 
   .c-project-card:hover {
@@ -400,25 +445,90 @@
     object-fit: cover;
   }
 
-  .c-project-card__badge {
+  .c-project-card__badge-overlay {
     position: absolute;
-    top: 12px;
-    right: 12px;
-    background: #4caf50;
-    color: white;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    backdrop-filter: blur(1px);
+  }
+
+  .badge-icon {
+    width: 100px;
+    height: 100px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  .c-project-card__progress-ring {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    padding: 2px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circular-chart {
+    display: block;
+    margin: 0;
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+  }
+
+  .circle {
+    fill: none;
+    stroke-width: 3.8;
+    stroke-linecap: round;
+    stroke: #4caf50;
+    transition: stroke-dasharray 0.3s ease;
+  }
+
+  .progress-text {
+    position: absolute;
+    font-size: 10px;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    font-size: 14px;
+    color: #444;
+  }
+
+  .c-project-card__continue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #2196f3;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+
+  .c-project-card__continue:hover {
+    background: #1976d2;
   }
 
   .c-project-card.is-completed {
     border-color: #4caf50;
+    background: #f1f8e9;
   }
 
   .c-project-card__content {

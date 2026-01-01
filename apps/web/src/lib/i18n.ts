@@ -10,7 +10,9 @@ const translations: Record<string, Record<string, string>> = {
     'previous': 'Zurück',
     'no_projects': 'Keine Tutorials gefunden.',
     'back_to_overview': 'Zurück zur Übersicht',
-    'api_mismatch': 'API-Versionskonflikt!'
+    'api_mismatch': 'API-Versionskonflikt!',
+    'continue_editing': 'Weiter bearbeiten',
+    'completed': 'Abgeschlossen'
   },
   'en': {
     'language': 'Language',
@@ -20,7 +22,9 @@ const translations: Record<string, Record<string, string>> = {
     'previous': 'Previous',
     'no_projects': 'No tutorials found.',
     'back_to_overview': 'Back to overview',
-    'api_mismatch': 'API Version Mismatch!'
+    'api_mismatch': 'API Version Mismatch!',
+    'continue_editing': 'Continue editing',
+    'completed': 'Completed'
   }
 };
 
