@@ -2,7 +2,7 @@
 alice_id = "student_a"
 
 # Clear existing data
-Action.destroy_all 
+Action.destroy_all
 log_file = TrackActionService.log_file
 File.delete(log_file) if File.exist?(log_file)
 
