@@ -1,24 +1,27 @@
-# README
+# MDTutor SSO Server
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Eigenständiger Authentifizierungs-Dienst für das MDTutor-Ökosystem.
 
-Things you may want to cover:
+## Features
+- **YAML-basierte User-Konfiguration** in `config/users.yaml`.
+- **Visueller Kachel-Login** (Phlex-Komponenten).
+- **JWT-Handshake**: Signiert Identitäten für andere Dienste.
 
-* Ruby version
+## Setup
+```bash
+bundle install
+bin/rails db:prepare
+```
 
-* System dependencies
+## Running
+```bash
+bin/rails s -p 3103
+```
 
-* Configuration
+## Konfiguration
+Benutzer und Admins werden in `config/users.yaml` definiert. Logins dienen als Schlüssel.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Technik
+- Ruby on Rails 7
+- Phlex (UI Komponenten)
+- JWT (JSON Web Tokens)

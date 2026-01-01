@@ -150,6 +150,12 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
+    phlex (2.3.1)
+      zeitwerk (~> 2.7)
+    phlex-rails (2.3.1)
+      phlex (~> 2.3.0)
+      railties (>= 7.1, < 9)
+      zeitwerk (~> 2.7)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -285,6 +291,7 @@ DEPENDENCIES
   brakeman
   debug
   jwt (~> 3.1)
+  phlex-rails (~> 2.3)
   puma (>= 5.0)
   rails (~> 7.2.3)
   rubocop-rails-omakase

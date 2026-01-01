@@ -1,8 +1,12 @@
 class SessionsController < ApplicationController
+  layout Views::Layouts::ApplicationLayout
+
   def index
-    @admins = UserLoader.admins
-    @users = UserLoader.users
-    @return_to = params[:return_to] || "/"
+    render Views::Sessions::IndexView.new(
+      admins: UserLoader.admins,
+      users: UserLoader.users,
+      return_to: params[:return_to] || "/"
+    )
   end
 
   def create
