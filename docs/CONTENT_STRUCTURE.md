@@ -13,7 +13,7 @@ content/
     config/                  # Makerspace-specific visibility & sync rules
       sync.yaml              # Subscribed pathways and their sources
     layers/
-      <LayerID>/             # e.g., official, tag-makerspace
+      <LayerID>/             # e.g., official, tag
         projects/
           <ProjectSlug>/
         pathways/
@@ -36,23 +36,24 @@ GIDs are the primary way to identify content semantically. They are decoupled fr
 
 The configuration in `<Ecosystem>/config/` defines the "view" of the Makerspace.
 
-### `sync.yaml` (previously `sources.yaml`)
-Determines which pathways are downloaded and which layer they belong to.
+### `sync.yaml`
+Determines which pathways are downloaded and which layer they belong to. Layers are defined as a dictionary for uniqueness.
 
 ```yaml
 layers:
-  - id: tag-makerspace
+  tag:
     priority: 100
     git_base: "https://github.com/tag-makerspace"
-  - id: official
+  official:
     priority: 10
     git_base: "https://github.com/raspberrypilearning"
     api_base: "https://learning-admin.raspberrypi.org/api/v1"
 
 sync:
   pathways:
-    - slug: scratch-intro
-      source: official       # Will be saved to layers/official/pathways/
+    official:
+      - scratch-intro
+      - physical-computing-with-scratch-and-the-raspberry-pi
 ```
 
 ## Implementation Details

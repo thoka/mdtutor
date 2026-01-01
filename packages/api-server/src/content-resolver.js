@@ -19,19 +19,22 @@ export function loadContentConfig(contentDir) {
       
       if (existsSync(ecoFile)) {
         const ecosystem = yaml.load(readFileSync(ecoFile, 'utf-8'));
-        const sources = existsSync(sourcesFile) ? yaml.load(readFileSync(sourcesFile, 'utf-8')) : { layers: [] };
+        const sources = existsSync(sourcesFile) ? yaml.load(readFileSync(sourcesFile, 'utf-8')) : { layers: {} };
         
-        // Sort layers by priority (descending)
-        const layers = (sources.layers || []).sort((a, b) => (b.priority || 0) - (a.priority || 0));
+        // Convert dictionary to array and sort by priority (descending)
+        const layers = Object.entries(sources.layers || {})
+          .map(([id, config]) => ({
+            id,
+            ...config,
+            path: join(ecosystemPath, 'layers', id)
+          }))
+          .sort((a, b) => (b.priority || 0) - (a.priority || 0));
         
         ecosystems[dir.name.toUpperCase()] = {
           ...ecosystem,
           id: dir.name,
           path: ecosystemPath,
-          layers: layers.map(layer => ({
-            ...layer,
-            path: join(ecosystemPath, 'layers', layer.id)
-          }))
+          layers: layers
         };
       }
     }

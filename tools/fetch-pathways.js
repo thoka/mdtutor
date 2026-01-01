@@ -37,13 +37,13 @@ async function fetchPathwayProjects(slug, lang = 'en', apiBase) {
   return fetchWithCurl(url);
 }
 
-async function syncPathway(slug, sourceInfo, layers, ecoConfig) {
-  const layer = layers.find(l => l.id === sourceInfo.source);
-  if (!layer) throw new Error(`Layer ${sourceInfo.source} not found`);
+async function syncPathway(slug, layerId, layers, ecoConfig) {
+  const layer = layers[layerId];
+  if (!layer) throw new Error(`Layer ${layerId} not found in sync.yaml`);
 
-  console.log(`\n=== Syncing Pathway: ${slug} (Source: ${layer.id}) ===`);
+  console.log(`\n=== Syncing Pathway: ${slug} (Source: ${layerId}) ===`);
 
-  const layerPath = join(ECOSYSTEM_DIR, 'layers', layer.id);
+  const layerPath = join(ECOSYSTEM_DIR, 'layers', layerId);
   const pathwaysDir = join(layerPath, 'pathways');
   const projectsDir = join(layerPath, 'projects');
   
@@ -125,16 +125,29 @@ async function main() {
 
   const syncConfig = yaml.load(readFileSync(SYNC_FILE, 'utf8'));
   const ecoConfig = existsSync(ECO_FILE) ? yaml.load(readFileSync(ECO_FILE, 'utf8')) : {};
-  const layers = syncConfig.layers || [];
+  const layers = syncConfig.layers || {};
+  const syncPathways = syncConfig.sync?.pathways || {};
+  
   let syncList = [];
 
   if (args.length > 0) {
     for (const arg of args) {
-      const found = syncConfig.sync?.pathways?.find(p => p.slug === arg);
-      syncList.push(found || { slug: arg, source: 'official' });
+      // Find which layer this slug belongs to in the config
+      let layerId = 'official'; // default
+      for (const [lId, slugs] of Object.entries(syncPathways)) {
+        if (slugs.includes(arg)) {
+          layerId = lId;
+          break;
+        }
+      }
+      syncList.push({ slug: arg, layerId });
     }
   } else {
-    syncList = syncConfig.sync?.pathways || [];
+    for (const [layerId, slugs] of Object.entries(syncPathways)) {
+      for (const slug of slugs) {
+        syncList.push({ slug, layerId });
+      }
+    }
   }
 
   if (syncList.length === 0) {
@@ -144,7 +157,7 @@ async function main() {
 
   for (const item of syncList) {
     try {
-      await syncPathway(item.slug, item, layers, ecoConfig);
+      await syncPathway(item.slug, item.layerId, layers, ecoConfig);
     } catch (e) {
       console.error(`✗ Error syncing pathway ${item.slug}:`, e.message);
     }
