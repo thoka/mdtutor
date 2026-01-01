@@ -74,18 +74,15 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
     idToSlug[p.id] = p.attributes.repositoryName || p.id;
   });
 
-  // Create our internal format with GIDs
+  // Create our internal format (minimalist, GIDs inferred from path/config)
   const pathwayConfig = {
-    id: `${prefix}:PATH:${slug}`, // Transform ID into GID
-    gid: `${prefix}:PATH:${slug}`,
-    slug: slug,
     title: attributes.title,
     description: attributes.description,
     projects: projects.map(p => {
       const step = steps.find(s => s.attributes.projectId.toString() === p.id);
+      const projectSlug = idToSlug[p.id];
       return {
-        slug: idToSlug[p.id],
-        gid: `${prefix}:PROJ:${idToSlug[p.id]}`, // Include project GID
+        slug: projectSlug,
         category: step?.attributes.category || 'explore'
       };
     }),
@@ -104,7 +101,8 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
   console.log(`Syncing ${projects.length} projects to ${projectsDir}...`);
   for (const p of pathwayConfig.projects) {
     const projectSlug = p.slug;
-    console.log(`  - ${projectSlug} (${p.gid})`);
+    const projectGid = `${prefix}:PROJ:${projectSlug}`;
+    console.log(`  - ${projectSlug} (${projectGid})`);
     await cloneRepository(projectSlug, { 
       gitBase: layer.git_base,
       projectsDir: projectsDir 
