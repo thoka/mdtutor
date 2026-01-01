@@ -14,45 +14,49 @@ describe('calculateProgress', () => {
     }
   };
 
-  it('calculates > 60% progress for Alice after updated seeding', () => {
+  it('calculates 100% progress for Alice if all tasks are checked', () => {
     const actions = [
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 } },
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 1 } },
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 2 } },
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 3 } },
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4 } },
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 5 } },
+      { action_type: 'step_view', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 }, timestamp: '2026-01-01T10:00:00Z' },
+      { action_type: 'task_check', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4, task_index: 0 }, timestamp: '2026-01-01T10:01:00Z' },
     ];
 
     const progress = calculateProgress(mockProject, actions);
-    // 6 / 9 = 0.666 -> 67%
-    expect(progress.percent).toBeGreaterThanOrEqual(60);
-    expect(progress.percent).toBe(67);
+    // All steps without tasks are 100%. Step 4 has 1 task and it is checked.
+    // Result: 100%
+    expect(progress.percent).toBe(100);
+    expect(progress.isCompleted).toBe(true);
+  });
+
+  it('calculates < 100% progress if some tasks are missing', () => {
+    const progress = calculateProgress(mockProject, []);
+    // Step 4 has a task but it's not checked. Other 8 steps are "empty" and thus 100%.
+    // Score: (1+1+1+1 + 0 + 1+1+1+1) / 9 = 8/9 = 89%
+    expect(progress.percent).toBe(89);
+    expect(progress.isCompleted).toBe(false);
   });
 
   it('correctly handles task unchecking in progress calculation', () => {
     const actions = [
-      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 }, timestamp: '2026-01-01T10:00:00Z' },
       { action_type: 'task_check', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4, task_index: 0 }, timestamp: '2026-01-01T10:01:00Z' },
       { action_type: 'task_uncheck', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4, task_index: 0 }, timestamp: '2026-01-01T10:02:00Z' },
     ];
 
     const progress = calculateProgress(mockProject, actions);
-    // Only step 0 is complete. Step 4 is 0% because the check was undone.
-    // 1 / 9 = 11%
-    expect(progress.percent).toBe(11);
+    // Step 4 is 0% because the check was undone.
+    expect(progress.percent).toBe(89);
     expect(progress.stepInteractions[4].completed).toBe(0);
   });
 
-  it('recognizes scratch_start and step_view actions without breaking progress', () => {
+  it('tracks lastViewedStep correctly', () => {
     const actions = [
       { action_type: 'step_view', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 }, timestamp: '2026-01-01T10:00:00Z' },
-      { action_type: 'scratch_start', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0, scratch_id: '123' }, timestamp: '2026-01-01T10:01:00Z' },
+      { action_type: 'step_view', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 2 }, timestamp: '2026-01-01T10:05:00Z' },
+      { action_type: 'step_view', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 1 }, timestamp: '2026-01-01T10:10:00Z' },
     ];
 
     const progress = calculateProgress(mockProject, actions);
-    // Step 0 viewed = 1 step. 1/9 = 11%
-    expect(progress.percent).toBe(11);
+    expect(progress.lastViewedStep).toBe(1);
+    expect(progress.lastStep).toBe(1);
   });
 
   it('correctly identifies 3 quiz questions for catch-the-bus step 7', () => {

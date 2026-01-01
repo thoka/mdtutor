@@ -4,6 +4,7 @@
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
   import { trackAction } from '../lib/achievements';
+  import { calculateProgress } from '../lib/progress';
   import { tutorial, loading, error, currentStep, completedSteps, completedProjects, currentLanguage, availableLanguages } from '../lib/stores';
   import { t } from '../lib/i18n';
   
@@ -52,6 +53,16 @@
             if (actionsRes.ok) {
               userActions = await actionsRes.json();
               console.log('[TutorialView] Loaded user actions:', userActions.length);
+              
+              // If no step index was provided in URL, jump to last viewed step
+              if (params.step === undefined && tutorialData) {
+                const progress = calculateProgress(tutorialData, userActions);
+                if (progress.lastStep > 0) {
+                  step = progress.lastStep;
+                  currentStep.set(step);
+                  push(`/${lang}/projects/${slug}/${step}`);
+                }
+              }
             }
           }
         } catch (e) {

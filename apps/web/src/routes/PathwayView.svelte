@@ -207,7 +207,7 @@
                         </div>
                         
                         <a 
-                          href={isDone ? `/${lang}/projects/${displaySlug}` : (progress.percent > 0 ? `/${lang}/projects/${displaySlug}/${progress.lastStep}` : `/${lang}/projects/${displaySlug}/0`)} 
+                          href={isDone ? `/${lang}/projects/${displaySlug}` : `/${lang}/projects/${displaySlug}/${progress.lastStep}`} 
                           use:link 
                           class="c-project-card__action-btn"
                         >
