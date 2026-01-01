@@ -46,20 +46,14 @@ description:
     en: "Learn to code..."
     de-DE: "Lerne zu programmieren..."
   overview:
-    en: "<p>What will I make?</p>"
-    de-DE: "<p>Was werde ich erschaffen?</p>"
+    en: "What will I make? (Markdown)"
+    de-DE: "Was werde ich erschaffen? (Markdown)"
   know:
-    en: "<p>What must I know?</p>"
-    de-DE: "<p>Was muss ich wissen?</p>"
-  need:
-    en: "<p>What do I need?</p>"
-    de-DE: "<p>Was benötige ich?</p>"
-  mentor:
-    en: "<p>Information for mentors</p>"
-    de-DE: "<p>Informationen für den Mentor</p>"
+    en: "What must I know?"
+    de-DE: "Was muss ich wissen?"
 ```
 
-The API server automatically maps these semantic keys (e.g., `overview`, `need`) back to localized titles for the frontend.
+The API server automatically converts these Markdown fields back to HTML for the frontend while maintaining the localized structure.
 
 The configuration in `<Ecosystem>/config/` defines the "view" of the Makerspace.
 

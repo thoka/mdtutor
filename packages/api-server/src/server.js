@@ -20,7 +20,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // Load root .env if it exists
 dotenv.config({ path: join(__dirname, '../../../.env') });
 
-import { parseProject } from '../../parser/src/parse-project.js';
+import { parseProject, simpleParse } from '../../parser/src/index.js';
 import { getCurrentCommitHash, getCurrentCommitHashShort } from './git-utils.js';
 import { loadContentConfig, resolveProjectLayer, resolvePathwayLayer } from './content-resolver.js';
 
@@ -253,7 +253,8 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
 
     if (data.description && typeof data.description === 'object') {
       // Map 'summary' to main description
-      description = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
+      const summaryMd = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
+      description = await simpleParse(summaryMd);
       
       // Map other keys to header sections
       const sections = {
@@ -265,9 +266,10 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
 
       for (const [key, titles] of Object.entries(sections)) {
         if (data.description[key]) {
+          const contentMd = data.description[key][requestedLang] || data.description[key]['en'] || '';
           header.push({
             title: requestedLang === 'de-DE' ? titles : key.charAt(0).toUpperCase() + key.slice(1),
-            content: data.description[key][requestedLang] || data.description[key]['en'] || ''
+            content: await simpleParse(contentMd)
           });
         }
       }

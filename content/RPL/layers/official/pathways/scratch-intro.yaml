@@ -12,108 +12,101 @@ description:
       wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du
       Animationen, ein Spiel, eine App und ein Buch erstellst.
   overview:
-    en: >
-      <p>Make interactive projects, animations and create a multiple level game.
+    en: >-
+      Make interactive projects, animations and create a multiple level game.
 
       By the end of this path you will have used your new skills to become an
-      author of a digital book with multiple pages.</p>
-    de-DE: >
-      <p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.
+      author of a digital book with multiple pages.
+    de-DE: >-
+      Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.
 
       Am Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein
-      digitales Buch mit mehreren Seiten zu schreiben.</p>
+      digitales Buch mit mehreren Seiten zu schreiben.
   know:
-    en: |
-      <p>This path is ideal for beginners to Scratch.</p>
-    de-DE: |
-      <p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>
+    en: This path is ideal for beginners to Scratch.
+    de-DE: Dieser Lernpfad ist ideal für Einsteiger in Scratch.
   need:
-    en: |
-      <p>This path requires:</p>
+    en: |-
+      This path requires:
 
-      <ul>
-        <li>A desktop computer, laptop, tablet, mobile device, or Raspberry Pi computer</li>
-        <li>Access to the internet to use Scratch online or the ability to download and install Scratch. See our <a href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/1" target="_blank">Scratch setup guide</a> for more details.</li>
-        <li>Optionally, a <a href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/2" target="_blank">Scratch account</a></li>
-      </ul>
-    de-DE: >
-      <p>Dieser Pfad erfordert:</p>
+        * A desktop computer, laptop, tablet, mobile device, or Raspberry Pi computer
+
+        * Access to the internet to use Scratch online or the ability to download and install Scratch. See our [Scratch setup guide](https://projects.raspberrypi.org/en/projects/getting-started-scratch/1) for more details.
+
+        * Optionally, a [Scratch account](https://projects.raspberrypi.org/en/projects/getting-started-scratch/2)
+    de-DE: >-
+      Dieser Pfad erfordert:
 
 
-      <p>– Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry
-      Pi-Computer
+      – Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry Pi-Computer
 
       – Zugang zum Internet, um Scratch online zu nutzen oder die Möglichkeit,
       Scratch herunterzuladen und zu installieren. Weitere Informationen findest
-      du in unserem <a
-      href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/1"
-      target="_blank">Scratch EInführungsleitfaden</a>
+      du in unserem [Scratch
+      EInführungsleitfaden](https://projects.raspberrypi.org/en/projects/getting-started-scratch/1)
 
-      - Optional ein <a
-      href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/2"
-      target="_blank">Scratch Account</a></p>
+      - Optional ein [Scratch
+      Account](https://projects.raspberrypi.org/en/projects/getting-started-scratch/2)
   mentor:
-    en: >
-      <h2 id="make">321…Make!</h2>
-
-      <p>This path follows <a
-      href="https://projects.raspberrypi.org/en/projects/321-make-mentor-guide"
-      target="_blank">321…Make!</a>:</p>
+    en: >-
+      ## 321…Make!
 
 
-      <ul>
-        <li><strong>3 Explore</strong> projects: Introduce creators to a set of skills and provide step-by-step instructions to help them develop initial confidence.</li>
-        <li><strong>2 Design</strong> projects: Allow creators to practise skills from the Explore projects, and express themselves creatively while they grow in independence.</li>
-        <li><strong>1 Invent</strong> project: Encourages creators to use their skills to create a unique project that meets a project brief for a particular audience.</li>
-      </ul>
+      This path follows
+      [321…Make!](https://projects.raspberrypi.org/en/projects/321-make-mentor-guide):
+
+        * **3 Explore** projects: Introduce creators to a set of skills and provide step-by-step instructions to help them develop initial confidence.
+
+        * **2 Design** projects: Allow creators to practise skills from the Explore projects, and express themselves creatively while they grow in independence.
+
+        * **1 Invent** project: Encourages creators to use their skills to create a unique project that meets a project brief for a particular audience.
+
+      ## Quick quiz
 
 
-      <h2 id="quick-quiz">Quick quiz</h2>
-
-      <p>Each project contains a quick quiz with three multiple choice
-      questions. Creators are guided to the correct answer through useful
-      feedback and are awarded a project badge.</p>
-    de-DE: >
-      <h2 id="make">321…Make!</h2>
-
-      <p>Dieser Pfad folgt der Anleitung <a
-      href="https://projects.raspberrypi.org/en/projects/321-make-mentor-guide"
-      target="_blank">321…Make!</a>:</p>
+      Each project contains a quick quiz with three multiple choice questions.
+      Creators are guided to the correct answer through useful feedback and are
+      awarded a project badge.
+    de-DE: >-
+      ## 321…Make!
 
 
-      <p>– <strong>3 Erkunden</strong>-Projekte: Vermitteln Sie Ihren Lernende
-      einige Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen,
-      die ihnen dabei helfen, erstes Selbstvertrauen zu entwickeln.
-
-      – <strong>2 Gestalten</strong>-Projekte: Ermöglichen Sie Ihren Lernenden,
-      Fähigkeiten aus den Erkunden-Projekten zu üben und sich kreativ
-      auszudrücken, während sie selbständiger werden.
-
-      – <strong>1 Erfinden</strong>-Projekt: Ermutigen Sie Ihre Lernende, ihre
-      Fähigkeiten einzusetzen, um ein einzigartiges Projekt zu erstellen, das
-      den Projektvorgaben für ein bestimmtes Publikum entspricht.</p>
+      Dieser Pfad folgt der Anleitung
+      [321…Make!](https://projects.raspberrypi.org/en/projects/321-make-mentor-guide):
 
 
-      <h2 id="schnellquiz">Schnellquiz</h2>
+      – **3 Erkunden**-Projekte: Vermitteln Sie Ihren Lernende einige
+      Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen, die ihnen
+      dabei helfen, erstes Selbstvertrauen zu entwickeln.
 
-      <p>Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen.
+      – **2 Gestalten**-Projekte: Ermöglichen Sie Ihren Lernenden, Fähigkeiten
+      aus den Erkunden-Projekten zu üben und sich kreativ auszudrücken, während
+      sie selbständiger werden.
+
+      – **1 Erfinden**-Projekt: Ermutigen Sie Ihre Lernende, ihre Fähigkeiten
+      einzusetzen, um ein einzigartiges Projekt zu erstellen, das den
+      Projektvorgaben für ein bestimmtes Publikum entspricht.
+
+
+      ## Schnellquiz
+
+
+      Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen.
       Maker werden durch nützliches Feedback zur richtigen Antwort geführt und
-      erhalten ein Projektabzeichen.</p>
+      erhalten ein Projektabzeichen.
 
 
-      <h2 id="die-community-inspirieren">Die Community inspirieren</h2>
+      ## Die Community inspirieren
 
-      <p>Lernende werden ermutigt, andere in der
-      Raspberry-Pi-Foundation-Community zu inspirieren, indem sie ihre
-      Gestalten- und Erfinden-Projekte über das <a
-      href="https://form.raspberrypi.org/f/community-project-submissions"
-      target="_blank">Projekteinreichungsformular</a> mit uns teilen. Projekte
-      werden in unseren Community-Galerien geteilt.
 
-      Wie Sie <a
-      href="https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9"
-      target="_blank">Projekte teilen</a>, erfahren Sie in unserer
-      Anleitung.</p>
+      Lernende werden ermutigt, andere in der Raspberry-Pi-Foundation-Community
+      zu inspirieren, indem sie ihre Gestalten- und Erfinden-Projekte über das
+      [Projekteinreichungsformular](https://form.raspberrypi.org/f/community-project-submissions)
+      mit uns teilen. Projekte werden in unseren Community-Galerien geteilt.
+
+      Wie Sie [Projekte
+      teilen](https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9),
+      erfahren Sie in unserer Anleitung.
 projects:
   - slug: space-talk
     category: explore

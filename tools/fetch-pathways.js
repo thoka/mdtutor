@@ -3,6 +3,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import yaml from 'js-yaml';
+import { parse as parseHtml } from 'node-html-parser';
 import { cloneRepository, fetchProjectApi } from '../test/get-test-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -14,6 +15,58 @@ const SYNC_FILE = join(CONFIG_DIR, 'sync.yaml');
 const ECO_FILE = join(ECOSYSTEM_DIR, 'ecosystem.yaml');
 
 const LANGUAGES = ['en', 'de-DE'];
+
+function htmlToMarkdown(html) {
+  if (!html) return '';
+  const root = parseHtml(html);
+  
+  function convertNode(node) {
+    if (node.nodeType === 3) { // Text node
+      return node.text;
+    }
+    
+    const tagName = node.tagName?.toLowerCase();
+    const children = node.childNodes.map(convertNode).join('');
+    
+    switch (tagName) {
+      case 'h1':
+      case 'h2':
+      case 'h3':
+        const level = tagName.slice(1);
+        return `${'#'.repeat(parseInt(level))} ${children}\n\n`;
+      case 'p':
+        return `${children}\n\n`;
+      case 'ul':
+        return `${children}\n`;
+      case 'ol':
+        return `${children}\n`;
+      case 'li':
+        return `* ${children.trim()}\n`;
+      case 'strong':
+      case 'b':
+        return `**${children}**`;
+      case 'em':
+      case 'i':
+        return `*${children}*`;
+      case 'a':
+        const href = node.getAttribute('href');
+        return `[${children}](${href})`;
+      case 'br':
+        return '\n';
+      default:
+        return children;
+    }
+  }
+  
+  return convertNode(root)
+    .replace(/&ndash;/g, '–')
+    .replace(/&mdash;/g, '—')
+    .replace(/&hellip;/g, '...')
+    .replace(/&quot;/g, '"')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
 
 const HEADER_KEY_MAP = {
   'What will I create?': 'overview',
@@ -88,7 +141,7 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
         for (const h of attr.header) {
           const key = HEADER_KEY_MAP[h.title] || h.title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
           if (!pathwayConfig.description[key]) pathwayConfig.description[key] = {};
-          pathwayConfig.description[key][lang] = h.content;
+          pathwayConfig.description[key][lang] = htmlToMarkdown(h.content);
         }
       }
 

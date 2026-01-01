@@ -33,6 +33,7 @@ Die Entscheidung, welche Inhalte in einem Makerspace verfügbar sein sollen, wir
 *   **Speicherort**: `content/ÖKOSYSTEM/config/`.
 *   **Funktion**: Hier wird konfiguriert, welche Lernpfade aus welchen Quellen (API-Bases, Git-Repos) lokal synchronisiert und "abonniert" werden.
 *   **Mehrsprachigkeit**: Inhalte (Titel, Beschreibungen, Abschnitte) werden in den YAML-Dateien als Dictionaries mit Sprachschlüsseln (`en`, `de-DE`) gespeichert.
+*   **Markdown statt HTML**: In den YAML-Dateien speichern wir reines Markdown. Der API-Server wandelt dieses bei Bedarf für das Frontend in HTML um.
 *   **Semantische Sektionen**: Anstatt loser Listen nutzen wir feste Schlüssel für Inhaltsbereiche (z.B. `overview`, `need`, `know`, `mentor`). Dies erlaubt dem Frontend eine stabile Zuordnung von Icons und Layouts, unabhängig von der gewählten Sprache.
 *   **Gecachte API**: Lokale Pfad-Dateien (`.yaml`) fungieren als Read-Through-Cache der offiziellen APIs.
 
