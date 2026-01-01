@@ -8,10 +8,10 @@ RSpec.describe "Alice Progress Verification", type: :request do
     it "returns the actions that constitute > 60% progress for catch-the-bus" do
       get "/api/v1/actions/user/#{alice_id}"
       expect(response).to have_http_status(:ok)
-      
+
       actions = JSON.parse(response.body)
       project_actions = actions.select { |a| a["gid"] == catch_the_bus_gid }
-      
+
       # 66% progress means steps 0-5 are complete
       completed_steps = project_actions.select { |a| a["action_type"] == "step_complete" }
                                       .map { |a| a["metadata"]["step"] }
@@ -27,7 +27,7 @@ RSpec.describe "Alice Progress Verification", type: :request do
       get "/api/v1/actions/user/#{alice_id}"
       actions = JSON.parse(response.body)
       ftb_actions = actions.select { |a| a["gid"] == "RPL:PROJ:find-the-bug" }
-      
+
       # Step 1 has 10 tasks, 5 should be checked
       step_1_tasks = ftb_actions.select { |a| a["action_type"] == "task_check" && a["metadata"]["step"] == 1 }
       expect(step_1_tasks.size).to eq(5)

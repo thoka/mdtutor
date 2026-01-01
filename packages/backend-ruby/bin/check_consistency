@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+require_relative '../config/environment'
+
+puts "--- Achievement Consistency Check ---"
+report = ConsistencyCheckService.call
+
+puts "Database Actions: #{report[:db_count]}"
+puts "JSONL Log Actions: #{report[:jsonl_count]}"
+
+if report[:discrepancies].any?
+  puts "\n❌ DISCREPANCIES FOUND:"
+  report[:discrepancies].each { |d| puts "  - #{d}" }
+  exit 1
+else
+  puts "\n✅ Consistency Check Passed!"
+end
+
+puts "\n--- Individual Quiz Selection Test ---"
+alice_id = "student_a"
+# Seed a quiz action with question_index if not present
+Action.create!(
+  user_id: alice_id, 
+  action_type: 'quiz_success', 
+  gid: 'RPL:PROJ:catch-the-bus', 
+  metadata: { step: 7, question_index: 2 },
+  timestamp: Time.current
+)
+
+q2_actions = Action.where(user_id: alice_id).quizzes.for_question(2)
+if q2_actions.any?
+  puts "✅ Found #{q2_actions.size} actions for Question Index 2"
+else
+  puts "❌ Could not find actions for Question Index 2 via Ruby scope"
+end
+

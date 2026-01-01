@@ -31,7 +31,7 @@ catch_the_bus_tasks = [1, 13, 13, 7, 9, 6, 4, 0, 0]
     timestamp: (7 - step).days.ago,
     metadata: { step: step }
   )
-  
+
   # Check all tasks in this step
   num_tasks = catch_the_bus_tasks[step]
   (0...num_tasks).each do |task_idx|
@@ -52,7 +52,7 @@ find_the_bug_tasks = [1, 10, 12, 3, 8, 9, 0, 3, 3]
 
 find_the_bug_tasks.each_with_index do |total_tasks, step|
   next if total_tasks == 0
-  
+
   half = (total_tasks / 2.0).ceil
   (0...half).each do |task_idx|
     Action.create!(
