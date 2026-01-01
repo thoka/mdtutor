@@ -4,6 +4,12 @@
 /* Fix scrolling - override body overflow hidden from computed.css */
 body {
   overflow: auto !important;
+  background-color: var(--rpf-off-white, #f8f8f8) !important;
+}
+
+.c-layout {
+  flex: 1 1 0%;
+  background-color: var(--rpf-off-white, #f8f8f8);
 }
 
 /* Hide Material Symbols icon text content completely */

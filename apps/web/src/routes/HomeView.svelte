@@ -80,43 +80,54 @@
 
 <style>
   .c-home-view {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+    width: 100%;
+    margin: 0;
+    padding: 2rem;
+    box-sizing: border-box;
   }
 
   .c-pathways-overview {
     margin-bottom: 3rem;
+    width: 100%;
+  }
+
+  .c-pathways-overview__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #222;
   }
 
   .c-pathway-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+    width: 100%;
   }
 
   .c-pathway-card {
     display: flex !important;
     flex-direction: column;
-    border-left: 4px solid #e91e63;
     background: white;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     text-decoration: none;
     color: inherit;
     transition: transform 0.2s, box-shadow 0.2s;
-    border: 1px solid #eee;
-    border-left: 4px solid #e91e63;
+    border: 1px solid #e0e0e0;
+    border-left: 6px solid #e91e63;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    width: 100%;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     .c-pathway-card {
       flex-direction: row;
-      align-items: stretch;
+      min-height: 240px;
     }
 
     .c-project-card__image-wrapper {
-      width: 300px;
+      width: 450px;
       flex-shrink: 0;
     }
 
@@ -126,8 +137,10 @@
   }
 
   .c-pathway-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    border-color: #d0d0d0;
+    border-left-color: #ff4081;
   }
 
   .c-project-card__image-wrapper {
