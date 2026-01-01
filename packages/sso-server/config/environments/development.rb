@@ -14,6 +14,9 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # Set log level to info to reduce noise
+  config.log_level = :info
+
   # Enable server timing.
   config.server_timing = true
 
@@ -44,7 +47,7 @@ Rails.application.configure do
   config.active_record.migration_error = :page_load
 
   # Highlight code that triggered database queries in logs.
-  config.active_record.verbose_query_logs = true
+  config.active_record.verbose_query_logs = false
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
