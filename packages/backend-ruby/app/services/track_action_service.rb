@@ -3,8 +3,8 @@ class TrackActionService
     Rails.root.join("log", "actions.#{Rails.env}.jsonl")
   end
 
-  def self.call(user_id:, action:, gid: nil, metadata: {})
-    timestamp = Time.current.iso8601
+  def self.call(user_id:, action:, gid: nil, metadata: {}, timestamp: Time.current)
+    timestamp = timestamp.iso8601 if timestamp.respond_to?(:iso8601)
 
     payload = {
       user_id: user_id,
