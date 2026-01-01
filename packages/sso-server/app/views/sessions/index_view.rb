@@ -1,14 +1,26 @@
 module Views
   module Sessions
     class IndexView < Views::Base
-      def initialize(admins:, users:, return_to:)
+      def initialize(admins:, users:, return_to:, super_mode: false)
         @admins = admins
         @users = users
         @return_to = return_to
+        @super_mode = super_mode
       end
 
       def view_template
         div(class: "sso-container") do
+          if @super_mode
+            div(class: "super-mode-banner") do
+              span { "⚡ Super-Mode Aktiv: PIN-Abfrage deaktiviert" }
+              form(action: "/sessions/super_logout", method: "post", style: "display: inline;") do
+                input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+                input(type: "hidden", name: "return_to", value: @return_to)
+                button(class: "super-logout-btn") { "Beenden" }
+              end
+            end
+          end
+
           h1 { "Wer bist du?" }
 
           section(class: "user-group") do
@@ -42,6 +54,27 @@ module Views
               margin: 40px auto;
               text-align: center;
               font-family: sans-serif;
+            }
+
+            .super-mode-banner {
+              background: #fff9c4;
+              border: 1px solid #fbc02d;
+              padding: 10px;
+              margin-bottom: 20px;
+              border-radius: 8px;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-weight: bold;
+            }
+
+            .super-logout-btn {
+              background: #fbc02d;
+              border: none;
+              padding: 5px 15px;
+              border-radius: 4px;
+              cursor: pointer;
+              font-weight: bold;
             }
 
             .logout-section {

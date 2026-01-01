@@ -2,18 +2,22 @@ admins:
   mentor_1:
     name: "Mentor (Thomas)"
     avatar: "/avatars/admin.svg"
+    password: "admin"
   admin_local:
     name: "Lokal-Admin"
     avatar: "/avatars/admin_local.svg"
+    password: "admin"
 
 users:
   student_a:
     name: "Alice"
     avatar: "/avatars/student.svg"
+    pin: "1111"
   student_b:
     name: "Bob"
     avatar: "/avatars/student_b.svg"
+    pin: "2222"
   student_c:
     name: "Charlie"
     avatar: "/avatars/student_c.svg"
-
+    pin: "3333"
