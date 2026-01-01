@@ -55,6 +55,30 @@ function resolveLocalImagePath(ecosystem, layer, pSlug, pLang, imagePath) {
 }
 
 /**
+ * Resolve a pathway asset by checking layers in priority order
+ */
+function resolvePathwayAsset(ecosystem, currentLayer, assetPath) {
+  if (!assetPath || assetPath.startsWith('http')) return assetPath;
+
+  // 1. Check current layer first
+  const localPath = join(currentLayer.path, 'pathways', assetPath);
+  if (existsSync(localPath)) {
+    return `/content/${ecosystem.id}/layers/${currentLayer.id}/pathways/${assetPath}`;
+  }
+
+  // 2. Fallback: Check other layers in priority order
+  for (const layer of ecosystem.layers) {
+    if (layer.id === currentLayer.id) continue;
+    const fallbackPath = join(layer.path, 'pathways', assetPath);
+    if (existsSync(fallbackPath)) {
+      return `/content/${ecosystem.id}/layers/${layer.id}/pathways/${assetPath}`;
+    }
+  }
+
+  return null;
+}
+
+/**
  * Helper to find project data with language fallback
  */
 async function getProjectData(namespacedSlug, requestedLang) {
@@ -294,10 +318,7 @@ app.get('/api/pathways', async (req, res) => {
               description = data.description || '';
             }
 
-            let banner = null;
-            if (data.banner) {
-              banner = `/content/${ecosystem.id}/layers/${resolved.layer.id}/pathways/${data.banner}`;
-            }
+            const banner = resolvePathwayAsset(ecosystem, resolved.layer, data.banner);
 
             allPathways.push({
               slug: namespacedSlug,
@@ -364,10 +385,7 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
     }
 
     // Resolve banner path
-    let banner = data.banner;
-    if (banner && !banner.startsWith('http')) {
-      banner = `/content/${resolved.ecosystem.id}/layers/${resolved.layer.id}/pathways/${banner}`;
-    }
+    const banner = resolvePathwayAsset(resolved.ecosystem, resolved.layer, data.banner);
 
     res.json({
       data: {
