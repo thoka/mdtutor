@@ -16,131 +16,87 @@ Build a local, intranet-compatible learning environment for Makerspace use with:
 - **Content**: Locally hosted tutorials (own developments + forks from raspberrypilearning)
 
 ### 2. Authentication
-- **Login**: Required, handled externally
-- **Dev Mode**: Easy identity switching for development
-- **User tracking**: Session-based progress and achievements
+- **Login**: Handled by **SSO Server** (Ruby on Rails).
+- **Dev Mode**: Easy identity switching for development (see `LoginBar.svelte`).
+- **User tracking**: JWT-based session management.
 
 ### 3. Tutorial Content
 - **Source**: Local repositories (structure like https://github.com/raspberrypilearning/silly-eyes/)
 - **Compatibility**: Direct use of existing markdown structure (en/, de/, step_X.md, meta.yml)
-- **Updates**: Manually managed, no automatic sync
+- **Updates**: Managed via `sync:pathways` tool.
 
 ### 4. Architecture Principles
 - **Ecosystems**: Grouping content by technical standard and shared vocabulary (e.g., RPL).
 - **Layering**: Support for prioritized overlays (Local Forks > Community > Official).
-- **GIDs**: Global identifiers for semantical tracking of projects, steps, and assets.
+- **GIDs**: Global identifiers (`ÖKOSYSTEM:TYP:SLUG`) for semantical tracking across forks and languages.
 - **Technology**: 
   - Frontend: Svelte 5 + Runes
-  - Backend: Express (mocking RPL API structure)
-  - Parser: unified.js pipeline (remark/rehype) with semantic enrichment
+  - API Server: Node.js (Express), resolves prioritized content from layers.
+  - Achievements Backend: Ruby on Rails, aggregates user state.
+  - SSO Backend: Ruby on Rails, handles user identity.
+  - Parser: unified.js pipeline (remark/rehype) with semantic enrichment.
 
-### 5. Help Desk System
-
-**Phase 1**: Basic request tracking
-- User selects "?" on tasks/subtasks (alongside "completed")
-- Help requests stored and displayed in overview
-- View for teachers and public Makerspace display
-
-**Phase 2**: Active matching
-- Help requests routed to guests in Makerspace
-- Matching based on achievements/badges (skill-based)
-- Async (Discourse forum) and sync (live) support
-
-**Integration**: Built on or integrated with Discourse
+### 5. Help Desk System (Upcoming)
+- **Status**: Planning phase.
+- **Phase 1**: Basic request tracking
+- **Phase 2**: Active matching based on skills.
 
 ### 6. Achievements & Skills
-- **Skills**: Tutorials contain skill lists
-- **Administration**: Centralized skill management (to be decided later)
-- **Matching**: Skills used for helper-to-learner matching in help system
+- **Achievements**: Stored as event-sourced actions in Ruby backend.
+- **State Aggregation**: Backend provides consolidated "current state" for performance.
+- **Skills**: Tutorials contain skill lists (in development).
+- **Administration**: Admin-only debug tools for verifying calculations.
 
 ## Technical Implementation
 
 ### Point of Truth
 - **API Reference**: https://learning-admin.raspberrypi.org/api/v1/
-- **Goal**: Markdown → JSON conversion producing identical output to existing API
+- **Backend Architecture**: Polyglot monorepo (Node.js + Ruby on Rails).
 
 ### Rendering Pipeline
-- **Parser**: unified.js + remark/rehype
-- **Presentation Layer**: Svelte with Vite
-- **Execution**: 
-  - Client-side (browser)
-  - Server-side rendering
-  - Headless browser support
-- **Output**: JSON structure matching existing API format
+- **Parser**: unified.js + custom plugins for RPL-specific Markdown.
+- **Presentation Layer**: Svelte 5 with Vite.
+- **Output**: JSON structure matching existing API format.
 
 ### Module Architecture
 Independent components:
-- Markdown parser (md → JSON)
-- API server
-- Achievement tracker
-- Help desk system
-- Learning path manager
+- `packages/parser`: Markdown → JSON
+- `packages/api-server`: Content resolution & delivery
+- `packages/backend-ruby`: Achievements tracker & SSO
+- `apps/web`: Svelte 5 Frontend
 
-Each module:
-- Standalone CLI tool
-- Importable as library
-- Clear interface definitions
+Each module is an npm workspace or separate service.
 
 ### Test Data Collection
-
-Reference tutorial data is fetched from raspberrypilearning repositories and official API for parser development and testing.
-
+Reference tutorial data is fetched from official sources for parity testing.
 **Details:** See [test-data-collection.md](test-data-collection.md)
-
-**Script:** `test/get-test-data.js`
+**Script:** `npm run test:data`
 
 ### Development Environment Configuration
+**Port Configuration**: Configured via `.env` file at root.
+- `API_PORT`: Node API (default 3101)
+- `WEB_PORT`: Web App (default 5201)
+- `ACHIEVEMENTS_PORT`: Ruby Backend (default 3102)
+- `SSO_PORT`: SSO Server (default 3103)
 
-**Port Configuration**: Both API server and web dev server support environment variable-based port configuration to enable multiple development environments running simultaneously.
-
-- **API Server Port**: Configured via `API_PORT` environment variable in `.env` file
-- **Web Dev Server Port**: Configured via `WEB_PORT` environment variable in `.env` file
-- **Fallback**: Both services also respect generic `PORT` environment variable if specific port variables are not set
-- **No Defaults**: Ports MUST be configured in `.env` file - servers will exit if ports are not set
-
-**Background Development Tasks**:
-- `npm run dev`: Runs both API server and web dev server concurrently with colored output
-- `npm run dev:bg`: Same as `dev` but with kill-on-exit behavior (stops all processes on Ctrl+C)
-
-**Usage Examples**:
-```bash
-# Using .env file (required - not committed to git)
-echo "API_PORT=3203" > .env
-echo "WEB_PORT=5203" >> .env
-npm run dev:bg
-
-# Custom ports for multiple environments (via .env)
-echo "API_PORT=3202" > .env
-echo "WEB_PORT=5202" >> .env
-npm run dev:bg
-```
-
-The Vite dev server automatically configures its proxy to match the API server port when `API_PORT` is set.
+**Development Tasks**:
+- `npm run dev`: Runs all services concurrently.
+- `npm run dev:test`: Runs against test databases with RAILS_ENV=test.
+- `npm run seed:test`: Initializes complex test scenarios (e.g., Alice).
 
 ## Development Approach
 
 ### Iteration Strategy
-1. Minimal text/code for agent-based automation
-2. Iterative cycles with focused changes
+1. Minimal text/code for agent-based automation.
+2. Spec-First: APIs must be tested in backend before frontend integration.
 
 ### Documentation & Workflow
-- All technical decisions, plans, and progress documented in `docs/brain/` directory
-- **implementation_plan.md**: Approach sketched before writing new code
-- **task.md**: Tracking current progress and open items
-- **walkthrough.md**: Documentation of achieved milestones and result verification
-- **Test-first Approach**: Tests written first (TDD) before implementation
-- **Branching Strategy**: Each feature/task in own branch (e.g., `feature/section-frontmatter`)
-- Commits: Regular with clear messages (Conventional Commits style)
-
-### Git Workflow Rules
-- **Feature Branches**: Each feature in own branch (`feature/name`)
-- **Subtask Commits**: Each completed subtask committed immediately to feature branch (no large "WIP" commits)
-- **Iteration Commits**: After each iteration (implementation cycle), create a commit in the feature branch
-- **Merging**: Only after complete verification merge to `main`
-- **Tests first**: Write and commit tests first!
+- **docs/brain/**: Tracking ongoing work (Implementation Plans & Walkthroughs).
+- **docs/done/**: Archived documentation.
+- **Test-first Approach**: RSpec request specs for all API endpoints.
+- **Branching Strategy**: feature/name branches.
 
 ## Open Decisions
-- Exact skill taxonomy and administration
-- Backend framework choice (Ruby preference noted)
-- Discourse integration details
-- Client-side vs server-side rendering balance
+- Exact skill taxonomy details.
+- Help Desk integration with Discourse.
+- Kiosk mode specifics for SSO.

@@ -35,5 +35,21 @@ bundle exec rspec
 - **UUIDs**: Da SQLite keine nativen UUIDs unterstützt, nutzen wir `id: :string` in den Migrationen und das `Uuidable` Concern in den Modellen zur Generierung.
 - **Mocks/Stubs**: Externe API-Aufrufe (z.B. zwischen SSO und Backend) werden in Unit-Tests gemockt, um Unabhängigkeit zu gewährleisten.
 
-## Frontend (Work in Progress)
-Die Svelte 5 Komponenten werden perspektivisch mit Vitest und Playwright/Puppeteer getestet. Aktuell liegt der Fokus auf der Absicherung der Backend-Logik.
+## Frontend Tests
+Die Svelte 5 Logik wird mit **Vitest** abgesichert.
+
+- **Unit Tests** (`apps/web/src/**/*.test.ts`): Testen pure Funktionen wie die Fortschrittsberechnung.
+- **E2E Tests** (geplant): Playwright für Browser-Integrationstests.
+
+**Ausführung Vitest:**
+```bash
+cd apps/web
+npm run test:unit
+```
+
+## Test-Daten & Szenarien
+Um komplexe Zustände (wie den Fortschritt von Alice) zu testen, nutzen wir dedizierte Seeding-Skripte.
+
+- `npm run seed:test`: Initialisiert die Test-Datenbanken beider Backends mit dem Alice-Szenario.
+- `npm run dev:test`: Startet alle Dienste im Test-Modus (verbindet sich mit den Test-Datenbanken).
+
