@@ -14,6 +14,7 @@
 <div class="login-bar">
   {#if $auth}
     <button class="user-info-button" onclick={handleLogin}>
+      <span class="material-symbols-sharp user-icon" aria-hidden="true">person</span>
       <span class="user-name">{$auth.name} {#if $auth.is_admin}(Admin){/if}</span>
     </button>
   {:else}
@@ -39,6 +40,14 @@
     padding: 4px 8px;
     border-radius: 4px;
     transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .user-icon {
+    font-size: 1.2rem;
+    vertical-align: middle;
   }
 
   .user-info-button:hover {
