@@ -70,9 +70,10 @@
             const actionsRes = await fetch(`/api/v1/actions/user/${userId}`, {
               headers: { 'Authorization': `Bearer ${token}` }
             });
-            if (actionsRes.ok) {
-              userActions = await actionsRes.json();
-            }
+        if (actionsRes.ok) {
+          userActions = await actionsRes.json();
+          console.log('[PathwayView] Loaded user actions:', userActions.length);
+        }
           }
         } catch (e) {
           console.warn('Failed to parse token or fetch actions', e);
@@ -183,11 +184,19 @@
                           src={project.attributes.content.heroImage} 
                           alt={project.attributes.content.title}
                         />
-                        {#if isDone}
-                          <div class="c-project-card__badge-overlay">
-                            <img src={project.attributes.content.badge} alt="Badge" class="badge-icon" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
+                        
+                        {#if project.attributes.content.badge}
+                          <div class="c-project-card__badge-overlay {isDone ? 'is-unlocked' : 'is-locked'}">
+                            <img 
+                              src={project.attributes.content.badge} 
+                              alt="Badge" 
+                              class="badge-icon" 
+                              onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} 
+                            />
                           </div>
-                        {:else if progress.percent > 0}
+                        {/if}
+
+                        {#if !isDone && progress.percent > 0}
                           <div class="c-project-card__progress-ring">
                             <svg viewBox="0 0 36 36" class="circular-chart">
                               <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
@@ -459,17 +468,33 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    pointer-events: none;
+  }
+
+  .c-project-card__badge-overlay.is-unlocked {
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(1px);
   }
 
+  .c-project-card__badge-overlay.is-locked {
+    opacity: 0.6;
+    filter: grayscale(100%);
+    transform: scale(0.75);
+  }
+
   .badge-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: all 0.3s ease;
+  }
+
+  .is-unlocked .badge-icon {
     width: 100px;
     height: 100px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
   }
 
   .c-project-card__progress-ring {
