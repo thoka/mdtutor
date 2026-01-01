@@ -28,6 +28,11 @@ module Views
               end
             end
           end
+
+          section(class: "logout-section") do
+            separator = @return_to.include?("?") ? "&" : "?"
+            a(href: "#{@return_to}#{separator}token=logout", class: "logout-button") { "Abmelden / Logout" }
+          end
         end
 
         style do
@@ -37,6 +42,27 @@ module Views
               margin: 40px auto;
               text-align: center;
               font-family: sans-serif;
+            }
+
+            .logout-section {
+              margin-top: 60px;
+              border-top: 1px solid #eee;
+              padding-top: 20px;
+            }
+
+            .logout-button {
+              display: inline-block;
+              padding: 10px 20px;
+              background: #f44336;
+              color: white;
+              text-decoration: none;
+              border-radius: 6px;
+              font-weight: bold;
+              transition: background 0.2s;
+            }
+
+            .logout-button:hover {
+              background: #d32f2f;
             }
 
             .user-group {

@@ -21,7 +21,9 @@ class SessionsController < ApplicationController
         admin: is_admin
       )
 
-      redirect_to "#{params[:return_to]}?token=#{token}", allow_other_host: true
+      return_to = params[:return_to]
+      separator = return_to.include?("?") ? "&" : "?"
+      redirect_to "#{return_to}#{separator}token=#{token}", allow_other_host: true
     else
       redirect_to root_path, alert: "User not found"
     end

@@ -1,3 +1,7 @@
 {"user_id":"user123","action":"a1","gid":null,"metadata":{},"timestamp":"2026-01-01T14:08:43Z"}
 {"user_id":"user123","action":"a2","gid":null,"metadata":{},"timestamp":"2026-01-01T14:08:43Z"}
 {"user_id":"123","action":"create","gid":null,"metadata":{},"timestamp":"2026-01-01T14:09:02Z"}
+{"user_id":"mentor_1","action":"pathway_open","gid":"RPL:PATH:scratch-intro","metadata":{"slug":"RPL:scratch-intro","lang":"de-DE"},"timestamp":"2026-01-01T15:20:18Z"}
+{"user_id":"admin_local","action":"pathway_open","gid":"RPL:PATH:scratch-intro","metadata":{"slug":"RPL:scratch-intro","lang":"de-DE"},"timestamp":"2026-01-01T15:20:32Z"}
+{"user_id":"student_c","action":"pathway_open","gid":"RPL:PATH:scratch-intro","metadata":{"slug":"RPL:scratch-intro","lang":"de-DE"},"timestamp":"2026-01-01T15:20:38Z"}
+{"user_id":"admin_local","action":"pathway_open","gid":"RPL:PATH:further-scratch","metadata":{"slug":"RPL:further-scratch","lang":"de-DE"},"timestamp":"2026-01-01T15:21:43Z"}

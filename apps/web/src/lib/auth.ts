@@ -17,13 +17,37 @@ function createAuthStore() {
     subscribe,
     async check() {
       // 1. Check for token in URL (callback from SSO)
-      const urlParams = new URLSearchParams(window.location.search);
-      const tokenFromUrl = urlParams.get('token');
+      // We check both window.location.search AND the search part of the hash
+      const searchParams = new URLSearchParams(window.location.search);
+      let tokenFromUrl = searchParams.get('token');
       
+      if (!tokenFromUrl && window.location.hash.includes('?')) {
+        const hashSearch = window.location.hash.split('?')[1];
+        tokenFromUrl = new URLSearchParams(hashSearch).get('token');
+      }
+
+      if (tokenFromUrl === 'logout') {
+        clearStoredToken();
+        set(null);
+        // Clean URL
+        const newUrl = window.location.href
+          .replace(/[?&]token=logout/g, '')
+          .replace(/&&+/g, '&')
+          .replace(/\?&/g, '?')
+          .replace(/[?&]$/g, '');
+        window.history.replaceState({}, document.title, newUrl);
+        return;
+      }
+
       if (tokenFromUrl) {
         setStoredToken(tokenFromUrl);
-        // Clean URL
-        window.history.replaceState({}, document.title, window.location.pathname);
+        // Clean URL - remove all token parameters from search and hash
+        const newUrl = window.location.href
+          .replace(/[?&]token=[^&]+/g, '')
+          .replace(/&&+/g, '&')
+          .replace(/\?&/g, '?')
+          .replace(/[?&]$/g, '');
+        window.history.replaceState({}, document.title, newUrl);
       }
 
       const token = getStoredToken();
@@ -49,7 +73,8 @@ function createAuthStore() {
     },
     login() {
       const ssoUrl = import.meta.env.VITE_SSO_URL;
-      const returnTo = window.location.href;
+      // Ensure we don't pass an existing token in the return_to URL
+      const returnTo = window.location.href.replace(/[?&]token=[^&]+/g, '');
       window.location.href = `${ssoUrl}?return_to=${encodeURIComponent(returnTo)}`;
     },
     logout() {

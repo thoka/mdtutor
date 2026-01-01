@@ -70,8 +70,13 @@
   }
 
   .global-nav-bar {
-    background-color: var(--rpf-off-white, #f8f8f8);
-    border-bottom: 1px solid var(--rpf-grey-200, #eee);
+    background-color: #000;
+    color: #fff;
+    border-bottom: 1px solid #333;
+  }
+
+  .global-nav-bar .text {
+    color: #fff;
   }
 
   .global-nav-bar__content {
@@ -100,9 +105,9 @@
     padding-inline: 0.5rem;
   }
 
-  /* Override icon color for back button in nav bar (light background) */
+  /* Override icon color for back button in nav bar (dark background) */
   :global(.c-global-nav-back .rpf-button__icon.material-symbols-sharp::before) {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' fill='%23333333'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' fill='%23FFFFFF'/%3E%3C/svg%3E") !important;
   }
 </style>
 
@@ -130,8 +135,8 @@
           {/if}
         </div>
         <div class="global-nav-bar__right">
-          <LoginBar />
           <LanguageChooser />
+          <LoginBar />
         </div>
       </div>
     </div>

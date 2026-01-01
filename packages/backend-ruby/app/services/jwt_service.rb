@@ -13,4 +13,3 @@ class JwtService
     nil
   end
 end
-

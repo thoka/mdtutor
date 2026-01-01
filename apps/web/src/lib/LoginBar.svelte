@@ -9,20 +9,13 @@
   function handleLogin() {
     auth.login();
   }
-
-  function handleLogout() {
-    auth.logout();
-  }
 </script>
 
 <div class="login-bar">
   {#if $auth}
-    <div class="user-info">
+    <button class="user-info-button" onclick={handleLogin}>
       <span class="user-name">{$auth.name} {#if $auth.is_admin}(Admin){/if}</span>
-      <button class="rpf-button rpf-button--tertiary" onclick={handleLogout}>
-        Logout
-      </button>
-    </div>
+    </button>
   {:else}
     <button class="rpf-button rpf-button--secondary" onclick={handleLogin}>
       Login
@@ -38,10 +31,18 @@
     font-family: var(--font-family-body);
   }
 
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  .user-info-button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .user-info-button:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .user-name {

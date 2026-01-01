@@ -85,16 +85,16 @@
   .c-language-chooser__label {
     font-size: 0.9rem;
     font-weight: bold;
-    color: var(--rpf-text-primary);
+    color: #fff;
   }
 
   .c-language-chooser__select {
-    background: white;
-    border: 1px solid var(--rpf-grey-300);
+    background: #222;
+    border: 1px solid #444;
     border-radius: 4px;
     padding: 4px 8px;
     font-size: 0.9rem;
-    color: var(--rpf-text-primary);
+    color: #fff;
     cursor: pointer;
     outline: none;
   }
