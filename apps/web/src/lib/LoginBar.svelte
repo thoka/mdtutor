@@ -16,13 +16,18 @@
 <div class="login-bar">
   {#if $auth}
     <button class="user-info-button" onclick={handleLogin}>
-      {#if $auth.avatar && $auth.avatar.startsWith('/')}
-        <img src={ssoUrl + $auth.avatar} alt="Avatar" class="user-avatar-img" />
-      {:else if $auth.avatar}
-        <span class="user-icon">{$auth.avatar}</span>
-      {:else}
-        <span class="material-symbols-sharp user-icon" aria-hidden="true">person</span>
-      {/if}
+      <div class="avatar-container">
+        {#if $auth.avatar && $auth.avatar.startsWith('/')}
+          <img src={ssoUrl + $auth.avatar} alt="Avatar" class="user-avatar-img" />
+        {:else if $auth.avatar}
+          <span class="user-icon">{$auth.avatar}</span>
+        {:else}
+          <span class="material-symbols-sharp user-icon" aria-hidden="true">person</span>
+        {/if}
+        {#if $auth.is_present}
+          <span class="presence-dot" title="Präsent im Makerspace"></span>
+        {/if}
+      </div>
       <span class="user-name">{$auth.name} {#if $auth.is_admin}(Admin){/if}</span>
     </button>
   {:else}
@@ -63,6 +68,23 @@
     height: 24px;
     border-radius: 50%;
     object-fit: cover;
+  }
+
+  .avatar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .presence-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+    border: 1.5px solid #000;
   }
 
   .user-info-button:hover {

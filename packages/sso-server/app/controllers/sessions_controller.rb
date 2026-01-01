@@ -6,8 +6,20 @@ class SessionsController < ApplicationController
       admins: UserLoader.admins,
       users: UserLoader.users,
       return_to: params[:return_to] || "/",
-      super_mode: session[:admin_id].present?
+      super_mode: session[:admin_id].present?,
+      present_user_ids: Presence.present_user_ids
     )
+  end
+
+  def toggle_presence
+    return render json: { error: "Admin session required" }, status: :unauthorized unless session[:admin_id]
+    
+    user_id = params[:user_id]
+    is_present = Presence.toggle(user_id)
+    
+    # We could redirect back or return JSON for an AJAX request
+    # For now, a simple redirect back to the index
+    redirect_to root_path(return_to: params[:return_to])
   end
 
   def create
@@ -81,7 +93,8 @@ class SessionsController < ApplicationController
       user_id: user_id,
       name: user["name"],
       admin: is_admin,
-      avatar: user["avatar"]
+      avatar: user["avatar"],
+      is_present: Presence.present?(user_id)
     )
 
     separator = return_to.include?("?") ? "&" : "?"

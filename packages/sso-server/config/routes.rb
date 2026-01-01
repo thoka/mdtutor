@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   post "sessions/verify_pin", to: "sessions#verify_pin"
   post "sessions/super_login", to: "sessions#super_login"
   post "sessions/super_logout", to: "sessions#super_logout"
+  post "sessions/toggle_presence", to: "sessions#toggle_presence"
 end

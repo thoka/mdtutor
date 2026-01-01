@@ -5,6 +5,7 @@ export interface User {
   name: string;
   is_admin: boolean;
   avatar?: string;
+  is_present?: boolean;
 }
 
 function createAuthStore() {

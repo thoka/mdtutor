@@ -1,11 +1,12 @@
 module Views
   module Sessions
     class IndexView < Views::Base
-      def initialize(admins:, users:, return_to:, super_mode: false)
+      def initialize(admins:, users:, return_to:, super_mode: false, present_user_ids: [])
         @admins = admins
         @users = users
         @return_to = return_to
         @super_mode = super_mode
+        @present_user_ids = present_user_ids
       end
 
       def view_template
@@ -16,7 +17,14 @@ module Views
             h2 { "Mentoren & Admins" }
             div(class: "tiles") do
               @admins.each do |id, user|
-                render Components::UserTile.new(id, user, type: :admin, return_to: @return_to)
+                render Components::UserTile.new(
+                  id, 
+                  user, 
+                  type: :admin, 
+                  return_to: @return_to,
+                  is_present: @present_user_ids.include?(id),
+                  can_toggle: @super_mode
+                )
               end
             end
           end
@@ -25,7 +33,14 @@ module Views
             h2 { "Schüler & Gäste" }
             div(class: "tiles") do
               @users.each do |id, user|
-                render Components::UserTile.new(id, user, type: :user, return_to: @return_to)
+                render Components::UserTile.new(
+                  id, 
+                  user, 
+                  type: :user, 
+                  return_to: @return_to,
+                  is_present: @present_user_ids.include?(id),
+                  can_toggle: @super_mode
+                )
               end
             end
           end
@@ -124,6 +139,30 @@ module Views
             .tile:hover {
               transform: translateY(-5px);
               box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            }
+
+            .tile-container {
+              position: relative;
+            }
+
+            .presence-toggle {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              z-index: 10;
+            }
+
+            .presence-indicator {
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              width: 12px;
+              height: 12px;
+              background: #4caf50;
+              border-radius: 50%;
+              border: 2px solid white;
+              box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+              z-index: 10;
             }
 
             .admin-tile {
