@@ -1,0 +1,160 @@
+{
+  "tutorial": "generic-scratch3-sprite-from-library",
+  "timestamp": "2025-12-31T12:35:11.105Z",
+  "languages": [
+    "en",
+    "de-DE"
+  ],
+  "paths": {
+    "repository": "content/RPL/projects/generic-scratch3-sprite-from-library/repo",
+    "api": {
+      "en": {
+        "projects": {
+          "file": "content/RPL/projects/generic-scratch3-sprite-from-library/api-project-en.json",
+          "data": {
+            "data": {
+              "id": "536",
+              "type": "projects",
+              "attributes": {
+                "id": 536,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Add a sprite from the Sprite Library",
+                      "content": "<p>Click on <strong>Choose a Sprite</strong> to open the Sprite Library:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/en/images/sprite-library.png\" alt=\"The 'Choose a Sprite' icon highlighted.\" /></p>\n\n<p>You can search for a sprite, or browse for one by category. Click on a sprite to add it to your project.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/en/images/sprite-choose.png\" alt=\"The Sprite Library.\" /></p>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "theme": "blue",
+                  "title": "Add a sprite from the Sprite Library",
+                  "listed": false,
+                  "copyedit": false,
+                  "duration": 1,
+                  "keywords": "Add a sprite from the Sprite Library",
+                  "interests": null,
+                  "curriculum": null,
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/en/images/banner.png",
+                  "ingredient": true,
+                  "plainText": "Click on Choose a Sprite to open the Sprite Library: You can search for a sprite, or browse for one by category. Click on a sprite to add it to your project.",
+                  "description": "Add a sprite from the Sprite Library",
+                  "original url": null,
+                  "technologies": "scratch",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "en",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": []
+                },
+                "repositoryName": "generic-scratch3-sprite-from-library",
+                "masterLastCommit": "8c49ce02dbd6864e7c8af08913ae30fe37d18600",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "en",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      },
+      "de-DE": {
+        "projects": {
+          "file": "content/RPL/projects/generic-scratch3-sprite-from-library/api-project-de-DE.json",
+          "data": {
+            "data": {
+              "id": "536",
+              "type": "projects",
+              "attributes": {
+                "id": 536,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Eine Figur hinzufügen",
+                      "content": "<ul>\n  <li>\n    <p>Klicke auf <strong>Figur wählen</strong> um die Bibliothek aller in Scratch vorhandener Figuren anzuzeigen.</p>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/de-DE/images/sprite-library.png\" alt=\"Screenshot\" /></p>\n  </li>\n  <li>\n    <p>Du kannst die Figuren themenbezogen suchen und ansehen. Klicke auf eine Figur, um sie in dein Projekt aufzunehmen.</p>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/de-DE/images/sprite-choose.png\" alt=\"screenshot\" /></p>\n  </li>\n</ul>\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "theme": "blue",
+                  "title": "Eine Scratch-Figur aus der Bibliothek hinzufügen",
+                  "listed": false,
+                  "copyedit": false,
+                  "duration": 1,
+                  "keywords": "Eine Scratch-Figur aus der Bibliothek hinzufügen",
+                  "interests": null,
+                  "curriculum": null,
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/generic-scratch3-sprite-from-library/8c49ce02dbd6864e7c8af08913ae30fe37d18600/de-DE/images/banner.png",
+                  "ingredient": true,
+                  "plainText": "Klicke auf Figur wählen um die Bibliothek aller in Scratch vorhandener Figuren anzuzeigen. Du kannst die Figuren themenbezogen suchen und ansehen. Klicke auf eine Figur, um sie in dein Projekt aufzunehmen.",
+                  "description": "Eine Scratch-Figur aus der Bibliothek hinzufügen",
+                  "original url": null,
+                  "technologies": "scratch",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "de-DE",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": []
+                },
+                "repositoryName": "generic-scratch3-sprite-from-library",
+                "masterLastCommit": "8c49ce02dbd6864e7c8af08913ae30fe37d18600",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "de-DE",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      }
+    }
+  },
+  "pathways": null
+}

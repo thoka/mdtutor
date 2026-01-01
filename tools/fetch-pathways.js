@@ -6,9 +6,8 @@ import yaml from 'js-yaml';
 import { cloneRepository, fetchProjectApi } from '../test/get-test-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const PATHWAYS_DIR = join(__dirname, '../content/RPL/pathways');
-const CONFIG_FILE = join(PATHWAYS_DIR, 'config.yaml');
-const API_BASE = 'https://learning-admin.raspberrypi.org/api/v1';
+const ECOSYSTEM_DIR = join(__dirname, '../content/RPL');
+const SOURCES_FILE = join(ECOSYSTEM_DIR, 'sources.yaml');
 
 async function fetchWithCurl(url) {
   try {
@@ -22,31 +21,43 @@ async function fetchWithCurl(url) {
   }
 }
 
-async function fetchPathwayData(slug, lang = 'en') {
-  const url = `${API_BASE}/${lang}/pathways/${slug}`;
+async function fetchPathwayData(slug, lang = 'en', apiBase) {
+  const url = `${apiBase}/${lang}/pathways/${slug}`;
   console.log(`Fetching pathway metadata: ${url}`);
   return fetchWithCurl(url);
 }
 
-async function fetchPathwayProjects(slug, lang = 'en') {
-  const url = `${API_BASE}/${lang}/pathways/${slug}/projects`;
+async function fetchPathwayProjects(slug, lang = 'en', apiBase) {
+  const url = `${apiBase}/${lang}/pathways/${slug}/projects`;
   console.log(`Fetching pathway projects: ${url}`);
   return fetchWithCurl(url);
 }
 
-async function syncPathway(slug) {
-  console.log(`\n=== Syncing Pathway: ${slug} ===`);
+async function syncPathway(slug, sourceInfo, layers) {
+  const layer = layers.find(l => l.id === sourceInfo.source);
+  if (!layer) throw new Error(`Layer ${sourceInfo.source} not found`);
+
+  console.log(`\n=== Syncing Pathway: ${slug} (Source: ${layer.id}) ===`);
+
+  const layerPath = join(ECOSYSTEM_DIR, 'layers', layer.id);
+  const pathwaysDir = join(layerPath, 'pathways');
+  const projectsDir = join(layerPath, 'projects');
+  
+  mkdirSync(pathwaysDir, { recursive: true });
+  mkdirSync(projectsDir, { recursive: true });
+
+  const apiBase = layer.api_base || 'https://learning-admin.raspberrypi.org/api/v1';
 
   // Fetch metadata and projects (try German first, fallback to English for structure)
   let metaData;
   try {
-    metaData = await fetchPathwayData(slug, 'de-DE');
+    metaData = await fetchPathwayData(slug, 'de-DE', apiBase);
   } catch (e) {
-    console.log(`  ℹ German metadata not found, falling back to English`);
-    metaData = await fetchPathwayData(slug, 'en');
+    console.log(`  ℹ German metadata not found or failed, falling back to English`);
+    metaData = await fetchPathwayData(slug, 'en', apiBase);
   }
 
-  const projectsData = await fetchPathwayProjects(slug, 'en');
+  const projectsData = await fetchPathwayProjects(slug, 'en', apiBase);
 
   const attributes = metaData.data.attributes;
   const steps = metaData.included || [];
@@ -71,49 +82,63 @@ async function syncPathway(slug) {
         category: step?.attributes.category || 'explore'
       };
     }),
-    header: attributes.header.map(h => ({
+    header: attributes.header?.map(h => ({
       title: h.title,
       content: h.content
-    }))
+    })) || []
   };
 
   // Save the pathway YAML
-  const outputFile = join(PATHWAYS_DIR, `${slug}.yaml`);
+  const outputFile = join(pathwaysDir, `${slug}.yaml`);
   writeFileSync(outputFile, yaml.dump(pathwayConfig, { noRefs: true }));
   console.log(`✓ Saved pathway config to ${outputFile}`);
 
   // Sync projects
-  console.log(`Syncing ${projects.length} projects...`);
+  console.log(`Syncing ${projects.length} projects to ${projectsDir}...`);
   for (const p of pathwayConfig.projects) {
     const projectSlug = p.slug;
     console.log(`  - ${projectSlug}`);
-    await cloneRepository(projectSlug);
-    await fetchProjectApi(projectSlug, 'en');
-    await fetchProjectApi(projectSlug, 'de-DE');
+    await cloneRepository(projectSlug, { 
+      gitBase: layer.git_base,
+      projectsDir: projectsDir 
+    });
+    await fetchProjectApi(projectSlug, 'en', { snapshotsDir: 'test/snapshots' });
+    await fetchProjectApi(projectSlug, 'de-DE', { snapshotsDir: 'test/snapshots' });
   }
 }
 
 async function main() {
   const args = process.argv.slice(2);
-  let slugs = [];
-
-  if (args.length > 0) {
-    slugs = args;
-  } else if (existsSync(CONFIG_FILE)) {
-    const config = yaml.load(readFileSync(CONFIG_FILE, 'utf8'));
-    slugs = config.pathways || [];
-  }
-
-  if (slugs.length === 0) {
-    console.log('No pathways configured. Add them to content/RPL/pathways/config.yaml or pass as arguments.');
+  
+  if (!existsSync(SOURCES_FILE)) {
+    console.error(`Error: ${SOURCES_FILE} not found.`);
     return;
   }
 
-  for (const slug of slugs) {
+  const sources = yaml.load(readFileSync(SOURCES_FILE, 'utf8'));
+  const layers = sources.layers || [];
+  let syncList = [];
+
+  if (args.length > 0) {
+    // If slugs are passed as args, try to find them in sync list or default to official
+    for (const arg of args) {
+      const found = sources.sync?.pathways?.find(p => p.slug === arg);
+      syncList.push(found || { slug: arg, source: 'official' });
+    }
+  } else {
+    syncList = sources.sync?.pathways || [];
+  }
+
+  if (syncList.length === 0) {
+    console.log('No pathways to sync.');
+    return;
+  }
+
+  for (const item of syncList) {
     try {
-      await syncPathway(slug);
+      await syncPathway(item.slug, item, layers);
     } catch (e) {
-      console.error(`✗ Error syncing pathway ${slug}:`, e.message);
+      console.error(`✗ Error syncing pathway ${item.slug}:`, e.message);
     }
   }
 

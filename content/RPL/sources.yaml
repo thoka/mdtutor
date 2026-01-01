@@ -1,0 +1,16 @@
+layers:
+  - id: tag-makerspace
+    priority: 100
+    git_base: "https://github.com/tag-makerspace"
+  - id: official
+    priority: 10
+    git_base: "https://github.com/raspberrypilearning"
+    api_base: "https://learning-admin.raspberrypi.org/api/v1"
+
+sync:
+  pathways:
+    - slug: scratch-intro
+      source: official
+    - slug: physical-computing-with-scratch-and-the-raspberry-pi
+      source: official
+

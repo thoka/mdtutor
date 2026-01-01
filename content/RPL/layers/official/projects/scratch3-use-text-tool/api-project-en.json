@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1217",
+    "type": "projects",
+    "attributes": {
+      "id": 1217,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Use the Text tool",
+            "content": "<p>Click on the <strong>Fill</strong> colour chooser and select the colour that you want for your text:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-fill-colour.png\" alt=\"The Fill colour chooser menu showing sliders to control Color, Saturation, and Brightness.\" width=\"150px\" /></p>\n\n<p>Select the <strong>Text</strong> tool:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-text-tool.png\" alt=\"The Text tool.\" width=\"150px\" /></p>\n\n<p>Click on the Paint editor and start typing.</p>\n\n<p>Click on the <strong>Font</strong> drop-down menu and select the font that you want:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-text-font.png\" alt=\"The Font drop-down menu showing the fonts available to use within Scratch.\" width=\"300px\" /></p>\n\n<p>If you want to resize your text, click on the <strong>Select</strong> (Arrow) tool and select the text, then drag the corner handles to resize the text:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-arrow-resize.png\" alt=\"The Select (Arrow) tool and resize handles.\" width=\"300px\" /></p>\n\n<p>If you want to change the <strong>Fill</strong> colour of your text, use the <strong>Fill</strong> colour chooser to select a colour, then select the <strong>Fill</strong> (Bucket) tool and hold your mouse cursor over the text (or if you are using a tablet, tap the text). The text will automatically change colour. Click on the text to make the change:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-fill-bucket.png\" alt=\"The Fill (Bucket) tool.\" width=\"150px\" /></p>\n\n<p>If you want each word in a message to be a different colour, size, and font, follow the process above for each word in your message.</p>\n\n<p>Position your text and/or group of words with the crosshair in the centre of the Paint editor:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-paint-editor-centre.png\" alt=\"The crosshair.\" width=\"400px\" /></p>\n\n<p>To layer your words, use the <strong>Forward</strong> and <strong>Backward</strong> tools:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/from-me-paint-editor-forward-backward.png\" alt=\"The Forward and Backward tools.\" width=\"400px\" /></p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Use the Text tool",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "scratch Use the Text tool Use the Text tool Use the Text tool",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-use-text-tool/9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7/en/images/banner.png",
+        "plainText": "Click on the Fill colour chooser and select the colour that you want for your text: Select the Text tool: Click on the Paint editor and start typing. Click on the Font drop-down menu and select the font that you want: If you want to resize your text, click on the Select (Arrow) tool and select the text, then drag the corner handles to resize the text: If you want to change the Fill colour of your text, use the Fill colour chooser to select a colour, then select the Fill (Bucket) tool and hold your mouse cursor over the text (or if you are using a tablet, tap the text). The text will automatically change colour. Click on the text to make the change: If you want each word in a message to be a different colour, size, and font, follow the process above for each word in your message. Position your text and/or group of words with the crosshair in the centre of the Paint editor: To layer your words, use the Forward and Backward tools:",
+        "description": "Use the Text tool to add text to costumes and backdrops",
+        "lastTested": "2021-03-12",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-use-text-tool",
+      "masterLastCommit": "9b6fde67e4c3d1a7563aa87c1b9061a518c6bbf7",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

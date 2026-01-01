@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1194",
+    "type": "projects",
+    "attributes": {
+      "id": 1194,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Eine Figur duplizieren",
+            "content": "<p>Klicke mit der rechten Maustaste auf deine erste Figur in der Figuren-Liste unter der Bühne (oder auf einem Tablet: tippe und halte die Figur):</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-right-click-sprite.png\" alt=\"Die Figuren-Liste mit der ersten hervorgehobenen Figur und einem Popup-Menü mit den Optionen „Duplizieren“, „Exportieren“ und „Löschen“.\" width=\"300px\" /></p>\n\n<p>Wähle <strong>duplizieren</strong>. Dadurch wird eine Kopie deiner ersten Figur mit dem Suffix „2“ erstellt:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-duplicate-sprite.png\" alt=\"Die Figuren-Liste zeigt die erste Figur und die neue (duplizierte) Figur.\" width=\"300px\" /></p>\n\n<p>Eine Figur umbenennen:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-rename-sprite.png\" alt=\"Der Figuren-Bereich mit hervorgehobenem „Figuren“-Feld.\" width=\"300px\" /></p>\n\n<p>Der Name deiner Figur ändert sich in der Figuren-Liste:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/challenge1-sprite-list.png\" alt=\"Die Figuren-Liste zeigt die duplizierte Figur mit einem neuen Namen.\" width=\"300px\" /></p>\n\n<p>Deine zweite Figur hat genau denselben Code wie die erste Figur. Führe das Programm erst aus, wenn du begonnen hast, den Code der zweiten Figur zu ändern. Möglicherweise siehst du die zweite Figur nicht, weil es sich unter der ersten Figur befindet.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Eine Figur duplizieren (kopieren)",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Eine Figur duplizieren (kopieren)",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-duplicate-sprite/32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01/de-DE/images/banner.png",
+        "plainText": "Klicke mit der rechten Maustaste auf deine erste Figur in der Figuren-Liste unter der Bühne (oder auf einem Tablet: tippe und halte die Figur): Wähle duplizieren. Dadurch wird eine Kopie deiner ersten Figur mit dem Suffix „“ erstellt: Eine Figur umbenennen: Der Name deiner Figur ändert sich in der Figuren-Liste: Deine zweite Figur hat genau denselben Code wie die erste Figur. Führe das Programm erst aus, wenn du begonnen hast, den Code der zweiten Figur zu ändern. Möglicherweise siehst du die zweite Figur nicht, weil es sich unter der ersten Figur befindet.",
+        "description": "Dupliziere (kopiere) eine Figur mit Skripten, Kostümen und Klänge in Scratch 3",
+        "lastTested": "2021-03-03",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-duplicate-sprite",
+      "masterLastCommit": "32aeedbf4df6497cd9210fc4d5b6e1e5b9700e01",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

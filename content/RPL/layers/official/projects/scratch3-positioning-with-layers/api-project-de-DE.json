@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1210",
+    "type": "projects",
+    "attributes": {
+      "id": 1210,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Figuren mit Ebenen positionieren",
+            "content": "<p>Es gibt zwei Möglichkeiten, die Figuren in Ebenen anzuordnen.</p>\n\n<p>Du kannst eine Figur auf der Bühne ziehen, um es in die vordere Ebene zu verschieben:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-positioning-with-layers/9be6734318b95aa3d10f434d5ab0411ecf0dc6ee/de-DE/images/drag-sprite-change-layers.gif\" alt=\"Ziehe eine Figur auf der Bühne, um sie nach vorne zu verschieben. Ziehe dann eine andere Figur auf der Bühne, um diese nach vorne zu verschieben.\" width=\"300px\" /></p>\n\n<p>Du kannst auch einen Block vom Typ <code class=\"block3looks\">gehe zu vorderster Ebene</code> oder <code class=\"block3looks\">gehe zu hinterster Ebene</code> verwenden, um eine Figur zu positionieren.</p>\n\n<p>Wenn du eine Figur immer im <code class=\"block3looks\">Vordergrund</code> oder <code class=\"block3looks\">Hintergrund</code> halten möchtest, kannst du eine <code class=\"block3control\">wiederhole fortlaufend</code> Schleife verwenden, um die Figur immer wieder in die gewünschte Ebene zu holen, solltest du sie versehentlich woanders hin bewegen:</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked\nforever\ngo to [vorderster v] layer // oder hinterster\n</code></pre>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Figuren mit Ebenen positionieren",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "scratch Figuren mit Ebenen positionieren Figuren mit Ebenen positionieren Figuren mit Ebenen positionieren",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-positioning-with-layers/9be6734318b95aa3d10f434d5ab0411ecf0dc6ee/de-DE/images/banner.png",
+        "plainText": "Es gibt zwei Möglichkeiten, die Figuren in Ebenen anzuordnen. Du kannst eine Figur auf der Bühne ziehen, um es in die vordere Ebene zu verschieben: Du kannst auch einen Block vom Typ gehe zu vorderster Ebene oder gehe zu hinterster Ebene verwenden, um eine Figur zu positionieren. Wenn du eine Figur immer im Vordergrund oder Hintergrund halten möchtest, kannst du eine wiederhole fortlaufend Schleife verwenden, um die Figur immer wieder in die gewünschte Ebene zu holen, solltest du sie versehentlich woanders hin bewegen: when flag clicked forever go to [vorderster v] layer // oder hinterster",
+        "description": "Du kannst Figuren so positionieren, dass sie vor oder hinter anderen Figuren erscheinen",
+        "lastTested": "2021-03-11",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "orange"
+      },
+      "repositoryName": "scratch3-positioning-with-layers",
+      "masterLastCommit": "9be6734318b95aa3d10f434d5ab0411ecf0dc6ee",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

@@ -1,0 +1,60 @@
+{
+  "data": {
+    "id": "1057",
+    "type": "projects",
+    "attributes": {
+      "id": 1057,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Hosting an image in Google Drive",
+            "content": "<p>Follow these instructions to host an image in Google Drive and get a link that you can use to include that image for download in programs, web pages, etc.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" />\n  <div class=\"c-project-task__body\">\n    <p>Go to <a href=\"https://drive.google.com/\">drive.google.com</a> and drag an image from your computer to the drive. Wait for it to finish uploading.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" />\n  <div class=\"c-project-task__body\">\n    <p>Once the image is in drive, right-click on it and choose ‘Get shareable link’.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/get_shareable_link.png\" alt=\"The Google Drive 'Get link' dialogue.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" />\n  <div class=\"c-project-task__body\">\n    <p>In the dialogue that opens, change who has permission to view the image from ‘Restricted’ to ‘Anyone with the link’</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/link_permissions.png\" alt=\"The Google Drive 'Get link' dialogue, with the permissions menu open.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" />\n  <div class=\"c-project-task__body\">\n    <p>There should now be a link highlighted in the dialogue box.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/link_updated.png\" alt=\"The Google Drive 'Get link' dialogue, showing that anyone with the link can access the file. The link to the file is highlighted.\" /></p>\n\n<p>In this link you can find the ID code for the file between <code>/d/</code> and <code>/view?usp=sharing</code>. It should look something like this:</p>\n\n<pre><code>1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy\n</code></pre>\n\n<p>Copy this ID.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" />\n  <div class=\"c-project-task__body\">\n    <p>Use the ID you have just copied to complete this URL, inserting it in place of <code>[IMAGE ID]</code>:</p>\n\n<pre><code>https://drive.google.com/uc?export=download&amp;id=[IMAGE ID]\n</code></pre>\n\n<p>You should get something like this:</p>\n\n<pre><code>https://drive.google.com/uc?export=download&amp;id=1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy\n</code></pre>\n\n<p>This is the link you need to include in your code to allow the image to be downloaded.</p>\n\n  </div>\n</div>\n\n",
+            "position": 0,
+            "challenge": false
+          }
+        ],
+        "title": "Hosting an image in Google Drive",
+        "listed": false,
+        "version": 4,
+        "keywords": "Hosting an image in Google Drive",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/banner.png",
+        "plainText": "Follow these instructions to host an image in Google Drive and get a link that you can use to include that image for download in programs, web pages, etc. Go to drive.google.com and drag an image from your computer to the drive. Wait for it to finish uploading. Once the image is in drive, right-click on it and choose ‘Get shareable link’. In the dialogue that opens, change who has permission to view the image from ‘Restricted’ to ‘Anyone with the link’ There should now be a link highlighted in the dialogue box. In this link you can find the ID code for the file between /d/ and /view?usp=sharing. It should look something like this: 1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy Copy this ID. Use the ID you have just copied to complete this URL, inserting it in place of [IMAGE ID]: https://drive.google.com/uc?export=download&id=[IMAGE ID] You should get something like this: https://drive.google.com/uc?export=download&id=1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy This is the link you need to include in your code to allow the image to be downloaded.",
+        "description": "generic-google-drive-image description",
+        "lastTested": "2020-09-16",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "generic-google-drive-image",
+      "masterLastCommit": "46584a6d08e1459a1f4a51b48b343f831cdead25",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

@@ -1,0 +1,89 @@
+id: '134'
+slug: scratch-intro
+title: Einführung in Scratch
+description: >-
+  In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie
+  du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein
+  Spiel, eine App und ein Buch erstellst.
+projects:
+  - slug: space-talk
+    category: explore
+  - slug: catch-the-bus
+    category: explore
+  - slug: find-the-bug
+    category: explore
+  - slug: silly-eyes
+    category: design
+  - slug: surprise-animation
+    category: design
+  - slug: i-made-you-a-book
+    category: invent
+header:
+  - title: Was werde ich erschaffen?
+    content: >
+      <p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.
+
+      Am Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein
+      digitales Buch mit mehreren Seiten zu schreiben.</p>
+  - title: Was muss ich wissen?
+    content: |
+      <p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>
+  - title: Was benötige ich?
+    content: >
+      <p>Dieser Pfad erfordert:</p>
+
+
+      <p>– Desktop-Computer, Laptop, Tablet, Mobilgerät oder Raspberry
+      Pi-Computer
+
+      – Zugang zum Internet, um Scratch online zu nutzen oder die Möglichkeit,
+      Scratch herunterzuladen und zu installieren. Weitere Informationen findest
+      du in unserem <a
+      href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/1"
+      target="_blank">Scratch EInführungsleitfaden</a>
+
+      - Optional ein <a
+      href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/2"
+      target="_blank">Scratch Account</a></p>
+  - title: Informationen für den Mentor
+    content: >
+      <h2 id="make">321…Make!</h2>
+
+      <p>Dieser Pfad folgt der Anleitung <a
+      href="https://projects.raspberrypi.org/en/projects/321-make-mentor-guide"
+      target="_blank">321…Make!</a>:</p>
+
+
+      <p>– <strong>3 Erkunden</strong>-Projekte: Vermitteln Sie Ihren Lernende
+      einige Fähigkeiten und geben Sie ihnen Schritt-für-Schritt-Anleitungen,
+      die ihnen dabei helfen, erstes Selbstvertrauen zu entwickeln.
+
+      – <strong>2 Gestalten</strong>-Projekte: Ermöglichen Sie Ihren Lernenden,
+      Fähigkeiten aus den Erkunden-Projekten zu üben und sich kreativ
+      auszudrücken, während sie selbständiger werden.
+
+      – <strong>1 Erfinden</strong>-Projekt: Ermutigen Sie Ihre Lernende, ihre
+      Fähigkeiten einzusetzen, um ein einzigartiges Projekt zu erstellen, das
+      den Projektvorgaben für ein bestimmtes Publikum entspricht.</p>
+
+
+      <h2 id="schnellquiz">Schnellquiz</h2>
+
+      <p>Jedes Projekt enthält ein Schnellquiz mit drei Multiple-Choice-Fragen.
+      Maker werden durch nützliches Feedback zur richtigen Antwort geführt und
+      erhalten ein Projektabzeichen.</p>
+
+
+      <h2 id="die-community-inspirieren">Die Community inspirieren</h2>
+
+      <p>Lernende werden ermutigt, andere in der
+      Raspberry-Pi-Foundation-Community zu inspirieren, indem sie ihre
+      Gestalten- und Erfinden-Projekte über das <a
+      href="https://form.raspberrypi.org/f/community-project-submissions"
+      target="_blank">Projekteinreichungsformular</a> mit uns teilen. Projekte
+      werden in unseren Community-Galerien geteilt.
+
+      Wie Sie <a
+      href="https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9"
+      target="_blank">Projekte teilen</a>, erfahren Sie in unserer
+      Anleitung.</p>

@@ -1,0 +1,64 @@
+{
+  "data": {
+    "id": "1112",
+    "type": "projects",
+    "attributes": {
+      "id": 1112,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Comments and feedback in Scratch",
+            "content": "<p>Scratch provides the ability to comment on your own and other people’s projects. If you do not want to allow people to comment on your project, you should turn off commenting. To turn off commenting, go to the Project Page and set the slider above the <strong>Comments</strong> box to <strong>Commenting off</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/en/images/comments-off.png\" alt=\"The slider above the 'Comments' box is in the 'Commenting off' position. A message is shown saying &quot;Sorry, comment posting has been turned off for this project.&quot;\" width=\"300px\" /></p>\n\n<p>If you are happy and feel safe to allow people to write comments on your project, you can leave the first comment:</p>\n\n<div class=\"u-no-print\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/en/images/add_comments.gif\" alt=\"Typing &quot;Here's my walking cat animation&quot; in the 'Comments' box, then clicking the blue 'Post' button below the comment to post it. The slider above the 'Comments' box is in the 'Commenting on' position.\" /></p>\n\n</div>\n\n<div class=\"u-print-only\">\n\n  <p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/en/images/add_comments.png\" alt=\"Clicking the blue 'Post' button below the comment to post it. The slider above the 'Comments' box is in the 'Commenting on' position.\" width=\"300px\" /></p>\n\n</div>\n\n<p>If you think a comment or project is mean, insulting, too violent, or otherwise inappropriate, click the <strong>Report</strong> button to let the Scratch Team know about it. To report a comment, click the <strong>Report</strong> button above the comment. To report a project, click the <strong>Report</strong> button on the Project Page:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/en/images/add_report.png\" alt=\"The 'Report' button highlighted.\" width=\"250px\" /></p>\n\n<p>Read the <a href=\"https://scratch.mit.edu/community_guidelines\" target=\"_blank\">Scratch Community Guidelines</a> so that you know how you and others can maintain a friendly and creative community.</p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Comments and feedback in Scratch",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Comments and feedback in Scratch",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/comments-feedback-scratch/dde8aef79921e084194045a43e523a918398e6f8/en/images/banner.png",
+        "plainText": "Scratch provides the ability to comment on your own and other people’s projects. If you do not want to allow people to comment on your project, you should turn off commenting. To turn off commenting, go to the Project Page and set the slider above the Comments box to Commenting off: If you are happy and feel safe to allow people to write comments on your project, you can leave the first comment: If you think a comment or project is mean, insulting, too violent, or otherwise inappropriate, click the Report button to let the Scratch Team know about it. To report a comment, click the Report button above the comment. To report a project, click the Report button on the Project Page: Read the Scratch Community Guidelines so that you know how you and others can maintain a friendly and creative community.",
+        "description": "Comments and feedback in Scratch",
+        "lastTested": "2020-11-27",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "comments-feedback-scratch",
+      "masterLastCommit": "dde8aef79921e084194045a43e523a918398e6f8",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

@@ -1,0 +1,63 @@
+{
+  "data": {
+    "id": "569",
+    "type": "projects",
+    "attributes": {
+      "id": 569,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Add a backdrop from the Backdrop Library",
+            "content": "<p>Click on <strong>Choose a Backdrop</strong> in the bottom right-hand corner of the screen to open the Backdrop Library:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/en/images/stage-choose.png\" alt=\"The 'Choose a Backdrop' icon highlighted.\" /></p>\n\n<p>You can search for a backdrop, or browse for one by category. Click on a backdrop to add it to your project.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/en/images/backdrop.png\" alt=\"The Backdrop Library.\" /></p>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Add a backdrop from the Backdrop Library",
+        "listed": false,
+        "copyedit": true,
+        "keywords": "Add a backdrop from the Backdrop Library",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/generic-scratch3-backdrop-from-library/ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a/en/images/banner.png",
+        "ingredient": true,
+        "plainText": "Click on Choose a Backdrop in the bottom right-hand corner of the screen to open the Backdrop Library: You can search for a backdrop, or browse for one by category. Click on a backdrop to add it to your project.",
+        "description": "Add a backdrop from the Backdrop Library",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [],
+        "theme": "blue"
+      },
+      "repositoryName": "generic-scratch3-backdrop-from-library",
+      "masterLastCommit": "ad63ff5b9fd60579e1319f67a1d11e9d8b7ab66a",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

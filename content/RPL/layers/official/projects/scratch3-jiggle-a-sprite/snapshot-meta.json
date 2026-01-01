@@ -1,0 +1,156 @@
+{
+  "tutorial": "scratch3-jiggle-a-sprite",
+  "timestamp": "2025-12-31T12:35:11.110Z",
+  "languages": [
+    "en",
+    "de-DE"
+  ],
+  "paths": {
+    "repository": "content/RPL/projects/scratch3-jiggle-a-sprite/repo",
+    "api": {
+      "en": {
+        "projects": {
+          "file": "content/RPL/projects/scratch3-jiggle-a-sprite/api-project-en.json",
+          "data": {
+            "data": {
+              "id": "1211",
+              "type": "projects",
+              "attributes": {
+                "id": 1211,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Jiggle a sprite",
+                      "content": "<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-jiggle-a-sprite/c89b8ba86e760bb22bce92eca1275aa3b54dc302/en/images/jiggle.png\" alt=\"A strip of images showing a rock sprite at different angles to demonstrate that jiggling is turning a sprite slighlty to and fro.\" /></p>\n\n<pre><code class=\"language-blocks3\">repeat [8]\nturn left [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn left [15] degrees\nwait [0.1] seconds\nend\n</code></pre>\n\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Jiggle a sprite",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "scratch Jiggle a sprite Jiggle a sprite Jiggle a sprite",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-jiggle-a-sprite/c89b8ba86e760bb22bce92eca1275aa3b54dc302/en/images/banner.png",
+                  "plainText": "repeat [] turn left [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn left [] degrees wait [.] seconds end",
+                  "description": "Jiggle a sprite",
+                  "lastTested": "2021-03-11",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "en",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "blue"
+                },
+                "repositoryName": "scratch3-jiggle-a-sprite",
+                "masterLastCommit": "c89b8ba86e760bb22bce92eca1275aa3b54dc302",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "en",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      },
+      "de-DE": {
+        "projects": {
+          "file": "content/RPL/projects/scratch3-jiggle-a-sprite/api-project-de-DE.json",
+          "data": {
+            "data": {
+              "id": "1211",
+              "type": "projects",
+              "attributes": {
+                "id": 1211,
+                "content": {
+                  "steps": [
+                    {
+                      "quiz": false,
+                      "title": "Eine Figur zum wackeln bringen",
+                      "content": "<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-jiggle-a-sprite/c89b8ba86e760bb22bce92eca1275aa3b54dc302/de-DE/images/jiggle.png\" alt=\"Einige Bilder, die eine Fels Figur mit verschiedenen Drehungen zeigt, um zu veranschaulichen, dass das Wackeln einer Figur erzeugt wird, indem die Figur leicht hin und her gedreht wird.\" /></p>\n\n<pre><code class=\"language-blocks3\">repeat [8]\nturn left [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn right [15] degrees\nwait [0.1] seconds\nturn left [15] degrees\nwait [0.1] seconds\nend\n</code></pre>\n\n",
+                      "position": 0,
+                      "challenge": false,
+                      "completion": [],
+                      "ingredients": [],
+                      "knowledgeQuiz": {}
+                    }
+                  ],
+                  "title": "Eine Figur zum wackeln bringen",
+                  "listed": false,
+                  "version": 4,
+                  "copyedit": false,
+                  "keywords": "scratch Eine Figur zum wackeln bringen Eine Figur zum wackeln bringen Eine Figur zum wackeln bringen",
+                  "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-jiggle-a-sprite/c89b8ba86e760bb22bce92eca1275aa3b54dc302/de-DE/images/banner.png",
+                  "plainText": "repeat [] turn left [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn right [] degrees wait [.] seconds turn left [] degrees wait [.] seconds end",
+                  "description": "Eine Figur zum wackeln bringen",
+                  "lastTested": "2021-03-11",
+                  "technologyLabels": [],
+                  "interestLabels": [],
+                  "hardwareLabels": [],
+                  "primaryTechnology": null,
+                  "difficultyLevel": null,
+                  "badgeTemplateId": null,
+                  "providerId": null,
+                  "locale": "de-DE",
+                  "editorStarterProject": null,
+                  "hardware": [],
+                  "software": [
+                    "scratch"
+                  ],
+                  "theme": "blue"
+                },
+                "repositoryName": "scratch3-jiggle-a-sprite",
+                "masterLastCommit": "c89b8ba86e760bb22bce92eca1275aa3b54dc302",
+                "archived": false,
+                "unskippable": false,
+                "template": null,
+                "pathwayStep": null,
+                "editorStarterProject": null,
+                "directToEditor": false,
+                "locale": "de-DE",
+                "recommendedProjects": [],
+                "nextPathway": null,
+                "recommendedPathways": [],
+                "nextProject": null,
+                "nextPathwayProject": null
+              },
+              "relationships": {
+                "pathways": {
+                  "data": []
+                }
+              }
+            },
+            "included": []
+          }
+        }
+      }
+    }
+  },
+  "pathways": null
+}

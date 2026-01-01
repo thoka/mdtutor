@@ -26,12 +26,13 @@ Build a local, intranet-compatible learning environment for Makerspace use with:
 - **Updates**: Manually managed, no automatic sync
 
 ### 4. Architecture Principles
-- **Coupling**: Loosely coupled, independent modules
-- **Usage**: Components usable via CLI and other tools
+- **Ecosystems**: Grouping content by technical standard and shared vocabulary (e.g., RPL).
+- **Layering**: Support for prioritized overlays (Local Forks > Community > Official).
+- **GIDs**: Global identifiers for semantical tracking of projects, steps, and assets.
 - **Technology**: 
-  - Frontend: unified.js pipeline (remark/rehype)
-  - Backend: Ruby (future), simple mocks initially
-  - Rendering: Client-side, server-side, and headless browser support
+  - Frontend: Svelte 5 + Runes
+  - Backend: Express (mocking RPL API structure)
+  - Parser: unified.js pipeline (remark/rehype) with semantic enrichment
 
 ### 5. Help Desk System
 

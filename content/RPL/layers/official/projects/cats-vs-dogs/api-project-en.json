@@ -1,0 +1,367 @@
+{
+  "data": {
+    "id": "1115",
+    "type": "projects",
+    "attributes": {
+      "id": 1115,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Introduction",
+            "content": "<h2 id=\"introduction\">Introduction</h2>\n\n<h3 id=\"what-you-will-make\">What you will make</h3>\n\n<p>You will take an existing model trained to recognise lots of different kinds of images and retrain it to determine whether an image shows dogs or cats. The existing model already knows how to identify interesting features of an image. You will retrain the final layer of the model, which decides what those interesting features make up.</p>\n\n<p>You will also measure how well the model can do this new job, and show how much you’ve improved on the original model in this task.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    What you should already know\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>This project assumes you already know some Python. Specifically, it assumes you know how to use:</p>\n\n<ul>\n  <li>Variables</li>\n  <li>Lists</li>\n  <li>Functions, including creating your own function that accepts parameters</li>\n</ul>\n\n<p>The project also assumes that you know the basics of how to interact with an image classifying model and get a prediction from it. If you don’t, you can learn this in the <a href=\"https://projects.raspberrypi.org/en/projects/testing-your-computers-vision\">‘Testing your computer’s vision’ project</a>.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    What you will need\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <ul>\n  <li>A computer</li>\n  <li>An internet connection</li>\n  <li>A Google account</li>\n</ul>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    What you will learn\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <ul>\n  <li>The structure of image recognition models</li>\n  <li>How those models are trained</li>\n  <li>How to measure how well a model works</li>\n</ul>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Additional information for educators\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>If you need to print this project, please use the <a href=\"https://projects.raspberrypi.org/en/projects/cats-vs-dogs/print\" target=\"_blank\">printer-friendly version</a>.</p>\n\n<p><a href=\"https://rpf.io/p/en/cats-vs-dogs-go\">Here is a link to the resources for this project</a>.</p>\n\n  </div>\n</div>\n\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Prepare the model for retraining",
+            "content": "<h2 id=\"prepare-your-model-for-retraining\">Prepare your model for retraining</h2>\n\n<p>Instead of training a whole new model, for this project you’ll load an existing one, called MobileNetV2, and change what it classifies. The MobileNetV2 model is trained to classify lots of different images, which means it is already trained to identify interesting features of an image. So retraining it to use these features to recognise cats or dogs will be much quicker than if you created an ‘Is this a cat or a dog?’ model from scratch.</p>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    What is a machine learning model?\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>A model is a set of rules a computer has learned to complete a task, such as determining what is in a picture it’s shown.</p>\n\n<p>These rules are divided up into <strong>layers</strong>. Each layer looks at the results of the one before it and tests them against some rules to decide what results to pass to the next layer.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/neural_network_diagram.png\" alt=\"A single black circle connected by arrows to each circle in a column of three pink circles. Each of those circles is in turn connected by arrows to both circles in a column of two pink circles, each of which is connected by arrows to all of the circles in a column of four pink circles. Finally, those four circles are connected by arrows to two green circles.\" /></p>\n\n<p>Within each layer there are nodes, which have each learned a rule while the model was being trained, and will test it and produce a result when the model is predicting.</p>\n\n<p>The very first layer is the input to the model — an image in this case. The first layer is often called the input layer for this reason. The last (output) layer of a classifier model like this will always have a number of nodes equal to the number of classifications the model is trained to identify. For example, in the model for this project, there will be two nodes in the final layer, as it will classify its inputs into either pictures of dogs or pictures of cats.</p>\n\n  </div>\n</div>\n\n<p>A Google Colab project has been prepared for you with some starter code. The first thing to do is to open that up and save your own copy to work on.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Open the <a href=\"https://colab.research.google.com/drive/1uKqhEOSu9pIKVwgw4GOHqeq-jzPaYYMH#scrollTo=gebsfn75wKRg\" target=\"_blank\">Google Colab starter notebook</a>  for this project in a new tab in your browser.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Before you start changing anything, make sure you save the notebook to your drive so you can keep your work! Choose <code>File &gt; Save a copy in Drive</code> and sign in to your Google account if prompted.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/save_to_drive.png\" alt=\"The 'File' menu in Google Colab, with 'Save a copy in Drive' highlighted.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>First, define the size of the images that you will use. The dataset that you’ll use to train the model is made up of 160x160 pixel images and that value is already stored in an <code>IMAGE_SIZE</code> variable. However, because of how colour works on computers, the images are actually three sets of 160x160 pixels — one each of the red, blue, and green values that combine to form the colour displayed at any given pixel. You can see more details on this below.</p>\n\n<p>In the first empty cell, create an <code>IMAGE_SHAPE</code> variable:</p>\n\n<pre><code class=\"language-python3\">IMAGE_SHAPE = (IMAGE_SIZE, IMAGE_SIZE, 3)\n</code></pre>\n\n<p>This tells the program that images will be 160x160 pixels, with three layers of colour.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Representing colours with numbers\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>The colour of an object depends on the colour of the light that it reflects or emits. Light can have different wavelengths, and the colour of light depends on the wavelength it has. The colour of light according to its wavelength can be seen in the diagram below. You might recognise this as the colours of the rainbow.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-theory-colours/1cc9d915f17651ff3b6939d429a081a16d4726d9/en/images/linear-visible-spectrum.png\" alt=\"Visible spectrum\" /></p>\n\n<p>Humans see colour because of special cells in our eyes. These cells are called <em>cones</em>. We have three types of cone cells, and each type detects either red, blue, or green light. Therefore all the colours that we see are just mixtures of the colours red, blue, and green.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/generic-theory-colours/1cc9d915f17651ff3b6939d429a081a16d4726d9/en/images/additive-colour-mixing.png\" alt=\"Additive colour mixing\" /></p>\n\n<p>In additive colour mixing, three colours (red, green, and blue) are used to make other colours. In the image above, there are three spotlights of equal brightness, one for each colour. In the absence of any colour the result is black. If all three colours are mixed, the result is white. When red and green combine, the result is yellow. When red and blue combine, the result is magenta. When blue and green combine, the result is cyan. It’s possible to make even more colours than this by varying the brightness of the three original colours used.</p>\n\n<p>Computers store everything as 1s and 0s. These 1s and 0s are often organised into sets of 8, called <strong>bytes</strong>.</p>\n\n<p>A single <abbr title=\"A set of 8 bits, for example 10011001\">byte</abbr> can represent any number from 0 up to 255.</p>\n\n<p>When we want to represent a colour in a computer program, we can do this by defining the amounts of red, blue, and green that make up that colour. These amounts are usually stored as a single <abbr title=\"A set of 8 bits, for example 10011001\">byte</abbr> and therefore as a number between 0 and 255.</p>\n\n<p>Here’s a table showing some colour values:</p>\n\n<table>\n  <thead>\n    <tr>\n      <th>Red</th>\n      <th>Green</th>\n      <th>Blue</th>\n      <th>Colour</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>255</td>\n      <td>0</td>\n      <td>0</td>\n      <td>Red</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>255</td>\n      <td>0</td>\n      <td>Green</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>0</td>\n      <td>255</td>\n      <td>Blue</td>\n    </tr>\n    <tr>\n      <td>255</td>\n      <td>255</td>\n      <td>0</td>\n      <td>Yellow</td>\n    </tr>\n    <tr>\n      <td>255</td>\n      <td>0</td>\n      <td>255</td>\n      <td>Magenta</td>\n    </tr>\n    <tr>\n      <td>0</td>\n      <td>255</td>\n      <td>255</td>\n      <td>Cyan</td>\n    </tr>\n  </tbody>\n</table>\n\n<p>You can find a nice <a href=\"https://www.w3schools.com/colors/colors_rgb.asp\" target=\"_blank\">colour picker to play with at w3schools</a>.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Now, below your <code>IMAGE_SHAPE</code> variable, import the MobileNetV2 model — which is trained to identify loads of different objects — pass it your <code>IMAGE_SHAPE</code> as its <code>input_shape</code> and store it in an <code>original_model</code> variable.</p>\n\n<pre><code class=\"language-python\">original_model = tf.keras.applications.MobileNetV2(input_shape=IMAGE_SHAPE)\n</code></pre>\n\n  </div>\n</div>\n\n<p>Since MobileNetV2 is designed to run on a mobile device with limited battery, like a phone, it’s not as large or as powerful as some other models. This means it doesn’t always make the best guesses. Before you start changing it, test how good it is by asking it to identify a photo of a dog. Functions to let you do this easily have already been included in the notebook, but to understand how they work, check out the <a href=\"https://projects.raspberrypi.org/en/projects/testing-your-computers-vision\" target=\"_blank\">‘Testing your computer’s vision’ project</a>.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below the model import, add this line:</p>\n\n<pre><code class=\"language-python\">predict_with_old_model('https://dojo.soy/predict-dog')\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Now run all the code and see how good the model’s predictions are!</p>\n\n<p>You can run all the code by opening the <code>Runtime</code> menu and choosing <code>Run all</code>. The first time you do this, it might take a while, because your program will have to download a lot of data both for the training dataset and the model itself.</p>\n\n  </div>\n</div>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/dog_prediction_original.png\" alt=\"The 'File' menu in Google Colab, with 'Save a copy in Drive' highlighted.\" /></p>\n\n<p>There are a couple of dog breeds in there, but most of the model’s preferred classifications aren’t very good! That’s why you’re going to improve it!</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Remove the call to <code>predict_with_old_model</code>. You only needed it for testing.</p>\n\n  </div>\n</div>\n\n<p>You need to remove the top layer from the existing MobileNetV2 model. This is where the model decides which of the objects it’s been trained to identify are in the image, so you need to remove it to add your own layers related to cats and dogs. You can do this when you load the model.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/layer_change.png\" alt=\"The same layer diagram of black, pink, and green circles as at the beginning of this step. However, the final layer shows a set of several blue dots being removed to be replaced by a pair of green dots.\" /></p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Update the line where you load the <code>original_model</code> to add the <code>include_top</code> parameter and set it to <code>False</code>.</p>\n\n<pre><code class=\"language-python\">original_model = tf.keras.applications.MobileNetV2(input_shape=IMAGE_SHAPE, include_top=False)\n</code></pre>\n\n  </div>\n</div>\n\n<p>Finally, because you don’t want to change anything else in the original model, you should set it to be untrainable.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below the line where you create <code>original_model</code>, set its <code>trainable</code> property to <code>False</code>.</p>\n\n<pre><code class=\"language-python\">original_model.trainable = False\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Save your project\n  </h3>\n</div>\n\n",
+            "position": 1,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [
+              "generic-theory-colours"
+            ],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Get and split training data",
+            "content": "<h2 id=\"get-and-split-training-data\">Get and split training data</h2>\n\n<p>Next, you’ll need to train a model with some data. Models learn from examples, usually thousands of them, and use those to create their own rules. Some of those rules may be to recognise parts and then combine that recognition into a whole. This can lead to problems if you’re not using varied data to train your model. For example, if the training data for a cats vs dogs classifer has no pictures of black dogs, but many of black cats, the model may learn the rule ‘black = cat’. This would cause problems if you later tried to classify pictures of a black dog. So you have to make sure that the full variety of things the model may eventually be asked to classify are represented. However, for this project, you will use an existing dataset of cats and dogs that is provided by the TensorFlow library, so someone has already done that work for you.</p>\n\n<p>It’s worth noting that one of the cool things about machine learning models is that they remember everything they learned from the training data, without needing to store the training data itself. This means you can use millions of images to train a model without making the model any bigger than if you’d used a few hundred images! However, a model trained on millions of images will be much better at guessing things correctly than one trained on a few hundred.</p>\n\n<p>There’s already some code in the second cell that loads the <code>cats_vs_dogs</code> training data. This data is a collection of image files and <strong>labels</strong> for these files, it tells the computer which image is of a cat, and which of a dog.</p>\n\n<pre><code class=\"language-python\">import tensorflow_datasets as tfds\n(raw_training, raw_validation, raw_testing), metadata = tfds.load(\n    'cats_vs_dogs',\n    split=['train[:80%]', 'train[80%:90%]', 'train[90%:]'],\n    with_info=True,\n    as_supervised=True,\n)\n</code></pre>\n\n<p>The data gets broken into three groups, with the percentages defined in the <code>split</code> parameter of the load call:</p>\n\n<p>Training data: Used to train the model — to learn rules and decide how important they are.</p>\n\n<p>Validation data: Used to evaluate how well the model is performing while it is being trained. It is checked regularly during the training process. It has to be separate to the training data, or the model might learn only the exact images in the training data, with no general rules for identifying a dog or cat.</p>\n\n<p>Testing data: Not used during the training process, but is used to evaluate how well it performs on unseen data. This check is used to avoid the risk of <strong>overfitting</strong>, where the model learns rules that are specific to the training and validation datasets, but do not apply to all cats and dogs.</p>\n\n<p>The data in those three groups needs to be broken into <strong>batches</strong> — groups of images. Each batch gets used to train the model before the model’s <strong>weights</strong>, which define how important each rule is, get updated. The bigger the batch, the longer the gap between updates.</p>\n\n<p>There’s no real rule for how big your batches should be, and it may be worth experimenting with different batch sizes on different data, to see if you get better results. Smaller batches can also help you train a model on a computer with less memory (for example, on a Raspberry Pi). Popular sizes are 32, 64, 128, and 256. It is possible to use batches as small as a single image, or as large as your whole dataset. For now, you’ll use 32.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>In the second blank cell in the notebook, create a <code>BATCH_SIZE</code> variable with the value of 32.</p>\n\n<pre><code class=\"language-python\">BATCH_SIZE = 32\n</code></pre>\n\n  </div>\n</div>\n\n<p>The use of upper case letters here is a convention for variables that are manually set by the programmer, but not changed in the course of the program. You could just enter 32 directly where the variable gets used, but this makes it easier to update later.</p>\n\n<p>Each batch is chosen randomly from a <strong>shuffle buffer</strong> of images selected from the full test, validation, or training dataset. You have to define the size of this buffer. The bigger it is, the more randomly shuffled your images will be, which is usually a good thing, but the slower the program will run. Again, start by creating a variable for the buffer size.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below your previous <code>BATCH_SIZE</code> variable, add this code:</p>\n\n<pre><code class=\"language-python\">SHUFFLE_BUFFER_SIZE = 1000\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Now that you’ve set your batch and buffer sizes, you need to break your training, validation, and testing data up into batches. This code creates the shuffle buffers and chooses the batches from them. Add it below the two variables you just created.</p>\n\n<pre><code class=\"language-python\">training_batches = training_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)\nvalidation_batches = validation_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)\ntesting_batches = testing_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE)\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Save your project\n  </h3>\n</div>\n\n",
+            "position": 2,
+            "challenge": false,
+            "completion": [
+              "engaged"
+            ],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Add your new layers",
+            "content": "<h2 id=\"add-your-new-layers\">Add your new layers</h2>\n\n<p>In order to train the MobileNetV2 model you’ve loaded to identify cats and dogs, you need to add two layers to it. One to convert the existing outputs of the model into a format that makes sense for your images, and the other to give the final classification of the image as either a cat or a dog.</p>\n\n<p>The model doesn’t actually know these are cats and dogs, of course, it’s just using the two nodes to represent two different categories of things. Which category is cats, and which is dogs, is something that the pre-written <code>predict_image</code> function — which you’ll use to test images later — will translate for you by using the <strong>labels</strong> that came with the original training data.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>In the next blank cell in the notebook, add this line of code to create the layer that reshapes the outputs of the existing model and stores it in a variable.</p>\n\n<pre><code class=\"language-python\">global_average_layer = tf.keras.layers.GlobalAveragePooling2D()\n</code></pre>\n\n  </div>\n</div>\n\n<p>You just used that layer type as TensorFlow supplies it, but for the next one you need to take what you know about your data and apply it: because this classifier has to decide between two classes, its output should be two numbers. The higher number will indicate the predicted class.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below the <code>global_average_layer</code>, add a variable for <code>prediction_layer</code>:</p>\n\n<pre><code class=\"language-python\">prediction_layer = tf.keras.layers.Dense(2)\n</code></pre>\n\n  </div>\n</div>\n\n<p>Now you need to put your layers together with the original model you imported. This is done by using the <code>Sequential</code> function, because you assemble them in the sequence you pass them to the function, from bottom to top.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below your <code>prediction_layer</code> variable, add the following code to combine your layers with the MobileNetV2 model.</p>\n\n<pre><code class=\"language-python\">model = tf.keras.Sequential([\n  original_model,\n  global_average_layer,\n  prediction_layer\n])\n</code></pre>\n\n<p>This stacks the <code>global_average_layer</code> and the <code>prediction_layer</code> on top of the <code>original_model</code>.</p>\n\n  </div>\n</div>\n\n<p>Next, you have to <strong>compile</strong> your model — convert it into a form that you can train and use to make predictions. To do this, you need to set two values: the <strong>learning rate</strong> of your model, and a <strong>loss function</strong>.</p>\n\n<p>The learning rate tells your model how quickly to learn. You don’t want it too small, as it might take far too long to learn anything. However, you don’t want it too big or your model may rush ahead with the first thing that seems right, and miss an important rule or insight. You’ll use a learning rate of <code>0.0001</code>.</p>\n\n<p>The loss function is how your model checks its performance during training. You’ll use one called cross-entropy loss, which is a good choice for image classification.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below your existing code, create a variable for the base learning rate, then compile the model with that parameter and cross entropy loss. Also, tell the model to print out its accuracy as it is training.</p>\n\n<pre><code class=\"language-python\">BASE_LEARNING_RATE = 0.0001\nmodel.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=BASE_LEARNING_RATE),\n              loss=tf.keras.losses.SparseCategoricalCrossentropy(),\n              metrics=['accuracy'])\n</code></pre>\n\n  </div>\n</div>\n\n<p>Finally, take a look at the model you’ve compiled.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below the code you already have, add this line:</p>\n\n<pre><code class=\"language-python\">model.summary()\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Run all the code in the notebook by opening the <code>Runtime</code> menu and choosing <code>Run all</code>.</p>\n\n  </div>\n</div>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/model_summary.png\" alt=\"The model summary table, displayed as the output of the code in Google Colab.\" /></p>\n\n<p>Look at the summary of the model that’s printed out. In particular, look at the last three lines. This model has over two million parameters, but you’re only training a little over a thousand of them. This is the huge advantage of retraining a model, over building an entirely new one; there’s a lot less to train, so it will train much faster.</p>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Save your project\n  </h3>\n</div>\n\n",
+            "position": 3,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Retrain the model",
+            "content": "<h2 id=\"retrain-the-model\">Retrain the model</h2>\n\n<p>You’ve prepared your data, you’ve built your model, now it’s time to get training!</p>\n\n<p>The first thing you need to do is set the number of <strong>epochs</strong> you’ll train for. An epoch is a complete pass through the training data. Usually, you want to go through the training data multiple times, in order to get the best result. However, each epoch adds to the time it will take to train the model, so you don’t want to use too many. For now, you’ll use ten epochs.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>In the next blank cell, create a <code>TRAINING_EPOCHS</code> variable and set it to <code>10</code>.</p>\n\n<pre><code class=\"language-python\">TRAINING_EPOCHS = 10\n</code></pre>\n\n  </div>\n</div>\n\n<p>However, even with only ten epochs, this is still a lot of data and will take a long time to train. In fact, if you were to train the model right now, it would take over an hour! Luckily, Colab allows you to set your notebook to use GPUs — graphics processing units, the same hardware used for video games — instead of CPUs — central processing units, the general-purpose processor that does most of the work on a computer. Because of the kind of mathematics the computer carries out for machine learning, it turns out the GPUs are much faster than CPUs.</p>\n\n<p>So tell TensorFlow to use the GPU device when it fits your model. You’ll need to provide the training and validation batches you created earlier to the <code>model.fit</code> function.</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Below your <code>TRAINING_EPOCHS</code> line, add the following:</p>\n\n<pre><code class=\"language-python\">with tf.device('/device:GPU:0'):\n  history = model.fit(training_batches,\n                      epochs=TRAINING_EPOCHS,\n                      validation_data=validation_batches)\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Run all the code in the notebook by opening the <code>Runtime</code> menu and choosing <code>Run all</code>.</p>\n\n<p>This is going to take some time, probably more than ten minutes. Leave the tab open and check back about once a minute to see your model printing out the results for each epoch. Watch as the loss goes down and the accuracy goes up!</p>\n\n  </div>\n</div>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/training.png\" alt=\"The output of model training, shows a fall in losses and rise in accuracy.\" /></p>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Save your project\n  </h3>\n</div>\n\n",
+            "position": 4,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          },
+          {
+            "quiz": false,
+            "title": "Test your model",
+            "content": "<h2 id=\"test-your-model\">Test your model</h2>\n\n<p>Now you’ve got a working model, you can use pictures of cats and dogs to test it!</p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>In the last empty cell, add a call to <code>predict_image</code> and pass it the URL to a test image.</p>\n\n<pre><code class=\"language-python\">predict_image('https://rpf.io/dog')\n</code></pre>\n\n  </div>\n</div>\n\n<p>Remember how long all that training took? You don’t want to wait through that every time you want to test an image, so you need to stop using the <code>Run all</code> option. Instead, click the ▶ button that appears to the left of the cell to run only the contents of that cell.</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/run_cell.png\" alt=\"The call to predict_image in a cell, with the ▶ button visible to the left of it.\" /></p>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Run the image prediction code and check out the results!</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--save\">\n  <h3 class=\"c-project-panel__heading\">\n    Save your project\n  </h3>\n</div>\n\n<div class=\"c-project-task\">\n  <input class=\"c-project-task__checkbox\" type=\"checkbox\" aria-label=\"Mark this task as complete\" />\n  <div class=\"c-project-task__body\">\n    <p>Try to load a few different images into it to see what predictions it makes. You’ll have to use images hosted on the internet. You can use the instructions below to store the images in Google Drive and create URLs for them that you can pass to <code>predict_image</code>.<br />\nYou’ll also have to make sure they’re <code>.jpg</code> files, or modify the <code>get_image_from_url</code> function that was supplied with the notebook.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-panel c-project-panel--ingredient\">\n  <h3 class=\"c-project-panel__heading js-project-panel__toggle\">\n    Hosting an image in Google Drive\n  </h3>\n\n  <div class=\"c-project-panel__content u-hidden\">\n    <p>Follow these instructions to host an image in Google Drive and get a link that you can use to include that image for download in programs, web pages, etc.</p>\n\n<div class=\"c-project-task\">\n  <p><input class=\"c-project-task__checkbox\" type=\"checkbox\" /></p>\n  <div class=\"c-project-task__body\">\n    <pre><code>&lt;p&gt;Go to &lt;a href=\"https://drive.google.com/\"&gt;drive.google.com&lt;/a&gt; and drag an image from your computer to the drive. Wait for it to finish uploading.&lt;/p&gt;\n</code></pre>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <p><input class=\"c-project-task__checkbox\" type=\"checkbox\" /></p>\n  <div class=\"c-project-task__body\">\n    <pre><code>&lt;p&gt;Once the image is in drive, right-click on it and choose ‘Get shareable link’.&lt;/p&gt;\n</code></pre>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/get_shareable_link.png\" alt=\"The Google Drive 'Get link' dialogue.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <p><input class=\"c-project-task__checkbox\" type=\"checkbox\" /></p>\n  <div class=\"c-project-task__body\">\n    <pre><code>&lt;p&gt;In the dialogue that opens, change who has permission to view the image from ‘Restricted’ to ‘Anyone with the link’&lt;/p&gt;\n</code></pre>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/link_permissions.png\" alt=\"The Google Drive 'Get link' dialogue, with the permissions menu open.\" /></p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <p><input class=\"c-project-task__checkbox\" type=\"checkbox\" /></p>\n  <div class=\"c-project-task__body\">\n    <pre><code>&lt;p&gt;There should now be a link highlighted in the dialogue box.&lt;/p&gt;\n</code></pre>\n\n    <p><img src=\"https://projects-static.raspberrypi.org/projects/generic-google-drive-image/46584a6d08e1459a1f4a51b48b343f831cdead25/en/images/link_updated.png\" alt=\"The Google Drive 'Get link' dialogue, showing that anyone with the link can access the file. The link to the file is highlighted.\" /></p>\n\n    <p>In this link you can find the ID code for the file between <code>/d/</code> and <code>/view?usp=sharing</code>. It should look something like this:</p>\n\n    <pre><code>1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy\n</code></pre>\n\n    <p>Copy this ID.</p>\n\n  </div>\n</div>\n\n<div class=\"c-project-task\">\n  <p><input class=\"c-project-task__checkbox\" type=\"checkbox\" /></p>\n  <div class=\"c-project-task__body\">\n    <pre><code>&lt;p&gt;Use the ID you have just copied to complete this URL, inserting it in place of &lt;code&gt;[IMAGE ID]&lt;/code&gt;:&lt;/p&gt;\n</code></pre>\n\n    <pre><code>https://drive.google.com/uc?export=download&amp;id=[IMAGE ID]\n</code></pre>\n\n    <p>You should get something like this:</p>\n\n    <pre><code>https://drive.google.com/uc?export=download&amp;id=1xunlhWWxA6e59gSL_gTo_CiZYBNqbMDy\n</code></pre>\n\n    <p>This is the link you need to include in your code to allow the image to be downloaded.</p>\n\n  </div>\n</div>\n\n  </div>\n</div>\n\n",
+            "position": 5,
+            "challenge": false,
+            "completion": [
+              "external"
+            ],
+            "ingredients": [
+              "generic-google-drive-image"
+            ],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Cats vs dogs",
+        "listed": true,
+        "version": 4,
+        "copyedit": true,
+        "keywords": "nature python ai and data Cats vs dogs",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/cats-vs-dogs/9566d91402d519b96cc18745cf21b2fafa5b1a7c/en/images/banner.png",
+        "plainText": "Introduction What you will make You will take an existing model trained to recognise lots of different kinds of images and retrain it to determine whether an image shows dogs or cats. The existing model already knows how to identify interesting features of an image. You will retrain the final layer of the model, which decides what those interesting features make up. You will also measure how well the model can do this new job, and show how much you’ve improved on the original model in this task. What you should already know This project assumes you already know some Python. Specifically, it assumes you know how to use: Variables Lists Functions, including creating your own function that accepts parameters The project also assumes that you know the basics of how to interact with an image classifying model and get a prediction from it. If you don’t, you can learn this in the ‘Testing your computer’s vision’ project. What you will need A computer An internet connection A Google account What you will learn The structure of image recognition models How those models are trained How to measure how well a model works Additional information for educators If you need to print this project, please use the printer-friendly version. Here is a link to the resources for this project. Prepare your model for retraining Instead of training a whole new model, for this project you’ll load an existing one, called MobileNetV2, and change what it classifies. The MobileNetV2 model is trained to classify lots of different images, which means it is already trained to identify interesting features of an image. So retraining it to use these features to recognise cats or dogs will be much quicker than if you created an ‘Is this a cat or a dog?’ model from scratch. What is a machine learning model? A model is a set of rules a computer has learned to complete a task, such as determining what is in a picture it’s shown. These rules are divided up into layers. Each layer looks at the results of the one before it and tests them against some rules to decide what results to pass to the next layer. Within each layer there are nodes, which have each learned a rule while the model was being trained, and will test it and produce a result when the model is predicting. The very first layer is the input to the model — an image in this case. The first layer is often called the input layer for this reason. The last (output) layer of a classifier model like this will always have a number of nodes equal to the number of classifications the model is trained to identify. For example, in the model for this project, there will be two nodes in the final layer, as it will classify its inputs into either pictures of dogs or pictures of cats. A Google Colab project has been prepared for you with some starter code. The first thing to do is to open that up and save your own copy to work on. Open the Google Colab starter notebook for this project in a new tab in your browser. Before you start changing anything, make sure you save the notebook to your drive so you can keep your work! Choose File > Save a copy in Drive and sign in to your Google account if prompted. First, define the size of the images that you will use. The dataset that you’ll use to train the model is made up of 160x160 pixel images and that value is already stored in an IMAGE_SIZE variable. However, because of how colour works on computers, the images are actually three sets of 160x160 pixels — one each of the red, blue, and green values that combine to form the colour displayed at any given pixel. You can see more details on this below. In the first empty cell, create an IMAGE_SHAPE variable: IMAGE_SHAPE = (IMAGE_SIZE, IMAGE_SIZE, ) This tells the program that images will be 160x160 pixels, with three layers of colour. Representing colours with numbers The colour of an object depends on the colour of the light that it reflects or emits. Light can have different wavelengths, and the colour of light depends on the wavelength it has. The colour of light according to its wavelength can be seen in the diagram below. You might recognise this as the colours of the rainbow. Humans see colour because of special cells in our eyes. These cells are called cones. We have three types of cone cells, and each type detects either red, blue, or green light. Therefore all the colours that we see are just mixtures of the colours red, blue, and green. In additive colour mixing, three colours (red, green, and blue) are used to make other colours. In the image above, there are three spotlights of equal brightness, one for each colour. In the absence of any colour the result is black. If all three colours are mixed, the result is white. When red and green combine, the result is yellow. When red and blue combine, the result is magenta. When blue and green combine, the result is cyan. It’s possible to make even more colours than this by varying the brightness of the three original colours used. Computers store everything as 1s and 0s. These 1s and 0s are often organised into sets of , called bytes. A single byte can represent any number from  up to . When we want to represent a colour in a computer program, we can do this by defining the amounts of red, blue, and green that make up that colour. These amounts are usually stored as a single byte and therefore as a number between  and . Here’s a table showing some colour values: Red Green Blue Colour    Red    Green    Blue    Yellow    Magenta    Cyan You can find a nice colour picker to play with at w3schools. Now, below your IMAGE_SHAPE variable, import the MobileNetV2 model — which is trained to identify loads of different objects — pass it your IMAGE_SHAPE as its input_shape and store it in an original_model variable. original_model = tf.keras.applications.MobileNetV2(input_shape=IMAGE_SHAPE) Since MobileNetV2 is designed to run on a mobile device with limited battery, like a phone, it’s not as large or as powerful as some other models. This means it doesn’t always make the best guesses. Before you start changing it, test how good it is by asking it to identify a photo of a dog. Functions to let you do this easily have already been included in the notebook, but to understand how they work, check out the ‘Testing your computer’s vision’ project. Below the model import, add this line: predict_with_old_model('https://dojo.soy/predict-dog') Now run all the code and see how good the model’s predictions are! You can run all the code by opening the Runtime menu and choosing Run all. The first time you do this, it might take a while, because your program will have to download a lot of data both for the training dataset and the model itself. There are a couple of dog breeds in there, but most of the model’s preferred classifications aren’t very good! That’s why you’re going to improve it! Remove the call to predict_with_old_model. You only needed it for testing. You need to remove the top layer from the existing MobileNetV2 model. This is where the model decides which of the objects it’s been trained to identify are in the image, so you need to remove it to add your own layers related to cats and dogs. You can do this when you load the model. Update the line where you load the original_model to add the include_top parameter and set it to False. original_model = tf.keras.applications.MobileNetV2(input_shape=IMAGE_SHAPE, include_top=False) Finally, because you don’t want to change anything else in the original model, you should set it to be untrainable. Below the line where you create original_model, set its trainable property to False. original_model.trainable = False Save your project Get and split training data Next, you’ll need to train a model with some data. Models learn from examples, usually thousands of them, and use those to create their own rules. Some of those rules may be to recognise parts and then combine that recognition into a whole. This can lead to problems if you’re not using varied data to train your model. For example, if the training data for a cats vs dogs classifer has no pictures of black dogs, but many of black cats, the model may learn the rule ‘black = cat’. This would cause problems if you later tried to classify pictures of a black dog. So you have to make sure that the full variety of things the model may eventually be asked to classify are represented. However, for this project, you will use an existing dataset of cats and dogs that is provided by the TensorFlow library, so someone has already done that work for you. It’s worth noting that one of the cool things about machine learning models is that they remember everything they learned from the training data, without needing to store the training data itself. This means you can use millions of images to train a model without making the model any bigger than if you’d used a few hundred images! However, a model trained on millions of images will be much better at guessing things correctly than one trained on a few hundred. There’s already some code in the second cell that loads the cats_vs_dogs training data. This data is a collection of image files and labels for these files, it tells the computer which image is of a cat, and which of a dog. import tensorflow_datasets as tfds (raw_training, raw_validation, raw_testing), metadata = tfds.load( 'cats_vs_dogs', split=['train[:%]', 'train[%:%]', 'train[%:]'], with_info=True, as_supervised=True, ) The data gets broken into three groups, with the percentages defined in the split parameter of the load call: Training data: Used to train the model — to learn rules and decide how important they are. Validation data: Used to evaluate how well the model is performing while it is being trained. It is checked regularly during the training process. It has to be separate to the training data, or the model might learn only the exact images in the training data, with no general rules for identifying a dog or cat. Testing data: Not used during the training process, but is used to evaluate how well it performs on unseen data. This check is used to avoid the risk of overfitting, where the model learns rules that are specific to the training and validation datasets, but do not apply to all cats and dogs. The data in those three groups needs to be broken into batches — groups of images. Each batch gets used to train the model before the model’s weights, which define how important each rule is, get updated. The bigger the batch, the longer the gap between updates. There’s no real rule for how big your batches should be, and it may be worth experimenting with different batch sizes on different data, to see if you get better results. Smaller batches can also help you train a model on a computer with less memory (for example, on a Raspberry Pi). Popular sizes are , , , and . It is possible to use batches as small as a single image, or as large as your whole dataset. For now, you’ll use . In the second blank cell in the notebook, create a BATCH_SIZE variable with the value of . BATCH_SIZE =  The use of upper case letters here is a convention for variables that are manually set by the programmer, but not changed in the course of the program. You could just enter  directly where the variable gets used, but this makes it easier to update later. Each batch is chosen randomly from a shuffle buffer of images selected from the full test, validation, or training dataset. You have to define the size of this buffer. The bigger it is, the more randomly shuffled your images will be, which is usually a good thing, but the slower the program will run. Again, start by creating a variable for the buffer size. Below your previous BATCH_SIZE variable, add this code: SHUFFLE_BUFFER_SIZE =  Now that you’ve set your batch and buffer sizes, you need to break your training, validation, and testing data up into batches. This code creates the shuffle buffers and chooses the batches from them. Add it below the two variables you just created. training_batches = training_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE) validation_batches = validation_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE) testing_batches = testing_data.shuffle(SHUFFLE_BUFFER_SIZE).batch(BATCH_SIZE) Save your project Add your new layers In order to train the MobileNetV2 model you’ve loaded to identify cats and dogs, you need to add two layers to it. One to convert the existing outputs of the model into a format that makes sense for your images, and the other to give the final classification of the image as either a cat or a dog. The model doesn’t actually know these are cats and dogs, of course, it’s just using the two nodes to represent two different categories of things. Which category is cats, and which is dogs, is something that the pre-written predict_image function — which you’ll use to test images later — will translate for you by using the labels that came with the original training data. In the next blank cell in the notebook, add this line of code to create the layer that reshapes the outputs of the existing model and stores it in a variable. global_average_layer = tf.keras.layers.GlobalAveragePooling2D() You just used that layer type as TensorFlow supplies it, but for the next one you need to take what you know about your data and apply it: because this classifier has to decide between two classes, its output should be two numbers. The higher number will indicate the predicted class. Below the global_average_layer, add a variable for prediction_layer: prediction_layer = tf.keras.layers.Dense() Now you need to put your layers together with the original model you imported. This is done by using the Sequential function, because you assemble them in the sequence you pass them to the function, from bottom to top. Below your prediction_layer variable, add the following code to combine your layers with the MobileNetV2 model. model = tf.keras.Sequential([ original_model, global_average_layer, prediction_layer ]) This stacks the global_average_layer and the prediction_layer on top of the original_model. Next, you have to compile your model — convert it into a form that you can train and use to make predictions. To do this, you need to set two values: the learning rate of your model, and a loss function. The learning rate tells your model how quickly to learn. You don’t want it too small, as it might take far too long to learn anything. However, you don’t want it too big or your model may rush ahead with the first thing that seems right, and miss an important rule or insight. You’ll use a learning rate of .. The loss function is how your model checks its performance during training. You’ll use one called cross-entropy loss, which is a good choice for image classification. Below your existing code, create a variable for the base learning rate, then compile the model with that parameter and cross entropy loss. Also, tell the model to print out its accuracy as it is training. BASE_LEARNING_RATE = . model.compile(optimizer=tf.keras.optimizers.RMSprop(learning_rate=BASE_LEARNING_RATE), loss=tf.keras.losses.SparseCategoricalCrossentropy(), metrics=['accuracy']) Finally, take a look at the model you’ve compiled. Below the code you already have, add this line: model.summary() Run all the code in the notebook by opening the Runtime menu and choosing Run all. Look at the summary of the model that’s printed out. In particular, look at the last three lines. This model has over two million parameters, but you’re only training a little over a thousand of them. This is the huge advantage of retraining a model, over building an entirely new one; there’s a lot less to train, so it will train much faster. Save your project",
+        "description": "Take a machine vision model that is bad at recognising cats and dogs, and train it to be really good at it.",
+        "lastTested": "2020-06-16",
+        "technologyLabels": [
+          "python",
+          "ai_and_data"
+        ],
+        "interestLabels": [
+          "nature"
+        ],
+        "hardwareLabels": [],
+        "primaryTechnology": "python",
+        "difficultyLevel": 3,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": "",
+        "hardware": [],
+        "software": [
+          "python"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "cats-vs-dogs",
+      "masterLastCommit": "9566d91402d519b96cc18745cf21b2fafa5b1a7c",
+      "archived": false,
+      "unskippable": false,
+      "template": "default",
+      "pathwayStep": {
+        "pathway_id": 130,
+        "project_id": 1115,
+        "category": null,
+        "position": 2,
+        "total": 5
+      },
+      "editorStarterProject": "",
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [
+        {
+          "data": {
+            "id": "1118",
+            "type": "projects",
+            "attributes": {
+              "id": 1118,
+              "repositoryName": "rock-paper-scissors-by-hand",
+              "title": "Rock, paper, scissors by hand",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/rock-paper-scissors-by-hand/5d2d7618bb98aa79f40bf490e0cb5d8f17683fba/en/images/banner.png",
+              "difficultyLevel": 3,
+              "description": "Use Google's Teachable Machine to build a rock, paper, scissors game controlled by hand gestures",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "python",
+                "ai_and_data"
+              ],
+              "interestLabels": [
+                "games"
+              ],
+              "primaryTechnology": "python",
+              "localesAvailable": [
+                "en"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "2067",
+            "type": "projects",
+            "attributes": {
+              "id": 2067,
+              "repositoryName": "teach-a-machine",
+              "title": "Teach a machine",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/teach-a-machine/a58eb929e8ad0769120cca3f272631e5763e8300/en/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Teach a computer to tell you how many fingers you are holding up!",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "ai_and_data"
+              ],
+              "interestLabels": [],
+              "primaryTechnology": "ai_and_data",
+              "localesAvailable": [
+                "en",
+                "el-GR",
+                "fr-FR",
+                "hi-IN",
+                "nl-NL",
+                "pt-BR",
+                "pt-PT",
+                "uk-UA"
+              ],
+              "pdf": null
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "2091",
+            "type": "projects",
+            "attributes": {
+              "id": 2091,
+              "repositoryName": "apple-vs-tomato",
+              "title": "Apple vs tomato",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/apple-vs-tomato/ad7346d488a8dd8a0d7373a8d1698256ecf401ac/en/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Train a machine learning model to detect if you are holding an apple or a tomato, then improve it by including more diverse training data",
+              "directToEditor": false,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "ai_and_data"
+              ],
+              "interestLabels": [
+                "communication"
+              ],
+              "primaryTechnology": "ai_and_data",
+              "localesAvailable": [
+                "en",
+                "cy-GB",
+                "da-DK",
+                "de-DE",
+                "el-GR",
+                "fr-FR",
+                "hi-IN",
+                "it-IT",
+                "nl-NL",
+                "pt-BR",
+                "pt-PT",
+                "uk-UA",
+                "vi-VN"
+              ],
+              "pdf": "https://projects-static.raspberrypi.org/projects/apple-vs-tomato/ad7346d488a8dd8a0d7373a8d1698256ecf401ac/en/resources/rpfi-apple-vs-tomato.pdf"
+            }
+          }
+        },
+        {
+          "data": {
+            "id": "2231",
+            "type": "projects",
+            "attributes": {
+              "id": 2231,
+              "repositoryName": "python-wild-hop-the-frog",
+              "title": "Python wild - Hop the frog",
+              "heroImage": "https://projects-static.raspberrypi.org/projects/python-wild-hop-the-frog/33162e04e6a1942eae4e811799b9982e4e65842c/en/images/banner.png",
+              "difficultyLevel": 1,
+              "description": "Make a cartoon frog that jumps, stretches, and squashes as it hops through your code.",
+              "directToEditor": true,
+              "hardwareLabels": [],
+              "technologyLabels": [
+                "python"
+              ],
+              "interestLabels": [
+                "games",
+                "nature"
+              ],
+              "primaryTechnology": "python",
+              "localesAvailable": [
+                "en"
+              ],
+              "pdf": null
+            }
+          }
+        }
+      ],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": {
+        "data": {
+          "id": "1116",
+          "type": "projects",
+          "attributes": {
+            "id": 1116,
+            "repositoryName": "teach-a-computer-to-read",
+            "title": "Teach a computer to read",
+            "heroImage": "https://projects-static.raspberrypi.org/projects/teach-a-computer-to-read/5f38c8391b6fee23bb832d8b220c6edd0e889b90/en/images/banner.png",
+            "difficultyLevel": 2,
+            "description": "Build a machine vision model with TensorFlow to teach a computer to recognise handwritten numbers.",
+            "directToEditor": false,
+            "hardwareLabels": [],
+            "technologyLabels": [
+              "ai_and_data",
+              "python"
+            ],
+            "interestLabels": [
+              "communication"
+            ],
+            "primaryTechnology": "python",
+            "localesAvailable": [
+              "en"
+            ],
+            "pdf": null
+          }
+        }
+      }
+    },
+    "relationships": {
+      "pathways": {
+        "data": [
+          {
+            "id": "130",
+            "type": "pathways"
+          }
+        ]
+      }
+    }
+  },
+  "included": [
+    {
+      "id": "130",
+      "type": "pathways",
+      "attributes": {
+        "id": 130,
+        "slug": "machine-vision",
+        "title": "Machine Vision",
+        "description": "Learn how to train your computer to recognise objects in images with our machine vision pathway.",
+        "difficultyLevel": null,
+        "technologyTheme": null,
+        "ordered": true,
+        "isBeta": false,
+        "skills": [],
+        "themes": [],
+        "stepCount": 5,
+        "subtitle": null,
+        "metaTitle": null,
+        "metaDescription": null,
+        "header": []
+      },
+      "relationships": {
+        "projects": {
+          "data": [
+            {
+              "id": "1114",
+              "type": "projects"
+            },
+            {
+              "id": "1115",
+              "type": "projects"
+            },
+            {
+              "id": "1116",
+              "type": "projects"
+            },
+            {
+              "id": "1117",
+              "type": "projects"
+            },
+            {
+              "id": "1118",
+              "type": "projects"
+            }
+          ]
+        },
+        "steps": {
+          "data": [
+            {
+              "id": "338",
+              "type": "step"
+            },
+            {
+              "id": "339",
+              "type": "step"
+            },
+            {
+              "id": "340",
+              "type": "step"
+            },
+            {
+              "id": "341",
+              "type": "step"
+            },
+            {
+              "id": "342",
+              "type": "step"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

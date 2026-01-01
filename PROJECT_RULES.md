@@ -4,11 +4,12 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 
 ## Architecture & Data Flow
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
-- **Loose Coupling**: Modules are independent. Keep logic, tests, and documentation within the module directory.
-- **Parser (`packages/parser`)**: Converts Markdown to RPL-compatible JSON using `unified.js` (remark/rehype).
-- **API Server (`packages/api-server`)**: Express server serving content from `content/`. Supports multiple providers (RPL, TAG) and namespaced IDs.
-- **Web App (`apps/web`)**: Svelte 5 + Vite frontend. Uses `svelte-spa-router`.
-- **Data Flow**: Markdown (GitHub) → Parser → JSON (RPL Format) → API Server → Svelte Frontend.
+- **Ecosystems & Layering**: Content is organized into **Ecosystems** (e.g., `content/RPL`). Each ecosystem has multiple **Layers** (e.g., `layers/official`, `layers/tag-makerspace`). 
+- **Layer Priority**: Layers are prioritized (defined in `sources.yaml`). Local forks in higher-priority layers override official content.
+- **Global Identifiers (GIDs)**: Content elements use GIDs for semantical identity across forks and languages.
+- **Parser (`packages/parser`)**: Converts Markdown to semantic JSON using `unified.js`.
+- **API Server (`packages/api-server`)**: Express server resolving prioritized content from layers.
+- **Web App (`apps/web`)**: Svelte 5 + Vite frontend.
 
 ## Critical Workflows
 - **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:

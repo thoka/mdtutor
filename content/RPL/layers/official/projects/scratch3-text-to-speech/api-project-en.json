@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1201",
+    "type": "projects",
+    "attributes": {
+      "id": 1201,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Make a sprite talk with the Text to Speech extension",
+            "content": "<p><strong>Pico and Giga talk with the speech extension</strong>: <a href=\"https://scratch.mit.edu/projects/499373708/editor\" target=\"_blank\">See inside</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499373708/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Click on <strong>Add Extension</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/en/images/add-extension.png\" alt=\"The 'Add Extension' icon.\" /></p>\n\n<p>Choose <strong>Text to Speech</strong>:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/en/images/text-to-speech.png\" alt=\"The 'Text to Speech' extension highlighted.\" /></p>\n\n<p>You will get a new <code class=\"block3extensions\">Text to Speech</code> blocks menu:</p>\n\n<p><img src=\"https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/en/images/text-to-speech-blocks.png\" alt=\"The 'Text to Speech' blocks menu.\" /></p>\n\n<p>You can use the blocks in the <code class=\"block3extensions\">Text to Speech</code> blocks menu to make your sprites talk out loud.</p>\n\n<p>You can make a sprite talk out loud when clicked:</p>\n\n<pre><code class=\"language-blocks3\">when this sprite clicked\nset voice to (alto v) :: tts\nset language to (Spanish v) :: tts\nspeak [Hola] :: tts\n</code></pre>\n\n<p>You can even give your sprite a kitten voice!</p>\n\n<pre><code class=\"language-blocks3\">set voice to (kitten v) :: tts\nspeak [Cat gotta haz milk.] :: tts\n</code></pre>\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Make a sprite talk with the Text to Speech extension",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "Make a sprite talk with the Text to Speech extension",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-text-to-speech/498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8/en/images/banner.png",
+        "plainText": "Pico and Giga talk with the speech extension: See inside Click on Add Extension: Choose Text to Speech: You will get a new Text to Speech blocks menu: You can use the blocks in the Text to Speech blocks menu to make your sprites talk out loud. You can make a sprite talk out loud when clicked: when this sprite clicked set voice to (alto v) :: tts set language to (Spanish v) :: tts speak [Hola] :: tts You can even give your sprite a kitten voice! set voice to (kitten v) :: tts speak [Cat gotta haz milk.] :: tts",
+        "description": "Using the Text to Speech extension to make sprites speak out loud",
+        "lastTested": "2021-03-10",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "en",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-text-to-speech",
+      "masterLastCommit": "498b734dcdd9a0c752ee67e6cf6aac8a3b2ee4b8",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "en",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}

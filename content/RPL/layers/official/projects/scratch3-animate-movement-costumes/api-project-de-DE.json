@@ -1,0 +1,66 @@
+{
+  "data": {
+    "id": "1203",
+    "type": "projects",
+    "attributes": {
+      "id": 1203,
+      "content": {
+        "steps": [
+          {
+            "quiz": false,
+            "title": "Figur-Bewegungen mit Kostümen animieren",
+            "content": "<p><strong>Laufender Igel</strong>: <a href=\"https://scratch.mit.edu/projects/499398615/editor\" target=\"_blank\">Ansehen</a></p>\n\n<div class=\"scratch-preview\">\n  <iframe allowtransparency=\"true\" width=\"485\" height=\"402\" src=\"https://scratch.mit.edu/projects/embed/499398615/?autostart=false\" frameborder=\"0\"></iframe>\n</div>\n\n<p>Du kannst <code class=\"block3looks\">wechsle zu Kostüm</code> und <code class=\"block3motion\">gehe</code> Schritt verwenden, um eine sich bewegende Figur mithilfe einer <code class=\"block3control\">wiederhole</code>-Schleife zu animieren. Ändere die Zeit im <code class=\"block3control\">warte</code>-Block, um die Geschwindigkeit einzustellen.</p>\n\n<pre><code class=\"language-blocks3\">when flag clicked // Wechseln zwischen zwei Kostümen\nrepeat [20]\nswitch costume to [hedgehog-a v]\nmove [3] steps\nwait [0.1] seconds\nswitch costume to [hedgehog-b v]\nmove [3] steps\nwait [0.1] seconds\nend\n</code></pre>\n\n<p><strong>Tipp:</strong> Sieh dir alle Kostüme für eine Figur an, indem du den Block <code class=\"block3looks\">nächstes Kostüm</code> in einer Schleife verwendest.</p>\n\n<p><strong>Tipp:</strong> Erhöhe die Anzahl der Schritte in allen <code class=\"block3motion\">bewege</code>-Blöcken, damit sich die Figur schneller bewegt. Erhöhe die Anzahl in der <code class=\"block3control\">wiederhole</code>-Schleife, um die Entfernung anzupassen.</p>\n\n<p><strong>Tipp:</strong> Damit sich die Figur rückwärts <code class=\"block3motion\">bewegt</code>, verwendest du negative Zahlen, z. B. <code class=\"block3motion\">bewege</code> <code>-3</code> <code class=\"block3motion\">Schritt</code>. Außerdem gibt es einen <code class=\"block3motion\">setze Richtung auf</code> <code>-90</code> Grad-Block, mit dem du die Richtung der Figur änderst, bevor sie sich zu bewegen beginnt (<code>-90</code> Grad nach links).</p>\n\n",
+            "position": 0,
+            "challenge": false,
+            "completion": [],
+            "ingredients": [],
+            "knowledgeQuiz": {}
+          }
+        ],
+        "title": "Figur-Bewegungen mit Kostümen animieren",
+        "listed": false,
+        "version": 4,
+        "copyedit": false,
+        "keywords": "scratch animation Figur-Bewegungen mit Kostümen animieren Figur-Bewegungen mit Kostümen animieren Figur-Bewegungen mit Kostümen animieren",
+        "heroImage": "https://projects-static.raspberrypi.org/projects/scratch3-animate-movement-costumes/d0915936e6d4e4ef8f2ca04ff8d9f5d795f77cb9/de-DE/images/banner.png",
+        "plainText": "Laufender Igel: Ansehen Du kannst wechsle zu Kostüm und gehe Schritt verwenden, um eine sich bewegende Figur mithilfe einer wiederhole-Schleife zu animieren. Ändere die Zeit im warte-Block, um die Geschwindigkeit einzustellen. when flag clicked // Wechseln zwischen zwei Kostümen repeat [] switch costume to [hedgehog-a v] move [] steps wait [.] seconds switch costume to [hedgehog-b v] move [] steps wait [.] seconds end Tipp: Sieh dir alle Kostüme für eine Figur an, indem du den Block nächstes Kostüm in einer Schleife verwendest. Tipp: Erhöhe die Anzahl der Schritte in allen bewege-Blöcken, damit sich die Figur schneller bewegt. Erhöhe die Anzahl in der wiederhole-Schleife, um die Entfernung anzupassen. Tipp: Damit sich die Figur rückwärts bewegt, verwendest du negative Zahlen, z. B. bewege - Schritt. Außerdem gibt es einen setze Richtung auf - Grad-Block, mit dem du die Richtung der Figur änderst, bevor sie sich zu bewegen beginnt (- Grad nach links).",
+        "description": "Figur-Bewegungen wie Gehen oder Fliegen animieren, indem du zwischen Kostümen wechselst",
+        "lastTested": "2021-03-10",
+        "technologyLabels": [],
+        "interestLabels": [],
+        "hardwareLabels": [],
+        "primaryTechnology": null,
+        "difficultyLevel": null,
+        "badgeTemplateId": null,
+        "providerId": null,
+        "locale": "de-DE",
+        "editorStarterProject": null,
+        "hardware": [],
+        "software": [
+          "scratch"
+        ],
+        "theme": "blue"
+      },
+      "repositoryName": "scratch3-animate-movement-costumes",
+      "masterLastCommit": "d0915936e6d4e4ef8f2ca04ff8d9f5d795f77cb9",
+      "archived": false,
+      "unskippable": false,
+      "template": null,
+      "pathwayStep": null,
+      "editorStarterProject": null,
+      "directToEditor": false,
+      "locale": "de-DE",
+      "recommendedProjects": [],
+      "nextPathway": null,
+      "recommendedPathways": [],
+      "nextProject": null,
+      "nextPathwayProject": null
+    },
+    "relationships": {
+      "pathways": {
+        "data": []
+      }
+    }
+  },
+  "included": []
+}
