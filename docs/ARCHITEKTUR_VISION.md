@@ -16,15 +16,23 @@ Innerhalb eines Ökosystems nutzen wir **Layer**, um verschiedene Instanzen dess
 *   **Layer-Priorität**: Eine Konfiguration legt fest, in welcher Reihenfolge Layer sich überschreiben (z.B. 1. Lokal TAG-Makerspace, 2. Official RPL).
 *   **Nahtlose Integration**: Die Web-App zeigt immer die "beste" verfügbare Version eines Inhalts an.
 
-### 3. GIDs (Global Identifiers)
-Zur Identifizierung von Content-Elementen (Projekten, Schritten, Medien) führen wir **GIDs** ein. Diese werden direkt in die Markdown-Quellen (z.B. im Frontmatter) eingebettet.
+### 3. GIDs (Global Identifiers) und Semantische Identität
+Zur Identifizierung von Content-Elementen (Projekten, Schritten, Medien) nutzen wir **GIDs**. Diese markieren die semantische Identität eines Objekts, unabhängig davon, in welchem Repository oder Layer es gerade gespeichert ist.
 
-*   **Identität über Repositories hinweg**: Dieselbe GID in einem Original-Repo und einem lokalen Fork markiert sie als semantisch identisch.
-*   **Abstammung und Übersetzung**: GIDs erlauben es, die Verwandtschaft zwischen verschiedenen Sprachversionen (`en` vs. `de-DE`) präzise zu verfolgen.
-*   **Abwärtskompatibilität**: GIDs können bei Bedarf wieder entfernt werden, ohne die Grundstruktur zu zerstören.
+*   **Format**: `ÖKOSYSTEM:TYP:SLUG` (z.B. `RPL:PROJ:space-talk`).
+    *   **Ökosystem**: Der Gültigkeitsbereich (z.B. `RPL`).
+    *   **Typ**: Die Art des Objekts (`PROJ` für Projekt, `PATH` für Pfad, `STEP` für Schritt, `ASSET` für Medien).
+    *   **Slug**: Die menschenlesbare Identität.
+*   **Identität bei Forks**: Wenn ein Projekt geforkt wird, bleibt die GID identisch. Das System nutzt das **Layering**, um zu entscheiden, welche Instanz dieser GID (z.B. aus `tag-makerspace` statt `official`) angezeigt wird.
+*   **Vorteil**: Lernfortschritte und semantische Verknüpfungen (Achievements) bleiben erhalten, auch wenn der Content lokal angepasst oder verschoben wird.
+*   **Abstammung**: GIDs in verschiedenen Sprachen (z.B. `en` und `de-DE`) erlauben es, die semantische Äquivalenz präzise zu verfolgen.
 
-### 4. Semantische Klassen und Namespacing
-Trotz der Layer-Struktur nutzen wir Präfixe wie `RPL:` für semantische Klassen (Achievements, Badges). Dies verhindert Kollisionen zwischen Ökosystemen, in denen IDs sonst identisch sein könnten.
+### 4. Makerspace-spezifische Konfiguration
+Die Entscheidung, welche Inhalte in einem Makerspace verfügbar sein sollen, wird zentral gesteuert und ist vom eigentlichen Content getrennt.
+
+*   **Speicherort**: `content/ÖKOSYSTEM/config/`.
+*   **Funktion**: Hier wird konfiguriert, welche Lernpfade aus welchen Quellen (API-Bases, Git-Repos) lokal synchronisiert und "abonniert" werden.
+*   **Gecachte API**: Lokale Pfad-Dateien (`.yaml`) fungieren als Read-Through-Cache der offiziellen APIs, werden aber beim Download direkt mit GIDs ausgestattet.
 
 ### 5. Medien-Metadaten und Lizenzen
 Langfristig werden Bilder und andere Medien mit Metadaten ausgestattet, um insbesondere Lizenzinformationen (z.B. CC-BY) und Urheberschaft über GIDs zu verwalten und automatisiert auszuweisen.

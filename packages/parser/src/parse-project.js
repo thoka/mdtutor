@@ -44,7 +44,18 @@ export async function parseProject(projectPath, options = {}) {
   const metaPath = join(actualPath, 'meta.yml');
   const meta = parseMeta(metaPath);
   
-  // Determine base path for transclusions (go up to projects directory within content)
+  // Determine ecosystem and GID prefix
+  let gidPrefix = 'RPL'; // Default
+  if (actualPath.includes('/content/')) {
+    const parts = actualPath.split('/content/');
+    const ecoId = parts[1].split('/')[0];
+    gidPrefix = ecoId.toUpperCase();
+  }
+  
+  const projectSlug = meta.slug || actualPath.split('/').filter(p => p && p !== 'repo' && p !== 'en' && p !== 'de-DE').pop();
+  const projectGid = meta.gid || `${gidPrefix}:PROJ:${projectSlug}`;
+
+  // ...
   let basePath = options.basePath;
   if (!basePath) {
     const projectsIndex = actualPath.indexOf('/projects/');
@@ -160,8 +171,11 @@ export async function parseProject(projectPath, options = {}) {
   // Build API-compatible structure
   const result = {
     data: {
+      id: projectGid,
       type: 'projects',
       attributes: {
+        gid: projectGid,
+        slug: projectSlug,
         content: {
           title: meta.title,
           description: meta.description,
@@ -177,7 +191,7 @@ export async function parseProject(projectPath, options = {}) {
         }
       }
     },
-    included: [] // TODO: Add pathways etc.
+    included: []
   };
   
   // Add warnings at root level if any

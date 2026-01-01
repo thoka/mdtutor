@@ -9,39 +9,36 @@ The `content/` directory is organized into **Ecosystems**, which are further div
 ```text
 content/
   <Ecosystem>/               # e.g., RPL, MATNET
-    ecosystem.yaml           # Ecosystem configuration (parser, semantic prefix)
-    sources.yaml             # Central configuration for syncing content
+    ecosystem.yaml           # Ecosystem definition (prefix, parser)
+    config/                  # Makerspace-specific visibility & sync rules
+      sync.yaml              # Subscribed pathways and their sources
     layers/
       <LayerID>/             # e.g., official, tag-makerspace
         projects/
           <ProjectSlug>/
         pathways/
-          <PathwaySlug>.yaml
+          <PathwaySlug>.yaml # Locally cached API version with GIDs
 ```
-
-## Definitions
-
-### Ecosystem
-An ecosystem defines a shared vocabulary and technical standard.
-- **Semantic Prefix**: Used for tags, achievements, and badges (e.g., `RPL:`).
-- **Parser Type**: Defines how content within this ecosystem is processed.
-
-### Layer
-A layer represents a source of content within an ecosystem.
-- **Priority**: A numeric value determining which layer's content is served if multiple layers contain the same project (higher value = higher priority).
-- **Git Base**: The base URL for cloning repositories in this layer.
 
 ## Global Identifiers (GIDs)
 
-Content elements are uniquely identified by GIDs embedded in the source files.
-- **Format**: `<Ecosystem>:<Type>:<ID>` (e.g., `RPL:PROJ:SILLY-EYES`).
-- **Usage**: The API server uses GIDs to map prioritized layers to a single coherent view.
+GIDs are the primary way to identify content semantically. They are decoupled from local file paths or specific API numeric IDs to support forks and layering.
 
-## Syncing and Configuration
+- **Format**: `<ECOSYSTEM>:<TYPE>:<SLUG>`
+  - `ECOSYSTEM`: The scope (e.g., `RPL`).
+  - `TYPE`: The object type (`PROJ`, `PATH`, `STEP`, `ASSET`).
+  - `SLUG`: Human-readable identifier.
+- **Example**: `RPL:PROJ:space-talk`
+- **Identity in Forks**: When a project is forked into a higher-priority layer, the GID remains unchanged. The API server resolves the GID to the instance in the highest priority layer.
+- **Persistence**: User progress and achievements are linked to the GID, ensuring a seamless transition when content is updated or moved between layers.
 
-The `sources.yaml` file in each ecosystem root controls the synchronization process.
+## Configuration and Syncing
 
-### Example `sources.yaml`
+The configuration in `<Ecosystem>/config/` defines the "view" of the Makerspace.
+
+### `sync.yaml` (previously `sources.yaml`)
+Determines which pathways are downloaded and which layer they belong to.
+
 ```yaml
 layers:
   - id: tag-makerspace
@@ -55,11 +52,10 @@ layers:
 sync:
   pathways:
     - slug: scratch-intro
-      source: official
+      source: official       # Will be saved to layers/official/pathways/
 ```
 
 ## Implementation Details
 
-1.  **Fetching**: The sync tool (`tools/fetch-pathways.js`) reads `sources.yaml` and places downloaded content into the appropriate layer directory.
-2.  **Resolving**: The API server scans all layers within an ecosystem and builds a prioritized index of available projects and pathways.
-
+1.  **Fetching**: The sync tool (`tools/fetch-pathways.js`) reads `sync.yaml` and places downloaded content into the appropriate layer directory, transforming local IDs into GIDs.
+2.  **Resolving**: The API server scans all layers within an ecosystem and builds a prioritized index based on GIDs.

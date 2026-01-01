@@ -5,10 +5,10 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 ## Architecture & Data Flow
 - **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
 - **Ecosystems & Layering**: Content is organized into **Ecosystems** (e.g., `content/RPL`). Each ecosystem has multiple **Layers** (e.g., `layers/official`, `layers/tag-makerspace`). 
-- **Layer Priority**: Layers are prioritized (defined in `sources.yaml`). Local forks in higher-priority layers override official content.
-- **Global Identifiers (GIDs)**: Content elements use GIDs for semantical identity across forks and languages.
-- **Parser (`packages/parser`)**: Converts Markdown to semantic JSON using `unified.js`.
-- **API Server (`packages/api-server`)**: Express server resolving prioritized content from layers.
+- **Layer Priority**: Layers are prioritized (defined in `config/sync.yaml`). Local forks in higher-priority layers override official content.
+- **Global Identifiers (GIDs)**: Content elements use GIDs (`ECOSYSTEM:TYPE:SLUG`) for semantical identity across forks and languages.
+- **Parser (`packages/parser`)**: Converts Markdown to semantic JSON using `unified.js`, extracting GIDs and semantic metadata.
+- **API Server (`packages/api-server`)**: Express server resolving prioritized content from layers using GID mapping.
 - **Web App (`apps/web`)**: Svelte 5 + Vite frontend.
 
 ## Critical Workflows

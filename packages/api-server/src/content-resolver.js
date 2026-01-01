@@ -15,7 +15,7 @@ export function loadContentConfig(contentDir) {
     if (dir.isDirectory()) {
       const ecosystemPath = join(contentDir, dir.name);
       const ecoFile = join(ecosystemPath, 'ecosystem.yaml');
-      const sourcesFile = join(ecosystemPath, 'sources.yaml');
+      const sourcesFile = join(ecosystemPath, 'config', 'sync.yaml');
       
       if (existsSync(ecoFile)) {
         const ecosystem = yaml.load(readFileSync(ecoFile, 'utf-8'));
@@ -24,7 +24,7 @@ export function loadContentConfig(contentDir) {
         // Sort layers by priority (descending)
         const layers = (sources.layers || []).sort((a, b) => (b.priority || 0) - (a.priority || 0));
         
-        ecosystems[dir.name] = {
+        ecosystems[dir.name.toUpperCase()] = {
           ...ecosystem,
           id: dir.name,
           path: ecosystemPath,
@@ -41,12 +41,27 @@ export function loadContentConfig(contentDir) {
 }
 
 /**
- * Resolve a project slug to its prioritized layer path
+ * Normalize a GID or namespaced slug to [ecosystem, slug]
  */
-export function resolveProjectLayer(ecosystems, namespacedSlug) {
-  let [ecoId, slug] = namespacedSlug.includes(':') ? namespacedSlug.split(':') : ['RPL', namespacedSlug];
-  ecoId = ecoId.toUpperCase();
-  
+function normalizeIdentifier(namespacedSlug) {
+  const parts = namespacedSlug.split(':');
+  if (parts.length === 3) {
+    // ECOSYSTEM:TYPE:SLUG
+    return [parts[0].toUpperCase(), parts[2]];
+  } else if (parts.length === 2) {
+    // ECOSYSTEM:SLUG
+    return [parts[0].toUpperCase(), parts[1]];
+  } else {
+    // SLUG
+    return ['RPL', namespacedSlug];
+  }
+}
+
+/**
+ * Resolve a project identifier to its prioritized layer path
+ */
+export function resolveProjectLayer(ecosystems, identifier) {
+  const [ecoId, slug] = normalizeIdentifier(identifier);
   const ecosystem = ecosystems[ecoId];
   if (!ecosystem) return null;
   
@@ -67,12 +82,10 @@ export function resolveProjectLayer(ecosystems, namespacedSlug) {
 }
 
 /**
- * Resolve a pathway slug to its prioritized layer path
+ * Resolve a pathway identifier to its prioritized layer path
  */
-export function resolvePathwayLayer(ecosystems, namespacedSlug) {
-  let [ecoId, slug] = namespacedSlug.includes(':') ? namespacedSlug.split(':') : ['RPL', namespacedSlug];
-  ecoId = ecoId.toUpperCase();
-  
+export function resolvePathwayLayer(ecosystems, identifier) {
+  const [ecoId, slug] = normalizeIdentifier(identifier);
   const ecosystem = ecosystems[ecoId];
   if (!ecosystem) return null;
   
@@ -86,4 +99,3 @@ export function resolvePathwayLayer(ecosystems, namespacedSlug) {
   
   return null;
 }
-

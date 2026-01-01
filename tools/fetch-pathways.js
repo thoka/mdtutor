@@ -6,8 +6,12 @@ import yaml from 'js-yaml';
 import { cloneRepository, fetchProjectApi } from '../test/get-test-data.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ECOSYSTEM_DIR = join(__dirname, '../content/RPL');
-const SOURCES_FILE = join(ECOSYSTEM_DIR, 'sources.yaml');
+const PROJECT_ROOT = join(__dirname, '..');
+const ECOSYSTEM_ID = 'RPL'; // Hardcoded for now, could be an arg
+const ECOSYSTEM_DIR = join(PROJECT_ROOT, 'content', ECOSYSTEM_ID);
+const CONFIG_DIR = join(ECOSYSTEM_DIR, 'config');
+const SYNC_FILE = join(CONFIG_DIR, 'sync.yaml');
+const ECO_FILE = join(ECOSYSTEM_DIR, 'ecosystem.yaml');
 
 async function fetchWithCurl(url) {
   try {
@@ -33,7 +37,7 @@ async function fetchPathwayProjects(slug, lang = 'en', apiBase) {
   return fetchWithCurl(url);
 }
 
-async function syncPathway(slug, sourceInfo, layers) {
+async function syncPathway(slug, sourceInfo, layers, ecoConfig) {
   const layer = layers.find(l => l.id === sourceInfo.source);
   if (!layer) throw new Error(`Layer ${sourceInfo.source} not found`);
 
@@ -47,6 +51,7 @@ async function syncPathway(slug, sourceInfo, layers) {
   mkdirSync(projectsDir, { recursive: true });
 
   const apiBase = layer.api_base || 'https://learning-admin.raspberrypi.org/api/v1';
+  const prefix = ecoConfig.semantic_prefix || ECOSYSTEM_ID;
 
   // Fetch metadata and projects (try German first, fallback to English for structure)
   let metaData;
@@ -69,9 +74,10 @@ async function syncPathway(slug, sourceInfo, layers) {
     idToSlug[p.id] = p.attributes.repositoryName || p.id;
   });
 
-  // Create our internal format
+  // Create our internal format with GIDs
   const pathwayConfig = {
-    id: attributes.id?.toString() || slug,
+    id: `${prefix}:PATH:${slug}`, // Transform ID into GID
+    gid: `${prefix}:PATH:${slug}`,
     slug: slug,
     title: attributes.title,
     description: attributes.description,
@@ -79,6 +85,7 @@ async function syncPathway(slug, sourceInfo, layers) {
       const step = steps.find(s => s.attributes.projectId.toString() === p.id);
       return {
         slug: idToSlug[p.id],
+        gid: `${prefix}:PROJ:${idToSlug[p.id]}`, // Include project GID
         category: step?.attributes.category || 'explore'
       };
     }),
@@ -97,11 +104,12 @@ async function syncPathway(slug, sourceInfo, layers) {
   console.log(`Syncing ${projects.length} projects to ${projectsDir}...`);
   for (const p of pathwayConfig.projects) {
     const projectSlug = p.slug;
-    console.log(`  - ${projectSlug}`);
+    console.log(`  - ${projectSlug} (${p.gid})`);
     await cloneRepository(projectSlug, { 
       gitBase: layer.git_base,
       projectsDir: projectsDir 
     });
+    // Snapshots are still kept in a flat structure for now as per SPEC
     await fetchProjectApi(projectSlug, 'en', { snapshotsDir: 'test/snapshots' });
     await fetchProjectApi(projectSlug, 'de-DE', { snapshotsDir: 'test/snapshots' });
   }
@@ -110,23 +118,23 @@ async function syncPathway(slug, sourceInfo, layers) {
 async function main() {
   const args = process.argv.slice(2);
   
-  if (!existsSync(SOURCES_FILE)) {
-    console.error(`Error: ${SOURCES_FILE} not found.`);
+  if (!existsSync(SYNC_FILE)) {
+    console.error(`Error: ${SYNC_FILE} not found.`);
     return;
   }
 
-  const sources = yaml.load(readFileSync(SOURCES_FILE, 'utf8'));
-  const layers = sources.layers || [];
+  const syncConfig = yaml.load(readFileSync(SYNC_FILE, 'utf8'));
+  const ecoConfig = existsSync(ECO_FILE) ? yaml.load(readFileSync(ECO_FILE, 'utf8')) : {};
+  const layers = syncConfig.layers || [];
   let syncList = [];
 
   if (args.length > 0) {
-    // If slugs are passed as args, try to find them in sync list or default to official
     for (const arg of args) {
-      const found = sources.sync?.pathways?.find(p => p.slug === arg);
+      const found = syncConfig.sync?.pathways?.find(p => p.slug === arg);
       syncList.push(found || { slug: arg, source: 'official' });
     }
   } else {
-    syncList = sources.sync?.pathways || [];
+    syncList = syncConfig.sync?.pathways || [];
   }
 
   if (syncList.length === 0) {
@@ -136,7 +144,7 @@ async function main() {
 
   for (const item of syncList) {
     try {
-      await syncPathway(item.slug, item, layers);
+      await syncPathway(item.slug, item, layers, ecoConfig);
     } catch (e) {
       console.error(`✗ Error syncing pathway ${item.slug}:`, e.message);
     }

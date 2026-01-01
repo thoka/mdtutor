@@ -77,7 +77,7 @@ async function getProjectData(namespacedSlug, requestedLang) {
           includeQuizData: true
         });
         if (parsed && parsed.data) {
-          parsed.data.id = `${namespace}:${slug}`;
+          // GID is already set by the parser
 
           const imageUrlPattern = /src="(images\/[^"]+)"/g;
           if (parsed.data.attributes?.content?.steps) {
@@ -122,7 +122,8 @@ async function getProjectData(namespacedSlug, requestedLang) {
       if (existsSync(filePath)) {
         const data = await readFileAsync(filePath, 'utf-8');
         const parsed = JSON.parse(data);
-        parsed.data.id = `${namespace}:${slug}`;
+        const prefix = ecosystem.semantic_prefix || ecosystem.id.toUpperCase();
+        parsed.data.id = parsed.data.attributes.gid || `${prefix}:PROJ:${slug}`;
 
         const rplUrlPattern = /https:\/\/projects-static\.raspberrypi\.org\/projects\/([^/]+)\/[^/]+\/([^/]+)\/images\/([^"]+)/g;
         
@@ -240,14 +241,23 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
   try {
     const content = await readFileAsync(resolved.path, 'utf-8');
     const data = yaml.load(content);
+    const prefix = resolved.ecosystem.semantic_prefix || resolved.ecosystem.id.toUpperCase();
+    const pathwayGid = data.gid || `${prefix}:PATH:${resolved.slug}`;
+    
     res.json({
       data: {
-        id: data.id?.toString() || resolved.slug,
+        id: pathwayGid,
         type: 'pathways',
-        attributes: { ...data },
+        attributes: { ...data, gid: pathwayGid },
         relationships: {
           projects: {
-            data: data.projects?.map(p => ({ id: typeof p === 'string' ? p : p.slug, type: 'projects' })) || []
+            data: data.projects?.map(p => {
+              const pSlug = typeof p === 'string' ? p : p.slug;
+              return { 
+                id: p.gid || `${prefix}:PROJ:${pSlug}`, 
+                type: 'projects' 
+              };
+            }) || []
           }
         }
       }

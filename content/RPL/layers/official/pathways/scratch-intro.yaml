@@ -1,4 +1,5 @@
-id: '134'
+id: RPL:PATH:scratch-intro
+gid: RPL:PATH:scratch-intro
 slug: scratch-intro
 title: Einführung in Scratch
 description: >-
@@ -7,16 +8,22 @@ description: >-
   Spiel, eine App und ein Buch erstellst.
 projects:
   - slug: space-talk
+    gid: RPL:PROJ:space-talk
     category: explore
   - slug: catch-the-bus
+    gid: RPL:PROJ:catch-the-bus
     category: explore
   - slug: find-the-bug
+    gid: RPL:PROJ:find-the-bug
     category: explore
   - slug: silly-eyes
+    gid: RPL:PROJ:silly-eyes
     category: design
   - slug: surprise-animation
+    gid: RPL:PROJ:surprise-animation
     category: design
   - slug: i-made-you-a-book
+    gid: RPL:PROJ:i-made-you-a-book
     category: invent
 header:
   - title: Was werde ich erschaffen?
