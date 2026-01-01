@@ -22,7 +22,7 @@ module Api
 
         # Get the latest action for each user
         latest_actions = Action.where(user_id: user_ids)
-                               .order(timestamp: :desc)
+                               .order(timestamp: :desc, created_at: :desc)
                                .group_by(&:user_id)
                                .transform_values(&:first)
 
@@ -31,7 +31,7 @@ module Api
 
       def user_history
         user_id = params[:user_id]
-        actions = Action.where(user_id: user_id).order(timestamp: :desc).limit(50)
+        actions = Action.where(user_id: user_id).order(timestamp: :desc, created_at: :desc).limit(50)
         render json: actions
       end
     end
