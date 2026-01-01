@@ -5,6 +5,7 @@
   import TutorialView from './routes/TutorialView.svelte';
   import PathwayView from './routes/PathwayView.svelte';
   import LanguageChooser from './lib/LanguageChooser.svelte';
+  import LoginBar from './lib/LoginBar.svelte';
   import { t } from './lib/i18n';
   import { currentLanguage } from './lib/stores';
   import { checkApiHealth } from './lib/api-config';
@@ -129,6 +130,7 @@
           {/if}
         </div>
         <div class="global-nav-bar__right">
+          <LoginBar />
           <LanguageChooser />
         </div>
       </div>

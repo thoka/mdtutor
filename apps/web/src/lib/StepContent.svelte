@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { derived } from 'svelte/store';
+  import { trackAction } from './achievements';
   import { createTaskStore } from './stores';
   import Prism from 'prismjs';
   import 'prismjs/themes/prism-tomorrow.css';
@@ -300,58 +301,15 @@
     const isCorrect = selectedInput.getAttribute('data-correct') === 'true';
     console.log('[quiz] Answer is correct:', isCorrect);
     
-    // Hide all feedback items first
-    const allFeedbackItems = question.querySelectorAll('.knowledge-quiz-question__feedback-item');
-    console.log(`[quiz] Found ${allFeedbackItems.length} feedback items`);
-    allFeedbackItems.forEach((item) => {
-      item.classList.remove('knowledge-quiz-question__feedback-item--show');
-      item.classList.remove('knowledge-quiz-question__feedback-item--correct');
-      item.classList.remove('knowledge-quiz-question__feedback-item--incorrect');
+    // Track quiz attempt
+    trackAction('quiz_attempt', slug, { 
+      step, 
+      is_correct: isCorrect,
+      selected_value: selectedInput.value
     });
-    
-    // Show feedback for selected answer
-    // Original API structure: feedback-for-choice-X ID on feedback item
-    // The value is 1-based (matches choice number)
-    const selectedValue = selectedInput.value;
-    const selectedId = selectedInput.id;
-    
-    let feedbackItem: Element | null = null;
-    
-    // Extract choice number from ID (e.g., "q1-choice-1" -> "1")
-    // The value should match the choice number (1-based)
-    const choiceMatch = selectedId.match(/q(\d+)-choice-(\d+)/);
-    if (choiceMatch) {
-      const questionNum = choiceMatch[1];
-      const choiceNum = choiceMatch[2];
-      const feedbackId = `q${questionNum}-feedback-for-choice-${choiceNum}`;
-      console.log(`[quiz] Looking for feedback with ID: ${feedbackId}`);
-      feedbackItem = question.querySelector(`#${feedbackId}`);
-    }
-    
-    // Fallback: try to find by original ID format if prefix matching fails
-    if (!feedbackItem) {
-      const choiceMatchLegacy = selectedId.match(/choice-(\d+)/);
-      if (choiceMatchLegacy) {
-        const choiceNum = choiceMatchLegacy[1];
-        const feedbackId = `feedback-for-choice-${choiceNum}`;
-        console.log(`[quiz] Legacy fallback: Looking for feedback with ID: ${feedbackId}`);
-        feedbackItem = question.querySelector(`#${feedbackId}`);
-      }
-    }
-    
-    // Second fallback: try to find by value if ID matching fails
-    if (!feedbackItem) {
-      const feedbackId = `feedback-for-choice-${selectedValue}`;
-      console.log(`[quiz] Second fallback: Looking for feedback with ID: ${feedbackId}`);
-      feedbackItem = question.querySelector(`#${feedbackId}`);
-    }
-    
-    console.log('[quiz] Feedback item found:', feedbackItem ? 'yes' : 'no');
-    if (feedbackItem) {
-      console.log('[quiz] Feedback item ID:', feedbackItem.id);
-    }
-    
+
     if (isCorrect) {
+      trackAction('quiz_success', slug, { step });
       console.log('[quiz] Processing correct answer');
       // Correct answer: disable inputs, show feedback, mark as answered, show next question
       inputs.forEach((input) => {
@@ -587,7 +545,10 @@
       
       // Add new listener
       const newListener = () => {
+        const isChecked = !input.checked; // This is called BEFORE the state changes? No, usually after.
+        // Actually, toggle() will update the store.
         taskStore.toggle(index);
+        trackAction(input.checked ? 'task_check' : 'task_uncheck', slug, { step, task_index: index });
       };
       (input as any)._changeListener = newListener;
       input.addEventListener('change', newListener);

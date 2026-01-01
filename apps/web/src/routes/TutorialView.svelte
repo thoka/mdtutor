@@ -3,6 +3,7 @@
   import { push } from 'svelte-spa-router';
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
+  import { trackAction } from '../lib/achievements';
   import { tutorial, loading, error, currentStep, completedSteps, completedProjects, currentLanguage, availableLanguages } from '../lib/stores';
   import { t } from '../lib/i18n';
   
@@ -36,6 +37,12 @@
         throw new Error(`Failed to load tutorial: ${response.statusText}`);
       }
       tutorialData = await response.json();
+      
+      // Track project open
+      trackAction('project_open', tutorialData.data.id, { slug, lang });
+      // Track initial step view
+      trackAction('step_view', tutorialData.data.id, { step, slug, lang });
+
       tutorial.set(tutorialData);
       if (tutorialData.languages) {
         availableLanguages.set(tutorialData.languages);
@@ -58,11 +65,13 @@
   }
   
   function handleNavigate(newStep: number) {
+    trackAction('step_view', tutorialData.data.id, { step: newStep, slug, lang });
     push(`/${lang}/projects/${slug}/${newStep}`);
   }
   
   function handlePrevious() {
     if (step > 0) {
+      trackAction('step_view', tutorialData.data.id, { step: step - 1, slug, lang });
       push(`/${lang}/projects/${slug}/${step - 1}`);
     }
   }
@@ -70,11 +79,15 @@
   function handleNext() {
     if (tutorialData && step < tutorialData.data.attributes.content.steps.length - 1) {
       completedSteps.complete(slug, step);
+      trackAction('step_complete', tutorialData.data.id, { step, slug, lang });
+      trackAction('step_view', tutorialData.data.id, { step: step + 1, slug, lang });
       push(`/${lang}/projects/${slug}/${step + 1}`);
     } else if (tutorialData && step === tutorialData.data.attributes.content.steps.length - 1) {
       // Last step completed
       completedSteps.complete(slug, step);
       completedProjects.complete(tutorialData.data.id);
+      trackAction('step_complete', tutorialData.data.id, { step, slug, lang });
+      trackAction('project_complete', tutorialData.data.id, { slug, lang });
       // Optionally redirect to pathway or home
     }
   }

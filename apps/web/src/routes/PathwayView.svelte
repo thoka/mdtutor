@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
+  import { trackAction } from '../lib/achievements';
   import { currentLanguage, completedProjects } from '../lib/stores';
   import { t } from '../lib/i18n';
 
@@ -54,6 +55,9 @@
 
       pathway = pathwayData.data;
       projects = projectsData.data;
+      
+      // Track pathway open
+      trackAction('pathway_open', pathway.id, { slug, lang });
     } catch (e) {
       console.error('loadPathway error', e);
       errorMsg = e instanceof Error ? e.message : 'Unknown error';

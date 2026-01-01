@@ -52,6 +52,11 @@ export default defineConfig(({ mode }) => {
     console.error('ERROR: API_PORT or PORT must be set in .env file');
     process.exit(1);
   }
+
+  const railsPort = env.RAILS_PORT;
+  if (!railsPort) {
+    console.warn('WARNING: RAILS_PORT not set in .env file');
+  }
   
   return {
     plugins: [svelte(), apiCheckPlugin(apiPort, commitHash)],
@@ -65,22 +70,23 @@ export default defineConfig(({ mode }) => {
       host: true,
       allowedHosts: true,
       proxy: {
+        // Auth and Actions go to Rails
+        '/api/v1/auth': {
+          target: `http://localhost:${railsPort}`,
+          changeOrigin: true,
+          secure: false
+        },
+        '/api/v1/actions': {
+          target: `http://localhost:${railsPort}`,
+          changeOrigin: true,
+          secure: false
+        },
+        // Everything else to Node API
         '/api': {
           target: `http://localhost:${apiPort}`,
           changeOrigin: true,
           secure: false,
-          ws: true,
-          configure: (proxy, _options) => {
-            proxy.on('error', (err, _req, _res) => {
-              console.log('proxy error', err);
-            });
-            proxy.on('proxyReq', (proxyReq, req, _res) => {
-              // console.log('Sending Request to the Target:', req.method, req.url);
-            });
-            proxy.on('proxyRes', (proxyRes, req, _res) => {
-              // console.log('Received Response from the Target:', proxyRes.statusCode, req.url);
-            });
-          },
+          ws: true
         }
       }
     },
