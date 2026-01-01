@@ -87,11 +87,6 @@
     <div class="error">{$t('error')}: {errorMsg}</div>
   {:else if pathway}
     <header class="c-pathway-header">
-      {#if pathway.attributes.banner}
-        <div class="c-pathway-header__banner">
-          <img src={pathway.attributes.banner} alt="" />
-        </div>
-      {/if}
       <div class="c-pathway-header__content">
         <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
         
@@ -111,8 +106,14 @@
             </div>
           </div>
 
-          {#if pathway.attributes.header}
-            <div class="c-pathway-header__right">
+          <div class="c-pathway-header__right">
+            {#if pathway.attributes.banner}
+              <div class="c-pathway-header__banner">
+                <img src={pathway.attributes.banner} alt="" />
+              </div>
+            {/if}
+
+            {#if pathway.attributes.header}
               <div class="c-pathway-accordions">
                 {#each pathway.attributes.header.filter(s => s.key !== 'mentor') as section}
                   <details class="c-pathway-accordion">
@@ -126,8 +127,8 @@
                   </details>
                 {/each}
               </div>
-            </div>
-          {/if}
+            {/if}
+          </div>
         </div>
       </div>
     </header>
@@ -187,28 +188,11 @@
     margin-bottom: 3rem;
     border-bottom: 1px solid #eee;
     padding-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  @media (min-width: 768px) {
-    .c-pathway-header {
-      flex-direction: row;
-      align-items: flex-start;
-    }
   }
 
   .c-pathway-header__banner {
-    flex-shrink: 0;
+    margin-bottom: 1rem;
     width: 100%;
-    max-width: 300px;
-  }
-
-  @media (min-width: 768px) {
-    .c-pathway-header__banner {
-      max-width: 200px;
-    }
   }
 
   .c-pathway-header__banner img {
