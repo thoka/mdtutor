@@ -16,16 +16,18 @@
     content = '',
     slug = '',
     gid = '',
-    step = 0
+    step = 0,
+    userActions = []
   }: {
     content: string;
     slug: string;
     gid?: string;
     step: number;
+    userActions?: any[];
   } = $props();
   
   let contentDiv: HTMLDivElement;
-  let taskStore = $derived(createTaskStore(slug, step));
+  let taskStore = $derived(createTaskStore(slug, step, gid, userActions));
   
   onMount(() => {
     if (!contentDiv) return;
@@ -139,6 +141,7 @@
       // Use setTimeout to ensure DOM is updated
       console.log('[quiz] Setting timeout to initialize quiz');
       setTimeout(() => {
+        if (!contentDiv) return;
         console.log('[quiz] Timeout fired, calling initializeQuiz');
         highlightCode();
         renderScratchBlocks();
@@ -497,11 +500,55 @@
     }
   }
   
+  function attachScratchHandlers() {
+    if (!contentDiv) return;
+    const previews = contentDiv.querySelectorAll('.scratch-preview');
+    previews.forEach(preview => {
+      const iframe = preview.querySelector('iframe');
+      if (iframe) {
+        // Add a click listener to the container as a proxy for "starting"
+        // Since we can't easily detect clicks inside the iframe, 
+        // we'll add a 'Play' button overlay that tracks the action.
+        if (preview.querySelector('.scratch-play-overlay')) return;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'scratch-play-overlay';
+        overlay.innerHTML = '<span class="material-symbols-sharp">play_circle</span>';
+        overlay.style.cssText = `
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0,0,0,0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 10;
+          color: white;
+          font-size: 80px;
+        `;
+        
+        preview.style.position = 'relative';
+        preview.appendChild(overlay);
+
+        overlay.addEventListener('click', () => {
+          const scratchId = iframe.src.match(/projects\/embed\/(\d+)/)?.[1] || 'unknown';
+          trackAction('scratch_start', gid || slug, { step, scratch_id: scratchId });
+          overlay.remove();
+          // Change iframe src to autostart
+          if (iframe.src.includes('autostart=false')) {
+            iframe.src = iframe.src.replace('autostart=false', 'autostart=true');
+          }
+        });
+      }
+    });
+  }
+
   $effect(() => {
-    // Re-attach task checkbox handlers when content or step changes
+    // Re-attach handlers when content or step changes
     content;
     step;
     attachTaskHandlers();
+    attachScratchHandlers();
     initializePanelStates();
   });
   

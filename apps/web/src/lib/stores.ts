@@ -69,18 +69,46 @@ function createProjectCompletionStore() {
 export const completedProjects = createProjectCompletionStore();
 
 // Task completion per step
-export function createTaskStore(slug: string, step: number) {
+export function createTaskStore(slug: string, step: number, gid?: string, userActions: any[] = []) {
   const key = `tasks_${slug}_${step}`;
-  const stored = localStorage.getItem(key);
-  const initial = stored ? new Set<number>(JSON.parse(stored)) : new Set<number>();
   
-  const { subscribe, set, update } = writable<Set<number>>(initial);
+  // 1. Start with localStorage (legacy/local-only)
+  const stored = localStorage.getItem(key);
+  const taskSet = stored ? new Set<number>(JSON.parse(stored)) : new Set<number>();
+  
+  // 2. Overlay backend actions if present
+  if (userActions.length > 0 && gid) {
+    // Filter actions for this project and step
+    const projectActions = userActions.filter(a => a.gid === gid);
+    
+    // Process actions in chronological order
+    const sortedActions = [...projectActions].sort((a, b) => 
+      new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+
+    sortedActions.forEach(action => {
+      const meta = typeof action.metadata === 'string' ? JSON.parse(action.metadata) : (action.metadata || {});
+      const actionStep = meta.step !== undefined ? parseInt(meta.step) : -1;
+      const taskIndex = meta.task_index !== undefined ? parseInt(meta.task_index) : -1;
+
+      if (actionStep === step && taskIndex >= 0) {
+        if (action.action_type === 'task_check') {
+          taskSet.add(taskIndex);
+        } else if (action.action_type === 'task_uncheck') {
+          taskSet.delete(taskIndex);
+        }
+      }
+    });
+  }
+  
+  const { subscribe, set, update } = writable<Set<number>>(taskSet);
   
   return {
     subscribe,
     toggle: (taskIndex: number) => {
       update(tasks => {
-        if (tasks.has(taskIndex)) {
+        const isChecked = !tasks.has(taskIndex);
+        if (!isChecked) {
           tasks.delete(taskIndex);
         } else {
           tasks.add(taskIndex);

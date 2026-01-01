@@ -40,12 +40,17 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
     const projectActions = actions.filter(a => a.gid === project.id);
     console.log(`[progress] Project: ${project.id}, total actions: ${projectActions.length}`);
     
-    // Track unique completed interactions
-    const completedTasks = new Set<string>();
+    // Track state of each task (latest action wins)
+    const taskStates = new Map<string, boolean>();
     const completedQuizzes = new Set<number>();
     const completedSteps = new Set<number>();
 
-    projectActions.forEach(action => {
+    // Sort actions by timestamp to process in order
+    const sortedActions = [...projectActions].sort((a, b) => 
+      new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+    );
+
+    sortedActions.forEach(action => {
       const meta = typeof action.metadata === 'string' ? JSON.parse(action.metadata) : (action.metadata || {});
       const stepIdx = meta.step !== undefined ? parseInt(meta.step) : -1;
 
@@ -59,7 +64,12 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
           break;
         case 'task_check':
           if (stepIdx >= 0 && meta.task_index !== undefined) {
-            completedTasks.add(`${stepIdx}_${meta.task_index}`);
+            taskStates.set(`${stepIdx}_${meta.task_index}`, true);
+          }
+          break;
+        case 'task_uncheck':
+          if (stepIdx >= 0 && meta.task_index !== undefined) {
+            taskStates.set(`${stepIdx}_${meta.task_index}`, false);
           }
           break;
         case 'quiz_success':
@@ -77,7 +87,8 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
 
       if (interactions.total > 0) {
         // Step with interactions: calculate based on tasks/quizzes
-        const doneTasks = Array.from(completedTasks).filter(t => t.startsWith(`${idx}_`)).length;
+        const doneTasks = Array.from(taskStates.entries())
+          .filter(([key, val]) => key.startsWith(`${idx}_`) && val === true).length;
         const doneQuizzes = completedQuizzes.has(idx) ? 1 : 0;
         interactions.completed = doneTasks + doneQuizzes;
         
@@ -90,16 +101,19 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
         }
       } else {
         // Step without interactions: counts as 1 if visited or completed
-        stepScore = completedSteps.has(idx) || projectActions.some(a => {
+        // For 'visited', we look for step_view or step_complete or task_check
+        const hasActions = completedSteps.has(idx) || projectActions.some(a => {
           const m = typeof a.metadata === 'string' ? JSON.parse(a.metadata) : (a.metadata || {});
-          return m.step === idx;
-        }) ? 1 : 0;
+          const stepVal = m.step !== undefined ? parseInt(m.step) : -1;
+          return stepVal === idx && (a.action_type === 'step_view' || a.action_type === 'step_complete' || a.action_type === 'task_check' || a.action_type === 'quiz_attempt');
+        });
+        stepScore = hasActions ? 1 : 0;
       }
       
       if (stepScore >= 1) fullStepsCount++;
       totalScore += stepScore;
     });
-
+    
     const percent = Math.round((totalScore / totalSteps) * 100);
 
     return {

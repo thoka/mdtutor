@@ -7,7 +7,7 @@ describe('calculateProgress', () => {
     attributes: {
       content: {
         steps: Array(9).fill(null).map((_, i) => ({
-          content: '',
+          content: i === 4 ? '<input class="c-project-task__checkbox" />' : '',
           position: i
         }))
       }
@@ -28,5 +28,30 @@ describe('calculateProgress', () => {
     // 6 / 9 = 0.666 -> 67%
     expect(progress.percent).toBeGreaterThanOrEqual(60);
     expect(progress.percent).toBe(67);
+  });
+
+  it('correctly handles task unchecking in progress calculation', () => {
+    const actions = [
+      { action_type: 'step_complete', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 }, timestamp: '2026-01-01T10:00:00Z' },
+      { action_type: 'task_check', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4, task_index: 0 }, timestamp: '2026-01-01T10:01:00Z' },
+      { action_type: 'task_uncheck', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 4, task_index: 0 }, timestamp: '2026-01-01T10:02:00Z' },
+    ];
+
+    const progress = calculateProgress(mockProject, actions);
+    // Only step 0 is complete. Step 4 is 0% because the check was undone.
+    // 1 / 9 = 11%
+    expect(progress.percent).toBe(11);
+    expect(progress.stepInteractions[4].completed).toBe(0);
+  });
+
+  it('recognizes scratch_start and step_view actions without breaking progress', () => {
+    const actions = [
+      { action_type: 'step_view', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0 }, timestamp: '2026-01-01T10:00:00Z' },
+      { action_type: 'scratch_start', gid: 'RPL:PROJ:catch-the-bus', metadata: { step: 0, scratch_id: '123' }, timestamp: '2026-01-01T10:01:00Z' },
+    ];
+
+    const progress = calculateProgress(mockProject, actions);
+    // Step 0 viewed = 1 step. 1/9 = 11%
+    expect(progress.percent).toBe(11);
   });
 });

@@ -10,6 +10,7 @@
   let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
   
   let tutorialData = $state<any>(null);
+  let userActions = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
   let step = $state(0);
@@ -38,6 +39,26 @@
       }
       tutorialData = await response.json();
       
+      // Load user actions if logged in
+      const token = localStorage.getItem('sso_token');
+      if (token && token.includes('.')) {
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const userId = payload.user_id;
+          if (userId) {
+            const actionsRes = await fetch(`/api/v1/actions/user/${userId}`, {
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (actionsRes.ok) {
+              userActions = await actionsRes.json();
+              console.log('[TutorialView] Loaded user actions:', userActions.length);
+            }
+          }
+        } catch (e) {
+          console.warn('Failed to fetch user actions', e);
+        }
+      }
+
       // Track project open
       trackAction('project_open', tutorialData.data.id, { slug, lang });
       // Track initial step view
@@ -141,6 +162,7 @@
                               {slug}
                               gid={tutorialData.data.id}
                               {step}
+                              {userActions}
                             />
                           {/if}
                         </div>
