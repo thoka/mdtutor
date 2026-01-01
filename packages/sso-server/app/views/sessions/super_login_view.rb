@@ -12,7 +12,7 @@ module Views
         div(class: "sso-container") do
           h1 { "Admin Login" }
           p { "Logge dich ein, um den Super-Mode zu aktivieren." }
-          
+
           div(class: "user-context") do
             div(class: "avatar") { img(src: @user["avatar"], class: "avatar-img") if @user["avatar"] }
             h2 { @user["name"] }
@@ -22,13 +22,13 @@ module Views
             input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
             input(type: "hidden", name: "user_id", value: @user_id)
             input(type: "hidden", name: "return_to", value: @return_to)
-            
+
             div(class: "input-group") do
               label(for: "password") { "Passwort:" }
               input(
-                type: "password", 
-                name: "password", 
-                id: "password", 
+                type: "password",
+                name: "password",
+                id: "password",
                 autofocus: true,
                 class: "password-input"
               )
@@ -45,6 +45,28 @@ module Views
 
         style do
           <<-CSS.html_safe
+            .sso-container {
+              max-width: 800px;
+              margin: 40px auto;
+              text-align: center;
+              font-family: sans-serif;
+            }
+            .user-context {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin-bottom: 30px;
+            }
+            .avatar {
+              width: 100px;
+              height: 100px;
+              margin-bottom: 10px;
+            }
+            .avatar-img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
             .password-input {
               font-size: 1.2rem;
               padding: 10px;
@@ -67,4 +89,3 @@ module Views
     end
   end
 end
-

@@ -11,7 +11,7 @@ module Views
       def view_template
         div(class: "sso-container") do
           h1 { "PIN erforderlich" }
-          
+
           div(class: "user-context") do
             div(class: "avatar") { img(src: @user["avatar"], class: "avatar-img") if @user["avatar"] }
             h2 { @user["name"] }
@@ -21,15 +21,15 @@ module Views
             input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
             input(type: "hidden", name: "user_id", value: @user_id)
             input(type: "hidden", name: "return_to", value: @return_to)
-            
+
             div(class: "input-group") do
               label(for: "pin") { "Gib deine 4-stellige PIN ein:" }
               input(
-                type: "password", 
-                name: "pin", 
-                id: "pin", 
-                maxlength: "4", 
-                pattern: "[0-9]*", 
+                type: "password",
+                name: "pin",
+                id: "pin",
+                maxlength: "4",
+                pattern: "[0-9]*",
                 inputmode: "numeric",
                 autofocus: true,
                 class: "pin-input"
@@ -47,8 +47,27 @@ module Views
 
         style do
           <<-CSS.html_safe
+            .sso-container {
+              max-width: 800px;
+              margin: 40px auto;
+              text-align: center;
+              font-family: sans-serif;
+            }
             .user-context {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
               margin-bottom: 30px;
+            }
+            .avatar {
+              width: 100px;
+              height: 100px;
+              margin-bottom: 10px;
+            }
+            .avatar-img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
             }
             .pin-form {
               display: flex;
@@ -89,4 +108,3 @@ module Views
     end
   end
 end
-

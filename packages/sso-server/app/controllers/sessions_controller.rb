@@ -41,9 +41,9 @@ class SessionsController < ApplicationController
       finalize_login(user_id, user, return_to)
     else
       render Views::Sessions::PinView.new(
-        user_id: user_id, 
-        user: user, 
-        return_to: return_to, 
+        user_id: user_id,
+        user: user,
+        return_to: return_to,
         error: "Falsche PIN"
       )
     end
@@ -60,9 +60,9 @@ class SessionsController < ApplicationController
       redirect_to root_path(return_to: return_to), notice: "Super-Mode aktiviert"
     else
       render Views::Sessions::SuperLoginView.new(
-        user_id: user_id, 
-        user: user, 
-        return_to: return_to, 
+        user_id: user_id,
+        user: user,
+        return_to: return_to,
         error: "Falsches Passwort"
       )
     end

@@ -10,17 +10,6 @@ module Views
 
       def view_template
         div(class: "sso-container") do
-          if @super_mode
-            div(class: "super-mode-banner") do
-              span { "⚡ Super-Mode Aktiv: PIN-Abfrage deaktiviert" }
-              form(action: "/sessions/super_logout", method: "post", style: "display: inline;") do
-                input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
-                input(type: "hidden", name: "return_to", value: @return_to)
-                button(class: "super-logout-btn") { "Beenden" }
-              end
-            end
-          end
-
           h1 { "Wer bist du?" }
 
           section(class: "user-group") do
@@ -45,6 +34,17 @@ module Views
             separator = @return_to.include?("?") ? "&" : "?"
             a(href: "#{@return_to}#{separator}token=logout", class: "logout-button") { "Abmelden / Logout" }
           end
+
+          if @super_mode
+            div(class: "super-mode-footer") do
+              span { "⚡ Super-Mode Aktiv" }
+              form(action: "/sessions/super_logout", method: "post", style: "display: inline;") do
+                input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+                input(type: "hidden", name: "return_to", value: @return_to)
+                button(class: "super-logout-link") { "(Beenden)" }
+              end
+            end
+          end
         end
 
         style do
@@ -56,25 +56,22 @@ module Views
               font-family: sans-serif;
             }
 
-            .super-mode-banner {
-              background: #fff9c4;
-              border: 1px solid #fbc02d;
-              padding: 10px;
-              margin-bottom: 20px;
-              border-radius: 8px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              font-weight: bold;
+            .super-mode-footer {
+              margin-top: 40px;
+              padding: 15px;
+              font-size: 0.8rem;
+              color: #888;
+              border-top: 1px dashed #eee;
             }
 
-            .super-logout-btn {
-              background: #fbc02d;
+            .super-logout-link {
+              background: none;
               border: none;
-              padding: 5px 15px;
-              border-radius: 4px;
+              color: #e91e63;
+              text-decoration: underline;
               cursor: pointer;
-              font-weight: bold;
+              font-size: 0.8rem;
+              margin-left: 5px;
             }
 
             .logout-section {

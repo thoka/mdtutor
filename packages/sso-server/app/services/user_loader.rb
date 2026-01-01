@@ -29,4 +29,3 @@ class UserLoader
     admin && admin["password"].to_s == password.to_s
   end
 end
-
