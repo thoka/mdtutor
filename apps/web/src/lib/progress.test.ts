@@ -111,4 +111,24 @@ describe('calculateProgress', () => {
     expect(progressDone.isCompleted).toBe(true);
     expect(progressDone.taskStepsCount).toBe(1);
   });
+
+  it('calculates progress correctly from aggregated UserState', () => {
+    const userState = {
+      user_id: 'alice',
+      projects: {
+        'RPL:PROJ:catch-the-bus': {
+          tasks: { '4_0': true },
+          quizzes: [],
+          last_step: 4,
+          last_timestamp: '2026-01-01T10:00:00Z'
+        }
+      }
+    };
+
+    const progress = calculateProgress(mockProject, userState);
+    expect(progress.percent).toBe(100);
+    expect(progress.isCompleted).toBe(true);
+    expect(progress.lastViewedStep).toBe(4);
+    expect(progress.debug?.rawTasks['4_0']).toBe(true);
+  });
 });

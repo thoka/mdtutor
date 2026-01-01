@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         collection do
           get :latest
           get "user/:user_id", to: "actions#user_history"
+          get "user/:user_id/state", to: "actions#user_state"
         end
       end
 
