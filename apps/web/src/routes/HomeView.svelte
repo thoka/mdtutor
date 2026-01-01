@@ -7,26 +7,37 @@
   let { params = {} }: { params?: { lang?: string } } = $props();
 
   let projects = $state<any[]>([]);
+  let pathways = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
   let lang = $derived(params.lang || 'de-DE');
 
   $effect(() => {
     currentLanguage.set(lang);
-    loadProjects();
+    loadData();
   });
 
-  async function loadProjects() {
+  async function loadData() {
     isLoading = true;
+    errorMsg = null;
     try {
-      const response = await fetch(`/api/projects?lang=${lang}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch projects');
+      const [projectsRes, pathwaysRes] = await Promise.all([
+        fetch(`/api/projects?lang=${lang}`),
+        fetch(`/api/pathways?lang=${lang}`)
+      ]);
+
+      if (!projectsRes.ok || !pathwaysRes.ok) {
+        throw new Error('Failed to fetch data');
       }
-      const data = await response.json();
-      projects = data.projects || [];
-      if (data.languages) {
-        availableLanguages.set(data.languages);
+
+      const projectsData = await projectsRes.json();
+      const pathwaysData = await pathwaysRes.json();
+
+      projects = projectsData.projects || [];
+      pathways = pathwaysData.pathways || [];
+
+      if (projectsData.languages) {
+        availableLanguages.set(projectsData.languages);
       }
     } catch (e) {
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
@@ -37,21 +48,29 @@
 </script>
 
 <div class="c-home-view">
-  <section class="c-pathways-overview">
-    <h2 class="c-pathways-overview__title">Lernpfade</h2>
-    <div class="c-projects-list__projects">
-      <a href="/{lang}/pathways/scratch-intro" use:link class="c-project-card c-pathway-card">
-        <div class="c-project-card__content">
-          <h3 class="c-project-card__heading">Einführung in Scratch</h3>
-          <p class="c-project-card__description">Lerne die Grundlagen von Scratch mit diesem geführten Lernpfad.</p>
-        </div>
-      </a>
-    </div>
-  </section>
+  {#if pathways.length > 0}
+    <section class="c-pathways-overview">
+      <h2 class="c-pathways-overview__title">Lernpfade</h2>
+      <div class="c-projects-list__projects">
+        {#each pathways as pathway}
+          {@const displaySlug = pathway.slug.includes(':') ? pathway.slug.split(':')[1] : pathway.slug}
+          <a href="/{lang}/pathways/{displaySlug}" use:link class="c-project-card c-pathway-card">
+            <div class="c-project-card__content">
+              <h3 class="c-project-card__heading">{pathway.title}</h3>
+              {#if pathway.description}
+                <p class="c-project-card__description">{pathway.description}</p>
+              {/if}
+            </div>
+          </a>
+        {/each}
+      </div>
+    </section>
 
-  <hr class="c-home-divider" />
+    <hr class="c-home-divider" />
+  {/if}
 
   <div class="c-projects-list">
+    <h2 class="c-pathways-overview__title">Alle Projekte</h2>
     {#if isLoading}
     <div class="c-projects-list__projects__no-results">
       <p>{$t('loading')}</p>
@@ -67,7 +86,8 @@
   {:else}
     <div class="c-projects-list__projects">
       {#each projects as project}
-        {@const displaySlug = project.slug.startsWith('rpl:') ? project.slug.slice(4) : project.slug}
+        {@const parts = project.slug.split(':')}
+        {@const displaySlug = parts.length >= 2 ? `${parts[0]}:${parts[parts.length-1]}` : project.slug}
         <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card">
           {#if project.heroImage}
             <img 

@@ -72,7 +72,9 @@
       .map((p: any) => p.slug);
       
     return projects.filter(p => {
-      const projectSlug = p.id.includes(':') ? p.id.split(':')[1] : p.id;
+      // Extract the slug part from GID (e.g., RPL:PROJ:space-talk -> space-talk)
+      const parts = p.id.split(':');
+      const projectSlug = parts[parts.length - 1];
       return categorySlugs.includes(projectSlug);
     });
   }
@@ -125,7 +127,8 @@
             </h2>
             <div class="c-projects-list__projects">
               {#each categoryProjects as project}
-                {@const displaySlug = project.id.startsWith('rpl:') ? project.id.slice(4) : project.id}
+                {@const parts = project.id.split(':')}
+                {@const displaySlug = parts.length >= 3 ? `${parts[0]}:${parts[parts.length-1]}` : project.id}
                 {@const isDone = $completedProjects.has(project.id)}
                 <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card {isDone ? 'is-completed' : ''}">
                   {#if project.attributes.content.heroImage}
