@@ -19,7 +19,7 @@ module Views
           end
 
           form(action: "/sessions/super_login", method: "post", class: "login-form") do
-            input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+            input(type: "hidden", name: "authenticity_token", value: form_authenticity_token)
             input(type: "hidden", name: "user_id", value: @user_id)
             input(type: "hidden", name: "return_to", value: @return_to)
 

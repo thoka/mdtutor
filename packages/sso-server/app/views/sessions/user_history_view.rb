@@ -1,11 +1,12 @@
 module Views
   module Sessions
     class UserHistoryView < Views::Base
-      def initialize(user_id:, user:, visits:, actions:)
+      def initialize(user_id:, user:, visits:, actions:, return_to: "/")
         @user_id = user_id
         @user = user
         @visits = visits
         @actions = actions
+        @return_to = return_to
       end
 
       def view_template
@@ -44,7 +45,7 @@ module Views
             end
           end
 
-          a(href: root_path, class: "back-link") { "Zurück zum Login" }
+          a(href: root_path(return_to: @return_to), class: "back-link") { "Zurück zum Login" }
         end
 
         style do

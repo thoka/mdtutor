@@ -14,7 +14,7 @@ module Components
       div(class: "tile-container") do
         if @can_toggle
           form(action: "/sessions/toggle_presence", method: "post", class: "presence-toggle") do
-            input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+            input(type: "hidden", name: "authenticity_token", value: form_authenticity_token)
             input(type: "hidden", name: "user_id", value: @id)
             input(type: "hidden", name: "return_to", value: @return_to)
             button(
@@ -31,7 +31,7 @@ module Components
 
         form(action: "/sessions/create", method: "post") do
           # Rails CSRF protection
-          input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+          input(type: "hidden", name: "authenticity_token", value: form_authenticity_token)
           input(type: "hidden", name: "user_id", value: @id)
           input(type: "hidden", name: "return_to", value: @return_to)
 
@@ -43,7 +43,7 @@ module Components
           end
         end
 
-        a(href: "/users/#{@id}", class: "history-link", title: "Verlauf ansehen") { "🕒" }
+        a(href: "/users/#{@id}?return_to=#{CGI.escape(@return_to)}", class: "history-link", title: "Verlauf ansehen") { "🕒" }
       end
     end
 

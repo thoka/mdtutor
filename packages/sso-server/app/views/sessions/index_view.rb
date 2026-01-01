@@ -52,14 +52,14 @@ module Views
           section(class: "logout-section") do
             separator = @return_to.include?("?") ? "&" : "?"
             a(href: "#{@return_to}#{separator}token=logout", class: "logout-button") { "Abmelden / Logout" }
-            a(href: "/dashboard", class: "dashboard-link") { "Makerspace Dashboard" }
+            a(href: "/dashboard?return_to=#{CGI.escape(@return_to)}", class: "dashboard-link") { "Makerspace Dashboard" }
           end
 
           if @super_mode
             div(class: "super-mode-footer") do
               span { "⚡ Super-Mode Aktiv" }
               form(action: "/sessions/super_logout", method: "post", style: "display: inline;") do
-                input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
+                input(type: "hidden", name: "authenticity_token", value: form_authenticity_token)
                 input(type: "hidden", name: "return_to", value: @return_to)
                 button(class: "super-logout-link") { "(Beenden)" }
               end
@@ -134,6 +134,15 @@ module Views
               gap: 20px;
             }
 
+            .tile-container {
+              position: relative;
+              transition: transform 0.2s;
+            }
+
+            .tile-container:hover {
+              transform: scale(1.05);
+            }
+
             .tile {
               display: flex;
               flex-direction: column;
@@ -145,23 +154,20 @@ module Views
               border-radius: 12px;
               background: white;
               cursor: pointer;
-              transition: transform 0.2s, box-shadow 0.2s;
+              transition: border-width 0.1s, box-shadow 0.2s;
               padding: 10px;
+              box-sizing: border-box;
             }
 
-            .tile:hover {
-              transform: translateY(-5px);
+            .tile-container:hover .tile {
+              border-width: 4px;
               box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-            }
-
-            .tile-container {
-              position: relative;
             }
 
             .presence-toggle {
               position: absolute;
-              top: 10px;
-              right: 10px;
+              top: 15px;
+              right: 15px;
               z-index: 10;
             }
 
@@ -188,8 +194,8 @@ module Views
 
             .presence-indicator {
               position: absolute;
-              top: 10px;
-              right: 10px;
+              top: 15px;
+              right: 15px;
               width: 12px;
               height: 12px;
               background: #4caf50;
@@ -201,17 +207,18 @@ module Views
 
             .history-link {
               position: absolute;
-              bottom: 10px;
-              right: 10px;
+              bottom: 15px;
+              right: 15px;
               text-decoration: none;
               font-size: 1.2rem;
               opacity: 0.3;
-              transition: opacity 0.2s;
+              transition: opacity 0.2s, transform 0.2s;
               z-index: 10;
             }
 
             .history-link:hover {
               opacity: 1;
+              transform: scale(1.2);
             }
 
             .admin-tile {

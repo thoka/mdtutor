@@ -91,6 +91,7 @@ class SessionsController < ApplicationController
   def dashboard
     @present_users = Presence.includes(:room).where(is_present: true)
     user_ids = @present_users.pluck(:user_id)
+    @return_to = params[:return_to] || "/"
 
     # Fetch latest actions from achievements server
     achievements_url = "http://localhost:#{ENV.fetch('ACHIEVEMENTS_PORT', 3102)}/api/v1/actions/latest"
@@ -104,12 +105,14 @@ class SessionsController < ApplicationController
 
     render Views::Sessions::DashboardView.new(
       present_users: @present_users,
-      latest_actions: @latest_actions
+      latest_actions: @latest_actions,
+      return_to: @return_to
     )
   end
 
   def user_history
     @user_id = params[:user_id]
+    @return_to = params[:return_to] || "/"
     @user = UserLoader.find_user(@user_id)
     @visits = Visit.includes(:room).where(user_id: @user_id).order(started_at: :desc)
 
@@ -127,7 +130,8 @@ class SessionsController < ApplicationController
       user_id: @user_id,
       user: @user,
       visits: @visits,
-      actions: @actions
+      actions: @actions,
+      return_to: @return_to
     )
   end
 
