@@ -80,11 +80,11 @@
   }
 
   .global-nav-bar__content {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 1rem;
   }
 
   .c-global-nav-back {
