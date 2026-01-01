@@ -3,6 +3,7 @@
   import { derived } from 'svelte/store';
   import { trackAction } from './achievements';
   import { createTaskStore } from './stores';
+  import type { UserState } from './progress';
   import Prism from 'prismjs';
   import 'prismjs/themes/prism-tomorrow.css';
   import 'prismjs/components/prism-python.js';
@@ -17,17 +18,17 @@
     slug = '',
     gid = '',
     step = 0,
-    userActions = []
+    userActionsOrState = []
   }: {
     content: string;
     slug: string;
     gid?: string;
     step: number;
-    userActions?: any[];
+    userActionsOrState?: any[] | UserState;
   } = $props();
   
   let contentDiv: HTMLDivElement;
-  let taskStore = $derived(createTaskStore(slug, step, gid, userActions));
+  let taskStore = $derived(createTaskStore(slug, step, gid, userActionsOrState));
   
   onMount(() => {
     if (!contentDiv) return;

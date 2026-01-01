@@ -1,5 +1,7 @@
 import { writable, derived } from 'svelte/store';
 
+import type { UserState } from './progress';
+
 // Tutorial data store
 export const tutorial = writable<any>(null);
 export const loading = writable(true);
@@ -69,7 +71,7 @@ function createProjectCompletionStore() {
 export const completedProjects = createProjectCompletionStore();
 
 // Task completion per step
-export function createTaskStore(slug: string, step: number, gid?: string, userActions: any[] = []) {
+export function createTaskStore(slug: string, step: number, gid?: string, userActionsOrState: any[] | UserState = []) {
   const key = `tasks_${slug}_${step}`;
   
   // 1. Start with localStorage (legacy/local-only)
@@ -77,28 +79,47 @@ export function createTaskStore(slug: string, step: number, gid?: string, userAc
   const taskSet = stored ? new Set<number>(JSON.parse(stored)) : new Set<number>();
   
   // 2. Overlay backend actions if present
-  if (userActions.length > 0 && gid) {
-    // Filter actions for this project and step
-    const projectActions = userActions.filter(a => a.gid === gid);
-    
-    // Process actions in chronological order
-    const sortedActions = [...projectActions].sort((a, b) => 
-      new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
-    );
+  if (gid) {
+    if (Array.isArray(userActionsOrState) && userActionsOrState.length > 0) {
+      // Legacy path: array of actions
+      const projectActions = userActionsOrState.filter(a => a.gid === gid);
+      
+      const sortedActions = [...projectActions].sort((a, b) => 
+        new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
+      );
 
-    sortedActions.forEach(action => {
-      const meta = typeof action.metadata === 'string' ? JSON.parse(action.metadata) : (action.metadata || {});
-      const actionStep = meta.step !== undefined ? parseInt(meta.step) : -1;
-      const taskIndex = meta.task_index !== undefined ? parseInt(meta.task_index) : -1;
+      sortedActions.forEach(action => {
+        const meta = typeof action.metadata === 'string' ? JSON.parse(action.metadata) : (action.metadata || {});
+        const actionStep = meta.step !== undefined ? parseInt(meta.step) : -1;
+        const taskIndex = meta.task_index !== undefined ? parseInt(meta.task_index) : -1;
 
-      if (actionStep === step && taskIndex >= 0) {
-        if (action.action_type === 'task_check') {
-          taskSet.add(taskIndex);
-        } else if (action.action_type === 'task_uncheck') {
-          taskSet.delete(taskIndex);
+        if (actionStep === step && taskIndex >= 0) {
+          if (action.action_type === 'task_check') {
+            taskSet.add(taskIndex);
+          } else if (action.action_type === 'task_uncheck') {
+            taskSet.delete(taskIndex);
+          }
         }
+      });
+    } else if (!Array.isArray(userActionsOrState) && userActionsOrState && (userActionsOrState as UserState).projects) {
+      // New path: aggregated UserState
+      const state = userActionsOrState as UserState;
+      const projectState = state.projects[gid];
+      if (projectState && projectState.tasks) {
+        Object.entries(projectState.tasks).forEach(([taskKey, val]) => {
+          // taskKey is "step_task" (e.g. "0_0")
+          const parts = taskKey.split('_');
+          if (parts.length === 2) {
+            const s = parseInt(parts[0]);
+            const idx = parseInt(parts[1]);
+            if (s === step) {
+              if (val) taskSet.add(idx);
+              else taskSet.delete(idx);
+            }
+          }
+        });
       }
-    });
+    }
   }
   
   const { subscribe, set, update } = writable<Set<number>>(taskSet);

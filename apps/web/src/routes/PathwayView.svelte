@@ -2,24 +2,27 @@
   import { onMount } from 'svelte';
   import { link } from 'svelte-spa-router';
   import { trackAction } from '../lib/achievements';
+  import { auth } from '../lib/auth';
   import { currentLanguage, completedProjects } from '../lib/stores';
   import { t } from '../lib/i18n';
-  import { calculateProgress, type ProjectProgress } from '../lib/progress';
+  import { calculateProgress, type ProjectProgress, type UserState } from '../lib/progress';
+  import AchievementDebugOverlay from '../lib/AchievementDebugOverlay.svelte';
 
   let { params }: { params: { slug: string; lang: string } } = $props();
 
   let pathway = $state<any>(null);
   let projects = $state<any[]>([]);
-  let userActions = $state<any[]>([]);
+  let userState = $state<UserState | null>(null);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
+  let showDebug = $state(false);
   
   let lang = $derived(params.lang || 'de-DE');
   let slug = $derived(params.slug || '');
 
   // Progress logic
   let projectProgresses = $derived(
-    projects.map(p => calculateProgress(p, userActions))
+    projects.map(p => calculateProgress(p, userState || []))
   );
   
   let completedCount = $derived(projectProgresses.filter(p => p.isCompleted).length);
@@ -31,8 +34,10 @@
   );
   let hasAnyProgress = $derived(projectProgresses.some(p => p.percent > 0));
 
+  let effectCount = 0;
   $effect(() => {
-    console.log('PathwayView effect', { lang, slug });
+    effectCount++;
+    console.log('PathwayView effect run', effectCount, { lang, slug });
     currentLanguage.set(lang);
     completedProjects.load();
     if (slug) {
@@ -60,28 +65,30 @@
       pathway = pathwayData.data;
       projects = projectsData.data;
 
-      // Fetch user actions for this pathway
+      // Fetch user state (aggregated achievements) for this user
       const token = localStorage.getItem('sso_token');
       if (token && token.includes('.')) {
         try {
           const payload = JSON.parse(atob(token.split('.')[1]));
           const userId = payload.user_id;
           if (userId) {
-            const actionsRes = await fetch(`/api/v1/actions/user/${userId}`, {
+            const stateRes = await fetch(`/api/v1/actions/user/${userId}/state`, {
               headers: { 'Authorization': `Bearer ${token}` }
             });
-        if (actionsRes.ok) {
-          userActions = await actionsRes.json();
-          console.log('[PathwayView] Loaded user actions:', userActions.length);
-        }
+            if (stateRes.ok) {
+              userState = await stateRes.json();
+              console.log('[PathwayView] Loaded aggregated user state');
+            }
           }
         } catch (e) {
-          console.warn('Failed to parse token or fetch actions', e);
+          console.warn('Failed to parse token or fetch state', e);
         }
       }
       
       // Track pathway open
-      trackAction('pathway_open', pathway.id, { slug, lang });
+      if (pathway && pathway.id) {
+        trackAction('pathway_open', pathway.id, { slug, lang });
+      }
     } catch (e) {
       console.error('loadPathway error', e);
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
@@ -128,7 +135,14 @@
           </div>
 
           {#if hasAnyProgress}
-            <div class="c-pathway-progress">
+            <div 
+              class="c-pathway-progress {import.meta.env.DEV || $auth?.is_admin ? 'is-debuggable' : ''}"
+              onclick={() => (import.meta.env.DEV || $auth?.is_admin) && (showDebug = true)}
+              role="button"
+              tabindex="0"
+              onkeydown={(e) => e.key === 'Enter' && (import.meta.env.DEV || $auth?.is_admin) && (showDebug = true)}
+              title={import.meta.env.DEV || $auth?.is_admin ? 'Klicken für Debug-Details' : ''}
+            >
               <div class="c-pathway-progress__label">
                 <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
               </div>
@@ -172,7 +186,7 @@
                 {@const parts = project.id.split(':')}
                 {@const projectSlug = parts[parts.length - 1]}
                 {@const displaySlug = parts.length >= 3 ? `${parts[0]}:${projectSlug}` : project.id}
-                {@const progress = calculateProgress(project, userActions)}
+                {@const progress = calculateProgress(project, userState || [])}
                 {@const isDone = progress.isCompleted}
                 
                 <div class="c-project-card-wrapper">
@@ -240,6 +254,14 @@
     </div>
   {/if}
 </div>
+
+{#if showDebug}
+  <AchievementDebugOverlay 
+    progresses={projectProgresses} 
+    {userState} 
+    onClose={() => showDebug = false} 
+  />
+{/if}
 
 <style>
   .c-pathway {
@@ -377,6 +399,16 @@
     padding: 1rem;
     border-radius: 8px;
     border: 1px solid #eee;
+  }
+
+  .c-pathway-progress.is-debuggable {
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .c-pathway-progress.is-debuggable:hover {
+    background: #fdfdfd;
+    border-color: #e91e63;
   }
 
   .c-pathway-progress__label {

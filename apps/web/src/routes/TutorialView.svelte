@@ -11,7 +11,7 @@
   let { params = {} }: { params?: { slug?: string; step?: string; lang?: string } } = $props();
   
   let tutorialData = $state<any>(null);
-  let userActions = $state<any[]>([]);
+  let userState = $state<UserState | null>(null);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
   let step = $state(0);
@@ -40,23 +40,23 @@
       }
       tutorialData = await response.json();
       
-      // Load user actions if logged in
+      // Load user state (aggregated achievements) if logged in
       const token = localStorage.getItem('sso_token');
       if (token && token.includes('.')) {
         try {
           const payload = JSON.parse(atob(token.split('.')[1]));
           const userId = payload.user_id;
           if (userId) {
-            const actionsRes = await fetch(`/api/v1/actions/user/${userId}`, {
+            const stateRes = await fetch(`/api/v1/actions/user/${userId}/state`, {
               headers: { 'Authorization': `Bearer ${token}` }
             });
-            if (actionsRes.ok) {
-              userActions = await actionsRes.json();
-              console.log('[TutorialView] Loaded user actions:', userActions.length);
+            if (stateRes.ok) {
+              userState = await stateRes.json();
+              console.log('[TutorialView] Loaded aggregated user state');
               
               // If no step index was provided in URL, jump to last viewed step
-              if (params.step === undefined && tutorialData) {
-                const progress = calculateProgress(tutorialData, userActions);
+              if (params.step === undefined && tutorialData && userState) {
+                const progress = calculateProgress(tutorialData, userState);
                 if (progress.lastStep > 0) {
                   step = progress.lastStep;
                   currentStep.set(step);
@@ -66,7 +66,7 @@
             }
           }
         } catch (e) {
-          console.warn('Failed to fetch user actions', e);
+          console.warn('Failed to fetch user state', e);
         }
       }
 
@@ -173,7 +173,7 @@
                               {slug}
                               gid={tutorialData.data.id}
                               {step}
-                              {userActions}
+                              userActionsOrState={userState || []}
                             />
                           {/if}
                         </div>
