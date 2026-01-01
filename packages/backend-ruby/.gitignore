@@ -1,0 +1,10 @@
+# Ignore rails logs and temp files
+/log/*.log
+/log/*.jsonl
+/tmp/
+/storage/*.sqlite3
+/storage/*.sqlite3-journal
+.env
+.env.*
+node_modules/
+
