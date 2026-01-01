@@ -8,7 +8,9 @@ dotenv.config({ path: join(__dirname, '../.env') });
 
 const ports = [
   process.env.API_PORT,
-  process.env.WEB_PORT
+  process.env.WEB_PORT,
+  process.env.RAILS_PORT,
+  process.env.SSO_PORT
 ].filter(Boolean);
 
 console.log(`Checking ports: ${ports.join(', ')}`);
