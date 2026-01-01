@@ -244,9 +244,9 @@
 <style>
   .c-pathway {
     width: 100%;
-    max-width: 1600px;
+    max-width: 1800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 2rem 4rem;
     box-sizing: border-box;
   }
 
@@ -372,7 +372,7 @@
 
   .c-pathway-progress {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     background: white;
     padding: 1rem;
     border-radius: 8px;
@@ -429,14 +429,20 @@
 
   .c-projects-list__projects {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    justify-content: center;
+    justify-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0 auto;
   }
 
   .c-project-card-wrapper {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 100%;
+    max-width: 500px; /* Prevent cards from getting too wide on huge screens */
   }
 
   .c-project-card {
@@ -460,7 +466,7 @@
 
   .c-project-card__image-wrapper {
     position: relative;
-    height: 180px;
+    height: 150px;
     background: #f0f0f0;
   }
 
@@ -482,7 +488,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
-    width: 90px;
+    width: 120px;
     flex-shrink: 0;
   }
 
@@ -517,20 +523,20 @@
   }
 
   .c-project-card__steps-count {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    color: #888;
+    color: #777;
     font-family: monospace;
   }
 
   .c-project-card__action-btn {
     display: inline-block;
-    padding: 0.4rem 0.8rem;
+    padding: 0.6rem 1rem;
     background: #000;
     color: #fff;
     text-decoration: none;
-    border-radius: 20px;
-    font-size: 0.75rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
     font-weight: bold;
     text-align: center;
     width: 100%;
@@ -547,16 +553,16 @@
   }
 
   .c-project-card__heading {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
     color: #222;
-    line-height: 1.3;
-    font-weight: 600;
+    line-height: 1.2;
+    font-weight: 700;
   }
 
   .c-project-card__description {
-    font-size: 0.9rem;
-    color: #666;
-    line-height: 1.4;
+    font-size: 1.05rem;
+    color: #555;
+    line-height: 1.5;
   }
 </style>
