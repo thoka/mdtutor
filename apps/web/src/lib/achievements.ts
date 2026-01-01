@@ -2,18 +2,20 @@ import { auth } from './auth';
 import { get } from 'svelte/store';
 
 export async function trackAction(actionType: string, gid?: string, metadata: Record<string, any> = {}) {
-  const user = get(auth);
-  if (!user) {
-    console.warn('Cannot track action: No user logged in');
+  const token = localStorage.getItem('sso_token');
+  if (!token) {
+    console.warn('Cannot track action: No token found');
     return;
   }
 
   try {
     const res = await fetch('/api/v1/actions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
       body: JSON.stringify({
-        user_id: user.id,
         action_type: actionType,
         gid,
         metadata
@@ -26,4 +28,3 @@ export async function trackAction(actionType: string, gid?: string, metadata: Re
     console.error('Error tracking action', e);
   }
 }
-

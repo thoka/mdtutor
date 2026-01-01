@@ -13,7 +13,7 @@ module Components
         input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
         input(type: "hidden", name: "user_id", value: @id)
         input(type: "hidden", name: "return_to", value: @return_to)
-        
+
         button(class: "tile #{@type}-tile", type: "submit") do
           span(class: "avatar") { @user["avatar"] }
           span(class: "name") { @user["name"] }
@@ -22,4 +22,3 @@ module Components
     end
   end
 end
-
