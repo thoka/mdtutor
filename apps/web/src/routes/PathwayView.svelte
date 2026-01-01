@@ -202,10 +202,10 @@
                           {/if}
                         </div>
                         
-                        <div class="c-project-card__steps-count">
-                          {progress.completedSteps} / {progress.totalSteps}
-                        </div>
-                        
+            <div class="c-project-card__steps-count">
+              {progress.completedSteps} / {progress.taskStepsCount}
+            </div>
+
                         <a 
                           href={isDone ? `/${lang}/projects/${displaySlug}` : `/${lang}/projects/${displaySlug}/${progress.lastStep}`} 
                           use:link 

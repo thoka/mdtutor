@@ -1,6 +1,7 @@
 export interface ProjectProgress {
   projectId: string;
   totalSteps: number;
+  taskStepsCount: number;
   completedSteps: number;
   stepInteractions: Record<number, {
     total: number;
@@ -109,6 +110,7 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
     return {
       projectId: project.id,
       totalSteps,
+      taskStepsCount,
       completedSteps: fullStepsCount, // This still tracks "full" steps for UI markers
       stepInteractions,
       lastStep,
@@ -126,6 +128,7 @@ function emptyProgress(projectId: string): ProjectProgress {
   return {
     projectId,
     totalSteps: 0,
+    taskStepsCount: 0,
     completedSteps: 0,
     stepInteractions: {},
     lastStep: 0,

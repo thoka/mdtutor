@@ -25,6 +25,7 @@ describe('calculateProgress', () => {
     // Result: 100%
     expect(progress.percent).toBe(100);
     expect(progress.isCompleted).toBe(true);
+    expect(progress.taskStepsCount).toBe(1);
   });
 
   it('calculates 0% progress if the only task step is missing', () => {
@@ -33,6 +34,7 @@ describe('calculateProgress', () => {
     // Score: 0 / 1 = 0%
     expect(progress.percent).toBe(0);
     expect(progress.isCompleted).toBe(false);
+    expect(progress.taskStepsCount).toBe(1);
   });
 
   it('correctly handles task unchecking in progress calculation', () => {
@@ -98,6 +100,7 @@ describe('calculateProgress', () => {
     const progressEmpty = calculateProgress(projectWithMixedSteps, []);
     expect(progressEmpty.percent).toBe(0);
     expect(progressEmpty.isCompleted).toBe(false);
+    expect(progressEmpty.taskStepsCount).toBe(1);
 
     // Case 2: Only the step with task is done
     const actions = [
@@ -106,5 +109,6 @@ describe('calculateProgress', () => {
     const progressDone = calculateProgress(projectWithMixedSteps, actions);
     expect(progressDone.percent).toBe(100);
     expect(progressDone.isCompleted).toBe(true);
+    expect(progressDone.taskStepsCount).toBe(1);
   });
 });
