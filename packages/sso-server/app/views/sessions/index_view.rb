@@ -107,6 +107,17 @@ module Views
             .avatar {
               font-size: 3rem;
               margin-bottom: 10px;
+              width: 80px;
+              height: 80px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .avatar-img {
+              max-width: 100%;
+              max-height: 100%;
+              object-fit: contain;
             }
 
             .name {
@@ -119,4 +130,3 @@ module Views
     end
   end
 end
-

@@ -15,9 +15,22 @@ module Components
         input(type: "hidden", name: "return_to", value: @return_to)
 
         button(class: "tile #{@type}-tile", type: "submit") do
-          span(class: "avatar") { @user["avatar"] }
+          div(class: "avatar") do
+            avatar_content(@user["avatar"])
+          end
           span(class: "name") { @user["name"] }
         end
+      end
+    end
+
+    private
+
+    def avatar_content(avatar)
+      if avatar&.start_with?("/") || avatar&.match?(/^https?:\/\//)
+        img(src: avatar, alt: "Avatar", class: "avatar-img")
+      else
+        # Fallback to emoji
+        span { avatar }
       end
     end
   end

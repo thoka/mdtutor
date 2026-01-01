@@ -336,3 +336,34 @@ Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.
 Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:28:09 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 6.0ms | GC: 0.6ms)
+Completed 200 OK in 12ms (Views: 7.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:28:15 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 0.8ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/sessions/create" for ::1 at 2026-01-01 16:28:16 +0100
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user_id"=>"mentor_1", "return_to"=>"http://localhost:5201/#/de-DE/projects"}
+Redirected to http://localhost:5201/#/de-DE/projects?token=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibWVudG9yXzEiLCJuYW1lIjoiTWVudG9yIChUaG9tYXMpIiwiYWRtaW4iOnRydWUsImV4cCI6MTc2NzM2NzY5Nn0.E_TvtGOBWRfzjeqBVxonets8A3v-uRJJzTpi-2idnV8
+Completed 302 Found in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/?return_to=http%3A%2F%2Flocalhost%3A5201%2F%23%2Fde-DE%2Fprojects" for ::1 at 2026-01-01 16:29:48 +0100
+Processing by SessionsController#index as HTML
+  Parameters: {"return_to"=>"http://localhost:5201/#/de-DE/projects"}
+  Rendering Views::Sessions::IndexView
+  Rendered Views::Sessions::IndexView (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+

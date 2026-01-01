@@ -1,7 +1,7 @@
 admins:
   mentor_1:
     name: "Mentor (Thomas)"
-    avatar: "🎓"
+    avatar: "/avatars/admin.svg"
   admin_local:
     name: "Lokal-Admin"
     avatar: "🛠️"
@@ -9,7 +9,7 @@ admins:
 users:
   student_a:
     name: "Alice"
-    avatar: "🎨"
+    avatar: "/avatars/student.svg"
   student_b:
     name: "Bob"
     avatar: "🤖"
