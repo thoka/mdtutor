@@ -185,7 +185,7 @@
                         />
                         {#if isDone}
                           <div class="c-project-card__badge-overlay">
-                            <img src="/badges/{projectSlug}.svg" alt="Badge" class="badge-icon" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
+                            <img src={project.attributes.content.badge} alt="Badge" class="badge-icon" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
                           </div>
                         {:else if progress.percent > 0}
                           <div class="c-project-card__progress-ring">

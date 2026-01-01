@@ -117,6 +117,7 @@ export function parseMeta(filePath) {
     title: data.title,
     description: data.description,
     heroImage: data.hero_image,
+    badge: data.badge,
     metaTitle: data.meta_title,
     metaDescription: data.meta_description,
     pdf: data.pdf,

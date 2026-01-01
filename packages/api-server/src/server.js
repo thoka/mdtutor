@@ -122,6 +122,13 @@ async function getProjectData(namespacedSlug, requestedLang) {
               parsed.data.attributes.content.heroImage = `/content/${ecosystem.id}/layers/${layer.id}/projects/${slug}/repo/${lang}/${heroImagePath}`;
             }
           }
+
+          if (parsed.data.attributes?.content?.badge) {
+            const badgePath = parsed.data.attributes.content.badge;
+            if (badgePath.startsWith('images/')) {
+              parsed.data.attributes.content.badge = `/content/${ecosystem.id}/layers/${layer.id}/projects/${slug}/repo/${lang}/${badgePath}`;
+            }
+          }
           
           const repoDir = join(projectPath, 'repo');
           parsed.languages = existsSync(repoDir) 

@@ -180,6 +180,7 @@ export async function parseProject(projectPath, options = {}) {
           title: meta.title,
           description: meta.description,
           heroImage: meta.heroImage,
+          badge: meta.badge,
           version: meta.version,
           listed: meta.listed,
           copyedit: meta.copyedit,
