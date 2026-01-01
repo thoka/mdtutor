@@ -76,37 +76,40 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
 
     // Calculate scores
     let totalScore = 0;
+    let taskStepsCount = 0;
     let fullStepsCount = 0;
+
     Object.entries(stepInteractions).forEach(([idxStr, interactions]) => {
       const idx = parseInt(idxStr);
-      let stepScore = 0;
-
+      
       if (interactions.total > 0) {
-        // Step with interactions: calculate based on tasks/quizzes
+        taskStepsCount++;
         const doneTasks = Array.from(taskStates.entries())
           .filter(([key, val]) => key.startsWith(`${idx}_`) && val === true).length;
         const doneQuizzes = completedQuizzes.has(idx) ? 1 : 0;
         interactions.completed = Math.min(interactions.total, doneTasks + doneQuizzes);
         
-        stepScore = interactions.completed / interactions.total;
-      } else {
-        // Step without interactions: fulfilled by default
-        stepScore = 1;
+        const stepScore = interactions.completed / interactions.total;
+        totalScore += stepScore;
+        if (stepScore >= 1) fullStepsCount++;
       }
-      
-      if (stepScore >= 1) fullStepsCount++;
-      totalScore += stepScore;
     });
     
-    const percent = Math.round((totalScore / totalSteps) * 100);
+    // Percentage is based ONLY on steps that have tasks/quizzes
+    // If a project has NO tasks at all, it's 100% if it was viewed at least once
+    let percent = 0;
+    if (taskStepsCount > 0) {
+      percent = Math.round((totalScore / taskStepsCount) * 100);
+    } else if (projectActions.length > 0) {
+      percent = 100;
+    }
 
-    // Find the best "resume" step: either the last viewed one OR the first incomplete one
-    let lastStep = lastViewedStep;
+    const lastStep = lastViewedStep;
 
     return {
       projectId: project.id,
       totalSteps,
-      completedSteps: fullStepsCount,
+      completedSteps: fullStepsCount, // This still tracks "full" steps for UI markers
       stepInteractions,
       lastStep,
       lastViewedStep,

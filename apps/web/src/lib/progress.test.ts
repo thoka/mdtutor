@@ -27,11 +27,11 @@ describe('calculateProgress', () => {
     expect(progress.isCompleted).toBe(true);
   });
 
-  it('calculates < 100% progress if some tasks are missing', () => {
+  it('calculates 0% progress if the only task step is missing', () => {
     const progress = calculateProgress(mockProject, []);
-    // Step 4 has a task but it's not checked. Other 8 steps are "empty" and thus 100%.
-    // Score: (1+1+1+1 + 0 + 1+1+1+1) / 9 = 8/9 = 89%
-    expect(progress.percent).toBe(89);
+    // Step 4 has a task but it's not checked. It is the only task step.
+    // Score: 0 / 1 = 0%
+    expect(progress.percent).toBe(0);
     expect(progress.isCompleted).toBe(false);
   });
 
@@ -43,7 +43,7 @@ describe('calculateProgress', () => {
 
     const progress = calculateProgress(mockProject, actions);
     // Step 4 is 0% because the check was undone.
-    expect(progress.percent).toBe(89);
+    expect(progress.percent).toBe(0);
     expect(progress.stepInteractions[4].completed).toBe(0);
   });
 
@@ -78,5 +78,33 @@ describe('calculateProgress', () => {
 
     const progress = calculateProgress(catchTheBusStep7, []);
     expect(progress.stepInteractions[7].total).toBe(3);
+  });
+
+  it('calculates 100% if all steps WITH tasks are done, ignoring empty steps', () => {
+    const projectWithMixedSteps = {
+      id: 'RPL:PROJ:mixed',
+      attributes: {
+        content: {
+          steps: [
+            { content: 'Intro (no tasks)', position: 0 },
+            { content: '<input class="c-project-task__checkbox" />', position: 1 },
+            { content: 'Another info (no tasks)', position: 2 },
+          ]
+        }
+      }
+    };
+
+    // Case 1: No actions yet
+    const progressEmpty = calculateProgress(projectWithMixedSteps, []);
+    expect(progressEmpty.percent).toBe(0);
+    expect(progressEmpty.isCompleted).toBe(false);
+
+    // Case 2: Only the step with task is done
+    const actions = [
+      { action_type: 'task_check', gid: 'RPL:PROJ:mixed', metadata: { step: 1, task_index: 0 }, timestamp: '2026-01-01T10:00:00Z' }
+    ];
+    const progressDone = calculateProgress(projectWithMixedSteps, actions);
+    expect(progressDone.percent).toBe(100);
+    expect(progressDone.isCompleted).toBe(true);
   });
 });
