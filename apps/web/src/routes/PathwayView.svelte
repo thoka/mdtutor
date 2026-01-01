@@ -94,35 +94,43 @@
       {/if}
       <div class="c-pathway-header__content">
         <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
-        <div class="c-pathway-header__description">
-          {@html pathway.attributes.description}
-        </div>
         
-        <div class="c-pathway-progress">
-          <div class="c-pathway-progress__label">
-            {completedCount} von {totalCount} Projekten abgeschlossen
+        <div class="c-pathway-header__main">
+          <div class="c-pathway-header__left">
+            <div class="c-pathway-header__description">
+              {@html pathway.attributes.description}
+            </div>
+            
+            <div class="c-pathway-progress">
+              <div class="c-pathway-progress__label">
+                {completedCount} von {totalCount} Projekten abgeschlossen
+              </div>
+              <div class="c-pathway-progress__bar">
+                <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
+              </div>
+            </div>
           </div>
-          <div class="c-pathway-progress__bar">
-            <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
-          </div>
+
+          {#if pathway.attributes.header}
+            <div class="c-pathway-header__right">
+              <div class="c-pathway-accordions">
+                {#each pathway.attributes.header as section}
+                  <details class="c-pathway-accordion">
+                    <summary class="c-pathway-accordion__summary">
+                      <span class="c-pathway-accordion__title">{section.title}</span>
+                      <span class="material-symbols-sharp c-pathway-accordion__icon">expand_more</span>
+                    </summary>
+                    <div class="c-pathway-accordion__content">
+                      {@html section.content}
+                    </div>
+                  </details>
+                {/each}
+              </div>
+            </div>
+          {/if}
         </div>
       </div>
     </header>
-
-    <div class="c-pathway-info">
-      {#if pathway.attributes.header}
-        <div class="c-pathway-info__grid">
-          {#each pathway.attributes.header as section}
-            <div class="c-pathway-info__section">
-              <h2 class="c-pathway-info__section-title">{section.title}</h2>
-              <div class="c-pathway-info__section-content">
-                {@html section.content}
-              </div>
-            </div>
-          {/each}
-        </div>
-      {/if}
-    </div>
 
     <div class="c-pathway-projects">
       {#each ['explore', 'design', 'invent'] as category}
@@ -210,8 +218,28 @@
 
   .c-pathway-header__title {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     color: #333;
+  }
+
+  .c-pathway-header__main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    .c-pathway-header__main {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+    .c-pathway-header__left {
+      flex: 1;
+    }
+    .c-pathway-header__right {
+      width: 400px;
+      flex-shrink: 0;
+    }
   }
 
   .c-pathway-header__description {
@@ -221,46 +249,71 @@
     margin-bottom: 2rem;
   }
 
-  .c-pathway-progress {
-    max-width: 400px;
+  .c-pathway-accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  .c-pathway-progress__label {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0.5rem;
-  }
-
-  .c-pathway-progress__bar {
-    height: 8px;
-    background: #eee;
-    border-radius: 4px;
+  .c-pathway-accordion {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fdfdfd;
     overflow: hidden;
   }
 
-  .c-pathway-progress__fill {
-    height: 100%;
-    background: #4caf50;
-    transition: width 0.3s ease;
-  }
-
-  .c-pathway-info__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-  }
-
-  .c-pathway-info__section {
-    background: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 8px;
-  }
-
-  .c-pathway-info__section-title {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
+  .c-pathway-accordion__summary {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    font-weight: bold;
     color: #444;
+    user-select: none;
+  }
+
+  .c-pathway-accordion__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .c-pathway-accordion[open] .c-pathway-accordion__summary {
+    border-bottom: 1px solid #eee;
+    background: #f9f9f9;
+  }
+
+  .c-pathway-accordion[open] .c-pathway-accordion__icon {
+    transform: rotate(180deg);
+  }
+
+  .c-pathway-accordion__icon {
+    transition: transform 0.2s;
+    color: #e91e63;
+  }
+
+  .c-pathway-accordion__content {
+    padding: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #666;
+  }
+
+  .c-pathway-accordion__content :global(p) {
+    margin-bottom: 1rem;
+  }
+
+  .c-pathway-accordion__content :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .c-pathway-accordion__content :global(ul) {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .c-pathway-progress {
+    max-width: 400px;
   }
 
   .c-pathway-category {
