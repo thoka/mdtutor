@@ -235,6 +235,7 @@ app.get('/api/projects', async (req, res) => {
 });
 
 app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
+  const requestedLang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
   const resolved = resolvePathwayLayer(ecosystems, req.params.pathwayId);
   if (!resolved) return res.status(404).json({ error: 'Pathway not found' });
 
@@ -244,11 +245,48 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
     const prefix = resolved.ecosystem.semantic_prefix || resolved.ecosystem.id.toUpperCase();
     const pathwayGid = data.gid || `${prefix}:PATH:${resolved.slug}`;
     
+    // Normalize multi-language fields
+    const title = typeof data.title === 'object' ? (data.title[requestedLang] || data.title['en']) : data.title;
+    
+    let description = '';
+    const header = [];
+
+    if (data.description && typeof data.description === 'object') {
+      // Map 'summary' to main description
+      description = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
+      
+      // Map other keys to header sections
+      const sections = {
+        overview: 'Was werde ich erschaffen?',
+        know: 'Was muss ich wissen?',
+        need: 'Was benötige ich?',
+        mentor: 'Informationen für den Mentor'
+      };
+
+      for (const [key, titles] of Object.entries(sections)) {
+        if (data.description[key]) {
+          header.push({
+            title: requestedLang === 'de-DE' ? titles : key.charAt(0).toUpperCase() + key.slice(1),
+            content: data.description[key][requestedLang] || data.description[key]['en'] || ''
+          });
+        }
+      }
+    } else {
+      description = data.description;
+      if (data.header) header.push(...data.header);
+    }
+
     res.json({
       data: {
         id: pathwayGid,
         type: 'pathways',
-        attributes: { ...data, gid: pathwayGid },
+        attributes: { 
+          ...data, 
+          gid: pathwayGid,
+          title,
+          description,
+          header
+        },
         relationships: {
           projects: {
             data: data.projects?.map(p => {
@@ -262,18 +300,25 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
         }
       }
     });
-  } catch {
+  } catch (e) {
+    console.error(e);
     res.status(500).json({ error: 'Failed to load pathway' });
   }
 });
 
 app.get('/api/v1/:lang/pathways/:pathwayId/projects', async (req, res) => {
+  const requestedLang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
   const resolved = resolvePathwayLayer(ecosystems, req.params.pathwayId);
   if (!resolved) return res.status(404).json({ error: 'Pathway not found' });
 
   try {
     const content = await readFileAsync(resolved.path, 'utf-8');
     const data = yaml.load(content);
+    
+    const pathwayTitle = typeof data.title === 'object' 
+      ? (data.title[requestedLang] || data.title['en'] || '')
+      : (data.title || '');
+
     const projectsData = [];
     for (const p of data.projects || []) {
       const slug = typeof p === 'string' ? p : p.slug;
@@ -283,13 +328,14 @@ app.get('/api/v1/:lang/pathways/:pathwayId/projects', async (req, res) => {
           ...project.data,
           attributes: {
             ...project.data.attributes,
-            pathways: [{ slug: data.slug, title: data.title }]
+            pathways: [{ slug: resolved.slug, title: pathwayTitle }]
           }
         });
       } catch { /* skip */ }
     }
     res.json({ data: projectsData });
-  } catch {
+  } catch (e) {
+    console.error(e);
     res.status(500).json({ error: 'Failed to load pathway projects' });
   }
 });

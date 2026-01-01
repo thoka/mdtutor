@@ -13,6 +13,19 @@ const CONFIG_DIR = join(ECOSYSTEM_DIR, 'config');
 const SYNC_FILE = join(CONFIG_DIR, 'sync.yaml');
 const ECO_FILE = join(ECOSYSTEM_DIR, 'ecosystem.yaml');
 
+const LANGUAGES = ['en', 'de-DE'];
+
+const HEADER_KEY_MAP = {
+  'What will I create?': 'overview',
+  'Was werde ich erschaffen?': 'overview',
+  'What do I need to know?': 'know',
+  'Was muss ich wissen?': 'know',
+  'What do I need?': 'need',
+  'Was benötige ich?': 'need',
+  'Mentor information': 'mentor',
+  'Informationen für den Mentor': 'mentor'
+};
+
 async function fetchWithCurl(url) {
   try {
     const output = execSync(`curl -s -L "${url}"`, { encoding: 'utf-8', maxBuffer: 10 * 1024 * 1024 });
@@ -27,13 +40,13 @@ async function fetchWithCurl(url) {
 
 async function fetchPathwayData(slug, lang = 'en', apiBase) {
   const url = `${apiBase}/${lang}/pathways/${slug}`;
-  console.log(`Fetching pathway metadata: ${url}`);
+  console.log(`Fetching pathway metadata (${lang}): ${url}`);
   return fetchWithCurl(url);
 }
 
 async function fetchPathwayProjects(slug, lang = 'en', apiBase) {
   const url = `${apiBase}/${lang}/pathways/${slug}/projects`;
-  console.log(`Fetching pathway projects: ${url}`);
+  console.log(`Fetching pathway projects (${lang}): ${url}`);
   return fetchWithCurl(url);
 }
 
@@ -53,63 +66,72 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
   const apiBase = layer.api_base || 'https://learning-admin.raspberrypi.org/api/v1';
   const prefix = ecoConfig.semantic_prefix || ECOSYSTEM_ID;
 
-  // Fetch metadata and projects (try German first, fallback to English for structure)
-  let metaData;
-  try {
-    metaData = await fetchPathwayData(slug, 'de-DE', apiBase);
-  } catch (e) {
-    console.log(`  ℹ German metadata not found or failed, falling back to English`);
-    metaData = await fetchPathwayData(slug, 'en', apiBase);
-  }
-
-  const projectsData = await fetchPathwayProjects(slug, 'en', apiBase);
-
-  const attributes = metaData.data.attributes;
-  const steps = metaData.included || [];
-  const projects = projectsData.data || [];
-
-  // Map project IDs to slugs
-  const idToSlug = {};
-  projects.forEach(p => {
-    idToSlug[p.id] = p.attributes.repositoryName || p.id;
-  });
-
-  // Create our internal format (minimalist, GIDs inferred from path/config)
   const pathwayConfig = {
-    title: attributes.title,
-    description: attributes.description,
-    projects: projects.map(p => {
-      const step = steps.find(s => s.attributes.projectId.toString() === p.id);
-      const projectSlug = idToSlug[p.id];
-      return {
-        slug: projectSlug,
-        category: step?.attributes.category || 'explore'
-      };
-    }),
-    header: attributes.header?.map(h => ({
-      title: h.title,
-      content: h.content
-    })) || []
+    title: {},
+    description: {
+      summary: {}
+    },
+    projects: []
   };
+
+  // 1. Fetch metadata for all languages to build the unified config
+  for (const lang of LANGUAGES) {
+    try {
+      const metaData = await fetchPathwayData(slug, lang, apiBase);
+      const attr = metaData.data.attributes;
+      
+      pathwayConfig.title[lang] = attr.title;
+      pathwayConfig.description.summary[lang] = attr.description;
+
+      // Map headers to semantic keys
+      if (attr.header) {
+        for (const h of attr.header) {
+          const key = HEADER_KEY_MAP[h.title] || h.title.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
+          if (!pathwayConfig.description[key]) pathwayConfig.description[key] = {};
+          pathwayConfig.description[key][lang] = h.content;
+        }
+      }
+
+      // If this is the primary language (en), also fetch projects list
+      if (lang === 'en' || pathwayConfig.projects.length === 0) {
+        const projectsData = await fetchPathwayProjects(slug, lang, apiBase);
+        const projects = projectsData.data || [];
+        const steps = metaData.included || [];
+
+        pathwayConfig.projects = projects.map(p => {
+          const step = steps.find(s => s.attributes.projectId.toString() === p.id);
+          const projectSlug = p.attributes.repositoryName || p.id;
+          return {
+            slug: projectSlug,
+            category: step?.attributes.category || 'explore'
+          };
+        });
+      }
+    } catch (e) {
+      console.warn(`  ⚠️ Could not fetch ${lang} metadata: ${e.message}`);
+    }
+  }
 
   // Save the pathway YAML
   const outputFile = join(pathwaysDir, `${slug}.yaml`);
   writeFileSync(outputFile, yaml.dump(pathwayConfig, { noRefs: true }));
   console.log(`✓ Saved pathway config to ${outputFile}`);
 
-  // Sync projects
-  console.log(`Syncing ${projects.length} projects to ${projectsDir}...`);
+  // 2. Sync projects (repositories and snapshots)
+  console.log(`Syncing ${pathwayConfig.projects.length} projects to ${projectsDir}...`);
   for (const p of pathwayConfig.projects) {
     const projectSlug = p.slug;
     const projectGid = `${prefix}:PROJ:${projectSlug}`;
     console.log(`  - ${projectSlug} (${projectGid})`);
+    
     await cloneRepository(projectSlug, { 
       gitBase: layer.git_base,
       projectsDir: projectsDir 
     });
-    // Snapshots are still kept in a flat structure for now as per SPEC
-    await fetchProjectApi(projectSlug, 'en', { snapshotsDir: 'test/snapshots' });
-    await fetchProjectApi(projectSlug, 'de-DE', { snapshotsDir: 'test/snapshots' });
+
+    for (const lang of LANGUAGES) {
+      await fetchProjectApi(projectSlug, lang, { snapshotsDir: 'test/snapshots' });
+    }
   }
 }
 
@@ -130,8 +152,7 @@ async function main() {
 
   if (args.length > 0) {
     for (const arg of args) {
-      // Find which layer this slug belongs to in the config
-      let layerId = 'official'; // default
+      let layerId = 'official';
       for (const [lId, slugs] of Object.entries(syncPathways)) {
         if (slugs.includes(arg)) {
           layerId = lId;

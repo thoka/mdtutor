@@ -1,33 +1,42 @@
-title: Einführung in Scratch
-description: >-
-  In dieser einfachen Einführung in das Programmieren in Scratch lernst du, wie
-  du Code, Kostüme und Sounds zu Sprites hinzufügst, während du Animationen, ein
-  Spiel, eine App und ein Buch erstellst.
-projects:
-  - slug: space-talk
-    category: explore
-  - slug: catch-the-bus
-    category: explore
-  - slug: find-the-bug
-    category: explore
-  - slug: silly-eyes
-    category: design
-  - slug: surprise-animation
-    category: design
-  - slug: i-made-you-a-book
-    category: invent
-header:
-  - title: Was werde ich erschaffen?
-    content: >
+title:
+  en: Introduction to Scratch
+  de-DE: Einführung in Scratch
+description:
+  summary:
+    en: >-
+      In this introduction to coding in Scratch for beginners, you will learn
+      how to add code, costumes, and sounds to sprites as you make animations, a
+      game, an app, and a book.
+    de-DE: >-
+      In dieser einfachen Einführung in das Programmieren in Scratch lernst du,
+      wie du Code, Kostüme und Sounds zu Sprites hinzufügst, während du
+      Animationen, ein Spiel, eine App und ein Buch erstellst.
+  overview:
+    en: >
+      <p>Make interactive projects, animations and create a multiple level game.
+
+      By the end of this path you will have used your new skills to become an
+      author of a digital book with multiple pages.</p>
+    de-DE: >
       <p>Erstelle interaktive Projekte, Animationen und ein Mehrstufenspiel.
 
       Am Ende dieses Lernpfades hast du deine neuen Fähigkeiten genutzt, um ein
       digitales Buch mit mehreren Seiten zu schreiben.</p>
-  - title: Was muss ich wissen?
-    content: |
+  know:
+    en: |
+      <p>This path is ideal for beginners to Scratch.</p>
+    de-DE: |
       <p>Dieser Lernpfad ist ideal für Einsteiger in Scratch.</p>
-  - title: Was benötige ich?
-    content: >
+  need:
+    en: |
+      <p>This path requires:</p>
+
+      <ul>
+        <li>A desktop computer, laptop, tablet, mobile device, or Raspberry Pi computer</li>
+        <li>Access to the internet to use Scratch online or the ability to download and install Scratch. See our <a href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/1" target="_blank">Scratch setup guide</a> for more details.</li>
+        <li>Optionally, a <a href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/2" target="_blank">Scratch account</a></li>
+      </ul>
+    de-DE: >
       <p>Dieser Pfad erfordert:</p>
 
 
@@ -43,8 +52,28 @@ header:
       - Optional ein <a
       href="https://projects.raspberrypi.org/en/projects/getting-started-scratch/2"
       target="_blank">Scratch Account</a></p>
-  - title: Informationen für den Mentor
-    content: >
+  mentor:
+    en: >
+      <h2 id="make">321…Make!</h2>
+
+      <p>This path follows <a
+      href="https://projects.raspberrypi.org/en/projects/321-make-mentor-guide"
+      target="_blank">321…Make!</a>:</p>
+
+
+      <ul>
+        <li><strong>3 Explore</strong> projects: Introduce creators to a set of skills and provide step-by-step instructions to help them develop initial confidence.</li>
+        <li><strong>2 Design</strong> projects: Allow creators to practise skills from the Explore projects, and express themselves creatively while they grow in independence.</li>
+        <li><strong>1 Invent</strong> project: Encourages creators to use their skills to create a unique project that meets a project brief for a particular audience.</li>
+      </ul>
+
+
+      <h2 id="quick-quiz">Quick quiz</h2>
+
+      <p>Each project contains a quick quiz with three multiple choice
+      questions. Creators are guided to the correct answer through useful
+      feedback and are awarded a project badge.</p>
+    de-DE: >
       <h2 id="make">321…Make!</h2>
 
       <p>Dieser Pfad folgt der Anleitung <a
@@ -85,3 +114,16 @@ header:
       href="https://projects.raspberrypi.org/en/projects/getting-started-guide-microbit/9"
       target="_blank">Projekte teilen</a>, erfahren Sie in unserer
       Anleitung.</p>
+projects:
+  - slug: space-talk
+    category: explore
+  - slug: catch-the-bus
+    category: explore
+  - slug: find-the-bug
+    category: explore
+  - slug: silly-eyes
+    category: design
+  - slug: surprise-animation
+    category: design
+  - slug: i-made-you-a-book
+    category: invent

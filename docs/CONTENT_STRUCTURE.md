@@ -17,7 +17,7 @@ content/
         projects/
           <ProjectSlug>/
         pathways/
-          <PathwaySlug>.yaml # Locally cached API version with GIDs
+          <PathwaySlug>.yaml # Multi-language semantic data
 ```
 
 ## Global Identifiers (GIDs)
@@ -32,7 +32,34 @@ GIDs are the primary way to identify content semantically. They are decoupled fr
 - **Identity in Forks**: When a project is forked into a higher-priority layer, the GID remains unchanged. The API server resolves the GID to the instance in the highest priority layer.
 - **Persistence**: User progress and achievements are linked to the GID, ensuring a seamless transition when content is updated or moved between layers.
 
-## Configuration and Syncing
+## Multi-language Support and Semantic Keys
+
+Pathway data uses a dictionary-based structure for translations and semantic section mapping.
+
+### Example `pathway.yaml`
+```yaml
+title:
+  en: "Introduction to Scratch"
+  de-DE: "Einführung in Scratch"
+description:
+  summary:
+    en: "Learn to code..."
+    de-DE: "Lerne zu programmieren..."
+  overview:
+    en: "<p>What will I make?</p>"
+    de-DE: "<p>Was werde ich erschaffen?</p>"
+  know:
+    en: "<p>What must I know?</p>"
+    de-DE: "<p>Was muss ich wissen?</p>"
+  need:
+    en: "<p>What do I need?</p>"
+    de-DE: "<p>Was benötige ich?</p>"
+  mentor:
+    en: "<p>Information for mentors</p>"
+    de-DE: "<p>Informationen für den Mentor</p>"
+```
+
+The API server automatically maps these semantic keys (e.g., `overview`, `need`) back to localized titles for the frontend.
 
 The configuration in `<Ecosystem>/config/` defines the "view" of the Makerspace.
 

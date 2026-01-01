@@ -27,12 +27,14 @@ Zur Identifizierung von Content-Elementen (Projekten, Schritten, Medien) nutzen 
 *   **Vorteil**: Lernfortschritte und semantische Verknüpfungen (Achievements) bleiben erhalten, auch wenn der Content lokal angepasst oder verschoben wird.
 *   **Abstammung**: GIDs in verschiedenen Sprachen (z.B. `en` und `de-DE`) erlauben es, die semantische Äquivalenz präzise zu verfolgen.
 
-### 4. Makerspace-spezifische Konfiguration
+### 4. Makerspace-spezifische Konfiguration und Mehrsprachigkeit
 Die Entscheidung, welche Inhalte in einem Makerspace verfügbar sein sollen, wird zentral gesteuert und ist vom eigentlichen Content getrennt.
 
 *   **Speicherort**: `content/ÖKOSYSTEM/config/`.
 *   **Funktion**: Hier wird konfiguriert, welche Lernpfade aus welchen Quellen (API-Bases, Git-Repos) lokal synchronisiert und "abonniert" werden.
-*   **Gecachte API**: Lokale Pfad-Dateien (`.yaml`) fungieren als Read-Through-Cache der offiziellen APIs, werden aber beim Download direkt mit GIDs ausgestattet.
+*   **Mehrsprachigkeit**: Inhalte (Titel, Beschreibungen, Abschnitte) werden in den YAML-Dateien als Dictionaries mit Sprachschlüsseln (`en`, `de-DE`) gespeichert.
+*   **Semantische Sektionen**: Anstatt loser Listen nutzen wir feste Schlüssel für Inhaltsbereiche (z.B. `overview`, `need`, `know`, `mentor`). Dies erlaubt dem Frontend eine stabile Zuordnung von Icons und Layouts, unabhängig von der gewählten Sprache.
+*   **Gecachte API**: Lokale Pfad-Dateien (`.yaml`) fungieren als Read-Through-Cache der offiziellen APIs.
 
 ### 5. Medien-Metadaten und Lizenzen
 Langfristig werden Bilder und andere Medien mit Metadaten ausgestattet, um insbesondere Lizenzinformationen (z.B. CC-BY) und Urheberschaft über GIDs zu verwalten und automatisiert auszuweisen.
