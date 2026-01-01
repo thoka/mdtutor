@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def index
     @presences = Presence.includes(:room).all.index_by(&:user_id)
-    
+
     render Views::Sessions::IndexView.new(
       admins: UserLoader.admins,
       users: UserLoader.users,
@@ -91,7 +91,7 @@ class SessionsController < ApplicationController
   def dashboard
     @present_users = Presence.includes(:room).where(is_present: true)
     user_ids = @present_users.pluck(:user_id)
-    
+
     # Fetch latest actions from achievements server
     achievements_url = "http://localhost:#{ENV.fetch('ACHIEVEMENTS_PORT', 3102)}/api/v1/actions/latest"
     begin
@@ -112,7 +112,7 @@ class SessionsController < ApplicationController
     @user_id = params[:user_id]
     @user = UserLoader.find_user(@user_id)
     @visits = Visit.includes(:room).where(user_id: @user_id).order(started_at: :desc)
-    
+
     # Fetch actions from achievements server
     achievements_url = "http://localhost:#{ENV.fetch('ACHIEVEMENTS_PORT', 3102)}/api/v1/actions/user/#{@user_id}"
     begin

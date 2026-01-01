@@ -28,9 +28,9 @@ module SsoServer
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
-    # Use UUIDs as primary keys by default
+    # Use strings as primary keys for UUID support in SQLite
     config.generators do |g|
-      g.orm :active_record, primary_key_type: :uuid
+      g.orm :active_record, primary_key_type: :string
     end
 
     # Configuration for the application, engines, and railties goes here.

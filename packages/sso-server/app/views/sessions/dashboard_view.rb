@@ -19,13 +19,13 @@ module Views
                   presences.each do |presence|
                     user = UserLoader.find_user(presence.user_id)
                     action = @latest_actions[presence.user_id]
-                    
+
                     div(class: "user-card") do
                       div(class: "user-info") do
                         img(src: user["avatar"], class: "avatar-small") if user["avatar"]
                         span(class: "user-name") { user["name"] }
                       end
-                      
+
                       div(class: "user-activity") do
                         if action
                           span(class: "action-type") { format_action(action["action_type"]) }
@@ -132,4 +132,3 @@ module Views
     end
   end
 end
-

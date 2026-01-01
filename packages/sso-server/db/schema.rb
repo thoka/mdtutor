@@ -11,17 +11,35 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2026_01_01_163521) do
-# Could not dump table "presences" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
+  create_table "presences", id: :string, force: :cascade do |t|
+    t.string "user_id"
+    t.boolean "is_present", default: false
+    t.string "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_presences_on_room_id"
+    t.index ["user_id"], name: "index_presences_on_user_id"
+  end
 
+  create_table "rooms", id: :string, force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_rooms_on_slug"
+  end
 
-# Could not dump table "rooms" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
-
-# Could not dump table "visits" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
+  create_table "visits", id: :string, force: :cascade do |t|
+    t.string "user_id"
+    t.string "room_id", null: false
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ended_at"], name: "index_visits_on_ended_at"
+    t.index ["room_id"], name: "index_visits_on_room_id"
+    t.index ["user_id"], name: "index_visits_on_user_id"
+  end
 
   add_foreign_key "presences", "rooms"
   add_foreign_key "visits", "rooms"

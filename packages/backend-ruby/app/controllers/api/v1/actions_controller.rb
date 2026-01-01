@@ -19,7 +19,7 @@ module Api
 
       def latest
         user_ids = params[:user_ids] || []
-        
+
         # Get the latest action for each user
         latest_actions = Action.where(user_id: user_ids)
                                .order(timestamp: :desc)

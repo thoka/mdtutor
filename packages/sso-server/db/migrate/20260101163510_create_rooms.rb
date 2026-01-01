@@ -1,6 +1,6 @@
 class CreateRooms < ActiveRecord::Migration[7.2]
   def change
-    create_table :rooms, id: :uuid do |t|
+    create_table :rooms, id: :string do |t|
       t.string :name
       t.string :slug
 

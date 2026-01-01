@@ -17,12 +17,13 @@ module Components
             input(type: "hidden", name: "authenticity_token", value: helpers.form_authenticity_token)
             input(type: "hidden", name: "user_id", value: @id)
             input(type: "hidden", name: "return_to", value: @return_to)
-            input(
-              type: "checkbox", 
-              checked: @is_present, 
-              onchange: "this.form.submit()",
+            button(
+              type: "submit",
+              class: @is_present ? "presence-btn active" : "presence-btn",
               title: @is_present ? "Auschecken aus #{@room_name}" : "Einchecken in Hauptraum"
-            )
+            ) do
+              @is_present ? "✓" : "○"
+            end
           end
         elsif @is_present
           span(class: "presence-indicator", title: "In #{@room_name}")

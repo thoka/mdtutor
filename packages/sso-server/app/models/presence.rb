@@ -9,7 +9,7 @@ class Presence < ApplicationRecord
 
   def self.toggle(user_id, room_id: nil)
     p = find_or_initialize_by(user_id: user_id)
-    
+
     # Use default room if none provided
     room_id ||= Room.find_by(slug: "default")&.id
 
@@ -26,7 +26,7 @@ class Presence < ApplicationRecord
       # Start new visit
       Visit.create!(user_id: user_id, room_id: room_id, started_at: Time.current)
     end
-    
+
     p.save!
     p.is_present
   end

@@ -19,9 +19,9 @@ module Views
               @admins.each do |id, user|
                 presence = @presences[id]
                 render Components::UserTile.new(
-                  id, 
-                  user, 
-                  type: :admin, 
+                  id,
+                  user,
+                  type: :admin,
                   return_to: @return_to,
                   is_present: presence&.is_present || false,
                   room_name: presence&.room&.name,
@@ -37,9 +37,9 @@ module Views
               @users.each do |id, user|
                 presence = @presences[id]
                 render Components::UserTile.new(
-                  id, 
-                  user, 
-                  type: :user, 
+                  id,
+                  user,
+                  type: :user,
                   return_to: @return_to,
                   is_present: presence&.is_present || false,
                   room_name: presence&.room&.name,
@@ -163,6 +163,27 @@ module Views
               top: 10px;
               right: 10px;
               z-index: 10;
+            }
+
+            .presence-btn {
+              background: white;
+              border: 2px solid #ddd;
+              border-radius: 50%;
+              width: 24px;
+              height: 24px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              font-size: 0.8rem;
+              padding: 0;
+              transition: all 0.2s;
+            }
+
+            .presence-btn.active {
+              background: #4caf50;
+              border-color: #4caf50;
+              color: white;
             }
 
             .presence-indicator {

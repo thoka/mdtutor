@@ -11,7 +11,17 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2026_01_01_163714) do
-# Could not dump table "actions" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
+  create_table "actions", id: :string, force: :cascade do |t|
+    t.string "user_id"
+    t.string "action_type"
+    t.string "gid"
+    t.text "metadata"
+    t.datetime "timestamp"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["action_type"], name: "index_actions_on_action_type"
+    t.index ["gid"], name: "index_actions_on_gid"
+    t.index ["timestamp"], name: "index_actions_on_timestamp"
+    t.index ["user_id"], name: "index_actions_on_user_id"
+  end
 end

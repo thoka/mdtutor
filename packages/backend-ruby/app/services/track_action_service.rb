@@ -3,7 +3,7 @@ class TrackActionService
 
   def self.call(user_id:, action:, gid: nil, metadata: {})
     timestamp = Time.current.iso8601
-    
+
     payload = {
       user_id: user_id,
       action: action,

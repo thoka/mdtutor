@@ -11,7 +11,7 @@ module Views
       def view_template
         div(class: "sso-container dashboard") do
           h1 { "Benutzer-Historie: #{@user['name']}" }
-          
+
           div(class: "history-grid") do
             section(class: "history-section") do
               h2 { "Besuche im Makerspace" }
@@ -20,7 +20,7 @@ module Views
                   div(class: "history-item") do
                     span(class: "history-date") { visit.started_at.strftime("%d.%m.%Y") }
                     span(class: "history-room") { visit.room.name }
-                    span(class: "history-time") { 
+                    span(class: "history-time") {
                       time_range = "#{visit.started_at.strftime("%H:%M")} - "
                       time_range += visit.ended_at ? visit.ended_at.strftime("%H:%M") : "Aktiv"
                       time_range
@@ -110,4 +110,3 @@ module Views
     end
   end
 end
-

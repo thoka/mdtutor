@@ -1,8 +1,8 @@
 class CreateVisits < ActiveRecord::Migration[7.2]
   def change
-    create_table :visits, id: :uuid do |t|
+    create_table :visits, id: :string do |t|
       t.string :user_id
-      t.references :room, null: false, foreign_key: true, type: :uuid
+      t.references :room, null: false, foreign_key: true, type: :string
       t.datetime :started_at
       t.datetime :ended_at
 
