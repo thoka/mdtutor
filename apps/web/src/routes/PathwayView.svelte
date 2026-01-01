@@ -62,12 +62,20 @@
 
       // Fetch user actions for this pathway
       const token = localStorage.getItem('sso_token');
-      if (token) {
-        const actionsRes = await fetch(`/api/v1/actions/user/${JSON.parse(atob(token.split('.')[1])).user_id}`, {
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (actionsRes.ok) {
-          userActions = await actionsRes.json();
+      if (token && token.includes('.')) {
+        try {
+          const payload = JSON.parse(atob(token.split('.')[1]));
+          const userId = payload.user_id;
+          if (userId) {
+            const actionsRes = await fetch(`/api/v1/actions/user/${userId}`, {
+              headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (actionsRes.ok) {
+              userActions = await actionsRes.json();
+            }
+          }
+        } catch (e) {
+          console.warn('Failed to parse token or fetch actions', e);
         }
       }
       
@@ -177,7 +185,7 @@
                         />
                         {#if isDone}
                           <div class="c-project-card__badge-overlay">
-                            <img src="/badges/{projectSlug}.svg" alt="Badge" class="badge-icon" onerror="this.style.display='none'" />
+                            <img src="/badges/{projectSlug}.svg" alt="Badge" class="badge-icon" onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} />
                           </div>
                         {:else if progress.percent > 0}
                           <div class="c-project-card__progress-ring">

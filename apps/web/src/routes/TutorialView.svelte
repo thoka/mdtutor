@@ -139,6 +139,7 @@
                             <StepContent
                               content={currentStepData.content}
                               {slug}
+                              gid={tutorialData.data.id}
                               {step}
                             />
                           {/if}

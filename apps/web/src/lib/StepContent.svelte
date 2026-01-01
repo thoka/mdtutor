@@ -15,10 +15,12 @@
   let {
     content = '',
     slug = '',
+    gid = '',
     step = 0
   }: {
     content: string;
     slug: string;
+    gid?: string;
     step: number;
   } = $props();
   
@@ -302,14 +304,14 @@
     console.log('[quiz] Answer is correct:', isCorrect);
     
     // Track quiz attempt
-    trackAction('quiz_attempt', slug, { 
+    trackAction('quiz_attempt', gid || slug, { 
       step, 
       is_correct: isCorrect,
       selected_value: selectedInput.value
     });
 
     if (isCorrect) {
-      trackAction('quiz_success', slug, { step });
+      trackAction('quiz_success', gid || slug, { step });
       console.log('[quiz] Processing correct answer');
       // Correct answer: disable inputs, show feedback, mark as answered, show next question
       inputs.forEach((input) => {
@@ -548,7 +550,7 @@
         const isChecked = !input.checked; // This is called BEFORE the state changes? No, usually after.
         // Actually, toggle() will update the store.
         taskStore.toggle(index);
-        trackAction(input.checked ? 'task_check' : 'task_uncheck', slug, { step, task_index: index });
+        trackAction(input.checked ? 'task_check' : 'task_uncheck', gid || slug, { step, task_index: index });
       };
       (input as any)._changeListener = newListener;
       input.addEventListener('change', newListener);
