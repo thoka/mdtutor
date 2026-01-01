@@ -4,7 +4,7 @@ admins:
     avatar: "/avatars/admin.svg"
   admin_local:
     name: "Lokal-Admin"
-    avatar: "🛠️"
+    avatar: "/avatars/admin_local.svg"
 
 users:
   student_a:
@@ -12,8 +12,8 @@ users:
     avatar: "/avatars/student.svg"
   student_b:
     name: "Bob"
-    avatar: "🤖"
+    avatar: "/avatars/student_b.svg"
   student_c:
     name: "Charlie"
-    avatar: "🚀"
+    avatar: "/avatars/student_c.svg"
 
