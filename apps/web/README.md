@@ -5,9 +5,11 @@ Svelte 5 + Vite web application for rendering Markdown-based tutorials from the 
 ## Features
 
 - Step-by-step tutorial navigation with sidebar
-- Interactive task checkboxes with LocalStorage persistence
+- Interactive task checkboxes with LocalStorage and Backend (Achievements API) persistence
+- Aggregated user state for efficient progress calculation
+- Achievement Debug Overlay for detailed progress analysis (Admins/Dev mode)
 - Collapsible ingredient panels (transclusions)
-- Hash-based routing (`#/tutorial-slug/step-number`)
+- Hash-based routing (`#/lang/projects/tutorial-slug/step-number`)
 - RPL-compatible CSS styling
 - Print mode support
 
@@ -15,6 +17,7 @@ Svelte 5 + Vite web application for rendering Markdown-based tutorials from the 
 
 - Node.js >= 18
 - Running API server (see `packages/api-server`)
+- Running Achievements backend (see `packages/backend-ruby`)
 
 ## Development
 
@@ -22,10 +25,10 @@ Svelte 5 + Vite web application for rendering Markdown-based tutorials from the 
 # Install dependencies (from project root)
 npm install
 
-# Start dev server
+# Start all services (API, Web, Achievements, SSO)
 npm run dev
 
-# Access at http://localhost:<WEB_PORT from .env>/#/silly-eyes/0
+# Access at http://localhost:<WEB_PORT from .env>/#/de-DE/pathways/RPL:scratch-intro
 ```
 
 ## Build
@@ -56,9 +59,10 @@ src/
 
 ## URL Structure
 
-- `#/silly-eyes` → Tutorial step 0 (default)
-- `#/silly-eyes/2` → Tutorial step 2
-- `#/tutorial-slug/step-number` → Any tutorial/step
+- `#/de-DE/projects/silly-eyes` → Tutorial step 0 (default)
+- `#/de-DE/projects/silly-eyes/2` → Tutorial step 2
+- `#/de-DE/pathways/pathway-slug` → Pathway overview
+- `#/lang/projects/tutorial-slug/step-number` → Any tutorial/step
 
 ## Dependencies
 

@@ -27,3 +27,8 @@ Wir haben die Achievements-Logik umgestellt, um die Performance zu verbessern un
 3. Klicke auf die Fortschrittsanzeige (z.B. "1 von 7 Projekten abgeschlossen").
 4. Das Debug-Overlay öffnet sich und zeigt alle Details zur Berechnung.
 
+## Gelernte Lektionen (Iteration-Sparen)
+- **Variable Synchronisation**: Die Umstellung von `userActions` (Array) auf `userState` (Objekt) musste in `PathwayView`, `TutorialView` und `StepContent` gleichzeitig erfolgen. Ein vergessenes `userActions` in einem `{@const}` Block führte zu einem Totalausfall der Seite (Loading-Loop). Zukünftig: Immer `grep` über das gesamte Projekt nach dem Variablennamen.
+- **Svelte 5 Props**: `$state` initialisiert aus `$props` ist nicht reaktiv gegenüber Änderungen des Props (nur initiale Zuweisung). Das führte im Debug-Overlay dazu, dass das erste Projekt nicht automatisch selektiert wurde, wenn die Daten asynchron geladen wurden. Lösung: `$effect` oder `$derived` für Prop-basierte State-Updates nutzen.
+- **Aggregierte Daten**: Die Berechnung im Backend ist deutlich robuster gegenüber großen Historien. Die Logik in `calculateProgress` ist nun zweigeteilt (Legacy-Support + Aggregated-Support), was die Migration erleichtert.
+

@@ -53,10 +53,20 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Brain (`docs/brain/`)**: Use for tracking ongoing work. Use date-prefixed files: `YYYY-MM-DD-topic.md` for plans and `YYYY-MM-DD-topic-walkthrough.md` for results.
 - **Specifications**: Core project spec in `docs/SPEC.md`.
 ## Project Conventions
-- **Svelte 5**: Use Runes (`$state`, `$derived`, `$effect`, `$props`) exclusively. Avoid Svelte 4 syntax.
+- **Svelte 5**: Use Runes (`$state`, `$derived`, `$effect`, `$props`) exclusively.
+  - **Caution**: When initializing `$state` from `$props`, remember that the assignment only happens once. Use `$derived` or an `$effect` if the state needs to sync with changing props.
+- **Achievement Logic**:
+  - **Data Source**: Prefer the **aggregated state** endpoint (`GET /api/v1/actions/user/:user_id/state`) for calculating progress. It is more efficient than fetching the full event history.
+  - **Refactoring**: When changing the format or name of achievement data (e.g., `userActions` -> `userState`), always check all consumers: `PathwayView.svelte`, `TutorialView.svelte`, `StepContent.svelte`, and the `createTaskStore` in `stores.ts`.
 - **Language Fallback**: Default to `de-DE`, fallback to `en`. API handles this via `getProjectData`.
 - **Parser Plugins**: Custom plugins in `packages/parser/src/plugins/` handle RPL-specific markdown extensions (e.g., `--- task ---`).
 - **Styling**: Cloned from Raspberry Pi Learning (RPL). See `apps/web/src/styles/rpl-cloned/`.
+
+## Common Iteration Pitfalls (Lessons Learned)
+- **Shared Props**: Components often share props like `userActions` or `userState`. Renaming them in one place without updating others leads to "page not loading" errors. Always `grep` for the variable name across the `apps/web/src` directory.
+- **Routing**: The app uses hash-based routing (`svelte-spa-router`). Ensure links use the `#/` prefix or the `link` action.
+- **Seeding**: Use `npm run seed:test` to initialize the complex "Alice" scenario across both backends. This is essential for verifying progress logic.
+- **Verification**: Use the **Achievement Debug Overlay** (click the pathway progress bar in Dev/Admin mode) to inspect how project progress is being calculated. This saves time compared to manual log checking.
 
 ## Key Files
 - [packages/parser/src/parse-tutorial.js](packages/parser/src/parse-tutorial.js): The `unified` pipeline configuration.
