@@ -374,6 +374,7 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
         if (data.description[key]) {
           const contentMd = data.description[key][requestedLang] || data.description[key]['en'] || '';
           header.push({
+            key: key, // Include the key for frontend filtering
             title: requestedLang === 'de-DE' ? titles : key.charAt(0).toUpperCase() + key.slice(1),
             content: await simpleParse(contentMd)
           });

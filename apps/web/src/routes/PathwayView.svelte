@@ -114,7 +114,7 @@
           {#if pathway.attributes.header}
             <div class="c-pathway-header__right">
               <div class="c-pathway-accordions">
-                {#each pathway.attributes.header as section}
+                {#each pathway.attributes.header.filter(s => s.key !== 'mentor') as section}
                   <details class="c-pathway-accordion">
                     <summary class="c-pathway-accordion__summary">
                       <span class="c-pathway-accordion__title">{section.title}</span>
