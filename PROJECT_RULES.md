@@ -22,8 +22,11 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
   - **Data Strategy**: Use **FactoryBot** for all test data in specs. Maintain **development seeds** in `db/seeds.rb` for common scenarios (e.g., the "Alice" scenario). Use the root `bin/seed` script to sync both backends.
 - **Database Separation**: Tests MUST run against the `test` database. Use `RAILS_ENV=test bundle exec rspec`.
 - **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/layers/official/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
-- **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
-- **Testing**: `npm test` in `packages/parser` runs parser integration tests.
+- **Development**: `npm run dev` runs all services. `npm run dev:test` runs them against the test databases.
+- **Seeds**: `npm run seed` initializes development data. `npm run seed:test` initializes test data (e.g., the complex Alice scenario).
+- **Testing**:
+  - **Backend**: Use `RAILS_ENV=test bundle exec rspec` in the package directory.
+  - **Parser**: `npm test` in `packages/parser`.
 - **Linting**: `npm run lint` (ESLint 9).
 
 ## Development Cycle & Git Rules

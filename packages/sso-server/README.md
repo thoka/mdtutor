@@ -10,18 +10,21 @@ Eigenständiger Authentifizierungs-Dienst für das MDTutor-Ökosystem.
 ## Setup
 ```bash
 bundle install
+# Database is located in root: db/sso/
 bin/rails db:prepare
 ```
 
 ## Running
 ```bash
 bin/rails s -p 3103
+# Or via root: npm run sso
 ```
 
-## Konfiguration
-Benutzer und Admins werden in `config/users.yaml` definiert. Logins dienen als Schlüssel.
+## Dashboard
+Erreichbar unter `/dashboard`. Zeigt Echtzeit-Präsenz und die letzten Aktivitäten der anwesenden Nutzer.
 
-## Technik
-- Ruby on Rails 7
-- Phlex (UI Komponenten)
-- JWT (JSON Web Tokens)
+## Testing
+```bash
+# Important: Always use RAILS_ENV=test
+RAILS_ENV=test bundle exec rspec
+```

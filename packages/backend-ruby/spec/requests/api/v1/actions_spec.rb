@@ -40,7 +40,7 @@ RSpec.describe "Api::V1::Actions", type: :request do
 
       get "/api/v1/actions/latest", params: { user_ids: ["user1", "user2"] }
       expect(response).to have_http_status(:ok)
-      
+
       json = JSON.parse(response.body)
       expect(json).to have_key("user1")
       expect(json).to have_key("user2")
@@ -57,7 +57,7 @@ RSpec.describe "Api::V1::Actions", type: :request do
 
       get "/api/v1/actions/user/#{test_user_id}"
       expect(response).to have_http_status(:ok)
-      
+
       json = JSON.parse(response.body)
       expect(json.size).to eq(2)
       expect(json.map { |a| a["action_type"] }).to include("task_check", "quiz_success")

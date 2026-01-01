@@ -26,24 +26,19 @@ Build a local, intranet-compatible learning environment with:
 mdtutor/
 ├── packages/              # Modular components (monorepo)
 │   ├── parser/           # Markdown → JSON parser
-│   └── api-server/       # Express API server
+│   ├── api-server/       # Express API server (content delivery)
+│   ├── backend-ruby/     # Achievements & Action-Log (Rails)
+│   └── sso-server/       # Central Identity & Makerspace Dashboard (Rails)
 ├── apps/                 # Applications
 │   └── web/             # Svelte 5 + Vite frontend
+├── db/                   # Centralized SQLite storage
+│   ├── achievements/     # Production & Test databases for achievements
+│   └── sso/              # Production & Test databases for SSO/Presence
 ├── docs/                # Documentation
+│   ├── brain/           # Implementation plans and walkthroughs
 │   ├── SPEC.md          # Main specification
-│   ├── renderer-spec.md # Renderer specification
-│   ├── panel-functionality.md
-│   ├── scratch-code-blocks.md
-│   ├── test-data-collection.md
-│   └── RPL - Markdown Extensions.md
-├── test/                # Integration tests & test data
-│   ├── get-test-data.js # Fetch reference data from RPL API
-│   └── snapshots/       # Test data snapshots
-├── tools/               # Development tools
-│   ├── compare-structure.js  # Compare HTML structure with reference
-│   ├── extract-css.js        # Extract CSS from reference site
-│   ├── extract-structure.js  # Extract HTML structure
-│   └── save-html.js          # Save rendered HTML for inspection
+│   └── ...
+├── bin/                  # Root-level utility scripts (e.g., ./bin/seed)
 └── package.json         # Workspace root
 ```
 
@@ -55,44 +50,45 @@ mdtutor/
 npm install
 ```
 
-### 2. Fetch Test Data
+### 2. Setup Data & Databases
 
 ```bash
-npm run test:data
+npm run test:data    # Fetch reference tutorials
+npm run seed         # Initialize development databases with test users
 ```
-
-This downloads reference tutorials and API responses from raspberrypilearning.org for all configured languages (currently English and German).
 
 ### 3. Development
 
-**Multi-Language Support:**
-- The platform defaults to German (`de-DE`) and falls back to English (`en`) if German content is not available
-- The API server automatically handles language fallback
-- Test data collection fetches data for all configured languages
+The project uses a multi-service architecture. You can run all services concurrently:
 
-**Run API Server:**
 ```bash
-npm run api
-```
-Server runs on port configured in `.env` file (API_PORT or PORT)
-
-**Run Web Renderer:**
-```bash
-npm run web
-```
-Dev server runs on port configured in `.env` file (WEB_PORT or PORT)
-
-**Parser Development:**
-```bash
-cd packages/parser
-npm test
+npm run dev          # Standard development mode
+npm run dev:test     # Test mode using separate 'test' databases
 ```
 
-**Linting:**
+**Services:**
+- **Web App**: `http://localhost:5201`
+- **Content API**: `http://localhost:3101`
+- **Achievements**: `http://localhost:3102`
+- **SSO Server**: `http://localhost:3103`
+
+### 4. Testing
+
 ```bash
-npm run lint        # Check for issues
-npm run lint:fix    # Auto-fix issues
+# Backend Tests (RSpec)
+cd packages/backend-ruby && RAILS_ENV=test bundle exec rspec
+cd packages/sso-server && RAILS_ENV=test bundle exec rspec
+
+# Parser Tests
+cd packages/parser && npm test
 ```
+
+## Spec-First Workflow
+
+This project follows a strict **Spec-First** approach:
+1. **API First**: No frontend implementation begins until the API is specified and verified by backend tests.
+2. **TDD**: Always write tests (RSpec) before implementing features.
+3. **Data Strategy**: Use `factory_bot` for specs and maintain `db/seeds.rb` for development scenarios (e.g., the "Alice" case).
 
 ## Available Scripts
 
