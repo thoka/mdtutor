@@ -17,6 +17,7 @@ const BLOCK_CLASSES = {
  */
 export default function remarkBlockContainers(options = {}) {
   const languages = options.languages || ['en'];
+  const debug = options.debug || false;
 
   return (tree) => {
     // 1. Flatten the tree to handle nested blockDelimiters (e.g. inside paragraphs)
@@ -62,6 +63,7 @@ export default function remarkBlockContainers(options = {}) {
       
       if (node.type === 'blockDelimiter') {
         const { blockType, isClosing } = node.data || {};
+        if (debug) console.log(`[REMARK] blockDelimiter: type=${blockType}, isClosing=${isClosing}, stack depth before: ${stack.length}`);
         
         if (!isClosing) {
           // Start a new container
@@ -93,8 +95,10 @@ export default function remarkBlockContainers(options = {}) {
             stack.pop();
           }
         }
+        if (debug) console.log(`[REMARK] stack depth after: ${stack.length}`);
       } else {
         // Regular node - add to current parent
+        if (debug) console.log(`[REMARK] regular node: type=${node.type}, depth: ${stack.length}`);
         stack[stack.length - 1].children.push(node);
       }
     }

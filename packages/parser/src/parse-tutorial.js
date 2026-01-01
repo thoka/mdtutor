@@ -161,7 +161,10 @@ export async function parseTutorial(markdown, options = {}) {
     .use(remarkParse)
     .use(remarkFrontmatter, ['yaml'])
     .use(remarkYamlBlocks) // Convert preprocessed YAML blocks to yaml nodes
-    .use(remarkBlockContainers, { languages: options.languages }) // Transform block delimiters into containers
+    .use(remarkBlockContainers, { 
+      languages: options.languages,
+      debug: options.debug || process.env.DEBUG_PARSER === 'true'
+    }) // Transform block delimiters into containers
     .use(remarkLinkAttributes)
     .use(remarkTransclusion, {
       basePath: options.basePath,
