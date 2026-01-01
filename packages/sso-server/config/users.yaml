@@ -1,0 +1,19 @@
+admins:
+  mentor_1:
+    name: "Mentor (Thomas)"
+    avatar: "🎓"
+  admin_local:
+    name: "Lokal-Admin"
+    avatar: "🛠️"
+
+users:
+  student_a:
+    name: "Alice"
+    avatar: "🎨"
+  student_b:
+    name: "Bob"
+    avatar: "🤖"
+  student_c:
+    name: "Charlie"
+    avatar: "🚀"
+
