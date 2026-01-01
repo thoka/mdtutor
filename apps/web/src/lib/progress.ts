@@ -70,6 +70,7 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
 
     // Calculate scores
     let totalScore = 0;
+    let fullStepsCount = 0;
     Object.entries(stepInteractions).forEach(([idxStr, interactions]) => {
       const idx = parseInt(idxStr);
       let stepScore = 0;
@@ -95,6 +96,7 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
         }) ? 1 : 0;
       }
       
+      if (stepScore >= 1) fullStepsCount++;
       totalScore += stepScore;
     });
 
@@ -103,7 +105,7 @@ export function calculateProgress(project: any, actions: any[]): ProjectProgress
     return {
       projectId: project.id,
       totalSteps,
-      completedSteps: completedSteps.size,
+      completedSteps: fullStepsCount,
       stepInteractions,
       lastStep,
       percent,

@@ -176,7 +176,7 @@
                 {@const isDone = progress.isCompleted}
                 
                 <div class="c-project-card-wrapper">
-                  <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card {isDone ? 'is-completed' : ''} {progress.percent > 0 ? 'has-progress' : ''}">
+                  <div class="c-project-card {isDone ? 'is-completed' : ''} {progress.percent > 0 ? 'has-progress' : ''}">
                     {#if project.attributes.content.heroImage}
                       <div class="c-project-card__image-wrapper">
                         <img 
@@ -184,45 +184,53 @@
                           src={project.attributes.content.heroImage} 
                           alt={project.attributes.content.title}
                         />
-                        
-                        {#if project.attributes.content.badge}
-                          <div class="c-project-card__badge-overlay {isDone ? 'is-unlocked' : 'is-locked'}">
+                      </div>
+                    {/if}
+                    
+                    <div class="c-project-card__body">
+                      <div class="c-project-card__sidebar">
+                        <div class="c-project-card__badge-container {isDone ? 'is-unlocked' : 'is-locked'}">
+                          {#if project.attributes.content.badge}
                             <img 
                               src={project.attributes.content.badge} 
                               alt="Badge" 
-                              class="badge-icon" 
+                              class="badge-icon-small" 
                               onerror={(e) => (e.currentTarget as HTMLImageElement).style.display='none'} 
                             />
-                          </div>
-                        {/if}
-
-                        {#if !isDone && progress.percent > 0}
-                          <div class="c-project-card__progress-ring">
-                            <svg viewBox="0 0 36 36" class="circular-chart">
-                              <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                              <path class="circle" stroke-dasharray="{progress.percent}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
-                            </svg>
-                            <span class="progress-text">{progress.percent}%</span>
-                          </div>
-                        {/if}
+                          {:else}
+                            <div class="badge-placeholder"></div>
+                          {/if}
+                        </div>
+                        
+                        <div class="c-project-card__steps-count">
+                          {progress.completedSteps} / {progress.totalSteps}
+                        </div>
+                        
+                        <a 
+                          href={isDone ? `/${lang}/projects/${displaySlug}` : (progress.percent > 0 ? `/${lang}/projects/${displaySlug}/${progress.lastStep}` : `/${lang}/projects/${displaySlug}/0`)} 
+                          use:link 
+                          class="c-project-card__action-btn"
+                        >
+                          {#if isDone}
+                            {$t('finished_project')}
+                          {:else if progress.percent > 0}
+                            {$t('continue_project')}
+                          {:else}
+                            {$t('start_project')}
+                          {/if}
+                        </a>
                       </div>
-                    {/if}
-                    <div class="c-project-card__content">
-                      <div class="c-project-card__text">
-                        <h3 class="c-project-card__heading">{project.attributes.content.title}</h3>
-                        {#if project.attributes.content.description}
-                          <p class="c-project-card__description">{project.attributes.content.description}</p>
-                        {/if}
+                      
+                      <div class="c-project-card__content">
+                        <div class="c-project-card__text">
+                          <h3 class="c-project-card__heading">{project.attributes.content.title}</h3>
+                          {#if project.attributes.content.description}
+                            <p class="c-project-card__description">{project.attributes.content.description}</p>
+                          {/if}
+                        </div>
                       </div>
                     </div>
-                  </a>
-                  
-                  {#if progress.percent > 0 && !isDone}
-                    <a href="/{lang}/projects/{displaySlug}/{progress.lastStep}" use:link class="c-project-card__continue">
-                      <span class="material-symbols-sharp">play_arrow</span>
-                      {$t('continue_editing')}
-                    </a>
-                  {/if}
+                  </div>
                 </div>
               {/each}
             </div>
@@ -462,110 +470,79 @@
     object-fit: cover;
   }
 
-  .c-project-card__badge-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+  .c-project-card__body {
+    display: flex;
+    padding: 1.25rem;
+    gap: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .c-project-card__sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  .c-project-card__badge-container {
+    width: 64px;
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: center;
-    pointer-events: none;
-  }
-
-  .c-project-card__badge-overlay.is-unlocked {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(1px);
-  }
-
-  .c-project-card__badge-overlay.is-locked {
-    opacity: 0.6;
-    filter: grayscale(100%);
-    transform: scale(0.75);
-  }
-
-  .badge-icon {
-    width: 80px;
-    height: 80px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     transition: all 0.3s ease;
   }
 
-  .is-unlocked .badge-icon {
-    width: 100px;
-    height: 100px;
+  .c-project-card__badge-container.is-locked {
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transform: scale(0.85);
   }
 
-  .c-project-card__progress-ring {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 50px;
-    height: 50px;
-    background: white;
+  .badge-icon-small {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  }
+
+  .badge-placeholder {
+    width: 48px;
+    height: 48px;
+    background: #f0f0f0;
     border-radius: 50%;
-    padding: 2px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px dashed #ccc;
   }
 
-  .circular-chart {
-    display: block;
-    margin: 0;
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .circle-bg {
-    fill: none;
-    stroke: #eee;
-    stroke-width: 3.8;
-  }
-
-  .circle {
-    fill: none;
-    stroke-width: 3.8;
-    stroke-linecap: round;
-    stroke: #4caf50;
-    transition: stroke-dasharray 0.3s ease;
-  }
-
-  .progress-text {
-    position: absolute;
-    font-size: 10px;
+  .c-project-card__steps-count {
+    font-size: 0.8rem;
     font-weight: bold;
-    color: #444;
+    color: #888;
+    font-family: monospace;
   }
 
-  .c-project-card__continue {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: #2196f3;
-    color: white;
+  .c-project-card__action-btn {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: #000;
+    color: #fff;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
     font-weight: bold;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform 0.1s;
   }
 
-  .c-project-card__continue:hover {
-    background: #1976d2;
-  }
-
-  .c-project-card.is-completed {
-    border-color: #4caf50;
-    background: #f1f8e9;
+  .c-project-card__action-btn:hover {
+    transform: scale(1.05);
   }
 
   .c-project-card__content {
-    padding: 1.25rem;
     flex-grow: 1;
   }
 

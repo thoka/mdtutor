@@ -12,7 +12,10 @@ const translations: Record<string, Record<string, string>> = {
     'back_to_overview': 'Zurück zur Übersicht',
     'api_mismatch': 'API-Versionskonflikt!',
     'continue_editing': 'Weiter bearbeiten',
-    'completed': 'Abgeschlossen'
+    'completed': 'Abgeschlossen',
+    'start_project': 'starten...',
+    'continue_project': 'weiter...',
+    'finished_project': 'Fertig :-)'
   },
   'en': {
     'language': 'Language',
@@ -24,7 +27,10 @@ const translations: Record<string, Record<string, string>> = {
     'back_to_overview': 'Back to overview',
     'api_mismatch': 'API Version Mismatch!',
     'continue_editing': 'Continue editing',
-    'completed': 'Completed'
+    'completed': 'Completed',
+    'start_project': 'start...',
+    'continue_project': 'continue...',
+    'finished_project': 'Done :-)'
   }
 };
 

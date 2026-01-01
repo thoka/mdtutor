@@ -1,3 +1,5 @@
+require "net/http"
+
 class SessionsController < ApplicationController
   layout Views::Layouts::ApplicationLayout
 

@@ -15,6 +15,11 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
   1. Create a **feature branch** (`feature/name`).
   2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
+- **API-First & Spec-First**: No frontend implementation (Svelte components, stores, or logic) may begin until the required API endpoints are:
+  1. **Spezifiziert**: Documented in the implementation plan (request/response format).
+  2. **Getestet**: Fully implemented and verified by RSpec `request specs` in the backend.
+- **TDD (Test-Driven Development)**: Always write and commit tests *before* implementing features. Every API endpoint must have a spec verifying success, error cases, and JSON schema.
+- **Database Separation**: Tests MUST run against the `test` database. Use `RAILS_ENV=test bundle exec rspec`.
 - **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/layers/official/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.
 - **Testing**: `npm test` in `packages/parser` runs parser integration tests.
@@ -22,7 +27,6 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 
 ## Development Cycle & Git Rules
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.
-- **Test-First (TDD)**: Always write and commit tests *before* implementing features.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
 - **Planning**: Implementation plans MUST be discussed and approved BEFORE coding starts.
