@@ -557,9 +557,23 @@
     // Re-attach handlers when content or step changes
     content;
     step;
+    userActions; // Ensure re-run when actions are loaded
+    
     attachTaskHandlers();
     attachScratchHandlers();
     initializePanelStates();
+
+    return () => {
+      // Cleanup task store subscriptions
+      if (contentDiv) {
+        const checkboxes = contentDiv.querySelectorAll('.c-project-task__checkbox');
+        checkboxes.forEach(input => {
+          if ((input as any)._unsubscribe) {
+            (input as any)._unsubscribe();
+          }
+        });
+      }
+    };
   });
   
   function initializePanelStates() {
@@ -586,13 +600,19 @@
   function attachTaskHandlers() {
     if (!contentDiv) return;
     
+    // Trigger re-run when userActions or taskStore changes
+    userActions; 
+    taskStore;
+
     // Handle task checkboxes
     const checkboxes = contentDiv.querySelectorAll('.c-project-task__checkbox');
     checkboxes.forEach((checkbox, index) => {
       const input = checkbox as HTMLInputElement;
       
-      // Restore state
-      taskStore.subscribe(tasks => {
+      // Sync initial state from store
+      let currentTasks = new Set<number>();
+      const unsubscribe = taskStore.subscribe(tasks => {
+        currentTasks = tasks;
         input.checked = tasks.has(index);
       });
       
@@ -604,13 +624,16 @@
       
       // Add new listener
       const newListener = () => {
-        const isChecked = !input.checked; // This is called BEFORE the state changes? No, usually after.
-        // Actually, toggle() will update the store.
+        // toggle() will update the store and localStorage
         taskStore.toggle(index);
+        // We track the new state (after toggle)
         trackAction(input.checked ? 'task_check' : 'task_uncheck', gid || slug, { step, task_index: index });
       };
       (input as any)._changeListener = newListener;
       input.addEventListener('change', newListener);
+
+      // Store unsubscribe to call later if needed (though effect cleanup is better)
+      (input as any)._unsubscribe = unsubscribe;
     });
   }
 </script>

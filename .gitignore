@@ -34,3 +34,15 @@ Thumbs.db
 /db/**/*.sqlite3-journal
 /db/**/*.sqlite3-shm
 /db/**/*.sqlite3-wal
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Rails
+/packages/*/log/*
+/packages/*/tmp/*
+!/packages/*/log/.keep
+!/packages/*/tmp/.keep

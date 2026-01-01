@@ -26,11 +26,12 @@ Establish a dual-layer testing strategy for the Svelte 5 frontend: Unit/Componen
 - Install dependencies: `@playwright/test`.
 - Create `playwright.config.ts`.
 - Add `npm run test:e2e` script.
-- **E2E Scenario**: 
-    1. Reset state: `npm run seed:test`.
-    2. Login via SSO as student_a.
-    3. Verify progress display in Pathway.
-    4. Complete a task and verify dashboard update.
+- **E2E Scenarios**: 
+    1. **Alice Scenario**: Login -> Navigate -> Verify synced checkboxes in "Catch the Bus".
+    2. **Task Sync**: Check/Uncheck tasks -> Reload -> Verify persistence.
+    3. **Scratch Tracking**: Click Play overlay -> Verify `scratch_start`.
+    4. **Quiz Interaction**: Select -> Check -> Verify feedback and auto-deselect on open.
+    5. **Navigation Stability**: Navigate steps -> Verify "Step View" in Dashboard.
 
 ## 4. Integration into Workflow
 
