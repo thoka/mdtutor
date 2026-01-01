@@ -1,12 +1,12 @@
-# Content - cloned repositories and API responses
-content/RPL/projects/*
-content/RPL/pathways/*
+# Content - ecosystems and layers
+content/*/layers/
+content/*/projects/
+content/*/pathways/
 
-# Keep source files and metadata
-!content/RPL/meta.yml
-!content/RPL/README.md
-!content/RPL/pathways/rpl-pathways.yaml
-!content/TAG/**
+# Keep config and ecosystem definitions
+!content/*/ecosystem.yaml
+!content/*/config/
+!content/*/config/**
 
 # Test output files
 test-differences.json
