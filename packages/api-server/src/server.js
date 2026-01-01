@@ -286,10 +286,16 @@ app.get('/api/pathways', async (req, res) => {
                 description = data.description || '';
               }
 
+              let banner = null;
+              if (data.banner) {
+                banner = `/content/${ecosystem.id}/layers/${layer.id}/pathways/${data.banner}`;
+              }
+
               allPathways.push({
                 slug: `${ecosystem.id}:${slug}`,
                 title,
-                description
+                description,
+                banner
               });
             } catch (e) {
               console.warn(`Failed to read pathway ${file}:`, e.message);
@@ -349,6 +355,12 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
       if (data.header) header.push(...data.header);
     }
 
+    // Resolve banner path
+    let banner = data.banner;
+    if (banner && !banner.startsWith('http')) {
+      banner = `/content/${resolved.ecosystem.id}/layers/${resolved.layer.id}/pathways/${banner}`;
+    }
+
     res.json({
       data: {
         id: pathwayGid,
@@ -358,7 +370,8 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
           gid: pathwayGid,
           title,
           description,
-          header
+          header,
+          banner // Add the resolved banner
         },
         relationships: {
           projects: {

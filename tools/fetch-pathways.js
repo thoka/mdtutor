@@ -117,21 +117,38 @@ async function syncPathway(slug, layerId, layers, ecoConfig) {
 
   const layerPath = join(ECOSYSTEM_DIR, 'layers', layerId);
   const pathwaysDir = join(layerPath, 'pathways');
+  const pathwayAssetsDir = join(pathwaysDir, 'assets');
   const projectsDir = join(layerPath, 'projects');
   
   mkdirSync(pathwaysDir, { recursive: true });
+  mkdirSync(pathwayAssetsDir, { recursive: true });
   mkdirSync(projectsDir, { recursive: true });
 
   const apiBase = layer.api_base || 'https://learning-admin.raspberrypi.org/api/v1';
+  const staticBase = 'https://projects-static.raspberrypi.org/pathways/assets';
   const prefix = ecoConfig.semantic_prefix || ECOSYSTEM_ID;
 
   const pathwayConfig = {
     title: {},
+    banner: `assets/${slug}.png`,
     description: {
       summary: {}
     },
     projects: []
   };
+
+  // Download banner
+  const bannerUrl = `${staticBase}/${slug}.png`;
+  const bannerFile = join(pathwayAssetsDir, `${slug}.png`);
+  if (!existsSync(bannerFile)) {
+    console.log(`Downloading banner: ${bannerUrl}`);
+    try {
+      execSync(`curl -s -L "${bannerUrl}" -o "${bannerFile}"`);
+    } catch (e) {
+      console.warn(`  ⚠️ Could not download banner: ${e.message}`);
+      delete pathwayConfig.banner; // Remove if download fails
+    }
+  }
 
   // 1. Fetch metadata for all languages to build the unified config
   for (const lang of LANGUAGES) {

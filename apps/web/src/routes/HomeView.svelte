@@ -53,8 +53,16 @@
       <h2 class="c-pathways-overview__title">Lernpfade</h2>
       <div class="c-projects-list__projects">
         {#each pathways as pathway}
-          {@const displaySlug = pathway.slug.includes(':') ? pathway.slug.split(':')[1] : pathway.slug}
+          {@const parts = pathway.slug.split(':')}
+          {@const displaySlug = parts.length >= 2 ? `${parts[0]}:${parts[parts.length-1]}` : pathway.slug}
           <a href="/{lang}/pathways/{displaySlug}" use:link class="c-project-card c-pathway-card">
+            {#if pathway.banner}
+              <img 
+                class="c-project-card__image" 
+                src={pathway.banner} 
+                alt={pathway.title}
+              />
+            {/if}
             <div class="c-project-card__content">
               <h3 class="c-project-card__heading">{pathway.title}</h3>
               {#if pathway.description}

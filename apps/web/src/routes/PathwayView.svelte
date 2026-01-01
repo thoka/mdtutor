@@ -87,6 +87,11 @@
     <div class="error">{$t('error')}: {errorMsg}</div>
   {:else if pathway}
     <header class="c-pathway-header">
+      {#if pathway.attributes.banner}
+        <div class="c-pathway-header__banner">
+          <img src={pathway.attributes.banner} alt="" />
+        </div>
+      {/if}
       <div class="c-pathway-header__content">
         <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
         <p class="c-pathway-header__description">{pathway.attributes.description}</p>
@@ -172,6 +177,33 @@
     margin-bottom: 3rem;
     border-bottom: 1px solid #eee;
     padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .c-pathway-header {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .c-pathway-header__banner {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .c-pathway-header__banner img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+  }
+
+  .c-pathway-header__content {
+    flex-grow: 1;
   }
 
   .c-pathway-header__title {
