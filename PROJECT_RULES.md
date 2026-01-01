@@ -19,6 +19,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
   1. **Spezifiziert**: Documented in the implementation plan (request/response format).
   2. **Getestet**: Fully implemented and verified by RSpec `request specs` in the backend.
 - **TDD (Test-Driven Development)**: Always write and commit tests *before* implementing features. Every API endpoint must have a spec verifying success, error cases, and JSON schema.
+  - **Data Strategy**: Use **FactoryBot** for all test data in specs. Maintain **development seeds** in `db/seeds.rb` for common scenarios (e.g., the "Alice" scenario). Use the root `bin/seed` script to sync both backends.
 - **Database Separation**: Tests MUST run against the `test` database. Use `RAILS_ENV=test bundle exec rspec`.
 - **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/layers/official/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
 - **Development**: `npm run dev` runs both API (API_PORT) and Web (WEB_PORT) concurrently.

@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+echo "Starting monorepo seeding..."
+
+echo "--- Seeding SSO Server ---"
+cd packages/sso-server
+bin/rails db:seed
+
+echo "--- Seeding Achievements Backend ---"
+cd ../backend-ruby
+bin/rails db:seed
+
+echo "Seeding completed successfully."
+
