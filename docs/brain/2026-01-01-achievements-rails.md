@@ -31,7 +31,7 @@ graph TD
 
 ### 1. packages/backend-ruby (Rails API)
 - **Framework**: Rails 7 im `--api --minimal` Modus.
-- **Datenbank**: SQLite (für Dev), PostgreSQL (vorbereitet), primärer Log-Output in `actions.jsonl`.
+- **Datenbank**: SQLite (für Dev), PostgreSQL (vorbereitet), primärer Log-Output in `actions.{env}.jsonl`.
 - **Patterns**:
     - **Service Objects**: Logik für `TrackActionService`.
     - **Controllers**: `ActionsController` und `SessionsController` (Fake SSO).

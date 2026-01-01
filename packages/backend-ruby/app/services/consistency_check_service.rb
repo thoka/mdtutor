@@ -5,8 +5,8 @@ class ConsistencyCheckService
       jsonl_count: 0,
       discrepancies: []
     }
-
-    log_file = TrackActionService::LOG_FILE
+    
+    log_file = TrackActionService.log_file
     if File.exist?(log_file)
       jsonl_actions = File.readlines(log_file).map { |line| JSON.parse(line) }
       report[:jsonl_count] = jsonl_actions.size

@@ -5,7 +5,7 @@ Wir haben ein rudimentäres Achievement- und Authentifizierungssystem auf Basis 
 ## Highlights
 - **Backend-Ruby**: Ein neues Rails 7 API-Package (`packages/backend-ruby`) mit SQLite (vorerst) und JSONL-Logging.
 - **Fake SSO**: Session-basiertes Login-System mit Admin-Support (Passwort: `password123`).
-- **Telemetrie**: Der `TrackActionService` loggt Aktionen in `log/actions.jsonl`.
+- **Telemetrie**: Der `TrackActionService` loggt Aktionen in `log/actions.{environment}.jsonl`.
 - **Frontend-Integration**:
     - `auth` Store für Benutzerstatus.
     - `trackAction` Utility zum Senden von Events.

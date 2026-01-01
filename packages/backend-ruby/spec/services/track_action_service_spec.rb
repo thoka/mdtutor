@@ -5,7 +5,7 @@ RSpec.describe TrackActionService do
   let(:action_type) { 'project_open' }
   let(:gid) { 'RPL:PROJ:space-talk' }
   let(:metadata) { { step: 1 } }
-  let(:log_file) { Rails.root.join('log', 'actions.jsonl') }
+  let(:log_file) { TrackActionService.log_file }
 
   before do
     File.delete(log_file) if File.exist?(log_file)

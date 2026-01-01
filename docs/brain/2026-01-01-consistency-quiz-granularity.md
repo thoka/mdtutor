@@ -6,7 +6,7 @@ This document details the implementation of consistency checks and improved quiz
 **Goal**: Verify that actions stored in the database are consistent with the JSONL master log.
 **Implementation**:
 - Created `ConsistencyCheckService` in the Ruby backend.
-- It compares counts between the `actions` table and `log/actions.jsonl`.
+- It compares counts between the `actions` table and `log/actions.{environment}.jsonl`.
 - Created a CLI utility: `packages/backend-ruby/bin/check_consistency`.
 - **Finding**: Discrepancies are currently expected after running seeds, as `db/seeds.rb` clears the database but the JSONL log is append-only.
 

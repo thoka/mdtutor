@@ -1,5 +1,7 @@
 class TrackActionService
-  LOG_FILE = Rails.root.join("log", "actions.jsonl")
+  def self.log_file
+    Rails.root.join("log", "actions.#{Rails.env}.jsonl")
+  end
 
   def self.call(user_id:, action:, gid: nil, metadata: {})
     timestamp = Time.current.iso8601
@@ -13,7 +15,7 @@ class TrackActionService
     }
 
     # 1. Write to JSONL (Master Log)
-    File.open(LOG_FILE, "a") do |f|
+    File.open(log_file, "a") do |f|
       f.puts(payload.to_json)
     end
 

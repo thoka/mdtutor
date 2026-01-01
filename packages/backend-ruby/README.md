@@ -5,7 +5,7 @@ Leichtgewichtiges Rails-API für Achievement-Tracking und JWT-Validierung.
 ## Features
 - **JWT Authentifizierung**: Validiert Tokens vom unabhängigen SSO-Server.
 - **Action Tracking**: Protokolliert Benutzerinteraktionen (Projekte, Tasks, Quizzes).
-- **JSONL Logging**: Schreibt Aktionen in `log/actions.jsonl` für spätere Analyse.
+- **JSONL Logging**: Schreibt Aktionen in `log/actions.{environment}.jsonl` für spätere Analyse.
 
 ## Setup
 ```bash
