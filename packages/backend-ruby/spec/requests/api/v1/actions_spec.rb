@@ -1,10 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Actions", type: :request do
+  let(:user_payload) { { user_id: 'user123', name: 'Test User', admin: false } }
+  let(:token) { JwtService.encode(user_payload) }
+  let(:headers) { { "Authorization" => "Bearer #{token}" } }
+
   describe "POST /api/v1/actions" do
     let(:valid_params) do
       {
-        user_id: 'user123',
         action_type: 'project_open',
         gid: 'RPL:PROJ:space-talk',
         metadata: { step: 1 }
@@ -19,14 +22,14 @@ RSpec.describe "Api::V1::Actions", type: :request do
         metadata: hash_including('step' => '1')
       )
 
-      post "/api/v1/actions", params: valid_params
+      post "/api/v1/actions", params: valid_params, headers: headers
       expect(response).to have_http_status(:created)
       expect(JSON.parse(response.body)).to eq({ "status" => "ok" })
     end
 
-    it "returns error if parameters are missing" do
-      post "/api/v1/actions", params: { user_id: '123' }
-      expect(response).to have_http_status(:unprocessable_entity)
+    it "returns 401 without token" do
+      post "/api/v1/actions", params: valid_params
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 end

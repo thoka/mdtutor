@@ -84,3 +84,19 @@ Processing by Api::V1::SessionsController#show as HTML
 [active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.03ms)
 Completed 401 Unauthorized in 2ms (Views: 1.2ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
   [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+Started POST "/api/v1/actions" for 127.0.0.1 at 2026-01-01 15:48:50 +0100
+Processing by Api::V1::ActionsController#create as HTML
+  Parameters: {"action_type"=>"project_open", "gid"=>"RPL:PROJ:space-talk", "metadata"=>{"step"=>"1"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.05ms)
+Completed 201 Created in 9ms (Views: 1.9ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+Started POST "/api/v1/actions" for 127.0.0.1 at 2026-01-01 15:48:50 +0100
+Processing by Api::V1::ActionsController#create as HTML
+  Parameters: {"action_type"=>"project_open", "gid"=>"RPL:PROJ:space-talk", "metadata"=>{"step"=>"1"}}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.04ms)
+Filter chain halted as :authenticate_user! rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
