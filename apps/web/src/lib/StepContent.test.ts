@@ -66,5 +66,54 @@ describe('StepContent Checkboxes', () => {
     expect(trackAction).toHaveBeenCalledWith('scratch_start', 'RPL:PROJ:123', expect.objectContaining({ scratch_id: '724160134' }));
     expect(container.querySelector('.scratch-play-overlay')).toBeNull();
   });
+
+  it('ensures no quiz answer is selected on open and UI content is correct', async () => {
+    const quizHtml = `
+      <form class="knowledge-quiz-question">
+        <fieldset>
+          <legend>Test Question</legend>
+          <div class="knowledge-quiz-question__answers">
+            <div class="knowledge-quiz-question__answer">
+              <input type="radio" name="q1" value="1" id="c1" />
+              <label for="c1">Answer 1</label>
+            </div>
+            <div class="knowledge-quiz-question__answer">
+              <input type="radio" name="q1" value="2" id="c2" checked />
+              <label for="c2">Answer 2</label>
+            </div>
+          </div>
+        </fieldset>
+        <ul class="knowledge-quiz-question__feedback">
+          <li class="knowledge-quiz-question__feedback-item" id="f1">Feedback 1</li>
+        </ul>
+        <input type="button" value="Check" />
+      </form>
+    `;
+
+    const { container, getByText } = render(StepContent, {
+      content: quizHtml,
+      slug: 'test-project',
+      step: 0
+    });
+
+    await tick();
+    // Wait for the setTimeout in StepContent.svelte
+    await new Promise(r => setTimeout(r, 20));
+
+    // 1. Content check
+    expect(getByText('Test Question')).toBeInTheDocument();
+    expect(getByText('Answer 1')).toBeInTheDocument();
+    expect(getByText('Answer 2')).toBeInTheDocument();
+    expect(container.querySelector('input[value="Check"]')).toBeInTheDocument();
+
+    // 2. Initial state check: No radio should be selected (expected to fail currently)
+    const checkedInput = container.querySelector('input[type="radio"]:checked');
+    expect(checkedInput).toBeNull();
+
+    // 3. Feedback check: Should be present but initially hidden (via CSS/classes)
+    const feedbackItem = container.querySelector('#f1');
+    expect(feedbackItem).toBeInTheDocument();
+    expect(feedbackItem).toHaveTextContent('Feedback 1');
+  });
 });
 

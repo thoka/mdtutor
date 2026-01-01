@@ -188,6 +188,12 @@
       // Mark as unanswered initially (only if not already marked as answered)
       if (!question.classList.contains('knowledge-quiz-question--answered')) {
         question.classList.add('knowledge-quiz-question--unanswered');
+        
+        // Ensure no radio buttons are selected on initialization for unanswered questions
+        const inputs = question.querySelectorAll('input[type="radio"]');
+        inputs.forEach(input => {
+          (input as HTMLInputElement).checked = false;
+        });
       }
       
       // Hide all questions except the first unanswered one
