@@ -2,21 +2,24 @@ class SessionsController < ApplicationController
   layout Views::Layouts::ApplicationLayout
 
   def index
+    @presences = Presence.includes(:room).all.index_by(&:user_id)
+    
     render Views::Sessions::IndexView.new(
       admins: UserLoader.admins,
       users: UserLoader.users,
       return_to: params[:return_to] || "/",
       super_mode: session[:admin_id].present?,
-      present_user_ids: Presence.present_user_ids
+      presences: @presences
     )
   end
 
   def toggle_presence
     return render json: { error: "Admin session required" }, status: :unauthorized unless session[:admin_id]
-    
+
     user_id = params[:user_id]
-    is_present = Presence.toggle(user_id)
-    
+    room_id = params[:room_id]
+    is_present = Presence.toggle(user_id, room_id: room_id)
+
     # We could redirect back or return JSON for an AJAX request
     # For now, a simple redirect back to the index
     redirect_to root_path(return_to: params[:return_to])
@@ -83,6 +86,49 @@ class SessionsController < ApplicationController
   def super_logout
     session.delete(:admin_id)
     redirect_to root_path(return_to: params[:return_to]), notice: "Super-Mode beendet"
+  end
+
+  def dashboard
+    @present_users = Presence.includes(:room).where(is_present: true)
+    user_ids = @present_users.pluck(:user_id)
+    
+    # Fetch latest actions from achievements server
+    achievements_url = "http://localhost:#{ENV.fetch('ACHIEVEMENTS_PORT', 3102)}/api/v1/actions/latest"
+    begin
+      response = Net::HTTP.get(URI("#{achievements_url}?#{user_ids.map { |id| "user_ids[]=#{id}" }.join('&')}"))
+      @latest_actions = JSON.parse(response)
+    rescue => e
+      @latest_actions = {}
+      Rails.logger.error "Failed to fetch actions: #{e.message}"
+    end
+
+    render Views::Sessions::DashboardView.new(
+      present_users: @present_users,
+      latest_actions: @latest_actions
+    )
+  end
+
+  def user_history
+    @user_id = params[:user_id]
+    @user = UserLoader.find_user(@user_id)
+    @visits = Visit.includes(:room).where(user_id: @user_id).order(started_at: :desc)
+    
+    # Fetch actions from achievements server
+    achievements_url = "http://localhost:#{ENV.fetch('ACHIEVEMENTS_PORT', 3102)}/api/v1/actions/user/#{@user_id}"
+    begin
+      response = Net::HTTP.get(URI(achievements_url))
+      @actions = JSON.parse(response)
+    rescue => e
+      @actions = []
+      Rails.logger.error "Failed to fetch user actions: #{e.message}"
+    end
+
+    render Views::Sessions::UserHistoryView.new(
+      user_id: @user_id,
+      user: @user,
+      visits: @visits,
+      actions: @actions
+    )
   end
 
   private

@@ -10,19 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_01_01_163521) do
-# Could not dump table "presences" because of following StandardError
+ActiveRecord::Schema[7.2].define(version: 2026_01_01_163714) do
+# Could not dump table "actions" because of following StandardError
 #   Unknown type 'uuid' for column 'id'
 
-
-# Could not dump table "rooms" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
-
-# Could not dump table "visits" because of following StandardError
-#   Unknown type 'uuid' for column 'id'
-
-
-  add_foreign_key "presences", "rooms"
-  add_foreign_key "visits", "rooms"
 end

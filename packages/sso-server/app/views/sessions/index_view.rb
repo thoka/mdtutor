@@ -1,12 +1,12 @@
 module Views
   module Sessions
     class IndexView < Views::Base
-      def initialize(admins:, users:, return_to:, super_mode: false, present_user_ids: [])
+      def initialize(admins:, users:, return_to:, super_mode: false, presences: {})
         @admins = admins
         @users = users
         @return_to = return_to
         @super_mode = super_mode
-        @present_user_ids = present_user_ids
+        @presences = presences
       end
 
       def view_template
@@ -17,12 +17,14 @@ module Views
             h2 { "Mentoren & Admins" }
             div(class: "tiles") do
               @admins.each do |id, user|
+                presence = @presences[id]
                 render Components::UserTile.new(
                   id, 
                   user, 
                   type: :admin, 
                   return_to: @return_to,
-                  is_present: @present_user_ids.include?(id),
+                  is_present: presence&.is_present || false,
+                  room_name: presence&.room&.name,
                   can_toggle: @super_mode
                 )
               end
@@ -33,12 +35,14 @@ module Views
             h2 { "Schüler & Gäste" }
             div(class: "tiles") do
               @users.each do |id, user|
+                presence = @presences[id]
                 render Components::UserTile.new(
                   id, 
                   user, 
                   type: :user, 
                   return_to: @return_to,
-                  is_present: @present_user_ids.include?(id),
+                  is_present: presence&.is_present || false,
+                  room_name: presence&.room&.name,
                   can_toggle: @super_mode
                 )
               end
@@ -48,6 +52,7 @@ module Views
           section(class: "logout-section") do
             separator = @return_to.include?("?") ? "&" : "?"
             a(href: "#{@return_to}#{separator}token=logout", class: "logout-button") { "Abmelden / Logout" }
+            a(href: "/dashboard", class: "dashboard-link") { "Makerspace Dashboard" }
           end
 
           if @super_mode
@@ -110,6 +115,14 @@ module Views
               background: #d32f2f;
             }
 
+            .dashboard-link {
+              display: inline-block;
+              margin-left: 20px;
+              color: #2196f3;
+              text-decoration: none;
+              font-weight: bold;
+            }
+
             .user-group {
               margin-bottom: 40px;
             }
@@ -163,6 +176,21 @@ module Views
               border: 2px solid white;
               box-shadow: 0 2px 4px rgba(0,0,0,0.2);
               z-index: 10;
+            }
+
+            .history-link {
+              position: absolute;
+              bottom: 10px;
+              right: 10px;
+              text-decoration: none;
+              font-size: 1.2rem;
+              opacity: 0.3;
+              transition: opacity 0.2s;
+              z-index: 10;
+            }
+
+            .history-link:hover {
+              opacity: 1;
             }
 
             .admin-tile {
