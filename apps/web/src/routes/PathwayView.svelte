@@ -88,10 +88,9 @@
   {:else if pathway}
     <header class="c-pathway-header">
       <div class="c-pathway-header__content">
-        <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
-        
         <div class="c-pathway-header__main">
           <div class="c-pathway-header__left">
+            <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
             <div class="c-pathway-header__description">
               {@html pathway.attributes.description}
             </div>
@@ -210,6 +209,7 @@
     font-size: 2.5rem;
     margin-bottom: 2rem;
     color: #333;
+    line-height: 1.1;
   }
 
   .c-pathway-header__main {
