@@ -8,12 +8,14 @@ Optimize the index page and pathway page to reduce white space and improve layou
 - Grid layout only shows few projects per row on medium screens.
 - Details (What I will learn, etc.) take up too much space by default.
 
-## Proposed Changes (Pathway Page)
-1.  **Banner to Icon**: Move the banner image to a small rectangular icon (80x80) next to the title.
-2.  **Top Row Layout**: Create a top row containing the title/icon area and the details accordions on the right.
-3.  **Accordion Optimization**: Details take minimal width when closed, can expand when open.
-4.  **3-Column Grid**: Adjust project cards to fit 3 in a row at ~960px width.
-5.  **Description & Progress**: Place below the top row, keeping it compact.
+## Proposed Changes (Pathway Page - Phase 2)
+1.  **Header Refinement**:
+    - Move description text ("Du lernst...") directly under the title in the left column.
+    - Ensure the progress bar is also well-integrated in the left area.
+2.  **Category Title Styling**:
+    - Change "Erkunden", "Gestalten", "Erfinden" titles to zentrierte, abgerundete Kacheln (Pills).
+    - Assign distinct colors for each category (e.g., Explore: Green, Design: Orange, Invent: Pink).
+    - Remove the bottom border and center the text.
 
 ## Detailed Steps
 1.  **Modify `PathwayView.svelte`**:

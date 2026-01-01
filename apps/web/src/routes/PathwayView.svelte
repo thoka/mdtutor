@@ -88,11 +88,26 @@
   {:else if pathway}
     <header class="c-pathway-header">
       <div class="c-pathway-header__top-row">
-        <div class="c-pathway-header__title-area">
-          {#if pathway.attributes.banner}
-            <img class="c-pathway-header__icon" src={pathway.attributes.banner} alt="" />
-          {/if}
-          <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
+        <div class="c-pathway-header__left-col">
+          <div class="c-pathway-header__title-area">
+            {#if pathway.attributes.banner}
+              <img class="c-pathway-header__icon" src={pathway.attributes.banner} alt="" />
+            {/if}
+            <h1 class="c-pathway-header__title">{pathway.attributes.title}</h1>
+          </div>
+          
+          <div class="c-pathway-header__description">
+            {@html pathway.attributes.description}
+          </div>
+
+          <div class="c-pathway-progress">
+            <div class="c-pathway-progress__label">
+              <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
+            </div>
+            <div class="c-pathway-progress__bar">
+              <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
+            </div>
+          </div>
         </div>
 
         {#if pathway.attributes.header}
@@ -113,28 +128,13 @@
           </div>
         {/if}
       </div>
-
-      <div class="c-pathway-header__meta">
-        <div class="c-pathway-header__description">
-          {@html pathway.attributes.description}
-        </div>
-        
-        <div class="c-pathway-progress">
-          <div class="c-pathway-progress__label">
-            <strong>{completedCount} von {totalCount}</strong> Projekten abgeschlossen
-          </div>
-          <div class="c-pathway-progress__bar">
-            <div class="c-pathway-progress__fill" style="width: {progressPercent}%"></div>
-          </div>
-        </div>
-      </div>
     </header>
 
     <div class="c-pathway-projects">
       {#each ['explore', 'design', 'invent'] as category}
         {@const categoryProjects = getProjectsByCategory(category)}
         {#if categoryProjects.length > 0}
-          <section class="c-pathway-category">
+          <section class="c-pathway-category c-pathway-category--{category}">
             <h2 class="c-pathway-category__title">
               {category === 'explore' ? 'Erkunden' : category === 'design' ? 'Gestalten' : 'Erfinden'}
             </h2>
@@ -198,12 +198,18 @@
     gap: 2rem;
   }
 
+  .c-pathway-header__left-col {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
   .c-pathway-header__title-area {
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    flex: 1;
-    min-width: 300px;
   }
 
   .c-pathway-header__icon {
@@ -227,15 +233,10 @@
     max-width: 400px;
   }
 
-  .c-pathway-header__meta {
-    max-width: 800px;
-  }
-
   .c-pathway-header__description {
     font-size: 1.1rem;
     color: #555;
     line-height: 1.5;
-    margin-bottom: 1rem;
   }
 
   .c-pathway-accordions {
@@ -335,11 +336,28 @@
   }
 
   .c-pathway-category__title {
-    font-size: 1.75rem;
-    margin-bottom: 2rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid #e91e63;
-    display: inline-block;
+    font-size: 1.5rem;
+    margin: 0 auto 2.5rem;
+    padding: 0.75rem 2.5rem;
+    border-radius: 50px;
+    color: white;
+    width: fit-content;
+    font-weight: 700;
+    text-align: center;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .c-pathway-category--explore .c-pathway-category__title {
+    background-color: #42b961; /* Green */
+  }
+
+  .c-pathway-category--design .c-pathway-category__title {
+    background-color: #ff9800; /* Orange */
+  }
+
+  .c-pathway-category--invent .c-pathway-category__title {
+    background-color: #e91e63; /* Pink/Raspberry */
   }
 
   .c-projects-list__projects {

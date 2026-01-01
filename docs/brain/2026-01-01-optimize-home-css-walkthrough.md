@@ -14,10 +14,14 @@ I have optimized the index and pathway pages to reduce white space and improve l
 
 ### 3. Pathway Page: Optimized Header & Grid
 - **Banner to Icon**: The large banner is replaced by a small rectangular icon (80x80) next to the title.
-- **Top Row Layout**: Title and details (accordions) are now in a single row, saving vertical space.
+- **Header Refinement**: Description text ("Du lernst...") and progress bar are now positioned directly under the title in the left column.
+- **Top Row Layout**: Title area and details (accordions) are now in a single row, saving vertical space.
+- **Category Pills**: "Erkunden", "Gestalten", and "Erfinden" are now styled as centered, rounded tiles with distinct colors:
+    - **Erkunden**: Green
+    - **Gestalten**: Orange
+    - **Erfinden**: Pink/Raspberry
 - **Project Focus**: Projects are moved higher up the page.
-- **3-Column Project Grid**: Adjusted to fit 3 projects in a row at ~960px width (half of FullHD), reducing vertical scrolling.
-- **Kompaktes Design**: Padding and font sizes adjusted for a tighter, more professional look.
+- **3-Column Project Grid**: Adjusted to fit 3 projects in a row at ~960px width.
 
 ## Verification Results
 - **Home Page**: Much denser and structured with the 2-column grid.
