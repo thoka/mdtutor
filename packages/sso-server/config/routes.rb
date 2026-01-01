@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   post "sessions/toggle_presence", to: "sessions#toggle_presence"
   get "dashboard", to: "sessions#dashboard"
   get "users/:user_id", to: "sessions#user_history"
+  get "api/system/stats", to: "system#stats"
 end

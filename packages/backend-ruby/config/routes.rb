@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       end
 
       get "auth/me", to: "sessions#show"
+      get "system/stats", to: "system#stats"
     end
   end
 end

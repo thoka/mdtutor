@@ -11,6 +11,10 @@ class UserLoader
     load_config["users"] || {}
   end
 
+  def self.all_users
+    admins.merge(users)
+  end
+
   def self.find_user(id)
     admins[id] || users[id]
   end

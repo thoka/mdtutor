@@ -33,6 +33,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.
 - **Branching**: Use feature branches (`feature/name`). Never commit directly to `main`.
 - **Commits**: Use Conventional Commits. Commit subtasks immediately; avoid large "WIP" commits.
+- **Git Hygiene**: **Check before every commit if temporary files (e.g., test reports, logs, artifacts) need to be added to `.gitignore`.** Never commit local artifacts.
 - **Planning**: Implementation plans MUST be discussed and approved BEFORE coding starts.
 - **Verification**: Merge to `main` only after full verification and passing tests.
 - **Review**: Never merge into `main` without a review and approval.

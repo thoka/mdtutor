@@ -36,10 +36,10 @@ Thumbs.db
 /db/**/*.sqlite3-wal
 
 # Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/playwright/.cache/
 
 # Rails
 /packages/*/log/*
