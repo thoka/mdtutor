@@ -6,7 +6,6 @@
 
   let { params = {} }: { params?: { lang?: string } } = $props();
 
-  let projects = $state<any[]>([]);
   let pathways = $state<any[]>([]);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
@@ -21,24 +20,15 @@
     isLoading = true;
     errorMsg = null;
     try {
-      const [projectsRes, pathwaysRes] = await Promise.all([
-        fetch(`/api/projects?lang=${lang}`),
-        fetch(`/api/pathways?lang=${lang}`)
-      ]);
+      const pathwaysRes = await fetch(`/api/pathways?lang=${lang}`);
 
-      if (!projectsRes.ok || !pathwaysRes.ok) {
+      if (!pathwaysRes.ok) {
         throw new Error('Failed to fetch data');
       }
 
-      const projectsData = await projectsRes.json();
       const pathwaysData = await pathwaysRes.json();
-
-      projects = projectsData.projects || [];
       pathways = pathwaysData.pathways || [];
 
-      if (projectsData.languages) {
-        availableLanguages.set(projectsData.languages);
-      }
     } catch (e) {
       errorMsg = e instanceof Error ? e.message : 'Unknown error';
     } finally {
@@ -48,20 +38,26 @@
 </script>
 
 <div class="c-home-view">
-  {#if pathways.length > 0}
+  {#if isLoading}
+    <div class="loading">{$t('loading')}</div>
+  {:else if errorMsg}
+    <div class="error">{$t('error')}: {errorMsg}</div>
+  {:else if pathways.length > 0}
     <section class="c-pathways-overview">
       <h2 class="c-pathways-overview__title">Lernpfade</h2>
-      <div class="c-projects-list__projects">
+      <div class="c-pathway-list">
         {#each pathways as pathway}
           {@const parts = pathway.slug.split(':')}
           {@const displaySlug = parts.length >= 2 ? `${parts[0]}:${parts[parts.length-1]}` : pathway.slug}
           <a href="/{lang}/pathways/{displaySlug}" use:link class="c-project-card c-pathway-card">
             {#if pathway.banner}
-              <img 
-                class="c-project-card__image" 
-                src={pathway.banner} 
-                alt={pathway.title}
-              />
+              <div class="c-project-card__image-wrapper">
+                <img 
+                  class="c-project-card__image" 
+                  src={pathway.banner} 
+                  alt={pathway.title}
+                />
+              </div>
             {/if}
             <div class="c-project-card__content">
               <h3 class="c-project-card__heading">{pathway.title}</h3>
@@ -73,50 +69,11 @@
         {/each}
       </div>
     </section>
-
-    <hr class="c-home-divider" />
-  {/if}
-
-  <div class="c-projects-list">
-    <h2 class="c-pathways-overview__title">Alle Projekte</h2>
-    {#if isLoading}
-    <div class="c-projects-list__projects__no-results">
-      <p>{$t('loading')}</p>
-    </div>
-  {:else if errorMsg}
-    <div class="c-projects-list__projects__no-results">
-      <p>{$t('error')}: {errorMsg}</p>
-    </div>
-  {:else if projects.length === 0}
+  {:else}
     <div class="c-projects-list__projects__no-results">
       <p>{$t('no_projects')}</p>
     </div>
-  {:else}
-    <div class="c-projects-list__projects">
-      {#each projects as project}
-        {@const parts = project.slug.split(':')}
-        {@const displaySlug = parts.length >= 2 ? `${parts[0]}:${parts[parts.length-1]}` : project.slug}
-        <a href="/{lang}/projects/{displaySlug}" use:link class="c-project-card">
-          {#if project.heroImage}
-            <img 
-              class="c-project-card__image" 
-              src={project.heroImage} 
-              alt={project.title || project.slug}
-            />
-          {/if}
-          <div class="c-project-card__content">
-            <div class="c-project-card__text">
-              <h3 class="c-project-card__heading">{project.title || project.slug}</h3>
-              {#if project.description}
-                <p class="c-project-card__description">{project.description}</p>
-              {/if}
-            </div>
-          </div>
-        </a>
-      {/each}
-    </div>
   {/if}
-</div>
 </div>
 
 <style>
@@ -130,19 +87,76 @@
     margin-bottom: 3rem;
   }
 
-  .c-pathways-overview__title {
-    font-size: 1.75rem;
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
-
-  .c-home-divider {
-    border: 0;
-    border-top: 1px solid #eee;
-    margin: 3rem 0;
+  .c-pathway-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 
   .c-pathway-card {
+    display: flex !important;
+    flex-direction: column;
     border-left: 4px solid #e91e63;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #eee;
+    border-left: 4px solid #e91e63;
+  }
+
+  @media (min-width: 600px) {
+    .c-pathway-card {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .c-project-card__image-wrapper {
+      width: 300px;
+      flex-shrink: 0;
+    }
+
+    .c-project-card__image {
+      height: 100% !important;
+    }
+  }
+
+  .c-pathway-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .c-project-card__image-wrapper {
+    position: relative;
+    background: #f0f0f0;
+  }
+
+  .c-project-card__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .c-project-card__content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .c-project-card__heading {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #333;
+  }
+
+  .c-project-card__description {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
   }
 </style>

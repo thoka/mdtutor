@@ -260,48 +260,56 @@ app.get('/api/pathways', async (req, res) => {
     const lang = req.query.lang || 'de-DE';
     const requestedLang = lang === 'de' ? 'de-DE' : lang;
     const allPathways = [];
+    const seenSlugs = new Set();
 
     for (const ecosystem of Object.values(ecosystems)) {
-      const seenSlugs = new Set();
-      for (const layer of ecosystem.layers) {
-        const pathwaysDir = join(layer.path, 'pathways');
-        if (existsSync(pathwaysDir)) {
-          const files = readdirSync(pathwaysDir).filter(f => f.endsWith('.yaml') || f.endsWith('.yml'));
-          for (const file of files) {
-            const slug = file.replace(/\.ya?ml$/, '');
-            if (seenSlugs.has(slug)) continue;
-            seenSlugs.add(slug);
+      // Load sync.yaml to get the ordered list of pathways
+      const syncFile = join(ecosystem.path, 'config', 'sync.yaml');
+      if (!existsSync(syncFile)) continue;
 
-            try {
-              const content = await readFileAsync(join(pathwaysDir, file), 'utf-8');
-              const data = yaml.load(content);
-              const title = typeof data.title === 'object' 
-                ? (data.title[requestedLang] || data.title['en'] || slug)
-                : (data.title || slug);
-              
-              let description = '';
-              if (data.description && typeof data.description === 'object') {
-                description = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
-              } else {
-                description = data.description || '';
-              }
+      try {
+        const syncConfig = yaml.load(readFileSync(syncFile, 'utf-8'));
+        const orderedPathways = syncConfig.sync?.pathways || {};
 
-              let banner = null;
-              if (data.banner) {
-                banner = `/content/${ecosystem.id}/layers/${layer.id}/pathways/${data.banner}`;
-              }
+        // pathways are grouped by layer in sync.yaml: { official: [slug1, slug2], tag: [slug3] }
+        // We iterate in the order of layers defined in sync.yaml
+        for (const [layerId, slugs] of Object.entries(orderedPathways)) {
+          for (const slug of slugs) {
+            const namespacedSlug = `${ecosystem.id}:${slug}`;
+            if (seenSlugs.has(namespacedSlug)) continue;
+            
+            const resolved = resolvePathwayLayer(ecosystems, namespacedSlug);
+            if (!resolved) continue;
 
-              allPathways.push({
-                slug: `${ecosystem.id}:${slug}`,
-                title,
-                description,
-                banner
-              });
-            } catch (e) {
-              console.warn(`Failed to read pathway ${file}:`, e.message);
+            const content = await readFileAsync(resolved.path, 'utf-8');
+            const data = yaml.load(content);
+            const title = typeof data.title === 'object' 
+              ? (data.title[requestedLang] || data.title['en'] || slug)
+              : (data.title || slug);
+            
+            let description = '';
+            if (data.description && typeof data.description === 'object') {
+              description = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
+            } else {
+              description = data.description || '';
             }
+
+            let banner = null;
+            if (data.banner) {
+              banner = `/content/${ecosystem.id}/layers/${resolved.layer.id}/pathways/${data.banner}`;
+            }
+
+            allPathways.push({
+              slug: namespacedSlug,
+              title,
+              description,
+              banner
+            });
+            seenSlugs.add(namespacedSlug);
           }
         }
+      } catch (e) {
+        console.warn(`Failed to process sync.yaml for ${ecosystem.id}:`, e.message);
       }
     }
 
