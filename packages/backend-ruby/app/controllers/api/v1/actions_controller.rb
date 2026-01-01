@@ -31,7 +31,8 @@ module Api
 
       def user_history
         user_id = params[:user_id]
-        actions = Action.where(user_id: user_id).order(timestamp: :desc, created_at: :desc).limit(50)
+        # Increase limit to ensure we get enough history for progress calculation
+        actions = Action.where(user_id: user_id).order(timestamp: :desc, created_at: :desc).limit(200)
         render json: actions
       end
     end
