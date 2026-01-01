@@ -109,6 +109,10 @@
   :global(.c-global-nav-back .rpf-button__icon.material-symbols-sharp::before) {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' fill='%23FFFFFF'/%3E%3C/svg%3E") !important;
   }
+  .global-nav-bar__right {
+    display: flex;
+    align-items: center;
+  }
 </style>
 
 <div class="c-i18n-root" dir="ltr">
