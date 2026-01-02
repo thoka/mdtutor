@@ -93,15 +93,6 @@ pre[class*="language-"]:not(.scratchblocks) code {
 }
 
 /* Ensure iframes are visible - override general iframe { display: none; } rule */
-/* 
- * Note: The cookie consent CSS rules (lines 2610-2612 in computed.css) that were hiding
- * all iframes have been removed. The original site only applies those rules to specific
- * cookie consent tracking iframes via JavaScript, not globally.
- * 
- * We still need these overrides for:
- * - Line 1303: iframe { display: none; } - inside @media print (only applies when printing)
- * - Ensuring content iframes are visible with proper positioning
- */
 .c-project-steps__content iframe,
 .c-project__step-content iframe,
 .scratch-preview iframe,
@@ -113,8 +104,6 @@ div.scratch-preview iframe,
   display: block !important;
   visibility: visible !important;
   position: static !important;
-  /* Don't override width/height - let HTML attributes work */
-  /* But override min/max constraints that might interfere */
   min-width: 0 !important;
   min-height: 0 !important;
   max-width: 100% !important;
@@ -124,7 +113,6 @@ div.scratch-preview iframe,
   margin: 0 auto var(--space-3) !important;
 }
 
-/* Also ensure scratch-preview container is visible */
 .scratch-preview,
 .c-project-steps__content .scratch-preview,
 .c-project__step-content .scratch-preview,
@@ -133,14 +121,6 @@ div.scratch-preview iframe,
   visibility: visible !important;
 }
 
-/* Quiz feedback visibility - ensure feedback items are shown when --show class is added */
-/* The computed.css has two rules that hide feedback:
- * 1. .knowledge-quiz-question__feedback-item { display: none; } - hides all items by default (line 1721)
- * 2. .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback { display: none; } - hides container (line 1720)
- */
-/* Override both with higher specificity and !important */
-/* Use multiple selectors to ensure we override the base rule */
-/* Note: The class name uses double dash: --show (BEM notation) */
 .knowledge-quiz-question__feedback-item--show,
 .knowledge-quiz-question .knowledge-quiz-question__feedback-item--show,
 .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback-item--show,
@@ -150,24 +130,17 @@ li.knowledge-quiz-question__feedback-item--show,
   visibility: visible !important;
 }
 
-/* Ensure correct/incorrect symbols are applied correctly */
-/* The --correct class should override the default incorrect symbol */
 .knowledge-quiz-question__feedback-item--show.knowledge-quiz-question__feedback-item--correct,
 .knowledge-quiz-question__feedback-item.knowledge-quiz-question__feedback-item--show.knowledge-quiz-question__feedback-item--correct {
   list-style-image: url("data:image/svg+xml,%3csvg%20width='30'%20height='30'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3ccircle%20cx='15'%20cy='15'%20r='15'%20fill='%2342B961'/%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='3'/%3e%3c/svg%3e") !important;
 }
 
-/* Ensure feedback container (<ul>) is visible when feedback is shown (even if question is still marked unanswered) */
-/* The feedback container is a <ul> with class "knowledge-quiz-question__feedback" */
-/* Use higher specificity to override the .knowledge-quiz-question--unanswered rule */
 .knowledge-quiz-question--unanswered ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
 ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show),
 .knowledge-quiz-question--unanswered .knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item--show) {
   display: block !important;
 }
 
-/* Nuclear option: override ALL iframe rules in content areas */
-/* Note: Don't override width/height so iframe attributes are respected */
 .c-project__content iframe,
 .c-project-steps iframe,
 #skiptocontent iframe {
@@ -178,46 +151,47 @@ ul.knowledge-quiz-question__feedback:has(.knowledge-quiz-question__feedback-item
   left: auto !important;
 }
 
-/* Hide quiz questions that are not yet active (progressive disclosure) */
-/* Use higher specificity to override any computed.css rules */
 form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 .knowledge-quiz-question.knowledge-quiz-question--hidden {
   display: none !important;
   visibility: hidden !important;
 }
 
-/* Quiz feedback is handled by CSS in computed.css */
-/* The --unanswered class hides feedback, and --show class on feedback-item shows it */
-
-/* Quiz check button styling - matches computed.css */
-/* The button styles are already in computed.css for .knowledge-quiz input[type="button"] */
-/* We just need to ensure the button is inside a .knowledge-quiz container */
-/* The parser already generates the button inside .knowledge-quiz-question, so we need to add .knowledge-quiz class */
-
 /* Sidebar progress indicators */
 .c-step-progress-circle {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
-  font-weight: bold;
   flex-shrink: 0;
   border: 2px solid #ddd;
   background: white;
   color: #666;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .c-step-progress-circle--done {
   background-color: #42B961 !important;
   border-color: #42B961 !important;
-  color: transparent !important; /* Hide text if any */
-  background-image: url("data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='4'/%3e%3c/svg%3e") !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
+}
+
+/* Decent small checkmark (half diameter) */
+.c-step-progress-circle--done::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: white;
+  mask-image: url("data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='4'/%3e%3c/svg%3e");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
 }
 
 .c-step-progress-circle--in-progress {
@@ -226,17 +200,42 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 }
 
 .c-step-progress-circle--quiz {
-  border-color: #007bff !important; /* Blue theme for quizzes */
+  border-color: #007bff !important;
   color: #007bff !important;
 }
 
-/* Sidebar navigation link layout adjustment */
+/* Fraction-style 3/4 layout */
+.c-step-progress-fraction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.c-step-progress-fraction__num {
+  transform: translateY(-2px);
+  font-weight: bold;
+}
+
+.c-step-progress-fraction__sep {
+  font-size: 14px;
+  opacity: 0.5;
+  transform: rotate(10deg);
+}
+
+.c-step-progress-fraction__den {
+  transform: translateY(2px);
+  opacity: 0.8;
+}
+
 .c-project-navigation__link {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
   gap: 12px !important;
-  padding-right: 12px !important;
+  padding-right: 8px !important;
 }
 
 .c-project-navigation__title {

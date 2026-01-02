@@ -40,11 +40,12 @@ describe('Sidebar Progress Indicators', () => {
     // Find the progress indicator for Step 0
     const indicator = container.querySelector('.c-project-navigation__item:nth-child(1) .c-step-progress-circle');
     expect(indicator).toBeInTheDocument();
-    expect(indicator).toHaveTextContent('2/4');
+    // Use regex to match 2/4 with any whitespace
+    expect(indicator).toHaveTextContent(/2\s*\/\s*4/);
     expect(indicator).toHaveClass('c-step-progress-circle--in-progress');
   });
 
-  it('shows a green checkmark when a step is fully completed', async () => {
+  it('shows a green circle when a step is fully completed', async () => {
     const stepInteractions = {
       0: { total: 4, completed: 4, tasks: 4, quizzes: 0 }
     };
@@ -61,8 +62,7 @@ describe('Sidebar Progress Indicators', () => {
     const indicator = container.querySelector('.c-project-navigation__item:nth-child(1) .c-step-progress-circle');
     expect(indicator).toBeInTheDocument();
     expect(indicator).toHaveClass('c-step-progress-circle--done');
-    // Check for the checkmark icon (assuming it's a span or similar with a specific class or text)
-    expect(indicator.querySelector('.material-symbols-sharp')).toHaveTextContent('check');
+    // Checkmark is now in CSS pseudo-element, so we just check for the --done class
   });
 
   it('uses a blue theme for steps containing quizzes', async () => {
@@ -82,6 +82,6 @@ describe('Sidebar Progress Indicators', () => {
     const indicator = container.querySelector('.c-project-navigation__item:nth-child(2) .c-step-progress-circle');
     expect(indicator).toBeInTheDocument();
     expect(indicator).toHaveClass('c-step-progress-circle--quiz');
-    expect(indicator).toHaveTextContent('1/2');
+    expect(indicator).toHaveTextContent(/1\s*\/\s*2/);
   });
 });

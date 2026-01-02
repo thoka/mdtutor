@@ -87,10 +87,12 @@
                 class:c-step-progress-circle--in-progress={interaction.completed > 0 && interaction.completed < interaction.total}
                 class:c-step-progress-circle--quiz={interaction.quizzes > 0 && interaction.completed < interaction.total}
               >
-                {#if interaction.completed === interaction.total}
-                  <span class="material-symbols-sharp">check</span>
-                {:else}
-                  {interaction.completed}/{interaction.total}
+                {#if interaction.completed !== interaction.total}
+                  <div class="c-step-progress-fraction">
+                    <span class="c-step-progress-fraction__num">{interaction.completed}</span>
+                    <span class="c-step-progress-fraction__sep">/</span>
+                    <span class="c-step-progress-fraction__den">{interaction.total}</span>
+                  </div>
                 {/if}
               </div>
             {/if}

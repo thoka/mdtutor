@@ -25,40 +25,30 @@ test.describe('Sidebar Progress Indicators (E2E)', () => {
   });
 
   test('updates sidebar indicator when checking a task', async ({ page }) => {
-    // 1. Go to step 2 (known to have tasks)
     await page.goto('/#/de-DE/projects/RPL:catch-the-bus/2');
     
-    // 2. Identify the sidebar indicator for Step 2
     const sidebarItem = page.locator('.c-project-navigation__item').nth(2);
     const indicator = sidebarItem.locator('.c-step-progress-circle');
-    
-    // Ensure it's visible
     await expect(indicator).toBeVisible({ timeout: 10000 });
     
-    // 3. Find checkboxes
     const checkboxes = page.locator('.c-project-task__checkbox');
     await expect(checkboxes.first()).toBeVisible();
     
-    // Uncheck first if checked
     if (await checkboxes.first().isChecked()) {
       await checkboxes.first().uncheck();
       await expect(indicator).not.toHaveClass(/--done/);
     }
     
     const initialText = await indicator.innerText();
-    console.log('[E2E] Initial sidebar text for step 2:', initialText);
-
-    // 4. Check it
     await checkboxes.first().check();
 
-    // 5. Verify sidebar text updated
     await expect(async () => {
       const newText = await indicator.innerText();
       expect(newText).not.toBe(initialText);
     }).toPass();
   });
 
-  test('shows green checkmark when all tasks in a step are completed', async ({ page }) => {
+  test('shows green circle when all tasks in a step are completed', async ({ page }) => {
     await page.goto('/#/de-DE/projects/RPL:catch-the-bus/2');
     
     const checkboxes = page.locator('.c-project-task__checkbox');
@@ -72,10 +62,9 @@ test.describe('Sidebar Progress Indicators (E2E)', () => {
       }
     }
 
-    // Verify sidebar shows green checkmark
     const sidebarItem = page.locator('.c-project-navigation__item').nth(2);
     const indicator = sidebarItem.locator('.c-step-progress-circle--done');
     await expect(indicator).toBeVisible({ timeout: 10000 });
-    await expect(indicator.locator('.material-symbols-sharp')).toHaveText('check');
+    // Checkmark is CSS-only now
   });
 });
