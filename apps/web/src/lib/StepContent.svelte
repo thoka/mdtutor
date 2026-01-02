@@ -543,7 +543,7 @@
     // Re-attach handlers when content or step changes
     content;
     step;
-    userActions; // Ensure re-run when actions are loaded
+    userActionsOrState; // Ensure re-run when actions are loaded
     
     attachTaskHandlers();
     attachScratchHandlers();
@@ -586,8 +586,8 @@
   function attachTaskHandlers() {
     if (!contentDiv) return;
     
-    // Trigger re-run when userActions or taskStore changes
-    userActions; 
+    // Trigger re-run when userActionsOrState or taskStore changes
+    userActionsOrState; 
     taskStore;
 
     // Handle task checkboxes
