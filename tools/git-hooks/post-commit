@@ -22,4 +22,9 @@ mkdir -p packages/sso-server/tmp
 touch "$RESTART_SSO"
 echo "✓ Touched $RESTART_SSO"
 
+# Vite Web App (triggers vite restart)
+VITE_CONFIG="apps/web/vite.config.ts"
+touch "$VITE_CONFIG"
+echo "✓ Touched $VITE_CONFIG"
+
 echo "-------------------------------"
