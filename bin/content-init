@@ -17,17 +17,14 @@ if [ -d "content/RPL" ]; then
         exit 0
     fi
     echo "Lösche alten Content..."
-    # Keep the directory but empty it to preserve volume mounts if running
     rm -rf content/RPL content/TAG test/snapshots/*
 fi
 
-mkdir -p content/RPL/layers/official/projects
-mkdir -p content/RPL/layers/official/pathways
+# 2. Create basic structure for config
 mkdir -p content/RPL/config
-mkdir -p content/TAG/layers/official/projects
 mkdir -p test/snapshots
 
-# 2. Ensure sync.yaml and pathways exist (if they were deleted)
+# 3. Ensure default sync.yaml exists
 if [ ! -f "content/RPL/config/sync.yaml" ]; then
     echo "Stelle Standard sync.yaml für RPL wieder her..."
     cat > content/RPL/config/sync.yaml <<EOF
@@ -49,34 +46,16 @@ sync:
 EOF
 fi
 
-# Ensure basic pathway files exist if they are not already there
-# (Normally these should be part of the repo, but just in case)
-for p in scratch-intro more-scratch further-scratch; do
-    if [ ! -f "content/RPL/layers/official/pathways/$p.yaml" ]; then
-        echo "Erstelle Dummy-Pathway für $p (wird normalerweise vom Repo geliefert)..."
-        cat > "content/RPL/layers/official/pathways/$p.yaml" <<EOF
-projects:
-  - slug: space-talk
-EOF
-    fi
-done
+# 4. Fetch RPL data using the official sync tool
+# This script:
+#   - Fetches pathway metadata from RPL API
+#   - Creates content/RPL/layers/official/pathways/*.yaml
+#   - Clones all project repositories into content/RPL/layers/official/projects/
+#   - Fetches project API snapshots into test/snapshots/
+echo "Lade RPL Referenz-Daten (Lernpfade und Tutorials)..."
+npm run sync:pathways
 
-# 2. Fetch RPL data
-echo "Lade RPL Referenz-Daten..."
-npm run test:data
-
-# 3. Create necessary metadata if missing (to satisfy compliance tests)
-# Note: compliance tests might need adjustment to the layering architecture
-if [ ! -f "content/RPL/meta.yml" ]; then
-    echo "Erstelle Standard meta.yml für RPL..."
-    echo "namespace: rpl" > content/RPL/meta.yml
-fi
-if [ ! -f "content/TAG/meta.yml" ]; then
-    echo "Erstelle Standard meta.yml für TAG..."
-    echo "namespace: tag" > content/TAG/meta.yml
-fi
-
-# 4. Run compliance test
+# 5. Run compliance test
 echo -e "\n${GREEN}Prüfe Struktur-Compliance...${NC}"
 if node --test test/structure-compliance.test.js; then
     echo -e "${GREEN}✓ Struktur ist korrekt.${NC}"
@@ -86,4 +65,3 @@ else
 fi
 
 echo -e "\n${GREEN}=== Initialisierung erfolgreich abgeschlossen ===${NC}"
-

@@ -12,7 +12,7 @@ fi
 # 1. Check if content directory exists
 if [ ! -d "content/RPL/layers/official/projects" ] || [ -z "$(ls -A content/RPL/layers/official/projects)" ]; then
     echo "Content missing or incomplete. Fetching RPL test data..."
-    npm run test:data
+    npm run sync:pathways
 else
     echo "RPL content already exists."
 fi
@@ -23,10 +23,9 @@ if node --test test/structure-compliance.test.js; then
     echo "  ✓ Structure is compliant"
 else
     echo "  ✖ Structure compliance failed! Forcing re-init..."
-    npm run test:data
+    npm run sync:pathways
     if ! node --test test/structure-compliance.test.js; then
         echo "  ✖ Critical: Structure still non-compliant after re-init."
-        # Don't exit here, might be a test bug, but log it
     fi
 fi
 
