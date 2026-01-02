@@ -15,6 +15,10 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Planning First**: **NO CODING WITHOUT A PLAN.** Before any functional code changes:
   1. Create a **feature branch** (`feature/name`).
   2. Create and **commit** an Implementation Plan in `docs/brain/YYYY-MM-DD-feature-name.md`.
+  3. **Plan Structure**: Every plan MUSS have a `Phase 1: Tests First` section explicitly listing:
+     - **Vitest Unit Tests**: Which components/modules will be tested and what scenarios.
+     - **Playwright E2E Tests**: Which user flows will be verified.
+     - Manual verification is only allowed as a supplement, never as a replacement for automated tests.
 - **API-First & Spec-First**: No frontend implementation (Svelte components, stores, or logic) may begin until the required API endpoints are:
   1. **Spezifiziert**: Documented in the implementation plan (request/response format).
   2. **Getestet**: Fully implemented and verified by RSpec `request specs` in the backend.
