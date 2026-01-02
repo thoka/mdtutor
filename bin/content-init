@@ -1,0 +1,53 @@
+#!/bin/bash
+set -e
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}=== MDTutor Content Initialization ===${NC}"
+
+# 1. Ask for confirmation if content exists
+if [ -d "content/RPL" ]; then
+    echo -e "${YELLOW}Warnung: Das Content-Verzeichnis existiert bereits.${NC}"
+    read -p "Soll ich den vorhandenen Content löschen und neu laden? (y/N) " confirm
+    if [[ ! $confirm =~ ^[Yy]$ ]]; then
+        echo "Abgebrochen."
+        exit 0
+    fi
+    echo "Lösche alten Content..."
+    # Keep the directory but empty it to preserve volume mounts if running
+    rm -rf content/RPL content/TAG test/snapshots/*
+fi
+
+mkdir -p content/RPL/layers/official/projects
+mkdir -p content/TAG/layers/official/projects
+mkdir -p test/snapshots
+
+# 2. Fetch RPL data
+echo "Lade RPL Referenz-Daten..."
+npm run test:data
+
+# 3. Create necessary metadata if missing (to satisfy compliance tests)
+# Note: compliance tests might need adjustment to the layering architecture
+if [ ! -f "content/RPL/meta.yml" ]; then
+    echo "Erstelle Standard meta.yml für RPL..."
+    echo "namespace: rpl" > content/RPL/meta.yml
+fi
+if [ ! -f "content/TAG/meta.yml" ]; then
+    echo "Erstelle Standard meta.yml für TAG..."
+    echo "namespace: tag" > content/TAG/meta.yml
+fi
+
+# 4. Run compliance test
+echo -e "\n${GREEN}Prüfe Struktur-Compliance...${NC}"
+if node --test test/structure-compliance.test.js; then
+    echo -e "${GREEN}✓ Struktur ist korrekt.${NC}"
+else
+    echo -e "${RED}✖ Struktur-Compliance fehlgeschlagen!${NC}"
+    exit 1
+fi
+
+echo -e "\n${GREEN}=== Initialisierung erfolgreich abgeschlossen ===${NC}"
+

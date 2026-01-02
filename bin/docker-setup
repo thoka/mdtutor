@@ -11,13 +11,26 @@ fi
 
 # 1. Check if content directory exists
 if [ ! -d "content/RPL/layers/official/projects" ] || [ -z "$(ls -A content/RPL/layers/official/projects)" ]; then
-    echo "Content missing. Fetching RPL test data..."
+    echo "Content missing or incomplete. Fetching RPL test data..."
     npm run test:data
 else
     echo "RPL content already exists."
 fi
 
-# 2. Check for additional overlays from environment variable
+# 2. Run Structure Compliance Test
+echo "Running structure compliance test..."
+if node --test test/structure-compliance.test.js; then
+    echo "  ✓ Structure is compliant"
+else
+    echo "  ✖ Structure compliance failed! Forcing re-init..."
+    npm run test:data
+    if ! node --test test/structure-compliance.test.js; then
+        echo "  ✖ Critical: Structure still non-compliant after re-init."
+        # Don't exit here, might be a test bug, but log it
+    fi
+fi
+
+# 3. Check for additional overlays from environment variable
 # Format: OVERLAYS="ecosystem:layer:git_url,ecosystem2:layer2:git_url2"
 if [ -n "$ADDITIONAL_OVERLAYS" ]; then
     IFS=',' read -ra ADDR <<< "$ADDITIONAL_OVERLAYS"

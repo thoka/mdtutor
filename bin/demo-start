@@ -175,6 +175,16 @@ fi
 DOCKER_VERSION=$(docker version --format '{{.Client.APIVersion}}' 2>/dev/null || echo "1.41")
 export DOCKER_API_VERSION=$DOCKER_VERSION
 
+# Active Content Structure Check
+echo -e "Prüfe Content-Struktur..."
+if ! node --test test/structure-compliance.test.js >/dev/null 2>&1; then
+    echo -e "${YELLOW}Achtung: Content-Struktur ist nicht korrekt.${NC}"
+    read -p "Soll ich den Content jetzt initialisieren? (y/N) " init_content
+    if [[ $init_content =~ ^[Yy]$ ]]; then
+        ./bin/content-init
+    fi
+fi
+
 # 6. Run Docker Compose
 echo -e "${GREEN}Starte Docker-Container...${NC}"
 COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")

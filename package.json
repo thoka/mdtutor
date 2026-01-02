@@ -24,6 +24,7 @@
     "test:frontend": "npm run test:unit --workspace=@mdtutor/web && npm run test:e2e",
     "test:unit": "npm run test:unit --workspace=@mdtutor/web",
     "test:e2e": "node tools/check-test-data.js && npm run test:e2e --workspace=@mdtutor/web",
+    "init": "./bin/content-init",
     "dev": "node tools/kill-ports.js && dotenv -- concurrently -k -n api,web,achiev,sso -c blue,green,magenta,yellow \"npm run api\" \"npm run web\" \"npm run achievements\" \"npm run sso\"",
     "dev:test": "node tools/kill-ports.js && RAILS_ENV=test dotenv -- concurrently -k -n api,web,achiev,sso -c blue,green,magenta,yellow \"npm run api\" \"npm run web\" \"npm run achievements\" \"npm run sso\"",
     "dev:bg": "dotenv -- concurrently -k -n api,web,achiev,sso -c blue,green,magenta,yellow \"npm run api\" \"npm run web\" \"npm run achievements\" \"npm run sso\"",
