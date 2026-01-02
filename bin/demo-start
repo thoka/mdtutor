@@ -14,19 +14,30 @@ echo -e "${GREEN}=== MDTutor Demo Launcher ===${NC}\n"
 
 # 1. Check if docker.env exists
 if [ ! -f "$ENV_FILE" ]; then
-    echo -e "${RED}Fehler: $ENV_FILE wurde nicht gefunden!${NC}"
-    echo -e "Bitte erstelle eine Datei namens ${YELLOW}$ENV_FILE${NC} im Hauptverzeichnis."
-    echo -e "Du kannst die folgende Vorlage nutzen:\n"
-    
-    echo "DOMAIN=mdtutor.test"
-    echo "SSO_JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || echo "gera_secret_12345")"
-    echo "ACHIEVEMENTS_MASTER_KEY=$(cat packages/backend-ruby/config/master.key 2>/dev/null || echo "KEY_FEHLT")"
-    echo "SSO_MASTER_KEY=$(cat packages/sso-server/config/master.key 2>/dev/null || echo "KEY_FEHLT")"
-    
-    echo -e "\n${YELLOW}Hinweis:${NC} Die Master Keys findest du normalerweise in:"
-    echo " - packages/backend-ruby/config/master.key"
-    echo " - packages/sso-server/config/master.key"
-    exit 1
+    echo -e "${YELLOW}Hinweis: $ENV_FILE wurde nicht gefunden.${NC}"
+    read -p "Soll ich $ENV_FILE aus der Vorlage erstellen? (y/N) " create_env
+    if [[ $create_env =~ ^[Yy]$ ]]; then
+        cp docker.env.example docker.env
+        
+        # Try to fill in master keys automatically
+        BE_KEY=$(cat packages/backend-ruby/config/master.key 2>/dev/null || echo "")
+        SSO_KEY=$(cat packages/sso-server/config/master.key 2>/dev/null || echo "")
+        
+        if [ -n "$BE_KEY" ]; then
+            sed -i "s/.*ACHIEVEMENTS_MASTER_KEY=.*/ACHIEVEMENTS_MASTER_KEY=$BE_KEY/" docker.env
+        fi
+        if [ -n "$SSO_KEY" ]; then
+            sed -i "s/.*SSO_MASTER_KEY=.*/SSO_MASTER_KEY=$SSO_KEY/" docker.env
+        fi
+        # Generate random JWT secret
+        JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || echo "demo_secret_$(date +%s)")
+        sed -i "s/SSO_JWT_SECRET=.*/SSO_JWT_SECRET=$JWT_SECRET/" docker.env
+        
+        echo -e "${GREEN}✓ $ENV_FILE wurde erstellt und mit Keys aus den packages befüllt.${NC}"
+    else
+        echo -e "${RED}Fehler: $ENV_FILE wird benötigt.${NC}"
+        exit 1
+    fi
 fi
 
 # 2. Load environment and check for missing values
@@ -84,12 +95,24 @@ check_dns "$SSO_DOMAIN" || DNS_OK=0
 
 if [ $DNS_OK -eq 0 ]; then
     echo -e "\n${YELLOW}Hinweis:${NC} Die Domains scheinen nicht auf diesen Rechner zu zeigen."
-    echo -e "Stelle sicher, dass folgende Zeile in deiner ${YELLOW}/etc/hosts${NC} steht:"
-    echo -e "${GREEN}127.0.0.1  $MAIN_DOMAIN $SSO_DOMAIN${NC}"
+    echo -e "Vorgeschlagener Eintrag: ${GREEN}127.0.0.1  $MAIN_DOMAIN $SSO_DOMAIN${NC}"
     echo ""
-    read -p "Trotzdem fortfahren? (y/N) " confirm
-    if [[ ! $confirm =~ ^[Yy]$ ]]; then
-        exit 1
+    read -p "Soll ich versuchen, diesen Eintrag automatisch zu /etc/hosts hinzuzufügen? (y/N) " fix_dns
+    if [[ $fix_dns =~ ^[Yy]$ ]]; then
+        echo "Prüfe auf sudo-Berechtigungen..."
+        if sudo bash -c "echo '127.0.0.1  $MAIN_DOMAIN $SSO_DOMAIN' >> /etc/hosts"; then
+            echo -e "${GREEN}✓ /etc/hosts wurde aktualisiert.${NC}"
+            DNS_OK=1
+        else
+            echo -e "${RED}✖ Fehlgeschlagen. Bitte manuell eintragen.${NC}"
+        fi
+    fi
+
+    if [ $DNS_OK -eq 0 ]; then
+        read -p "Trotzdem fortfahren? (y/N) " confirm
+        if [[ ! $confirm =~ ^[Yy]$ ]]; then
+            exit 1
+        fi
     fi
 fi
 
