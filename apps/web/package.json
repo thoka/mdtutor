@@ -13,7 +13,7 @@
     "test": "node --test"
   },
   "dependencies": {
-    "@mdtutor/parser": "*",
+    "@mdtutor/parser": "workspace:*",
     "prismjs": "^1.30.0",
     "scratchblocks": "^3.6.4",
     "svelte-spa-router": "^4.0.1"

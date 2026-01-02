@@ -33,18 +33,18 @@ turndownService.addRule('simpleListItems', {
   }
 });
 
-turndownService.addRule("dashParagraphToList", {
+turndownService.addRule('dashParagraphToList', {
   filter: function (node) {
     return (
-      node.nodeName === "P" &&
+      node.nodeName === 'P' &&
       node.textContent.trim().match(/^[-–]\s+/)
     );
   },
   replacement: function (content) {
     return content
       .split(/\s+(?=[-–]\s+)/) // split vor "- " oder "– "
-      .map(item => item.replace(/^[-–]\s*/, "- "))
-      .join("\n") + "\n\n";
+      .map(item => item.replace(/^[-–]\s*/, '- '))
+      .join('\n') + '\n\n';
   }
 });
 
