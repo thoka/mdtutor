@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { completedSteps } from './stores';
+  import { userPreferences, toggleAutoAdvance } from './preferences';
   
   interface Step {
     title: string;
@@ -33,28 +34,10 @@
   
   function handleStepClick(step: number) {
     onNavigate(step);
-    // Scroll to top of content area (after header) when step is clicked
-    // Use setTimeout to ensure DOM is updated after navigation
     setTimeout(() => {
-      // Find the main layout element which is after the header
       const layout = document.getElementById('c-project__layout');
-      if (layout) {
-        // Scroll the layout into view, which will push the header out of view
-        layout.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        // Fallback: find the first element after header and scroll to it
-        const header = document.querySelector('.c-project-header');
-        if (header && header.parentElement) {
-          const nextElement = header.parentElement.nextElementSibling;
-          if (nextElement) {
-            nextElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          } else {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }
+      if (layout) layout.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      else window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 100);
   }
 </script>
@@ -100,6 +83,13 @@
         </li>
       {/each}
     </ul>
+
+    <div class="c-sidebar-preferences">
+      <label class="c-preference-toggle">
+        <input type="checkbox" checked={$userPreferences.autoAdvance} onchange={toggleAutoAdvance}>
+        <span class="c-preference-toggle__label">Auto-Scroll / Weiter</span>
+      </label>
+    </div>
   </div>
 </menu>
 
@@ -113,5 +103,27 @@
   
   .c-project-navigation__title {
     flex: 1;
+  }
+
+  .c-sidebar-preferences {
+    padding: 1rem;
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    background: #f9f9f9;
+  }
+
+  .c-preference-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .c-preference-toggle input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
   }
 </style>

@@ -174,6 +174,7 @@
                             {@const currentStepData = tutorialData.data.attributes.content.steps[step]}
                             
                             <StepContent
+                              onCompleteStep={handleNext}
                               content={currentStepData.content}
                               {slug}
                               gid={tutorialData.data.id}
