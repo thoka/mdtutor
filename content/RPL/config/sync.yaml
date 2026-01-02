@@ -13,3 +13,5 @@ sync:
       - scratch-intro
       - more-scratch
       - further-scratch
+      - restricted-path
+      - locked-path

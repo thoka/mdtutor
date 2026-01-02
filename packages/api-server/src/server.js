@@ -475,6 +475,133 @@ app.get('/api/v1/:lang/pathways/:pathwayId/projects', async (req, res) => {
   }
 });
 
+app.get('/api/v1/:lang/pathways', async (req, res) => {
+  try {
+    const currentEcosystems = ensureEcosystems();
+    const lang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
+    const requestedLang = lang === 'de' ? 'de-DE' : lang;
+    const allPathways = [];
+    const seenSlugs = new Set();
+
+    // Extract user info from JWT if present
+    const authHeader = req.headers.authorization;
+    let userGroups = [];
+    let userAchievements = [];
+    
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      const token = authHeader.split(' ')[1];
+      if (token === 'MOCK_STUDENT_TOKEN') {
+        userGroups = ['students'];
+      }
+      // In real implementation, we would decode JWT and fetch achievements from backend-ruby
+    }
+
+    for (const ecosystem of Object.values(currentEcosystems)) {
+      const syncFile = join(ecosystem.path, 'config', 'sync.yaml');
+      if (!existsSync(syncFile)) continue;
+
+      try {
+        const syncConfig = yaml.load(readFileSync(syncFile, 'utf-8'));
+        const orderedPathways = syncConfig.sync?.pathways || {};
+
+        for (const [layerId, slugs] of Object.entries(orderedPathways)) {
+          for (const slug of slugs) {
+            const namespacedSlug = `${ecosystem.id}:${slug}`;
+            if (seenSlugs.has(namespacedSlug)) continue;
+            
+            const resolved = resolvePathwayLayer(currentEcosystems, namespacedSlug);
+            if (!resolved) continue;
+
+            const content = await readFileAsync(resolved.path, 'utf-8');
+            const data = yaml.load(content);
+            
+            // Visibility Logic
+            const visibility = data.visibility || {};
+            
+            // 1. List Visibility
+            if (visibility.list) {
+              const hasGroup = !visibility.list.groups || visibility.list.groups.some(g => userGroups.includes(g));
+              const hasAchievement = !visibility.list.achievements || visibility.list.achievements.every(a => userAchievements.includes(a));
+              
+              if (!hasGroup || !hasAchievement) continue; // Skip if not visible
+            }
+
+            // 2. Open Visibility (Locked state)
+            let locked = false;
+            if (visibility.open) {
+              const canOpenGroup = !visibility.open.groups || visibility.open.groups.some(g => userGroups.includes(g));
+              const canOpenAchievement = !visibility.open.achievements || visibility.open.achievements.every(a => userAchievements.achievement_ids?.includes(`${ecosystem.semantic_prefix}:ACHIEV:${a}`));
+              
+              if (!canOpenGroup || !canOpenAchievement) {
+                locked = true;
+              }
+            }
+
+            const title = typeof data.title === 'object' 
+              ? (data.title[requestedLang] || data.title['en'] || slug)
+              : (data.title || slug);
+            
+            let description = '';
+            if (data.description && typeof data.description === 'object') {
+              description = data.description.summary?.[requestedLang] || data.description.summary?.['en'] || '';
+            } else {
+              description = data.description || '';
+            }
+
+            const banner = resolvePathwayAsset(ecosystem, resolved.layer, data.banner);
+
+            allPathways.push({
+              id: namespacedSlug,
+              type: 'pathways',
+              attributes: {
+                slug: namespacedSlug,
+                title,
+                description,
+                banner,
+                locked,
+                technologyTheme: data.attributes?.technologyTheme,
+                interestLabels: data.attributes?.interestLabels,
+                difficultyLevel: data.attributes?.difficultyLevel
+              }
+            });
+            seenSlugs.add(namespacedSlug);
+          }
+        }
+      } catch (e) {
+        console.warn(`Failed to process sync.yaml for ${ecosystem.id}:`, e.message);
+      }
+    }
+
+    res.json({ data: allPathways });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get('/api/v1/:lang/topics', async (req, res) => {
+  try {
+    const currentEcosystems = ensureEcosystems();
+    const lang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
+    const result = {
+      interests: {},
+      technologies: {}
+    };
+
+    for (const ecosystem of Object.values(currentEcosystems)) {
+      const topicsFile = join(ecosystem.path, 'config', 'topics.yaml');
+      if (existsSync(topicsFile)) {
+        const data = yaml.load(readFileSync(topicsFile, 'utf-8'));
+        if (data.interests) Object.assign(result.interests, data.interests);
+        if (data.technologies) Object.assign(result.technologies, data.technologies);
+      }
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`API Server running on http://localhost:${PORT}`);
 });

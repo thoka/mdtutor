@@ -1,0 +1,30 @@
+interests:
+  art:
+    -de: Kunst
+    color: "#E91E63"
+  stories:
+    -de: Geschichten
+    color: "#3F51B5"
+  nature:
+    -de: Natur
+    color: "#FF9800"
+  electronics:
+    -de: Elektronik
+    color: "#2196F3"
+  music:
+    -de: Musik
+    color: "#FFEB3B"
+technologies:    
+  programming:
+    -de: Programmieren
+    color: "#4CAF50"
+  robotics:
+    -de: Robotik
+    color: "#673AB7"
+  3d-printing:
+    -de: 3D-Druck
+    color: "#9C27B0"
+  scratch:
+    up: [ programming ]
+  python:
+    up: [ programming ]
