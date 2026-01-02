@@ -12,12 +12,29 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}=== MDTutor Demo Launcher ===${NC}\n"
 
+# 0. Detect Environment
+IS_WSL=0
+if grep -qi microsoft /proc/version 2>/dev/null; then
+    IS_WSL=1
+fi
+
+DEFAULT_DOMAIN="mdtutor.test"
+if [ $IS_WSL -eq 1 ]; then
+    DEFAULT_DOMAIN="mdtutor.docker.local"
+fi
+
 # 1. Check if docker.env exists
 if [ ! -f "$ENV_FILE" ]; then
     echo -e "${YELLOW}Hinweis: $ENV_FILE wurde nicht gefunden.${NC}"
+    if [ $IS_WSL -eq 1 ]; then
+        echo -e "WSL2 erkannt. Nutze ${YELLOW}$DEFAULT_DOMAIN${NC} als Standard-Domain."
+    fi
     read -p "Soll ich $ENV_FILE aus der Vorlage erstellen? (y/N) " create_env
     if [[ $create_env =~ ^[Yy]$ ]]; then
         cp docker.env.example docker.env
+        
+        # Set default domain based on environment
+        sed -i "s/DOMAIN=.*/DOMAIN=$DEFAULT_DOMAIN/" docker.env
         
         # Try to fill in master keys automatically
         BE_KEY=$(cat packages/backend-ruby/config/master.key 2>/dev/null || echo "")
@@ -66,7 +83,7 @@ if [ -n "$TRAEFIK_PORT" ] && [ "$TRAEFIK_PORT" != "80" ]; then
     PORT_SUFFIX=":$TRAEFIK_PORT"
 fi
 
-MAIN_DOMAIN="${DOMAIN:-mdtutor.test}"
+MAIN_DOMAIN="${DOMAIN:-$DEFAULT_DOMAIN}"
 SSO_DOMAIN="sso.${MAIN_DOMAIN}"
 
 echo -e "Die Demo wird unter folgenden Domains erreichbar sein:"
@@ -102,6 +119,10 @@ if [ $DNS_OK -eq 0 ]; then
         echo "Prüfe auf sudo-Berechtigungen..."
         if sudo bash -c "echo '127.0.0.1  $MAIN_DOMAIN $SSO_DOMAIN' >> /etc/hosts"; then
             echo -e "${GREEN}✓ /etc/hosts wurde aktualisiert.${NC}"
+            if [ $IS_WSL -eq 1 ]; then
+                echo -e "${YELLOW}Hinweis für WSL2:${NC} Falls dein Browser auf Windows die Domain noch nicht findet,"
+                echo -e "musst du sie auch in ${YELLOW}C:\\Windows\\System32\\drivers\\etc\\hosts${NC} eintragen."
+            fi
             DNS_OK=1
         else
             echo -e "${RED}✖ Fehlgeschlagen. Bitte manuell eintragen.${NC}"

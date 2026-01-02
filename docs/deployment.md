@@ -30,7 +30,7 @@ cp docker.env.example docker.env
 ```
 
 Open `docker.env` and ensure the following variables are set:
-- `DOMAIN`: Your target domain (e.g., `mdtutor.3oe.de` or `mdtutor.test` for local testing).
+- `DOMAIN`: Your target domain (e.g., `mdtutor.3oe.de`, `mdtutor.test` for local testing, or `mdtutor.docker.local` for WSL2).
 - `SSO_JWT_SECRET`: A secure random string for JWT token signing.
 - `ACHIEVEMENTS_MASTER_KEY`: Found in `packages/backend-ruby/config/master.key`.
 - `SSO_MASTER_KEY`: Found in `packages/sso-server/config/master.key`.
