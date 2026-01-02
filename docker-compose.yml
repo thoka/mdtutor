@@ -93,7 +93,7 @@ services:
       - achievement_data:/rails/db
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.achievements.rule=Host(`${DOMAIN:-mdtutor.localhost}`) && (PathPrefix(`/api/v1/actions`) || PathPrefix(`/api/v1/auth`))"
+      - "traefik.http.routers.achievements.rule=Host(`${DOMAIN:-mdtutor.localhost}`) && (PathPrefix(`/api/v1/actions`) || PathPrefix(`/api/v1/auth`) || PathPrefix(`/api/v1/system`))"
       - "traefik.http.routers.achievements.entrypoints=web,websecure"
       - "traefik.http.routers.achievements.tls=${HTTPS_ENABLED:-false}"
       - "traefik.http.routers.achievements.tls.certresolver=myresolver"
