@@ -90,3 +90,11 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 ## Integration Patterns
 - **API Responses**: Must match the [Raspberry Pi Learning API](https://learning-admin.raspberrypi.org/api/v1/) structure.
 - **Transclusions**: Handled by `remark-transclusion` plugin, resolving relative paths across repositories.
+
+## Content & Tutorial Management
+- **Dynamic Content**: Pathways (`pathways/*.yaml`) and tutorial repositories (`projects/*`) are generated/cloned dynamically. **NEVER** track these in Git (enforced via `.gitignore`).
+- **Initialization**: Always use `npm run sync:pathways` as the primary tool to fetch ecosystem data. 
+  - This tool generates the necessary pathway YAML metadata and clones the associated tutorials.
+  - `npm run test:data` is a lower-level utility and should not be used for full ecosystem setup.
+- **Structure Compliance**: After any content change or initialization, run the compliance test: `node --test test/structure-compliance.test.js`.
+- **Config as Source**: `content/*/config/sync.yaml` is the source of truth for which content elements to track.
