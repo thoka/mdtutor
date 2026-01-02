@@ -13,11 +13,13 @@ services:
     user: root # Ensure access to docker.sock
     environment:
       - DOCKER_API_VERSION=${DOCKER_API_VERSION:-1.41}
+      - DOCKER_HOST=unix:///var/run/docker.sock
     command:
       - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
       - "--entrypoints.web.address=:80"
     ports:
       - "${TRAEFIK_PORT:-13100}:80"
