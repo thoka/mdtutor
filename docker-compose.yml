@@ -87,6 +87,7 @@ services:
       - RAILS_MASTER_KEY=${ACHIEVEMENTS_MASTER_KEY}
       - RAILS_LOG_TO_STDOUT=true
       - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_FORCE_SSL=${RAILS_FORCE_SSL:-false}
       - SSO_JWT_SECRET=${SSO_JWT_SECRET}
     volumes:
       - achievement_data:/rails/db
@@ -114,6 +115,7 @@ services:
       - RAILS_MASTER_KEY=${SSO_MASTER_KEY}
       - RAILS_LOG_TO_STDOUT=true
       - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_FORCE_SSL=${RAILS_FORCE_SSL:-false}
       - SSO_JWT_SECRET=${SSO_JWT_SECRET}
       - ACHIEVEMENTS_PORT=3000 # Internal port of achievement-server
       - ACHIEVEMENTS_URL=http://achievement-server:3000

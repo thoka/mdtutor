@@ -1,9 +1,12 @@
 import { expect, APIRequestContext } from '@playwright/test';
 
 export async function checkSystemHealth(request: APIRequestContext) {
+  const achievementsBase = process.env.ACHIEVEMENTS_URL || 'http://localhost:3102';
+  const ssoBase = process.env.SSO_URL || 'http://localhost:3103';
+
   // 1. Check Achievements Server
-  const achieRes = await request.get('http://localhost:3102/api/v1/system/stats');
-  expect(achieRes.ok(), 'Achievements Server is not reachable').toBeTruthy();
+  const achieRes = await request.get(`${achievementsBase}/api/v1/system/stats`);
+  expect(achieRes.ok(), `Achievements Server is not reachable at ${achievementsBase}`).toBeTruthy();
   
   const achieStats = await achieRes.json();
   console.log('[Health] Achievements Stats:', achieStats);
@@ -15,8 +18,8 @@ export async function checkSystemHealth(request: APIRequestContext) {
   }
 
   // 2. Check SSO Server
-  const ssoRes = await request.get('http://localhost:3103/api/system/stats');
-  expect(ssoRes.ok(), 'SSO Server is not reachable').toBeTruthy();
+  const ssoRes = await request.get(`${ssoBase}/api/system/stats`);
+  expect(ssoRes.ok(), `SSO Server is not reachable at ${ssoBase}`).toBeTruthy();
   
   const ssoStats = await ssoRes.json();
   console.log('[Health] SSO Stats:', ssoStats);
