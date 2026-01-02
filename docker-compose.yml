@@ -65,11 +65,12 @@ services:
       - ./content:/app/content
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`${DOMAIN:-mdtutor.localhost}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.api.rule=Host(`${DOMAIN:-mdtutor.localhost}`) && (PathPrefix(`/api`) || PathPrefix(`/content`))"
       - "traefik.http.routers.api.entrypoints=web,websecure"
       - "traefik.http.routers.api.tls=${HTTPS_ENABLED:-false}"
       - "traefik.http.routers.api.tls.certresolver=myresolver"
       - "traefik.http.routers.api.priority=100"
+      - "traefik.http.routers.api.service=api"
       - "traefik.http.routers.api.middlewares=${HTTPS_REDIRECT:-}"
       - "traefik.http.services.api.loadbalancer.server.port=3101"
 
@@ -96,6 +97,7 @@ services:
       - "traefik.http.routers.achievements.tls=${HTTPS_ENABLED:-false}"
       - "traefik.http.routers.achievements.tls.certresolver=myresolver"
       - "traefik.http.routers.achievements.priority=200"
+      - "traefik.http.routers.achievements.service=achievements"
       - "traefik.http.routers.achievements.middlewares=${HTTPS_REDIRECT:-}"
       - "traefik.http.services.achievements.loadbalancer.server.port=3000"
 
@@ -121,7 +123,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.sso.rule=Host(`sso.${DOMAIN:-mdtutor.localhost}`)"
       - "traefik.http.routers.sso.entrypoints=web,websecure"
-      - "traefik.http.routers.sso.priority=1"
+      - "traefik.http.routers.sso.priority=100"
+      - "traefik.http.routers.sso.service=sso"
       - "traefik.http.routers.sso.tls=${HTTPS_ENABLED:-false}"
       - "traefik.http.routers.sso.tls.certresolver=myresolver"
       - "traefik.http.routers.sso.middlewares=${HTTPS_REDIRECT:-}"

@@ -212,6 +212,12 @@ if ! node --test test/structure-compliance.test.js >/dev/null 2>&1; then
     fi
 fi
 
+# 6. Run Docker Compose
+echo -e "${GREEN}Starte Docker-Container...${NC}"
+COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
+
+COMMIT_HASH=$COMMIT_HASH docker-compose --env-file "$ENV_FILE" up -d --build --remove-orphans
+
 # 7. Done
 echo -e "\n${GREEN}Demo läuft!${NC}"
 echo -e "Nutze ${YELLOW}docker-compose logs -f${NC} für Live-Logs."

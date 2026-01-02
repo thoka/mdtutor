@@ -208,6 +208,9 @@ if (!PORT) process.exit(1);
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
+// Serve static content (images, etc.) from the content directory
+app.use('/content', express.static(CONTENT_DIR));
+
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} ${req.method} ${req.url}`);
   next();
