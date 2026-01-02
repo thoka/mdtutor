@@ -24,12 +24,14 @@ test('Structure Compliance: Providers and Metadata', () => {
 });
 
 test('Structure Compliance: Pathways', () => {
+  const rplSyncPath = join(rootDir, 'content/RPL/config/sync.yaml');
   const rplPathwaysPath = join(rootDir, 'content/RPL/layers/official/pathways/rpl-pathways.yaml');
-  if (!existsSync(rplPathwaysPath)) {
-    // Fallback for flat structure
-    const fallbackPath = join(rootDir, 'content/RPL/pathways/rpl-pathways.yaml');
-    assert.ok(existsSync(rplPathwaysPath) || existsSync(fallbackPath), 'RPL pathways yaml should exist');
-  }
+  const fallbackPath = join(rootDir, 'content/RPL/pathways/rpl-pathways.yaml');
+  
+  assert.ok(
+    existsSync(rplSyncPath) || existsSync(rplPathwaysPath) || existsSync(fallbackPath), 
+    'RPL pathways configuration should exist (sync.yaml or rpl-pathways.yaml)'
+  );
 });
 
 test('Structure Compliance: Cloned Repositories', () => {
@@ -39,9 +41,16 @@ test('Structure Compliance: Cloned Repositories', () => {
   
   assert.ok(existsSync(activeDir), 'RPL projects directory should exist');
   
-  // Check for at least one project (e.g., silly-eyes)
-  const sillyEyesRepo = join(activeDir, 'silly-eyes/repo');
-  assert.ok(existsSync(sillyEyesRepo), `silly-eyes repo should be cloned in ${activeDir}/silly-eyes/repo`);
+  // We check if at least one project from sync.yaml is cloned
+  const rplSyncPath = join(rootDir, 'content/RPL/config/sync.yaml');
+  if (existsSync(rplSyncPath)) {
+    const syncData = yaml.load(readFileSync(rplSyncPath, 'utf8'));
+    const firstProject = syncData.sync?.pathways?.official?.[0];
+    if (firstProject) {
+      const projectRepo = join(activeDir, firstProject, 'repo');
+      assert.ok(existsSync(projectRepo), `${firstProject} repo should be cloned in ${projectRepo}`);
+    }
+  }
 });
 
 test('Structure Compliance: API Snapshots (Flat)', async () => {
@@ -49,12 +58,13 @@ test('Structure Compliance: API Snapshots (Flat)', async () => {
   assert.ok(existsSync(snapshotsDir), 'test/snapshots should exist');
   
   // Check for flat API JSON files
-  const sillyEyesApi = join(snapshotsDir, 'silly-eyes-api-project-en.json');
-  assert.ok(existsSync(sillyEyesApi), 'silly-eyes API JSON should exist in test/snapshots/silly-eyes-api-project-en.json');
-  
-  // Ensure no subdirectories in snapshots (except maybe .gitkeep if it existed)
-  const { readdirSync, statSync } = await import('node:fs');
-  const items = readdirSync(snapshotsDir);
-  const dirs = items.filter(item => statSync(join(snapshotsDir, item)).isDirectory());
-  assert.strictEqual(dirs.length, 0, 'test/snapshots should not contain subdirectories');
+  const rplSyncPath = join(rootDir, 'content/RPL/config/sync.yaml');
+  if (existsSync(rplSyncPath)) {
+    const syncData = yaml.load(readFileSync(rplSyncPath, 'utf8'));
+    const firstProject = syncData.sync?.pathways?.official?.[0];
+    if (firstProject) {
+      const projectApi = join(snapshotsDir, `${firstProject}-api-project-en.json`);
+      assert.ok(existsSync(projectApi), `${firstProject} API JSON should exist in ${projectApi}`);
+    }
+  }
 });

@@ -191,14 +191,26 @@ function createSnapshotMetadata(tutorialSlug, repoPath, apiPaths, pathwayInfo, o
 async function runMetaTest() {
   console.log('=== Meta-Test: Creating Tutorial Snapshots ===\n');
   
-  const PATHWAYS_FILE = 'content/RPL/layers/official/pathways/rpl-pathways.yaml';
-  if (!existsSync(PATHWAYS_FILE)) {
-    console.error(`Error: ${PATHWAYS_FILE} not found.`);
+  let tutorials = [];
+  const SYNC_FILE = 'content/RPL/config/sync.yaml';
+  const OLD_PATHWAYS_FILE = 'content/RPL/layers/official/pathways/rpl-pathways.yaml';
+
+  if (existsSync(SYNC_FILE)) {
+    console.log(`Reading tutorials from ${SYNC_FILE}...`);
+    const syncData = load(readFileSync(SYNC_FILE, 'utf8'));
+    if (syncData.sync?.pathways?.official) {
+      tutorials = syncData.sync.pathways.official;
+    }
+  } else if (existsSync(OLD_PATHWAYS_FILE)) {
+    console.log(`Reading tutorials from ${OLD_PATHWAYS_FILE}...`);
+    const pathwaysData = load(readFileSync(OLD_PATHWAYS_FILE, 'utf8'));
+    tutorials = Object.values(pathwaysData).flat();
+  } else {
+    console.error('Error: No source for tutorials found (sync.yaml or rpl-pathways.yaml).');
     return;
   }
   
-  const pathwaysData = load(readFileSync(PATHWAYS_FILE, 'utf8'));
-  const tutorials = Object.values(pathwaysData).flat();
+  console.log(`Found ${tutorials.length} tutorials to process.`);
 
   mkdirSync(DEFAULT_SNAPSHOTS_DIR, { recursive: true });
   mkdirSync(DEFAULT_PROJECTS_DIR, { recursive: true });
