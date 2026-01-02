@@ -179,8 +179,16 @@ export DOCKER_API_VERSION=$DOCKER_VERSION
 echo -e "${GREEN}Starte Docker-Container...${NC}"
 COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
 
-COMMIT_HASH=$COMMIT_HASH docker-compose --env-file "$ENV_FILE" up -d --build
+COMMIT_HASH=$COMMIT_HASH docker-compose --env-file "$ENV_FILE" up -d --build --remove-orphans
 
 echo -e "\n${GREEN}Demo läuft!${NC}"
 echo -e "Nutze ${YELLOW}docker-compose logs -f${NC} für Live-Logs."
+
+# 7. Optional Clean-up
+echo ""
+read -p "Soll ich ungenutzte Docker-Images bereinigen (prune)? (y/N) " prune_images
+if [[ $prune_images =~ ^[Yy]$ ]]; then
+    docker image prune -f
+    echo -e "${GREEN}✓ Bereinigung abgeschlossen.${NC}"
+fi
 
