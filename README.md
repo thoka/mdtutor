@@ -72,7 +72,11 @@ npm run dev:test     # Test mode using separate 'test' databases
 - **Achievements**: `http://localhost:3102`
 - **SSO Server**: `http://localhost:3103`
 
-### 4. Testing
+### 4. Deployment
+
+For automated deployment using Docker and Traefik, see the [Deployment Guide](docs/deployment.md).
+
+### 5. Testing
 
 ```bash
 # Backend Tests (RSpec)
