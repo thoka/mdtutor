@@ -3,7 +3,7 @@
 Expert guidance for coding in the MDTutor monorepo. This file serves as the central source of truth for AI agents and developers.
 
 ## Architecture & Data Flow
-- **Monorepo**: Uses npm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
+- **Monorepo**: Uses pnpm workspaces. `packages/` contains shared logic, `apps/` contains end-user applications.
 - **Ecosystems & Layering**: Content is organized into **Ecosystems** (e.g., `content/RPL`). Each ecosystem has multiple **Layers** (e.g., `layers/official`, `layers/tag-makerspace`). 
 - **Layer Priority**: Layers are prioritized (defined in `config/sync.yaml`). Local forks in higher-priority layers override official content.
 - **Global Identifiers (GIDs)**: Content elements use GIDs (`ECOSYSTEM:TYPE:SLUG`) for semantical identity across forks and languages.
@@ -25,16 +25,16 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **TDD (Test-Driven Development)**: Always write and commit tests *before* implementing features. Every API endpoint must have a spec verifying success, error cases, and JSON schema.
   - **Data Strategy**: Use **FactoryBot** for all test data in specs. Maintain **development seeds** in `db/seeds.rb` for common scenarios (e.g., the "Alice" scenario). Use the root `bin/seed` script to sync both backends.
 - **Database Separation**: Tests MUST run against the `test` database. Use `RAILS_ENV=test bundle exec rspec`.
-- **Setup**: `npm install` followed by `npm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/layers/official/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
-- **Development**: `npm run dev` runs all services. `npm run dev:test` runs them against the test databases.
-- **Seeds**: `npm run seed` initializes development data. `npm run seed:test` initializes test data (e.g., the complex Alice scenario).
+- **Setup**: `pnpm install` followed by `pnpm run test:data` to fetch reference snapshots. Cloned repositories go to `content/RPL/layers/official/projects`, while API JSON dumps go to `test/snapshots` (flat structure).
+- **Development**: `pnpm run dev` runs all services. `pnpm run dev:test` runs them against the test databases.
+- **Seeds**: `pnpm run seed` initializes development data. `pnpm run seed:test` initializes test data (e.g., the complex Alice scenario).
 - **Testing**:
   - **Workspace Context**: Always run tests from the respective package directory (e.g., `cd apps/web && ...`) to ensure correct configuration and path resolution.
   - **Backend (RSpec)**: `RAILS_ENV=test bundle exec rspec` (usually in `packages/backend-ruby`).
-  - **Frontend Unit (Vitest)**: `npm run test:unit` in `apps/web`.
-  - **E2E Tests (Playwright)**: `npx playwright test` in `apps/web`. **Requires background services** running via `npm run dev:test`.
-  - **Parser**: `npm test` in `packages/parser`.
-- **Linting**: `npm run lint` (ESLint 9).
+  - **Frontend Unit (Vitest)**: `pnpm run test:unit` in `apps/web`.
+  - **E2E Tests (Playwright)**: `npx playwright test` in `apps/web`. **Requires background services** running via `pnpm run dev:test`.
+  - **Parser**: `pnpm test` in `packages/parser`.
+- **Linting**: `pnpm run lint` (ESLint 9).
 
 ## Development Cycle & Git Rules
 - **Minimalism**: Generate as little code and documentation as possible. Keep responses concise.

@@ -36,6 +36,7 @@ MDTutor uses a polyglot monorepo (Node.js & Ruby on Rails) with a focus on loose
 
 ### 1. Requirements
 - Node.js >= 18
+- pnpm >= 9
 - Ruby >= 3.2 (with Bundler)
 - SQLite3
 
@@ -43,17 +44,17 @@ MDTutor uses a polyglot monorepo (Node.js & Ruby on Rails) with a focus on loose
 MDTutor uses a powerful sync tool to fetch reference tutorials and initialize the structure.
 
 ```bash
-npm install
-npm run init         # Fetches RPL pathways and clones repositories
-npm run seed         # Initializes development databases (Users, Achievements)
+pnpm install
+pnpm run init         # Fetches RPL pathways and clones repositories
+pnpm run seed         # Initializes development databases (Users, Achievements)
 ```
 
 ### 3. Development
 Run all services concurrently in development mode:
 
 ```bash
-npm run dev          # Standard development (Port 5201, 3101, 3102, 3103)
-npm run dev:test     # Test mode using separate 'test' databases
+pnpm run dev          # Standard development (Port 5201, 3101, 3102, 3103)
+pnpm run dev:test     # Test mode using separate 'test' databases
 ```
 
 **Access points:**
@@ -70,7 +71,7 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
 2. **Implementation Plan**: Commit a plan to `docs/brain/YYYY-MM-DD-feature.md` before coding.
 3. **API-First**: Spec the API and implement backend tests (RSpec) before frontend work.
 4. **TDD**: Write tests before implementation.
-5. **Alice Case**: Always verify progress logic against the complex "Alice" scenario (`npm run seed:test`).
+5. **Alice Case**: Always verify progress logic against the complex "Alice" scenario (`pnpm run seed:test`).
 
 ## Core Features
 
@@ -92,9 +93,9 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
 ## Testing
 
 - **Backend**: `RAILS_ENV=test bundle exec rspec` in `packages/*`
-- **Frontend**: `npm run test:unit` in `apps/web`
+- **Frontend**: `pnpm run test:unit` in `apps/web`
 - **End-to-End**:
-  - Dev Server: `npm run test:e2e` in `apps/web`
+  - Dev Server: `pnpm run test:e2e` in `apps/web`
   - Docker Demo:
     ```bash
     cd apps/web
@@ -103,7 +104,7 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
     SSO_URL=http://sso.mdtutor.localhost:13100 \
     npx playwright test --config playwright.docker.config.ts
     ```
-- **Parser**: `npm test` in `packages/parser`
+- **Parser**: `pnpm test` in `packages/parser`
 - **Compliance**: `node --test test/structure-compliance.test.js`
 
 ## Deployment (Docker)
@@ -130,4 +131,3 @@ For a public server, configure `docker.env` with your domain and enable Let's En
 AGPL-3.0-or-later
 
 **Note on Content:** Content fetched or linked within this platform (e.g., from the Raspberry Pi Foundation or other ecosystems) may be subject to its own specific licenses and terms of use.
-
