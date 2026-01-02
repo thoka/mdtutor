@@ -10,7 +10,9 @@ services:
 
   traefik:
     image: traefik:v3.1
+    user: root # Ensure access to docker.sock
     command:
+      - "--log.level=DEBUG" # See more details
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
