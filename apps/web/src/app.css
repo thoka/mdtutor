@@ -159,8 +159,8 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 
 /* Sidebar progress indicators */
 .c-step-progress-circle {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -174,19 +174,22 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 }
 
 .c-step-progress-circle--done {
+  width: 22px !important;
+  height: 22px !important;
   background-color: #42B961 !important;
   border-color: #42B961 !important;
+  margin-right: 5px; /* Adjust margin to keep visual balance with larger circles */
 }
 
-/* Decent small checkmark (half diameter) */
+/* Decent small checkmark (proportional to smaller circle) */
 .c-step-progress-circle--done::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   background-color: white;
   mask-image: url("data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='4'/%3e%3c/svg%3e");
   mask-size: contain;
@@ -204,30 +207,31 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
   color: #007bff !important;
 }
 
-/* Fraction-style 3/4 layout */
+/* Fraction-style 3/4 layout - tight */
 .c-step-progress-fraction {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1px;
+  gap: 0;
   font-size: 10px;
   line-height: 1;
 }
 
 .c-step-progress-fraction__num {
-  transform: translateY(-2px);
+  transform: translate(1px, -3px);
   font-weight: bold;
 }
 
 .c-step-progress-fraction__sep {
-  font-size: 14px;
-  opacity: 0.5;
-  transform: rotate(10deg);
+  font-size: 16px;
+  opacity: 0.3;
+  transform: scaleX(0.7) rotate(10deg);
+  margin: 0 -1px;
 }
 
 .c-step-progress-fraction__den {
-  transform: translateY(2px);
-  opacity: 0.8;
+  transform: translate(-1px, 3px);
+  opacity: 0.7;
 }
 
 .c-project-navigation__link {
