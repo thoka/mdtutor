@@ -1,11 +1,11 @@
 # MDTutor
 
-MDTutor is a professional, markdown-based learning platform for Makerspace environments. It is designed to be fully intranet-compatible and supports content from the Raspberry Pi Learning (RPL) ecosystem, including local forks and prioritized content layering.
+MDTutor is a markdown-based learning platform for Makerspace environments. It is designed to be fully intranet-compatible and supports content from the Raspberry Pi Learning (RPL) ecosystem, including local forks and prioritized content layering.
 
 ## Project Goal
 
 Build a robust, local learning environment with:
-- ✅ **Multi-Ecosystem Support**: Organized content via RPL and TAG ecosystems.
+- ✅ **Multi-Ecosystem Support**: Organized content as clones of different ecosystems.
 - ✅ **Content Layering**: Prioritized overlays (Official < Community < Local Forks).
 - ✅ **Global Identifiers (GIDs)**: Semantic tracking of progress across forks and languages.
 - ✅ **SSO Server**: Central identity management with secured **Kiosk Mode** (PIN & Super-Mode).
@@ -101,4 +101,6 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
 - [docs/brain/](docs/brain/) - Ongoing work and architectural decisions.
 
 ## License
-MIT
+
+AGPL-3.0-or-later
+

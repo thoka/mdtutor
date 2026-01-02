@@ -42,7 +42,7 @@
     "tutorials"
   ],
   "author": "",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "concurrently": "^9.1.0",
     "dotenv": "^17.2.3",
