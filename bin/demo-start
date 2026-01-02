@@ -88,6 +88,21 @@ fi
 # 3. Load environment and check for missing values
 source "$ENV_FILE"
 
+# 3.1 HTTPS Logic
+if [ "$HTTPS_ENABLED" = "true" ]; then
+    export HTTPS_REDIRECT="redirect-to-https@docker"
+    export WEB_PROTOCOL="https"
+    
+    # Check if we are using production ports
+    if [ "$TRAEFIK_PORT" = "13100" ] || [ "$TRAEFIK_HTTPS_PORT" = "13443" ]; then
+        echo -e "${YELLOW}Hinweis: HTTPS ist aktiviert, aber du nutzt noch die hohen Demo-Ports (13100/13443).${NC}"
+        echo -e "Für ein echtes Deployment im Netz solltest du in ${YELLOW}docker.env${NC} TRAEFIK_PORT=80 und TRAEFIK_HTTPS_PORT=443 setzen."
+    fi
+else
+    export HTTPS_REDIRECT=""
+    export WEB_PROTOCOL="http"
+fi
+
 MISSING=0
 if [ -z "$ACHIEVEMENTS_MASTER_KEY" ] || [ "$ACHIEVEMENTS_MASTER_KEY" == "KEY_FEHLT" ]; then
     echo -e "${RED}⚠ ACHIEVEMENTS_MASTER_KEY ist nicht gesetzt!${NC}"
@@ -106,17 +121,23 @@ fi
 # 4. Instruction for Local DNS
 echo -e "${GREEN}Prüfung abgeschlossen.${NC}"
 
-PORT_SUFFIX=""
-if [ -n "$TRAEFIK_PORT" ] && [ "$TRAEFIK_PORT" != "80" ]; then
-    PORT_SUFFIX=":$TRAEFIK_PORT"
-fi
-
 MAIN_DOMAIN="${DOMAIN:-$DEFAULT_DOMAIN}"
 SSO_DOMAIN="sso.${MAIN_DOMAIN}"
 
+PROTO="${WEB_PROTOCOL:-http}"
+PORT_VAL="$TRAEFIK_PORT"
+if [ "$PROTO" = "https" ]; then
+    PORT_VAL="$TRAEFIK_HTTPS_PORT"
+fi
+
+PORT_SUFFIX=""
+if [ -n "$PORT_VAL" ] && [ "$PORT_VAL" != "80" ] && [ "$PORT_VAL" != "443" ]; then
+    PORT_SUFFIX=":$PORT_VAL"
+fi
+
 echo -e "Die Demo wird unter folgenden Domains erreichbar sein:"
-echo -e " - http://${MAIN_DOMAIN}${PORT_SUFFIX}"
-echo -e " - http://${SSO_DOMAIN}${PORT_SUFFIX}"
+echo -e " - ${PROTO}://${MAIN_DOMAIN}${PORT_SUFFIX}"
+echo -e " - ${PROTO}://${SSO_DOMAIN}${PORT_SUFFIX}"
 echo ""
 
 # Active DNS Check
