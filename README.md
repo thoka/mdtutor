@@ -90,10 +90,35 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
 - **Undo Support**: Correct handling of `task_uncheck` with deterministic ordering.
 
 ## Testing
+
 - **Backend**: `RAILS_ENV=test bundle exec rspec` in `packages/*`
 - **Frontend**: `npm run test:unit` in `apps/web`
+- **End-to-End**:
+  - Dev Server: `npm run test:e2e` in `apps/web`
+  - Docker Demo:
+    ```bash
+    cd apps/web
+    BASE_URL=http://mdtutor.localhost:13100 \
+    ACHIEVEMENTS_URL=http://mdtutor.localhost:13100 \
+    SSO_URL=http://sso.mdtutor.localhost:13100 \
+    npx playwright test --config playwright.docker.config.ts
+    ```
 - **Parser**: `npm test` in `packages/parser`
 - **Compliance**: `node --test test/structure-compliance.test.js`
+
+## Deployment (Docker)
+
+MDTutor provides a production-ready Docker setup using Docker Compose and Traefik.
+
+### 1. Simple Demo Start
+Run the automated launcher to set up and start all services:
+```bash
+./bin/demo-start
+```
+The demo will be available at `http://mdtutor.localhost:13100`.
+
+### 2. HTTPS / Production
+For a public server, configure `docker.env` with your domain and enable Let's Encrypt. Detailed instructions can be found in [docs/deployment.md](docs/deployment.md).
 
 ## Documentation
 - [PROJECT_RULES.md](PROJECT_RULES.md) - **Mandatory Reading** for developers.

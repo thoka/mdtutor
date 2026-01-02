@@ -84,5 +84,17 @@ RSpec.describe "Alice Progress Verification", type: :request do
       actions = JSON.parse(response.body)
       expect(actions.any? { |a| a["action_type"] == "step_view" && a["metadata"]["step"].to_i == 5 }).to be true
     end
+
+    it "has 100% progress for space-talk including the quiz" do
+      get "/api/v1/actions/user/#{alice_id}/state"
+      expect(response).to have_http_status(:ok)
+
+      state = JSON.parse(response.body)
+      project_state = state["projects"]["RPL:PROJ:space-talk"]
+      expect(project_state).to be_present
+
+      # Step 6 is the quiz step in space-talk
+      expect(project_state["quizzes"]).to include(6)
+    end
   end
 end

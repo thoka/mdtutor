@@ -61,5 +61,34 @@ test.describe('Alice Achievement Scenario', () => {
     await expect(checkbox).toBeVisible({ timeout: 10000 });
     await expect(checkbox).toBeChecked();
   });
+
+  test('verifies space-talk is shown as completed for Alice in pathway view', async ({ page }) => {
+    // 1. Go to Scratch Intro pathway
+    await page.goto('/#/de-DE/pathways/RPL:scratch-intro');
+    
+    // 2. Locate the "Weltraumgespräch" project card
+    // Note: The text in the card is "Weltraumgespräch"
+    const projectCard = page.locator('.c-project-card').filter({ hasText: /Weltraumgespräch/i });
+    await expect(projectCard).toBeVisible({ timeout: 15000 });
+    
+    // 3. Verify it shows completion
+    // The button should say "Fertig :-)" for completed projects in de-DE
+    const actionBtn = projectCard.locator('.c-project-card__action-btn');
+    await expect(actionBtn).toContainText('Fertig :-)', { timeout: 10000 });
+    
+    // 4. Verify the badge is unlocked (not locked class)
+    const badgeContainer = projectCard.locator('.c-project-card__badge-container');
+    await expect(badgeContainer).toHaveClass(/is-unlocked/);
+    await expect(badgeContainer).not.toHaveClass(/is-locked/);
+    
+    // 5. Verify progress indicator shows all items completed
+    const stepsCount = projectCard.locator('.c-project-card__steps-count');
+    // For space-talk, we expect 2 / 2 (step 2, 5 have tasks, step 6 is quiz)
+    // Actually, let's just check it contains ' / ' and the numbers match
+    const text = await stepsCount.innerText();
+    const [completed, total] = text.split('/').map(s => s.trim());
+    expect(completed).toBe(total);
+    expect(parseInt(total)).toBeGreaterThan(0);
+  });
 });
 

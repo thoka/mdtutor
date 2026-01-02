@@ -131,4 +131,42 @@ describe('calculateProgress', () => {
     expect(progress.lastViewedStep).toBe(4);
     expect(progress.debug?.rawTasks['4_0']).toBe(true);
   });
+
+  it('calculates 100% for space-talk with quiz', () => {
+    const spaceTalk = {
+      id: 'RPL:PROJ:space-talk',
+      attributes: {
+        content: {
+          steps: [
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 0
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 1
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 2
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 3
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 4
+            { content: '<input class="c-project-task__checkbox" />', knowledgeQuiz: {} }, // 5
+            { content: '', knowledgeQuiz: 'quiz1' }, // 6
+            { content: 'No tasks here', knowledgeQuiz: {} }, // 7
+          ]
+        }
+      }
+    };
+
+    const userState = {
+      user_id: 'student_a',
+      projects: {
+        'RPL:PROJ:space-talk': {
+          tasks: { '0_0': true, '1_0': true, '2_0': true, '3_0': true, '4_0': true, '5_0': true },
+          quizzes: [6],
+          last_step: 7,
+          last_timestamp: '2026-01-01T10:00:00Z'
+        }
+      }
+    };
+
+    const progress = calculateProgress(spaceTalk, userState);
+    expect(progress.taskStepsCount).toBe(7);
+    expect(progress.completedSteps).toBe(7);
+    expect(progress.percent).toBe(100);
+    expect(progress.isCompleted).toBe(true);
+  });
 });

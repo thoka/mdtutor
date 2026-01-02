@@ -6,6 +6,8 @@ export interface ProjectProgress {
   stepInteractions: Record<number, {
     total: number;
     completed: number;
+    tasks: number;
+    quizzes: number;
   }>;
   lastStep: number;
   lastViewedStep: number;
@@ -53,11 +55,18 @@ export function calculateProgress(project: any, actionsOrState: any[] | UserStat
       const taskCount = (content.match(/class="c-project-task__checkbox"/g) || []).length;
       
       // Count quizzes
-      const quizCount = (content.match(/class="knowledge-quiz-question"/g) || []).length;
+      let quizCount = (content.match(/class="knowledge-quiz-question"/g) || []).length;
+      
+      // If quiz count is 0 but knowledgeQuiz is a non-empty string, count it as 1 quiz
+      if (quizCount === 0 && typeof stepData.knowledgeQuiz === 'string' && stepData.knowledgeQuiz.trim() !== '') {
+        quizCount = 1;
+      }
 
       stepInteractions[index] = {
         total: taskCount + quizCount,
-        completed: 0
+        completed: 0,
+        tasks: taskCount,
+        quizzes: quizCount
       };
     });
 
@@ -133,7 +142,11 @@ export function calculateProgress(project: any, actionsOrState: any[] | UserStat
         taskStepsCount++;
         const doneTasks = Array.from(taskStates.entries())
           .filter(([key, val]) => key.startsWith(`${idx}_`) && val === true).length;
-        const doneQuizzes = completedQuizzes.has(idx) ? 1 : 0;
+        
+        // If the step has any quizzes and we have a quiz_success for this step,
+        // count ALL quizzes in this step as completed (backend tracks per-step).
+        const doneQuizzes = (interactions.quizzes > 0 && completedQuizzes.has(idx)) ? interactions.quizzes : 0;
+        
         interactions.completed = Math.min(interactions.total, doneTasks + doneQuizzes);
         
         const stepScore = interactions.completed / interactions.total;
@@ -141,6 +154,8 @@ export function calculateProgress(project: any, actionsOrState: any[] | UserStat
         if (stepScore >= 1) fullStepsCount++;
         
         debug.calculationLog.push(`Step ${idx}: ${interactions.completed}/${interactions.total} items done (score: ${stepScore.toFixed(2)})`);
+      } else {
+        debug.calculationLog.push(`Step ${idx}: No tasks or quizzes (ignored)`);
       }
     });
     
@@ -150,6 +165,8 @@ export function calculateProgress(project: any, actionsOrState: any[] | UserStat
     } else if (hasAnyActions) {
       percent = 100;
     }
+
+    debug.calculationLog.push(`Final Calculation: totalScore=${totalScore}, taskStepsCount=${taskStepsCount}, percent=${percent}`);
 
     const lastStep = lastViewedStep;
 

@@ -42,6 +42,26 @@ space_talk_tasks = [1, 9, 6, 6, 8, 5, 0, 0]
       timestamp: Time.current - (10 - step).days + task_idx.seconds
     )
   end
+
+  # Special handling for Quiz in step 6
+  if step == 6
+    (0..2).each do |q_idx|
+      TrackActionService.call(
+        user_id: alice_id,
+        action: "quiz_attempt",
+        gid: space_talk_gid,
+        metadata: { step: step, question_index: q_idx, is_correct: true },
+        timestamp: Time.current - (10 - step).days + 1.minute + q_idx.seconds
+      )
+      TrackActionService.call(
+        user_id: alice_id,
+        action: "quiz_success",
+        gid: space_talk_gid,
+        metadata: { step: step, question_index: q_idx },
+        timestamp: Time.current - (10 - step).days + 1.minute + q_idx.seconds + 1.second
+      )
+    end
+  end
 end
 
 # 2. Erwische den Bus (catch-the-bus) - 66% progress with visible checkboxes

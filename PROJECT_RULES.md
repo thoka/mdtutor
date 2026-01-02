@@ -25,7 +25,10 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Development**: `npm run dev` runs all services. `npm run dev:test` runs them against the test databases.
 - **Seeds**: `npm run seed` initializes development data. `npm run seed:test` initializes test data (e.g., the complex Alice scenario).
 - **Testing**:
-  - **Backend**: Use `RAILS_ENV=test bundle exec rspec` in the package directory.
+  - **Workspace Context**: Always run tests from the respective package directory (e.g., `cd apps/web && ...`) to ensure correct configuration and path resolution.
+  - **Backend (RSpec)**: `RAILS_ENV=test bundle exec rspec` (usually in `packages/backend-ruby`).
+  - **Frontend Unit (Vitest)**: `npm run test:unit` in `apps/web`.
+  - **E2E Tests (Playwright)**: `npx playwright test` in `apps/web`. **Requires background services** running via `npm run dev:test`.
   - **Parser**: `npm test` in `packages/parser`.
 - **Linting**: `npm run lint` (ESLint 9).
 
@@ -68,6 +71,7 @@ Expert guidance for coding in the MDTutor monorepo. This file serves as the cent
 - **Routing**: The app uses hash-based routing (`svelte-spa-router`). Ensure links use the `#/` prefix or the `link` action.
 - **Seeding**: Use `npm run seed:test` to initialize the complex "Alice" scenario across both backends. This is essential for verifying progress logic.
 - **Verification**: Use the **Achievement Debug Overlay** (click the pathway progress bar in Dev/Admin mode) to inspect how project progress is being calculated. This saves time compared to manual log checking.
+- **E2E Testing**: Playwright tests run against the live application ports. You MUST run `npm run dev:test` in a separate terminal before starting E2E tests to ensure all services are available and connected to the test database.
 
 ## Key Files
 - [packages/parser/src/parse-tutorial.js](packages/parser/src/parse-tutorial.js): The `unified` pipeline configuration.
