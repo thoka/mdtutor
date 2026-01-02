@@ -11,12 +11,14 @@
     steps = [],
     currentStep = 0,
     slug = '',
-    onNavigate = (step: number) => {}
+    onNavigate = (step: number) => {},
+    stepInteractions = {}
   }: {
     steps: Step[];
     currentStep: number;
     slug: string;
     onNavigate: (step: number) => void;
+    stepInteractions?: Record<number, { total: number; completed: number; tasks: number; quizzes: number }>;
   } = $props();
   
   let completed = $state<Set<number>>(new Set());
@@ -71,14 +73,43 @@
             class:c-project-navigation__link--is-first={index === 0}
             class:c-project-navigation__link--is-current={step.position === currentStep}
             class:c-project-navigation__link--is-last={index === steps.length - 1}
-            class:c-project-navigation__link--is-done={completed.has(step.position)}
+            class:c-project-navigation__link--is-done={completed.has(step.position) || (stepInteractions[step.position] && stepInteractions[step.position].completed === stepInteractions[step.position].total && stepInteractions[step.position].total > 0)}
             href="#"
             onclick={(e) => { e.preventDefault(); handleStepClick(step.position); }}
           >
-            {step.title}
+            <span class="c-project-navigation__title">{step.title}</span>
+            
+            {#if stepInteractions[step.position] && stepInteractions[step.position].total > 0}
+              {@const interaction = stepInteractions[step.position]}
+              <div 
+                class="c-step-progress-circle"
+                class:c-step-progress-circle--done={interaction.completed === interaction.total}
+                class:c-step-progress-circle--in-progress={interaction.completed > 0 && interaction.completed < interaction.total}
+                class:c-step-progress-circle--quiz={interaction.quizzes > 0 && interaction.completed < interaction.total}
+              >
+                {#if interaction.completed === interaction.total}
+                  <span class="material-symbols-sharp">check</span>
+                {:else}
+                  {interaction.completed}/{interaction.total}
+                {/if}
+              </div>
+            {/if}
           </a>
         </li>
       {/each}
     </ul>
   </div>
 </menu>
+
+<style>
+  .c-project-navigation__link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .c-project-navigation__title {
+    flex: 1;
+  }
+</style>

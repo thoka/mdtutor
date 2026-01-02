@@ -3,7 +3,7 @@
   import { push } from 'svelte-spa-router';
   import Sidebar from '../lib/Sidebar.svelte';
   import StepContent from '../lib/StepContent.svelte';
-  import { trackAction } from '../lib/achievements';
+  import { trackAction, lastActionTimestamp } from '../lib/achievements';
   import { calculateProgress } from '../lib/progress';
   import { auth } from '../lib/auth';
   import { tutorial, loading, error, currentStep, completedSteps, completedProjects, currentLanguage, availableLanguages } from '../lib/stores';
@@ -20,6 +20,9 @@
   // Default to German (de-DE) to match API server default
   let lang = $state('de-DE');
   
+  let progress = $derived(tutorialData ? calculateProgress(tutorialData.data, userState || []) : null);
+  let stepInteractions = $derived(progress?.stepInteractions || {});
+  
   $effect(() => {
     slug = params.slug || 'silly-eyes';
     step = params.step ? parseInt(params.step) : 0;
@@ -34,6 +37,30 @@
     loadTutorial();
   });
   
+  async function refreshUserState() {
+    const token = localStorage.getItem('sso_token');
+    if (token && token.includes('.')) {
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const userId = payload.user_id;
+        if (userId) {
+          const stateRes = await fetch(`/api/v1/actions/user/${userId}/state`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+          });
+          if (stateRes.ok) {
+            userState = await stateRes.json();
+          }
+        }
+      } catch (e) { console.warn('Failed to refresh user state', e); }
+    }
+  }
+
+  $effect(() => {
+    if ($lastActionTimestamp) {
+      refreshUserState();
+    }
+  });
+
   async function loadTutorial() {
     isLoading = true;
     errorMsg = null;
@@ -45,39 +72,7 @@
       }
       tutorialData = await response.json();
       
-      // Load user state (aggregated achievements) if logged in
-      const token = localStorage.getItem('sso_token');
-      console.log('[TutorialView] Checking for token...', token ? 'Found' : 'Missing');
-      
-      if (token && token.includes('.')) {
-        try {
-          const payload = JSON.parse(atob(token.split('.')[1]));
-          const userId = payload.user_id;
-          console.log('[TutorialView] Token user_id:', userId);
-          
-          if (userId) {
-            const stateRes = await fetch(`/api/v1/actions/user/${userId}/state`, {
-              headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (stateRes.ok) {
-              userState = await stateRes.json();
-              console.log('[TutorialView] Loaded aggregated user state for', userId);
-              
-              // If no step index was provided in URL, jump to last viewed step
-              if (params.step === undefined && tutorialData && userState) {
-                const progress = calculateProgress(tutorialData, userState);
-                if (progress.lastStep > 0) {
-                  step = progress.lastStep;
-                  currentStep.set(step);
-                  push(`/${lang}/projects/${slug}/${step}`);
-                }
-              }
-            }
-          }
-        } catch (e) {
-          console.warn('Failed to fetch user state', e);
-        }
-      }
+      await refreshUserState();
 
       // Track project open
       trackAction('project_open', tutorialData.data.id, { slug, lang });
@@ -160,7 +155,8 @@
       <div class="no-print">
         <main class="c-project__layout u-clearfix" id="c-project__layout">
           <div class="c-project__container">
-            <Sidebar 
+            <Sidebar
+              {stepInteractions} 
               steps={tutorialData.data.attributes.content.steps}
               currentStep={step}
               {slug}
@@ -194,7 +190,7 @@
                         {@const prevStepData = tutorialData.data.attributes.content.steps[step - 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button c-project-step-navigation__link--previous" 
-                          href="/{lang}/projects/{slug}/{step - 1}"
+                          href="/${lang}/projects/${slug}/${step - 1}"
                           onclick={(e) => { e.preventDefault(); handlePrevious(); }}
                         >
                           <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true" aria-label="chevron_left">chevron_left</span>
@@ -206,7 +202,7 @@
                         {@const nextStepData = tutorialData.data.attributes.content.steps[step + 1]}
                         <a 
                           class="rpf-button rpf-button--primary rpf-button rpf-button--right c-project-step-navigation__link--next"
-                          href="/{lang}/projects/{slug}/{step + 1}"
+                          href="/${lang}/projects/${slug}/${step + 1}"
                           onclick={(e) => { e.preventDefault(); handleNext(); }}
                         >
                           <span class="text">{nextStepData.title}</span>

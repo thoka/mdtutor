@@ -1,5 +1,7 @@
 import { auth } from './auth';
-import { get } from 'svelte/store';
+import { get, writable } from 'svelte/store';
+
+export const lastActionTimestamp = writable(Date.now());
 
 export async function trackAction(actionType: string, gid?: string, metadata: Record<string, any> = {}) {
   const token = localStorage.getItem('sso_token');
@@ -21,7 +23,9 @@ export async function trackAction(actionType: string, gid?: string, metadata: Re
         metadata
       })
     });
-    if (!res.ok) {
+    if (res.ok) {
+      lastActionTimestamp.set(Date.now());
+    } else {
       console.error('Failed to track action', await res.text());
     }
   } catch (e) {

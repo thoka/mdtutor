@@ -193,3 +193,53 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 /* The button styles are already in computed.css for .knowledge-quiz input[type="button"] */
 /* We just need to ensure the button is inside a .knowledge-quiz container */
 /* The parser already generates the button inside .knowledge-quiz-question, so we need to add .knowledge-quiz class */
+
+/* Sidebar progress indicators */
+.c-step-progress-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  flex-shrink: 0;
+  border: 2px solid #ddd;
+  background: white;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.c-step-progress-circle--done {
+  background-color: #42B961 !important;
+  border-color: #42B961 !important;
+  color: transparent !important; /* Hide text if any */
+  background-image: url("data:image/svg+xml,%3csvg%20width='20'%20height='20'%20viewBox='0%200%2030%2030'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M7%2016L11.5%2020.5L22%2010'%20stroke='white'%20stroke-width='4'/%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+}
+
+.c-step-progress-circle--in-progress {
+  border-color: #000 !important;
+  color: #000 !important;
+}
+
+.c-step-progress-circle--quiz {
+  border-color: #007bff !important; /* Blue theme for quizzes */
+  color: #007bff !important;
+}
+
+/* Sidebar navigation link layout adjustment */
+.c-project-navigation__link {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding-right: 12px !important;
+}
+
+.c-project-navigation__title {
+  flex: 1;
+  text-align: left;
+}
