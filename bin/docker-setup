@@ -1,0 +1,44 @@
+#!/bin/bash
+set -e
+
+echo "=== MDTutor Docker Setup ==="
+
+# 0. Ensure node_modules exist
+if [ ! -d "node_modules" ]; then
+    echo "node_modules missing. Installing..."
+    npm install
+fi
+
+# 1. Check if content directory exists
+if [ ! -d "content/RPL/layers/official/projects" ] || [ -z "$(ls -A content/RPL/layers/official/projects)" ]; then
+    echo "Content missing. Fetching RPL test data..."
+    npm run test:data
+else
+    echo "RPL content already exists."
+fi
+
+# 2. Check for additional overlays from environment variable
+# Format: OVERLAYS="ecosystem:layer:git_url,ecosystem2:layer2:git_url2"
+if [ -n "$ADDITIONAL_OVERLAYS" ]; then
+    IFS=',' read -ra ADDR <<< "$ADDITIONAL_OVERLAYS"
+    for i in "${ADDR[@]}"; do
+        IFS=':' read -ra PARTS <<< "$i"
+        ECOSYSTEM="${PARTS[0]}"
+        LAYER="${PARTS[1]}"
+        GIT_URL="${PARTS[2]}"
+        
+        TARGET_DIR="content/$ECOSYSTEM/layers/$LAYER"
+        echo "Processing overlay: $ECOSYSTEM:$LAYER from $GIT_URL..."
+        
+        if [ ! -d "$TARGET_DIR" ]; then
+            mkdir -p "$TARGET_DIR"
+            git clone --depth 1 "$GIT_URL" "$TARGET_DIR"
+            echo "  ✓ Cloned to $TARGET_DIR"
+        else
+            echo "  → $TARGET_DIR already exists, skipping clone"
+        fi
+    done
+fi
+
+echo "=== Setup Complete ==="
+
