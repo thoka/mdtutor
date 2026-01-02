@@ -11,12 +11,13 @@ services:
   traefik:
     image: traefik:v3.1
     user: root # Ensure access to docker.sock
+    environment:
+      - DOCKER_API_VERSION=1.47 # Match the client API version
     command:
-      - "--log.level=DEBUG" # See more details
+      - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
       - "--entrypoints.web.address=:80"
     ports:
       - "${TRAEFIK_PORT:-13100}:80"
