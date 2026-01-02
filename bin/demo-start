@@ -48,7 +48,7 @@ fi
 
 DEFAULT_DOMAIN="mdtutor.test"
 if [ $IS_WSL -eq 1 ]; then
-    DEFAULT_DOMAIN="mdtutor.docker.local"
+    DEFAULT_DOMAIN="mdtutor.localhost"
 fi
 
 # 2. Check if docker.env exists
