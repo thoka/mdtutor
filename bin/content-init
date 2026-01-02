@@ -22,8 +22,34 @@ if [ -d "content/RPL" ]; then
 fi
 
 mkdir -p content/RPL/layers/official/projects
+mkdir -p content/RPL/layers/official/pathways
+mkdir -p content/RPL/config
 mkdir -p content/TAG/layers/official/projects
 mkdir -p test/snapshots
+
+# 2. Ensure sync.yaml exists (if it was deleted)
+if [ ! -f "content/RPL/config/sync.yaml" ]; then
+    echo "Stelle Standard sync.yaml für RPL wieder her..."
+    mkdir -p content/RPL/config
+    cat > content/RPL/config/sync.yaml <<EOF
+layers:
+  tag:
+    priority: 100
+    git_base: "https://github.com/tag-makerspace"
+  official:
+    priority: 10
+    git_base: "https://github.com/raspberrypilearning"
+    api_base: "https://learning-admin.raspberrypi.org/api/v1"
+
+sync:
+  pathways:
+    official:
+      - scratch-intro
+      - more-scratch
+      - further-scratch
+      - physical-computing-with-scratch-and-the-raspberry-pi
+EOF
+fi
 
 # 2. Fetch RPL data
 echo "Lade RPL Referenz-Daten..."
