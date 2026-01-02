@@ -1,204 +1,104 @@
 # MDTutor
 
-Markdown-based learning platform for Makerspace tutorials, compatible with Raspberry Pi Learning content.
+MDTutor is a professional, markdown-based learning platform for Makerspace environments. It is designed to be fully intranet-compatible and supports content from the Raspberry Pi Learning (RPL) ecosystem, including local forks and prioritized content layering.
 
 ## Project Goal
 
-Build a local, intranet-compatible learning environment with:
-- ✅ Tutorial content (from GitHub repositories)
-- ✅ Markdown → JSON parser (unified.js pipeline)
-- ✅ API server (Express)
-- ✅ Web renderer (Svelte 5 + Vite)
-- ✅ Tutorial Library (Home View)
-- ✅ RPL Design System & Scratch 3.0 Styling
-- 🚧 Achievements & Badges
-- 🚧 Learning Paths
-- 🚧 Help Desk system
+Build a robust, local learning environment with:
+- ✅ **Multi-Ecosystem Support**: Organized content via RPL and TAG ecosystems.
+- ✅ **Content Layering**: Prioritized overlays (Official < Community < Local Forks).
+- ✅ **Global Identifiers (GIDs)**: Semantic tracking of progress across forks and languages.
+- ✅ **SSO Server**: Central identity management with secured **Kiosk Mode** (PIN & Super-Mode).
+- ✅ **Achievement System**: Event-sourced tracking with deterministic state aggregation.
+- ✅ **Device Sync**: Automatic state synchronization (the "Alice Case") across devices.
+- ✅ **RPL Design System**: Authentic styling and Scratch 3.0 visual block rendering.
+- 🚧 **Help Desk**: Integrated support and skill-matching (in development).
 
-## Requirements
+## Architecture & Data Flow
 
-- Node.js >= 18 (for native fetch API)
-- Git
+MDTutor uses a polyglot monorepo (Node.js & Ruby on Rails) with a focus on loose coupling and semantic identity:
 
-## Project Structure
+- **Apps**:
+  - `apps/web`: Svelte 5 + Runes frontend. Authentic RPL-compatible rendering.
+- **Packages**:
+  - `packages/api-server`: Content resolution & delivery. Resolves GIDs through prioritized layers.
+  - `packages/parser`: `unified.js` pipeline (remark/rehype) for semantic JSON extraction.
+  - `packages/backend-ruby`: Achievements and Action-Log (Rails). Tracks user progress.
+  - `packages/sso-server`: Central Identity and Makerspace Dashboard (Rails).
 
-```
-mdtutor/
-├── packages/              # Modular components (monorepo)
-│   ├── parser/           # Markdown → JSON parser
-│   ├── api-server/       # Express API server (content delivery)
-│   ├── backend-ruby/     # Achievements & Action-Log (Rails)
-│   └── sso-server/       # Central Identity & Makerspace Dashboard (Rails)
-├── apps/                 # Applications
-│   └── web/             # Svelte 5 + Vite frontend
-├── db/                   # Centralized SQLite storage
-│   ├── achievements/     # Production & Test databases for achievements
-│   └── sso/              # Production & Test databases for SSO/Presence
-├── docs/                # Documentation
-│   ├── brain/           # Implementation plans and walkthroughs
-│   ├── SPEC.md          # Main specification
-│   └── ...
-├── bin/                  # Root-level utility scripts (e.g., ./bin/seed)
-└── package.json         # Workspace root
-```
+### Key Concepts
+
+- **Ecosystems**: Groups of content sharing a technical standard (e.g., `content/RPL`).
+- **Layers**: Content overlays (e.g., `official`, `tag-makerspace`). Priority defined in `config/sync.yaml`.
+- **GIDs**: `ECOSYSTEM:TYPE:SLUG` (e.g., `RPL:PROJ:silly-eyes`) ensure progress is tracked even if content is forked.
 
 ## Getting Started
 
-### 1. Install Dependencies
+### 1. Requirements
+- Node.js >= 18
+- Ruby >= 3.2 (with Bundler)
+- SQLite3
+
+### 2. Installation & Content Sync
+MDTutor uses a powerful sync tool to fetch reference tutorials and initialize the structure.
 
 ```bash
 npm install
-```
-
-### 2. Setup Data & Databases
-
-```bash
-npm run test:data    # Fetch reference tutorials
-npm run seed         # Initialize development databases with test users
+npm run init         # Fetches RPL pathways and clones repositories
+npm run seed         # Initializes development databases (Users, Achievements)
 ```
 
 ### 3. Development
-
-The project uses a multi-service architecture. You can run all services concurrently:
+Run all services concurrently in development mode:
 
 ```bash
-npm run dev          # Standard development mode
+npm run dev          # Standard development (Port 5201, 3101, 3102, 3103)
 npm run dev:test     # Test mode using separate 'test' databases
 ```
 
-**Services:**
+**Access points:**
 - **Web App**: `http://localhost:5201`
 - **Content API**: `http://localhost:3101`
 - **Achievements**: `http://localhost:3102`
 - **SSO Server**: `http://localhost:3103`
 
-### 4. Deployment
-
-For automated deployment using Docker and Traefik, see the [Deployment Guide](docs/deployment.md).
-
-### 5. Testing
-
-```bash
-# Backend Tests (RSpec)
-cd packages/backend-ruby && RAILS_ENV=test bundle exec rspec
-cd packages/sso-server && RAILS_ENV=test bundle exec rspec
-
-# Parser Tests
-cd packages/parser && npm test
-```
-
-## Spec-First Workflow
-
-This project follows a strict **Spec-First** approach:
-1. **API First**: No frontend implementation begins until the API is specified and verified by backend tests.
-2. **TDD**: Always write tests (RSpec) before implementing features.
-3. **Data Strategy**: Use `factory_bot` for specs and maintain `db/seeds.rb` for development scenarios (e.g., the "Alice" case).
-
-## Available Scripts
-
-From the root directory:
-
-- `npm run test` - Run tests
-- `npm run test:data` - Fetch test data from Raspberry Pi Learning
-- `npm run api` - Start API server (port from .env: API_PORT or PORT)
-- `npm run web` - Start web dev server (port from .env: WEB_PORT or PORT)
-- `npm run dev` - Run both API and web servers concurrently
-- `npm run dev:bg` - Run both servers in background (uses .env for ports)
-- `npm run lint` - Lint all files
-- `npm run lint:fix` - Auto-fix linting issues
-
-### Development Tools
-
-- `npm run compare:structure` - Compare HTML structure with reference site
-- `npm run extract:css` - Extract CSS from reference site
-- `npm run extract:structure` - Extract HTML structure from a URL
-- `npm run save:html` - Save rendered HTML to file for inspection
-
-## Architecture Principles
-
-- **Loosely Coupled**: Independent, reusable modules
-- **CLI + Library**: Each component usable standalone or as import
-- **Test-First**: TDD approach with comprehensive test coverage
-- **Git Workflow**: Feature branches, atomic commits, merge to main
-
-## Features
-
-### Parser
-- Unified.js pipeline for Markdown processing
-- Transclusion support for nested content
-- Code block processing (Scratch, Python, etc.)
-- Task and ingredient panel extraction
-- Language class propagation from `<code>` to `<pre>` tags
-- Link attribute parsing with improved validation (prevents false matches on long alt text)
-- Knowledge quiz parsing from separate quiz directories
-  - Interactive quiz rendering with radio buttons and feedback
-  - Full Markdown parsing for question text, choice text, and feedback
-  - Support for `{:class="..."}` attributes on inline code (Scratch block styling)
-  - Exact API structure matching (form containers, 1-based IDs/values)
-  - Progressive disclosure: Only first unanswered question shown initially
-  - No pre-selected answers (better UX than original API)
-  - Correct answer: Shows green checkmark, disables inputs, reveals next question
-  - Incorrect answer: Shows red X, allows retry, hides feedback on selection change
-  - State persistence via className manipulation across Svelte re-renders
-  - "Check my answer" button functionality
-  - Comprehensive test suite (46+ tests) including API comparison tests
-
-### API Server
-- Express server serving cached tutorial data
-- CORS enabled for development
-- Reads from test/snapshots directory
-- Converts relative image URLs to absolute paths for Vite static file serving
-- Does not serve static files (images) - handled by Vite dev server or nginx/caddy in production
-
-### Web Renderer
-- Svelte 5 with runes mode
-- Hash-based routing (/:slug/:step)
-- Interactive task checkboxes with LocalStorage persistence
-- Collapsible ingredient panels with toggle icons
-- Progress tracking across steps
-- RPL-compatible CSS styling (cloned from reference site)
-- Scratch code block rendering via `scratchblocks` library
-  - Renders `<pre class="language-blocks3">` as visual Scratch blocks (SVG)
-  - Preserves whitespace and formatting
-  - Supports Scratch 3.0 style
-- Syntax highlighting for code blocks (Prism.js)
-- Material Symbols icons for navigation
-- Static file serving: Images served via Vite dev server from `public/snapshots` symlink
-  - Development: Vite serves files from `public/snapshots` → `test/snapshots`
-  - Production: nginx/caddy serves files directly from `public/snapshots`
-  - Image URLs: `/snapshots/:slug/repo/:lang/images/...`
-
-## Documentation
-
-- [Main Specification](docs/SPEC.md)
-- [Renderer Specification](docs/renderer-spec.md)
-- [Panel Functionality](docs/panel-functionality.md)
-- [Scratch Code Blocks](docs/scratch-code-blocks.md)
-- [Test Data Collection](docs/test-data-collection.md)
-- [RPL Markdown Extensions](docs/RPL%20-%20Markdown%20Extensions.md)
-
 ## Development Workflow
 
-1. Create feature branch: `git checkout -b feature/name`
-2. Implement with tests
-3. Commit after each iteration
-4. Merge to main when complete
+MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI agents and developers must adhere to the rules in [PROJECT_RULES.md](PROJECT_RULES.md).
+
+1. **Feature Branch**: Always work in `feature/name`.
+2. **Implementation Plan**: Commit a plan to `docs/brain/YYYY-MM-DD-feature.md` before coding.
+3. **API-First**: Spec the API and implement backend tests (RSpec) before frontend work.
+4. **TDD**: Write tests before implementation.
+5. **Alice Case**: Always verify progress logic against the complex "Alice" scenario (`npm run seed:test`).
+
+## Core Features
+
+### Content Engine
+- **Unified.js Pipeline**: Markdown → JSON with transclusion and semantic enrichment.
+- **Scratch Blocks**: Visual rendering of Scratch 3.0 code blocks via SVG.
+- **Interactive Quizzes**: Progressive disclosure and state persistence.
+
+### User System (SSO)
+- **Kiosk Mode**: PIN-protected kachels for users.
+- **Super-Mode**: Admin login disables PIN requirements for easy switching during workshops.
+- **JWT Authentication**: Secure session handling across all microservices.
+
+### Progress & Achievements
+- **Event-Sourced Actions**: `task_check`, `step_view`, `scratch_start`, etc.
+- **Aggregated State**: Efficient backend-side progress calculation.
+- **Undo Support**: Correct handling of `task_uncheck` with deterministic ordering.
+
+## Testing
+- **Backend**: `RAILS_ENV=test bundle exec rspec` in `packages/*`
+- **Frontend**: `npm run test:unit` in `apps/web`
+- **Parser**: `npm test` in `packages/parser`
+- **Compliance**: `node --test test/structure-compliance.test.js`
+
+## Documentation
+- [PROJECT_RULES.md](PROJECT_RULES.md) - **Mandatory Reading** for developers.
+- [docs/SPEC.md](docs/SPEC.md) - Main project specification.
+- [docs/brain/](docs/brain/) - Ongoing work and architectural decisions.
 
 ## License
-
 MIT
-
-## Status
-
-✅ **Parser** - Complete with transclusion support and code block processing  
-✅ **API Server** - Serving cached tutorial data  
-✅ **Renderer** - Interactive tutorial viewer with progress tracking  
-✅ **Library View** - Overview of all available tutorials with card-based layout  
-✅ **Design System** - RPL-compatible styling cloned from reference site  
-✅ **Scratch Blocks** - Visual rendering of Scratch code blocks via scratchblocks library  
-✅ **Syntax Highlighting** - Code block syntax highlighting with Prism.js  
-✅ **Navigation** - Previous/Next buttons with step titles and icons  
-✅ **Collapsible Panels** - Interactive panels with toggle icons (+/-)  
-🚧 **Backend Integration** - Planned  
-🚧 **User Management** - Planned  
-🚧 **Achievements** - Planned
