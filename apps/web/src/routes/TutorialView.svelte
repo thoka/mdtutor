@@ -5,6 +5,7 @@
   import StepContent from '../lib/StepContent.svelte';
   import { trackAction } from '../lib/achievements';
   import { calculateProgress } from '../lib/progress';
+  import { auth } from '../lib/auth';
   import { tutorial, loading, error, currentStep, completedSteps, completedProjects, currentLanguage, availableLanguages } from '../lib/stores';
   import { t } from '../lib/i18n';
   
@@ -25,6 +26,10 @@
     lang = params.lang || 'de-DE';
     currentStep.set(step);
     currentLanguage.set(lang);
+    
+    // We also want to re-load if the user logs in/out
+    const user = $auth;
+    
     // Reload tutorial when slug, step or lang changes
     loadTutorial();
   });
@@ -42,17 +47,21 @@
       
       // Load user state (aggregated achievements) if logged in
       const token = localStorage.getItem('sso_token');
+      console.log('[TutorialView] Checking for token...', token ? 'Found' : 'Missing');
+      
       if (token && token.includes('.')) {
         try {
           const payload = JSON.parse(atob(token.split('.')[1]));
           const userId = payload.user_id;
+          console.log('[TutorialView] Token user_id:', userId);
+          
           if (userId) {
             const stateRes = await fetch(`/api/v1/actions/user/${userId}/state`, {
               headers: { 'Authorization': `Bearer ${token}` }
             });
             if (stateRes.ok) {
               userState = await stateRes.json();
-              console.log('[TutorialView] Loaded aggregated user state');
+              console.log('[TutorialView] Loaded aggregated user state for', userId);
               
               // If no step index was provided in URL, jump to last viewed step
               if (params.step === undefined && tutorialData && userState) {
