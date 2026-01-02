@@ -246,3 +246,22 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
   flex: 1;
   text-align: left;
 }
+
+/* Sticky task checkboxes */
+.c-project-task {
+  overflow: visible !important; /* Ensure position: sticky works */
+}
+
+.c-project-task__checkbox {
+  position: sticky !important;
+  top: 20px;
+  align-self: flex-start;
+  z-index: 5;
+}
+
+/* Fix position: sticky for task checkboxes by allowing overflow on ancestors */
+.c-project-steps,
+.c-project-steps__wrapper,
+.c-project-steps__content {
+  overflow: visible !important;
+}
