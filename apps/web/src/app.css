@@ -315,14 +315,65 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 }
 
 @media (width < 48rem) {
+  /* Compact and seamless project header for narrow screens */
   .c-project-header {
-    padding: var(--space-3) !important;
-    flex-direction: column !important;
+    padding: 0 0 0 var(--space-4, 1rem) !important;
+    flex-direction: row !important; /* Keep it side-by-side */
+    min-height: 60px !important;
+    border-radius: 0 !important;
   }
+  
+  .c-project-header__text {
+    padding: var(--space-2) !important;
+  }
+  
+  .c-project-header__title {
+    font-size: 1.1rem !important;
+  }
+
   .c-project-header__image {
-    max-width: 100% !important;
+    max-width: 6rem !important; /* Much smaller */
+    min-height: 60px !important;
+    border-radius: 0 !important;
+    aspect-ratio: auto !important;
+  }
+
+  /* Content area narrow view refinements */
+  .c-project__content {
+    padding: 0 !important;
+  }
+
+  .c-project-steps {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+  }
+
+  .c-project-steps__wrapper {
+    padding: var(--space-3) var(--space-2) !important;
+  }
+
+  /* Task narrow view refinements - no space waste */
+  .c-project-task {
+    margin: 0 0 1px 0 !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: none !important;
+    border-bottom: 1px solid rgb(188, 237, 195) !important;
+    padding: 0 !important;
     width: 100% !important;
-    aspect-ratio: 16/9 !important;
-    border-radius: var(--space-2) !important;
+  }
+
+  .c-project-task__body {
+    padding: var(--space-2) !important;
+    font-size: 0.9rem !important;
+  }
+
+  .c-project-task__checkbox {
+    margin: var(--space-2) !important;
+    width: 32px !important;
+    height: 32px !important;
+    flex: 0 0 32px !important;
   }
 }
