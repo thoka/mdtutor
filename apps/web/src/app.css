@@ -159,8 +159,8 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 
 /* Sidebar progress indicators */
 .c-step-progress-circle {
-  width: 32px;
-  height: 32px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -178,7 +178,7 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
   height: 22px !important;
   background-color: #42B961 !important;
   border-color: #42B961 !important;
-  margin-right: 5px; /* Adjust margin to keep visual balance with larger circles */
+  margin-right: 8px; /* Adjust margin to keep visual balance with larger circles */
 }
 
 /* Decent small checkmark (proportional to smaller circle) */
@@ -213,7 +213,7 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
   align-items: center;
   justify-content: center;
   gap: 0;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1;
 }
 
