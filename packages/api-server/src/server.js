@@ -29,7 +29,14 @@ const SNAPSHOTS_DIR = join(__dirname, '../../../test/snapshots');
 
 // Initialize ecosystems
 let ecosystems = loadContentConfig(CONTENT_DIR);
-// Trigger restart
+
+function ensureEcosystems() {
+  if (Object.keys(ecosystems).length === 0) {
+    console.log('No ecosystems loaded. Re-scanning content directory...');
+    ecosystems = loadContentConfig(CONTENT_DIR);
+  }
+  return ecosystems;
+}
 
 /**
  * Resolve a local image path by checking multiple possible locations
@@ -82,7 +89,8 @@ function resolvePathwayAsset(ecosystem, currentLayer, assetPath) {
  * Helper to find project data with language fallback
  */
 async function getProjectData(namespacedSlug, requestedLang) {
-  const resolved = resolveProjectLayer(ecosystems, namespacedSlug);
+  const currentEcosystems = ensureEcosystems();
+  const resolved = resolveProjectLayer(currentEcosystems, namespacedSlug);
   if (!resolved) return null;
 
   const { path: projectPath, ecosystem, layer, slug, namespace } = resolved;
@@ -227,15 +235,16 @@ app.get('/api/projects/:slug', async (req, res) => {
 
 app.get('/api/projects', async (req, res) => {
   try {
+    const currentEcosystems = ensureEcosystems();
     const lang = req.query.lang || 'de-DE';
     const allProjects = [];
     const allLanguages = new Set(['de-DE', 'en']);
 
     // 1. Find all projects referenced in any pathway
     const pathwayProjects = new Set();
-    console.log(`Searching pathways in ${Object.keys(ecosystems).length} ecosystems...`);
+    console.log(`Searching pathways in ${Object.keys(currentEcosystems).length} ecosystems...`);
     
-    for (const ecosystem of Object.values(ecosystems)) {
+    for (const ecosystem of Object.values(currentEcosystems)) {
       for (const layer of ecosystem.layers) {
         const pathwaysDir = join(layer.path, 'pathways');
         if (existsSync(pathwaysDir)) {
@@ -288,12 +297,13 @@ app.get('/api/projects', async (req, res) => {
 
 app.get('/api/pathways', async (req, res) => {
   try {
+    const currentEcosystems = ensureEcosystems();
     const lang = req.query.lang || 'de-DE';
     const requestedLang = lang === 'de' ? 'de-DE' : lang;
     const allPathways = [];
     const seenSlugs = new Set();
 
-    for (const ecosystem of Object.values(ecosystems)) {
+    for (const ecosystem of Object.values(currentEcosystems)) {
       // Load sync.yaml to get the ordered list of pathways
       const syncFile = join(ecosystem.path, 'config', 'sync.yaml');
       if (!existsSync(syncFile)) continue;
@@ -348,8 +358,9 @@ app.get('/api/pathways', async (req, res) => {
 });
 
 app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
+  const currentEcosystems = ensureEcosystems();
   const requestedLang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
-  const resolved = resolvePathwayLayer(ecosystems, req.params.pathwayId);
+  const resolved = resolvePathwayLayer(currentEcosystems, req.params.pathwayId);
   if (!resolved) return res.status(404).json({ error: 'Pathway not found' });
 
   try {
@@ -427,8 +438,9 @@ app.get('/api/v1/:lang/pathways/:pathwayId', async (req, res) => {
 });
 
 app.get('/api/v1/:lang/pathways/:pathwayId/projects', async (req, res) => {
+  const currentEcosystems = ensureEcosystems();
   const requestedLang = req.params.lang === 'de' ? 'de-DE' : req.params.lang;
-  const resolved = resolvePathwayLayer(ecosystems, req.params.pathwayId);
+  const resolved = resolvePathwayLayer(currentEcosystems, req.params.pathwayId);
   if (!resolved) return res.status(404).json({ error: 'Pathway not found' });
 
   try {

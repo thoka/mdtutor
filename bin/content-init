@@ -16,13 +16,26 @@ if [ -d "content/RPL" ]; then
         echo "Abgebrochen."
         exit 0
     fi
-    echo "Lösche alten Content..."
-    rm -rf content/RPL content/TAG test/snapshots/*
+    # Preserve ecosystem.yaml if it exists
+    echo "Lösche alten Content (bewahre ecosystem.yaml)..."
+    find content/RPL -mindepth 1 ! -name 'ecosystem.yaml' -exec rm -rf {} + 2>/dev/null || true
+    rm -rf content/TAG test/snapshots/*
 fi
 
 # 2. Create basic structure for config
 mkdir -p content/RPL/config
 mkdir -p test/snapshots
+
+# 2.1 Ensure ecosystem.yaml exists
+if [ ! -f "content/RPL/ecosystem.yaml" ]; then
+    echo "Stelle Standard ecosystem.yaml für RPL wieder her..."
+    cat > content/RPL/ecosystem.yaml <<EOF
+name: Raspberry Pi Learning
+namespace: RPL
+parser_type: rpl-markdown
+semantic_prefix: RPL
+EOF
+fi
 
 # 3. Ensure default sync.yaml exists
 if [ ! -f "content/RPL/config/sync.yaml" ]; then

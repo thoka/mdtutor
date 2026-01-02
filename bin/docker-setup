@@ -10,6 +10,16 @@ if [ ! -d "node_modules" ]; then
 fi
 
 # 1. Check if content directory exists
+if [ ! -f "content/RPL/ecosystem.yaml" ]; then
+    echo "ecosystem.yaml missing. Creating default..."
+    cat > content/RPL/ecosystem.yaml <<EOF
+name: Raspberry Pi Learning
+namespace: RPL
+parser_type: rpl-markdown
+semantic_prefix: RPL
+EOF
+fi
+
 if [ ! -d "content/RPL/layers/official/projects" ] || [ -z "$(ls -A content/RPL/layers/official/projects)" ]; then
     echo "Content missing or incomplete. Fetching RPL test data..."
     npm run sync:pathways
