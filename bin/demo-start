@@ -12,7 +12,35 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}=== MDTutor Demo Launcher ===${NC}\n"
 
-# 0. Detect Environment
+# 0. Check for Updates
+if [ -d .git ]; then
+    echo -e "Prüfe auf Updates von Upstream..."
+    # Suppress output to keep it clean
+    git fetch origin >/dev/null 2>&1 || echo -e "${YELLOW}Hinweis: Konnte nicht von Upstream abrufen (kein Internet?)${NC}"
+    
+    LOCAL_COMMIT=$(git rev-parse HEAD)
+    # Check if there's an upstream branch tracked
+    UPSTREAM_BRANCH=$(git rev-parse --abbrev-ref --symbolic-full-name @{u} 2>/dev/null || echo "")
+    
+    if [ -z "$UPSTREAM_BRANCH" ]; then
+         echo -e "${YELLOW}Hinweis: Kein Upstream-Branch zum Tracken gefunden.${NC}"
+    else
+        REMOTE_COMMIT=$(git rev-parse "$UPSTREAM_BRANCH")
+        if [ "$LOCAL_COMMIT" != "$REMOTE_COMMIT" ]; then
+            echo -e "${YELLOW}Updates gefunden. Ziehe Änderungen...${NC}"
+            if git pull; then
+                echo -e "${GREEN}Projekt aktualisiert. Starte Skript neu...${NC}"
+                exec "$0" "$@"
+            else
+                echo -e "${RED}Fehler beim Aktualisieren. Bitte manuell prüfen.${NC}"
+            fi
+        else
+            echo -e "${GREEN}Projekt ist auf dem neuesten Stand.${NC}"
+        fi
+    fi
+fi
+
+# 1. Detect Environment
 IS_WSL=0
 if grep -qi microsoft /proc/version 2>/dev/null; then
     IS_WSL=1
@@ -23,7 +51,7 @@ if [ $IS_WSL -eq 1 ]; then
     DEFAULT_DOMAIN="mdtutor.docker.local"
 fi
 
-# 1. Check if docker.env exists
+# 2. Check if docker.env exists
 if [ ! -f "$ENV_FILE" ]; then
     echo -e "${YELLOW}Hinweis: $ENV_FILE wurde nicht gefunden.${NC}"
     if [ $IS_WSL -eq 1 ]; then
@@ -57,7 +85,7 @@ if [ ! -f "$ENV_FILE" ]; then
     fi
 fi
 
-# 2. Load environment and check for missing values
+# 3. Load environment and check for missing values
 source "$ENV_FILE"
 
 MISSING=0
@@ -75,7 +103,7 @@ if [ $MISSING -eq 1 ]; then
     exit 1
 fi
 
-# 3. Instruction for Local DNS
+# 4. Instruction for Local DNS
 echo -e "${GREEN}Prüfung abgeschlossen.${NC}"
 
 PORT_SUFFIX=""
@@ -137,13 +165,13 @@ if [ $DNS_OK -eq 0 ]; then
     fi
 fi
 
-# 4. Check for Docker
+# 5. Check for Docker
 if ! docker info >/dev/null 2>&1; then
     echo -e "${RED}Fehler: Docker scheint nicht zu laufen oder du hast keine Berechtigung.${NC}"
     exit 1
 fi
 
-# 5. Run Docker Compose
+# 6. Run Docker Compose
 echo -e "${GREEN}Starte Docker-Container...${NC}"
 COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
 
