@@ -9,6 +9,10 @@ ENV VITE_SSO_URL=$VITE_SSO_URL
 ARG VITE_COMMIT_HASH
 ENV VITE_COMMIT_HASH=$VITE_COMMIT_HASH
 
+# Dummy ports for the build process (only needed to satisfy vite.config.ts)
+ENV WEB_PORT=80
+ENV API_PORT=3101
+
 # Copy root package files
 COPY package.json package-lock.json ./
 
