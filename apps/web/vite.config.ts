@@ -70,7 +70,7 @@ export default defineConfig(({ mode }) => {
     envDir: '../../',
     define: {
       'import.meta.env.VITE_COMMIT_HASH': JSON.stringify(commitHash),
-      'import.meta.env.VITE_SSO_URL': JSON.stringify(ssoPort ? `http://localhost:${ssoPort}` : '')
+      'import.meta.env.VITE_SSO_URL': JSON.stringify(env.VITE_SSO_URL || (ssoPort ? `http://localhost:${ssoPort}` : ''))
     },
     server: {
       port: parseInt(webPort, 10),

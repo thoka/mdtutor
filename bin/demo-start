@@ -92,6 +92,7 @@ source "$ENV_FILE"
 if [ "$HTTPS_ENABLED" = "true" ]; then
     export HTTPS_REDIRECT="redirect-to-https@docker"
     export WEB_PROTOCOL="https"
+    export TRAEFIK_PORT_SUFFIX="" # Usually 443, handled by browser
     
     # Check if we are using production ports
     if [ "$TRAEFIK_PORT" = "13100" ] || [ "$TRAEFIK_HTTPS_PORT" = "13443" ]; then
@@ -101,6 +102,11 @@ if [ "$HTTPS_ENABLED" = "true" ]; then
 else
     export HTTPS_REDIRECT=""
     export WEB_PROTOCOL="http"
+    if [ -n "$TRAEFIK_PORT" ] && [ "$TRAEFIK_PORT" != "80" ]; then
+        export TRAEFIK_PORT_SUFFIX=":$TRAEFIK_PORT"
+    else
+        export TRAEFIK_PORT_SUFFIX=""
+    fi
 fi
 
 MISSING=0
