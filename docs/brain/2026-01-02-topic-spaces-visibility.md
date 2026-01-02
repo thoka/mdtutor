@@ -1,80 +1,29 @@
 # Specification: Topic Spaces & Visibility Logic (RPL Parity)
 
-**Status:** 📝 Draft  
-**Date:** 2026-01-02
+## Phase 1: Tests First
 
-## Overview
+### Playwright E2E Tests (`apps/web/tests/topic-spaces.spec.ts`)
+- **Initial Load**: Verify that "Themenräume" section exists and shows both "Technologien" and "Interessen".
+- **Filter by Technology**: Clicking "Scratch" tile should filter the list to only show Scratch-related pathways.
+- **Filter by Interest**: Clicking "Space" tag should filter the list to only show pathways with the space interest label.
+- **Reset Filter**: Clicking "Alle" should show all pathways again.
+- **Navigation**: Clicking a pathway card should navigate to the correct `#/de-DE/pathways/...` URL.
 
-Introduce "Topic Spaces" (Themenräume) as a high-level categorization for learning content, following the taxonomy of the official Raspberry Pi Learning (RPL) platform. Visibility and access are controlled by user group membership and earned achievements.
+### Vitest Unit Tests (`apps/web/src/routes/HomeView.test.ts`)
+- Test the `$derived` filter logic to ensure `filteredPathways` correctly reacts to `selectedTopic` changes.
+- Verify that the data fetching from `/api/v1/:lang/topics` and `/api/v1/:lang/pathways` is handled correctly.
 
-## 1. Taxonomy & Data Structures
+## Phase 2: API Specification & Implementation
 
-Based on the RPL API (`/api/v1/en/projects`), we will support the following taxonomy:
+### Endpoints
+- `GET /api/v1/:lang/topics`: Returns the interest and technology hierarchy from `topics.yaml`.
+- `GET /api/v1/:lang/pathways`: Returns pathways including `technologyTheme`, `interestLabels`, and `difficultyLevel`.
 
-- **Technology** (`technologyLabels` / `primaryTechnology`): e.g., Scratch, Python, Raspberry Pi.
-- **Interests** (`interestLabels`): e.g., Games, Nature, Space.
-- **Hardware** (`hardwareLabels`): e.g., Sense HAT, Camera Module.
-- **Difficulty** (`difficultyLevel`): 1 (Beginner) to 3 (Advanced).
+## Phase 3: Frontend Implementation (Svelte 5)
+- [x] Update `HomeView.svelte` with Topic Space categories.
+- [x] Implement reactive filtering using `$derived`.
+- [ ] Add transitions/animations for a smoother UI.
 
-### 1.1 Topic Hierarchy (`topics.yaml`)
-Located in `content/<ECOSYSTEM>/config/topics.yaml`.
-Key = ID (lowercase). Optional `-de` for German.
-Icons are derived from the key (e.g., `programming.svg`).
-Colors are configured per topic.
-
-```yaml
-topics:
-  programming:
-    -de: Programmieren
-    type: technology
-    color: "#4CAF50"
-    subtopics:
-      scratch: {}
-      python: {}
-  nature:
-    -de: Natur
-    type: interest
-    color: "#FF9800"
-```
-
-### 1.2 Pathway/Project Tagging
-Pathways and projects use these labels. We extend the RPL format with our visibility rules.
-
-```yaml
-# pathway.yaml
-attributes:
-  technologyTheme: Scratch
-  difficultyLevel: 1
-visibility:
-  list:
-    groups: [ students, mentors ]
-    achievements: [ basic-mouse-control ]
-  open:
-    groups: [ students ]
-    achievements: [ scratch-level-1 ]
-```
-
-## 2. API Architecture (Parity)
-
-We will implement endpoints that mirror the RPL structure:
-
-### `GET /api/v1/:lang/projects`
-- **Query Params**: `filter[technology]=Scratch`, `filter[interest]=Nature`, `filter[difficulty]=1`
-- **Behavior**: Returns projects filtered by taxonomy AND user visibility.
-
-### `GET /api/v1/:lang/pathways`
-- **Query Params**: `filter[technology]=Scratch`
-- **Behavior**: Returns pathways filtered by taxonomy AND user visibility.
-
-### `GET /api/v1/:lang/topics` (Custom)
-- Returns our `topics.yaml` hierarchy to drive the "Topic Spaces" overview.
-
-## 3. Visibility Logic
-
-The `api-server` evaluates visibility by comparing the user's JWT (groups) and Achievement state (GIDs) against the requirements.
-Achievements are prefixed automatically (e.g., `RPL:ACHIEV:`).
-
-### 3.1 Logic Flow
-1. **Lister**: If `visibility.list` requirements are met, the item appears in the UI.
-2. **Opener**: If `visibility.open` requirements are met, the item is clickable. Otherwise, it shows as "locked".
-3. **Default**: If a section is missing, it is considered "public".
+## Phase 4: Verification
+- Run `pnpm run dev:test` and execute `npx playwright test`.
+- Verify with "Alice" scenario seeds.
