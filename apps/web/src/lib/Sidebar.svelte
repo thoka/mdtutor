@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { completedSteps } from './stores';
-  import { userPreferences, toggleAutoAdvance } from './preferences';
   
   interface Step {
     title: string;
@@ -84,12 +83,6 @@
       {/each}
     </ul>
 
-    <div class="c-sidebar-preferences">
-      <label class="c-preference-toggle">
-        <input type="checkbox" checked={$userPreferences.autoAdvance} onchange={toggleAutoAdvance}>
-        <span class="c-preference-toggle__label">Auto-Scroll / Weiter</span>
-      </label>
-    </div>
   </div>
 </menu>
 
@@ -105,25 +98,6 @@
     flex: 1;
   }
 
-  .c-sidebar-preferences {
-    padding: 1rem;
-    margin-top: 1rem;
-    border-top: 1px solid #ddd;
-    background: #f9f9f9;
-  }
 
-  .c-preference-toggle {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    user-select: none;
-  }
 
-  .c-preference-toggle input {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-  }
 </style>

@@ -3,6 +3,7 @@
   import Router, { link, location } from 'svelte-spa-router';
   import HomeView from './routes/HomeView.svelte';
   import TutorialView from './routes/TutorialView.svelte';
+  import { userPreferences, toggleAutoAdvance } from './lib/preferences';
   import PathwayView from './routes/PathwayView.svelte';
   import LanguageChooser from './lib/LanguageChooser.svelte';
   import LoginBar from './lib/LoginBar.svelte';
@@ -18,10 +19,9 @@
     '/:lang/pathways/:slug': PathwayView,
     '/:lang/projects/:slug': TutorialView,
     '/:lang/projects/:slug/:step': TutorialView,
-    // Fallback for old URLs
     '/:slug': TutorialView,
     '/:slug/:step': TutorialView,
-    '*': HomeView  // Fallback to home
+    '*': HomeView
   };
 
   const showBackButton = $derived(
@@ -44,13 +44,6 @@
         web: expectedCommit.substring(0, 7),
         api: health.commitHashShort || health.commitHash?.substring(0, 7) || 'unknown'
       };
-      console.error('❌ API Commit Mismatch!');
-      console.error(`  Web App Commit: ${apiVersions.web}`);
-      console.error(`  API Server Commit: ${apiVersions.api}`);
-    } else if (health) {
-      console.log(`✓ API connected: ${health.commitHashShort || 'unknown version'}`);
-    } else {
-      console.warn('⚠ Could not connect to API server');
     }
   });
 </script>
@@ -105,13 +98,34 @@
     padding-inline: 0.5rem;
   }
 
-  /* Override icon color for back button in nav bar (dark background) */
   :global(.c-global-nav-back .rpf-button__icon.material-symbols-sharp::before) {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z' fill='%23FFFFFF'/%3E%3C/svg%3E") !important;
   }
+
   .global-nav-bar__right {
     display: flex;
     align-items: center;
+  }
+
+  .c-nav-preference-toggle {
+    margin-right: 1.5rem;
+    color: #fff;
+    font-size: 0.85rem;
+  }
+
+  .c-preference-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .c-preference-toggle input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #42B961;
   }
 </style>
 
@@ -126,11 +140,7 @@
       <div class="global-nav-bar__content">
         <div class="global-nav-bar__left">
           {#if showBackButton}
-            <a 
-              href="/{$currentLanguage}/projects" 
-              use:link 
-              class="rpf-button rpf-button--tertiary c-global-nav-back"
-            >
+            <a href="/{$currentLanguage}/projects" use:link class="rpf-button rpf-button--tertiary c-global-nav-back">
               <span class="rpf-button__icon material-symbols-sharp" aria-hidden="true">chevron_left</span>
               <span class="text">{$t('back_to_overview')}</span>
             </a>
@@ -139,6 +149,12 @@
           {/if}
         </div>
         <div class="global-nav-bar__right">
+          <div class="c-nav-preference-toggle">
+            <label class="c-preference-toggle">
+              <input type="checkbox" checked={$userPreferences.autoAdvance} onchange={toggleAutoAdvance}>
+              <span class="c-preference-toggle__label">Auto-Scroll</span>
+            </label>
+          </div>
           <LanguageChooser />
           <LoginBar />
         </div>
@@ -147,7 +163,6 @@
   </div>
   <div class="no-print">
     <header class="c-site-header" id="c-site-header">
-      <!-- Site header placeholder -->
     </header>
   </div>
   <main class="c-layout">
