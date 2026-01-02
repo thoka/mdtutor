@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+# MDTutor Demo Start Script
+# -------------------------
+
+ENV_FILE="docker.env"
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo -e "${GREEN}=== MDTutor Demo Launcher ===${NC}\n"
+
+# 1. Check if docker.env exists
+if [ ! -f "$ENV_FILE" ]; then
+    echo -e "${RED}Fehler: $ENV_FILE wurde nicht gefunden!${NC}"
+    echo -e "Bitte erstelle eine Datei namens ${YELLOW}$ENV_FILE${NC} im Hauptverzeichnis."
+    echo -e "Du kannst die folgende Vorlage nutzen:\n"
+    
+    echo "DOMAIN=mdtutor.test"
+    echo "SSO_JWT_SECRET=$(openssl rand -hex 32 2>/dev/null || echo "gera_secret_12345")"
+    echo "ACHIEVEMENTS_MASTER_KEY=$(cat packages/backend-ruby/config/master.key 2>/dev/null || echo "KEY_FEHLT")"
+    echo "SSO_MASTER_KEY=$(cat packages/sso-server/config/master.key 2>/dev/null || echo "KEY_FEHLT")"
+    
+    echo -e "\n${YELLOW}Hinweis:${NC} Die Master Keys findest du normalerweise in:"
+    echo " - packages/backend-ruby/config/master.key"
+    echo " - packages/sso-server/config/master.key"
+    exit 1
+fi
+
+# 2. Load environment and check for missing values
+source "$ENV_FILE"
+
+MISSING=0
+if [ -z "$ACHIEVEMENTS_MASTER_KEY" ] || [ "$ACHIEVEMENTS_MASTER_KEY" == "KEY_FEHLT" ]; then
+    echo -e "${RED}⚠ ACHIEVEMENTS_MASTER_KEY ist nicht gesetzt!${NC}"
+    MISSING=1
+fi
+if [ -z "$SSO_MASTER_KEY" ] || [ "$SSO_MASTER_KEY" == "KEY_FEHLT" ]; then
+    echo -e "${RED}⚠ SSO_MASTER_KEY ist nicht gesetzt!${NC}"
+    MISSING=1
+fi
+
+if [ $MISSING -eq 1 ]; then
+    echo -e "\nBitte ergänze die fehlenden Keys in ${YELLOW}$ENV_FILE${NC}."
+    exit 1
+fi
+
+# 3. Instruction for Local DNS
+echo -e "${GREEN}Prüfung abgeschlossen.${NC}"
+echo -e "Die Demo wird unter folgenden Domains erreichbar sein:"
+echo -e " - http://${DOMAIN:-mdtutor.3oe.de}"
+echo -e " - http://sso.${DOMAIN:-mdtutor.3oe.de}"
+echo ""
+echo -e "${YELLOW}Wichtig:${NC} Wenn du lokal testest, stelle sicher, dass diese Domains in deiner /etc/hosts auf 127.0.0.1 zeigen."
+echo ""
+
+# 4. Run Docker Compose
+echo -e "${GREEN}Starte Docker-Container...${NC}"
+COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
+
+COMMIT_HASH=$COMMIT_HASH docker-compose --env-file "$ENV_FILE" up -d --build
+
+echo -e "\n${GREEN}Demo läuft!${NC}"
+echo -e "Nutze ${YELLOW}docker-compose logs -f${NC} für Live-Logs."
+

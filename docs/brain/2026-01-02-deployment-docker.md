@@ -22,8 +22,19 @@ We are implementing a simple test deployment for the MDTutor ecosystem. The goal
 | Achievement Server | `mdtutor.3oe.de/api/v1/actions` | 3102 |
 | SSO Server | `sso.mdtutor.3oe.de` | 3103 |
 
-## Implementation Plan
-1. Create Dockerfiles for `api-server` and `web`.
-2. Configure `docker-compose.yml` with Traefik labels.
-3. Use shared volumes for SQLite databases in `db/`.
+## Deployment & Start
+Um das Deployment zu starten, wurde ein Hilfsskript erstellt: `bin/demo-start`.
+
+### Voraussetzungen
+1. **Umgebungsvariablen**: Eine `docker.env` Datei muss im Root-Verzeichnis existieren. Das Skript prüft dies und gibt bei Fehlern eine Vorlage aus.
+2. **Local DNS**: Für lokale Tests müssen die Domains in der `/etc/hosts` (oder `C:\Windows\System32\drivers\etc\hosts`) eingetragen sein:
+   ```text
+   127.0.0.1  mdtutor.3oe.de
+   127.0.0.1  sso.mdtutor.3oe.de
+   ```
+
+### Befehle
+- **Starten**: `./bin/demo-start` (Baut Images, führt Setup aus, startet Services)
+- **Stoppen**: `docker-compose down`
+- **Zurücksetzen**: `docker-compose down -v` (Löscht auch die Datenbank-Volumes)
 
