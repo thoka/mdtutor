@@ -19,7 +19,7 @@ test.describe('Tutorial Interactions (E2E)', () => {
       // Maybe already redirected or button not found
     }
 
-    await page.waitForURL(/localhost:3103/, { timeout: 10000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '3103' || url.hostname.includes('sso.'), { timeout: 15000 });
     await page.locator('button.tile').filter({ hasText: 'Alice' }).click();
     
     // Handle PIN entry
@@ -27,9 +27,9 @@ test.describe('Tutorial Interactions (E2E)', () => {
     await page.fill('#pin', '1111');
     await page.click('button.submit-button');
 
-    await page.waitForURL(/localhost:5201/, { timeout: 10000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '5201', { timeout: 15000 });
     // Wait for auth to be reflected in UI
-    await expect(page.locator('.user-info-button')).toContainText('Alice', { timeout: 10000 });
+    await expect(page.locator('.user-info-button')).toContainText('Alice', { timeout: 15000 });
   });
 
   test('handles task checking and unchecking with backend sync', async ({ page }) => {
@@ -108,7 +108,8 @@ test.describe('Tutorial Interactions (E2E)', () => {
     await expect(page).toHaveURL(/projects\/RPL:catch-the-bus\/1/);
     
     // Go to dashboard to see latest activity
-    await page.goto('http://localhost:3103/dashboard');
+    const ssoBase = process.env.SSO_URL || 'http://localhost:3103';
+    await page.goto(`${ssoBase}/dashboard`);
     
     // Alice should be there, and her latest action should be "Liest Schritt" (step_view) or "Schritt abgeschlossen"
     const aliceCard = page.locator('.user-card').filter({ hasText: 'Alice' });
