@@ -49,9 +49,15 @@ fi
 
 # 3. Instruction for Local DNS
 echo -e "${GREEN}Prüfung abgeschlossen.${NC}"
+
+PORT_SUFFIX=""
+if [ -n "$TRAEFIK_PORT" ] && [ "$TRAEFIK_PORT" != "80" ]; then
+    PORT_SUFFIX=":$TRAEFIK_PORT"
+fi
+
 echo -e "Die Demo wird unter folgenden Domains erreichbar sein:"
-echo -e " - http://${DOMAIN:-mdtutor.3oe.de}"
-echo -e " - http://sso.${DOMAIN:-mdtutor.3oe.de}"
+echo -e " - http://${DOMAIN:-mdtutor.test}${PORT_SUFFIX}"
+echo -e " - http://sso.${DOMAIN:-mdtutor.test}${PORT_SUFFIX}"
 echo ""
 echo -e "${YELLOW}Wichtig:${NC} Wenn du lokal testest, stelle sicher, dass diese Domains in deiner /etc/hosts auf 127.0.0.1 zeigen."
 echo ""

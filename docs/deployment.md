@@ -4,10 +4,10 @@ This guide explains how to deploy the MDTutor monorepo using Docker and Traefik.
 
 ## Architecture
 The deployment uses **Traefik** as a reverse proxy to route traffic to the following services:
-- **Web App**: `https://${DOMAIN}`
-- **API Server**: `https://${DOMAIN}/api`
-- **Achievement Server**: `https://${DOMAIN}/api/v1/actions`
-- **SSO Server**: `https://sso.${DOMAIN}`
+- **Web App**: `http://${DOMAIN}:${TRAEFIK_PORT}`
+- **API Server**: `http://${DOMAIN}:${TRAEFIK_PORT}/api`
+- **Achievement Server**: `http://${DOMAIN}:${TRAEFIK_PORT}/api/v1/actions`
+- **SSO Server**: `http://sso.${DOMAIN}:${TRAEFIK_PORT}`
 
 ## Prerequisites
 - Docker & Docker Compose
