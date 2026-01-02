@@ -29,6 +29,8 @@ COPY packages/parser packages/parser
 
 # Build the web app
 WORKDIR /app/apps/web
+# Remove broken symlinks in public/ that might point to host directories
+RUN rm -rf public/content public/snapshots && mkdir -p public/content public/snapshots
 RUN npm run build
 
 # Final stage
