@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+HOOKS_DIR=".git/hooks"
+TEMPLATE_DIR="tools/git-hooks"
+
+if [ ! -d ".git" ]; then
+    echo "Error: .git directory not found. Are you in the project root?"
+    exit 1
+fi
+
+echo "Installing Git hooks..."
+
+for hook_path in "$TEMPLATE_DIR"/*; do
+    hook_name=$(basename "$hook_path")
+    target_path="$HOOKS_DIR/$hook_name"
+    
+    cp "$hook_path" "$target_path"
+    chmod +x "$target_path"
+    echo "✓ Installed $hook_name"
+done
+
+echo "Done!"

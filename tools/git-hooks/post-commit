@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# API Auto-Restart on Commit
+# This hook touches files that trigger development server reloads.
+
+echo "--- Triggering API Restarts ---"
+
+# Node.js API Server (triggers nodemon)
+RESTART_JS="packages/api-server/src/restart.js"
+echo "export const lastRestart = $(date +%s%3N);" > "$RESTART_JS"
+echo "✓ Updated $RESTART_JS"
+
+# Rails Backend Ruby
+RESTART_RUBY="packages/backend-ruby/tmp/restart.txt"
+mkdir -p packages/backend-ruby/tmp
+touch "$RESTART_RUBY"
+echo "✓ Touched $RESTART_RUBY"
+
+# Rails SSO Server
+RESTART_SSO="packages/sso-server/tmp/restart.txt"
+mkdir -p packages/sso-server/tmp
+touch "$RESTART_SSO"
+echo "✓ Touched $RESTART_SSO"
+
+echo "-------------------------------"

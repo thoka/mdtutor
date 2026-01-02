@@ -47,3 +47,4 @@ Thumbs.db
 /packages/*/tmp/*
 !/packages/*/log/.keep
 !/packages/*/tmp/.keep
+packages/api-server/src/restart.js
