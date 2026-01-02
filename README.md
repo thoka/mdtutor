@@ -104,3 +104,5 @@ MDTutor follows a strict **Test-First (TDD)** and **Spec-First** approach. AI ag
 
 AGPL-3.0-or-later
 
+**Note on Content:** Content fetched or linked within this platform (e.g., from the Raspberry Pi Foundation or other ecosystems) may be subject to its own specific licenses and terms of use.
+
