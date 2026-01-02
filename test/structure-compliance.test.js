@@ -36,19 +36,29 @@ test('Structure Compliance: Pathways', () => {
 
 test('Structure Compliance: Cloned Repositories', () => {
   const projectsDir = join(rootDir, 'content/RPL/layers/official/projects');
-  const fallbackDir = join(rootDir, 'content/RPL/projects');
-  const activeDir = existsSync(projectsDir) ? projectsDir : fallbackDir;
+  assert.ok(existsSync(projectsDir), 'RPL projects directory should exist');
   
-  assert.ok(existsSync(activeDir), 'RPL projects directory should exist');
-  
-  // We check if at least one project from sync.yaml is cloned
   const rplSyncPath = join(rootDir, 'content/RPL/config/sync.yaml');
+  const pathwaysDir = join(rootDir, 'content/RPL/layers/official/pathways');
+  
   if (existsSync(rplSyncPath)) {
     const syncData = yaml.load(readFileSync(rplSyncPath, 'utf8'));
-    const firstProject = syncData.sync?.pathways?.official?.[0];
-    if (firstProject) {
-      const projectRepo = join(activeDir, firstProject, 'repo');
-      assert.ok(existsSync(projectRepo), `${firstProject} repo should be cloned in ${projectRepo}`);
+    const pathwaySlugs = syncData.sync?.pathways?.official || [];
+    
+    // Check projects from the first available pathway
+    for (const pSlug of pathwaySlugs) {
+      const pathwayFile = join(pathwaysDir, `${pSlug}.yaml`);
+      if (existsSync(pathwayFile)) {
+        const pathwayData = yaml.load(readFileSync(pathwayFile, 'utf8'));
+        const firstProject = pathwayData.projects?.[0];
+        const firstProjectSlug = typeof firstProject === 'string' ? firstProject : firstProject?.slug;
+        
+        if (firstProjectSlug) {
+          const projectRepo = join(projectsDir, firstProjectSlug, 'repo');
+          assert.ok(existsSync(projectRepo), `${firstProjectSlug} repo should be cloned in ${projectRepo}`);
+          return; // Test passed
+        }
+      }
     }
   }
 });
@@ -57,14 +67,26 @@ test('Structure Compliance: API Snapshots (Flat)', async () => {
   const snapshotsDir = join(rootDir, 'test/snapshots');
   assert.ok(existsSync(snapshotsDir), 'test/snapshots should exist');
   
-  // Check for flat API JSON files
   const rplSyncPath = join(rootDir, 'content/RPL/config/sync.yaml');
+  const pathwaysDir = join(rootDir, 'content/RPL/layers/official/pathways');
+
   if (existsSync(rplSyncPath)) {
     const syncData = yaml.load(readFileSync(rplSyncPath, 'utf8'));
-    const firstProject = syncData.sync?.pathways?.official?.[0];
-    if (firstProject) {
-      const projectApi = join(snapshotsDir, `${firstProject}-api-project-en.json`);
-      assert.ok(existsSync(projectApi), `${firstProject} API JSON should exist in ${projectApi}`);
+    const pathwaySlugs = syncData.sync?.pathways?.official || [];
+    
+    for (const pSlug of pathwaySlugs) {
+      const pathwayFile = join(pathwaysDir, `${pSlug}.yaml`);
+      if (existsSync(pathwayFile)) {
+        const pathwayData = yaml.load(readFileSync(pathwayFile, 'utf8'));
+        const firstProject = pathwayData.projects?.[0];
+        const firstProjectSlug = typeof firstProject === 'string' ? firstProject : firstProject?.slug;
+        
+        if (firstProjectSlug) {
+          const projectApi = join(snapshotsDir, `${firstProjectSlug}-api-project-en.json`);
+          assert.ok(existsSync(projectApi), `${firstProjectSlug} API JSON should exist in ${projectApi}`);
+          return; // Test passed
+        }
+      }
     }
   }
 });

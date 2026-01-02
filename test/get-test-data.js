@@ -191,33 +191,45 @@ function createSnapshotMetadata(tutorialSlug, repoPath, apiPaths, pathwayInfo, o
 async function runMetaTest() {
   console.log('=== Meta-Test: Creating Tutorial Snapshots ===\n');
   
-  let tutorials = [];
   const SYNC_FILE = 'content/RPL/config/sync.yaml';
-  const OLD_PATHWAYS_FILE = 'content/RPL/layers/official/pathways/rpl-pathways.yaml';
-
-  if (existsSync(SYNC_FILE)) {
-    console.log(`Reading tutorials from ${SYNC_FILE}...`);
-    const syncData = load(readFileSync(SYNC_FILE, 'utf8'));
-    if (syncData.sync?.pathways?.official) {
-      tutorials = syncData.sync.pathways.official;
-    }
-  } else if (existsSync(OLD_PATHWAYS_FILE)) {
-    console.log(`Reading tutorials from ${OLD_PATHWAYS_FILE}...`);
-    const pathwaysData = load(readFileSync(OLD_PATHWAYS_FILE, 'utf8'));
-    tutorials = Object.values(pathwaysData).flat();
-  } else {
-    console.error('Error: No source for tutorials found (sync.yaml or rpl-pathways.yaml).');
+  const PATHWAYS_DIR = 'content/RPL/layers/official/pathways';
+  
+  if (!existsSync(SYNC_FILE)) {
+    console.error(`Error: ${SYNC_FILE} not found.`);
     return;
   }
+
+  const syncData = load(readFileSync(SYNC_FILE, 'utf8'));
+  const pathwaySlugs = syncData.sync?.pathways?.official || [];
   
-  console.log(`Found ${tutorials.length} tutorials to process.`);
+  console.log(`Found ${pathwaySlugs.length} pathways in sync.yaml.`);
+  
+  const projectSlugs = new Set();
+  
+  for (const slug of pathwaySlugs) {
+    const pathwayFile = join(PATHWAYS_DIR, `${slug}.yaml`);
+    if (existsSync(pathwayFile)) {
+      console.log(`Reading projects from pathway: ${slug}`);
+      const pathwayData = load(readFileSync(pathwayFile, 'utf8'));
+      if (pathwayData.projects) {
+        pathwayData.projects.forEach(p => {
+          const pSlug = typeof p === 'string' ? p : p.slug;
+          projectSlugs.add(pSlug);
+        });
+      }
+    } else {
+      console.warn(`  ⚠ Pathway file not found: ${pathwayFile}`);
+    }
+  }
+
+  console.log(`Total unique projects found: ${projectSlugs.size}`);
 
   mkdirSync(DEFAULT_SNAPSHOTS_DIR, { recursive: true });
   mkdirSync(DEFAULT_PROJECTS_DIR, { recursive: true });
   
   const results = [];
-  for (const tutorial of tutorials) {
-    console.log(`\n--- Processing: ${tutorial} ---`);
+  for (const tutorial of projectSlugs) {
+    console.log(`\n--- Processing Project: ${tutorial} ---`);
     const repoPath = await cloneRepository(tutorial);
     if (!repoPath) continue;
 

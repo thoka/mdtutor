@@ -27,10 +27,9 @@ mkdir -p content/RPL/config
 mkdir -p content/TAG/layers/official/projects
 mkdir -p test/snapshots
 
-# 2. Ensure sync.yaml exists (if it was deleted)
+# 2. Ensure sync.yaml and pathways exist (if they were deleted)
 if [ ! -f "content/RPL/config/sync.yaml" ]; then
     echo "Stelle Standard sync.yaml für RPL wieder her..."
-    mkdir -p content/RPL/config
     cat > content/RPL/config/sync.yaml <<EOF
 layers:
   tag:
@@ -49,6 +48,18 @@ sync:
       - further-scratch
 EOF
 fi
+
+# Ensure basic pathway files exist if they are not already there
+# (Normally these should be part of the repo, but just in case)
+for p in scratch-intro more-scratch further-scratch; do
+    if [ ! -f "content/RPL/layers/official/pathways/$p.yaml" ]; then
+        echo "Erstelle Dummy-Pathway für $p (wird normalerweise vom Repo geliefert)..."
+        cat > "content/RPL/layers/official/pathways/$p.yaml" <<EOF
+projects:
+  - slug: space-talk
+EOF
+    fi
+done
 
 # 2. Fetch RPL data
 echo "Lade RPL Referenz-Daten..."
