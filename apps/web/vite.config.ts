@@ -3,11 +3,13 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 import { execSync } from 'child_process'
 
 // Get current commit hash for version checking
-let commitHash = '';
-try {
-  commitHash = execSync('git rev-parse HEAD').toString().trim();
-} catch (e) {
-  console.warn('Could not get git commit hash');
+let commitHash = process.env.VITE_COMMIT_HASH || '';
+if (!commitHash) {
+  try {
+    commitHash = execSync('git rev-parse HEAD').toString().trim();
+  } catch (e) {
+    console.warn('Could not get git commit hash');
+  }
 }
 
 /** @type {import('vite').Plugin} */

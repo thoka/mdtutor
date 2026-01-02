@@ -14,6 +14,9 @@ const projectRoot = join(__dirname, '../../../');
  * @returns {string|null} Commit hash or null if not in git repo
  */
 export function getCurrentCommitHash() {
+  if (process.env.COMMIT_HASH) {
+    return process.env.COMMIT_HASH;
+  }
   try {
     const hash = execSync('git rev-parse HEAD', {
       cwd: projectRoot,
