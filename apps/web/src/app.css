@@ -219,7 +219,7 @@ form.knowledge-quiz-question.knowledge-quiz-question--hidden,
 
 .c-step-progress-fraction__num {
   transform: translate(1px, -3px);
-  font-weight: bold;
+  
 }
 
 .c-step-progress-fraction__sep {
