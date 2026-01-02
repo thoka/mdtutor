@@ -12,7 +12,7 @@ services:
     image: traefik:v3.1
     user: root # Ensure access to docker.sock
     environment:
-      - DOCKER_API_VERSION=1.47 # Match the client API version
+      - DOCKER_API_VERSION=${DOCKER_API_VERSION:-1.41}
     command:
       - "--log.level=DEBUG"
       - "--api.insecure=true"
