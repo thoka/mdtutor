@@ -550,19 +550,21 @@ app.get('/api/v1/:lang/pathways', async (req, res) => {
 
             const banner = resolvePathwayAsset(ecosystem, resolved.layer, data.banner);
 
+            const attributes = {
+              slug: namespacedSlug,
+              title,
+              description,
+              banner,
+              locked,
+              technologyTheme: data.technologyTheme || data.attributes?.technologyTheme || null,
+              interestLabels: data.interestLabels || data.attributes?.interestLabels || [],
+              difficultyLevel: data.difficultyLevel || data.attributes?.difficultyLevel || 'beginner'
+            };
+
             allPathways.push({
               id: namespacedSlug,
               type: 'pathways',
-              attributes: {
-                slug: namespacedSlug,
-                title,
-                description,
-                banner,
-                locked,
-                technologyTheme: data.attributes?.technologyTheme,
-                interestLabels: data.attributes?.interestLabels,
-                difficultyLevel: data.attributes?.difficultyLevel
-              }
+              attributes
             });
             seenSlugs.add(namespacedSlug);
           }

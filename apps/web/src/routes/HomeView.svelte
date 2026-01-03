@@ -8,13 +8,18 @@
 
   let pathways = $state<any[]>([]);
   let topics = $state<any>({ interests: {}, technologies: {} });
+  let selectedTopic = $state<string | null>(null);
   let isLoading = $state(true);
   let errorMsg = $state<string | null>(null);
   let lang = $derived(params.lang || 'de-DE');
 
-  $effect(() => {
-    currentLanguage.set(lang);
-    loadData();
+  const filteredPathways = $derived(() => {
+    if (!selectedTopic) return pathways;
+    return pathways.filter(p => {
+      const attrs = p.attributes;
+      return attrs.technologyTheme === selectedTopic || 
+             (attrs.interestLabels && attrs.interestLabels.includes(selectedTopic));
+    });
   });
 
   async function loadData() {
@@ -52,37 +57,70 @@
   {:else if errorMsg}
     <div class="error">{$t('error')}: {errorMsg}</div>
   {:else}
-    {#if Object.keys(topics.interests).length > 0 || Object.keys(topics.technologies).length > 0}
-      <section class="c-topics-overview">
-        <h2 class="c-pathways-overview__title">Themenräume</h2>
+    <section class="c-topics-overview">
+      <h2 class="c-pathways-overview__title">Themenräume</h2>
+      
+      <div class="c-topic-section">
+        <h3 class="c-topic-section__title">Technologien</h3>
         <div class="c-topic-grid">
-          {#each Object.entries(topics.interests) as [id, topic]}
-            <div class="c-topic-card" style="--topic-color: {topic.color || '#666'}">
-              <div class="c-topic-card__icon">
-                <img src="/icons/{id}.svg" alt="" onerror="this.style.display='none'" />
-              </div>
-              <h3 class="c-topic-card__title">{topic['-de'] || id}</h3>
+          <button 
+            class="c-topic-card" 
+            class:is-active={selectedTopic === null}
+            onclick={() => { selectedTopic = null; }}
+            style="--topic-color: #666"
+          >
+            <div class="c-topic-card__icon">
+              <span class="material-symbols-sharp">apps</span>
             </div>
-          {/each}
+            <h3 class="c-topic-card__title">Alle</h3>
+          </button>
+
           {#each Object.entries(topics.technologies) as [id, topic]}
             {#if !topic.up}
-              <div class="c-topic-card" style="--topic-color: {topic.color || '#666'}">
+              <button 
+                class="c-topic-card" 
+                class:is-active={selectedTopic === id}
+                onclick={() => { selectedTopic = id; }}
+                style="--topic-color: {topic.color || '#666'}"
+              >
                 <div class="c-topic-card__icon">
-                  <img src="/icons/{id}.svg" alt="" onerror="this.style.display='none'" />
+                  <img src="/icons/{id}.svg" alt="" onerror={(e) => (e.currentTarget.style.display='none')} />
                 </div>
                 <h3 class="c-topic-card__title">{topic['-de'] || id}</h3>
-              </div>
+              </button>
             {/if}
           {/each}
         </div>
-      </section>
-    {/if}
+      </div>
 
-    {#if pathways.length > 0}
+      <div class="c-topic-section">
+        <h3 class="c-topic-section__title">Interessen</h3>
+        <div class="c-interest-list">
+          {#each Object.entries(topics.interests) as [id, topic]}
+            <button 
+              class="c-interest-tag" 
+              class:is-active={selectedTopic === id}
+              onclick={() => { selectedTopic = id; }}
+              style="--topic-color: {topic.color || '#666'}"
+            >
+              {topic['-de'] || id}
+            </button>
+          {/each}
+        </div>
+      </div>
+    </section>
+
+    {#if filteredPathways().length > 0}
       <section class="c-pathways-overview">
-        <h2 class="c-pathways-overview__title">Lernpfade</h2>
+        <h2 class="c-pathways-overview__title">
+          {#if selectedTopic}
+            Lernpfade für "{topics.technologies[selectedTopic]?.['-de'] || topics.interests[selectedTopic]?.['-de'] || selectedTopic}"
+          {:else}
+            Alle Lernpfade
+          {/if}
+        </h2>
         <div class="c-pathway-list">
-          {#each pathways as pathway}
+          {#each filteredPathways() as pathway}
             {@const parts = pathway.attributes.slug.split(':')}
             {@const displaySlug = parts.length >= 2 ? `${parts[0]}:${parts[parts.length-1]}` : pathway.attributes.slug}
             <a 
@@ -108,15 +146,24 @@
               <div class="c-project-card__content">
                 <h3 class="c-project-card__heading">
                   {pathway.attributes.title}
-                  {#if pathway.attributes.locked}
-                    <span class="c-lock-icon">🔒</span>
-                  {/if}
                 </h3>
                 {#if pathway.attributes.description}
                   <div class="c-project-card__description">
                     {@html pathway.attributes.description}
                   </div>
                 {/if}
+                <div class="c-pathway-tags">
+                   {#if pathway.attributes.technologyTheme}
+                     <span class="c-pathway-tag c-pathway-tag--tech">
+                       {topics.technologies[pathway.attributes.technologyTheme]?.['-de'] || pathway.attributes.technologyTheme}
+                     </span>
+                   {/if}
+                   {#each pathway.attributes.interestLabels || [] as interest}
+                     <span class="c-pathway-tag c-pathway-tag--interest">
+                       {topics.interests[interest]?.['-de'] || interest}
+                     </span>
+                   {/each}
+                </div>
               </div>
             </a>
           {/each}
@@ -125,6 +172,7 @@
     {:else}
       <div class="c-projects-list__projects__no-results">
         <p>{$t('no_projects')}</p>
+        <button onclick={() => { selectedTopic = null; }} class="c-button">Alle anzeigen</button>
       </div>
     {/if}
   {/if}
@@ -163,25 +211,98 @@
 
   .c-topic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .c-topic-section {
     margin-bottom: 2rem;
+  }
+
+  .c-topic-section__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+
+  .c-interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .c-interest-tag {
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .c-interest-tag:hover {
+    border-color: var(--topic-color);
+    color: var(--topic-color);
+  }
+
+  .c-interest-tag.is-active {
+    background: var(--topic-color);
+    color: white;
+    border-color: var(--topic-color);
   }
 
   .c-topic-card {
     background: white;
     border-radius: 12px;
-    padding: 1.5rem;
+    padding: 1.25rem;
     text-align: center;
     border: 1px solid #e0e0e0;
     border-top: 6px solid var(--topic-color);
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .c-topic-card.is-active {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+    border-color: var(--topic-color);
   }
 
   .c-topic-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  }
+
+  .c-pathway-tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .c-pathway-tag {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .c-pathway-tag--tech {
+    background: #f0f0f0;
+    color: #444;
+  }
+
+  .c-pathway-tag--interest {
+    background: #e3f2fd;
+    color: #1976d2;
   }
 
   .c-topic-card__icon {

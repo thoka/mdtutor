@@ -12,7 +12,9 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "pnpm run lint && node --test",
+    "test": "pnpm run test:sentinel && pnpm run lint && node --test",
+    "test:sentinel": "ruby test/0-process/branch_health.rb && ruby test/0-process/workflow.rb && ruby test/1-setup/environment.rb",
+    "test:sentinel:agent": "SENTINEL_FORMAT=agent ruby test/0-process/branch_health.rb && SENTINEL_FORMAT=agent ruby test/0-process/workflow.rb && SENTINEL_FORMAT=agent ruby test/1-setup/environment.rb",
     "test:data": "node test/get-test-data.js",
     "sync:pathways": "node tools/fetch-pathways.js",
     "api": "pnpm --filter @mdtutor/api-server run dev",
