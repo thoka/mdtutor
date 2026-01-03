@@ -19,15 +19,15 @@ define_suite "Branch Gesundheit & Cleanup" do
   end
 
   check "Synchronität der Regeln" do
-    rule "Die lokalen Projektregeln müssen mit dem Sentinel-Code übereinstimmen."
+    rule "Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen."
     condition do
       next false unless File.exist?('PROJECT_RULES.md')
       rules_mtime = File.mtime('PROJECT_RULES.md')
-      test_mtimes = Dir.glob('sentinel/rules/**/*.rb').map { |f| File.mtime(f) }
+      test_mtimes = Dir.glob('severin/rules/**/*.rb').map { |f| File.mtime(f) }
       rules_mtime >= test_mtimes.max
     end
-    on_fail "Die Projektregeln sind nicht auf dem neuesten Stand der Sentinel-Tests."
-    fix "Führe 'sn gen' aus, um die Dokumentation zu synchronisieren."
+    on_fail "Die Projektregeln sind nicht auf dem neuesten Stand der Severin-Tests."
+    fix "Führe 'sv gen' aus, um die Dokumentation zu synchronisieren."
   end
 
   check "Plan-Aktualität" do
@@ -41,3 +41,4 @@ define_suite "Branch Gesundheit & Cleanup" do
     fix "Aktualisiere den Plan in docs/brain/."
   end
 end
+

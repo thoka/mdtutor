@@ -1,6 +1,6 @@
-require 'sentinel'
+require 'severin'
 
-suite = Sentinel.define_skill "Backend Architekt" do
+suite = Severin.define_skill "Backend Architekt" do
   description "Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails)."
 
   check "API-First & Spec-First" do

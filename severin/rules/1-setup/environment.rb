@@ -1,6 +1,6 @@
-require 'sentinel'
+require 'severin'
 
-suite = Sentinel.define_suite "Umgebung & Abhängigkeiten" do
+suite = Severin.define_suite "Umgebung & Abhängigkeiten" do
   description "Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen."
 
   check "Environment Datei" do
@@ -43,4 +43,3 @@ suite = Sentinel.define_suite "Umgebung & Abhängigkeiten" do
   end
 end
 
-# Automatisches Format-Wahl basierend auf Umgebungsvariable oder Standard

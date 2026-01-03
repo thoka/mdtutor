@@ -12,12 +12,12 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "test": "pnpm run test:sentinel && pnpm run lint && node --test",
-    "test:sentinel": "./bin/sn",
-    "test:sentinel:agent": "SENTINEL_FORMAT=agent ./bin/sn",
-    "sn": "./bin/sn",
-    "sn:a": "SENTINEL_FORMAT=agent ./bin/sn",
-    "sentinel:gen": "ruby ~/.sentinel/generate_rules.rb",
+    "test": "pnpm run test:severin && pnpm run lint && node --test",
+    "test:severin": "./bin/sv",
+    "test:severin:agent": "SENTINEL_FORMAT=agent ./bin/sv",
+    "sv": "./bin/sv",
+    "sv:a": "SENTINEL_FORMAT=agent ./bin/sv",
+    "severin:gen": "ruby ~/.severin/generate_rules.rb",
     "test:data": "node test/get-test-data.js",
     "sync:pathways": "node tools/fetch-pathways.js",
     "api": "pnpm --filter @mdtutor/api-server run dev",

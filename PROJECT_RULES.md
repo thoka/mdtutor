@@ -35,14 +35,5 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
 
 ### Self-Documentation Workflow
-- **Dokumentation der Generierung**: Die PROJECT_RULES.md muss den Befehl 'sv' zur Neu-Generierung erwähnen, damit der Workflow klar ist.
-
-### Umgebung & Abhängigkeiten
-- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
-- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
-- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
-- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
-
-### Code-Konventionen & Port-Integrität
-- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
+- **Dokumentation der Generierung**: Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen.
 

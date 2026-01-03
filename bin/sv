@@ -1,0 +1,6 @@
+#!/bin/bash
+# Lokales MDTutor Severin Kürzel
+export SEVERIN_HOME="$HOME/.severin"
+ruby severin/runner.rb "$@"
+
+

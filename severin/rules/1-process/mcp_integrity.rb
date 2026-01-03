@@ -1,15 +1,15 @@
-require 'sentinel'
+require 'severin'
 
-suite = Sentinel.define_suite "MCP Integrität" do
-  description "Stellt sicher, dass der Sentinel MCP-Server für KI-Agenten korrekt installiert und erreichbar ist."
+suite = Severin.define_suite "MCP Integrität" do
+  description "Stellt sicher, dass der Severin MCP-Server für KI-Agenten korrekt installiert und erreichbar ist."
 
-  global_server = File.expand_path("~/.sentinel/mcp/server.rb")
+  global_server = File.expand_path("~/.severin/mcp/server.rb")
 
   check "Globale Engine vorhanden" do
     rule "Der MCP-Server muss unter #{global_server} existieren."
     condition { File.exist?(global_server) }
-    on_fail "Die globale Sentinel-Engine fehlt oder wurde verschoben."
-    fix "Stelle sicher, dass die Engine unter ~/.sentinel/ installiert ist."
+    on_fail "Die globale Severin-Engine fehlt oder wurde verschoben."
+    fix "Stelle sicher, dass die Engine unter ~/.severin/ installiert ist."
   end
 
   check "MCP Ausführbarkeit" do
@@ -21,7 +21,6 @@ suite = Sentinel.define_suite "MCP Integrität" do
 
   check "Cursor Integration Hinweis" do
     rule "Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein."
-    # Dieser Test ist informativ, da wir Cursor-Settings nicht direkt lesen können
     condition { true }
     on_fail "Manuelle Prüfung erforderlich."
     fix "Prüfe in Cursor: Settings -> Features -> MCP -> Add Server (ruby #{global_server})"
