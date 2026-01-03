@@ -51,5 +51,5 @@ Thumbs.db
 !/packages/*/tmp/.keep
 packages/api-server/src/restart.js
 
-# Severin Engine (Symlink to global core)
-/severin/engine
+# Severin Engine (Git Submodule)
+# /severin/engine
