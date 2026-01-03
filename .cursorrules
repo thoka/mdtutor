@@ -28,8 +28,12 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Wichtig**: 1. Nutze dieses Tool für ALLE Projekt-Commits. Es stellt sicher, dass Dokumentation und Regeln synchron sind.
 
 ### sv_commit_engine
-- **Zweck**: Commitet Änderungen in der Severin-Engine (Symlink severin/engine -> ~/.severin).
+- **Zweck**: Commitet Änderungen in der Severin-Engine.
 - **Wichtig**: 1. Nutze dieses Tool, wenn du Dateien unter `severin/engine/` geändert hast.
+
+### sv_ship
+- **Zweck**: Führt den vollständigen Release-Prozess nach 'main' aus (inkl. Submodule-Sync).
+- **Wichtig**: 1. Nutze dieses Tool nur von einem Feature-Branch aus.
 
 ## ⚖️ Verpflichtender Workflow
 ### Agent-Anleitungen & Engine

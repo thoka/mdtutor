@@ -26,9 +26,14 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Anleitung**: 1. Nutze dieses Tool für ALLE Projekt-Commits. Es stellt sicher, dass Dokumentation und Regeln synchron sind. 2. Die Commit-Nachricht MUSS Conventional Commits entsprechen. 3. Das Tool führt automatisch `sv gen` und `sv check` aus. Falls diese fehlschlagen, wird der Commit abgebrochen. 
 
 ### commit-engine
-- **Zweck**: Commitet Änderungen in der Severin-Engine (Symlink severin/engine -> ~/.severin).
+- **Zweck**: Commitet Änderungen in der Severin-Engine.
 - **Anwendung**: Nutze das MCP-Tool `sv_commit_engine`.
 - **Anleitung**: 1. Nutze dieses Tool, wenn du Dateien unter `severin/engine/` geändert hast. 2. Die Commit-Nachricht MUSS den 'feat:' oder 'fix:' Präfix nach Conventional Commits enthalten. 3. Beziehe dich in der Nachricht auf die geänderte Komponente (z.B. `feat(cli): ...`). 
+
+### ship
+- **Zweck**: Führt den vollständigen Release-Prozess nach 'main' aus (inkl. Submodule-Sync).
+- **Anwendung**: Nutze das MCP-Tool `sv_ship`.
+- **Anleitung**: 1. Nutze dieses Tool nur von einem Feature-Branch aus. 2. Es pusht Änderungen im Submodule `severin/engine` automatisch nach GitHub. 3. Es führt einen finalen `sv commit` im Hauptprojekt aus. 4. Es mergt den Feature-Branch nach `main` und pusht alles zu GitHub. 
 
 ## ⚖️ Verpflichtender Workflow
 

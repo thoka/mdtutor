@@ -48,10 +48,16 @@ Severin.define_action "ship" do
     # Wir laden die Action dynamisch
     commit_action = Severin.actions["commit"]
     if commit_action
-      commit_action.call(message: "chore(release): final sync before shipping #{branch}")
+      unless commit_action.call(message: "chore(release): final sync before shipping #{branch}")
+        puts "❌ Ship abgebrochen: Projekt-Sync fehlgeschlagen."
+        next
+      end
     else
       puts "⚠️ Warnung: 'commit' Action nicht gefunden, fahre mit manuellem Sync fort."
-      system("sv gen && git add . && git commit -m 'chore(release): final sync before shipping #{branch}'")
+      unless system("sv gen && git add . && git commit -m 'chore(release): final sync before shipping #{branch}'")
+        puts "❌ Ship abgebrochen: Manueller Sync fehlgeschlagen."
+        next
+      end
     end
 
     # 3. Merge nach main
