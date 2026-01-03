@@ -1,8 +1,8 @@
-suite = Severin.define_suite "📜kcvzQ Sprach-Integrität" do
+suite = Severin.define_suite "Sprach-Integrität 🔹kcvzQ" do
   description "Stellt sicher, dass die AI-Instruktionen zwischen Chat- und Dokumentationssprache unterscheiden."
 
-  check "📜dTyEL Sprachanweisung in AI-Umgebungen" do
-    rule "📜Ynyhp Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden."
+  check "Sprachanweisung in AI-Umgebungen 🔹dTyEL" do
+    rule "Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden. 🔹Ynyhp"
     condition do
       ai_envs = Severin.environments.select { |e| e.format == :ai }
       return true if ai_envs.empty?

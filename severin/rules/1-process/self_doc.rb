@@ -1,8 +1,8 @@
-suite = Severin.define_suite "📜aOgCE Self-Documentation Workflow" do
+suite = Severin.define_suite "Self-Documentation Workflow 🔹aOgCE" do
   description "Stellt sicher, dass die Regeln erklären, wie sie aktualisiert werden."
 
-  check "📜3097t Dokumentation der Generierung" do
-    rule "📜HSpv4 Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen."
+  check "Dokumentation der Generierung 🔹3097t" do
+    rule "Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen. 🔹HSpv4"
     condition do
       return false if Severin.environments.empty?
 

@@ -1,20 +1,20 @@
-define_skill "📜AfKxC Frontend Experte" do
-  rule "📜e076F Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht."
-  rule "📜WDFaQ Svelte Autofixer nach jeder Änderung nutzen."
-  rule "📜sYVFu Minimalismus-Prinzip: Kurze Antworten, minimaler Code."
+define_skill "Frontend Experte 🔹AfKxC" do
+  rule "Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F"
+  rule "Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ"
+  rule "Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu"
 
   # Dynamische Anbindung des offiziellen Svelte MCP via npx
   # Severin startet dies nur bei Bedarf (Lazy Loading)
   use_mcp "svelte_official", command: "npx", args: ["-y", "@sveltejs/mcp-server"]
 
-  check "📜pGyhL Svelte 5 Runes" do
-    rule "📜iTBni Verwende ausschließlich Svelte 5 Runes."
+  check "Svelte 5 Runes 🔹pGyhL" do
+    rule "Verwende ausschließlich Svelte 5 Runes. 🔹iTBni"
     condition { true }
     on_fail "Svelte MCP konnte nicht für die Validierung erreicht werden."
   end
 
-  check "📜lWvKA Svelte Autofixer" do
-    rule "📜j3Lmz Nutze nach jeder Änderung das svelte-autofixer Tool."
+  check "Svelte Autofixer 🔹lWvKA" do
+    rule "Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz"
     condition { true }
   end
 end

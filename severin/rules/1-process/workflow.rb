@@ -1,20 +1,20 @@
 
 require 'date'
 
-suite = Severin.define_suite "📜5yJUs Workcycle & Git Regeln" do
+suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
   description "Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung vor der Implementierung."
 
   current_branch = `git rev-parse --abbrev-ref HEAD`.strip
 
-  check "📜brtTX Feature Branch" do
-    rule "📜rIJTD Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten."
+  check "Feature Branch 🔹brtTX" do
+    rule "Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten. 🔹rIJTD"
     condition { current_branch != 'main' && current_branch != 'master' }
     on_fail "Du befindest dich auf dem 'main' Branch."
     fix "Erstelle einen Feature-Branch: 'git checkout -b feature/dein-feature-name'"
   end
 
-  check "📜fLd43 Brain Document (Implementierungsplan)" do
-    rule "📜2Gtf3 VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen."
+  check "Brain Document (Implementierungsplan) 🔹fLd43" do
+    rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen. 🔹2Gtf3"
     branch_slug = current_branch.split('/').last
 
     condition do
@@ -26,8 +26,8 @@ suite = Severin.define_suite "📜5yJUs Workcycle & Git Regeln" do
     fix "Erstelle einen Plan in docs/brain/YYYY-MM-DD-#{branch_slug}.md"
   end
 
-  check "📜XdbXR Brain Task Format" do
-    rule "📜cy6jG Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein."
+  check "Brain Task Format 🔹XdbXR" do
+    rule "Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein. 🔹cy6jG"
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -42,8 +42,8 @@ suite = Severin.define_suite "📜5yJUs Workcycle & Git Regeln" do
     fix "Füge Tasks im Format '- [ ]' zum Brain-Dokument hinzu."
   end
 
-  check "📜NmRtH Brain Tasks Status" do
-    rule "📜1VAMl Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein."
+  check "Brain Tasks Status 🔹NmRtH" do
+    rule "Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl"
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -59,8 +59,8 @@ suite = Severin.define_suite "📜5yJUs Workcycle & Git Regeln" do
     fix "Markiere alle erledigten Tasks mit [x]."
   end
 
-  check "📜PJcKP Sprach-Konsistenz (Deutsch)" do
-    rule "📜fhmjc Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein."
+  check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do
+    rule "Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc"
     condition do
       content = File.read(__FILE__)
       !content.match?(/rule\s+"[^"]*(ALWAYS|NEVER|code without|found in)[^"]*"/)
@@ -69,16 +69,16 @@ suite = Severin.define_suite "📜5yJUs Workcycle & Git Regeln" do
     fix "Übersetze die Regel-Texte ins Deutsche."
   end
 
-  check "📜Xg87A Sauberer Workspace für Core-Dateien" do
-    rule "📜ae4E5 Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten."
+  check "Sauberer Workspace für Core-Dateien 🔹Xg87A" do
+    rule "Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5"
     status = `git status --porcelain`.strip
     condition { !status.include?('package.json') || current_branch.include?('severin') }
     on_fail "Uncommittete Änderungen in package.json gefunden."
     fix "Committe deine Änderungen oder nutze 'git stash'."
   end
 
-  check "📜fuodx Test Dokumentation (README)" do
-    rule "📜qE5WY Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten."
+  check "Test Dokumentation (README) 🔹fuodx" do
+    rule "Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY"
     target "severin/README.md"
     condition do
       return false unless File.exist?("severin/README.md")

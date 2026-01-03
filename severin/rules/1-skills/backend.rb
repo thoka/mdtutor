@@ -1,22 +1,22 @@
 
 
-suite = Severin.define_skill "📜ATdMw Backend Architekt" do
+suite = Severin.define_skill "Backend Architekt 🔹ATdMw" do
   description "Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails)."
 
-  check "📜kDj2I API-First & Spec-First" do
-    rule "📜57DXq Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden."
+  check "API-First & Spec-First 🔹kDj2I" do
+    rule "Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq"
     condition { true }
     on_fail "API muss zuerst implementiert und getestet werden."
     fix "Prüfe packages/backend-ruby/spec/requests auf existierende Tests."
   end
 
-  check "📜dKuL0 Test-Driven Development (TDD)" do
-    rule "📜esjGj TDD strikt befolgen. Tests vor der Implementierung schreiben."
+  check "Test-Driven Development (TDD) 🔹dKuL0" do
+    rule "TDD strikt befolgen. Tests vor der Implementierung schreiben. 🔹esjGj"
     condition { true }
   end
 
-  check "📜JroEX Conventional Commits" do
-    rule "📜RlU9k Nutze Conventional Commits für alle Backend-Änderungen."
+  check "Conventional Commits 🔹JroEX" do
+    rule "Nutze Conventional Commits für alle Backend-Änderungen. 🔹RlU9k"
     condition do
       last_commit = `git log -1 --pretty=%B`.strip
       last_commit.match?(/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: /)

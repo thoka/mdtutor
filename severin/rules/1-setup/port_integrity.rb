@@ -1,10 +1,10 @@
 
 
-suite = Severin.define_suite "📜wJ1xe Code-Konventionen & Port-Integrität" do
+suite = Severin.define_suite "Code-Konventionen & Port-Integrität 🔹wJ1xe" do
   description "Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden."
 
-  check "📜HfTxw Keine Hardcoded Ports in Ruby/JS" do
-    rule "📜puyGP Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen."
+  check "Keine Hardcoded Ports in Ruby/JS 🔹HfTxw" do
+    rule "Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen. 🔹puyGP"
 
     ports = [3101, 3102, 3103, 5201]
     forbidden_files = Dir.glob("**/*.{rb,js,ts,svelte}").reject do |f|

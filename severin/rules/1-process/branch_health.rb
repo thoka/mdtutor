@@ -1,6 +1,6 @@
-define_suite "📜NUSqE Branch Gesundheit & Cleanup" do
-  check "📜gBN5w Fokus & Umfang" do
-    rule "📜7cPiz Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln."
+define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
+  check "Fokus & Umfang 🔹gBN5w" do
+    rule "Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz"
     condition do
       changes = `git status --porcelain | wc -l`.to_i
       changes < 20
@@ -9,8 +9,8 @@ define_suite "📜NUSqE Branch Gesundheit & Cleanup" do
     fix "Bitte committe deine Fortschritte oder nutze 'git stash'."
   end
 
-  check "📜gURed Keine temporären Dateien" do
-    rule "📜Bqgcu Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden."
+  check "Keine temporären Dateien 🔹gURed" do
+    rule "Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden. 🔹Bqgcu"
     condition do
       relics = Dir.glob("**/tmp_*")
       untracked = `git ls-files --others --exclude-standard`.split("\n")
@@ -22,8 +22,8 @@ define_suite "📜NUSqE Branch Gesundheit & Cleanup" do
     fix "Nutze 'git rm --cached' für getrackte tmp-Dateien oder lösche sie."
   end
 
-  check "📜J4Jp0 Synchronität der Regeln" do
-    rule "📜eSgd3 Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen."
+  check "Synchronität der Regeln 🔹J4Jp0" do
+    rule "Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. 🔹eSgd3"
     condition do
       next false unless File.exist?('PROJECT_RULES.md')
       rules_mtime = File.mtime('PROJECT_RULES.md')
@@ -34,8 +34,8 @@ define_suite "📜NUSqE Branch Gesundheit & Cleanup" do
     fix "Führe 'sv gen' aus, um die Dokumentation zu synchronisieren."
   end
 
-  check "📜9VGZq Plan-Aktualität" do
-    rule "📜35SbY Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln."
+  check "Plan-Aktualität 🔹9VGZq" do
+    rule "Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY"
     condition do
       latest_brain = Dir.glob('docs/brain/*.md').max_by { |f| File.mtime(f) }
       next true unless latest_brain
