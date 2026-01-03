@@ -1,37 +1,35 @@
-# Brain Document: Severin Framework Migration & Rebranding
-**Datum:** 2026-01-03
-**Status:** In Progress (Rebranding abgeschlossen, Reboot erforderlich)
+# Brain: Severin Rebranding (2026-01-03)
 
-## 🎯 Zielsetzung
-Vollständige Globalisierung des ehemals "Sentinel" genannten Frameworks unter dem neuen Namen **Severin**. Trennung von Engine (global) und Regeln (lokal).
+The rebranding from **Sentinel** to **Severin** is a strategic move to establish a unique identity for the project validation framework.
 
-## 🏗️ Aktueller Stand (Zusammenfassung)
+## Status: COMPLETED ✅
 
-### 1. Rebranding (Sentinel ➔ Severin)
-- Alle Referenzen im Code (Ruby Module `Sentinel` ➔ `Severin`) wurden angepasst.
-- Verzeichnisse wurden umbenannt: `sentinel/` ➔ `severin/`.
-- Globales Verzeichnis: `~/.sentinel` ➔ `~/.severin`.
+All core components and project-specific configurations have been migrated to the new naming convention and directory structure.
 
-### 2. Architektur & Engine
-- **Globale Engine:** Die gesamte Logik (CLI, Git-Orchestrierung, MCP-Client) lebt nun in `~/.severin/lib/severin/`.
-- **Globales Binary:** `sv` (Severin) ist das neue Haupt-Kommando.
-- **Projekt-Stub:** Die Datei `severin/runner.rb` dient nur noch als Delegator zur globalen Engine.
-- **MCP-Server:** Der MCP-Server wurde auf Severin rebranded und ist für parallele Sitzungen (PID-Logging) optimiert.
+## Achievements
 
-### 3. Orchestrierung & Features
-- `sv check`: Führt Integritätstests in Stages (0-5) aus.
-- `sv gen`: Synchronisiert `PROJECT_RULES.md` und `.cursorrules` mit dem Code.
-- `sv commit "msg"`: Erzwingt Integrität vor dem Commit.
-- `sv ship`: Vollautomatischer Shipping-Prozess von Feature-Branches nach `main`.
-- **MCP-Client:** Severin kann nun andere MCPs (z.B. Svelte via `npx`) als "Skills" einbinden.
+### 1. Global Core Migration
+- [x] Migrated `~/.sentinel` to `~/.severin`.
+- [x] Updated the MCP server to use `sv_` prefixes for tools (`sv_check`, `sv_gen`).
+- [x] Refactored `lib/severin.rb` to support a dynamic environment registry.
+- [x] Enhanced the generator (`generate_rules.rb`) to be introspective and support multi-language output.
 
-## 🚧 Nächste Schritte (nach Reboot)
-1. **Verifizierung:** Testlauf von `sv check` und `sv gen` im neuen Environment.
-2. **Path-Fix:** Sicherstellen, dass `~/.local/bin/sv` korrekt verlinkt ist.
-3. **MCP-Check:** Prüfung, ob der Severin MCP-Server von Cursor korrekt geladen wird (Status Grün).
-4. **Publishing:** GitHub Repository `thoka/severin` finalisieren und pushen.
+### 2. Project-Level Refactoring
+- [x] Renamed `sentinel/` directory to `severin/`.
+- [x] Restructured rules into numbered stages starting with `0-config`.
+- [x] Implemented `environments.rb` as the single source of truth for project outputs.
+- [x] Replaced all `sn` command references with `sv`.
 
-## ⚠️ Bekannte Probleme
-- Terminal-Session in Cursor war korrupt (`ENOENT`), daher war ein Neustart der IDE/Shell notwendig, um Git-Operationen abzuschließen.
+### 3. Language & Documentation Policy
+- [x] Implemented a dual-language policy:
+  - **Chat/Conversation**: German (for developer efficiency).
+  - **Documentation/Artifacts**: English (for global accessibility).
+- [x] Updated all Brain documents to English.
+- [x] Verified language consistency via automated Severin checks.
 
+## Impact
+The framework is now more modular, easier to extend for different IDEs (via the environment registry), and ready for potential open-source use due to the English documentation standard.
 
+## Next
+- Continue development of domain-specific validation rules (Data, Services).
+- Monitor the effectiveness of the dual-language policy in daily use.
