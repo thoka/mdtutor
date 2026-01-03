@@ -60,7 +60,7 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 - **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden.
 
 ### MCP Integrität
-- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/dv/mdtutor/rocode/severin/engine/mcp/server.rb existieren.
+- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/dv/mdtutor/cursor/severin/engine/mcp/server.rb existieren.
 - **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
 - **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
 
@@ -82,12 +82,6 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 - **Engine Presence**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule).
 - **Engine Versioning**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
 - **Engine Integrity**: Wichtige Engine-Dateien müssen vorhanden sein.
-
-### Umgebung & Abhängigkeiten
-- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
-- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
-- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
-- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
 
 ### Code-Konventionen & Port-Integrität
 - **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.

@@ -1,0 +1,6 @@
+[93045] [2026-01-03 22:40:00 +0100] Server initialized (PID: 93045)
+[93045] [2026-01-03 22:40:00 +0100] Switched to active project via config: /home/toka/dv/mdtutor/rocode
+[93045] [2026-01-03 22:40:00 +0100] Detection in /home/toka/dv/mdtutor/rocode: Severin=true
+[93045] [2026-01-03 22:40:00 +0100] Loaded 3 actions
+[93045] [2026-01-03 22:40:00 +0100] IN: {"jsonrpc":"2.0","id":1,"method":"initialize","params":{}}
+[93045] [2026-01-03 22:40:00 +0100] OUT: {"jsonrpc":"2.0","id":1,"result":{"protocolVersion":"2024-11-05","capabilities":{"tools":{}},"serverInfo":{"name":"severin","version":"1.3.2"}}}
