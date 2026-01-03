@@ -36,11 +36,32 @@ Severin.define_action "ship" do
             raise "Engine push failed"
           end
 
-          # Globalen MCP-Server automatisch aktualisieren
-          global_path = File.expand_path('~/.severin')
-          if Dir.exist?(global_path)
-            puts "  -> Automatische Aktualisierung des globalen MCP-Servers (~/.severin)..."
-            system("git -C #{global_path} pull origin main")
+          # Globalen MCP-Server automatisch aktualisieren (Discovery)
+          global_path = nil
+          
+          # 1. Check ENV
+          if ENV['SEVERIN_HOME'] && Dir.exist?(ENV['SEVERIN_HOME'])
+            global_path = ENV['SEVERIN_HOME']
+          else
+            # 2. Check via 'which sv'
+            sv_bin = `which sv 2>/dev/null`.strip
+            if !sv_bin.empty?
+              # Folge Symlinks bis zum eigentlichen Skript
+              real_bin = File.realpath(sv_bin)
+              # Wir nehmen an, dass sv in bin/ liegt, also gehen wir zwei Ebenen hoch
+              global_path = File.expand_path('../..', real_bin)
+            end
+          end
+          
+          # Fallback auf Standard, falls Discovery fehlschlug
+          global_path ||= File.expand_path('~/.severin')
+
+          if Dir.exist?(File.join(global_path, '.git'))
+            # Verhindere Update, wenn wir gerade IM globalen Pfad sind (Rekursion)
+            if File.expand_path(global_path) != File.expand_path(File.join(Dir.pwd, 'severin/engine'))
+              puts "  -> Automatische Aktualisierung der globalen Installation unter #{global_path}..."
+              system("git -C #{global_path} pull origin main")
+            end
           end
         end
       rescue => e
