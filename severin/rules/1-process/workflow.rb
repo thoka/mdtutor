@@ -59,6 +59,23 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     fix "Markiere alle erledigten Tasks mit [x]."
   end
 
+  check "Release-Freigabe (Status) 🔹vP2r9" do
+    rule "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. 🔹nM2p1"
+    branch_slug = current_branch.split('/').last
+    plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
+
+    condition do
+      # Wir erlauben ship nur, wenn ein Dokument den Status 'ship-it' hat
+      plans.any? do |f|
+        content = File.read(f)
+        # Wir suchen nach "Status: ship-it" am Anfang einer Zeile
+        content.match?(/^Status:\s*ship-it/i)
+      end
+    end
+    on_fail "Das Brain-Dokument hat noch nicht den Status 'Status: ship-it'."
+    fix "Ändere den Status im Brain-Dokument auf 'ship-it', um den Release freizugeben."
+  end
+
   check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do
     rule "Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc"
     condition do
