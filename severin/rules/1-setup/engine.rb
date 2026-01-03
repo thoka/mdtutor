@@ -1,6 +1,8 @@
 define_suite "Severin Engine Health" do
   description "Regeln für die Entwicklung der globalen Severin-Engine."
 
+  rule "Änderungen an der Engine müssen IMMER über den Workspace-Pfad 'severin/engine/' erfolgen."
+
   check "Engine Symlink" do
     rule "Die Engine muss als 'severin/engine' im Workspace verlinkt sein."
     condition { File.symlink?("severin/engine") }
