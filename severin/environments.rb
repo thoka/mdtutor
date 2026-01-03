@@ -10,3 +10,9 @@ define_environment ".cursorrules" do
   doc_language  "English"
   description "Direct instructions for AI agents in Cursor."
 end
+
+define_environment "severin-engine/README.md" do
+  format :human
+  doc_language "English"
+  description "Documentation of the global Severin engine."
+end
