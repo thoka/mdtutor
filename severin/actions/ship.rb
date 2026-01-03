@@ -17,6 +17,15 @@ Severin.define_action "ship" do
 
     puts "🚀 Starte Release-Prozess für Branch '#{branch}'..."
 
+    # 0. Bereinigung von Relikten (tmp_*)
+    puts "  -> Bereinige temporäre Dateien (tmp_*)..."
+    Dir.glob("**/tmp_*").each do |f|
+      if File.file?(f)
+        File.delete(f)
+        puts "     - #{f} gelöscht"
+      end
+    end
+
     # 1. Engine Submodule prüfen und pushen
     engine_path = "severin/engine"
     if Dir.exist?(File.join(engine_path, ".git"))

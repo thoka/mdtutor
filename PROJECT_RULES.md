@@ -48,7 +48,7 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 
 ### Branch Gesundheit & Cleanup
 - **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln.
-- **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
+- **Keine temporären Dateien**: Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden.
 - **Synchronität der Regeln**: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen.
 - **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
 

@@ -53,3 +53,7 @@ packages/api-server/src/restart.js
 
 # Severin Engine (Git Submodule)
 # /severin/engine
+
+# Severin Temporary Files
+tmp_*
+**/tmp_*

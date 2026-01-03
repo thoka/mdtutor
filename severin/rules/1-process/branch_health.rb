@@ -10,12 +10,16 @@ define_suite "Branch Gesundheit & Cleanup" do
   end
 
   check "Keine temporären Dateien" do
-    rule "Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden."
+    rule "Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden."
     condition do
-      Dir.glob("**/*.bak.md").empty?
+      relics = Dir.glob("**/tmp_*")
+      untracked = `git ls-files --others --exclude-standard`.split("\n")
+      # Wir failen nur, wenn eine tmp-Datei getrackt wird oder andere Artefakte existieren
+      tracked_relics = `git ls-files | grep '^tmp_\\|/tmp_'`.split("\n")
+      tracked_relics.empty? && Dir.glob("**/*.bak.md").empty?
     end
-    on_fail "Temporäre Backup-Dateien gefunden."
-    fix "Entferne die Dateien: 'rm **/*.bak.md'"
+    on_fail "Temporäre Dateien oder Backups gefunden, die getrackt werden."
+    fix "Nutze 'git rm --cached' für getrackte tmp-Dateien oder lösche sie."
   end
 
   check "Synchronität der Regeln" do
