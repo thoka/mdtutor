@@ -16,6 +16,12 @@ Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
 - **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
 
 ## ⚖️ Verpflichtender Workflow
+### Branch Gesundheit & Cleanup
+- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln, um den Fokus zu behalten.
+- **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
+- **Synchronität der Regeln**: Die PROJECT_RULES.md muss aktuell sein, wenn Sentinel-Tests geändert wurden.
+- **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
+
 ### Dokumentations-Integrität
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.

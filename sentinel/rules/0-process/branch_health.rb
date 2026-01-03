@@ -1,4 +1,4 @@
-require_relative '../../tools/sentinel/lib/sentinel'
+require 'sentinel'
 
 suite = Sentinel.define_suite "Branch Gesundheit & Cleanup" do
   description "Stellt sicher, dass der Branch sauber, fokussiert und bereit für die Zusammenarbeit ist."
@@ -26,8 +26,8 @@ suite = Sentinel.define_suite "Branch Gesundheit & Cleanup" do
     condition do
       return true unless File.exist?('PROJECT_RULES.md')
       rules_mtime = File.mtime('PROJECT_RULES.md')
-      test_mtimes = Dir.glob('test/**/*.rb').map { |f| File.mtime(f) }
-      rules_mtime >= (test_mtimes.max || 0)
+      test_mtimes = Dir.glob('sentinel/rules/**/*.rb').map { |f| File.mtime(f) }
+      rules_mtime >= (test_mtimes.max || Time.at(0))
     end
     on_fail "Die Projektregeln sind nicht auf dem neuesten Stand der Sentinel-Tests."
     fix "Führe 'ruby tools/generate_rules.rb' aus, um die Dokumentation zu synchronisieren."

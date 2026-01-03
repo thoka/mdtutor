@@ -3,8 +3,6 @@
 Diese Regeln und Skills werden automatisch aus der Sentinel Test-Suite generiert. Sie dienen als direkte Arbeitsanweisung für Entwickler und KI-Agenten.
 
 ## 🧠 Agent Skills
-Diese Rollen-Profile definieren spezifische Fähigkeiten und Vorgehensweisen.
-
 ### 🛡️ Backend Architekt
 Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails).
 
@@ -20,6 +18,14 @@ Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
 - **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
 
 ## 🛠️ Technical Integrity & Workflow
+### Branch Gesundheit & Cleanup
+Stellt sicher, dass der Branch sauber, fokussiert und bereit für die Zusammenarbeit ist.
+
+- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln, um den Fokus zu behalten.
+- **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
+- **Synchronität der Regeln**: Die PROJECT_RULES.md muss aktuell sein, wenn Sentinel-Tests geändert wurden.
+- **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
+
 ### Dokumentations-Integrität
 Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korrekt formatiert sind.
 

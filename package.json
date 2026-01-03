@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "pnpm run test:sentinel && pnpm run lint && node --test",
-    "test:sentinel": "ruby test/sentinel_runner.rb",
-    "test:sentinel:agent": "SENTINEL_FORMAT=agent ruby test/sentinel_runner.rb",
+    "test:sentinel": "ruby sentinel/runner.rb",
+    "test:sentinel:agent": "SENTINEL_FORMAT=agent ruby sentinel/runner.rb",
     "sentinel:gen": "ruby ~/.sentinel/generate_rules.rb",
     "test:data": "node test/get-test-data.js",
     "sync:pathways": "node tools/fetch-pathways.js",
