@@ -20,7 +20,7 @@ define_suite "Severin Engine Health" do
   check "Engine Integrity" do
     rule "Wichtige Engine-Dateien müssen vorhanden sein."
     condition do
-      File.exist?("severin/engine/bin/sv") && 
+      File.exist?("severin/engine/bin/sv") &&
       File.exist?("severin/engine/lib/severin.rb") &&
       File.exist?("severin/engine/generate_rules.rb")
     end

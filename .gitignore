@@ -50,3 +50,6 @@ Thumbs.db
 !/packages/*/log/.keep
 !/packages/*/tmp/.keep
 packages/api-server/src/restart.js
+
+# Severin Engine (Symlink to global core)
+/severin/engine
