@@ -18,6 +18,16 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ## ⚖️ Verpflichtender Workflow
 
+### Agent-Anleitungen & Engine
+- **Agent-Anleitungen via Severin**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden.
+- **Severin Engine Development Workflow**: ### 🐺 Severin Engine Development
+Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
+1. Entwicklung direkt im Pfad `severin/engine/` (Symlink).
+2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
+3. Commits im Quellverzeichnis (meist `~/.severin/`) mit Conventional Commits.
+4. Du darfst Code in `severin/engine/` ohne zusätzliche Bestätigung des Nutzers ändern.
+
+
 ### Branch Gesundheit & Cleanup
 - **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln.
 - **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
