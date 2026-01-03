@@ -43,4 +43,3 @@ suite = Sentinel.define_suite "Dokumentations-Integrität" do
     fix "Führe 'pnpm run sentinel:gen' aus."
   end
 end
-

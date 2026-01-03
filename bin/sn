@@ -1,0 +1,4 @@
+#!/bin/bash
+# Lokales MDTutor Sentinel Kürzel
+export SENTINEL_HOME="$HOME/.sentinel"
+ruby sentinel/runner.rb "$@"

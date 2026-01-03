@@ -53,8 +53,8 @@ suite = Sentinel.define_suite "Workcycle & Git Regeln" do
     condition do
       return false unless File.exist?("sentinel/README.md")
       content = File.read("sentinel/README.md")
-      content.include?("rules/") && 
-      content.include?("actions/") && 
+      content.include?("rules/") &&
+      content.include?("actions/") &&
       content.include?("SENTINEL_FORMAT=agent")
     end
     on_fail "Das sentinel/README.md ist unvollständig oder fehlt."
