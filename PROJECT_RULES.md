@@ -26,6 +26,13 @@ Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korr
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 
+### MCP Integrität
+Stellt sicher, dass der Sentinel MCP-Server für KI-Agenten korrekt installiert und erreichbar ist.
+
+- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.sentinel/mcp/server.rb existieren.
+- **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
+- **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
+
 ### Workcycle & Git Regeln
 Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung vor der Implementierung.
 

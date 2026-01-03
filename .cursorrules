@@ -20,6 +20,11 @@ Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 
+### MCP Integrität
+- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.sentinel/mcp/server.rb existieren.
+- **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
+- **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
+
 ### Workcycle & Git Regeln
 - **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.

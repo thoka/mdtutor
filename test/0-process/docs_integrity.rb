@@ -9,7 +9,7 @@ suite = Sentinel.define_suite "Dokumentations-Integrität" do
     condition do
       return false unless File.exist?(target)
       content = File.read(target)
-      # Wir zählen, wie oft #{ vorkommt. 
+      # Wir zählen, wie oft #{ vorkommt.
       # Es darf nur genau 1x vorkommen (in der Regel-Beschreibung selbst).
       # Wenn es öfter vorkommt, sind echte Platzhalter unersetzt.
       content.scan(/#\{/).size <= 1
