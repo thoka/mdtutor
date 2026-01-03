@@ -19,6 +19,18 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Verwende ausschließlich Svelte 5 Runes.
 - Nutze nach jeder Änderung das svelte-autofixer Tool.
 
+## ⚡ Verfügbare Automatisierungen (Actions)
+
+Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
+
+### sv_commit
+- **Zweck**: Führt einen orchestrierten Projekt-Commit aus (Generierung, Integritäts-Checks und Git-Commit).
+- **Wichtig**: 1. Nutze dieses Tool für ALLE Projekt-Commits. Es stellt sicher, dass Dokumentation und Regeln synchron sind.
+
+### sv_commit_engine
+- **Zweck**: Commitet Änderungen in der Severin-Engine (Symlink severin/engine -> ~/.severin).
+- **Wichtig**: 1. Nutze dieses Tool, wenn du Dateien unter `severin/engine/` geändert hast.
+
 ## ⚖️ Verpflichtender Workflow
 ### Agent-Anleitungen & Engine
 - **Agent-Anleitungen via Severin**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden.
