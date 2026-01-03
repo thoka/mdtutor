@@ -54,7 +54,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - **Git Tracking for Content**: 
 
 ### Severin Engine Health
-- **Engine Symlink**: Die Engine muss als 'severin-engine' im Workspace verlinkt sein.
+- **Engine Symlink**: Die Engine muss als 'severin/engine' im Workspace verlinkt sein.
 - **Engine Versioning**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
 - **Engine Integrity**: Wichtige Engine-Dateien müssen vorhanden sein.
 

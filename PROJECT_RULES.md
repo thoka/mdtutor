@@ -50,7 +50,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### 1-setup: Content Registry
 
 ### Severin Engine Health
-- **Engine Symlink**: Die Engine muss als 'severin-engine' im Workspace verlinkt sein.
+- **Engine Symlink**: Die Engine muss als 'severin/engine' im Workspace verlinkt sein.
 - **Engine Versioning**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
 - **Engine Integrity**: Wichtige Engine-Dateien müssen vorhanden sein.
 
