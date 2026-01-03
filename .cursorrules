@@ -3,7 +3,8 @@
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Severin-Framework (severin/*) überwacht.
 
 ## 🗣️ Sprache
-- Deine gesamte Kommunikation (Antworten) sowie Dokumentation (Commits, Kommentare) erfolgt auf **Deutsch**.
+- **Konversation**: Deine Kommunikation mit dem Nutzer erfolgt auf **Deutsch**.
+- **Dokumentation**: Alle dauerhaften Artefakte (Brain-Dokumente, Git-Commits, Code-Kommentare) müssen auf **English** verfasst werden.
 
 ## 🧠 Deine Skills & Rollen
 ### Backend Architekt
@@ -31,7 +32,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten.
 
 ### Sprach-Integrität
-- **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss die konfigurierte Sprache explizit als Arbeitsanweisung enthalten.
+- **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden.
 
 ### MCP Integrität
 - **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.severin/mcp/server.rb existieren.

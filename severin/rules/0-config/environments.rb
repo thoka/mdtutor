@@ -1,11 +1,12 @@
 define_environment "PROJECT_RULES.md" do
   format :human
-  language "Deutsch"
-  description "Zentrale Dokumentation der Projektregeln für Menschen."
+  doc_language "English"
+  description "Central documentation of project rules for humans."
 end
 
 define_environment ".cursorrules" do
   format :ai
-  language "Deutsch"
-  description "Direkte Instruktionen für KI-Agenten in Cursor."
+  chat_language "Deutsch"
+  doc_language  "English"
+  description "Direct instructions for AI agents in Cursor."
 end
