@@ -17,7 +17,7 @@
     "test:severin:agent": "SENTINEL_FORMAT=agent ./bin/sv",
     "sv": "./bin/sv",
     "sv:a": "SENTINEL_FORMAT=agent ./bin/sv",
-    "severin:gen": "ruby ~/.severin/generate_rules.rb",
+    "severin:gen": "ruby severin/engine/generate_rules.rb",
     "test:data": "node test/get-test-data.js",
     "sync:pathways": "node tools/fetch-pathways.js",
     "api": "pnpm --filter @mdtutor/api-server run dev",

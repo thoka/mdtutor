@@ -39,7 +39,6 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
 2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
 3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits.
-4. Du darfst Code in `severin/engine/` ohne zusätzliche Bestätigung des Nutzers ändern.
 
 
 ### Branch Gesundheit & Cleanup
@@ -57,7 +56,7 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 - **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden.
 
 ### MCP Integrität
-- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.severin/mcp/server.rb existieren.
+- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/dv/mdtutor/rocode/severin/engine/mcp/server.rb existieren.
 - **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
 - **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
 

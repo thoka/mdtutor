@@ -7,7 +7,7 @@ define_suite "Severin Engine Health" do
     rule "Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule)."
     condition { File.symlink?("severin/engine") || File.directory?("severin/engine") }
     on_fail "Der Pfad 'severin/engine' fehlt."
-    fix "ln -s ~/.severin severin/engine # oder: git submodule add git@github.com:thoka/severin.git severin/engine"
+    fix "git submodule add git@github.com:thoka/severin.git severin/engine"
   end
 
   check "Engine Versioning" do
