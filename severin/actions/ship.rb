@@ -35,6 +35,13 @@ Severin.define_action "ship" do
             puts "❌ Fehler: Push der Engine fehlgeschlagen."
             raise "Engine push failed"
           end
+
+          # Globalen MCP-Server automatisch aktualisieren
+          global_path = File.expand_path('~/.severin')
+          if Dir.exist?(global_path)
+            puts "  -> Automatische Aktualisierung des globalen MCP-Servers (~/.severin)..."
+            system("git -C #{global_path} pull origin main")
+          end
         end
       rescue => e
         next if e.message == "Engine unclean" || e.message == "Engine push failed"
