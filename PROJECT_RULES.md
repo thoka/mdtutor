@@ -36,9 +36,9 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Agent-Anleitungen via Severin**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden.
 - **Severin Engine Development Workflow**: ### 🐺 Severin Engine Development
 Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
-1. Entwicklung direkt im Pfad `severin/engine/` (Symlink).
+1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
 2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
-3. Commits im Quellverzeichnis (meist `~/.severin/`) mit Conventional Commits.
+3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits.
 4. Du darfst Code in `severin/engine/` ohne zusätzliche Bestätigung des Nutzers ändern.
 
 
@@ -74,7 +74,7 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 ### 1-setup: Content Registry
 
 ### Severin Engine Health
-- **Engine Symlink**: Die Engine muss als 'severin/engine' im Workspace verlinkt sein.
+- **Engine Presence**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule).
 - **Engine Versioning**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
 - **Engine Integrity**: Wichtige Engine-Dateien müssen vorhanden sein.
 

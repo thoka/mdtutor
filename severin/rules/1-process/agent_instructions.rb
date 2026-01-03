@@ -19,13 +19,13 @@ define_suite "Agent-Anleitungen & Engine" do
     rule <<~TEXT
       ### 🐺 Severin Engine Development
       Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
-      1. Entwicklung direkt im Pfad `severin/engine/` (Symlink).
+      1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
       2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
-      3. Commits im Quellverzeichnis (meist `~/.severin/`) mit Conventional Commits.
+      3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits.
       4. Du darfst Code in `severin/engine/` ohne zusätzliche Bestätigung des Nutzers ändern.
     TEXT
 
-    condition { File.symlink?("severin/engine") }
-    on_fail "Die Severin Engine ist nicht korrekt als Symlink in 'severin/engine' verlinkt."
+    condition { File.symlink?("severin/engine") || File.directory?("severin/engine") }
+    on_fail "Die Severin Engine ist nicht korrekt in 'severin/engine' vorhanden."
   end
 end

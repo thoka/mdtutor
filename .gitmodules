@@ -1,0 +1,3 @@
+[submodule "severin/engine"]
+	path = severin/engine
+	url = git@github.com:thoka/severin.git
