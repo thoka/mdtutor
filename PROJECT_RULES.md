@@ -45,3 +45,8 @@ Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports 
 - **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
 - **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
 
+### Code-Konventionen & Port-Integrität
+Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden.
+
+- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
+

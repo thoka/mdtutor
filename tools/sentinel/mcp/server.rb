@@ -23,10 +23,10 @@ class SentinelMCPServer
       begin
         input = STDIN.gets
         break unless input
-        
+
         request = JSON.parse(input)
         response = handle_request(request)
-        
+
         STDOUT.puts JSON.generate(response)
         STDOUT.flush
       rescue => e
@@ -65,10 +65,10 @@ class SentinelMCPServer
           {
             name: 'ensure_service',
             description: 'Stellt sicher, dass ein Service läuft. Startet ihn falls nötig.',
-            inputSchema: { 
-              type: 'object', 
-              properties: { 
-                service: { type: 'string', enum: ['api', 'achievements', 'sso', 'web'] } 
+            inputSchema: {
+              type: 'object',
+              properties: {
+                service: { type: 'string', enum: ['api', 'achievements', 'sso', 'web'] }
               },
               required: ['service']
             }
@@ -89,17 +89,17 @@ class SentinelMCPServer
     when 'check_health'
       output = `SENTINEL_FORMAT=agent ruby test/0-process/branch_health.rb && SENTINEL_FORMAT=agent ruby test/0-process/workflow.rb && SENTINEL_FORMAT=agent ruby test/1-setup/environment.rb`
       { content: [{ type: 'text', text: output }] }
-    
+
     when 'service_status'
       update_service_states
       status_report = @services.map { |k, v| "#{k}: #{v[:status]} (Port #{v[:port]})" }.join("\n")
       { content: [{ type: 'text', text: "Aktueller Service-Status:\n#{status_report}" }] }
-    
+
     when 'ensure_service'
       svc_name = args['service']
       svc = @services[svc_name]
       update_service_states
-      
+
       if svc[:status] == :running
         { content: [{ type: 'text', text: "Service #{svc_name} läuft bereits auf Port #{svc[:port]}." }] }
       else

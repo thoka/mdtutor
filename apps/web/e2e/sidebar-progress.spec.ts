@@ -15,12 +15,12 @@ test.describe('Sidebar Progress Indicators (E2E)', () => {
       await loginBtn.click();
     } catch (e) {}
 
-    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '3103' || url.hostname.includes('sso.'), { timeout: 15000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === (process.env.SSO_PORT || '3103') || url.hostname.includes('sso.'), { timeout: 15000 });
     await page.locator('button.tile').filter({ hasText: 'Alice' }).click();
     await page.waitForSelector('#pin');
     await page.fill('#pin', '1111');
     await page.click('button.submit-button');
-    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '5201', { timeout: 15000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === (process.env.WEB_PORT || '5201'), { timeout: 15000 });
     await expect(page.locator('.user-info-button')).toContainText('Alice', { timeout: 15000 });
   });
 

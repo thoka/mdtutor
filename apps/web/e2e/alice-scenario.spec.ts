@@ -21,7 +21,7 @@ test.describe('Alice Achievement Scenario', () => {
     }
 
     // 3. On SSO Login Page, click Alice (student_a)
-    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '3103' || url.hostname.includes('sso.'), { timeout: 15000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === (process.env.SSO_PORT || '3103') || url.hostname.includes('sso.'), { timeout: 15000 });
     await page.locator('button.tile').filter({ hasText: 'Alice' }).click();
 
     // Handle PIN entry
@@ -30,7 +30,7 @@ test.describe('Alice Achievement Scenario', () => {
     await page.click('button.submit-button');
 
     // 4. Should be back at the app, logged in
-    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === '5201', { timeout: 15000 });
+    await page.waitForURL(url => url.hostname.includes('mdtutor.localhost') || url.port === (process.env.WEB_PORT || '5201'), { timeout: 15000 });
     
     // Wait for auth to be reflected in UI
     await expect(page.locator('.user-info-button')).toContainText('Alice', { timeout: 15000 });

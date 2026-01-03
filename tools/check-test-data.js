@@ -5,8 +5,11 @@
 
 import http from 'http';
 
-const ACHIEVEMENTS_URL = 'http://localhost:3102/api/v1/system/stats';
-const SSO_URL = 'http://localhost:3103/api/system/stats';
+const ACHIEVEMENTS_PORT = process.env.ACHIEVEMENTS_PORT || '3102';
+const SSO_PORT = process.env.SSO_PORT || '3103';
+
+const ACHIEVEMENTS_URL = `http://localhost:${ACHIEVEMENTS_PORT}/api/v1/system/stats`;
+const SSO_URL = `http://localhost:${SSO_PORT}/api/system/stats`;
 
 async function fetchJson(url) {
   return new Promise((resolve, reject) => {
@@ -46,7 +49,7 @@ async function runCheck() {
     // Check GID consistency
     const hasCorrectGids = stats.alice_projects?.some(gid => gid.includes(':PROJ:'));
     if (!hasCorrectGids && aliceActions > 0) {
-      console.warn('⚠️  Warning: Alice projects GIDs might be missing ":PROJ:" namespace.');
+      console.warn('⚠️  Warning: Alice projects GIDs might be missing \":PROJ:\" namespace.');
     }
 
   } catch (e) {
