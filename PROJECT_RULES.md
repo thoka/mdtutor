@@ -4,17 +4,17 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ## 🧠 Agent Skills
 
-### Backend Architekt
-- **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
-- **Rule**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
-- **Rule**: Nutze Conventional Commits für alle Backend-Änderungen.
+### 📜ATdMw Backend Architekt
+- **Rule**: 📜57DXq Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
+- **Rule**: 📜esjGj TDD strikt befolgen. Tests vor der Implementierung schreiben.
+- **Rule**: 📜RlU9k Nutze Conventional Commits für alle Backend-Änderungen.
 
-### Frontend Experte
-- **Guideline**: Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
-- **Guideline**: Svelte Autofixer nach jeder Änderung nutzen.
-- **Guideline**: Minimalismus-Prinzip: Kurze Antworten, minimaler Code.
-- **Rule**: Verwende ausschließlich Svelte 5 Runes.
-- **Rule**: Nutze nach jeder Änderung das svelte-autofixer Tool.
+### 📜AfKxC Frontend Experte
+- **Guideline**: 📜e076F Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
+- **Guideline**: 📜WDFaQ Svelte Autofixer nach jeder Änderung nutzen.
+- **Guideline**: 📜sYVFu Minimalismus-Prinzip: Kurze Antworten, minimaler Code.
+- **Rule**: 📜iTBni Verwende ausschließlich Svelte 5 Runes.
+- **Rule**: 📜j3Lmz Nutze nach jeder Änderung das svelte-autofixer Tool.
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
@@ -37,53 +37,53 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 
 ## ⚖️ Verpflichtender Workflow
 
-### Agent-Anleitungen & Engine
-- **Agent-Anleitungen via Severin**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden.
-- **Severin Engine Development Workflow**: ### 🐺 Severin Engine Development
-Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
-1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
-2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
-3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits.
+### 📜uVr0W Agent-Anleitungen & Engine
+- **📜lTs5w Agent-Anleitungen via Severin**: 📜4fjeN Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden.
+- **📜mYkJM Severin Engine Development Workflow**: 📜5cuWw       ### 🐺 Severin Engine Development
+      Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
+      1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
+      2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
+      3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits.
 
 
-### Branch Gesundheit & Cleanup
-- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln.
-- **Keine temporären Dateien**: Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden.
-- **Synchronität der Regeln**: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen.
-- **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
+### 📜NUSqE Branch Gesundheit & Cleanup
+- **📜gBN5w Fokus & Umfang**: 📜7cPiz Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln.
+- **📜gURed Keine temporären Dateien**: 📜Bqgcu Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden.
+- **📜J4Jp0 Synchronität der Regeln**: 📜eSgd3 Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen.
+- **📜9VGZq Plan-Aktualität**: 📜35SbY Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
 
-### Dokumentations-Integrität
-- **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
-- **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
-- **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten.
+### 📜7knlz Dokumentations-Integrität
+- **📜R7eBm Cursorrules Platzhalter-Freiheit**: 📜xUlmn Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
+- **📜yLhfK Projekt-Regeln Formatierung**: 📜6MjmK Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
+- **📜DUzJ7 Keine veralteten Pfade in Regeln**: 📜K8bgP Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten.
 
-### Sprach-Integrität
-- **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden.
+### 📜kcvzQ Sprach-Integrität
+- **📜dTyEL Sprachanweisung in AI-Umgebungen**: 📜Ynyhp Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden.
 
-### MCP Integrität
-- **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/dv/mdtutor/cursor/severin/engine/mcp/server.rb existieren.
-- **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
-- **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
+### 📜yLjQ5 MCP Integrität
+- **📜PjBKu Globale Engine vorhanden**: 📜SwcSe Der MCP-Server muss unter /home/toka/dv/mdtutor/cursor/severin/engine/mcp/server.rb existieren.
+- **📜ZfPam MCP Ausführbarkeit**: 📜TJUET Der MCP-Server muss vom System geladen werden können.
+- **📜2Pw8c Cursor Integration Hinweis**: 📜mzrvu Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
 
-### Self-Documentation Workflow
-- **Dokumentation der Generierung**: Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen.
+### 📜aOgCE Self-Documentation Workflow
+- **📜3097t Dokumentation der Generierung**: 📜HSpv4 Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen.
 
-### Workcycle & Git Regeln
-- **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
-- **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
-- **Brain Task Format**: Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein.
-- **Brain Tasks Status**: Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein.
-- **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein.
-- **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
-- **Test Dokumentation (README)**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
+### 📜5yJUs Workcycle & Git Regeln
+- **📜brtTX Feature Branch**: 📜rIJTD Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
+- **📜fLd43 Brain Document (Implementierungsplan)**: 📜2Gtf3 VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
+- **📜XdbXR Brain Task Format**: 📜cy6jG Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein.
+- **📜NmRtH Brain Tasks Status**: 📜1VAMl Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein.
+- **📜PJcKP Sprach-Konsistenz (Deutsch)**: 📜fhmjc Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein.
+- **📜Xg87A Sauberer Workspace für Core-Dateien**: 📜ae4E5 Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
+- **📜fuodx Test Dokumentation (README)**: 📜qE5WY Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
 
-### 1-setup: Content Registry
+### 📜Y7fuV 1-setup: Content Registry
 
-### Severin Engine Health
-- **Engine Presence**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule).
-- **Engine Versioning**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
-- **Engine Integrity**: Wichtige Engine-Dateien müssen vorhanden sein.
+### 📜aUsN8 Severin Engine Health
+- **📜6quEB Engine Presence**: 📜QD3t9 Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule).
+- **📜Dj9hj Engine Versioning**: 📜S9EsU Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen.
+- **📜51vXy Engine Integrity**: 📜nmKwQ Wichtige Engine-Dateien müssen vorhanden sein.
 
-### Code-Konventionen & Port-Integrität
-- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
+### 📜wJ1xe Code-Konventionen & Port-Integrität
+- **📜HfTxw Keine Hardcoded Ports in Ruby/JS**: 📜puyGP Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
 

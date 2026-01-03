@@ -1,7 +1,7 @@
-define_suite "1-setup: Content Registry" do
+define_suite "📜Y7fuV 1-setup: Content Registry" do
   description "Validiert die Existenz und das Tracking der zentralen Inhaltsdateien."
 
-  check "Content Files Presence" do
+  check "📜vjXOA Content Files Presence" do
     files = [
       "content/RPL/sync.yaml",
       "content/RPL/topics.yaml",
@@ -14,7 +14,7 @@ define_suite "1-setup: Content Registry" do
     on_fail "Fehlende Content-Dateien: #{missing.join(', ')}"
   end
 
-  check "Git Tracking for Content" do
+  check "📜uVHsq Git Tracking for Content" do
     files = [
       "content/RPL/sync.yaml",
       "content/RPL/topics.yaml",
