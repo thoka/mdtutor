@@ -3,46 +3,38 @@
 Diese Regeln und Skills werden automatisch aus der Sentinel Test-Suite generiert. Sie dienen als direkte Arbeitsanweisung für Entwickler und KI-Agenten.
 
 ## 🧠 Agent Skills
-### 🛡️ Backend Architekt
-Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails).
 
-- **API-First & Spec-First**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
-- **Test-Driven Development (TDD)**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
-- **Conventional Commits**: Nutze Conventional Commits für alle Backend-Änderungen.
+### Backend Architekt
+- **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
+- **Rule**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
+- **Rule**: Nutze Conventional Commits für alle Backend-Änderungen.
 
-### 🛡️ Frontend Experte
-Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
+### Frontend Experte
+- **Guideline**: Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
+- **Guideline**: Svelte Autofixer nach jeder Änderung nutzen.
+- **Guideline**: Minimalismus-Prinzip: Kurze Antworten, minimaler Code.
+- **Rule**: Verwende ausschließlich Svelte 5 Runes.
+- **Rule**: Nutze nach jeder Änderung das svelte-autofixer Tool.
 
-- **Svelte 5 Runes**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
-- **Svelte Autofixer**: Nutze nach jeder Änderung an Svelte-Komponenten das `svelte-autofixer` Tool, um die Korrektheit der Reaktivität sicherzustellen.
-- **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
+## ⚖️ Verpflichtender Workflow
 
-## 🛠️ Technical Integrity & Workflow
 ### Branch Gesundheit & Cleanup
-Stellt sicher, dass der Branch sauber, fokussiert und bereit für die Zusammenarbeit ist.
-
-- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln, um den Fokus zu behalten.
+- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln.
 - **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
-- **Synchronität der Regeln**: Die PROJECT_RULES.md muss aktuell sein, wenn Sentinel-Tests geändert wurden.
+- **Synchronität der Regeln**: Die lokalen Projektregeln müssen mit dem Sentinel-Code übereinstimmen.
 - **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
 
 ### Dokumentations-Integrität
-Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korrekt formatiert sind.
-
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 - **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'test/' Verzeichnis für Sentinel-Checks enthalten.
 
 ### MCP Integrität
-Stellt sicher, dass der Sentinel MCP-Server für KI-Agenten korrekt installiert und erreichbar ist.
-
 - **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.sentinel/mcp/server.rb existieren.
 - **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
 - **Cursor Integration Hinweis**: Der MCP-Server sollte in den Cursor Settings als 'command' Server registriert sein.
 
 ### Workcycle & Git Regeln
-Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung vor der Implementierung.
-
 - **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
 - **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
@@ -50,15 +42,11 @@ Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung v
 - **Test Dokumentation (README)**: Das sentinel/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
 
 ### Umgebung & Abhängigkeiten
-Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen.
-
 - **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
 - **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
 - **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
 - **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
 
 ### Code-Konventionen & Port-Integrität
-Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden.
-
 - **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
 
