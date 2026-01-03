@@ -1,4 +1,4 @@
-require_relative '../../tools/sentinel/lib/sentinel'
+require 'sentinel'
 
 suite = Sentinel.define_skill "Backend Architekt" do
   description "Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails)."

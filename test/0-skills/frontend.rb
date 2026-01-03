@@ -1,4 +1,4 @@
-require_relative '../../tools/sentinel/lib/sentinel'
+require 'sentinel'
 
 suite = Sentinel.define_skill "Frontend Experte" do
   description "Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend."

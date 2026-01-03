@@ -3,50 +3,40 @@
 Diese Regeln und Skills werden automatisch aus der Sentinel Test-Suite generiert. Sie dienen als direkte Arbeitsanweisung für Entwickler und KI-Agenten.
 
 ## 🧠 Agent Skills
-Diese Rollen-Profile definieren spezifische Fähigkeiten und Vorgehensweisen.
+### 🛡️ #{suite[:name].sub('Skill: ', '')}
+#{suite[:description]}
 
-### 🛡️ Backend Architekt
-Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails).
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
 
-- **API-First & Spec-First**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
-- **Test-Driven Development (TDD)**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
-- **Conventional Commits**: Nutze Conventional Commits für alle Backend-Änderungen.
+### 🛡️ #{suite[:name].sub('Skill: ', '')}
+#{suite[:description]}
 
-### 🛡️ Frontend Experte
-Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
-
-- **Svelte 5 Runes**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
-- **Svelte Autofixer**: Nutze nach jeder Änderung an Svelte-Komponenten das `svelte-autofixer` Tool, um die Korrektheit der Reaktivität sicherzustellen.
-- **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
 
 ## 🛠️ Technical Integrity & Workflow
-### Branch Gesundheit & Cleanup
-Stellt sicher, dass der Branch sauber, fokussiert und bereit für die Zusammenarbeit ist.
+### #{suite[:name]}
+#{suite[:description]}
 
-- **Fokus & Umfang**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln, um den Fokus zu behalten.
-- **Keine temporären Dateien**: Backup-Dateien (*.bak.md) und temporäre Artefakte dürfen nicht committet werden.
-- **Synchronität der Regeln**: Die PROJECT_RULES.md muss aktuell sein, wenn Sentinel-Tests geändert wurden.
-- **Plan-Aktualität**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln.
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
 
-### Workcycle & Git Regeln
-Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung vor der Implementierung.
+### #{suite[:name]}
+#{suite[:description]}
 
-- **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
-- **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
-- **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
-- **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
-- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
+- **#{check[:name]}**: #{check[:rule]}
 
-### Umgebung & Abhängigkeiten
-Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen.
+### #{suite[:name]}
+#{suite[:description]}
 
-- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
-- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
-- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
-- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
-
-### Code-Konventionen & Port-Integrität
-Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden.
-
-- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
+- **#{check[:name]}**: #{check[:rule]}
 

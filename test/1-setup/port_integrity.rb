@@ -1,4 +1,4 @@
-require_relative '../../tools/sentinel/lib/sentinel'
+require 'sentinel'
 
 suite = Sentinel.define_suite "Code-Konventionen & Port-Integrität" do
   description "Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden."

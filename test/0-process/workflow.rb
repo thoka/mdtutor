@@ -1,4 +1,4 @@
-require_relative '../../tools/sentinel/lib/sentinel'
+require 'sentinel'
 require 'date'
 
 suite = Sentinel.define_suite "Workcycle & Git Regeln" do
