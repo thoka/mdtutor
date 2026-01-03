@@ -40,7 +40,18 @@ if [ -d .git ]; then
     fi
 fi
 
-# 1. Detect Environment
+# 1. Detect Environment & Handle Arguments
+TARGET_COMMIT=${1:-"HEAD"}
+
+# Validate commit if it's not "HEAD"
+if [ "$TARGET_COMMIT" != "HEAD" ]; then
+    if ! git rev-parse "$TARGET_COMMIT" >/dev/null 2>&1; then
+        echo -e "${RED}Fehler: '$TARGET_COMMIT' ist kein gültiger Git-Commit oder Branch.${NC}"
+        exit 1
+    fi
+    echo -e "${YELLOW}Nutze spezifischen Commit: $(git rev-parse --short $TARGET_COMMIT)${NC}"
+fi
+
 IS_WSL=0
 if grep -qi microsoft /proc/version 2>/dev/null; then
     IS_WSL=1
@@ -216,7 +227,9 @@ fi
 
 # 6. Run Docker Compose
 echo -e "${GREEN}Starte Docker-Container...${NC}"
-COMMIT_HASH=$(git rev-parse HEAD 2>/dev/null || echo "unknown")
+COMMIT_HASH=$(git rev-parse "$TARGET_COMMIT" 2>/dev/null || echo "unknown")
+
+echo -e "Baue Image für Commit: ${YELLOW}$COMMIT_HASH${NC}"
 
 COMMIT_HASH=$COMMIT_HASH docker-compose --env-file "$ENV_FILE" up -d --build --remove-orphans
 
