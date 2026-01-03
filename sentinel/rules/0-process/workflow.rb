@@ -48,17 +48,17 @@ suite = Sentinel.define_suite "Workcycle & Git Regeln" do
   end
 
   check "Test Dokumentation (README)" do
-    rule "Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten."
-    target "test/README.md"
+    rule "Das sentinel/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten."
+    target "sentinel/README.md"
     condition do
-      return false unless File.exist?("test/README.md")
-      content = File.read("test/README.md")
-      content.include?("0-process") &&
-      content.include?("5-e2e") &&
-      content.include?("pnpm run test:sentinel:agent")
+      return false unless File.exist?("sentinel/README.md")
+      content = File.read("sentinel/README.md")
+      content.include?("rules/") && 
+      content.include?("actions/") && 
+      content.include?("SENTINEL_FORMAT=agent")
     end
-    on_fail "Das test/README.md ist unvollständig oder fehlt."
-    fix "Aktualisiere das test/README.md basierend auf der aktuellen Framework-Struktur."
+    on_fail "Das sentinel/README.md ist unvollständig oder fehlt."
+    fix "Aktualisiere das sentinel/README.md basierend auf der neuen Orchestrator-Struktur."
   end
 end
 

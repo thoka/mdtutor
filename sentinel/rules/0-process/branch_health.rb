@@ -47,4 +47,3 @@ suite = Sentinel.define_suite "Branch Gesundheit & Cleanup" do
     fix "Bitte aktualisiere das Brain-Dokument #{plan_file || '(fehlt)'} mit dem aktuellen Status, bevor du weitermachst. Frage den User nach dem aktuellen Fortschritt, falls unsicher."
   end
 end
-

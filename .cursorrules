@@ -25,6 +25,7 @@ Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
 ### Dokumentations-Integrität
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
+- **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'test/' Verzeichnis für Sentinel-Checks enthalten.
 
 ### MCP Integrität
 - **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.sentinel/mcp/server.rb existieren.
@@ -36,7 +37,7 @@ Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
 - **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
 - **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
-- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
+- **Test Dokumentation (README)**: Das sentinel/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
 
 ### Umgebung & Abhängigkeiten
 - **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.

@@ -31,6 +31,7 @@ Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korr
 
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
+- **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'test/' Verzeichnis für Sentinel-Checks enthalten.
 
 ### MCP Integrität
 Stellt sicher, dass der Sentinel MCP-Server für KI-Agenten korrekt installiert und erreichbar ist.
@@ -46,7 +47,7 @@ Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung v
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
 - **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
 - **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
-- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
+- **Test Dokumentation (README)**: Das sentinel/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
 
 ### Umgebung & Abhängigkeiten
 Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen.

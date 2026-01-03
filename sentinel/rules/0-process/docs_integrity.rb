@@ -29,5 +29,18 @@ suite = Sentinel.define_suite "Dokumentations-Integrität" do
     on_fail "PROJECT_RULES.md scheint korrupt oder leer zu sein."
     fix "Führe 'pnpm run sentinel:gen' aus."
   end
+
+  check "Keine veralteten Pfade in Regeln" do
+    rule "Die PROJECT_RULES.md darf keine Verweise auf das alte 'test/' Verzeichnis für Sentinel-Checks enthalten."
+    target "PROJECT_RULES.md"
+    condition do
+      return false unless File.exist?(target)
+      content = File.read(target)
+      # Prüfen ob irgendwo noch test/0-process oder test/1-setup steht (was in den Cursorrules oft vorkam)
+      !content.match?(/test\/0-process|test\/0-skills|test\/1-setup/)
+    end
+    on_fail "Veraltete Pfade in PROJECT_RULES.md gefunden."
+    fix "Führe 'pnpm run sentinel:gen' aus."
+  end
 end
 
