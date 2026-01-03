@@ -35,6 +35,7 @@ Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung v
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
 - **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
 - **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
+- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
 
 ### Umgebung & Abhängigkeiten
 Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen.

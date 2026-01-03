@@ -46,6 +46,20 @@ suite = Sentinel.define_suite "Workcycle & Git Regeln" do
     on_fail "Uncommittete Änderungen in package.json gefunden."
     fix "Committe deine Änderungen oder nutze 'git stash'."
   end
+
+  check "Test Dokumentation (README)" do
+    rule "Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten."
+    target "test/README.md"
+    condition do
+      return false unless File.exist?("test/README.md")
+      content = File.read("test/README.md")
+      content.include?("0-process") && 
+      content.include?("5-e2e") && 
+      content.include?("pnpm run test:sentinel:agent")
+    end
+    on_fail "Das test/README.md ist unvollständig oder fehlt."
+    fix "Aktualisiere das test/README.md basierend auf der aktuellen Framework-Struktur."
+  end
 end
 
 # Automatisches Format-Wahl
