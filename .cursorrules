@@ -2,6 +2,9 @@
 
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Severin-Framework (severin/*) überwacht.
 
+## 🗣️ Sprache
+- Deine gesamte Kommunikation (Antworten) sowie Dokumentation (Commits, Kommentare) erfolgt auf **Deutsch**.
+
 ## 🧠 Deine Skills & Rollen
 ### Backend Architekt
 - Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
@@ -26,6 +29,9 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #\{name\} enthalten.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 - **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten.
+
+### Sprach-Integrität
+- **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss die konfigurierte Sprache explizit als Arbeitsanweisung enthalten.
 
 ### MCP Integrität
 - **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.severin/mcp/server.rb existieren.

@@ -29,6 +29,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 - **Keine veralteten Pfade in Regeln**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten.
 
+### Sprach-Integrität
+- **Sprachanweisung in AI-Umgebungen**: Jede AI-Umgebung (.cursorrules) muss die konfigurierte Sprache explizit als Arbeitsanweisung enthalten.
+
 ### MCP Integrität
 - **Globale Engine vorhanden**: Der MCP-Server muss unter /home/toka/.severin/mcp/server.rb existieren.
 - **MCP Ausführbarkeit**: Der MCP-Server muss vom System geladen werden können.
