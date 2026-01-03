@@ -14,6 +14,7 @@ The Severin Framework is a lightweight validation and agent-guidance system desi
 - [x] Introduce `0-config` stage for project-specific output definitions.
 - [x] Decouple generator from hardcoded file paths using introspection (`Severin.environments`).
 - [x] Move rules into numbered stages (`1-process`, `1-skills`, etc.).
+- [x] Clean up legacy structures and document directory roles via READMEs.
 
 ### 3. Language Guidance
 - [x] Support separate languages for **Chat** (e.g., German) and **Documentation** (e.g., English).
