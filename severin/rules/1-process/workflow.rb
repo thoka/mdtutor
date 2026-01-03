@@ -50,12 +50,9 @@ suite = Severin.define_suite "Workcycle & Git Regeln" do
     condition do
       return false unless File.exist?("severin/README.md")
       content = File.read("severin/README.md")
-      content.include?("rules/") &&
-      content.include?("actions/") &&
-      content.include?("SENTINEL_FORMAT=agent")
+      content.include?("environments.rb")
     end
-    on_fail "Das severin/README.md ist unvollständig oder fehlt."
+    on_fail "Das severin/README.md ist unvollständig."
     fix "Aktualisiere das severin/README.md basierend auf der neuen Orchestrator-Struktur."
   end
 end
-
