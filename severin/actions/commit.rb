@@ -35,7 +35,11 @@ Severin.define_action "commit" do
         else
           # 3. Git Commit
           puts "  -> Committe Änderungen..."
-          if system("git add .") && system("git commit -m '#{msg}'")
+          system("git add .")
+          if `git status --porcelain`.strip.empty?
+            puts "✅ Keine Änderungen zu committen."
+            true
+          elsif system("git commit -m '#{msg}'")
             puts "✅ Projekt erfolgreich committet."
             true
           else
