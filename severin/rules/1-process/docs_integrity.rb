@@ -1,5 +1,3 @@
-require 'severin'
-
 suite = Severin.define_suite "Dokumentations-Integrität" do
   description "Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korrekt formatiert sind."
 

@@ -1,4 +1,4 @@
-require 'severin'
+
 
 suite = Severin.define_suite "MCP Integrität" do
   description "Stellt sicher, dass der Severin MCP-Server für KI-Agenten korrekt installiert und erreichbar ist."

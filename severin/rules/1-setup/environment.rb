@@ -1,4 +1,4 @@
-require 'severin'
+
 
 suite = Severin.define_suite "Umgebung & Abhängigkeiten" do
   description "Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen."

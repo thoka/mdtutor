@@ -40,3 +40,21 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Self-Documentation Workflow
 - **Dokumentation der Generierung**: Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen.
 
+### Workcycle & Git Regeln
+- **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
+- **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
+- **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein.
+- **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
+- **Test Dokumentation (README)**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.
+
+### 1-setup: Content Registry
+
+### Umgebung & Abhängigkeiten
+- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
+- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
+- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
+- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
+
+### Code-Konventionen & Port-Integrität
+- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
+

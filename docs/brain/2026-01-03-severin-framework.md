@@ -11,7 +11,8 @@ The Severin Framework is a lightweight validation and agent-guidance system desi
 
 ### 2. Architectural Refactoring
 - [x] Implement **Environment Registry** in `Severin` core.
-- [x] Introduce `0-config` stage for project-specific output definitions.
+- [x] Introduce `0-severin-config` stage for project-specific output definitions.
+- [x] Clarify rule placement: Always confirm the target stage (0-5) before implementing new rules.
 - [x] Decouple generator from hardcoded file paths using introspection (`Severin.environments`).
 - [x] Move rules into numbered stages (`1-process`, `1-skills`, etc.).
 - [x] Clean up legacy structures and document directory roles via READMEs.
@@ -32,7 +33,7 @@ The Severin Framework is a lightweight validation and agent-guidance system desi
 - [ ] Ensure `sv init` command works reliably for new projects.
 
 ## Configuration (As Code)
-Projects define their goals in `severin/rules/0-config/environments.rb`:
+Projects define their goals in `severin/rules/0-severin-config/environments.rb`:
 ```ruby
 define_environment ".cursorrules" do
   format :ai
