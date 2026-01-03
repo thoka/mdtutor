@@ -6,6 +6,8 @@ content/**/*.json
 
 # Keep config and ecosystem definitions
 !content/*/ecosystem.yaml
+!content/RPL/sync.yaml
+!content/RPL/topics.yaml
 !content/*/config/
 !content/*/config/**
 
