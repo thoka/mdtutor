@@ -60,7 +60,7 @@ Severin.define_action "ship" do
 
           # Globalen MCP-Server automatisch aktualisieren (Discovery)
           global_path = nil
-          
+
           # 1. Check ENV
           if ENV['SEVERIN_HOME'] && Dir.exist?(ENV['SEVERIN_HOME'])
             global_path = ENV['SEVERIN_HOME']
@@ -74,7 +74,7 @@ Severin.define_action "ship" do
               global_path = File.expand_path('../..', real_bin)
             end
           end
-          
+
           # Fallback auf Standard, falls Discovery fehlschlug
           global_path ||= File.expand_path('~/.severin')
 
@@ -114,7 +114,7 @@ Severin.define_action "ship" do
     puts "  -> Merging nach main..."
     # Wir holen erst die neuesten Änderungen von main
     system("git fetch origin main")
-    
+
     unless system("git checkout main && git pull origin main --rebase && git merge #{branch} --no-edit")
       puts "❌ Fehler beim Mergen nach main. Bitte Konflikte manuell lösen."
       system("git checkout #{branch}")
@@ -133,4 +133,3 @@ Severin.define_action "ship" do
     system("git checkout #{branch}")
   end
 end
-

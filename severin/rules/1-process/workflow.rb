@@ -17,8 +17,8 @@ suite = Severin.define_suite "Workcycle & Git Regeln" do
     rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen."
     branch_slug = current_branch.split('/').last
 
-    plans = Dir.glob("docs/brain/*#{branch_slug}*")
     condition do
+      plans = Dir.glob("docs/brain/**/*#{branch_slug}*")
       plans.any? { |f| !f.include?('walkthrough') }
     end
 
@@ -29,7 +29,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln" do
   check "Brain Task Format" do
     rule "Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein."
     branch_slug = current_branch.split('/').last
-    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') || f.include?('/done/') }
+    plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
     condition do
       plans.all? do |f|
@@ -45,7 +45,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln" do
   check "Brain Tasks Status" do
     rule "Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein."
     branch_slug = current_branch.split('/').last
-    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') || f.include?('/done/') }
+    plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
     condition do
       plans.all? do |f|
