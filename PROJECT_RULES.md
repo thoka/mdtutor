@@ -3,40 +3,48 @@
 Diese Regeln und Skills werden automatisch aus der Sentinel Test-Suite generiert. Sie dienen als direkte Arbeitsanweisung für Entwickler und KI-Agenten.
 
 ## 🧠 Agent Skills
-### 🛡️ #{suite[:name].sub('Skill: ', '')}
-#{suite[:description]}
+Diese Rollen-Profile definieren spezifische Fähigkeiten und Vorgehensweisen.
 
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### 🛡️ Backend Architekt
+Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails).
 
-### 🛡️ #{suite[:name].sub('Skill: ', '')}
-#{suite[:description]}
+- **API-First & Spec-First**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
+- **Test-Driven Development (TDD)**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
+- **Conventional Commits**: Nutze Conventional Commits für alle Backend-Änderungen.
 
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### 🛡️ Frontend Experte
+Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
+
+- **Svelte 5 Runes**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
+- **Svelte Autofixer**: Nutze nach jeder Änderung an Svelte-Komponenten das `svelte-autofixer` Tool, um die Korrektheit der Reaktivität sicherzustellen.
+- **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
 
 ## 🛠️ Technical Integrity & Workflow
-### #{suite[:name]}
-#{suite[:description]}
+### Dokumentations-Integrität
+Stellt sicher, dass die generierten Projekt-Regeln und Cursor-Instruktionen korrekt formatiert sind.
 
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+- **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
+- **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 
-### #{suite[:name]}
-#{suite[:description]}
+### Workcycle & Git Regeln
+Regeln für die Git-Arbeit, Branching-Strategie und die verpflichtende Planung vor der Implementierung.
 
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+- **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
+- **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
+- **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
+- **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
+- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
 
-### #{suite[:name]}
-#{suite[:description]}
+### Umgebung & Abhängigkeiten
+Technische Grundvoraussetzungen für den Betrieb des Monorepos, inklusive Ports und Dateistrukturen.
 
-- **#{check[:name]}**: #{check[:rule]}
+- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
+- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
+- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
+- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
+
+### Code-Konventionen & Port-Integrität
+Stellt sicher, dass technische Parameter wie Ports zentral über die .env gesteuert werden.
+
+- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
 

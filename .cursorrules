@@ -3,34 +3,38 @@
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Sentinel-Framework (test/*) überwacht.
 
 ## 🧠 Deine Skills & Rollen
-### #{name}
-#{suite[:description]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### Backend Architekt
+Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails).
+- **API-First & Spec-First**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden.
+- **Test-Driven Development (TDD)**: TDD strikt befolgen. Tests vor der Implementierung schreiben.
+- **Conventional Commits**: Nutze Conventional Commits für alle Backend-Änderungen.
 
-### #{name}
-#{suite[:description]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### Frontend Experte
+Fähigkeiten und Regeln für die Svelte 5 Entwicklung im Web-Frontend.
+- **Svelte 5 Runes**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht.
+- **Svelte Autofixer**: Nutze nach jeder Änderung an Svelte-Komponenten das `svelte-autofixer` Tool, um die Korrektheit der Reaktivität sicherzustellen.
+- **Minimalismus-Prinzip**: Antworten kurz halten und so wenig Code/Dokumentation wie möglich generieren.
 
 ## ⚖️ Verpflichtender Workflow
-### #{suite[:name]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### Dokumentations-Integrität
+- **Cursorrules Platzhalter-Freiheit**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten.
+- **Projekt-Regeln Formatierung**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben.
 
-### #{suite[:name]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
-- **#{check[:name]}**: #{check[:rule]}
+### Workcycle & Git Regeln
+- **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
+- **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
+- **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Sentinel müssen auf Deutsch verfasst sein.
+- **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
+- **Test Dokumentation (README)**: Das test/README.md muss die aktuelle Test-Kaskade und Nutzungsanweisungen enthalten.
 
-### #{suite[:name]}
-- **#{check[:name]}**: #{check[:rule]}
+### Umgebung & Abhängigkeiten
+- **Environment Datei**: Eine lokale .env Datei muss existieren, basierend auf .env.example.
+- **Erforderliche Umgebungsvariablen**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben.
+- **Node Module**: Alle Abhängigkeiten müssen mit pnpm installiert sein.
+- **Content Ökosystem**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein.
+
+### Code-Konventionen & Port-Integrität
+- **Keine Hardcoded Ports in Ruby/JS**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen.
 
 ## 🔧 Fehlerbehebung
 Wenn du unsicher bist oder Tests fehlschlagen, führe `pnpm run test:sentinel:agent` aus. Die Ausgabe liefert dir direkt ausführbare `bash`-Fixes.
