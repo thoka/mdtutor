@@ -71,6 +71,8 @@ Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem W
 ### Workcycle & Git Regeln
 - **Feature Branch**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten.
 - **Brain Document (Implementierungsplan)**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen.
+- **Brain Task Format**: Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein.
+- **Brain Tasks Status**: Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein.
 - **Sprach-Konsistenz (Deutsch)**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein.
 - **Sauberer Workspace für Core-Dateien**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten.
 - **Test Dokumentation (README)**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten.

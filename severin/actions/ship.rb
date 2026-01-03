@@ -17,12 +17,25 @@ Severin.define_action "ship" do
 
     puts "🚀 Starte Release-Prozess für Branch '#{branch}'..."
 
-    # 0. Bereinigung von Relikten (tmp_*)
+    # 0. Bereinigung von Relikten (tmp_*) und Archivierung von Brain-Docs
     puts "  -> Bereinige temporäre Dateien (tmp_*)..."
     Dir.glob("**/tmp_*").each do |f|
       if File.file?(f)
         File.delete(f)
         puts "     - #{f} gelöscht"
+      end
+    end
+
+    puts "  -> Archiviere fertige Brain-Dokumente..."
+    branch_slug = branch.split('/').last
+    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') || f.include?('/done/') }
+    plans.each do |f|
+      content = File.read(f)
+      unless content.match?(/^\s*-\s*\[ \]/)
+        target_dir = "docs/brain/done"
+        FileUtils.mkdir_p(target_dir)
+        FileUtils.mv(f, File.join(target_dir, File.basename(f)))
+        puts "     - #{f} nach #{target_dir}/ verschoben"
       end
     end
 

@@ -17,13 +17,46 @@ suite = Severin.define_suite "Workcycle & Git Regeln" do
     rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen."
     branch_slug = current_branch.split('/').last
 
+    plans = Dir.glob("docs/brain/*#{branch_slug}*")
     condition do
-      plans = Dir.glob("docs/brain/*#{branch_slug}*")
       plans.any? { |f| !f.include?('walkthrough') }
     end
 
     on_fail "Kein Implementierungsplan in docs/brain/ für den Branch '#{current_branch}' gefunden."
     fix "Erstelle einen Plan in docs/brain/YYYY-MM-DD-#{branch_slug}.md"
+  end
+
+  check "Brain Task Format" do
+    rule "Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein."
+    branch_slug = current_branch.split('/').last
+    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') || f.include?('/done/') }
+
+    condition do
+      plans.all? do |f|
+        content = File.read(f)
+        content.include?("- [ ]") || content.include?("- [x]")
+      end
+    end
+
+    on_fail "Brain-Dokument enthält keine Tasks im Format '- [ ]'."
+    fix "Füge Tasks im Format '- [ ]' zum Brain-Dokument hinzu."
+  end
+
+  check "Brain Tasks Status" do
+    rule "Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein."
+    branch_slug = current_branch.split('/').last
+    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') || f.include?('/done/') }
+
+    condition do
+      plans.all? do |f|
+        content = File.read(f)
+        # Suche nach offenen Checkboxen
+        !content.match?(/^\s*-\s*\[ \]/)
+      end
+    end
+
+    on_fail "Es gibt noch offene Tasks in den Brain-Dokumenten: #{plans.join(', ')}"
+    fix "Markiere alle erledigten Tasks mit [x]."
   end
 
   check "Sprach-Konsistenz (Deutsch)" do
