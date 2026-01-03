@@ -31,8 +31,3 @@ suite = Sentinel.define_suite "Dokumentations-Integrität" do
   end
 end
 
-if __FILE__ == $0
-  format = ENV['SENTINEL_FORMAT'] == 'agent' ? :agent : :human
-  suite.report(format)
-  exit(suite.result.success? ? 0 : 1)
-end

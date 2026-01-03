@@ -13,8 +13,8 @@
   },
   "scripts": {
     "test": "pnpm run test:sentinel && pnpm run lint && node --test",
-    "test:sentinel": "RUBYLIB=~/.sentinel/lib ruby test/0-process/branch_health.rb && RUBYLIB=~/.sentinel/lib ruby test/0-process/workflow.rb && RUBYLIB=~/.sentinel/lib ruby test/0-process/docs_integrity.rb && RUBYLIB=~/.sentinel/lib ruby test/0-process/mcp_integrity.rb && RUBYLIB=~/.sentinel/lib ruby test/1-setup/environment.rb && RUBYLIB=~/.sentinel/lib ruby test/1-setup/port_integrity.rb",
-    "test:sentinel:agent": "SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/0-process/branch_health.rb && SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/0-process/workflow.rb && SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/0-process/docs_integrity.rb && SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/0-process/mcp_integrity.rb && SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/1-setup/environment.rb && SENTINEL_FORMAT=agent RUBYLIB=~/.sentinel/lib ruby test/1-setup/port_integrity.rb",
+    "test:sentinel": "ruby test/sentinel_runner.rb",
+    "test:sentinel:agent": "SENTINEL_FORMAT=agent ruby test/sentinel_runner.rb",
     "sentinel:gen": "ruby ~/.sentinel/generate_rules.rb",
     "test:data": "node test/get-test-data.js",
     "sync:pathways": "node tools/fetch-pathways.js",

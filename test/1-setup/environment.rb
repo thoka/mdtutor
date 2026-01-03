@@ -44,8 +44,3 @@ suite = Sentinel.define_suite "Umgebung & Abhängigkeiten" do
 end
 
 # Automatisches Format-Wahl basierend auf Umgebungsvariable oder Standard
-if __FILE__ == $0
-  format = ENV['SENTINEL_FORMAT'] == 'agent' ? :agent : :human
-  suite.report(format)
-  exit(suite.result.success? ? 0 : 1)
-end
