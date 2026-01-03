@@ -2,10 +2,6 @@
     "folders": [
         {
         "path": "."
-        },
-        {
-        "name": "Severin Engine",
-        "path": "/home/toka/.severin"
         }
     ],
     "settings": {}

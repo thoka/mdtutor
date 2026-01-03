@@ -10,7 +10,7 @@ suite = Severin.define_suite "Dokumentations-Integrität" do
       content.scan(/#\{/).size <= 1
     end
     on_fail "Die .cursorrules enthalten unersetzte Platzhalter. Der Generator ist fehlerhaft."
-    fix "Korrigiere die String-Interpolation in ~/.severin/generate_rules.rb."
+    fix "Korrigiere die String-Interpolation in severin/engine/generate_rules.rb."
   end
 
   check "Projekt-Regeln Formatierung" do
