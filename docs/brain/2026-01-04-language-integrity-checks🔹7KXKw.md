@@ -1,5 +1,5 @@
 # Brain: Rules Hotfix (Flat Structure & ID Policy) 🔹7KXKw
-Status: in-progress
+Status: ship-it
 
 Dieses Dokument beschreibt die Korrekturen an den Severin-Regeln für Brain-Dokumente und die Einführung einer strikten ID-Policy.
 
