@@ -116,21 +116,28 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Keine Unterordner in docs/brain 🔹BRN-FLAT" do
     rule "Es darf keine Unterordner unter docs/brain geben. Alle Dokumente müssen direkt dort liegen. 🔹BRN-FLAT"
+    severity :error
     condition do
-      subdirs = Dir.glob("docs/brain/*/").reject { |d| d.include?('walkthrough') }
-      subdirs.empty?
+      # Suche alle Einträge in docs/brain
+      return true unless Dir.exist?("docs/brain")
+      entries = Dir.children("docs/brain").select do |entry|
+        path = File.join("docs/brain", entry)
+        File.directory?(path) && !entry.include?('walkthrough')
+      end
+      entries.empty?
     end
-    on_fail "Unterordner in docs/brain/ gefunden: #{Dir.glob("docs/brain/*/").join(', ')}"
-    fix "Verschiebe die Dateien in docs/brain/ nach oben und lösche die Unterordner."
+    on_fail "Struktur-Fehler: Unterordner in docs/brain/ gefunden: #{Dir.glob("docs/brain/*/").join(', ')}"
+    fix "mv docs/brain/*/*.md docs/brain/ 2>/dev/null; find docs/brain -mindepth 1 -type d -not -name 'walkthrough' -exec rm -rf {} +"
   end
 
   check "Archivierung nach docs/done 🔹BRN-ARCHIVE" do
     rule "Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE"
+    severity :error
     condition do
       !Dir.exist?("docs/brain/done") || Dir.empty?("docs/brain/done")
     end
     on_fail "Dateien in docs/brain/done gefunden, die nach docs/done verschoben werden müssen."
-    fix "mv docs/brain/done/* docs/done/ && rmdir docs/brain/done"
+    fix "mkdir -p docs/done && mv docs/brain/done/* docs/done/ 2>/dev/null; rm -rf docs/brain/done"
   end
 
   check "Brain ID Format (kein Bindestrich) 🔹BRN-DASH" do
