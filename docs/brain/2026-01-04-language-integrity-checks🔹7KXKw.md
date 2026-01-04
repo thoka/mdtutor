@@ -1,21 +1,25 @@
-# Brain: Rules Hotfix (Flat Structure & ID Policy) 🔹7KXKw
-Status: ship-it
+# 2026-01-04 Language Integrity Checks 🔹7KXKw
+Status: in-progress
 
-Dieses Dokument beschreibt die Korrekturen an den Severin-Regeln für Brain-Dokumente und die Einführung einer strikten ID-Policy.
+Ensuring consistency between German infrastructure (Severin) and English documentation.
 
-## Kontext
-Es wurden strukturelle Mängel bei der Erkennung von Unterordnern und bei der Vergabe von Brain-IDs festgestellt.
+## Context
+Brain documents were accidentally written in German. We need a system to enforce the language policy:
+- Severin Rules & Fixes: German (de)
+- Documentation (Brain Docs): English (en)
 
-## Anforderungen
-- [x] `🔹BRN-FLAT` von Warning auf Error hochstufen. 🔹rules-severity
-- [x] Erkennung von Unterordnern via `Dir.children` statt `Dir.glob` (robuster). 🔹rules-fix
-- [x] Agenten-Pflicht: Brain-Dokumente nur via MCP generieren. 🔹mcp-policy
-- [x] Verbot von "sprechenden" IDs (z.B. 🔹Rules). 🔹id-policy
+## Requirements
+- Centralized language detection logic in `Severin::LanguageDetector`.
+- Heuristics based on common functional words (stop words).
+- Automated checks via `sv check`.
+- Automated fix instructions for agents.
 
-## Umsetzung
-- `severin/rules/1-process/workflow.rb`: Regeln angepasst und neue Warnung `🔹BRN-DASH` hinzugefügt.
-- `severin/rules/1-skills/task_manager.rb`: MCP-Anweisung für Agenten hinzugefügt.
-
-## Status
-- [x] Dokumentation auf neue ID 🔹7KXKw umgestellt.
-- [ ] Skills & Regeln finalisiert.
+## Implementation Plan
+- [x] Create feature branch `feature/language-integrity-checks`.
+- [x] Implement `Severin::LanguageDetector` in `severin/engine/lib/severin/language_detector.rb`.
+- [x] Create language integrity suite in `severin/rules/1-process/language.rb`.
+- [x] Sync project rules with `sv gen`.
+- [x] Translate this brain document to English.
+- [x] Verify that `language_brain_docs` passes for this file.
+- [x] Verify that `language_severin_rules` passes for all rule files.
+- [ ] Final `sv commit`.

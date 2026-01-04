@@ -32,7 +32,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN
 
 ### Severin Test Engineer 🔹TstEng
-- **Guideline**: Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t
+- **Rule**: Die Test-Engine muss die RSpec-Erweiterung geladen haben.
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
@@ -75,8 +75,9 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Projekt-Regeln Formatierung 🔹yLhfK**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben. 🔹6MjmK
 - **Keine veralteten Pfade in Regeln 🔹DUzJ7**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten. 🔹K8bgP
 
-### Sprach-Integrität 🔹kcvzQ
-- **Sprachanweisung in AI-Umgebungen 🔹dTyEL**: Jede AI-Umgebung (.cursorrules) muss explizit zwischen Konversations- und Dokumentationssprache unterscheiden. 🔹Ynyhp
+### Sprach-Integrität (Infrastruktur vs. Dokumentation)
+- **language_brain_docs**: Stellt sicher, dass Brain-Dokumente auf Englisch verfasst sind
+- **language_severin_rules**: Stellt sicher, dass Severin-Regeln auf Deutsch verfasst sind (Regel 🔹fhmjc)
 
 ### MCP Integrität 🔹yLjQ5
 - **Globale Engine vorhanden 🔹PjBKu**: Der MCP-Server muss unter /home/toka/dv/mdtutor/cursor/severin/engine/mcp/server.rb existieren. 🔹SwcSe
