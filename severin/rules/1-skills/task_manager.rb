@@ -21,11 +21,11 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
     - Erledigte Tasks müssen als `[x]` markiert werden.
     - Neue Erkenntnisse oder Planänderungen müssen sofort im Dokument festgehalten werden.
 
-    TOOLS & IDENTIFIERS (Req-IDs):
-    - Jedes Brain-Dokument benötigt eine eindeutige Requirement-ID (🔹xxxxx) im Titel und Dateinamen.
-    - Nutze `sv_next_id`, um eine neue, freie ID zu generieren.
+    TOOLS & IDENTIFIERS (RIDs):
+    - Jedes Brain-Dokument benötigt eine eindeutige RID (🔹xxxxx) im Titel und Dateinamen.
+    - Nutze `sv_next_id`, um eine neue, freie RID zu generieren.
     - Nutze `sv_fix_brain_id`, um bestehende Dokumente zu korrigieren.
-    - Referenziere Regeln und Anforderungen immer mit ihrer ID (z.B. `🔹35SbY`).
+    - Referenziere Regeln und Anforderungen immer mit ihrer RID (z.B. `🔹35SbY`).
   TEXT
 
   rule "Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY"
@@ -34,4 +34,6 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
   rule "Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY"
   rule "Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n"
   rule "Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN"
+  rule "Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN"
+  rule "Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR"
 end

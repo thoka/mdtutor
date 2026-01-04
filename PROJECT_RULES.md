@@ -4,6 +4,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ## 🧠 Agent Skills
 
+### Severin Glossar & Semantik 🔹GLOSSARY
+- **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
+- **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
+
 ### Severin Architect 🔹Arc
 - **Guideline**: Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
 - **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
@@ -34,6 +38,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
 - **Guideline**: Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n
 - **Guideline**: Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN
+- **Guideline**: Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN
+- **Guideline**: Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR
 
 ### Severin Test Engineer 🔹TstEng
 - **Rule**: Die Test-Engine muss die RSpec-Erweiterung geladen haben.
@@ -73,6 +79,12 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Keine temporären Dateien 🔹gURed**: Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden. 🔹Bqgcu
 - **Synchronität der Regeln 🔹J4Jp0**: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. 🔹eSgd3
 - **Plan-Aktualität 🔹9VGZq**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
+
+### Chat-Dokumentation & Branch-Management 🔹CHAT-DOC
+- **Zusammenfassung nach Freigabe 🔹CD-SUM**: Nachdem eine Anforderung diskutiert und vom Nutzer freigegeben wurde (Go), muss der Agent eine Zusammenfassung in `docs/chat/{timestamp}_summary.md` erstellen. 🔹CD-SUM
+- **Ergebnis-Dokumentation 🔹CD-RES**: Nach Abschluss der Iteration durch den Agenten muss im gleichen Dokument (`docs/chat/{timestamp}_summary.md`) eine Zusammenfassung der Ergebnisse angefügt werden. 🔹CD-RES
+- **Scope-Check & Branching 🔹CD-BR**: VOR der Implementation muss der Agent prüfen, ob die Arbeit zum aktuellen Task/Branch passt. Falls nicht (neues Thema oder Scope-Sprengung), muss ein neuer Feature-Branch erstellt und darin gearbeitet werden. 🔹CD-BR
+- **Chat-Sprache 🔹CD-LANG**: Alle Dokumente in `docs/chat/` müssen auf Englisch verfasst sein. 🔹CD-LANG
 
 ### Dokumentations-Integrität 🔹7knlz
 - **Cursorrules Platzhalter-Freiheit 🔹R7eBm**: Die .cursorrules dürfen keine unersetzten Ruby-Platzhalter wie #{name} enthalten. 🔹xUlmn
