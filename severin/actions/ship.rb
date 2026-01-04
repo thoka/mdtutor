@@ -124,8 +124,17 @@ Severin.define_action "ship" do
     puts "  -> Pushe Änderungen zu GitHub..."
     if system("git push origin main")
       puts "✅ Release erfolgreich nach main gepusht."
+      # Trigger MCP Restart if available
+      if system("which sv >/dev/null 2>&1")
+        puts "  -> Triggere MCP-Server Restart zur Synchronisation..."
+        # Wir nutzen sv_mcp_restart über den CLI-Umweg oder direkt den Exit-Trigger
+        # Im Projekt-Kontext ist es am sichersten, den Server einfach zu stoppen.
+        # Wenn er über Cursor läuft, wird er neu gestartet.
+        system("sv mcp-restart >/dev/null 2>&1")
+      end
     else
       puts "❌ Fehler beim Push von main."
+      exit 1
     end
 
     # Zurück zum Feature Branch
