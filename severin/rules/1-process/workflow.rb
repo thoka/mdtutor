@@ -20,7 +20,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     condition do
       # Suche in brain und done
       plans = Dir.glob("docs/{brain,done}/**/*#{branch_slug.gsub('feature/', '')}*")
-      plans.any? do |f| 
+      plans.any? do |f|
         !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/) && !f.match?(/-🔹/)
       end
     end
