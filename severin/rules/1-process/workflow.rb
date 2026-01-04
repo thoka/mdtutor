@@ -7,14 +7,14 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
   current_branch = `git rev-parse --abbrev-ref HEAD`.strip
 
   check "Feature Branch 🔹brtTX" do
-    rule "Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten. 🔹rIJTD"
+    rule :workflow, :git, "Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten. 🔹rIJTD"
     condition { current_branch != 'main' && current_branch != 'master' }
     on_fail "Du befindest dich auf dem 'main' Branch."
     fix "Erstelle einen Feature-Branch: 'git checkout -b feature/dein-feature-name'"
   end
 
   check "Brain Document (Implementierungsplan) 🔹fLd43" do
-    rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name🔹ID.md committen. 🔹2Gtf3"
+    rule :workflow, :git, "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name🔹ID.md committen. 🔹2Gtf3"
     branch_slug = current_branch.split('/').last
 
     condition do
@@ -80,7 +80,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
   end
 
   check "Release-Freigabe (Status) 🔹vP2r9" do
-    rule "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1"
+    rule :workflow, "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1"
     severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
@@ -94,7 +94,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       end
     end
     on_fail "Das Brain-Dokument hat noch nicht den Status 'Status: ship-it'."
-    fix "BITTE DEN NUTZER: 'Bitte setze den Status im Brain-Dokument auf ship-it, wenn du bereit für den Release bist.'"
+    fix :brain_status, "BITTE DEN NUTZER: 'Bitte setze den Status im Brain-Dokument auf ship-it, wenn du bereit für den Release bist.'"
   end
 
   check "Plan-Status Position 🔹9VGZq" do

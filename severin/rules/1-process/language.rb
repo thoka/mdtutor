@@ -10,7 +10,7 @@ Severin.define_suite "Sprach-Integrität (Infrastruktur vs. Dokumentation)" do
   description "Stellt sicher, dass die Sprachvorgaben für Regeln und Dokumente eingehalten werden."
 
   check "language_brain_docs" do
-    rule "Stellt sicher, dass Brain-Dokumente auf Englisch verfasst sind"
+    rule :language, "Stellt sicher, dass Brain-Dokumente auf Englisch verfasst sind"
 
     # Pfad zu den Dateien
     branch_slug = `git rev-parse --abbrev-ref HEAD`.strip.split('/').last
@@ -27,7 +27,7 @@ Severin.define_suite "Sprach-Integrität (Infrastruktur vs. Dokumentation)" do
   end
 
   check "language_severin_rules" do
-    rule "Stellt sicher, dass Severin-Regeln auf Deutsch verfasst sind (Regel 🔹fhmjc)"
+    rule :language, "Stellt sicher, dass Severin-Regeln auf Deutsch verfasst sind (Regel 🔹fhmjc)"
 
     condition do
       # Wir prüfen alle .rb Dateien in severin/rules/
