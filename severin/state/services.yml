@@ -5,7 +5,8 @@ api:
     loop { client = server.accept; client.puts 'HTTP/1.1 200 OK\n\nOK'; client.close
     }"
   :port: 3101
-  :pid: 
-  :state: :stopped
+  :pid: 1453
+  :state: :starting
   :last_error: 
-  :started_at: 
+  :started_at: 2026-01-04 02:43:03.775233844 +01:00
+  :depends_on: []

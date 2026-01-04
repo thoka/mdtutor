@@ -4,6 +4,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ## 🧠 Agent Skills
 
+### Severin Architect 🔹Arc
+- **Guideline**: Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
+- **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
+
 ### Backend Architekt 🔹ATdMw
 - **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq
 - **Rule**: TDD strikt befolgen. Tests vor der Implementierung schreiben. 🔹esjGj
@@ -15,6 +19,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu
 - **Rule**: Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
 - **Rule**: Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
+
+### Severin Test Engineer 🔹TstEng
+- **Guideline**: Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
@@ -84,6 +91,9 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Engine Presence 🔹6quEB**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule). 🔹QD3t9
 - **Engine Versioning 🔹Dj9hj**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen. 🔹S9EsU
 - **Engine Integrity 🔹51vXy**: Wichtige Engine-Dateien müssen vorhanden sein. 🔹nmKwQ
+
+### Frontend Architecture 🔹AfKxC
+- **Svelte 5 Runes Compliance 🔹SVELTE-1**: Alle Komponenten müssen den Svelte 5 Standard einhalten.
 
 ### Code-Konventionen & Port-Integrität 🔹wJ1xe
 - **Keine Hardcoded Ports in Ruby/JS 🔹HfTxw**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen. 🔹puyGP
