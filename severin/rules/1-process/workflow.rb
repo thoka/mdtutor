@@ -14,24 +14,26 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
   end
 
   check "Brain Document (Implementierungsplan) 🔹fLd43" do
-    rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name-🔹ID.md committen. 🔹2Gtf3"
+    rule "VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name🔹ID.md committen. 🔹2Gtf3"
     branch_slug = current_branch.split('/').last
 
     condition do
-      plans = Dir.glob("docs/brain/**/*#{branch_slug.gsub('feature/', '')}*")
+      # Suche in brain und done
+      plans = Dir.glob("docs/{brain,done}/**/*#{branch_slug.gsub('feature/', '')}*")
       plans.any? do |f| 
-        !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/)
+        !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/) && !f.match?(/-🔹/)
       end
     end
 
-    on_fail "Kein valider Implementierungsplan (inkl. 🔹ID im Dateinamen) in docs/brain/ für den Branch '#{current_branch}' gefunden."
-    fix "Nutze `sv_next_id` für eine neue ID oder `sv_fix_brain_id` für bestehende Pläne."
+    on_fail "Kein valider Implementierungsplan (ohne '-' vor 🔹ID) in docs/brain/ für den Branch '#{current_branch}' gefunden."
+    fix "Nutze `sv_fix_brain_id --path docs/brain` um Dateinamen zu korrigieren."
   end
 
   check "Brain Title & ID 🔹T1tlI" do
     rule "Der Titel im Brain-Dokument muss die Requirement-ID enthalten. 🔹idG3n"
     branch_slug = current_branch.split('/').last
-    plans = Dir.glob("docs/brain/**/*#{branch_slug.gsub('feature/', '')}*").reject { |f| f.include?('walkthrough') }
+    # Suche in brain und done
+    plans = Dir.glob("docs/{brain,done}/**/*#{branch_slug.gsub('feature/', '')}*").reject { |f| f.include?('walkthrough') }
 
     condition do
       plans.all? do |f|

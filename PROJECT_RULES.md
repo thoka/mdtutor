@@ -86,7 +86,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 
 ### Workcycle & Git Regeln 🔹5yJUs
 - **Feature Branch 🔹brtTX**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten. 🔹rIJTD
-- **Brain Document (Implementierungsplan) 🔹fLd43**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name-🔹ID.md committen. 🔹2Gtf3
+- **Brain Document (Implementierungsplan) 🔹fLd43**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name🔹ID.md committen. 🔹2Gtf3
 - **Brain Title & ID 🔹T1tlI**: Der Titel im Brain-Dokument muss die Requirement-ID enthalten. 🔹idG3n
 - **Brain Task Format 🔹XdbXR**: Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein. 🔹cy6jG
 - **Brain Tasks Status 🔹NmRtH**: Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl
