@@ -9,6 +9,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
 - **Guideline**: Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - **Guideline**: Prüfe bei fehlschlagenden Checks die Ruby-Regeln in `severin/rules/` auf hinterlegte `fix`-Aktionen. 🔹7knlz
+- **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. Gegebenenfalls ist ein neuer Meta-Branch zu erstellen. 🔹RULE-BRANCH
 
 ### Backend Architekt 🔹ATdMw
 - **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq
@@ -92,6 +93,8 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Brain Tasks Status 🔹NmRtH**: Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl
 - **Release-Freigabe (Status) 🔹vP2r9**: Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1
 - **Plan-Status Position 🔹9VGZq**: Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY
+- **Keine Unterordner in docs/brain 🔹BRN-FLAT**: Es darf keine Unterordner unter docs/brain geben. Alle Dokumente müssen direkt dort liegen. 🔹BRN-FLAT
+- **Archivierung nach docs/done 🔹BRN-ARCHIVE**: Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE
 - **Sprach-Konsistenz (Deutsch) 🔹PJcKP**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc
 - **Sauberer Workspace für Core-Dateien 🔹Xg87A**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5
 - **Test Dokumentation (README) 🔹fuodx**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY

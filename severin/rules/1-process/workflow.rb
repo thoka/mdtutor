@@ -63,6 +63,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Brain Tasks Status 🔹NmRtH" do
     rule "Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl"
+    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -80,6 +81,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Release-Freigabe (Status) 🔹vP2r9" do
     rule "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1"
+    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -97,6 +99,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Plan-Status Position 🔹9VGZq" do
     rule "Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY"
+    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -109,6 +112,25 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     end
     on_fail "Der Status im Brain-Dokument fehlt oder steht nicht direkt unter der H1-Überschrift."
     fix "Verschiebe die 'Status:' Zeile direkt unter die H1-Überschrift."
+  end
+
+  check "Keine Unterordner in docs/brain 🔹BRN-FLAT" do
+    rule "Es darf keine Unterordner unter docs/brain geben. Alle Dokumente müssen direkt dort liegen. 🔹BRN-FLAT"
+    condition do
+      subdirs = Dir.glob("docs/brain/*/").reject { |d| d.include?('walkthrough') }
+      subdirs.empty?
+    end
+    on_fail "Unterordner in docs/brain/ gefunden: #{Dir.glob("docs/brain/*/").join(', ')}"
+    fix "Verschiebe die Dateien in docs/brain/ nach oben und lösche die Unterordner."
+  end
+
+  check "Archivierung nach docs/done 🔹BRN-ARCHIVE" do
+    rule "Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE"
+    condition do
+      !Dir.exist?("docs/brain/done") || Dir.empty?("docs/brain/done")
+    end
+    on_fail "Dateien in docs/brain/done gefunden, die nach docs/done verschoben werden müssen."
+    fix "mv docs/brain/done/* docs/done/ && rmdir docs/brain/done"
   end
 
   check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do

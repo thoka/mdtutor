@@ -19,4 +19,5 @@ define_skill "Severin Architect 🔹Arc" do
   rule "Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W"
   rule "Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0"
   rule "Prüfe bei fehlschlagenden Checks die Ruby-Regeln in `severin/rules/` auf hinterlegte `fix`-Aktionen. 🔹7knlz"
+  rule "Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. Gegebenenfalls ist ein neuer Meta-Branch zu erstellen. 🔹RULE-BRANCH"
 end
