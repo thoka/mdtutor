@@ -21,6 +21,7 @@ define_skill "Severin Architect 🔹Arc" do
   rule "Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN"
   rule "Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W"
   rule "Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0"
-  rule "Prüfe bei fehlschlagenden Checks die Ruby-Regeln in `severin/rules/` auf hinterlegte `fix`-Aktionen. 🔹7knlz"
+  rule "Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz"
+  rule "Nutze für Korrekturen und Routineaufgaben bevorzugt die verfügbaren `sv_` Tools via MCP. 🔹uVr0W"
   rule "Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. Gegebenenfalls ist ein neuer Meta-Branch zu erstellen. 🔹RULE-BRANCH"
 end

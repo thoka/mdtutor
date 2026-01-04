@@ -8,7 +8,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
 - **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
 - **Guideline**: Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
-- **Guideline**: Prüfe bei fehlschlagenden Checks die Ruby-Regeln in `severin/rules/` auf hinterlegte `fix`-Aktionen. 🔹7knlz
+- **Guideline**: Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
+- **Guideline**: Nutze für Korrekturen und Routineaufgaben bevorzugt die verfügbaren `sv_` Tools via MCP. 🔹uVr0W
 - **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. Gegebenenfalls ist ein neuer Meta-Branch zu erstellen. 🔹RULE-BRANCH
 
 ### Backend Architekt 🔹ATdMw
