@@ -5,7 +5,7 @@ define_skill "Severin Architect 🔹Arc" do
     ESSENZ DER ARCHITEKTUR:
     1. Code is Truth: Regeln existieren nicht in Markdown, sondern als Ruby-Objekte in `severin/rules/`.
     2. Executable Rules: Jede Regel ist gleichzeitig ein Test. Komplexe Logik wird via RSpec-Integration (`rspec "path"`) in `severin/specs/` validiert.
-    3. State Awareness: Tests setzen korrekte Umgebungszustände (Services/Ports) voraus, die via `requires :service` gesteuert werden.
+    3. State Awareness & Resources: Tests setzen korrekte Umgebungszustände voraus (`requires :service`). Services nutzen Probes (Port, Resource), um echte Verfügbarkeit (Serverspec-Style) zu signalisieren.
     4. Lazy-Loading Skills: Um das Kontext-Window zu schonen, stehen in `.cursorrules` nur Header. Detaillierte Instruktionen müssen LIVE via MCP-Tool `sv_get_skill` abgefragt werden.
 
     WICHTIGE TOOLS FÜR AGENTEN:
