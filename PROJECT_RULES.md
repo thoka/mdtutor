@@ -26,6 +26,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
 - **Guideline**: Agenten dürfen den Status eines Brain-Dokuments NIEMALS eigenmächtig auf 'ship-it' setzen. 🔹nM2p1
 - **Guideline**: Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3
+- **Guideline**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
 
 ### Severin Test Engineer 🔹TstEng
 - **Guideline**: Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t
