@@ -16,10 +16,17 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
     - Jede Iteration (ein Durchlauf im Agent-Modus) MUSS mit einer Aktualisierung des Brain-Dokuments enden.
     - Erledigte Tasks müssen als `[x]` markiert werden.
     - Neue Erkenntnisse oder Planänderungen müssen sofort im Dokument festgehalten werden.
+
+    TOOLS & IDENTIFIERS (Req-IDs):
+    - Jedes Brain-Dokument benötigt eine eindeutige Requirement-ID (🔹xxxxx) im Titel und Dateinamen.
+    - Nutze `sv_next_id`, um eine neue, freie ID zu generieren.
+    - Nutze `sv_fix_brain_id`, um bestehende Dokumente zu korrigieren.
+    - Referenziere Regeln und Anforderungen immer mit ihrer ID (z.B. `🔹35SbY`).
   TEXT
 
   rule "Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY"
   rule "Agenten dürfen den Status eines Brain-Dokuments NIEMALS eigenmächtig auf 'ship-it' setzen. 🔹nM2p1"
   rule "Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3"
   rule "Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY"
+  rule "Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n"
 end

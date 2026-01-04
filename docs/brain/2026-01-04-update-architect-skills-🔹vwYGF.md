@@ -1,4 +1,4 @@
-# Brain: Update Severin Architect Skills
+# Brain: Update Severin Architect Skills 🔹vwYGF
 Status: ship-it
 
 Updating the `Severin Architect` skill to include missing insights from the engine analysis, specifically regarding `sv_gen`, service probes, and actionable fixes.

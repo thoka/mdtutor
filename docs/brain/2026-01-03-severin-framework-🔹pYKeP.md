@@ -1,4 +1,4 @@
-# Brain: Severin Framework
+# Brain: Severin Framework 🔹pYKeP
 Status: in-progress
 # Implementation Plan - Severin Framework (Rebranded from Sentinel)
 

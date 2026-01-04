@@ -1,4 +1,4 @@
-# Brain: Topic Spaces Visibility
+# Brain: Topic Spaces Visibility 🔹MjV03
 Status: in-progress
 # Specification: Topic Spaces & Visibility Logic (RPL Parity)
 

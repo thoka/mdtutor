@@ -1,4 +1,4 @@
-# Implementation Plan: Severin Service Management (Systemd-Light)
+# Implementation Plan: Severin Service Management (Systemd-Light) 🔹7wWQg
 Status: in-progress
 
 Severin currently lacks the ability to manage process states. This plan introduces a robust, declarative service management layer inspired by `systemd` and `aasm`.
