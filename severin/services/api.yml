@@ -1,4 +1,4 @@
 name: api
-command: ruby -e "require 'socket'; server = TCPServer.new(3101); loop { client = server.accept; client.puts 'HTTP/1.1 200 OK\n\nOK'; client.close }"
-port: 3101
-description: Mock API Server for Testing
+command: ruby -e "require 'socket'; server = TCPServer.new(ENV['API_PORT'].to_i); loop { client = server.accept; client.puts 'HTTP/1.1 200 OK\n\nOK'; client.close }"
+port: ${API_PORT:-3101}
+description: Mock API Server using ENV
