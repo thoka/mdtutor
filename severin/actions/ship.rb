@@ -12,7 +12,7 @@ Severin.define_action "ship" do
     branch = `git rev-parse --abbrev-ref HEAD`.strip
     if branch == "main" || branch == "master"
       puts "❌ Fehler: Ship muss von einem Feature-Branch aus gestartet werden."
-      next
+      exit 1
     end
 
     puts "🚀 Starte Release-Prozess für Branch '#{branch}'..."
@@ -86,11 +86,10 @@ Severin.define_action "ship" do
             end
           end
         end
-      rescue => e
-        next if e.message == "Engine unclean" || e.message == "Engine push failed"
-        puts "❌ Unerwarteter Fehler bei der Engine: #{e.message}"
-        next
-      end
+    rescue => e
+      puts "❌ Fehler bei der Engine: #{e.message}"
+      exit 1
+    end
     end
 
     # 2. Finaler Projekt-Commit (nutzt die bestehende Logik)
@@ -100,13 +99,13 @@ Severin.define_action "ship" do
     if commit_action
       unless commit_action.call(message: "chore(release): final sync before shipping #{branch}")
         puts "❌ Ship abgebrochen: Projekt-Sync fehlgeschlagen."
-        next
+        exit 1
       end
     else
       puts "⚠️ Warnung: 'commit' Action nicht gefunden, fahre mit manuellem Sync fort."
       unless system("sv gen && git add . && git commit -m 'chore(release): final sync before shipping #{branch}'")
         puts "❌ Ship abgebrochen: Manueller Sync fehlgeschlagen."
-        next
+        exit 1
       end
     end
 
@@ -118,7 +117,7 @@ Severin.define_action "ship" do
     unless system("git checkout main && git pull origin main --rebase && git merge #{branch} --no-edit")
       puts "❌ Fehler beim Mergen nach main. Bitte Konflikte manuell lösen."
       system("git checkout #{branch}")
-      next
+      exit 1
     end
 
     # 4. Push zum Projekt-Remote
