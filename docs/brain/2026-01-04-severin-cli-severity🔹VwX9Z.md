@@ -22,5 +22,5 @@ Um zu verhindern, dass unvollständige Arbeiten (z.B. offene Brain-Tasks) verseh
 - [x] Engine-Änderungen implementiert.
 - [x] CLI-Logik getestet.
 - [x] Regeln angepasst.
-- [ ] Finaler Commit im neuen Branch.
+- [x] Finaler Commit im neuen Branch.
 
