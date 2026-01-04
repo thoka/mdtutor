@@ -21,7 +21,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       # Suche in brain und done
       plans = Dir.glob("docs/{brain,done}/**/*#{branch_slug.gsub('feature/', '')}*")
       plans.any? do |f|
-        !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/) && !f.match?(/-🔹/)
+        !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/)
       end
     end
 
@@ -131,6 +131,17 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     end
     on_fail "Dateien in docs/brain/done gefunden, die nach docs/done verschoben werden müssen."
     fix "mv docs/brain/done/* docs/done/ && rmdir docs/brain/done"
+  end
+
+  check "Brain ID Format (kein Bindestrich) 🔹BRN-DASH" do
+    rule "Die ID im Dateinamen sollte direkt nach dem Titel ohne Bindestrich folgen (z.B. Titel🔹ID.md). 🔹BRN-DASH"
+    severity :warning
+    condition do
+      plans_with_dash = Dir.glob("docs/brain/**/*-🔹*")
+      plans_with_dash.empty?
+    end
+    on_fail "Brain-Dokumente mit Bindestrich vor der ID gefunden: #{Dir.glob("docs/brain/**/*-🔹*").join(', ')}"
+    fix "Nutze `sv_fix_brain_id --path docs/brain` um die Bindestriche zu entfernen."
   end
 
   check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do

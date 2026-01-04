@@ -95,6 +95,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Plan-Status Position 🔹9VGZq**: Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY
 - **Keine Unterordner in docs/brain 🔹BRN-FLAT**: Es darf keine Unterordner unter docs/brain geben. Alle Dokumente müssen direkt dort liegen. 🔹BRN-FLAT
 - **Archivierung nach docs/done 🔹BRN-ARCHIVE**: Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE
+- **Brain ID Format (kein Bindestrich) 🔹BRN-DASH**: Die ID im Dateinamen sollte direkt nach dem Titel ohne Bindestrich folgen (z.B. Titel🔹ID.md). 🔹BRN-DASH
 - **Sprach-Konsistenz (Deutsch) 🔹PJcKP**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc
 - **Sauberer Workspace für Core-Dateien 🔹Xg87A**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5
 - **Test Dokumentation (README) 🔹fuodx**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY
