@@ -29,4 +29,5 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
   rule "Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3"
   rule "Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY"
   rule "Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n"
+  rule "Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN"
 end

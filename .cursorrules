@@ -32,6 +32,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3
 - Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
 - Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n
+- Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN
 
 ### Severin Test Engineer 🔹TstEng
 - Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t

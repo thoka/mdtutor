@@ -29,6 +29,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3
 - **Guideline**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
 - **Guideline**: Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n
+- **Guideline**: Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN
 
 ### Severin Test Engineer 🔹TstEng
 - **Guideline**: Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t
