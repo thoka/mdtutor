@@ -1,3 +1,5 @@
+# Brain: Severin Framework
+Status: in-progress
 # Implementation Plan - Severin Framework (Rebranded from Sentinel)
 
 The Severin Framework is a lightweight validation and agent-guidance system designed to ensure project integrity and provide clear instructions for AI assistants.

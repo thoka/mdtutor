@@ -25,6 +25,11 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
 - Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
+### Severin Task-Manager 🔹TskMgr
+- Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
+- Agenten dürfen den Status eines Brain-Dokuments NIEMALS eigenmächtig auf 'ship-it' setzen. 🔹nM2p1
+- Ein Task gilt erst als gestartet, wenn der Plan committet wurde. 🔹2Gtf3
+
 ### Severin Test Engineer 🔹TstEng
 - Befolge den Unified Testing Workflow für alle Architektur- und Logik-Prüfungen. 🔹v3R9t
 
@@ -81,7 +86,8 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Brain Document (Implementierungsplan) 🔹fLd43**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name.md committen. 🔹2Gtf3
 - **Brain Task Format 🔹XdbXR**: Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein. 🔹cy6jG
 - **Brain Tasks Status 🔹NmRtH**: Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl
-- **Release-Freigabe (Status) 🔹vP2r9**: Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. 🔹nM2p1
+- **Release-Freigabe (Status) 🔹vP2r9**: Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1
+- **Plan-Status Position 🔹9VGZq**: Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY
 - **Sprach-Konsistenz (Deutsch) 🔹PJcKP**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc
 - **Sauberer Workspace für Core-Dateien 🔹Xg87A**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5
 - **Test Dokumentation (README) 🔹fuodx**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY

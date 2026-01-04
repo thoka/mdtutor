@@ -60,7 +60,7 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
   end
 
   check "Release-Freigabe (Status) 🔹vP2r9" do
-    rule "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. 🔹nM2p1"
+    rule "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1"
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -68,12 +68,28 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       # Wir erlauben ship nur, wenn ein Dokument den Status 'ship-it' hat
       plans.any? do |f|
         content = File.read(f)
-        # Wir suchen nach "Status: ship-it" am Anfang einer Zeile
+        # Wir suchen nach "Status: ship-it" (Case-Insensitive)
         content.match?(/^Status:\s*ship-it/i)
       end
     end
     on_fail "Das Brain-Dokument hat noch nicht den Status 'Status: ship-it'."
-    fix "Ändere den Status im Brain-Dokument auf 'ship-it', um den Release freizugeben."
+    fix "BITTE DEN NUTZER: 'Bitte setze den Status im Brain-Dokument auf ship-it, wenn du bereit für den Release bist.'"
+  end
+
+  check "Plan-Status Position 🔹9VGZq" do
+    rule "Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY"
+    branch_slug = current_branch.split('/').last
+    plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
+
+    condition do
+      plans.all? do |f|
+        lines = File.readlines(f).map(&:strip).reject(&:empty?)
+        # Erste Zeile H1, zweite Zeile Status
+        lines[0]&.start_with?('# ') && lines[1]&.start_with?('Status:')
+      end
+    end
+    on_fail "Der Status im Brain-Dokument fehlt oder steht nicht direkt unter der H1-Überschrift."
+    fix "Verschiebe die 'Status:' Zeile direkt unter die H1-Überschrift."
   end
 
   check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do

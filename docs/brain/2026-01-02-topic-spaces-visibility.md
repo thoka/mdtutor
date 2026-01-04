@@ -1,3 +1,5 @@
+# Brain: Topic Spaces Visibility
+Status: in-progress
 # Specification: Topic Spaces & Visibility Logic (RPL Parity)
 
 ## Phase 1: Tests First
