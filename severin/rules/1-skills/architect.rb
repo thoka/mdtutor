@@ -1,4 +1,7 @@
 define_skill "Severin Architect 🔹Arc" do
+  guidance :language, "Achte auf die Sprachvorgaben: Infrastruktur (DE), Dokumentation (EN). Editiere Dateien direkt."
+  guidance :service_status, "Dienste müssen über das Severin Service-Management gesteuert werden. Nutze 'sv_start <name>' per MCP."
+
   description <<~TEXT
     Dieser Skill vermittelt die Kern-Philosophie der MDTutor-Infrastruktur.
 

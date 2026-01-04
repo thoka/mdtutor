@@ -1,4 +1,6 @@
 define_skill "Severin Test Engineer 🔹TstEng" do
+  guidance :rspec, "Analysiere RSpec-Fehler im Detail und validiere deine Fixes mit 'sv check'."
+
   description <<~TEXT
     Expertise in einheitlichem Testing, RSpec-Integration und State-Management.
 

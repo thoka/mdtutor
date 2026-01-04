@@ -26,6 +26,9 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
 - Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
+### Severin Engine Development 🐺
+- Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
+
 ### Severin Task-Manager 🔹TskMgr
 - Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
 - Agenten dürfen den Status eines Brain-Dokuments NIEMALS eigenmächtig auf 'ship-it' setzen. 🔹nM2p1

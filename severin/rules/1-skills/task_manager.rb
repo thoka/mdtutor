@@ -1,4 +1,8 @@
 define_skill "Severin Task-Manager 🔹TskMgr" do
+  guidance :workflow, "Befolge strikt den Severin-Workflow (Planung vor Implementierung, Conventional Commits)."
+  guidance :brain_status, "Änderungen am Brain-Status 'ship-it' sind dem Nutzer vorbehalten. Nutze 'sv_update_status' für den Fortschritt."
+  guidance :git, "Nutze für Git-Operationen IMMER die entsprechenden MCP-Tools (sv_commit, sv_ship). Vermeide manuelle Git-Befehle."
+
   description <<~TEXT
     Dieser Skill regelt das Onboarding und Management von neuen Aufgaben/Features.
 

@@ -23,6 +23,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Rule**: Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
 - **Rule**: Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
+### Severin Engine Development 🐺
+- **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
+
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
 - **Guideline**: Agenten dürfen den Status eines Brain-Dokuments NIEMALS eigenmächtig auf 'ship-it' setzen. 🔹nM2p1
