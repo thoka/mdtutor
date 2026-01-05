@@ -13,6 +13,12 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
 
+### Strict Integrity Enforcement
+- Binary Success: Alle Severin-Checks müssen standardmäßig erfolgreich sein (PASSED). Es gibt keine impliziten Warnungen auf Framework-Ebene. 🔹STRICT-FAIL
+- State-controlled Exceptions: Ausnahmen (Warnungen) sind NUR zulässig, wenn sie explizit in der `severin_state.rb` unter `allow_warnings` definiert sind. 🔹STATE-EXC
+- No Self-Leniency: Agenten dürfen niemals eigenmächtig Regeln in den State-Dokumenten als Warnung deklarieren, um Aufgaben zu vereinfachen. Dies erfordert immer eine explizite Nutzer-Anweisung. 🔹NO-SOFTEN
+- Technical Debt Visibility: Jede deklarierte Ausnahme im State gilt als bewusste technische Schuld und muss im nächsten Ship-Prozess kritisch hinterfragt werden. 🔹DEBT-VIS
+
 ### Dynamischer Regel-Workflow
 - Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
 - Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.

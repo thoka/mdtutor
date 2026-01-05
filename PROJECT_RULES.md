@@ -14,6 +14,12 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
 
+### Strict Integrity Enforcement
+- **Guideline**: Binary Success: Alle Severin-Checks müssen standardmäßig erfolgreich sein (PASSED). Es gibt keine impliziten Warnungen auf Framework-Ebene. 🔹STRICT-FAIL
+- **Guideline**: State-controlled Exceptions: Ausnahmen (Warnungen) sind NUR zulässig, wenn sie explizit in der `severin_state.rb` unter `allow_warnings` definiert sind. 🔹STATE-EXC
+- **Guideline**: No Self-Leniency: Agenten dürfen niemals eigenmächtig Regeln in den State-Dokumenten als Warnung deklarieren, um Aufgaben zu vereinfachen. Dies erfordert immer eine explizite Nutzer-Anweisung. 🔹NO-SOFTEN
+- **Guideline**: Technical Debt Visibility: Jede deklarierte Ausnahme im State gilt als bewusste technische Schuld und muss im nächsten Ship-Prozess kritisch hinterfragt werden. 🔹DEBT-VIS
+
 ### Dynamischer Regel-Workflow
 - **Guideline**: Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
 - **Guideline**: Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.

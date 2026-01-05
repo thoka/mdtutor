@@ -63,7 +63,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Brain Tasks Status 🔹NmRtH" do
     rule "Alle geplanten Tasks im Brain-Dokument sollten vor dem Shipping abgeschlossen (- [x]) sein. 🔹1VAMl"
-    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -81,7 +80,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Release-Freigabe (Status) 🔹vP2r9" do
     rule :workflow, "Die 'ship' Action darf nur ausgeführt werden, wenn im Brain-Dokument 'Status: ship-it' steht. Agenten dürfen diesen Status niemals selbst setzen. 🔹nM2p1"
-    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -99,7 +97,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Plan-Status Position 🔹9VGZq" do
     rule "Der Status muss im Brain-Dokument immer direkt unter der H1-Überschrift stehen. 🔹35SbY"
-    severity :warning
     branch_slug = current_branch.split('/').last
     plans = Dir.glob("docs/brain/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
@@ -116,7 +113,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Keine Unterordner in docs/brain 🔹BRN-FLAT" do
     rule "Es darf keine Unterordner unter docs/brain geben. Alle Dokumente müssen direkt dort liegen. 🔹BRN-FLAT"
-    severity :error
     condition do
       # Suche alle Einträge in docs/brain
       return true unless Dir.exist?("docs/brain")
@@ -132,7 +128,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Archivierung nach docs/done 🔹BRN-ARCHIVE" do
     rule "Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE"
-    severity :error
     condition do
       !Dir.exist?("docs/brain/done") || Dir.empty?("docs/brain/done")
     end
@@ -142,7 +137,6 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
   check "Brain ID Format (kein Bindestrich) 🔹BRN-DASH" do
     rule "Die ID im Dateinamen sollte direkt nach dem Titel ohne Bindestrich folgen (z.B. Titel🔹ID.md). 🔹BRN-DASH"
-    severity :warning
     condition do
       plans_with_dash = Dir.glob("docs/brain/**/*-🔹*")
       plans_with_dash.empty?
