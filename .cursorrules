@@ -2,6 +2,9 @@
 
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Severin-Framework (severin/*) überwacht.
 
+## 🎯 Aktueller Fokus
+**Implementierung der schönen State-DSL und intelligenten Skill-Filterung**
+
 ## 🗣️ Sprache
 - **Konversation**: Deine Kommunikation mit dem Nutzer erfolgt auf **Deutsch**.
 - **Dokumentation**: Alle dauerhaften Artefakte (Brain-Dokumente, Git-Commits, Code-Kommentare) müssen auf **English** verfasst werden.
