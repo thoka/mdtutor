@@ -1,5 +1,5 @@
 define_skill "Severin Engine Development 🐺" do
-  tags :severin, :dev
+  tags :severin, :dev, :ruby
   guidance :engine_dev, "Alle Definitionen in Severin MÜSSEN additiv sein. Vermeide Überschreibungen."
 
   description <<~TEXT
@@ -26,7 +26,10 @@ define_skill "Severin Engine Development 🐺" do
        - Erhöhung der Patch-Version (0.0.x) bei Bugfixes und kleinen Optimierungen.
   TEXT
 
-  rule :engine_dev, "Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen."
-  rule :engine_dev, "Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG"
-  rule :engine_dev, "Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER"
+  rule :engine_dev, "Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.",
+       spec: "severin/engine/spec/integration_spec.rb"
+  rule :engine_dev, "Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG",
+       spec: "severin/engine/lib/severin.rb"
+  rule :engine_dev, "Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER",
+       spec: "severin/engine/spec/integration_spec.rb"
 end
