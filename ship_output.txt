@@ -124,3 +124,18 @@ mkdir -p docs/done && mv docs/brain/done/* docs/done/ 2>/dev/null; rm -rf docs/b
 ```
 
   -> Committe Änderungen...
+[feature/severin-state a9ebb00] chore(release): final sync before shipping feature/severin-state
+ 1 file changed, 126 insertions(+)
+ create mode 100644 ship_output.txt
+✅ Projekt erfolgreich committet.
+  -> Merging nach main...
+From github.com:thoka/mdtutor
+ * branch            main       -> FETCH_HEAD
+error: Your local changes to the following files would be overwritten by checkout:
+	ship_output.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+❌ Fehler beim Mergen nach main. Bitte Konflikte manuell lösen.
+Already on 'feature/severin-state'
+M	severin/engine
+M	ship_output.txt
