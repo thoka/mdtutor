@@ -1,8 +1,8 @@
 # This file defines the dynamic workflow and rule design standards.
 
 define_skill "Dynamischer Regel-Workflow" do
+  tag :workflow, :dev
   description "Steuert die zustandsabhängige Aktivierung von KI-Instruktionen."
-  tag :workflow
 
   rule "Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer " \
        "Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF"
@@ -15,8 +15,9 @@ define_skill "Dynamischer Regel-Workflow" do
 end
 
 define_skill "Severin-Regel-Design" do
+  tag :architect, :dev
+  references "severin/engine/README.md"
   description "Vorgaben für das Hinzufügen modularer und dynamischer Regeln."
-  tag :architect
 
   rule "Modularisierung: Nutze `:tag` und `define_skill`, um Regeln thematisch zu gruppieren. " \
        "Vermeide monolithische Regel-Dateien. 🔹RUL-DSG"

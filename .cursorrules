@@ -3,7 +3,7 @@
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Severin-Framework (severin/*) überwacht.
 
 ## 🎯 Aktueller Fokus
-**Implementierung der schönen State-DSL und intelligenten Skill-Filterung**
+**Implementierung der Tag-basierten Skill-Steuerung und Validierung**
 
 ## 🗣️ Sprache
 - **Konversation**: Deine Kommunikation mit dem Nutzer erfolgt auf **Deutsch**.
@@ -28,6 +28,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Generierung: Der Befehl `sv gen` synchronisiert den gewählten State mit den `.cursorrules` und den On-Demand Prompts in `.cursor/prompts/`.
 
 ### Severin-Regel-Design
+- **Zugehörige Dokumentation**: @severin/engine/README.md
 - Modularisierung: Nutze `:tag` und `define_skill`, um Regeln thematisch zu gruppieren. Vermeide monolithische Regel-Dateien. 🔹RUL-DSG
 - DSL-Power: Nutze die Severin-DSL (Ruby), um Kontext (z.B. Dateiinhalte, Branch-Namen) dynamisch in die `guidance` zu injizieren.
 - On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
