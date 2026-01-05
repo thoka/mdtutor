@@ -19,8 +19,14 @@ define_skill "Severin Engine Development 🐺" do
 
     4. DEBUG-STANDARD:
        - Nutze für Debug-Informationen NIEMALS 'puts'. Verwende ausschließlich 'Severin.log_debug', um die Ausgabe über SEVERIN_DEBUG steuerbar zu machen.
+
+    5. VERSIONIERUNG (BETA):
+       - Behalte die Major-Version auf 0 (z.B. 0.x.x) bei, solange sich das Framework in der Beta-Phase befindet.
+       - Erhöhung der Minor-Version (0.x.0) bei neuen Features.
+       - Erhöhung der Patch-Version (0.0.x) bei Bugfixes und kleinen Optimierungen.
   TEXT
 
   rule :engine_dev, "Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen."
   rule :engine_dev, "Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG"
+  rule :engine_dev, "Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER"
 end

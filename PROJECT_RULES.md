@@ -62,6 +62,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 - **Guideline**: Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
+- **Guideline**: Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
 
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
