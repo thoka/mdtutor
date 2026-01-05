@@ -6,7 +6,7 @@ define_skill "Dynamischer Regel-Workflow" do
 
   rule "Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer " \
        "Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF"
-  
+
   rule "Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) " \
        "muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei."
 
@@ -38,4 +38,3 @@ define_skill "Severin-Regel-Design" do
   rule "Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen " \
        "Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung."
 end
-
