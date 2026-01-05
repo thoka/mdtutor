@@ -14,6 +14,17 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
 
+### Dynamischer Regel-Workflow
+- **Guideline**: Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
+- **Guideline**: Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.
+- **Guideline**: Generierung: Der Befehl `sv gen` synchronisiert den gewählten State mit den `.cursorrules` und den On-Demand Prompts in `.cursor/prompts/`.
+
+### Severin-Regel-Design
+- **Guideline**: Modularisierung: Nutze `:tag` und `define_skill`, um Regeln thematisch zu gruppieren. Vermeide monolithische Regel-Dateien. 🔹RUL-DSG
+- **Guideline**: DSL-Power: Nutze die Severin-DSL (Ruby), um Kontext (z.B. Dateiinhalte, Branch-Namen) dynamisch in die `guidance` zu injizieren.
+- **Guideline**: On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
+- **Guideline**: Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
+
 ### Severin Architect 🔹Arc
 - **Guideline**: Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
 - **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W

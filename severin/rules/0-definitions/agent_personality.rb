@@ -6,7 +6,7 @@ define_skill "Agenten-Verhalten" do
 
   rule "Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). " \
        "Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen."
-  
+
   rule "Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. " \
        "Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin."
 
