@@ -4,6 +4,12 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ## 🧠 Agent Skills
 
+### Agenten-Verhalten
+- **Guideline**: Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- **Guideline**: Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
+- **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
+- **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
+
 ### Severin Glossar & Semantik 🔹GLOSSARY
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
