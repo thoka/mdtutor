@@ -36,8 +36,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
 - **Guideline**: Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - **Guideline**: Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
-- **Guideline**: Nutze für Korrekturen und Routineaufgaben bevorzugt die verfügbaren `sv_` Tools via MCP. 🔹uVr0W
-- **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. Gegebenenfalls ist ein neuer Meta-Branch zu erstellen. 🔹RULE-BRANCH
+- **Guideline**: Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
+- **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
 
 ### Backend Architekt 🔹ATdMw
 - **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq
@@ -155,12 +155,14 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 ### 1-setup: Content Registry 🔹Y7fuV
 
 ### Severin Engine Health 🔹aUsN8
+- **Guideline**: Änderungen an der Engine müssen IMMER über den Workspace-Pfad 'severin/engine/' erfolgen. 🔹xe8VT
 - **Engine Presence 🔹6quEB**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule). 🔹QD3t9
 - **Engine Versioning 🔹Dj9hj**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen. 🔹S9EsU
 - **Engine Integrity 🔹51vXy**: Wichtige Engine-Dateien müssen vorhanden sein. 🔹nmKwQ
 - **MCP Availability 🔹MCP-A**: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
 
 ### Frontend Architecture 🔹AfKxC
+- **Guideline**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
 - **Svelte 5 Runes Compliance 🔹SVELTE-1**: Alle Komponenten müssen den Svelte 5 Standard einhalten.
 
 ### Code-Konventionen & Port-Integrität 🔹wJ1xe
