@@ -70,6 +70,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 - Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
 - Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
+- Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
 
 ### Severin Task-Manager 🔹TskMgr
 - Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
@@ -172,6 +173,9 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 
 ### Code-Konventionen & Port-Integrität 🔹wJ1xe
 - **Keine Hardcoded Ports in Ruby/JS 🔹HfTxw**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen. 🔹puyGP
+
+### Quality Enforcement 🔹Q-ENF
+- **Ruby Rule Spec Coverage 🔹R-SPEC**: Jede Ruby-basierte Regel MUSS eine Spec-Referenz haben. 🔹R-SPEC
 
 
 ## 🔧 Fehlerbehebung

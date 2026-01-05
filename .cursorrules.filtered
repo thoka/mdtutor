@@ -34,6 +34,14 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
 - Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
 
+### Severin Architect 🔹Arc
+- Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
+- Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
+- Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
+- Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
+- Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
+- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
+
 ### Severin Modular Architecture
 - Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
 - Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
@@ -55,6 +63,9 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Wichtig**: 1. Nutze dieses Tool nur von einem Feature-Branch aus.
 
 ## ⚖️ Verpflichtender Workflow
+### Quality Enforcement 🔹Q-ENF
+- **Ruby Rule Spec Coverage 🔹R-SPEC**: Jede Ruby-basierte Regel MUSS eine Spec-Referenz haben. 🔹R-SPEC
+
 
 ## 🔧 Fehlerbehebung
 Wenn du unsicher bist oder Tests fehlschlagen, führe `sv` aus. Die Ausgabe liefert dir direkt ausführbare `bash`-Fixes.

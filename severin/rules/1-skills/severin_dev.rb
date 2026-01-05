@@ -32,4 +32,9 @@ define_skill "Severin Engine Development 🐺" do
        spec: "severin/engine/lib/severin.rb"
   rule :engine_dev, "Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER",
        spec: "severin/engine/spec/integration_spec.rb"
+
+  rule :engine_dev, "Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC",
+       spec: "severin/engine/lib/severin/documentable.rb"
+
+  guidance :engine_dev, "Wenn du eine neue Action oder ein Tool in Ruby definierst, nutze IMMER den `spec`-Block für Beschreibung und Parameter. Dies speist automatisch `sv --help` und die MCP-Tool-Definitionen."
 end

@@ -63,6 +63,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 - **Guideline**: Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
 - **Guideline**: Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
+- **Guideline**: Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
 
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
@@ -167,4 +168,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 
 ### Code-Konventionen & Port-Integrität 🔹wJ1xe
 - **Keine Hardcoded Ports in Ruby/JS 🔹HfTxw**: Ports (3101, 3102, 3103, 5201) dürfen nicht direkt im Code stehen. Nutze ENV Variablen. 🔹puyGP
+
+### Quality Enforcement 🔹Q-ENF
+- **Ruby Rule Spec Coverage 🔹R-SPEC**: Jede Ruby-basierte Regel MUSS eine Spec-Referenz haben. 🔹R-SPEC
 
