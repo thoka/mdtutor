@@ -1,5 +1,5 @@
 # Strict Integrity Enforcement 🔹msmm8
-Status: in-progress
+Status: ship-it
 
 Implementierung eines binären Erfolgssystems für Severin-Checks ohne implizite Warnungen.
 
@@ -13,8 +13,8 @@ Warnungen im Framework werden oft übersehen. Wir stellen um auf "Strict by Defa
 - **Workflow**: Refactoring von `workflow.rb`, um alle Warnungen zu harten Fehlern zu machen.
 
 ## Tasks
-- [ ] Engine-Refactoring: Severity entfernen 🔹STRICT-FAIL
-- [ ] State-Management: `allow_warnings` integrieren 🔹STATE-EXC
-- [ ] Integrity Skill kodifizieren 🔹NO-SOFTEN
-- [ ] Workflow-Regeln bereinigen
+- [x] Engine-Refactoring: Severity entfernen 🔹STRICT-FAIL
+- [x] State-Management: `allow_warnings` integrieren 🔹STATE-EXC
+- [x] Integrity Skill kodifizieren 🔹NO-SOFTEN
+- [x] Workflow-Regeln bereinigen
 
