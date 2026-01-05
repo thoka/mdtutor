@@ -1,0 +1,126 @@
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb[0m
+[90m🔍 [DEBUG] Action 'commit' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb[0m
+[90m🔍 [DEBUG] Action 'commit-engine' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb[0m
+[90m🔍 [DEBUG] Action 'ship' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb[0m
+[90m🔍 [DEBUG] Tool 'next-id' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Tool 'fix-brain-id' wird definiert (Überschreiben: false)[0m
+🚀 Starte Release-Prozess für Branch 'feature/severin-state'...
+  -> Bereinige temporäre Dateien (tmp_*)...
+  -> Archiviere fertige Brain-Dokumente...
+  -> Finaler Projekt-Sync...
+🚀 Starte orchestrierten Projekt-Commit...
+  -> Generiere Regeln...
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb[0m
+[90m🔍 [DEBUG] Action 'commit' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb[0m
+[90m🔍 [DEBUG] Action 'commit-engine' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb[0m
+[90m🔍 [DEBUG] Action 'ship' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb[0m
+[90m🔍 [DEBUG] Tool 'next-id' wird definiert (Überschreiben: false)[0m
+[90m🔍 [DEBUG] Tool 'fix-brain-id' wird definiert (Überschreiben: false)[0m
+✅ PROJECT_RULES.md generiert.
+✅ Prompt-Datei .cursor/prompts/new-skill.md generiert.
+✅ Prompt-Datei .cursor/prompts/reflect.md generiert.
+✅ .cursorrules generiert.
+✅ .cursorrules.filtered generiert.
+  -> Prüfe Integrität...
+## 🐺 Severin v0.3.3 Report
+### ✅ Skill: Agenten-Verhalten [PASSED]
+- **Guideline**: Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- **Guideline**: Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
+- **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
+- **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
+
+### ✅ Skill: Severin Glossar & Semantik 🔹GLOSSARY [PASSED]
+- **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
+- **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
+
+### ✅ Skill: Strict Integrity Enforcement [PASSED]
+- **Guideline**: Binary Success: Alle Severin-Checks müssen standardmäßig erfolgreich sein (PASSED). Es gibt keine impliziten Warnungen auf Framework-Ebene. 🔹STRICT-FAIL
+- **Guideline**: State-controlled Exceptions: Ausnahmen (Warnungen) sind NUR zulässig, wenn sie explizit in der `severin_state.rb` unter `allow_warnings` definiert sind. 🔹STATE-EXC
+- **Guideline**: No Self-Leniency: Agenten dürfen niemals eigenmächtig Regeln in den State-Dokumenten als Warnung deklarieren, um Aufgaben zu vereinfachen. Dies erfordert immer eine explizite Nutzer-Anweisung. 🔹NO-SOFTEN
+- **Guideline**: Technical Debt Visibility: Jede deklarierte Ausnahme im State gilt als bewusste technische Schuld und muss im nächsten Ship-Prozess kritisch hinterfragt werden. 🔹DEBT-VIS
+
+### ✅ Agent-Anleitungen & Engine 🔹uVr0W [PASSED]
+All checks passed.
+
+### ✅ Branch Gesundheit & Cleanup 🔹NUSqE [PASSED]
+All checks passed.
+
+### ✅ Chat-Dokumentation & Branch-Management 🔹CHAT-DOC [PASSED]
+All checks passed.
+
+### ✅ Dokumentations-Integrität 🔹7knlz [PASSED]
+All checks passed.
+
+### ✅ Skill: Dynamischer Regel-Workflow [PASSED]
+- **Guideline**: Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
+- **Guideline**: Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.
+- **Guideline**: Generierung: Der Befehl `sv gen` synchronisiert den gewählten State mit den `.cursorrules` und den On-Demand Prompts in `.cursor/prompts/`.
+
+### ✅ Skill: Severin-Regel-Design [PASSED]
+- **Guideline**: Modularisierung: Nutze `:tag` und `define_skill`, um Regeln thematisch zu gruppieren. Vermeide monolithische Regel-Dateien. 🔹RUL-DSG
+- **Guideline**: DSL-Power: Nutze die Severin-DSL (Ruby), um Kontext (z.B. Dateiinhalte, Branch-Namen) dynamisch in die `guidance` zu injizieren.
+- **Guideline**: On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
+- **Guideline**: Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
+
+### ❌ Sprach-Integrität (Infrastruktur vs. Dokumentation) [FAILED]
+#### 🔧 [FIX] language_brain_docs
+- **Severity**: ERROR
+- **Source**: `severin/rules/1-process/language.rb:12`
+- **Problem**: Das Brain-Dokument scheint auf Deutsch verfasst zu sein. Brain-Dokumente müssen auf Englisch verfasst werden.
+- **AI Action**: Execute the command below:
+
+```bash
+Übersetze den Inhalt des Brain-Dokuments ins Englische, während Struktur und IDs erhalten bleiben.
+```
+
+### ✅ MCP Integrität 🔹yLjQ5 [PASSED]
+All checks passed.
+
+### ✅ Self-Documentation Workflow 🔹aOgCE [PASSED]
+All checks passed.
+
+### ❌ Workcycle & Git Regeln 🔹5yJUs [FAILED]
+#### 🔧 [FIX] Brain Tasks Status 🔹NmRtH
+- **Severity**: ERROR
+- **Source**: `severin/rules/1-process/workflow.rb:64`
+- **Problem**: Es gibt noch offene Tasks in den Brain-Dokumenten: docs/brain/2026-01-05-severin-state-enhancement🔹siehg.md
+- **AI Action**: Execute the command below:
+
+```bash
+Markiere alle erledigten Tasks mit [x].
+```
+#### 🔧 [FIX] Release-Freigabe (Status) 🔹vP2r9
+- **Severity**: ERROR
+- **Source**: `severin/rules/1-process/workflow.rb:81`
+- **Problem**: Das Brain-Dokument hat noch nicht den Status 'Status: ship-it'.
+- **AI Action**: Execute the command below:
+
+```bash
+BITTE DEN NUTZER: 'Bitte setze den Status im Brain-Dokument auf ship-it, wenn du bereit für den Release bist.'
+```
+#### 🔧 [FIX] Keine Unterordner in docs/brain 🔹BRN-FLAT
+- **Severity**: ERROR
+- **Source**: `severin/rules/1-process/workflow.rb:114`
+- **Problem**: Struktur-Fehler: Unterordner in docs/brain/ gefunden: docs/brain/done/
+- **AI Action**: Execute the command below:
+
+```bash
+mv docs/brain/*/*.md docs/brain/ 2>/dev/null; find docs/brain -mindepth 1 -type d -not -name 'walkthrough' -exec rm -rf {} +
+```
+#### 🔧 [FIX] Archivierung nach docs/done 🔹BRN-ARCHIVE
+- **Severity**: ERROR
+- **Source**: `severin/rules/1-process/workflow.rb:129`
+- **Problem**: Dateien in docs/brain/done gefunden, die nach docs/done verschoben werden müssen.
+- **AI Action**: Execute the command below:
+
+```bash
+mkdir -p docs/done && mv docs/brain/done/* docs/done/ 2>/dev/null; rm -rf docs/brain/done
+```
+
+  -> Committe Änderungen...
