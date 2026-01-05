@@ -1,29 +1,20 @@
-define_skill "Severin Test Engineer 🔹TstEng" do
-  guidance :rspec, "Analysiere RSpec-Fehler im Detail und validiere deine Fixes mit 'sv check'."
+define_skill "Severin Test-Driven Quality" do
+  tag :severin, :dev, :testing
 
   description <<~TEXT
-    Expertise in einheitlichem Testing, RSpec-Integration und State-Management.
+    Prinzipien für die Qualitätssicherung der Severin-Engine:
 
-    KERNKONZEPTE:
-    - Regeln sind sowohl Anweisungen als auch ausführbare Tests (severin/rules/*.rb).
-    - Validierung nutzt RSpec-Dateien in 'severin/specs/'.
-    - Nutze den 'rspec "pfad/zu/spec"' Helper innerhalb von Checks.
+    1. SPEC-MANDATORY (SPEC-REQ):
+       - Jede neue Funktion oder Fehlerbehebung in der Engine MUSS durch eine RSpec-Spec in `severin/engine/spec/` abgesichert werden.
+       - Ad-hoc Tests im Terminal oder temporäre Skripte sind nur zur Exploration erlaubt, nicht als Ersatz für Specs.
 
-    WORKFLOW:
-    1. Regel in Severin Suite definieren.
-    2. RSpec-Spec in 'severin/specs/' schreiben.
-    3. Spec via 'rspec' Helper verknüpfen.
-    4. 'sv gen' ausführen, um Anweisungen zu synchronisieren.
+    2. INTEGRATION-TESTING (INT-TEST):
+       - Neben Unit-Tests für einzelne Klassen müssen kritische Pfade (wie CLI-Befehle oder Plugin-Laden) durch Integration-Tests abgedeckt werden.
 
-    DEBUGGING & FIXING:
-    - Severin erfasst die letzten 5 Zeilen von RSpec-Fehlern.
-    - Nutze den vorgeschlagenen `fix_command`, um nur fehlgeschlagene Specs erneut auszuführen.
-    - Überprüfe immer, ob benötigte Dienste antworten, bevor du von Code-Bugs ausgehst.
+    3. REGRESSION-PREVENTION (NO-REGRESS):
+       - Bei jedem Bugfix muss eine Spec hinzugefügt werden, die genau diesen Case abdeckt, um zukünftige Regressionen zu verhindern.
   TEXT
 
-  check "RSpec Extension Active" do
-    rule "Die Test-Engine muss die RSpec-Erweiterung geladen haben."
-    condition { Severin::CheckContext.instance_methods.include?(:rspec) }
-    on_fail "Die RSpec-Erweiterung ist nicht geladen."
-  end
+  rule :severin, "Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ"
+  rule :severin, "Nutze `bundle exec rspec` zur Verifizierung der Engine-Integrität. 🔹VERIFY-SPEC"
 end

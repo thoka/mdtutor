@@ -2,18 +2,16 @@
 # Use this file to dynamically activate tags and skills for Cursor.
 
 Severin.draw_state do
-  # Additive Skills mit optionaler Tag-Filterung
-  skill "Agenten-Verhalten"
-  skill "Strict Integrity Enforcement"
-  skill "Dynamischer Regel-Workflow" => :workflow
-  skill "Severin-Regel-Design" => :architect
-  
+  # Additive Skills via Tags (NUR Symbole erlaubt)
+  skill :agent
+  skill :workflow => :dev
+  skill :architect => :dev
+
   # Globale Tags
   focus :core
-  
-  # Bewusste Ausnahmen für diesen Sprint (nur Checks ohne 🔹ID nutzen)
-  allow :brain_tasks_status
-  
+  focus :core
+
+
   # Ziel des aktuellen Sprints
-  objective "Implementierung der schönen State-DSL und intelligenten Skill-Filterung"
+  objective "Implementierung der Tag-basierten Skill-Steuerung und Validierung"
 end

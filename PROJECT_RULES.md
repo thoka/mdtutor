@@ -51,6 +51,14 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Rule**: Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
 - **Rule**: Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
+### Severin Glossar & Semantik
+- **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
+- **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
+
+### Severin Modular Architecture
+- **Guideline**: Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
+- **Guideline**: Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
+
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 
@@ -64,8 +72,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN
 - **Guideline**: Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR
 
-### Severin Test Engineer 🔹TstEng
-- **Rule**: Die Test-Engine muss die RSpec-Erweiterung geladen haben.
+### Severin Test-Driven Quality
+- **Guideline**: Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ
+- **Guideline**: Nutze `bundle exec rspec` zur Verifizierung der Engine-Integrität. 🔹VERIFY-SPEC
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 

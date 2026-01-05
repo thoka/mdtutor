@@ -1,4 +1,5 @@
 define_skill "Severin Engine Development 🐺" do
+  tags :severin, :dev
   guidance :engine_dev, "Alle Definitionen in Severin MÜSSEN additiv sein. Vermeide Überschreibungen."
 
   description <<~TEXT

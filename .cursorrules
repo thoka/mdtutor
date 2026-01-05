@@ -34,6 +34,10 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
 - Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
 
+### Severin Modular Architecture
+- Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
+- Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
+
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
 Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
