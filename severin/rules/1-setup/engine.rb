@@ -28,4 +28,13 @@ define_suite "Severin Engine Health 🔹aUsN8" do
     end
     on_fail "Engine-Struktur ist beschädigt."
   end
+
+  check "MCP Availability 🔹MCP-A" do
+    rule "Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S"
+    condition do
+      Severin.mcp_clients.all? { |name, client| client.alive? }
+    end
+    on_fail "Einer oder mehrere MCP-Server sind offline."
+    fix "Prüfe die MCP-Verbindung oder setze 'allow_warnings: [:mcp_offline]' im State."
+  end
 end

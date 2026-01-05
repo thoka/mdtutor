@@ -15,8 +15,12 @@ define_skill "Severin Engine Development 🐺" do
        - Der letzte Parameter ist in der Regel der primäre Inhalt (String/Block).
 
     3. FEHLER-TOLERANZ:
-       - Die Engine sollte bei doppelten Definitionen von Actions/Tools mindestens eine Warnung ausgeben, anstatt stillschweigend zu überschreiben.
+       - Die Engine sollte bei doppelten Definitionen von Actions/Tools im Debug-Modus informieren, anstatt den Standard-Output mit Warnungen zu fluten.
+
+    4. DEBUG-STANDARD:
+       - Nutze für Debug-Informationen NIEMALS 'puts'. Verwende ausschließlich 'Severin.log_debug', um die Ausgabe über SEVERIN_DEBUG steuerbar zu machen.
   TEXT
 
   rule :engine_dev, "Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen."
+  rule :engine_dev, "Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG"
 end

@@ -61,6 +61,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
+- **Guideline**: Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
 
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
@@ -156,6 +157,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Engine Presence 🔹6quEB**: Die Engine muss als 'severin/engine' im Workspace vorhanden sein (Symlink oder Submodule). 🔹QD3t9
 - **Engine Versioning 🔹Dj9hj**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen. 🔹S9EsU
 - **Engine Integrity 🔹51vXy**: Wichtige Engine-Dateien müssen vorhanden sein. 🔹nmKwQ
+- **MCP Availability 🔹MCP-A**: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
 
 ### Frontend Architecture 🔹AfKxC
 - **Svelte 5 Runes Compliance 🔹SVELTE-1**: Alle Komponenten müssen den Svelte 5 Standard einhalten.
