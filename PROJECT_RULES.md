@@ -38,6 +38,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - **Guideline**: Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
 - **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
+- **Guideline**: Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
 
 ### Backend Architekt 🔹ATdMw
 - **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq
@@ -59,11 +60,15 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
 - **Guideline**: Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
 
+### Severin Self-Reflexion 🧠
+- **Guideline**: Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
+
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 - **Guideline**: Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
 - **Guideline**: Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
 - **Guideline**: Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
+- **Guideline**: Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ
 
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY

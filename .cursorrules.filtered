@@ -41,10 +41,14 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
 - Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
+- Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
 
 ### Severin Modular Architecture
 - Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
 - Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
+
+### Severin Self-Reflexion 🧠
+- Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 

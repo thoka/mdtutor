@@ -36,5 +36,9 @@ define_skill "Severin Engine Development 🐺" do
   rule :engine_dev, "Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC",
        spec: "severin/engine/lib/severin/documentable.rb"
 
+  rule :engine_dev, "Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ",
+       spec: "severin/engine/lib/severin/cli.rb"
+
   guidance :engine_dev, "Wenn du eine neue Action oder ein Tool in Ruby definierst, nutze IMMER den `spec`-Block für Beschreibung und Parameter. Dies speist automatisch `sv --help` und die MCP-Tool-Definitionen."
+  guidance :engine_dev, "Bei Änderungen an der CLI-Infrastruktur oder MCP-Metadaten: Stelle sicher, dass Plugins geladen sind, BEVOR der OptionParser oder die Tool-Registry initialisiert wird (Late-Binding vermeiden)."
 end

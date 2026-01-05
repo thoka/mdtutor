@@ -26,4 +26,9 @@ define_skill "Severin Architect 🔹Arc" do
        spec: "severin/engine/spec/generation_spec.rb"
   rule "Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH",
        spec: "severin/engine/spec/integration_spec.rb"
+
+  rule "Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM",
+       spec: "severin/engine/"
+
+  guidance :arc, "Änderungen an der Severin-Engine (severin/engine/) MÜSSEN immer als separater Schritt committet und gepusht werden, bevor der übergeordnete Projekt-Commit den neuen Submodule-Pointer aufnimmt. Nutze `sv commit-engine` gefolgt von `sv commit`."
 end
