@@ -9,4 +9,14 @@ define_skill "Severin Glossar & Semantik" do
   rule "RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). " \
        "Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen " \
        "Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden."
+
+  rule "Skill: Eine thematische Gruppierung von Regeln (z.B. :ruby, :setup). " \
+       "Skills werden in der `severin_state.rb` aktiviert und steuern den Fokus des Agenten."
+
+  rule "Regel (Rule): Die kleinste funktionale Einheit in Severin. Besteht aus einer " \
+       "Beschreibung, einer Bedingung (`condition`), einer Fehlermeldung (`on_fail`) " \
+       "und optional einer Korrektur-Aktion (`fix`)."
+
+  rule "Autofix: Eine programmatische Lösung innerhalb einer Regel (`fix` Block), " \
+       "die Fehler automatisch behebt. Autofixes müssen idempotent und sicher sein."
 end

@@ -22,6 +22,10 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
 
+### Environment Setup 🛠️
+- Nutze absolute Pfade oder $R.
+- Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-AUTOFIX
+
 ### Strict Integrity Enforcement
 - Binary Success: Alle Severin-Checks müssen standardmäßig erfolgreich sein (PASSED). Es gibt keine impliziten Warnungen auf Framework-Ebene. 🔹STRICT-FAIL
 - State-controlled Exceptions: Ausnahmen (Warnungen) sind NUR zulässig, wenn sie explizit in der `severin_state.rb` unter `allow_warnings` definiert sind. 🔹STATE-EXC
@@ -87,10 +91,6 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
 - Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
-
-### Environment Setup 🛠️
-- Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
-- Direnv Initialization: Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-INIT
 
 ### Severin Engine Development 🐺
 - Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.

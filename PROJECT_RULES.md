@@ -10,6 +10,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
 
+### Environment Setup 🛠️
+- **Rule**: Nutze absolute Pfade oder $R.
+- **Rule**: Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-AUTOFIX
+
 ### Severin Glossar & Semantik
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
@@ -77,6 +81,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Severin Glossar & Semantik
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
+- **Guideline**: Skill: Eine thematische Gruppierung von Regeln (z.B. :ruby, :setup). Skills werden in der `severin_state.rb` aktiviert und steuern den Fokus des Agenten.
+- **Guideline**: Regel (Rule): Die kleinste funktionale Einheit in Severin. Besteht aus einer Beschreibung, einer Bedingung (`condition`), einer Fehlermeldung (`on_fail`) und optional einer Korrektur-Aktion (`fix`).
+- **Guideline**: Autofix: Eine programmatische Lösung innerhalb einer Regel (`fix` Block), die Fehler automatisch behebt. Autofixes müssen idempotent und sicher sein.
 
 ### Severin Modular Architecture
 - **Guideline**: Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
@@ -91,10 +98,6 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - **Guideline**: UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
 - **Guideline**: Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
-
-### Environment Setup 🛠️
-- **Guideline**: Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
-- **Guideline**: Direnv Initialization: Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-INIT
 
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
