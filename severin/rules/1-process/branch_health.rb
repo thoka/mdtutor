@@ -31,7 +31,14 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
       rules_mtime >= test_mtimes.max
     end
     on_fail "Die Projektregeln sind nicht auf dem neuesten Stand der Severin-Tests."
-    fix "Führe 'sv gen' aus, um die Dokumentation zu synchronisieren."
+    fix "Führe 'sv gen' aus, um die Dokumentation zu synchronisieren." do
+      if ENV['SEVERIN_GENERATING']
+        Severin.log_debug "Rekursiver Aufruf von 'sv gen' unterbunden."
+      else
+        puts "DEBUG: Executing sv gen autofix"
+        system("ruby severin/runner.rb gen")
+      end
+    end
   end
 
   check "Plan-Aktualität 🔹9VGZq" do
@@ -45,4 +52,3 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
     fix "Aktualisiere den Plan in docs/brain/."
   end
 end
-
