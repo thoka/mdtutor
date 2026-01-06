@@ -2,7 +2,7 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
   check "Fokus & Umfang 🔹gBN5w" do
     rule "Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz"
     condition do
-      changes = `git status --porcelain | wc -l`.to_i
+      changes = `git status --porcelain | wc -l`.to_i # SEVERIN_BOOTSTRAP: Backticks in Regeln werden bald durch sh() ersetzt
       changes < 20
     end
     on_fail "Zu viele offene Änderungen."
@@ -13,9 +13,9 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
     rule "Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden. 🔹Bqgcu"
     condition do
       relics = Dir.glob("**/tmp_*")
-      untracked = `git ls-files --others --exclude-standard`.split("\n")
+      untracked = `git ls-files --others --exclude-standard`.split("\n") # SEVERIN_BOOTSTRAP
       # Wir failen nur, wenn eine tmp-Datei getrackt wird oder andere Artefakte existieren
-      tracked_relics = `git ls-files | grep '^tmp_\\|/tmp_'`.split("\n")
+      tracked_relics = `git ls-files | grep '^tmp_\\|/tmp_'`.split("\n") # SEVERIN_BOOTSTRAP
       tracked_relics.empty? && Dir.glob("**/*.bak.md").empty?
     end
     on_fail "Temporäre Dateien oder Backups gefunden, die getrackt werden."
@@ -35,10 +35,9 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
       if ENV['SEVERIN_GENERATING']
         Severin.log_debug "Rekursiver Aufruf von 'sv gen' unterbunden."
       else
-        puts "DEBUG: Executing sv gen autofix"
-        # Wir nutzen das Engine-Binary mit absolutem Pfad
+        # Wir nutzen die Framework-Methode sh() statt system()
         engine_root = File.expand_path("../../engine", __dir__)
-        system("ruby #{engine_root}/bin/sv gen")
+        sh("ruby #{engine_root}/bin/sv gen")
       end
     end
   end

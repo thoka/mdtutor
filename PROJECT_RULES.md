@@ -42,6 +42,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
 - **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
 - **Guideline**: Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
+- **Guideline**: Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT
+- **Guideline**: Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS
 
 ### Backend Architekt 🔹ATdMw
 - **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq

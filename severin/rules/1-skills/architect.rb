@@ -30,5 +30,11 @@ define_skill "Severin Architect 🔹Arc" do
   rule "Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM",
        spec: "severin/engine/"
 
+  rule "Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT",
+       spec: "severin/engine/spec/no_raw_output_spec.rb"
+
+  rule "Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS",
+       spec: "severin/engine/spec/no_raw_output_spec.rb"
+
   guidance :arc, "Änderungen an der Severin-Engine (severin/engine/) MÜSSEN immer als separater Schritt committet und gepusht werden, bevor der übergeordnete Projekt-Commit den neuen Submodule-Pointer aufnimmt. Nutze `sv commit-engine` gefolgt von `sv commit`."
 end

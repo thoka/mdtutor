@@ -21,10 +21,12 @@ define_suite "1-setup: Content Registry 🔹Y7fuV" do
       "content/RPL/ecosystem.yaml"
     ]
 
-    untracked = files.reject { |f| system("git ls-files --error-unmatch #{f} > /dev/null 2>&1") }
+    condition do
+      untracked = files.reject { |f| sh("git ls-files --error-unmatch #{f} > /dev/null 2>&1") }
+      untracked.empty?
+    end
 
-    condition { untracked.empty? }
-    on_fail "Dateien existieren, sind aber nicht im Git getrackt: #{untracked.join(', ')}"
-    fix "git add #{untracked.join(' ')}"
+    on_fail "Dateien existieren, sind aber nicht im Git getrackt"
+    fix "Nutze git add für die betroffenen Dateien."
   end
 end

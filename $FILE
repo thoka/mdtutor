@@ -1,0 +1,35 @@
+# 🎭 Discourse Trace: Sitzungs-Narrativ
+
+## 🌊 Der rote Faden (Der Diskurs-Fluss)
+Die Sitzung begann mit einer scheinbar trivialen technischen Hürde: Einem "Gemfile-Problem" im Terminal. Doch schnell entwickelte sich daraus eine tiefere Untersuchung der Framework-Integrität. Wir tauchten unter die Haube der Severin-Engine ein, um zu verstehen, warum automatisierte Checks (Autofixes) in bestimmten Kontexten lautlos versagten. Der Diskurs wandelte sich von einer reinen Fehlerbehebung hin zu einer architektonischen Härtung der Engine-Umgebung.
+
+## 💡 Gedankenwelt & Argumente des Nutzers
+Das zentrale Anliegen war die absolute Zuverlässigkeit des Toolings. Der Nutzer hinterfragte die Notwendigkeit der CLI-Nutzung, was den Raum öffnete für eine Reflexion über die Rolle der CLI als "Integritäts-Anker" und den MCP-Server als agentische Schnittstelle. Die Vision: Ein Framework, das nicht nur Regeln aufstellt, sondern seine eigene Funktionsfähigkeit (Infrastruktur-Integrität) proaktiv schützt.
+
+## 🧠 Emergenz: Was ist währenddessen entstanden?
+Es wurde deutlich, dass die Engine eine "Selbstwahrnehmung" für ihre Laufzeitumgebung benötigt. Die Erkenntnis, dass die CLI-Isolation (Gemfile-Schutz) explizit kodifiziert werden muss, um "Silent Failures" zu verhindern, war ein entscheidender Durchbruch. Zudem kristallisierte sich heraus, dass agentische Suchen (wie der Svelte-Runes-Check) präzise Scopes benötigen, um nicht im Rauschen von `node_modules` unterzugehen.
+
+## 🛠 Das Resultat im Kontext
+- **Infrastruktur-Härtung**: Die CLI und die RSpec-DSL der Engine erzwingen nun den korrekten Bundler-Kontext (`BUNDLE_GEMFILE`).
+- **Sprach-Synchronität**: Regeln wurden konsequent ins Deutsche übersetzt, um die 🔹PJcKP-Integrität zu wahren.
+- **Neue Integritäts-Regeln**: `🔹ENG-ENV` prüft nun automatisiert die korrekte Isolation von Sub-Prozessen.
+- **Agentische Guidance**: Klare Anweisungen für Svelte-Scans minimieren unnötige Rechenlast und Fehlalarme.
+
+## 🎯 Ausblick & Mentale Modelle
+Wir nehmen das Konzept der **"Infrastruktur-Rigidität"** mit: Das Tooling muss mindestens so stabil sein wie der Code, den es prüft. Die CLI bleibt das Fundament, der MCP die Hand, aber beide müssen auf einem validierten Ruby-Kern basieren.
+
+---
+
+## ⚓ Sitzungs-Anker (Agent Primer)
+
+### 🧠 Mentale Anker
+- **Expliziter Kontext**: Niemals davon ausgehen, dass der Ruby-Kontext (Gemfile) im Projekt-Root automatisch stimmt.
+- **Sprach-Trennung**: Regeln = Deutsch, Brain/Docs = Englisch. Das ist kein Vorschlag, sondern ein strikt erzwungener Check.
+
+### 🚩 Offene Fäden & "Später" (Technical Debt)
+- Die Vollautomatisierung von `sv gen` innerhalb der IDE-Workflows (statt manueller CLI-Aufrufe) bleibt ein Fernziel.
+- Wir haben akzeptiert, dass die Engine-Entwicklung (Submodule) momentan noch eine sehr manuelle Git-Synchronisation erfordert.
+
+### 📍 Startpunkt für die nächste Session
+- Fortsetzung der Implementierung der Tag-basierten Skill-Steuerung.
+- Prüfung, ob weitere "Silent Failures" in der Engine durch proaktive Checks (ähnlich `🔹ENG-ENV`) abgefangen werden können.
