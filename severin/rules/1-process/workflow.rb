@@ -200,6 +200,22 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     fix "Übersetze die Regel-Texte ins Deutsche."
   end
 
+  check "Engine-Änderungen Atomic Commits 🔹ENG-ATOM" do
+    rule "Änderungen an der Engine (Submodule) müssen separat committet werden. 🔹SUB-ATOM"
+    condition do
+      # Prüfe, ob wir uncommittete Änderungen im Engine-Submodule haben
+      engine_status = `cd severin/engine && git status --porcelain`.strip
+      # Wenn wir im Engine-Zweig arbeiten, ist das ok.
+      # Sonst warnen wir, wenn Engine-Änderungen zusammen mit Projekt-Änderungen existieren.
+      next true if `git rev-parse --abbrev-ref HEAD`.strip.include?('severin')
+
+      project_changes = `git status --porcelain`.split("\n").reject { |l| l.include?('severin/engine') }
+      !(engine_status.length > 0 && project_changes.length > 0)
+    end
+    on_fail "Engine-Änderungen und Projekt-Änderungen vermischt."
+    guidance :agent, "Nutze 'sv commit_engine' für Änderungen in severin/engine/ und einen separaten Commit für das Projekt."
+  end
+
   check "Sauberer Workspace für Core-Dateien 🔹Xg87A" do
     rule "Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5"
     status = `git status --porcelain`.strip

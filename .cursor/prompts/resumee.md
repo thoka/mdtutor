@@ -33,4 +33,4 @@ Analysiere die gesamte Session als einen zusammenhängenden Diskurs. Schreibe ke
 ### 📍 Startpunkt für die nächste Session
 - [Was ist der logische erste Schritt beim nächsten Mal?]
 
-**Anweisung**: Speichere diesen Discourse Trace in `docs/chat/{timestamp}_discourse_trace.md`, **committe alle neuen Dateien in `docs/chat/` mit einer passenden Nachricht** und gib eine kurze Zusammenfassung im Chat.
+**Anweisung**: Speichere diesen Discourse Trace in `docs/chat/{timestamp}_discourse_trace.md` und gib eine kurze Zusammenfassung im Chat.

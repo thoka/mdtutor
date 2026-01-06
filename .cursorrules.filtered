@@ -134,6 +134,3 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 ### Quality Enforcement 🔹Q-ENF
 - **Ruby Rule Spec Coverage 🔹R-SPEC**: Jede Ruby-basierte Regel MUSS eine Spec-Referenz haben. 🔹R-SPEC
 
-
-## 🔧 Fehlerbehebung
-Wenn du unsicher bist oder Tests fehlschlagen, führe `sv` aus. Die Ausgabe liefert dir direkt ausführbare `bash`-Fixes.

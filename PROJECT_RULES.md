@@ -180,6 +180,9 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Projekt-Regeln Formatierung 🔹yLhfK**: Die PROJECT_RULES.md muss eine gültige Markdown-Struktur haben. 🔹6MjmK
 - **Keine veralteten Pfade in Regeln 🔹DUzJ7**: Die PROJECT_RULES.md darf keine Verweise auf das alte 'sentinel/' Verzeichnis für Severin-Checks enthalten. 🔹K8bgP
 
+### Engine Integrität 🔹ENG-INT
+- **Keine rekursiven Autofixes 🔹RECUR**: Autofixes dürfen keine Prozesse starten, die eine Endlosschleife auslösen. 🔹NO-LOOP
+
 ### Sprach-Integrität (Infrastruktur vs. Dokumentation)
 - **language_brain_docs**: Stellt sicher, dass Brain-Dokumente auf Englisch verfasst sind
 - **language_severin_rules**: Stellt sicher, dass Severin-Regeln auf Deutsch verfasst sind (Regel 🔹fhmjc)
@@ -204,6 +207,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Archivierung nach docs/done 🔹BRN-ARCHIVE**: Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE
 - **Brain ID Format (kein Bindestrich) 🔹BRN-DASH**: Die ID im Dateinamen sollte direkt nach dem Titel ohne Bindestrich folgen (z.B. Titel🔹ID.md). 🔹BRN-DASH
 - **Sprach-Konsistenz (Deutsch) 🔹PJcKP**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc
+- **Engine-Änderungen Atomic Commits 🔹ENG-ATOM**: Änderungen an der Engine (Submodule) müssen separat committet werden. 🔹SUB-ATOM
 - **Sauberer Workspace für Core-Dateien 🔹Xg87A**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5
 - **Test Dokumentation (README) 🔹fuodx**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY
 
