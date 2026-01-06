@@ -19,7 +19,9 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
 
     condition do
       # Suche in brain und done
-      plans = Dir.glob("docs/{brain,done}/**/*#{branch_slug.gsub('feature/', '')}*")
+      # Wir entfernen den Bindestrich vor der ID im Vergleich, da BRN-DASH ihn im Dateinamen verbietet
+      clean_slug = branch_slug.gsub('feature/', '').gsub('-🔹', '🔹')
+      plans = Dir.glob("docs/{brain,done}/**/*#{clean_slug}*")
       plans.any? do |f|
         !f.include?('walkthrough') && f.match?(/🔹[a-zA-Z0-9]{5}/)
       end
