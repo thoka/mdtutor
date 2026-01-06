@@ -23,6 +23,14 @@ define_skill "Discourse Trace 🎭" do
     condition { true }
   end
 
+  rule "Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS" do
+    condition { true }
+  end
+
+  rule "Contextual Breadcrumbs: Logs und Resümees müssen Kontext für Nachfolge-Agenten enthalten (Agent Primer). 🔹CTX-BREAD" do
+    condition { true }
+  end
+
   prompt_file "align", <<~MARKDOWN
     # 📚 Documentation Alignment Check
 
@@ -74,6 +82,22 @@ define_skill "Discourse Trace 🎭" do
 
     ## 🎯 Ausblick & Mentale Modelle
     *Welche Begriffe oder Konzepte nehmen wir als festen Bestandteil für die Zukunft mit?*
+
+    ---
+
+    ## ⚓ Sitzungs-Anker (Agent Primer)
+    > **Kontext für die nächste Iteration**: Kompakte Essenz der mentalen Modelle und offenen Fäden auf **Deutsch**.
+
+    ### 🧠 Mentale Anker
+    - [Was ist das wichtigste Konzept, das wir heute etabliert haben?]
+    - [Welche Denkweise müssen wir beibehalten?]
+
+    ### 🚩 Offene Fäden & "Später" (Technical Debt)
+    - [Was haben wir bewusst aufgeschoben?]
+    - [Welche technischen Schulden haben wir akzeptiert?]
+
+    ### 📍 Startpunkt für die nächste Session
+    - [Was ist der logische erste Schritt beim nächsten Mal?]
 
     **Anweisung**: Speichere diesen Discourse Trace in `docs/chat/{timestamp}_discourse_trace.md` und gib eine kurze Zusammenfassung im Chat.
   MARKDOWN

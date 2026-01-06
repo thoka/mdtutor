@@ -51,6 +51,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Documentation Alignment: Aktualisiere alle betroffenen READMEs nach der Session. 🔹DOC-ALIGN
 - **Guideline**: Meta-Reflexion: Evaluiere und verfeinere den Workflow nach jeder Session. 🔹META-REFLECT
 - **Guideline**: Meta-Alignment: Synchronisiere Workflow-Erkenntnisse mit dem Regelwerk und docs/CONVARC_WORKFLOW.md. 🔹META-ALIGN
+- **Guideline**: Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS
+- **Guideline**: Contextual Breadcrumbs: Logs und Resümees müssen Kontext für Nachfolge-Agenten enthalten (Agent Primer). 🔹CTX-BREAD
 
 ### Discursive Design 🗣️
 - **Guideline**: Clarification First: Springe niemals direkt in den Code, ohne die Vision geklärt zu haben. 🔹CLARIFY-1

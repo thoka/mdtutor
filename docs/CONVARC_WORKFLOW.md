@@ -31,7 +31,7 @@ graph TD
 7.  **Session Narrative (@resumee)**: Capturing the "Discourse Trace"—the story of how we arrived at the current state, written in the original conversation language (German). **(Prompt: `@resumee`)**
 8.  **Doc Alignment (@align)**: Synchronizing the technical reality (code) with public documentation (READMEs). **(Prompt: `@align`)**
 9.  **Meta Alignment (@meta)**: Feeding workflow insights back into the Severin rules and this Meta-README. **(Prompt: `@meta`)**
-10. **Final Update**: A last pass over the documentation to ensure everything is "ship-ready."
+10. **Final Update & Handoff**: A last pass over the documentation and creation of an **Agent Primer** within the Discourse Trace to ensure a smooth transition to the next session. **(Prompt: `@resumee`)**
 
 ## The Role of Severin
 
