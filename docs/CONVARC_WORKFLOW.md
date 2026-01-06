@@ -6,6 +6,9 @@ This document defines the discursive development process for MDTutor. ConvArc pl
 
 The development process is non-linear and iterative. We move between conceptual exploration and technical manifestation, constantly refining our mental models and technical implementations.
 
+### Entry Point: Session Onboarding
+When starting a new session, the agent should be primed using the **`@continue`** prompt and the **Agent Primer** from the previous session's Discourse Trace.
+
 ```mermaid
 graph TD
     A[Inspiration & Exploration] --> B[Clarification & Dialectics]
