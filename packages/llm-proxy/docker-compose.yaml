@@ -1,0 +1,46 @@
+services:
+  # Datenbank für Kosten-Tracking
+  db:
+    image: postgres:16-alpine
+    container_name: litellm-db
+    env_file:
+      - secrets.env
+    environment:
+      POSTGRES_DB: litellm
+      POSTGRES_USER: admin
+      # POSTGRES_PASSWORD wird automatisch aus secrets.env geladen
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ai-network
+
+  # LiteLLM Proxy / Router
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    container_name: litellm-proxy
+    ports:
+      - "${LLM_PROXY_PORT}:${LLM_PROXY_PORT}"
+    env_file:
+      - secrets.env
+
+    environment:
+      - DATABASE_URL=postgresql://admin:${DB_PASSWORD}@db:5432/litellm
+    volumes:
+      - ./config.yaml:/app/config.yaml
+      - ./set-context.py:/app/middleware.py  
+    depends_on:
+      - db
+    command: [ 
+      "--config", "/app/config.yaml" ,
+      "--port", "${LLM_PROXY_PORT}"
+      ]
+    networks:
+      - ai-network
+
+networks:
+  ai-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+

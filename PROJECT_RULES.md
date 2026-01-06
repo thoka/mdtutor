@@ -63,12 +63,26 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Severin Self-Reflexion 🧠
 - **Guideline**: Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
+### Ruby Expert 💎
+- **Guideline**: Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW
+- **Guideline**: Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
+- **Guideline**: UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
+- **Guideline**: Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
+
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
 - **Guideline**: Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
+- **Guideline**: Engine Direct Access: Nutze Ruby-Einzeiler bei Tooling-Problemen. 🔹ENG-DIR
+- **Guideline**: Log Persistence: Engine-Logs müssen ohne ENV-Variablen persistiert werden. 🔹ENG-LOG-ALWAYS
+- **Guideline**: MCP Availability: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
 - **Guideline**: Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
 - **Guideline**: Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
 - **Guideline**: Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ
+
+### Tagging Culture 🏷️
+- **Guideline**: Granular Skills: Bevorzuge viele spezialisierte Skills gegenüber wenigen monolithischen. 🔹TAG-GRANULAR
+- **Guideline**: Dual Tagging: Kombiniere immer Technologie-Tags (:ruby, :svelte) mit Themen-Tags (:logic, :ui, :infra). 🔹TAG-DUAL
+- **Guideline**: Explicit Focus: Liste alle relevanten Skills in der `severin_state.rb` explizit auf. 🔹TAG-EXPLICIT
 
 ### Severin Task-Manager 🔹TskMgr
 - **Guideline**: Setze IMMER eine Status-Zeile (z.B. 'Status: in-progress') direkt unter die H1-Überschrift im Brain-Dokument. 🔹35SbY
@@ -83,6 +97,11 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Severin Test-Driven Quality
 - **Guideline**: Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ
 - **Guideline**: Nutze `bundle exec rspec` zur Verifizierung der Engine-Integrität. 🔹VERIFY-SPEC
+
+### Traceable Logic 🔍
+- **Guideline**: Log critical Transitions: Dokumentiere jede Zustandsänderung. 🔹LOG-STATE
+- **Guideline**: Contextual Breadcrumbs: Logs müssen Kontext enthalten (Structured Logging). 🔹LOG-CTX
+- **Guideline**: Performance Transparency: Logge die Dauer teurer Operationen via `log_duration`. 🔹LOG-TIME
 
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
@@ -166,6 +185,12 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Engine Versioning 🔹Dj9hj**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen. 🔹S9EsU
 - **Engine Integrity 🔹51vXy**: Wichtige Engine-Dateien müssen vorhanden sein. 🔹nmKwQ
 - **MCP Availability 🔹MCP-A**: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
+
+### Umgebung & Abhängigkeiten 🔹DRJAV
+- **Environment Datei 🔹Dbdpd**: Eine lokale .env Datei muss existieren, basierend auf .env.example. 🔹t3wGw
+- **Erforderliche Umgebungsvariablen 🔹3sbCv**: Wichtige Services (API, Achievements, SSO, Web) müssen ihre Ports in der .env definiert haben. 🔹FCnzP
+- **Node Module 🔹LHJah**: Alle Abhängigkeiten müssen mit pnpm installiert sein. 🔹S8tUM
+- **Content Ökosystem 🔹WwRch**: Das RPL Content-Ökosystem muss in content/RPL vorhanden sein. 🔹EAUoD
 
 ### Frontend Architecture 🔹AfKxC
 - **Guideline**: Verwende ausschließlich Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F

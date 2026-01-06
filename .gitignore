@@ -54,6 +54,13 @@ packages/api-server/src/restart.js
 # Severin Engine (Git Submodule)
 # /severin/engine
 
+# Severin Logs
+/severin/log/*.log
+/severin/log/*.jsonl
+
 # Severin Temporary Files
 tmp_*
 **/tmp_*
+
+# LLM Proxy
+packages/llm-proxy/secrets.env  

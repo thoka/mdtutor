@@ -30,6 +30,12 @@ define_skill "Severin Engine Development 🐺" do
        spec: "severin/engine/spec/integration_spec.rb"
   rule :engine_dev, "Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG",
        spec: "severin/engine/lib/severin.rb"
+
+  rule :engine_dev, "Engine Direct Access: Nutze Ruby-Einzeiler bei Tooling-Problemen. 🔹ENG-DIR"
+
+  rule :engine_dev, "Log Persistence: Engine-Logs müssen ohne ENV-Variablen persistiert werden. 🔹ENG-LOG-ALWAYS"
+
+  rule :engine_dev, "MCP Availability: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S"
   rule :engine_dev, "Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER",
        spec: "severin/engine/spec/integration_spec.rb"
 
