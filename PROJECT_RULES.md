@@ -45,6 +45,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Rule**: TDD strikt befolgen. Tests vor der Implementierung schreiben. 🔹esjGj
 - **Rule**: Nutze Conventional Commits für alle Backend-Änderungen. 🔹RlU9k
 
+### Discourse Trace 🎭
+- **Guideline**: Narrative Summary: Erstelle einen Discourse Trace am Ende jeder Sitzung. 🔹DT-RES
+- **Guideline**: Discourse Language: Der Trace wird in der Konversationssprache (Deutsch) verfasst. 🔹DT-LANG
+
 ### Frontend Experte 🔹AfKxC
 - **Guideline**: Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
 - **Guideline**: Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ

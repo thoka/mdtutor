@@ -43,6 +43,10 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
 - Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
 
+### Discourse Trace 🎭
+- Narrative Summary: Erstelle einen Discourse Trace am Ende jeder Sitzung. 🔹DT-RES
+- Discourse Language: Der Trace wird in der Konversationssprache (Deutsch) verfasst. 🔹DT-LANG
+
 ### Severin Modular Architecture
 - Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
 - Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC

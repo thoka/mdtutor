@@ -11,6 +11,7 @@ This document outlines the implementation plan for the new Ruby coding standard 
 - [x] Establish a "Traceable Logic" skill for observability.
 - [x] Define a "Tagging Culture" for granular context control.
 - [x] Implement MCP Fail-Fast (Strict Integrity) mechanism.
+- [x] Implement "Conversational Architecture" (Chat Documentation skill).
 
 ## 🛠 Tasks
 - [x] Create `severin/rules/1-skills/ruby.rb` with Discourse-inspired patterns 🔹YlCmO
@@ -23,6 +24,8 @@ This document outlines the implementation plan for the new Ruby coding standard 
 - [x] Create `severin/rules/1-skills/tagging.rb` 🔹S8YoJ
 - [x] Analyze and fix MCP Health Check in `MCPClient` (added timeouts and better error handling)
 - [x] Add/Update MCP Health rules in `severin_dev.rb` 🔹MCP-S
+- [x] Create `severin/rules/1-skills/chat_doc.rb` with `@summary` prompt 🔹T6Av2
+- [x] Generate the first Conversational Summary in `docs/chat/`
 - [x] Verify the implementation with `sv check` or manual test
 
 ## 📜 Discourse-inspired Patterns for Ruby
