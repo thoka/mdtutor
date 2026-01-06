@@ -37,4 +37,15 @@ define_suite "Severin Engine Health 🔹aUsN8" do
     on_fail "Einer oder mehrere MCP-Server sind offline."
     fix "Prüfe die MCP-Verbindung oder setze 'allow_warnings: [:mcp_offline]' im State."
   end
+
+  check "Engine Environment Integrity 🔹ENG-ENV" do
+    rule "Sub-Prozesse der Engine müssen den korrekten Bundler-Kontext nutzen. 🔹xe8VT"
+    condition do
+      # Wir prüfen, ob in der CLI-Datei der Gemfile-Schutz implementiert ist
+      cli_content = File.read("severin/engine/lib/severin/cli.rb")
+      cli_content.include?("BUNDLE_GEMFILE=") && cli_content.include?("bundle exec")
+    end
+    on_fail "Engine-Operationen außerhalb des Engine-Verzeichnisses detektiert ohne BUNDLE_GEMFILE-Schutz."
+    fix "Stelle sicher, dass alle 'system'-Aufrufe in der CLI 'BUNDLE_GEMFILE' setzen."
+  end
 end

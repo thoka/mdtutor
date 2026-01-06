@@ -219,6 +219,7 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Engine Versioning 🔹Dj9hj**: Die Engine-Version in lib/severin.rb muss dem Semantic Versioning folgen. 🔹S9EsU
 - **Engine Integrity 🔹51vXy**: Wichtige Engine-Dateien müssen vorhanden sein. 🔹nmKwQ
 - **MCP Availability 🔹MCP-A**: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
+- **Engine Environment Integrity 🔹ENG-ENV**: Sub-Prozesse der Engine müssen den korrekten Bundler-Kontext nutzen. 🔹xe8VT
 
 ### Umgebung & Abhängigkeiten 🔹DRJAV
 - **Environment Datei 🔹Dbdpd**: Eine lokale .env Datei muss existieren, basierend auf .env.example. 🔹t3wGw

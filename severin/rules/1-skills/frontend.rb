@@ -3,6 +3,7 @@ define_skill "Frontend Experte 🔹AfKxC" do
   rule "Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F"
   rule "Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ"
   rule "Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu"
+  guidance :agent, "Beim Scannen von Svelte-Komponenten (z.B. für Runes-Compliance) müssen 'node_modules' explizit ausgeschlossen werden. Nutze gezielte Glob-Pattern wie '{apps,packages}/**/*.svelte'."
 
   # Dynamische Anbindung des offiziellen Svelte MCP via npx
   # Severin startet dies nur bei Bedarf (Lazy Loading)
