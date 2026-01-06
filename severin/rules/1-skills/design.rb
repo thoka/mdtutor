@@ -1,5 +1,5 @@
 define_skill "Discursive Design 🗣️" do
-  tags :meta, :workflow, :dev
+  tags :meta, :workflow, :dev, :discussion, :planning
 
   description "Regelt die frühen Phasen des ConvArc Cycles: Inspiration, Klärung und Dialektik. 🔹y2IWC"
 
@@ -19,4 +19,3 @@ define_skill "Discursive Design 🗣️" do
     *Ziel: Ein gemeinsames mentales Modell vor der technischen Manifestation.*
   MARKDOWN
 end
-

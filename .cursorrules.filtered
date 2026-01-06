@@ -2,6 +2,12 @@
 
 Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird durch das Severin-Framework (severin/*) überwacht.
 
+## 🔄 Workflow State: IMPLEMENTATION
+Folge strikt den Anweisungen für diesen Zustand.
+
+## 🔄 Workflow State: IMPLEMENTATION
+Folge strikt den Anweisungen für diesen Zustand.
+
 ## 🎯 Aktueller Fokus
 **Implementierung der Tag-basierten Skill-Steuerung und Validierung**
 
@@ -34,6 +40,8 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
 - Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
 
+### Workflow Integrität 🔹WF-INT
+
 ### Severin Architect 🔹Arc
 - Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
 - Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
@@ -53,8 +61,12 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS
 - Contextual Breadcrumbs: Logs und Resümees müssen Kontext für Nachfolge-Agenten enthalten (Agent Primer). 🔹CTX-BREAD
 
-### Discursive Design 🗣️
-- Clarification First: Springe niemals direkt in den Code, ohne die Vision geklärt zu haben. 🔹CLARIFY-1
+### Frontend Experte 🔹AfKxC
+- Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
+- Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ
+- Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu
+- Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
+- Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
 ### Severin Modular Architecture
 - Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
@@ -63,14 +75,44 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 ### Severin Self-Reflexion 🧠
 - Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
+### Ruby Expert 💎
+- No Raw Puts: Nutze niemals 'puts' für Debugging. Nutze 'Severin.log_debug' oder strukturierte Logs. 🔹NO-PUTS
+- Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW
+- Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
+- UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
+- Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
+
+### Severin Engine Development 🐺
+- Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.
+- Nutze `Severin.log_debug` für alle nicht-kritischen Systemmeldungen. 🔹DBG-LOG
+- Engine Direct Access: Nutze Ruby-Einzeiler bei Tooling-Problemen. 🔹ENG-DIR
+- Log Persistence: Engine-Logs müssen ohne ENV-Variablen persistiert werden. 🔹ENG-LOG-ALWAYS
+- MCP Availability: Alle registrierten MCP-Server müssen online sein (STRICT-FAIL). 🔹MCP-S
+- Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
+- Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
+- Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ
+
 ### Tagging Culture 🏷️
 - Granular Skills: Bevorzuge viele spezialisierte Skills gegenüber wenigen monolithischen. 🔹TAG-GRANULAR
 - Dual Tagging: Kombiniere immer Technologie-Tags (:ruby, :svelte) mit Themen-Tags (:logic, :ui, :infra). 🔹TAG-DUAL
 - Explicit Focus: Liste alle relevanten Skills in der `severin_state.rb` explizit auf. 🔹TAG-EXPLICIT
 
+### Severin Test-Driven Quality
+- Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ
+- Nutze `bundle exec rspec` zur Verifizierung der Engine-Integrität. 🔹VERIFY-SPEC
+
+### Traceable Logic 🔍
+- Log critical Transitions: Dokumentiere jede Zustandsänderung. 🔹LOG-STATE
+- Contextual Breadcrumbs: Logs müssen Kontext enthalten (Structured Logging). 🔹LOG-CTX
+- Performance Transparency: Logge die Dauer teurer Operationen via `log_duration`. 🔹LOG-TIME
+
 ## ⚡ Verfügbare Automatisierungen (Actions)
 
 Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
+
+### sv_branch
+- **Zweck**: Erstellt einen neuen Feature-Branch basierend auf einer Brain-ID.
+- **Wichtig**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten.
 
 ### sv_commit
 - **Zweck**: Führt einen orchestrierten Projekt-Commit aus (Generierung, Integritäts-Checks und Git-Commit).
@@ -83,6 +125,10 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 ### sv_ship
 - **Zweck**: Führt den vollständigen Release-Prozess nach 'main' aus (inkl. Submodule-Sync).
 - **Wichtig**: 1. Nutze dieses Tool nur von einem Feature-Branch aus.
+
+### sv_tags
+- **Zweck**: Zeigt alle verfügbaren Tags, Skills und deren aktuellen Aktivierungsstatus an.
+- **Wichtig**: 1. Nutze dieses Tool, um einen Überblick über das 'Agentic Memory' (Tags/Skills) zu erhalten.
 
 ## ⚖️ Verpflichtender Workflow
 ### Quality Enforcement 🔹Q-ENF

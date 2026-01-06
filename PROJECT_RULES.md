@@ -10,9 +10,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
 
-### Severin Glossar & Semantik 🔹GLOSSARY
+### Severin Glossar & Semantik
 - **Guideline**: :tag (Metadaten-Tag): Bezieht sich auf Ruby-Symbole (z. B. :workflow, :ids, :git), die in Severin-Regeln (`rule`, `on_fail`, `fix`) verwendet werden. Sie steuern, dass Texte kontextbezogen an anderen Stellen (z. B. in Guidance oder .cursorrules) automatisch eingeblendet werden.
 - **Guideline**: RID (Random IDs): Bezieht sich auf die 5-stelligen IDs (z. B. 🔹xxxxx). Diese werden AUSSCHLIESSLICH von Severin erzeugt und dienen der eindeutigen Referenzierung von Regeln, Plänen und Anforderungen. Agenten dürfen diese NIEMALS selbst erfinden.
+- **Guideline**: Kodifizieren: Der Prozess, diskursive Erkenntnisse oder Anforderungen in eine maschinenlesbare und regelbasierte Form (Ruby-Code in severin/rules/) zu überführen. Ziel ist es, Wissen vom flüchtigen Chat-Kontext in das dauerhafte 'Agentic Memory' des Frameworks zu transformieren.
 
 ### Strict Integrity Enforcement
 - **Guideline**: Binary Success: Alle Severin-Checks müssen standardmäßig erfolgreich sein (PASSED). Es gibt keine impliziten Warnungen auf Framework-Ebene. 🔹STRICT-FAIL
@@ -30,6 +31,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: DSL-Power: Nutze die Severin-DSL (Ruby), um Kontext (z.B. Dateiinhalte, Branch-Namen) dynamisch in die `guidance` zu injizieren.
 - **Guideline**: On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
 - **Guideline**: Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
+
+### Workflow Integrität 🔹WF-INT
 
 ### Severin Architect 🔹Arc
 - **Guideline**: Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
@@ -77,6 +80,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
 ### Ruby Expert 💎
+- **Guideline**: No Raw Puts: Nutze niemals 'puts' für Debugging. Nutze 'Severin.log_debug' oder strukturierte Logs. 🔹NO-PUTS
 - **Guideline**: Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW
 - **Guideline**: Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - **Guideline**: UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
@@ -120,6 +124,11 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 
 Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <name>` verfügbar:
 
+### branch
+- **Zweck**: Erstellt einen neuen Feature-Branch basierend auf einer Brain-ID.
+- **Anwendung**: Nutze das MCP-Tool `sv_branch`.
+- **Anleitung**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten. 2. Das Tool sucht automatisch nach dem passenden Brain-Dokument zur ID. 3. Es erstellt einen Branch im Format `feature/titel-🔹ID`. 4. Optional: Aktiviert den Branch-Fokus in der `severin_state.rb` (manuell/geplant). 
+
 ### commit
 - **Zweck**: Führt einen orchestrierten Projekt-Commit aus (Generierung, Integritäts-Checks und Git-Commit).
 - **Anwendung**: Nutze das MCP-Tool `sv_commit`.
@@ -135,7 +144,15 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Anwendung**: Nutze das MCP-Tool `sv_ship`.
 - **Anleitung**: 1. Nutze dieses Tool nur von einem Feature-Branch aus. 2. Es pusht Änderungen im Submodule `severin/engine` automatisch nach GitHub. 3. Es führt einen finalen `sv commit` im Hauptprojekt aus. 4. Es mergt den Feature-Branch nach `main` und pusht alles zu GitHub. 
 
+### tags
+- **Zweck**: Zeigt alle verfügbaren Tags, Skills und deren aktuellen Aktivierungsstatus an.
+- **Anwendung**: Nutze das MCP-Tool `sv_tags`.
+- **Anleitung**: 1. Nutze dieses Tool, um einen Überblick über das 'Agentic Memory' (Tags/Skills) zu erhalten. 2. Es zeigt an, welche Tags in der `severin_state.rb` aktiv sind. 3. Es listet alle in den Regeln definierten Tags auf (Struktur-Audit). 
+
 ## ⚖️ Verpflichtender Workflow
+
+### Severin Engine Health 🔹aUsN8
+- **Engine Specs 🔹VERIFY-SPEC**: Änderungen an der Engine müssen durch RSpec verifiziert werden. 🔹SPEC-REQ
 
 ### Agent-Anleitungen & Engine 🔹uVr0W
 - **Agent-Anleitungen via Severin 🔹lTs5w**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden. 🔹4fjeN

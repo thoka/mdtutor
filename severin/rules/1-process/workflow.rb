@@ -67,6 +67,10 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
     condition do
+      # Diese Regel ist nur in den Phasen 'review' und 'shipping' kritisch.
+      # Während 'implementation' sind offene Tasks erlaubt.
+      next true if [:implementation, :discussion, :planning].include?(Severin.workflow.state)
+
       plans.all? do |f|
         content = File.read(f)
         # Suche nach offenen Checkboxen
@@ -84,6 +88,9 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
     plans = Dir.glob("docs/brain/**/*#{branch_slug}*").reject { |f| f.include?('walkthrough') }
 
     condition do
+      # Diese Regel gilt nur im 'shipping' State.
+      next true unless Severin.workflow.state == :shipping
+
       # Wir erlauben ship nur, wenn ein Dokument den Status 'ship-it' hat
       plans.any? do |f|
         content = File.read(f)
@@ -108,7 +115,21 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       end
     end
     on_fail "Der Status im Brain-Dokument fehlt oder steht nicht direkt unter der H1-Überschrift."
-    fix "Verschiebe die 'Status:' Zeile direkt unter die H1-Überschrift."
+    fix do
+      plans.each do |f|
+        lines = File.readlines(f)
+        h1_idx = lines.find_index { |l| l.strip.start_with?('# ') }
+        status_idx = lines.find_index { |l| l.strip.start_with?('Status:') }
+
+        if h1_idx && status_idx && status_idx != h1_idx + 1
+          status_line = lines.delete_at(status_idx)
+          # Wenn wir eine Zeile gelöscht haben, die vor h1_idx lag, verschiebt sich h1_idx
+          new_h1_idx = lines.find_index { |l| l.strip.start_with?('# ') }
+          lines.insert(new_h1_idx + 1, status_line)
+          File.write(f, lines.join)
+        end
+      end
+    end
   end
 
   check "Keine Unterordner in docs/brain 🔹BRN-FLAT" do
@@ -123,7 +144,19 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       entries.empty?
     end
     on_fail "Struktur-Fehler: Unterordner in docs/brain/ gefunden: #{Dir.glob("docs/brain/*/").join(', ')}"
-    fix "mv docs/brain/*/*.md docs/brain/ 2>/dev/null; find docs/brain -mindepth 1 -type d -not -name 'walkthrough' -exec rm -rf {} +"
+    fix do
+      # Programmatischer Fix: Verschiebe Markdown-Dateien nach oben und lösche leere Unterordner
+      require 'fileutils'
+      Dir.glob("docs/brain/*/*.md").each do |file|
+        next if file.include?('walkthrough')
+        dest = File.join("docs/brain", File.basename(file))
+        FileUtils.mv(file, dest) unless File.exist?(dest)
+      end
+      Dir.glob("docs/brain/*/").each do |dir|
+        next if dir.include?('walkthrough')
+        FileUtils.rm_rf(dir) if (Dir.children(dir) - ['.', '..']).empty?
+      end
+    end
   end
 
   check "Archivierung nach docs/done 🔹BRN-ARCHIVE" do
@@ -132,7 +165,14 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       !Dir.exist?("docs/brain/done") || Dir.empty?("docs/brain/done")
     end
     on_fail "Dateien in docs/brain/done gefunden, die nach docs/done verschoben werden müssen."
-    fix "mkdir -p docs/done && mv docs/brain/done/* docs/done/ 2>/dev/null; rm -rf docs/brain/done"
+    fix do
+      require 'fileutils'
+      FileUtils.mkdir_p("docs/done")
+      Dir.glob("docs/brain/done/*").each do |file|
+        FileUtils.mv(file, "docs/done/")
+      end
+      FileUtils.rm_rf("docs/brain/done")
+    end
   end
 
   check "Brain ID Format (kein Bindestrich) 🔹BRN-DASH" do
@@ -142,7 +182,12 @@ suite = Severin.define_suite "Workcycle & Git Regeln 🔹5yJUs" do
       plans_with_dash.empty?
     end
     on_fail "Brain-Dokumente mit Bindestrich vor der ID gefunden: #{Dir.glob("docs/brain/**/*-🔹*").join(', ')}"
-    fix "Nutze `sv_fix_brain_id --path docs/brain` um die Bindestriche zu entfernen."
+    fix do
+      Dir.glob("docs/brain/**/*-🔹*").each do |file|
+        new_name = file.gsub('-🔹', '🔹')
+        File.rename(file, new_name)
+      end
+    end
   end
 
   check "Sprach-Konsistenz (Deutsch) 🔹PJcKP" do

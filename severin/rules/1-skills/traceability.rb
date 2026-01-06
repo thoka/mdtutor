@@ -1,5 +1,5 @@
 define_skill "Traceable Logic 🔍" do
-  tags :logic, :dev, :ruby
+  tags :logic, :dev, :ruby, :traceability
 
   description "Verpflichtet Agenten dazu, Code so zu schreiben, dass seine Ausführung ohne externe Test-Scripte allein durch Logs nachvollziehbar ist."
 

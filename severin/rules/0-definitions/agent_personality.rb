@@ -2,7 +2,7 @@
 # All rules here are in German as per 🔹PJcKP.
 
 define_skill "Agenten-Verhalten" do
-  tag :agent, :core
+  tag :agent, :core, :discussion, :planning, :implementation, :review
   description "Legt den Kommunikationsstil und die Arbeitsweise des Agenten fest"
 
   rule "Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). " \

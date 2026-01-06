@@ -1,4 +1,5 @@
 define_skill "Frontend Experte 🔹AfKxC" do
+  tags :frontend, :svelte, :ui
   rule "Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F"
   rule "Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ"
   rule "Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu"
@@ -18,4 +19,3 @@ define_skill "Frontend Experte 🔹AfKxC" do
     condition { true }
   end
 end
-
