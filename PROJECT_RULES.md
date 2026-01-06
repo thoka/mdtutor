@@ -48,6 +48,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ### Discourse Trace 🎭
 - **Guideline**: Narrative Summary: Erstelle einen Discourse Trace am Ende jeder Sitzung. 🔹DT-RES
 - **Guideline**: Discourse Language: Der Trace wird in der Konversationssprache (Deutsch) verfasst. 🔹DT-LANG
+- **Guideline**: Documentation Alignment: Aktualisiere alle betroffenen READMEs nach der Session. 🔹DOC-ALIGN
+- **Guideline**: Meta-Reflexion: Evaluiere und verfeinere den Workflow nach jeder Session. 🔹META-REFLECT
+- **Guideline**: Meta-Alignment: Synchronisiere Workflow-Erkenntnisse mit dem Regelwerk und docs/CONVARC_WORKFLOW.md. 🔹META-ALIGN
 
 ### Frontend Experte 🔹AfKxC
 - **Guideline**: Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
