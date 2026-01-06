@@ -33,6 +33,10 @@ Folge strikt den Anweisungen für diesen Zustand.
 - No Self-Leniency: Agenten dürfen niemals eigenmächtig Regeln in den State-Dokumenten als Warnung deklarieren, um Aufgaben zu vereinfachen. Dies erfordert immer eine explizite Nutzer-Anweisung. 🔹NO-SOFTEN
 - Technical Debt Visibility: Jede deklarierte Ausnahme im State gilt als bewusste technische Schuld und muss im nächsten Ship-Prozess kritisch hinterfragt werden. 🔹DEBT-VIS
 
+### Path & Root Integrity 🗺️
+- Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
+- Filesystem Tooling: Bevorzuge sv_* Tools. 🔹FS-STRICT
+
 ### Dynamischer Regel-Workflow
 - Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
 - Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.
@@ -100,6 +104,10 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
 - Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
+
+### Environment Setup 🛠️
+- Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
+- Direnv Initialization: Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-INIT
 
 ### Severin Engine Development 🐺
 - Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.

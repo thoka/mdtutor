@@ -21,6 +21,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: No Self-Leniency: Agenten dürfen niemals eigenmächtig Regeln in den State-Dokumenten als Warnung deklarieren, um Aufgaben zu vereinfachen. Dies erfordert immer eine explizite Nutzer-Anweisung. 🔹NO-SOFTEN
 - **Guideline**: Technical Debt Visibility: Jede deklarierte Ausnahme im State gilt als bewusste technische Schuld und muss im nächsten Ship-Prozess kritisch hinterfragt werden. 🔹DEBT-VIS
 
+### Path & Root Integrity 🗺️
+- **Guideline**: Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
+- **Guideline**: Filesystem Tooling: Bevorzuge sv_* Tools. 🔹FS-STRICT
+
 ### Dynamischer Regel-Workflow
 - **Guideline**: Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
 - **Guideline**: Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.
@@ -87,6 +91,10 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - **Guideline**: UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
 - **Guideline**: Structured Logging: Übergiebe Metadaten immer als Hash (Keyword-Splat), niemals als formatierte Strings. 🔹RUBY-LOG
+
+### Environment Setup 🛠️
+- **Guideline**: Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
+- **Guideline**: Direnv Initialization: Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-INIT
 
 ### Severin Engine Development 🐺
 - **Guideline**: Definitionen in der Engine dürfen bestehende Daten nicht ohne explizite Absicht löschen.

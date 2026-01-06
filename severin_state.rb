@@ -10,6 +10,7 @@ Severin.draw_state do
   skill :traceability
   skill :testing
   skill :frontend
+  skill :setup
 
   # Globale Fokus-Tags (sparsam halten)
   focus :core

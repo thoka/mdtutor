@@ -1,3 +1,44 @@
-#!/bin/bash
-# Lokales MDTutor Severin Kürzel
-ruby severin/runner.rb "$@"
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+def find_engine(start_dir)
+  curr = Pathname.new(start_dir).expand_path
+  loop do
+    # Prüfe auf lib/severin/cli.rb im aktuellen Verzeichnis (Unifizierte Struktur)
+    if curr.join('lib', 'severin', 'cli.rb').exist?
+      return curr
+    end
+
+    # Fallback: Prüfe auf severin/engine im aktuellen Verzeichnis (Alte Struktur/Submodule)
+    engine_path = curr.join('severin', 'engine')
+    return engine_path if engine_path.exist?
+
+    parent = curr.parent
+    break if parent == curr # Root erreicht
+    curr = parent
+  end
+  nil
+end
+
+engine_path = find_engine(Dir.pwd)
+
+if engine_path
+  # Wir haben eine Engine gefunden -> Führe sie mit den übergebenen Argumenten aus
+  # Wenn es die unifizierte Struktur ist, ist engine_path der Projekt-Root
+  if engine_path.join('lib', 'severin', 'cli.rb').exist?
+    lib_path = engine_path.join('lib')
+  else
+    lib_path = engine_path.join('lib')
+  end
+  
+  $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
+  require 'severin/cli'
+  Severin::CLI.run(ARGV)
+
+else
+  puts "\e[31m❌ Keine Severin Engine gefunden!\e[0m"
+  puts "Stellen Sie sicher, dass Sie sich in einem MDTutor-Projekt befinden"
+  puts "oder 'severin/engine' als Submodul/Symlink vorhanden ist."
+  exit 1
+end
