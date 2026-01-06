@@ -49,6 +49,7 @@ Du bist ein Experten-KI-Assistent für das MDTutor-Projekt. Deine Arbeit wird du
 - Documentation Alignment: Aktualisiere alle betroffenen READMEs nach der Session. 🔹DOC-ALIGN
 - Meta-Reflexion: Evaluiere und verfeinere den Workflow nach jeder Session. 🔹META-REFLECT
 - Meta-Alignment: Synchronisiere Workflow-Erkenntnisse mit dem Regelwerk und docs/CONVARC_WORKFLOW.md. 🔹META-ALIGN
+- Rule Synchronity: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. Nutze `sv gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS
 - Contextual Breadcrumbs: Logs und Resümees müssen Kontext für Nachfolge-Agenten enthalten (Agent Primer). 🔹CTX-BREAD
 

@@ -10,5 +10,6 @@ Analysiere den heutigen Workflow und die Effizienz unserer "Conversational Archi
 
 ## 🔄 Workflow-Update
 *Schlage konkrete Änderungen am Meta-README (`docs/CONVARC_WORKFLOW.md`) oder an den Severin-Rules vor.*
+*WICHTIG: Führe nach Änderungen an den Rules zwingend `sv gen` aus!*
 
 **Anweisung**: Führe das Meta-Alignment durch (Updates an Rules/Doku) und bereite den Task für das finale Resümee-Update vor.

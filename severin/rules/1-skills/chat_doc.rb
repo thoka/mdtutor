@@ -23,6 +23,10 @@ define_skill "Discourse Trace 🎭" do
     condition { true }
   end
 
+  rule "Rule Synchronity: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. Nutze `sv gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0" do
+    condition { true }
+  end
+
   rule "Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS" do
     condition { true }
   end
@@ -59,6 +63,7 @@ define_skill "Discourse Trace 🎭" do
 
     ## 🔄 Workflow-Update
     *Schlage konkrete Änderungen am Meta-README (`docs/CONVARC_WORKFLOW.md`) oder an den Severin-Rules vor.*
+    *WICHTIG: Führe nach Änderungen an den Rules zwingend `sv gen` aus!*
 
     **Anweisung**: Führe das Meta-Alignment durch (Updates an Rules/Doku) und bereite den Task für das finale Resümee-Update vor.
   MARKDOWN
