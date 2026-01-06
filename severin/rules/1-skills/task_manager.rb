@@ -36,4 +36,20 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
   rule "Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN"
   rule "Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN"
   rule "Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR"
+
+  prompt_file "plan", <<~MARKDOWN
+    # 📝 ConvArc Phase: Planung (Brain Doc)
+    Der Nutzer hat eine Idee oder ein Ziel freigegeben. Deine Aufgabe ist es nun, den technischen Pfad zu fixieren.
+
+    1. **ID Generierung**: Nutze `sv_next_id`, um eine neue RID (🔹xxxxx) zu erhalten.
+    2. **Dokument erstellen**: Lege ein neues Brain-Dokument unter `docs/brain/YYYY-MM-DD-title🔹ID.md` an.
+    3. **Struktur**:
+       - H1 Titel inkl. RID.
+       - Status-Zeile: `Status: in-progress` (direkt unter H1).
+       - Kurze Zielbeschreibung (Goals).
+       - Aufgabenliste (Tasks) als Markdown-Checkliste.
+    4. **Commit**: Committe das Brain-Dokument sofort, um die Phase abzuschließen.
+
+    *Ziel: Ein klarer, nachvollziehbarer Bauplan vor der ersten Code-Zeile.*
+  MARKDOWN
 end

@@ -52,6 +52,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Meta-Reflexion: Evaluiere und verfeinere den Workflow nach jeder Session. 🔹META-REFLECT
 - **Guideline**: Meta-Alignment: Synchronisiere Workflow-Erkenntnisse mit dem Regelwerk und docs/CONVARC_WORKFLOW.md. 🔹META-ALIGN
 
+### Discursive Design 🗣️
+- **Guideline**: Clarification First: Springe niemals direkt in den Code, ohne die Vision geklärt zu haben. 🔹CLARIFY-1
+
 ### Frontend Experte 🔹AfKxC
 - **Guideline**: Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
 - **Guideline**: Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ

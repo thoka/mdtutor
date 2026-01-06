@@ -23,14 +23,14 @@ graph TD
 ### Phases Description
 
 1.  **Inspiration & Exploration**: The initial spark or problem statement. Often vague and conceptual.
-2.  **Clarification & Dialectics**: The process of "haggling" over ideas to understand the underlying patterns and intents.
-3.  **Planning (Brain Doc)**: Crystallizing the intent and technical steps into a committed plan.
-4.  **Implementation & Iteration**: Building the code. This is often a loop where technical reality informs further clarification.
+2.  **Clarification & Dialectics**: The process of "haggling" over ideas to understand the underlying patterns and intents. **(Prompt: `@clarify`)**
+3.  **Planning (Brain Doc)**: Crystallizing the intent and technical steps into a committed plan. **(Prompt: `@plan`)**
+4.  **Implementation & Iteration**: Building the code. This is often a loop where technical reality informs further clarification. **(Prompt: `@implement`)**
 5.  **Verification (Test)**: Explicit proof of functional correctness via RSpec or manual functional tests.
-6.  **Reflection (@reflect)**: Analytical look at process friction and framework gaps.
-7.  **Session Narrative (@resumee)**: Capturing the "Discourse Trace"—the story of how we arrived at the current state, written in the original conversation language (German).
-8.  **Doc Alignment (@align)**: Synchronizing the technical reality (code) with public documentation (READMEs).
-9.  **Meta Alignment (@meta)**: Feeding workflow insights back into the Severin rules and this Meta-README.
+6.  **Reflection (@reflect)**: Analytical look at process friction and framework gaps. **(Prompt: `@reflect`)**
+7.  **Session Narrative (@resumee)**: Capturing the "Discourse Trace"—the story of how we arrived at the current state, written in the original conversation language (German). **(Prompt: `@resumee`)**
+8.  **Doc Alignment (@align)**: Synchronizing the technical reality (code) with public documentation (READMEs). **(Prompt: `@align`)**
+9.  **Meta Alignment (@meta)**: Feeding workflow insights back into the Severin rules and this Meta-README. **(Prompt: `@meta`)**
 10. **Final Update**: A last pass over the documentation to ensure everything is "ship-ready."
 
 ## The Role of Severin
