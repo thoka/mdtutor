@@ -4,13 +4,13 @@ define_suite "Engine Integrität 🔹ENG-INT" do
     condition do
       forbidden_pattern = /system\(.*sv (gen|check|commit).*\)/
       rule_files = Dir.glob("severin/rules/**/*.rb")
-      
+
       violating_files = rule_files.select do |f|
         content = File.read(f)
         # Wir suchen nach dem Muster, aber nur wenn der ENV-Schutz fehlt
         content.match?(forbidden_pattern) && !content.include?("ENV['SEVERIN_GENERATING']")
       end
-      
+
       @violating = violating_files
       violating_files.empty?
     end
@@ -21,4 +21,3 @@ end
 # Dies ist eine deutsche Regel für die Engine-Integrität.
 # Sie stellt sicher, dass wir keine unendlichen Schleifen bauen.
 # Alle Texte hier sind auf Deutsch, um die Sprach-Integrität zu wahren.
-

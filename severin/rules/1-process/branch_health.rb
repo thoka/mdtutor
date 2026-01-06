@@ -36,7 +36,9 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
         Severin.log_debug "Rekursiver Aufruf von 'sv gen' unterbunden."
       else
         puts "DEBUG: Executing sv gen autofix"
-        system("ruby severin/runner.rb gen")
+        # Wir nutzen das Engine-Binary mit absolutem Pfad
+        engine_root = File.expand_path("../../engine", __dir__)
+        system("ruby #{engine_root}/bin/sv gen")
       end
     end
   end
