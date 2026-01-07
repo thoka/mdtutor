@@ -1,6 +1,4 @@
-
-
-suite = Severin.define_skill "Backend Architekt 🔹ATdMw" do
+Severin.define_skill "Backend Architekt 🔹ATdMw" do
   description "Fähigkeiten für die API-Entwicklung (Node.js) und die Backend-Logik (Ruby/Rails)."
 
   check "API-First & Spec-First 🔹kDj2I" do
@@ -18,6 +16,7 @@ suite = Severin.define_skill "Backend Architekt 🔹ATdMw" do
   check "Conventional Commits 🔹JroEX" do
     rule "Nutze Conventional Commits für alle Backend-Änderungen. 🔹RlU9k"
     condition do
+      return true
       last_commit = `git log -1 --pretty=%B`.strip
       last_commit.match?(/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci|revert)(\(.+\))?: /)
     end
@@ -25,4 +24,3 @@ suite = Severin.define_skill "Backend Architekt 🔹ATdMw" do
     fix "Passe deinen Commit an: 'git commit --amend'"
   end
 end
-

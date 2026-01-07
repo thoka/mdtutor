@@ -20,25 +20,24 @@ Severin.define_action "tags" do
       Dir.glob(File.join(rules_root, "**/*.rb")).each { |f| load f }
     end
 
-    puts "\n\e[1;35m🏷️  AGENTIC MEMORY: TAG & SKILL AUDIT\e[0m"
-    puts "\e[35m" + "━" * 40 + "\e[0m"
+    Severin.ui.puts "\n\e[1;35m🏷️  AGENTIC MEMORY: TAG & SKILL AUDIT\e[0m"
 
     # 1. Aktive Konfiguration (aus severin_state.rb)
-    puts "\n\e[1mAKTIVE KONFIGURATION (severin_state.rb):\e[0m"
+    Severin.ui.puts "\n\e[1mAKTIVE KONFIGURATION (severin_state.rb):\e[0m"
     if Severin.active_tags.empty? && Severin.active_skills.empty?
-      puts "  \e[90m(Keine Tags oder Skills aktiv)\e[0m"
+      Severin.ui.puts "  \e[90m(Keine Tags oder Skills aktiv)\e[0m"
     else
       Severin.active_tags.each do |tag|
-        puts "  \e[32m●\e[0m :#{tag} \e[90m(Tag)\e[0m"
+        Severin.ui.puts "  \e[32m●\e[0m :#{tag} \e[90m(Tag)\e[0m"
       end
       Severin.active_skills.each do |skill, sub_tags|
         sub_info = sub_tags.empty? ? "" : " \e[90m-> #{sub_tags.map{|t| ":#{t}"}.join(', ')}\e[0m"
-        puts "  \e[36m●\e[0m :#{skill}#{sub_info} \e[90m(Skill)\e[0m"
+        Severin.ui.puts "  \e[36m●\e[0m :#{skill}#{sub_info} \e[90m(Skill)\e[0m"
       end
     end
 
     # 2. Verfügbare Skills (aus rules/)
-    puts "\n\e[1mVERFÜGBARE SKILLS (in rules/ definiert):\e[0m"
+    Severin.ui.puts "\n\e[1mVERFÜGBARE SKILLS (in rules/ definiert):\e[0m"
     # Wir müssen die Regeln laden, um die Skills zu sehen
     Severin.load_all_plugins
     # Wir laden die Regeln kurz in ein temporäres Resultat
@@ -51,20 +50,20 @@ Severin.define_action "tags" do
     Severin.skills.each do |name, result|
       is_active = Severin.active_skills.key?(name.to_sym) || Severin.active_tags.include?(name.to_sym)
       status_icon = is_active ? "\e[32m[AKTIV]\e[0m" : "\e[90m[bereit]\e[0m"
-      puts "  #{status_icon} :#{name.to_s.ljust(15)} \e[90m(#{result.tags.map{|t| ":#{t}"}.join(', ')})\e[0m"
+      Severin.ui.puts "  #{status_icon} :#{name.to_s.ljust(15)} \e[90m(#{result.tags.map{|t| ":#{t}"}.join(', ')})\e[0m"
     end
 
     # 3. Alle registrierten Tags (Struktur-Check)
-    puts "\n\e[1mALLE REGISTRIERTEN TAGS (Synapsen):\e[0m"
+    Severin.ui.puts "\n\e[1mALLE REGISTRIERTEN TAGS (Synapsen):\e[0m"
     all_tags = Severin.registered_tags.sort
     all_tags.each do |tag|
       is_active = Severin.active_tags.include?(tag) || Severin.active_skills.key?(tag)
       color = is_active ? "\e[32m" : "\e[90m"
-      puts "  #{color}:#{tag}\e[0m"
+      Severin.ui.puts "  #{color}:#{tag}\e[0m"
     end
 
-    puts "\n\e[1mAKTUELLES ZIEL (Objective):\e[0m"
-    puts "  \e[35m\"#{Severin.current_objective}\"\e[0m"
-    puts ""
+    Severin.ui.puts "\n\e[1mAKTUELLES ZIEL (Objective):\e[0m"
+    Severin.ui.puts "  \e[35m\"#{Severin.current_objective}\"\e[0m"
+    Severin.ui.puts ""
   end
 end

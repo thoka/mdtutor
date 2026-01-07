@@ -16,12 +16,6 @@ Folge strikt den Anweisungen für diesen Zustand.
 - **Dokumentation**: Alle dauerhaften Artefakte (Brain-Dokumente, Git-Commits, Code-Kommentare) müssen auf **English** verfasst werden.
 
 ## 🧠 Deine Skills & Rollen
-### Agenten-Verhalten
-- Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). 🔹NO-PRAISE
-- Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
-- Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
-- Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
-
 ### Environment Setup 🛠️
 - Nutze absolute Pfade oder $R.
 - Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-AUTOFIX
@@ -36,53 +30,18 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Workspace Root Reference: Nutze absolute Pfade oder $R. 🔹ROOT-REF
 - Filesystem Tooling: Bevorzuge sv_* Tools. 🔹FS-STRICT
 
-### Dynamischer Regel-Workflow
-- Zustandssteuerung: Die Auswahl aktiver Skills erfolgt deklarativ in einer Steuerdatei (z.B. `severin_state.rb`). Diese Datei wird nicht in 'main' gemerget. 🔹DYN-WF
-- Single Source of Truth: Jede programmatische Logik (WANN eine Regel gilt) muss in der Regel-Definition selbst liegen, NICHT in der Steuerdatei.
-- Generierung: Der Befehl `sv gen` synchronisiert den gewählten State mit den `.cursorrules` und den On-Demand Prompts in `.cursor/prompts/`.
-
-### Severin-Regel-Design
-- **Zugehörige Dokumentation**: @severin/engine/README.md
-- Modularisierung: Nutze `:tag` und `define_skill`, um Regeln thematisch zu gruppieren. Vermeide monolithische Regel-Dateien. 🔹RUL-DSG
-- DSL-Power: Nutze die Severin-DSL (Ruby), um Kontext (z.B. Dateiinhalte, Branch-Namen) dynamisch in die `guidance` zu injizieren.
-- On-Demand Prompts: Definiere spezifische Deep-Dive Instruktionen als `prompt_file` innerhalb eines Skills, um sie via `@` in Cursor verfügbar zu machen.
-- Minimalismus: Regeln sollten nur das enthalten, was für den aktuellen Zustand (State) notwendig ist. Nutze `condition`-Blöcke zur Validierung.
-
-### Workflow Integrität 🔹WF-INT
-
 ### Severin Architect 🔹Arc
 - Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN
 - Nutze IMMER `sv_get_skill`, um den vollen Kontext einer Aufgabe zu verstehen, bevor du startest. 🔹uVr0W
 - Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
-- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Task in Brain-Dokumenten nicht blockiert ist. 🔹RULE-BRANCH
 - Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT
 - Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS
-
-### Discourse Trace 🎭
-- Narrative Summary: Erstelle einen Discourse Trace am Ende jeder Sitzung. 🔹DT-RES
-- Discourse Language: Der Trace wird in der Konversationssprache (Deutsch) verfasst. 🔹DT-LANG
-- Documentation Alignment: Aktualisiere alle betroffenen READMEs nach der Session. 🔹DOC-ALIGN
-- Meta-Reflexion: Evaluiere und verfeinere den Workflow nach jeder Session. 🔹META-REFLECT
-- Meta-Alignment: Synchronisiere Workflow-Erkenntnisse mit dem Regelwerk und docs/CONVARC_WORKFLOW.md. 🔹META-ALIGN
-- Rule Synchronity: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. Nutze `sv gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
-- Technical Debt Visibility: Jede deklarierte Ausnahme oder aufgeschobene Aufgabe muss dokumentiert werden. 🔹DEBT-VIS
-- Contextual Breadcrumbs: Logs und Resümees müssen Kontext für Nachfolge-Agenten enthalten (Agent Primer). 🔹CTX-BREAD
-
-### Frontend Experte 🔹AfKxC
-- Svelte 5 Runes ($state, $derived, $props, $effect). Legacy-Stores in Komponenten sind unerwünscht. 🔹e076F
-- Svelte Autofixer nach jeder Änderung nutzen. 🔹WDFaQ
-- Minimalismus-Prinzip: Kurze Antworten, minimaler Code. 🔹sYVFu
-- Verwende ausschließlich Svelte 5 Runes. 🔹iTBni
-- Nutze nach jeder Änderung das svelte-autofixer Tool. 🔹j3Lmz
 
 ### Severin Modular Architecture
 - Befehle müssen als Action-Objekte realisiert werden, um die CLI wartbar zu halten. 🔹ACT-OBJ
 - Geschäftslogik darf nicht in der CLI stehen, sondern muss in Libraries gekapselt sein. 🔹LIB-LOGIC
-
-### Severin Self-Reflexion 🧠
-- Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
 ### Ruby Expert 💎
 - Strict Output Architecture: No 'puts' / Standardized UI & Logging. 🔹NO-PUTS
@@ -103,11 +62,6 @@ Folge strikt den Anweisungen für diesen Zustand.
 
 ### Shell Integrity 🐚
 - Return to Root: Pfad-Stabilität im Terminal. 🔹SH-PATH
-
-### Tagging Culture 🏷️
-- Granular Skills: Bevorzuge viele spezialisierte Skills gegenüber wenigen monolithischen. 🔹TAG-GRANULAR
-- Dual Tagging: Kombiniere immer Technologie-Tags (:ruby, :svelte) mit Themen-Tags (:logic, :ui, :infra). 🔹TAG-DUAL
-- Explicit Focus: Liste alle relevanten Skills in der `severin_state.rb` explizit auf. 🔹TAG-EXPLICIT
 
 ### Severin Test-Driven Quality
 - Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ

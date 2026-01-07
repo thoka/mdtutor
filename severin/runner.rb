@@ -8,10 +8,10 @@ engine_path = File.join(engine_home, "bin/sv")
 if File.exist?(engine_path)
   exec "ruby", engine_path, *ARGV
 else
-  puts "\n\e[31m❌ Severin Engine nicht gefunden!\e[0m"
-  puts "Geprüfter Pfad: #{engine_path}"
-  puts "--------------------------------------------------"
-  puts "Hinweis: Die Engine wird standardmäßig in 'severin/engine' erwartet."
-  puts "Alternativ kann SEVERIN_HOME gesetzt werden."
+  $stderr.puts "\n\e[31m❌ Severin Engine nicht gefunden!\e[0m" # SEVERIN_ALLOW_PUTS
+  $stderr.puts "Geprüfter Pfad: #{engine_path}" # SEVERIN_ALLOW_PUTS
+  $stderr.puts "--------------------------------------------------" # SEVERIN_ALLOW_PUTS
+  $stderr.puts "Hinweis: Die Engine wird standardmäßig in 'severin/engine' erwartet." # SEVERIN_ALLOW_PUTS
+  $stderr.puts "Alternativ kann SEVERIN_HOME gesetzt werden." # SEVERIN_ALLOW_PUTS
   exit 1
 end

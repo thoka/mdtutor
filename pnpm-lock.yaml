@@ -134,6 +134,12 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
 
+  packages/terminal-linker:
+    devDependencies:
+      '@types/vscode':
+        specifier: ^1.107.0
+        version: 1.107.0
+
 packages:
 
   '@acemir/cssom@0.9.30':
@@ -641,6 +647,9 @@ packages:
 
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+
+  '@types/vscode@1.107.0':
+    resolution: {integrity: sha512-XS8YE1jlyTIowP64+HoN30OlC1H9xqSlq1eoLZUgFEC8oUTO6euYZxti1xRiLSfZocs4qytTzR6xCBYtioQTCg==}
 
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
@@ -2784,6 +2793,8 @@ snapshots:
       undici-types: 7.16.0
 
   '@types/unist@3.0.3': {}
+
+  '@types/vscode@1.107.0': {}
 
   '@types/yauzl@2.10.3':
     dependencies:

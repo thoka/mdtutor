@@ -5,10 +5,6 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ## 🧠 Agent Skills
 
 ### Agenten-Verhalten
-- **Guideline**: Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). 🔹NO-PRAISE
-- **Guideline**: Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
-- **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
-- **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
 
 ### Environment Setup 🛠️
 - **Rule**: Nutze absolute Pfade oder $R.
@@ -48,14 +44,8 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - **Guideline**: Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - **Guideline**: Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
-- **Guideline**: Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Task in Brain-Dokumenten nicht blockiert ist. 🔹RULE-BRANCH
 - **Guideline**: Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT
 - **Guideline**: Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS
-
-### Backend Architekt 🔹ATdMw
-- **Rule**: Keine Frontend-Implementierung darf beginnen, bevor die benötigten API-Endpunkte spezifiziert und via RSpec getestet wurden. 🔹57DXq
-- **Rule**: TDD strikt befolgen. Tests vor der Implementierung schreiben. 🔹esjGj
-- **Rule**: Nutze Conventional Commits für alle Backend-Änderungen. 🔹RlU9k
 
 ### Discourse Trace 🎭
 - **Guideline**: Narrative Summary: Erstelle einen Discourse Trace am Ende jeder Sitzung. 🔹DT-RES

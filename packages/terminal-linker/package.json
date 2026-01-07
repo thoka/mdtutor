@@ -1,0 +1,26 @@
+{
+  "name": "terminal-link-provider",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Terminal Link Provider",
+      "properties": {
+        "terminalLinkProvider.customPatterns": {
+          "type": "array",
+          "default": [],
+          "description": "Eigene Regex-Pattern für Terminal-Links"
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.107.0"
+  }
+}
