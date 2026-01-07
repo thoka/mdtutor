@@ -14,7 +14,7 @@ define_skill "Environment Setup 🛠️" do
 
   check "Direnv Initialization 🔹DIRENV-INIT" do
     rule "Automatische Aktivierung der Umgebungsvariablen. 🔹DIRENV-AUTOFIX"
-    condition { 
+    condition {
       File.exist?(".envrc") && !ENV['CUSTOM_ENV'].nil?
     }
     on_fail "Die direnv Umgebung ist nicht aktiv oder CUSTOM_ENV fehlt."
@@ -24,4 +24,3 @@ define_skill "Environment Setup 🛠️" do
     end
   end
 end
-

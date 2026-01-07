@@ -5,7 +5,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ## 🧠 Agent Skills
 
 ### Agenten-Verhalten
-- **Guideline**: Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- **Guideline**: Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
 - **Guideline**: Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
 - **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
@@ -93,7 +93,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
 ### Ruby Expert 💎
-- **Guideline**: No Raw Puts: Nutze niemals 'puts' für Debugging. Nutze 'Severin.log_debug' oder strukturierte Logs. 🔹NO-PUTS
+- **Guideline**: Strict Output Architecture: No 'puts' / Standardized UI & Logging. 🔹NO-PUTS
 - **Guideline**: Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW
 - **Guideline**: Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - **Guideline**: UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
@@ -143,9 +143,9 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 - **Anleitung**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten. 2. Das Tool sucht automatisch nach dem passenden Brain-Dokument zur ID. 3. Es erstellt einen Branch im Format `feature/titel-🔹ID`. 4. Optional: Aktiviert den Branch-Fokus in der `severin_state.rb` (manuell/geplant). 
 
 ### commit
-- **Zweck**: Führt einen orchestrierten Projekt-Commit aus (Generierung, Integritäts-Checks und Git-Commit).
+- **Zweck**: Führt einen synchronisierten Projekt- und Engine-Commit aus (mit Cleanup und Chat-Referenz).
 - **Anwendung**: Nutze das MCP-Tool `sv_commit`.
-- **Anleitung**: 1. Nutze dieses Tool für ALLE Projekt-Commits. Es stellt sicher, dass Dokumentation und Regeln synchron sind. 2. Die Commit-Nachricht MUSS Conventional Commits entsprechen. 3. Das Tool führt automatisch `sv gen` und `sv check` aus. Falls diese fehlschlagen, wird der Commit abgebrochen. 
+- **Anleitung**: 1. Löscht automatisch alle temporären Dateien (`tmp_*`). 2. Ermittelt das neueste Summary in `docs/chat/` und referenziert es. 3. Führt `sv gen` und `sv check` aus. 4. Committet Änderungen in Hauptprojekt UND Engine synchron. 
 
 ### commit-engine
 - **Zweck**: Commitet Änderungen in der Severin-Engine.

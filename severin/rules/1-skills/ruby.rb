@@ -1,10 +1,34 @@
 define_skill "Ruby Expert 💎" do
-  tags :ruby, :backend, :dev, :implementation, :review
+  tags :ruby
 
   description "Setzt Standards für Ruby-Entwicklung basierend auf Discourse-Patterns (Clean Code, Performance, Kapselung)."
 
-  rule "No Raw Puts: Nutze niemals 'puts' für Debugging. Nutze 'Severin.log_debug' oder strukturierte Logs. 🔹NO-PUTS" do
+  rule "Strict Output Architecture: No 'puts' / Standardized UI & Logging. 🔹NO-PUTS" do
     condition { true }
+    guidance :implementation, <<~MARKDOWN
+      ### 🚫 Verbot von `puts`
+      Die Nutzung von `puts`, `print`, `p` oder `pp` ist im gesamten `severin/` Verzeichnis untersagt. Das Framework blockiert diesen Aufruf zur Laufzeit (Kernel-Patching), was bei Nutzung zu einem sofortigen Programmabbruch führt.
+
+      ### ✅ Korrekte Implementation von Output
+      Nutze je nach Kontext die folgenden Methoden:
+
+      1. **User Interface (CLI-Ausgabe)**:
+         Wenn du Informationen für den Nutzer im Terminal ausgeben möchtest (z. B. in Actions), nutze das `Severin.ui` Interface:
+         - `Severin.ui_info("Nachricht")` - Neutrale Informationen (Blau).
+         - `Severin.ui_success("Nachricht")` - Erfolgsmeldungen (Grün).
+         - `Severin.ui_warn("Nachricht")` - Warnungen (Gelb).
+         - `Severin.ui_error("Nachricht")` - Fehlermeldungen (Rot).
+
+      2. **Debugging & Tracing**:
+         Wenn du Informationen nur für die Fehlersuche loggen möchtest, ohne die CLI-Ausgabe zu verschmutzen:
+         - `Severin.log_debug("Context", key: value)` - Nutze strukturierte Hashes für Metadaten.
+
+      3. **Engine-Infrastruktur (Low-Level)**:
+         Nur innerhalb von `Severin::Formatter` oder `Severin::Output` darf das interne `__severin_raw_puts__` genutzt werden, um die finale Formatierung an `$stdout` zu übergeben.
+
+      ### 💡 Warum?
+      Dies stellt sicher, dass alle Ausgaben (Logs vs. UI) sauber getrennt sind, die CLI-Formatierung konsistent bleibt und Ausgaben in Tests zuverlässig abgefangen werden können. Statische Prüfungen (Grep) entfallen zugunsten von Fail-Fast zur Laufzeit.
+    MARKDOWN
   end
 
   rule "Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW" do

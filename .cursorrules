@@ -17,7 +17,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 
 ## 🧠 Deine Skills & Rollen
 ### Agenten-Verhalten
-- Neutralität & Sachlichkeit: KEIN unnötiges Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
 - Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
 - Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
@@ -106,7 +106,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Post-Iteration Analysis: Lerne aus deinen Fehlern. 🔹REFLECT
 
 ### Ruby Expert 💎
-- No Raw Puts: Nutze niemals 'puts' für Debugging. Nutze 'Severin.log_debug' oder strukturierte Logs. 🔹NO-PUTS
+- Strict Output Architecture: No 'puts' / Standardized UI & Logging. 🔹NO-PUTS
 - Keyword Arguments for Complexity: Nutze für komplexe Methoden Keyword-Arguments statt Positions-Parameter. 🔹RUBY-KW
 - Lazy Resource Initialization: Nutze ||= zur Initialisierung von Datei-Handles, Datenbank-Verbindungen oder teuren Objekten. 🔹RUBY-LAZY
 - UTC Integrity: Alle Zeitstempel in Logs und Datenbanken müssen UTC entsprechen. 🔹RUBY-UTC
@@ -155,8 +155,8 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Wichtig**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten.
 
 ### sv_commit
-- **Zweck**: Führt einen orchestrierten Projekt-Commit aus (Generierung, Integritäts-Checks und Git-Commit).
-- **Wichtig**: 1. Nutze dieses Tool für ALLE Projekt-Commits. Es stellt sicher, dass Dokumentation und Regeln synchron sind.
+- **Zweck**: Führt einen synchronisierten Projekt- und Engine-Commit aus (mit Cleanup und Chat-Referenz).
+- **Wichtig**: 1. Löscht automatisch alle temporären Dateien (`tmp_*`).
 
 ### sv_commit_engine
 - **Zweck**: Commitet Änderungen in der Severin-Engine.

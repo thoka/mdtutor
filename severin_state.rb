@@ -16,7 +16,6 @@ Severin.draw_state do
   focus :ruby
   focus :svelte
 
-
   # Ziel des aktuellen Sprints
   objective "Implementierung der Tag-basierten Skill-Steuerung und Validierung"
 
