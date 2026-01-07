@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+
+def find_engine(start_dir)
+  curr = Pathname.new(start_dir).expand_path
+  loop do
+    # Prüfe auf severin/engine im aktuellen Verzeichnis
+    engine_path = curr.join('severin', 'engine')
+
+    return engine_path if engine_path.exist?
+
+    parent = curr.parent
+    break if parent == curr # Root erreicht
+    curr = parent
+  end
+  nil
+end
+
+engine_path = find_engine(Dir.pwd)
+
+if engine_path
+  # Wir haben eine Engine gefunden -> Führe sie mit den übergebenen Argumenten aus
+  lib_path = engine_path.join('lib')
+  $LOAD_PATH.unshift(lib_path) unless $LOAD_PATH.include?(lib_path)
+  require 'severin/cli'
+
+  Severin::CLI.run(ARGV)
+
+else
+  puts "\e[31m❌ Keine Severin Engine gefunden!\e[0m"
+  puts "Stellen Sie sicher, dass Sie sich in einem MDTutor-Projekt befinden"
+  puts "oder 'severin/engine' als Submodul/Symlink vorhanden ist."
+  exit 1
+end

@@ -51,8 +51,12 @@ Thumbs.db
 !/packages/*/tmp/.keep
 packages/api-server/src/restart.js
 
-# Severin Engine (Git Submodule)
-# /severin/engine
+# Severin Engine
+/severin/engine/**/*.log
+/severin/engine/vendor/
+/severin/engine/.bundle/
+/severin/engine/Gemfile.lock
+/severin/engine/pkg/
 
 # Severin Logs
 /severin/log/*.log

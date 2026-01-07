@@ -1,0 +1,9 @@
+source 'https://rubygems.org'
+
+# Severin Engine Core Dependencies
+# Currently no external production gems used.
+
+group :test do
+  gem 'rspec'
+  gem 'rake'
+end

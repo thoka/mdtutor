@@ -1,0 +1,756 @@
+{"t":1767698903.5868762,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698903.587901,"run":"014b819c","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698903.5879765,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698903.5887194,"run":"014b819c","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698903.5887606,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698903.5890818,"run":"014b819c","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698903.5891297,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698903.5895872,"run":"014b819c","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698903.58974,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698903.5906296,"run":"014b819c","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698903.5907428,"run":"014b819c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698903.5910008,"run":"014b819c","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698903.5910444,"run":"014b819c","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7182174,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698903.7184877,"run":"e82ed392","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7185414,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698903.7189147,"run":"e82ed392","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7189534,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698903.7193143,"run":"e82ed392","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698903.719362,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698903.719814,"run":"e82ed392","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7198527,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698903.7203686,"run":"e82ed392","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7204454,"run":"e82ed392","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698903.720633,"run":"e82ed392","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698903.7206697,"run":"e82ed392","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698914.427594,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698914.428424,"run":"9318c73c","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698914.4284835,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698914.428645,"run":"9318c73c","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698914.4286842,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698914.4288216,"run":"9318c73c","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698914.4290953,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698914.4298337,"run":"9318c73c","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698914.4298832,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698914.4301143,"run":"9318c73c","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698914.4301846,"run":"9318c73c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698914.4305549,"run":"9318c73c","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698914.430606,"run":"9318c73c","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698914.5559971,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698914.5562322,"run":"794333b5","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698914.5562868,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698914.5564303,"run":"794333b5","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698914.556469,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698914.5566225,"run":"794333b5","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698914.556659,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698914.557036,"run":"794333b5","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698914.5570912,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698914.5573335,"run":"794333b5","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698914.5574336,"run":"794333b5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698914.557851,"run":"794333b5","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698914.558153,"run":"794333b5","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698926.5510767,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698926.5518835,"run":"265bc9b6","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698926.5519657,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698926.5526757,"run":"265bc9b6","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698926.5527248,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698926.552869,"run":"265bc9b6","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698926.552908,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698926.5537293,"run":"265bc9b6","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698926.553772,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698926.5540602,"run":"265bc9b6","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698926.5541449,"run":"265bc9b6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698926.5545359,"run":"265bc9b6","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698926.5545797,"run":"265bc9b6","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698926.6836228,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698926.6838524,"run":"e900c04d","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698926.6838999,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698926.6842675,"run":"e900c04d","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698926.6843095,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698926.684673,"run":"e900c04d","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698926.684713,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698926.6851077,"run":"e900c04d","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698926.685148,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698926.6857111,"run":"e900c04d","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698926.6858137,"run":"e900c04d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698926.6860156,"run":"e900c04d","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698926.686056,"run":"e900c04d","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698932.553083,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698932.5538504,"run":"4deee37c","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698932.5541372,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698932.5542958,"run":"4deee37c","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698932.5543356,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698932.5544665,"run":"4deee37c","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698932.5545037,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698932.5551538,"run":"4deee37c","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698932.5554302,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698932.5560248,"run":"4deee37c","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698932.556105,"run":"4deee37c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698932.5563047,"run":"4deee37c","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698932.5563455,"run":"4deee37c","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0093412,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698936.0095778,"run":"79cb98ba","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0096266,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698936.0097725,"run":"79cb98ba","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0098097,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698936.0099347,"run":"79cb98ba","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0099697,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698936.0102851,"run":"79cb98ba","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0103235,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698936.0105462,"run":"79cb98ba","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698936.010627,"run":"79cb98ba","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698936.0108793,"run":"79cb98ba","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698936.0109212,"run":"79cb98ba","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3240478,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698943.3252542,"run":"fd506840","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3253288,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698943.3254924,"run":"fd506840","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3255308,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698943.3256676,"run":"fd506840","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3259702,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698943.326743,"run":"fd506840","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698943.32679,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698943.3270223,"run":"fd506840","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3271067,"run":"fd506840","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698943.32751,"run":"fd506840","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698943.3275506,"run":"fd506840","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4501717,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698943.4504302,"run":"7d79f6c0","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4504857,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698943.4506335,"run":"7d79f6c0","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698943.45067,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698943.4507997,"run":"7d79f6c0","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4508345,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698943.4511216,"run":"7d79f6c0","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4511588,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698943.451423,"run":"7d79f6c0","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4515042,"run":"7d79f6c0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698943.4517124,"run":"7d79f6c0","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698943.4517498,"run":"7d79f6c0","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6221051,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698950.6225963,"run":"8734d2ce","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6226516,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698950.6230474,"run":"8734d2ce","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6230881,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698950.623219,"run":"8734d2ce","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6232653,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698950.624121,"run":"8734d2ce","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6241746,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698950.6245174,"run":"8734d2ce","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6246934,"run":"8734d2ce","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698950.626157,"run":"8734d2ce","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698950.6262832,"run":"8734d2ce","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7632792,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767698950.7635505,"run":"be50b27e","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7636054,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767698950.7639332,"run":"be50b27e","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7639742,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767698950.7643418,"run":"be50b27e","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7643828,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767698950.7648466,"run":"be50b27e","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7648876,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767698950.7654455,"run":"be50b27e","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767698950.765526,"run":"be50b27e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767698950.7657218,"run":"be50b27e","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767698950.7657588,"run":"be50b27e","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699457.789381,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699457.7901814,"run":"5c637b9e","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699457.790797,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699457.790991,"run":"5c637b9e","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699457.791039,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699457.7913907,"run":"5c637b9e","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699457.7914321,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699457.792094,"run":"5c637b9e","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699457.792143,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699457.792792,"run":"5c637b9e","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699457.7930923,"run":"5c637b9e","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699457.7933342,"run":"5c637b9e","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699457.7933776,"run":"5c637b9e","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9258325,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699457.9260905,"run":"714ce1e4","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9261427,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699457.9266837,"run":"714ce1e4","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9267251,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699457.9268584,"run":"714ce1e4","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9268963,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699457.9276187,"run":"714ce1e4","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9276624,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699457.9278777,"run":"714ce1e4","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699457.92795,"run":"714ce1e4","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699457.9281335,"run":"714ce1e4","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699457.9281838,"run":"714ce1e4","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699475.2948267,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699475.2962508,"run":"6ffc894c","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699475.2963705,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699475.2977087,"run":"6ffc894c","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699475.2977967,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699475.2980716,"run":"6ffc894c","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699475.2981656,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699475.3001075,"run":"6ffc894c","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699475.3001974,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699475.300602,"run":"6ffc894c","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699475.3007839,"run":"6ffc894c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699475.3015637,"run":"6ffc894c","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699475.301651,"run":"6ffc894c","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699475.4268267,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699475.4273825,"run":"d86e0a88","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699475.4274359,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699475.4277942,"run":"d86e0a88","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699475.4278355,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699475.4281533,"run":"d86e0a88","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699475.4281912,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699475.4286814,"run":"d86e0a88","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699475.4287283,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699475.429301,"run":"d86e0a88","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699475.429416,"run":"d86e0a88","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699475.4296956,"run":"d86e0a88","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699475.429742,"run":"d86e0a88","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699485.1925404,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699485.1930256,"run":"e40c0c04","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699485.1930797,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699485.1934235,"run":"e40c0c04","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699485.1934628,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699485.1937706,"run":"e40c0c04","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699485.193808,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699485.1942942,"run":"e40c0c04","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699485.1943412,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699485.1950047,"run":"e40c0c04","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699485.1951435,"run":"e40c0c04","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699485.1955185,"run":"e40c0c04","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699485.195563,"run":"e40c0c04","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699485.3284352,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699485.329096,"run":"c5a56100","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699485.3291543,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699485.3295586,"run":"c5a56100","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699485.3296223,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699485.3300707,"run":"c5a56100","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699485.3301196,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699485.3307717,"run":"c5a56100","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699485.3308141,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699485.3316674,"run":"c5a56100","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699485.331787,"run":"c5a56100","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699485.331987,"run":"c5a56100","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699485.332027,"run":"c5a56100","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699491.7413952,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699491.742028,"run":"53108407","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699491.7420993,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699491.742582,"run":"53108407","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699491.7426317,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699491.7427778,"run":"53108407","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699491.742816,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699491.744905,"run":"53108407","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699491.745052,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699491.7455995,"run":"53108407","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699491.7458413,"run":"53108407","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699491.746973,"run":"53108407","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699491.7471,"run":"53108407","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699491.8978622,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699491.898288,"run":"86fd4bb1","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699491.8985214,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699491.898683,"run":"86fd4bb1","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699491.8989038,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699491.899044,"run":"86fd4bb1","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699491.8990788,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699491.8996546,"run":"86fd4bb1","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699491.899704,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699491.9002318,"run":"86fd4bb1","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699491.900358,"run":"86fd4bb1","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699491.900589,"run":"86fd4bb1","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699491.900629,"run":"86fd4bb1","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6628022,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699498.6635437,"run":"de62c1a6","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6639962,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699498.6643522,"run":"de62c1a6","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6643927,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699498.664545,"run":"de62c1a6","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6647654,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699498.6652126,"run":"de62c1a6","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6652606,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699498.6659198,"run":"de62c1a6","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699498.6662738,"run":"de62c1a6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699498.66649,"run":"de62c1a6","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699498.66653,"run":"de62c1a6","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7860203,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699498.7870169,"run":"e09c6f65","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7872949,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699498.7880046,"run":"e09c6f65","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7880614,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699498.7882178,"run":"e09c6f65","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7882571,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699498.7886598,"run":"e09c6f65","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7886984,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699498.7889519,"run":"e09c6f65","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7890985,"run":"e09c6f65","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699498.7893777,"run":"e09c6f65","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699498.7894251,"run":"e09c6f65","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2189767,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699513.2194698,"run":"2575e24c","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2197568,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699513.2199738,"run":"2575e24c","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2200212,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699513.220414,"run":"2575e24c","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2204576,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699513.2212439,"run":"2575e24c","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2212892,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699513.2217543,"run":"2575e24c","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699513.222108,"run":"2575e24c","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699513.2223463,"run":"2575e24c","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699513.2223883,"run":"2575e24c","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3450477,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699513.3457925,"run":"4d6f7f44","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3459392,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699513.3461096,"run":"4d6f7f44","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3461518,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699513.346293,"run":"4d6f7f44","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699513.346328,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699513.3466601,"run":"4d6f7f44","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3467002,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699513.34693,"run":"4d6f7f44","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3470101,"run":"4d6f7f44","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699513.3472025,"run":"4d6f7f44","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699513.3472404,"run":"4d6f7f44","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6895976,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699521.690634,"run":"d027caa6","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6911545,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699521.6914248,"run":"d027caa6","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6914897,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699521.692008,"run":"d027caa6","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6920743,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699521.693091,"run":"d027caa6","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6932075,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699521.6940358,"run":"d027caa6","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6943848,"run":"d027caa6","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699521.6947565,"run":"d027caa6","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699521.6948378,"run":"d027caa6","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699521.8984644,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699521.898893,"run":"25fdc483","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699521.8990216,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699521.899647,"run":"25fdc483","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699521.8997245,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699521.8999388,"run":"25fdc483","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699521.8999999,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699521.901609,"run":"25fdc483","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699521.9017031,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699521.9021237,"run":"25fdc483","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699521.90228,"run":"25fdc483","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699521.902662,"run":"25fdc483","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699521.9027555,"run":"25fdc483","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699530.9311683,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699530.9325027,"run":"ab398098","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699530.932573,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699530.9335477,"run":"ab398098","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699530.9335935,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699530.9340365,"run":"ab398098","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699530.9341176,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699530.9354208,"run":"ab398098","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699530.935576,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699530.9363763,"run":"ab398098","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699530.9367962,"run":"ab398098","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699530.93893,"run":"ab398098","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699530.939013,"run":"ab398098","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699531.063593,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699531.0639415,"run":"07307b6d","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699531.0640166,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699531.06423,"run":"07307b6d","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699531.0642824,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699531.0644648,"run":"07307b6d","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699531.064515,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699531.0648284,"run":"07307b6d","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699531.0648677,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699531.0651293,"run":"07307b6d","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699531.0652237,"run":"07307b6d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699531.065425,"run":"07307b6d","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699531.0654624,"run":"07307b6d","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699540.818401,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699540.8189814,"run":"28d2f371","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699540.8190453,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699540.8194878,"run":"28d2f371","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699540.819535,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699540.8198404,"run":"28d2f371","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699540.8198838,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699540.8205395,"run":"28d2f371","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699540.8206751,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699540.820927,"run":"28d2f371","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699540.8210058,"run":"28d2f371","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699540.8213253,"run":"28d2f371","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699540.8213713,"run":"28d2f371","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699540.9393413,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699540.9395983,"run":"fab30f22","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699540.9396536,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699540.939813,"run":"fab30f22","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699540.9398522,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699540.939998,"run":"fab30f22","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699540.940036,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699540.9403398,"run":"fab30f22","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699540.940379,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699540.9405973,"run":"fab30f22","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699540.9406679,"run":"fab30f22","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699540.9408908,"run":"fab30f22","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699540.940931,"run":"fab30f22","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699549.6161654,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699549.6166515,"run":"babefee3","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699549.616974,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699549.6174204,"run":"babefee3","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699549.6174903,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699549.617961,"run":"babefee3","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699549.6180332,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699549.6202753,"run":"babefee3","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699549.6203275,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699549.6209133,"run":"babefee3","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699549.621225,"run":"babefee3","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699549.6215,"run":"babefee3","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699549.62154,"run":"babefee3","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699549.7468717,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699549.7473567,"run":"374444b0","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699549.7476225,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699549.7478068,"run":"374444b0","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699549.7478483,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699549.7479787,"run":"374444b0","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699549.7482395,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699549.7487319,"run":"374444b0","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699549.748773,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699549.7492657,"run":"374444b0","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699549.749344,"run":"374444b0","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699549.7495577,"run":"374444b0","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699549.7495952,"run":"374444b0","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699557.584416,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699557.5852034,"run":"ff75fe09","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699557.5853097,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699557.5858178,"run":"ff75fe09","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699557.5858862,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699557.5864642,"run":"ff75fe09","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699557.5865161,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699557.5874224,"run":"ff75fe09","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699557.587552,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699557.5877993,"run":"ff75fe09","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699557.587876,"run":"ff75fe09","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699557.5880713,"run":"ff75fe09","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699557.5881112,"run":"ff75fe09","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7140815,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699557.7143128,"run":"b2c7905f","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7143624,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699557.714697,"run":"b2c7905f","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7147381,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699557.7148757,"run":"b2c7905f","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7149146,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699557.7156734,"run":"b2c7905f","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7157164,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699557.7159274,"run":"b2c7905f","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699557.715997,"run":"b2c7905f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699557.7161818,"run":"b2c7905f","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699557.7162225,"run":"b2c7905f","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699570.0516891,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699570.0523505,"run":"c40d5d7f","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699570.0527031,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699570.0528765,"run":"c40d5d7f","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699570.052904,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699570.0530412,"run":"c40d5d7f","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699570.0533032,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699570.053866,"run":"c40d5d7f","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699570.053905,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699570.0543754,"run":"c40d5d7f","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699570.0545528,"run":"c40d5d7f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699570.0547986,"run":"c40d5d7f","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699570.0548255,"run":"c40d5d7f","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699570.1820288,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699570.1825316,"run":"91aa3794","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699570.182616,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699570.1829746,"run":"91aa3794","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699570.1829982,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699570.1831274,"run":"91aa3794","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699570.1833549,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699570.183826,"run":"91aa3794","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699570.183848,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699570.184294,"run":"91aa3794","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699570.1843634,"run":"91aa3794","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699570.184572,"run":"91aa3794","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699570.1845934,"run":"91aa3794","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699572.394379,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699572.394968,"run":"bd97d41a","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699572.3952613,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699572.3954153,"run":"bd97d41a","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699572.395439,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699572.395586,"run":"bd97d41a","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699572.3959317,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699572.3966324,"run":"bd97d41a","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699572.3966684,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699572.3972483,"run":"bd97d41a","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699572.397547,"run":"bd97d41a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699572.3980122,"run":"bd97d41a","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699572.3980644,"run":"bd97d41a","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5251224,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699572.52592,"run":"ab4427af","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5263224,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699572.52651,"run":"ab4427af","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5269783,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699572.527214,"run":"ab4427af","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5272613,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699572.5278509,"run":"ab4427af","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5278714,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699572.5284717,"run":"ab4427af","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699572.5285788,"run":"ab4427af","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699572.5287774,"run":"ab4427af","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699572.528798,"run":"ab4427af","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699582.2334647,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699582.2341492,"run":"3a5c625f","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699582.2346048,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699582.2350495,"run":"3a5c625f","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699582.2351048,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699582.2352734,"run":"3a5c625f","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699582.2355745,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699582.2362156,"run":"3a5c625f","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699582.236299,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699582.2378144,"run":"3a5c625f","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699582.23813,"run":"3a5c625f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699582.2385159,"run":"3a5c625f","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699582.2387812,"run":"3a5c625f","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699582.381669,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699582.381973,"run":"83c81a30","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699582.382037,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699582.3825119,"run":"83c81a30","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699582.3825865,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699582.3827512,"run":"83c81a30","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699582.3827949,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699582.3839006,"run":"83c81a30","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699582.3839529,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699582.384207,"run":"83c81a30","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699582.3842914,"run":"83c81a30","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699582.3845122,"run":"83c81a30","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699582.3845575,"run":"83c81a30","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699587.5010436,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699587.5016098,"run":"898e5e26","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699587.501957,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699587.5021687,"run":"898e5e26","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699587.5022147,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699587.5034359,"run":"898e5e26","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699587.5034964,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699587.5056424,"run":"898e5e26","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699587.5057476,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699587.50755,"run":"898e5e26","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699587.507776,"run":"898e5e26","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699587.5079908,"run":"898e5e26","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699587.5080311,"run":"898e5e26","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6301143,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699587.630513,"run":"72fb925b","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699587.630653,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699587.6310499,"run":"72fb925b","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6311219,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699587.6313226,"run":"72fb925b","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6313636,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699587.6316912,"run":"72fb925b","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6317322,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699587.6319637,"run":"72fb925b","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6320605,"run":"72fb925b","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699587.6323037,"run":"72fb925b","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699587.6323464,"run":"72fb925b","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699598.190457,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699598.191469,"run":"390b2c94","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699598.1915753,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699598.1924312,"run":"390b2c94","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699598.192494,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699598.1927948,"run":"390b2c94","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699598.1928334,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699598.194015,"run":"390b2c94","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699598.1940577,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699598.1945786,"run":"390b2c94","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699598.1949532,"run":"390b2c94","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699598.195811,"run":"390b2c94","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699598.1958814,"run":"390b2c94","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699598.3243735,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699598.3246512,"run":"af3f0b11","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699598.324705,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699598.3248658,"run":"af3f0b11","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699598.3249073,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699598.3250468,"run":"af3f0b11","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699598.3250825,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699598.3253753,"run":"af3f0b11","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699598.3254123,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699598.3256373,"run":"af3f0b11","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699598.325718,"run":"af3f0b11","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699598.3259182,"run":"af3f0b11","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699598.3259552,"run":"af3f0b11","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699609.3740017,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699609.3746495,"run":"965bd17a","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699609.375396,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699609.3757226,"run":"965bd17a","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699609.375816,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699609.3765347,"run":"965bd17a","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699609.3766215,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699609.3774536,"run":"965bd17a","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699609.3775198,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699609.3783872,"run":"965bd17a","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699609.3787746,"run":"965bd17a","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699609.3790953,"run":"965bd17a","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699609.3791492,"run":"965bd17a","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699609.499814,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699609.5001018,"run":"5ee8875f","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5001729,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699609.50035,"run":"5ee8875f","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5004022,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699609.500617,"run":"5ee8875f","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5006716,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699609.5010235,"run":"5ee8875f","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5010724,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699609.5013373,"run":"5ee8875f","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5014362,"run":"5ee8875f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699609.5016901,"run":"5ee8875f","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699609.5017405,"run":"5ee8875f","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1463585,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699615.1470082,"run":"f560db45","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1474273,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699615.1476464,"run":"f560db45","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699615.147689,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699615.1480837,"run":"f560db45","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1481264,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699615.1487167,"run":"f560db45","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1487572,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699615.1492426,"run":"f560db45","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1494367,"run":"f560db45","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699615.149648,"run":"f560db45","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699615.1496859,"run":"f560db45","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2806056,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699615.2809236,"run":"7b820292","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2809932,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699615.28116,"run":"7b820292","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699615.281203,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699615.281348,"run":"7b820292","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2813892,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699615.2817755,"run":"7b820292","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2818198,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699615.282117,"run":"7b820292","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2822177,"run":"7b820292","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699615.2824585,"run":"7b820292","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699615.2824996,"run":"7b820292","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699620.8967602,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699620.897596,"run":"e7bd72f5","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699620.8980536,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699620.898268,"run":"e7bd72f5","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699620.8983192,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699620.8990028,"run":"e7bd72f5","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699620.899133,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699620.9000595,"run":"e7bd72f5","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699620.9001102,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699620.9006016,"run":"e7bd72f5","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699620.9008205,"run":"e7bd72f5","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699620.9010692,"run":"e7bd72f5","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699620.901117,"run":"e7bd72f5","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0277205,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699621.0279825,"run":"755749aa","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699621.028036,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699621.0284822,"run":"755749aa","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0285263,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699621.0286705,"run":"755749aa","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0287092,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699621.0296264,"run":"755749aa","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0296705,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699621.0298865,"run":"755749aa","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0299697,"run":"755749aa","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699621.0301707,"run":"755749aa","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699621.0302093,"run":"755749aa","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699630.247413,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699630.2479765,"run":"995de861","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2483432,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699630.2487183,"run":"995de861","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2487628,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699630.2489078,"run":"995de861","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2491744,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699630.2496462,"run":"995de861","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2496881,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699630.2501857,"run":"995de861","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2503622,"run":"995de861","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699630.2505722,"run":"995de861","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699630.2506123,"run":"995de861","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699630.3747818,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699630.3750453,"run":"7f806b47","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699630.37518,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699630.3753328,"run":"7f806b47","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699630.3753772,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699630.3755202,"run":"7f806b47","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699630.3755577,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699630.3758564,"run":"7f806b47","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699630.375895,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699630.3761923,"run":"7f806b47","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699630.3762808,"run":"7f806b47","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699630.3765051,"run":"7f806b47","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699630.3765502,"run":"7f806b47","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699639.9334614,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699639.9342563,"run":"b4b51887","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699639.9347878,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699639.9349856,"run":"b4b51887","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699639.9350283,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699639.9356291,"run":"b4b51887","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699639.9356678,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699639.9364166,"run":"b4b51887","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699639.936462,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699639.9368753,"run":"b4b51887","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699639.9370284,"run":"b4b51887","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699639.9372315,"run":"b4b51887","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699639.93732,"run":"b4b51887","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699640.06499,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699640.065251,"run":"474be8c9","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699640.0653028,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699640.0654542,"run":"474be8c9","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699640.0654912,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699640.0656235,"run":"474be8c9","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699640.065659,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699640.0659368,"run":"474be8c9","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699640.0659747,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699640.0661955,"run":"474be8c9","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699640.0662925,"run":"474be8c9","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699640.0665152,"run":"474be8c9","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699640.066554,"run":"474be8c9","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3526316,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699648.353695,"run":"5f4e879d","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3543124,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699648.354832,"run":"5f4e879d","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3549192,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699648.3550715,"run":"5f4e879d","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3553636,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699648.3559024,"run":"5f4e879d","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3559432,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699648.3565829,"run":"5f4e879d","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699648.3570578,"run":"5f4e879d","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699648.3573914,"run":"5f4e879d","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699648.357448,"run":"5f4e879d","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4726498,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699648.4729748,"run":"2a709fdb","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4730334,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699648.4731963,"run":"2a709fdb","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4732702,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699648.4734983,"run":"2a709fdb","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4735475,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699648.4741387,"run":"2a709fdb","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4741967,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699648.4746509,"run":"2a709fdb","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699648.4747758,"run":"2a709fdb","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699648.4752095,"run":"2a709fdb","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699648.475257,"run":"2a709fdb","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4542384,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699665.4558802,"run":"59d9fc98","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4577029,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699665.4583714,"run":"59d9fc98","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4584968,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699665.4593382,"run":"59d9fc98","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4593956,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699665.4601624,"run":"59d9fc98","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699665.460203,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699665.4606662,"run":"59d9fc98","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4608479,"run":"59d9fc98","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699665.4610522,"run":"59d9fc98","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699665.4610887,"run":"59d9fc98","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767699665.59897,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/branch.rb"}
+{"t":1767699665.5992904,"run":"342a882f","m":"Action 'branch' wird definiert (Überschreiben: false)"}
+{"t":1767699665.5993505,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit.rb"}
+{"t":1767699665.5997565,"run":"342a882f","m":"Action 'commit' wird definiert (Überschreiben: false)"}
+{"t":1767699665.5998032,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/commit_engine.rb"}
+{"t":1767699665.599958,"run":"342a882f","m":"Action 'commit-engine' wird definiert (Überschreiben: false)"}
+{"t":1767699665.5999997,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/ship.rb"}
+{"t":1767699665.6009824,"run":"342a882f","m":"Action 'ship' wird definiert (Überschreiben: false)"}
+{"t":1767699665.6010425,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/actions/tags.rb"}
+{"t":1767699665.60129,"run":"342a882f","m":"Action 'tags' wird definiert (Überschreiben: false)"}
+{"t":1767699665.6013706,"run":"342a882f","m":"Lade Plugin: /home/toka/dv/mdtutor/cursor/severin/tools/id_tools.rb"}
+{"t":1767699665.6015832,"run":"342a882f","m":"Tool 'next-id' wird definiert (Überschreiben: false)"}
+{"t":1767699665.6016262,"run":"342a882f","m":"Tool 'fix-brain-id' wird definiert (Überschreiben: false)"}
+{"t":1767710980.1759038,"run":"79429561","m":"CLI run_stages started","format":"human","root":"/home/toka/dv/mdtutor/cursor/severin/engine","stage":"init"}
+{"t":1767710980.176172,"run":"79429561","m":"Starting Stage: 1-skills","stage":"1"}

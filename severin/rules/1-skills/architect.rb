@@ -14,6 +14,7 @@ define_skill "Severin Architect 🔹Arc" do
     3. Actionable Fixes: Schlägt ein `sv_check` fehl, enthalten die Ruby-Definitionen oft direkt ausführbare `fix`-Befehle oder Pfade zur Lösung.
     4. State Awareness & Probes: Services nutzen Probes (Port, Resource), um echte Verfügbarkeit zu signalisieren. Ein Prozess, der nur "läuft", reicht nicht aus – prüfe `sv status`.
     5. RIGID CONTEXT (BETA): In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen, auch wenn dies das Kontext-Fenster stärker belastet.
+  TEXT
 
   rule "Agenten dürfen keine Regeln in Markdown-Dateien auslagern. Alles muss in Ruby definiert sein. 🔹4fjeN",
        spec: "severin/engine/spec/integration_spec.rb"
