@@ -7,9 +7,8 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
     Dieser Skill regelt das Onboarding und Management von neuen Aufgaben/Features.
 
     ONBOARDING FLOW:
-    1. Feature-Branch erstellen (`feature/name`).
-    2. Brain-Dokument anlegen (`docs/brain/YYYY-MM-DD-name.md`).
-    3. Status-Zeile direkt unter der H1-Überschrift setzen.
+    1. Brain-Dokument anlegen (`docs/brain/YYYY-MM-DD-name.md`).
+    2. Status-Zeile direkt unter der H1-Überschrift setzen.
     4. Tasks als Checkliste definieren.
 
     STATUS-MANAGEMENT:
@@ -35,7 +34,7 @@ define_skill "Severin Task-Manager 🔹TskMgr" do
   rule "Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n"
   rule "Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN"
   rule "Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN"
-  rule "Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR"
+  rule "Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Task passt. Erstelle bei Scope-Abweichungen ein neues Brain-Dokument. 🔹CD-BR"
 
   prompt_file "plan", <<~MARKDOWN
     # 📝 ConvArc Phase: Planung (Brain Doc)

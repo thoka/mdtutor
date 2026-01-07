@@ -24,17 +24,12 @@ define_skill "Severin Architect 🔹Arc" do
        spec: "severin/engine/lib/severin.rb"
   rule "Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER",
        spec: "severin/engine/spec/generation_spec.rb"
-  rule "Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH",
+  rule "Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Task in Brain-Dokumenten nicht blockiert ist. 🔹RULE-BRANCH",
        spec: "severin/engine/spec/integration_spec.rb"
-
-  rule "Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM",
-       spec: "severin/engine/"
 
   rule "Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT",
        spec: "severin/engine/spec/no_raw_output_spec.rb"
 
   rule "Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS",
        spec: "severin/engine/spec/no_raw_output_spec.rb"
-
-  guidance :arc, "Änderungen an der Severin-Engine (severin/engine/) MÜSSEN immer als separater Schritt committet und gepusht werden, bevor der übergeordnete Projekt-Commit den neuen Submodule-Pointer aufnimmt. Nutze `sv commit-engine` gefolgt von `sv commit`."
 end

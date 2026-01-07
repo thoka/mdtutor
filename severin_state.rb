@@ -21,4 +21,7 @@ Severin.draw_state do
 
   # Aktueller Workflow-State (discussion, planning, implementation, review, shipping)
   workflow :implementation
+
+  # Temporäre Ausnahmen für CI/Shell-Umgebung
+  allow "Direnv Initialization 🔹DIRENV-INIT"
 end

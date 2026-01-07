@@ -61,8 +61,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
-- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
-- Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
+- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Task in Brain-Dokumenten nicht blockiert ist. 🔹RULE-BRANCH
 - Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT
 - Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS
 
@@ -135,7 +134,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Nutze `sv_next_id` für neue Dokumente und `sv_fix_brain_id` zur Korrektur. 🔹idG3n
 - Agenten dürfen Brain-Dokumente NIEMALS manuell erstellen. Nutze IMMER das MCP-Tool `sv_next_id`, um Konsistenz sicherzustellen. 🔹BRN-GEN
 - Agenten dürfen NIEMALS eigenständig RIDs (🔹xxxxx) erfinden. Dies erledigt Severin via `sv_next_id`. 🔹RID-GEN
-- Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Branch/Task passt. Erstelle bei Scope-Abweichungen einen neuen Feature-Branch. 🔹CD-BR
+- Prüfe VOR der Implementation, ob die Anforderung zum aktuellen Task passt. Erstelle bei Scope-Abweichungen ein neues Brain-Dokument. 🔹CD-BR
 
 ### Severin Test-Driven Quality
 - Neue Engine-Features müssen eine entsprechende Spec in `severin/engine/spec/` besitzen. 🔹SPEC-REQ
@@ -150,21 +149,13 @@ Folge strikt den Anweisungen für diesen Zustand.
 
 Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 
-### sv_branch
-- **Zweck**: Erstellt einen neuen Feature-Branch basierend auf einer Brain-ID.
-- **Wichtig**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten.
-
 ### sv_commit
 - **Zweck**: Führt einen synchronisierten Projekt- und Engine-Commit aus (mit Cleanup und Chat-Referenz).
 - **Wichtig**: 1. Löscht automatisch alle temporären Dateien (`tmp_*`).
 
-### sv_commit_engine
-- **Zweck**: Commitet Änderungen in der Severin-Engine.
-- **Wichtig**: 1. Nutze dieses Tool, wenn du Dateien unter `severin/engine/` geändert hast.
-
 ### sv_ship
-- **Zweck**: Führt den vollständigen Release-Prozess nach 'main' aus (inkl. Submodule-Sync).
-- **Wichtig**: 1. Nutze dieses Tool nur von einem Feature-Branch aus.
+- **Zweck**: Führt den stabilen Stand vom aktuellen Entwicklungs-Branch (z.B. 'dev') nach 'main' zusammen.
+- **Wichtig**: 1. Nutze dieses Tool, wenn der Stand auf deinem Arbeits-Branch stabil ist.
 
 ### sv_tags
 - **Zweck**: Zeigt alle verfügbaren Tags, Skills und deren aktuellen Aktivierungsstatus an.
@@ -184,7 +175,7 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 
 
 ### Branch Gesundheit & Cleanup 🔹NUSqE
-- **Fokus & Umfang 🔹gBN5w**: Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz
+- **Fokus & Umfang 🔹gBN5w**: Ein Arbeitszyklus sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz
 - **Keine temporären Dateien 🔹gURed**: Alle temporären Dateien müssen mit 'tmp_' beginnen und dürfen nicht committet werden. 🔹Bqgcu
 - **Synchronität der Regeln 🔹J4Jp0**: Die lokalen Projektregeln müssen mit dem Severin-Code übereinstimmen. 🔹eSgd3
 - **Plan-Aktualität 🔹9VGZq**: Das Brain-Dokument muss den aktuellen Fortschritt widerspiegeln. 🔹35SbY
@@ -216,7 +207,6 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Dokumentation der Generierung 🔹3097t**: Jede registrierte Umgebung (via define_environment) muss den Befehl 'sv' zur Neu-Generierung erwähnen. 🔹HSpv4
 
 ### Workcycle & Git Regeln 🔹5yJUs
-- **Feature Branch 🔹brtTX**: Code NIEMALS ohne einen Feature-Branch (feature/name) erstellen. Direkte Commits auf main sind verboten. 🔹rIJTD
 - **Brain Document (Implementierungsplan) 🔹fLd43**: VOR der Implementierung IMMER einen Plan in docs/brain/YYYY-MM-DD-feature-name🔹ID.md committen. 🔹2Gtf3
 - **Brain Title & ID 🔹T1tlI**: Der Titel im Brain-Dokument muss die Requirement-ID enthalten. 🔹idG3n
 - **Brain Task Format 🔹XdbXR**: Tasks müssen als Markdown-Checklisten (- [ ] / - [x]) definiert sein. 🔹cy6jG
@@ -227,7 +217,6 @@ Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 - **Archivierung nach docs/done 🔹BRN-ARCHIVE**: Dokumente in docs/brain/done sollen nach docs/done verschoben werden. 🔹BRN-ARCHIVE
 - **Brain ID Format (kein Bindestrich) 🔹BRN-DASH**: Die ID im Dateinamen sollte direkt nach dem Titel ohne Bindestrich folgen (z.B. Titel🔹ID.md). 🔹BRN-DASH
 - **Sprach-Konsistenz (Deutsch) 🔹PJcKP**: Alle Regeln und Skill-Beschreibungen in Severin müssen auf Deutsch verfasst sein. 🔹fhmjc
-- **Engine-Änderungen Atomic Commits 🔹ENG-ATOM**: Änderungen an der Engine (Submodule) müssen separat committet werden. 🔹SUB-ATOM
 - **Sauberer Workspace für Core-Dateien 🔹Xg87A**: Wichtige Konfigurationsdateien wie package.json sollten keine unsauberen Änderungen enthalten. 🔹ae4E5
 - **Test Dokumentation (README) 🔹fuodx**: Das severin/README.md muss die aktuelle Struktur und Nutzungsanweisungen enthalten. 🔹qE5WY
 

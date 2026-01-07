@@ -56,8 +56,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Ändere niemals `.cursorrules` direkt. Nutze `sv_gen` nach Änderungen in `severin/rules/`. 🔹J4Jp0
 - Erwarte bei fehlschlagenden Checks eine passende Anleitung oder Fix-Aktion vom Framework. Mahne das Fehlen solcher Anleitungen aktiv an. 🔹7knlz
 - Rigidität: In der Beta-Phase werden ALLE Regeln in die .cursorrules injiziert, um maximale Konformität sicherzustellen. 🔹NO-FILTER
-- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Branch nicht durch offene Tasks in Brain-Dokumenten blockiert ist. 🔹RULE-BRANCH
-- Submodule Atomic Commits: Engine-Änderungen isolieren. 🔹SUB-ATOM
+- Bevor strukturelle Änderungen an `severin/rules/` vorgenommen werden, muss sichergestellt sein, dass der aktuelle Task in Brain-Dokumenten nicht blockiert ist. 🔹RULE-BRANCH
 - Shell Integrität: Nutze für Shell-Befehle immer die Framework-Methode `sh()`. Direkte system() Aufrufe oder Backticks in Regeln sind verboten. 🔹SH-STRICT
 - Integrity Enforcement: Ändere Whitelists in `no_raw_output_spec.rb` niemals ohne explizite Nutzer-Autorisierung. 🔹NO-BYPASS
 
@@ -120,21 +119,13 @@ Folge strikt den Anweisungen für diesen Zustand.
 
 Nutze für Routineaufgaben bevorzugt die folgenden MCP-Tools:
 
-### sv_branch
-- **Zweck**: Erstellt einen neuen Feature-Branch basierend auf einer Brain-ID.
-- **Wichtig**: 1. Nutze dieses Tool, um einen neuen Feature-Branch zu starten.
-
 ### sv_commit
 - **Zweck**: Führt einen synchronisierten Projekt- und Engine-Commit aus (mit Cleanup und Chat-Referenz).
 - **Wichtig**: 1. Löscht automatisch alle temporären Dateien (`tmp_*`).
 
-### sv_commit_engine
-- **Zweck**: Commitet Änderungen in der Severin-Engine.
-- **Wichtig**: 1. Nutze dieses Tool, wenn du Dateien unter `severin/engine/` geändert hast.
-
 ### sv_ship
-- **Zweck**: Führt den vollständigen Release-Prozess nach 'main' aus (inkl. Submodule-Sync).
-- **Wichtig**: 1. Nutze dieses Tool nur von einem Feature-Branch aus.
+- **Zweck**: Führt den stabilen Stand vom aktuellen Entwicklungs-Branch (z.B. 'dev') nach 'main' zusammen.
+- **Wichtig**: 1. Nutze dieses Tool, wenn der Stand auf deinem Arbeits-Branch stabil ist.
 
 ### sv_tags
 - **Zweck**: Zeigt alle verfügbaren Tags, Skills und deren aktuellen Aktivierungsstatus an.

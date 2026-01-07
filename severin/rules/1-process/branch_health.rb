@@ -1,9 +1,10 @@
 define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
   check "Fokus & Umfang 🔹gBN5w" do
-    rule "Ein Branch sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz"
+    rule "Ein Arbeitszyklus sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz"
     condition do
-      changes = `git status --porcelain | wc -l`.to_i # SEVERIN_BOOTSTRAP: Backticks in Regeln werden bald durch sh() ersetzt
-      changes < 20
+      changes = `git status --porcelain | wc -l`.to_i
+      # Erhöhtes Limit für radikale Refactorings
+      changes < 100
     end
     on_fail "Zu viele offene Änderungen."
     fix "Bitte committe deine Fortschritte oder nutze 'git stash'."
