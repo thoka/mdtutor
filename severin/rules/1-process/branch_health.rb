@@ -31,7 +31,7 @@ define_suite "Branch Gesundheit & Cleanup 🔹NUSqE" do
       test_mtimes = Dir.glob('severin/rules/**/*.rb').map { |f| File.mtime(f) }
       rules_mtime >= test_mtimes.max
     end
-    on_fail "Die Projektregeln sind nicht auf dem neuesten Stand der Severin-Tests."
+    on_fail "Die Projektregeln in ./PROJECT_RULES.md sind nicht auf dem neuesten Stand der Severin-Tests."
     fix "Führe 'sv gen' aus, um die Dokumentation zu synchronisieren." do
       if ENV['SEVERIN_GENERATING']
         Severin.log_debug "Rekursiver Aufruf von 'sv gen' unterbunden."
