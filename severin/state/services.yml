@@ -6,7 +6,7 @@ api:
     }"
   :port: 3101
   :pid: 1453
-  :state: :starting
+  :state: :running
   :last_error: 
   :started_at: 2026-01-04 02:43:03.775233844 +01:00
   :depends_on: []

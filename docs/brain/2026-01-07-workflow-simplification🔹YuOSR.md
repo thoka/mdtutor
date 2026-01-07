@@ -14,7 +14,6 @@ Dieses Dokument beschreibt die Entschlackung des Workflows durch Vereinfachung d
 - [ ] Finaler Projektsync und Commit
 
 ## Tasks
-- [x] Engine-Bugfixes (sh, ui_info, current_options in Engine verfügbar machen)
-- [x] Archivierung alter Brain-Dokumente
-- [ ] Erster erfolgreicher Commit mit der neuen Infrastruktur
+- [x] Erster erfolgreicher Commit mit der neuen Infrastruktur
+- [x] Finaler Projektsync und Commit
 

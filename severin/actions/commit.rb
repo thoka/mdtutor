@@ -27,6 +27,24 @@ Severin.define_action "commit" do
 
     # Wir arbeiten immer relativ zum Projekt-Root
     Dir.chdir(Severin.project_root) do
+      # 0. Branch-Check & Sprint-Isolation
+      current_branch = `git rev-parse --abbrev-ref HEAD`.strip
+      protected_branches = ["main", "dev", "master"]
+
+      if protected_branches.include?(current_branch)
+        log_info.call "🛡️  Geschützter Branch '#{current_branch}' erkannt. Erstelle Sprint-Branch..."
+
+        # Generiere ID falls nicht vorhanden (RID-Pattern)
+        # Wir suchen nach 5 alphanumerischen Zeichen nach einem 🔹 oder am Ende
+        rid_match = msg.match(/🔹([a-zA-Z0-9]{5})/)
+        rid = rid_match ? rid_match[1] : Array.new(5){[*'a'..'z',*'A'..'Z',*'0'..'9'].sample}.join
+        sprint_branch = "sprint/auto-#{rid}"
+
+        # Nutze backticks für den Checkout
+        `git checkout -b #{sprint_branch}`
+        log_success.call "🚀 Auf Sprint-Branch '#{sprint_branch}' gewechselt."
+      end
+
       # 1. Cleanup: Lösche tmp_* Dateien im Root
       tmp_files = Dir.glob("tmp_*")
       unless tmp_files.empty?

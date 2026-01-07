@@ -17,7 +17,7 @@ Folge strikt den Anweisungen für diesen Zustand.
 
 ## 🧠 Deine Skills & Rollen
 ### Agenten-Verhalten
-- Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). 🔹NO-PRAISE
 - Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
 - Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
@@ -120,6 +120,9 @@ Folge strikt den Anweisungen für diesen Zustand.
 - Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
 - Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
 - Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ
+
+### Shell Integrity 🐚
+- Return to Root: Pfad-Stabilität im Terminal. 🔹SH-PATH
 
 ### Tagging Culture 🏷️
 - Granular Skills: Bevorzuge viele spezialisierte Skills gegenüber wenigen monolithischen. 🔹TAG-GRANULAR

@@ -5,7 +5,7 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 ## 🧠 Agent Skills
 
 ### Agenten-Verhalten
-- **Guideline**: Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). Fokus rein auf technische Korrektheit. Kurze, präzise Antworten bevorzugen.
+- **Guideline**: Neutralität & Sachlichkeit: KEIN Lob (z.B. 'Toller Ansatz'). 🔹NO-PRAISE
 - **Guideline**: Kritische Prüfung: Diskutiere Ideen kritisch gegen kodifizierte Standards. Weise auf Widersprüche zu Prinzipien wie Minimalism oder TDD hin.
 - **Guideline**: Architektur: Bevorzuge Minimalismus (einfachste Lösung). Nutze moderne Standards (z.B. Svelte 5 Runes) statt veralteter Patterns.
 - **Guideline**: Fakten statt Raten: Nutze Recherche-Tools bei Unsicherheit. Hypothesen müssen klar als solche gekennzeichnet sein.
@@ -107,6 +107,9 @@ Diese Regeln und Skills werden automatisch aus der Severin Test-Suite generiert.
 - **Guideline**: Versionierung: Major-Version auf 0 belassen bis zur vollen Stabilität. 🔹BETA-VER
 - **Guideline**: Self-Documentation: Nutze die `spec` DSL für alle neuen Actions und Tools. 🔹SELF-DOC
 - **Guideline**: Bootstrapping Integrity: Lade-Reihenfolge beachten. 🔹LOAD-SEQ
+
+### Shell Integrity 🐚
+- **Guideline**: Return to Root: Pfad-Stabilität im Terminal. 🔹SH-PATH
 
 ### Tagging Culture 🏷️
 - **Guideline**: Granular Skills: Bevorzuge viele spezialisierte Skills gegenüber wenigen monolithischen. 🔹TAG-GRANULAR
