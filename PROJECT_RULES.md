@@ -151,12 +151,6 @@ Die folgenden Aktionen sind als MCP-Tools (Präfix `sv_`) oder via `sv call <nam
 
 ### Agent-Anleitungen & Engine 🔹uVr0W
 - **Agent-Anleitungen via Severin 🔹lTs5w**: Alle Anleitungen für KI-Agenten müssen über das Severin-Framework in 'severin/rules/' definiert werden. 🔹4fjeN
-- **Severin Engine Development Workflow 🔹mYkJM**: ### 🐺 Severin Engine Development
-      Wenn du die Severin-Engine (unter `severin/engine/`) bearbeitest, folge diesem Workflow:
-      1. Entwicklung direkt im Pfad `severin/engine/` (Symlink oder Submodule).
-      2. Validierung mit `ruby severin/runner.rb --help` und `ruby severin/runner.rb check`.
-      3. Commits direkt im Pfad `severin/engine/` mit Conventional Commits. 🔹5cuWw
-
 
 ### Branch Gesundheit & Cleanup 🔹NUSqE
 - **Fokus & Umfang 🔹gBN5w**: Ein Arbeitszyklus sollte nicht zu viele uncommittete Änderungen ansammeln. 🔹7cPiz
